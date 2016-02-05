@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-04 Thu 18:46 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linear Programming</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Linear Programming</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline4">1. Standard Form and Slack Form</a>
+<ul>
+<li><a href="#orgheadline2">1.1. Standard form</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. 转成standard form</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline3">1.2. Slack form</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">2. 把一些问题用linear programs表示</a>
+<ul>
+<li><a href="#orgheadline5">2.1. shortest path</a></li>
+<li><a href="#orgheadline6">2.2. maximum flow</a></li>
+<li><a href="#orgheadline7">2.3. Minimum cost flow</a></li>
+<li><a href="#orgheadline8">2.4. multicommodity flow</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">3. SIMPLEX (用于slack form)</a>
+<ul>
+<li><a href="#orgheadline10">3.1. PIVOT and SIMPLEX procedure</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">4. Duality</a></li>
+<li><a href="#orgheadline13">5. 初值可行性</a></li>
+</ul>
+</div>
+</div>
+<p>
+一个例子
+</p>
+
+\begin{eqnarray}
+& \text{maximize} & \qquad x_1+x_2\\
+& \text{subject to} & \\
+& & \qquad 4x_1-x_2 \le 8 \\
+& & \qquad 2x_1+x_2 \le 10 \\
+& & \qquad 5x_1-2x_2 \ge -2 \\
+& & \qquad x_1,x_2 \ge 0
+\end{eqnarray}
+
+<p>
+其中，\(x_1+x_2\) 叫objective function, 其值叫objective value.
+\(x_1,x_2\ge 0\) 叫non-negative constraints.
+无论有多少个变量，每个constraint都代表一个half space.
+constraint有&gt;=,&lt;=,=。计算constraint数量时，\(x_1,x_2\ge 0\) 也算2个。
+</p>
+
+<ul class="org-ul">
+<li><code>a simplex</code>: the feasible region formed by the intersection of these half spaces.</li>
+<li><code>simplex algorithm</code>: 从simplex的一个顶点出发，沿着一条边到达其相邻的顶点。要求objective value要增加。如果一个点周围所有点都比它小时，结束。</li>
+<li><code>integer linear programming</code>: 所有变量取整数。找到这个问题的可行解是NP-hard的。但是不是integer的问题就有Polynomial solution.</li>
+</ul>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">1</span> Standard Form and Slack Form</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.1</span> Standard form</h3>
+<div class="outline-text-3" id="text-1-1">
+\begin{eqnarray}
+& \text{maximize} & \qquad \sum_1^n c_jx_j \\
+& \text{subject to} & \\
+& & \qquad \sum_1^n a_{ij}x_j \le b_i \quad for i=1..m \\
+& & \qquad x_j \ge 0 \quad for j=1..n
+\end{eqnarray}
+
+<p>
+三要素：
+</p>
+
+<ul class="org-ul">
+<li>max</li>
+<li>constraints都是&lt;=(无&gt;=和=)</li>
+<li>所有变量&gt;=0</li>
+</ul>
+
+<p>
+矩阵形式
+</p>
+
+\begin{eqnarray}
+& \text{max} & \qquad c^Tx \\
+& \text{subject to} & \\
+& & \qquad Ax\le b \\
+& & \qquad x \ge 0
+\end{eqnarray}
+
+<p>
+如果一个linear program没有可行解，那么它是infeasible的。
+如果有可行解，但是没有有限最佳值(finite optimal objective value),那么它是unbounded的。
+</p>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> 转成standard form</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ol class="org-ol">
+<li><b><b>IMPORTANT</b></b> 对变量 \(x_j\) 不&gt;=0白，拆成\(x_j' - x_j'', x_j',x_j'' \ge 0\)</li>
+<li>minimize和&gt;=b的constraint,直接乘-1</li>
+<li>对等式constraint，f=b，改成\(f\ge b, f\le b\)</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.2</span> Slack form</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+nonnegative constraints是唯一的不等式constraints。
+所以对于 \(\sum a_{ij}x_j\) ，把它变成
+</p>
+
+\begin{equation}
+s=b_i-\sum a_{ij}x_j
+s\ge 0
+\end{equation}
+
+<p>
+s叫做slack variable
+</p>
+
+<p>
+真正做转换时，变量名不用s，而用\(x_{n+i}\)
+</p>
+
+\begin{equation}
+x_{n+1} = b_i - \sum a_{ij}x_j
+x_{n+i} \ge 0
+\end{equation}
+
+<p>
+左边的变量叫basic variable，右边的叫nonbasic variable.
+nonbasic variable都=0，叫basic solution.
+</p>
+
+<p>
+上面还不叫slack form，flack form还会
+</p>
+
+<ol class="org-ol">
+<li>不写max和subject to，而是写\(z=2x_1\) ，默认max</li>
+<li>不写nonnegative constraint，默认。</li>
+</ol>
+
+<p>
+矩阵表示
+</p>
+
+\begin{equation}
+z=v+c^Tx
+x_b=b-Ax_N
+\end{equation}
+
+<p>
+B表示basic variable的index, e.g. {1,2,3}. N表示nonbasic. v is constant.
+</p>
+
+<p>
+可用tuple (N,B,A,b,c,v)表示。
+注意A的前面有个负号。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">2</span> 把一些问题用linear programs表示</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+问题2,3,4都有假设
+</p>
+
+<ol class="org-ol">
+<li>\(c(u,v)=0 if (u,v) \notin E\)</li>
+<li>no antiparallel edges</li>
+</ol>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.1</span> shortest path</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+一个图Ｇ，source s，到t。用$d<sub>v</sub>$表示s到v的最短路径的值。我们要找\(d_t\)
+</p>
+
+<p>
+解：对于每个边$(u,v) &isin; E$，有\(d_v \le d_u+w(u,v)\)
+初值$d<sub>s</sub>=0$。有
+</p>
+
+\begin{eqnarray}
+& \text{maximize} & \qquad d_t \\
+& \text{subject to} & \\
+& & \qquad d_v \le d_u + w(u,v) \\
+& & \qquad d_s = 0
+\end{eqnarray}
+
+<p>
+共有|v|个variable，有|E|+1个constraints。
+</p>
+
+<p>
+为什么要max dt?因为假设有三条路到v。满足constraints后，我们肯定要选其中一个吧。
+那么满足条件的最大的$d<sub>v</sub>$实际上就是最小权值的那个边。另外，如果是min，那么直接$d<sub>v</sub>=0$就行了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.2</span> maximum flow</h3>
+<div class="outline-text-3" id="text-2-2">
+\begin{eqnarray}
+& \text{maximize} & \qquad \sum_{v \in V} f_{sv} - \sum_{v \in V}f_{vs} \\
+& \text{subject to} & \\
+& & \qquad f_{uv} \le c(u,v) \\
+& & \qquad \sum_{v\in V} f_{vu} = \sum_{v \in V}f_{uv} \quad for each u\in V-{s,t} \\
+& & \qquad f_{uv} \ge 0
+\end{eqnarray}
+
+<p>
+共有\(|V|^2\) 个variables, 从上到下有\(|V|^2+(|V|-2) + |V|^2\) 个constraints.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.3</span> Minimum cost flow</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+定义cost为，如果(u,v)上流了一个$f<sub>uv</sub>$，那么引入cost为$a(u,v)f<sub>uv</sub>$。
+欠要求从s到t的flow数量恰好是d。我们要min cost \(\sum_{(u,v) \in E} a(u,v) f_{uv}\)
+</p>
+
+\begin{eqnarray}
+& \text{minimize} & \qquad \sum_{(u,v) \in E} a(u,v)f_{uv} \\
+& \text{subject to} & \\
+& & \qquad f_{uv} \le c(u,v) \\
+& & \qquad \sum_{v \in V} f_{vu} - \sum_{v \in V} f_{uv} =0 for each V-{s,t} \\
+& & \qquad \sum_{v \in V} f_{sv} - \sum_{v \in V} f_{vs} = d \\
+& & \qquad f_{uv} \ge 0
+\end{eqnarray}
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.4</span> multicommodity flow</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+有k种货，每一个有一个s和t。$f<sub>iuv</sub>$是货i从u到v的flow。
+$f<sub>uv</sub>=&sum;<sub>i</sub> f<sub>iuv</sub>$是叠加flow(aggregate flow)。
+每种货物都有一个运量\(d_i\).
+问是否存在这么一个flow
+</p>
+
+\begin{eqnarray}
+& \text{min} & \\qquad 0 \\
+& \text{subject to} & \\
+& & \qquad \sum_{i=1}^{k} f_{iuv} \le c(u,v) \\
+& & \qquad \sum f_{iuv} - \sum f_{ivu} = 0 for each i=1~k, u\in V-{s,t} \\
+& & \qquad \sum_{v \in V} f_{i,s_i,v} - \sum f_{i,v,s_i} = d_i \\
+& & \qquad f_{iuv} \ge 0
+\end{eqnarray}
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">3</span> SIMPLEX (用于slack form)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+一个solution is feasible: 所有\(x_i \ge 0\)
+basic solution: 右侧nonbasic变量全为0.
+</p>
+
+<p>
+开始的几个iteration里，basic solution可能不feasible.
+</p>
+
+<p>
+基本思想是，在目标函数时里，找z=cx的c&gt;0的项。这样增加x可以增加z。因为x是0。
+然后，在constraints里增加x值，这时basic variable会减小，因为它们表示松驰度，x增大松驰度自然会降。
+把x增加到一个basic variable=0为止。x叫做entering variable $x<sub>e</sub>$。
+那个变为0的basic variable叫leaving variable \(x_l\)
+</p>
+
+<p>
+用和序来找$x<sub>e</sub>$就是，对$a<sub>ie</sub> &gt; 0$时，$\frac{b_i}{a<sub>ie</sub>}$最小。
+如果$a<sub>ie</sub>=0$，那么$x<sub>e</sub>$增加对$x<sub>i</sub>$毫无影响。如果$a<sub>ie</sub>&lt;0$，那$x<sub>e</sub>$增加$x<sub>i</sub>$反而增加。
+如果每个$a<sub>ie</sub>$都&lt;=0，那么$x<sub>e</sub>$可以无限增加，该问题自然unbound了。
+</p>
+
+<p>
+找到$x<sub>e</sub>$和$x<sub>l</sub>$后，要进行PIVOT操作互换它们。
+很简单，用$x<sub>l</sub>$的表达式求出$x<sub>e</sub>$，然后代入所有其他constraints以及z.
+</p>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.1</span> PIVOT and SIMPLEX procedure</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+PIVOT(N,B,A,b,c,v,l,e)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">// &#35745;&#31639;leaving&#36825;&#19968;&#34892;&#30340;&#26032;&#31995;&#25968;
+b'[e] = b[l]/a[l][e]
+for j in N-{e}
+  a'[e][j] = a[l][j]/a[l][e]
+a'[e][l] = 1/a[l][e]
+// &#35745;&#31639;&#20854;&#20313;&#31995;&#25968;
+for i in B-{l}
+  b'[i] = b[i]-a[i][e]b'[e]
+  for j in N-{e}
+    a'[i][j] = a[i][j] - a[i][e]a'[e][j]
+  a'[i][l] = -a[i][e]a'[e][l]
+// &#35745;&#31639;objectuive function
+v' = v+c[e]b'[e]
+for j in N-{e}
+  c'[j] = c[j]-c[e]a'[e][j]
+c'[l] = -c[e]a'[e][l]
+// &#35745;&#31639;&#26032;&#30340;N,B
+...
+return (N',B',A',b',c',v');
+</pre>
+</div>
+
+<p>
+SIMPLEX(A,b,c)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C">(N,B,A,b,c,v) = INITIALIZE-SIMPLEX(A,b,c)
+<span style="color: #F92672;">for</span> each c[j]&gt;0
+  <span style="color: #F92672;">for</span> i in B
+    <span style="color: #F92672;">if</span> a[i][e]&gt;0
+      tmp.push(b[i]/a[i][e])
+    <span style="color: #F92672;">if</span> (tmp.length ==0) <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">"unbounded"</span>
+    l = indexOf(min(tmp))
+    (N,B,A,b,c,v) = PIVOT(N,B,A,b,c,v,l,e)
+<span style="color: #F92672;">for</span> i = 1 to n
+  <span style="color: #F92672;">if</span> i in B
+    x[i] = b[i]
+  <span style="color: #F92672;">else</span>
+    x[i] = 0
+<span style="color: #F92672;">return</span> x <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">final answer</span>
+</pre>
+</div>
+
+
+<p>
+一些小定理：
+</p>
+
+<p>
+<b><b>lemma 29.2</b></b>: 如果INITIALIZE-SIMPLEX返回的slack form的basic solution可行，那么，
+如果SIMPLEX最终返回了一个solution，那么这个solution可行；
+如果SIMPLEX返回unbound，那原问题确实是unbound的。
+</p>
+
+<p>
+**证明可行**：对每一次适代，我们有
+</p>
+
+\begin{equation}
+\hat{b_e} = \frac{b_l}{a_{ie}}
+\hat{b_i} = b_i - a_{ie} \frac{b_e}{a_{ie}}
+\end{equation}
+
+<p>
+而我们选l时，有$\frac{b_l}{a<sub>le</sub>} &le; \frac{b_i}{a<sub>ie</sub>}$，且$a<sub>le</sub> &gt;0$，
+只需证明\(\hat{b_e} \ge 0, \hat{b_i} \ge 0\)
+</p>
+
+<p>
+显然\(b_l \ge 0,a_{le}>0\) =&gt; \(\hat{b_e} = \frac{b_l}{a_{le}} \ge 0\)
+还有\(\hat{b_i} = b_i - a_{ie}\frac{b_e}{a_{le}} \ge b_i - a_{ie}\frac{b_i}{a_{ie}}=0\)
+</p>
+
+<p>
+<b><b>证明unbound</b></b>:见之前的分析。
+</p>
+
+<p>
+不terminate的唯一情况是出现cycling: 在SIMPLEX的各个iteration中，存在两个完全相同的slack form.
+</p>
+
+<p>
+**定理**：若对任意$x<sub>j</sub>$有$Ax=r+BX$，有
+A=B, r=0
+</p>
+
+<p>
+**证明**： 令x=0 =&gt; r=0.令x<sub>i</sub>=1=&gt; a<sub>i</sub>=b<sub>i</sub>
+</p>
+
+<p>
+**引理**：对于一个linear program (A,b,c) as standard form, 其slack form被Ｂ唯一确定。
+</p>
+
+<p>
+SIMPLEX如果在$C<sub>n+m</sub><sup>m</sup>$内还不返回，那么它就cycling了。
+</p>
+
+<p>
+**证明**：|B|=m,|N|=n，那么，共有$C<sub>n+m</sub><sup>m</sup>$种slack form.若还不返回，那么就要重复了。
+</p>
+
+<p>
+cycling是会出现的，以下两种方法可以避免：在选择$x<sub>e,x</sub><sub>l</sub>$时：
+</p>
+
+<ul class="org-ul">
+<li>perturb the input slightly so that</li>
+</ul>
+<p>
+it is impossible to have two solutions with the same object value
+</p>
+<ul class="org-ul">
+<li>Bland's rule: choose the variable with the smallest index</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">4</span> Duality</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+primal:
+</p>
+
+\begin{equation}
+max \quad c^Tx
+s.t.
+\qquad Ax \le b
+\qquad x \ge 0
+\end{equation}
+
+<p>
+dual
+</p>
+
+\begin{equation}
+min \quad b^Ty
+s.t.
+\qquad A^Ty \ge c
+\qquad y \ge 0
+\end{equation}
+
+<p>
+<b><b>weak lp duality</b></b>:
+对任意$\overline{x}$为primal的可行解，$\overline{y}$为dual的可行解。有\(c^T\overline{x} \le b^T\overline{y}\)
+</p>
+
+<p>
+**证明**：
+</p>
+
+\begin{equation}
+c^T\overline{x} = \sum c_j\overline{x_j}
+\le \sum_j (\sum_i a_{ij}\overline{y_i}) \overline{x_j}
+= \sum_i (\sum_j a_{ij}\overline{x_j}) \overline{y_i}
+\le \sum_i b_i\overline{y_i}
+\end{equation}
+
+<p>
+**引理**：若\(c^T\overline{x}=b^T\overline{y}\),则$\overline{x},\overline{y}$分别是两个问题的最优解。
+</p>
+
+<p>
+<b><b>定理: LP duality</b></b>: SIMPLEX return a $\overline{x}$。用N,B表示final slack form的N and B.
+$c'$表示final的系数，\overline{y}的定义：
+</p>
+
+\begin{equation}
+\overline{y_i}=-c_{n+i} \quad if n+i \in N
+\qquad 0 \quad otherwise
+\end{equation}
+
+<p>
+其实等价于$\overline{y_i}=-c<sub>n+i</sub>'$，因为若$n+i &isin; B$，则$c<sub>n+i</sub>'<code>0$。
+也就是$\overline{y}</code>-c<sub>B</sub>'$。这里B是原始的Ｂ。y共m个。
+</p>
+
+<p>
+那么有：$\overline{x},\overline{y}$分别是primal和dual的optimal solution,
+而且有\(c^T\overline{x} = b^T\overline{y}\)
+</p>
+
+<p>
+**证明**：只需证明\(c^T\overline{x} = b^T\overline{y}\)
+</p>
+
+<p>
+由于$\overline{x}$是SIMPLEX返回的，最后的slack form是
+\(z=v'+{c'}^Tx\)
+这里\(c'\le 0\)
+</p>
+
+<p>
+整理一下我们手头上的条件：（之后的Ｎ和Ｂ是primal原始问题的Ｎ和Ｂ，而不是final的。
+</p>
+
+\begin{equation}
+A\overline{x_N}=b
+\overline{x_B} = b-A\overline{x_N}
+\overline{y} = -{c_B}' \quad (B defined in final form)
+{c^T}'\overline{x}=0
+c^T\overline{x}=z=v'+{c^T}'\overline{x}=v'
+\end{equation}
+
+<p>
+要证明\(c^T\overline{x}=b^T\overline{y}\)
+</p>
+
+\begin{equation}
+c^T\overline{x_N} = c^T\overline{x} = v'+{c'}^T\overline{x}
+= v' + {c_N'}^T\overline{x_N} + {c_B'}^T\overline{x_B}
+= v' + {c_N'}^T\overline{x_N} - \overline{y}^T\overline{x_B}
+= v' + {c_N'}^T\overline{x_N} - \overline{y}^T(b-A\overline{x_N})
+= v' - b^Ty_B + ({c_N'}^T + \overline{y}^TA)\overline{x_N}
+\end{equation}
+
+<p>
+所以
+</p>
+
+\begin{equation}
+v' = b^T\overline{y}
+{c_N'}^T+\overline{y}^TA = c^T
+\end{equation}
+
+<p>
+这就证明了\(c^T\overline{x} = b^T\overline{y}\)
+</p>
+
+<p>
+还需证明此解可行。也就是\(A^T\overline{y} \ge c, \overline{y}\ge 0\)
+由所得的第二式可知，两边求下T:\(A^T\overline{y}+c_N'=c\)
+我们知道\(c_N'<0\)(最开始讲过).所以\(A^T\overline{y}>c\)
+由\overline{y}的定义式$\overline{y}=-c<sub>B</sub>'$，且\(c_B'<0\),有\(\overline{y}\ge 0\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">5</span> 初值可行性</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+设primal是
+</p>
+
+\begin{equation}
+max \quad c^Tx
+s.t.
+\qquad Ax\le b
+\qquad x\ge 0
+\end{equation}
+
+<p>
+auxiliary LP(\(L_{aux}\)):
+</p>
+
+\begin{equation}
+max \quad -x_0
+s.t.
+\qquad Ax-x_0 \le b
+\qquad x\ge 0, x_0 \ge 0
+\end{equation}
+
+<p>
+INITIALIZE-SIMPLEX(A,b,c)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">b[k] = min{b[i]}
+if b[k] &gt;=0 return ({1,2,..,n},{n+1,...,n+m},A,b,c,0)
+form Laux
+get Laux's slack form (N,B,A,b,c,v)
+l=n+k // l point to b[k]'s line
+// x[0]&#36827;&#22522;&#65292;x[l](b[k])&#31163;&#22522;&#12290;
+(N,B,A,b,c,v) = PIVOT(N,B,A,b,c,v,l,0)
+solve Laux
+if optimal of Laux = 0
+  if x[0] is basic variable
+    choose any of x[i] that a[0][e]!=0 to enter, x[0] to leave
+  &#20174;Laux&#30340;final slack form&#20013;&#21435;&#25481;x[0]
+  z = &#21407;&#34920;&#36798;&#24335;&#65292;&#24182;&#23558;B&#25442;&#25104;N
+  return this form
+else return "infeasible"
+</pre>
+</div>
+
+<p>
+<b><b>定理</b></b>: 若L无可行解，则INIT这回infeasible。否则返回的slack form的basic solution可行。
+</p>
+
+<p>
+<b><b>证明</b></b>:
+若L无可行解，由前面定理，我们知道，
+Laux的optimal value不是0.而$x<sub>i</sub>=0, x<sub>0</sub>=min{b<sub>i</sub>}$，可得一个有限解。所以会返回infeasible.
+</p>
+
+<p>
+若L有可行解，如果$b<sub>i&ge;</sub> 0$，则有解返回了。
+</p>
+
+<p>
+若确实有$b<sub>k</sub>&lt;0$，则\(b_l<0,bl\le b_i\)
+设做了PIVOT后,$\hat{b}, \hat{B}$，则只需证明\(\overline{x_e}\ge 0, \overline{x_i}\ge 0\)
+我们有
+</p>
+
+\begin{equation}
+\overline{x_e} = \frac{b_l}{a_{le}}
+\hat{b_e} = \frac{b_l}{a_{le}}
+b_l<0, a_{le}=-1 \rightarrow \overline{x_e}>0
+\end{equation}
+
+\begin{equation}
+\overline{x_i} = b_i - a_{ie}\hat{b_e} = b_i - a_{ie}\frac{b_l}{a_{le}}
+a_{ie}=a_{le}=-1 \rightarrow \overline{x_i}=b_i-b_l\ge 0
+\end{equation}
+
+<p>
+故可行。
+</p>
+
+<p>
+然后solve了Laux后，因为L有可行解，所以Laux的optimal=0.
+所以我们解出的\(\overline{x_0}=0\). remove $\overline{x_0}$后，所返回的自然是可行的slack form.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-02-04 Thu 18:46</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

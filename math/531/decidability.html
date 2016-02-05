@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-04 Thu 17:37 -->
+<!-- 2016-02-04 Thu 19:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>The HebiWiki<sup>TM</sup></title>
+<title>Decidability</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -165,94 +165,223 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">The HebiWiki<sup>TM</sup></h1>
+<h1 class="title">Decidability</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline6">2. sitemap</a>
-<ul>
-<li><a href="#orgheadline2">2.1. emacs</a></li>
-<li><a href="#orgheadline3">2.2. shell</a></li>
-<li><a href="#orgheadline4">2.3. js</a></li>
-<li><a href="#orgheadline5">2.4. math</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline8">3. FAQ</a>
-<ul>
-<li><a href="#orgheadline7">3.1. Why change to a new one instead of the old wiki?</a></li>
-</ul>
-</li>
+<li><a href="#orgheadline1">1. Cardinality argument</a></li>
+<li><a href="#orgheadline2">2. An undecidable language: A<sub>TM</sub></a></li>
+<li><a href="#orgheadline3">3. Rice's theorem</a></li>
+<li><a href="#orgheadline4">4. Problems</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
-<div class="outline-text-2" id="text-1">
 <p>
-This is the wiki.
-It is not intended to export to a whole pdf file.
-This index file will just do as its name states, giving the index.
-There's no way to organize those chapters, so if needed, I will just export them individually.
-But there's an option to export a "sitemap", which may be useful.
+Regular &lt; Context-Free &lt; REC &lt; RE
 </p>
-</div>
-</div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> sitemap</h2>
-<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Countable: it is finite or same size as N</li>
+
+<li>same size as N: pair 1 to N to the language</li>
+</ul>
+
 <p>
-Use index here or use the <a href="sitemap.html">sitemap</a>.
-</p>
-</div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> <a href="./emacs.html">emacs</a></h3>
-</div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> <a href="./shell.html">shell</a></h3>
-</div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.3</span> <a href="js.html">js</a></h3>
-</div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.4</span> <a href="math/index.html">math</a></h3>
-</div>
-</div>
-
-
-
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">3</span> FAQ</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Why change to a new one instead of the <a href="http://wiki-old.lihebi.com/">old wiki</a>?</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-The old one is awesome in terms of that it uses pure Jekyll,
-and it is configured in the sense that it recognizes the new markdown files and organize them by their directory structures.
+R(real number) is uncountable
 </p>
 
 <ol class="org-ol">
-<li>The main downside is it is not systematic. It is so distributed that I can not easily find where to add new items.</li>
-<li>Second, it lacks of some approach to generate a systematic pdf book for printing.</li>
-<li>What's more, I added some web packages like Katex for formulas. It works fine, except I need to have an ugly `\(formula\)` markup for parsing, and the parsing code needs to be maintained too.</li>
-<li>Fourth, markdown is not powerful enough.</li>
-<li>Org mode has a strong cross reference system, and has powerful Babel evaluating. Most of all, org mode is so tightly integrated with Emacs.</li>
-<li>Last but not least, I don't want to use another layer of software, jekyll. I just need to document something, in a reasonable easy to browse format.</li>
+<li>list every pair of (1, r1), (2, r2), &#x2026;</li>
+<li>construct a R: 第一位和r1不一样，第二位和r2不一样，。。。</li>
 </ol>
 
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Cardinality argument</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>There're uncountably many languages.</li>
+<li>There're only countably many RE</li>
+<li>There're only countably many co-RE</li>
+</ul>
+
 <p>
-So here we go, with org mode, exproting .org into everything, including papers and books.
+languages are uncountable
+</p>
+
+<p>
+Sequence of binary of uncountable. The same as R.
+Then for every language A:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">all string={x, 0, 1, 00, 01, 10, ...}
+A         ={   0,    00,     10, ...}
+output    ={0, 1, 0, 1,  0,  1,  ...}
+</pre>
+</div>
+
+<p>
+So the language is converted to a binary sequence.
+</p>
+
+<blockquote>
+<p>
+TMs are countable
+</p>
+</blockquote>
+
+<p>
+all strings are countable: we can write down string in standard order.
+</p>
+
+<p>
+A TM can encode into a string.
+</p>
+
+<blockquote>
+<p>
+some language is not RE
+</p>
+</blockquote>
+
+<p>
+Because there're uncountable languages, but countable TMs.
 </p>
 </div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> An undecidable language: A<sub>TM</sub></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Suppose it is decidable. H decides it.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">D=On input &lt;M&gt;:
+  1. Run H on &lt;M, &lt;M&gt; &gt;
+  2. Output opposite.
+</pre>
+</div>
+
+<p>
+Run D on &lt;D&gt; will get contradiction.
+</p>
+
+<p>
+REC &lt;=&gt; RE and co-RE
+</p>
+
+<ul class="org-ul">
+<li><code>=&gt;</code>: easy</li>
+<li><code>&lt;=</code>: run M1 M2 on w in parallel</li>
+</ul>
+
+<p>
+To prove co-RE: prove not REC and is RE.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Rice's theorem</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Let P be any non-trival property of language.
+Prove that determining a language has in P is undecidable.
+</p>
+
+<ol class="org-ol">
+<li>Assume R decide P</li>
+<li>P is non-trival, we can assume `\(<L_{T0}> \in P\)`(`\(L_{T0} = \phi\)`).</li>
+</ol>
+<p>
+Otherwise we take `\(P^c\)` into consideration.
+</p>
+<ol class="org-ol">
+<li>There exists a `\(<L_T> \in P\)` while `\(<L_{T0}> \not\in P\)`.</li>
+<li>Construct a TM to decide `\(A_{TM}\)`:</li>
+</ol>
+
+<div class="org-src-container">
+
+<pre class="src src-text">On input &lt;M,w&gt;:
+  M' = on input x:
+    M(x) reject =&gt; reject;
+    M(x) accept =&gt; act like T
+    M(x) loop =&gt; loop
+  run R on &lt;M'&gt;. If accept, accept. Otherwise reject.
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>if M(w) accept, M' is the same as T, the TM accept.</li>
+<li>if M(w) reject, M' is empty(`\(<T0>\)`), the TM reject.</li>
+</ul>
+
+<p>
+Thus the TM can decide whether M accept w, which is `\(A_{TM}\)`.
+And `\(A_{TM}\)` is undecidable.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Problems</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A is RE: {&lt;M1&gt;,&lt;M2&gt;,&#x2026;}. Every Mi is decider.
+Prove that some decider D is not in any of Mi
+</p>
+
+<p>
+We need to construct D to differ from every Mi.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">On input w:
+  The index i of w in standard string order.
+  run Mi on w, if accept, reject. Otherwise accept.
+</pre>
+</div>
+
+<p>
+&gt; L separates (A,B) is `\(A \subset L\)` and `\(B \subset L^c\)`.
+&gt; Let `\(A,B \in co-RE\)` be two disjoint languages.
+&gt; Show that there is a decidable language separate (A,B).
+</p>
+
+<p>
+`\(A \in co-RE\)` =&gt; `\(A^c = L(M_1)\)`
+</p>
+
+<p>
+A,B disjoint =&gt; no string w both in A and B
+</p>
+
+<p>
+Run M<sub>1</sub>, M<sub>2</sub> on w in parallel, see which one halts first. Then do something.
+One of them must halt.
+</p>
+
+<p>
+&gt; Prove that K in RE &lt;=&gt; there exists L in REC s.t. K={x | exists y s.t. &lt;x,y&gt; in L}
+</p>
+
+<ul class="org-ul">
+<li><code>=&gt;</code>: on input &lt;x,y&gt;, convert y into a index t, run M<sub>k</sub> on x for t steps.</li>
+<li><code>&lt;=</code>: E enumerates &lt;x,y&gt; in y's standard order. Run M<sub>l</sub> on &lt;x,y<sub>i</sub>&gt;</li>
+</ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-02-04 Thu 17:37</p>
+<p class="date">Created: 2016-02-04 Thu 19:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

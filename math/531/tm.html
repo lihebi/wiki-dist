@@ -6,7 +6,7 @@
 <!-- 2016-02-04 Thu 19:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap for project wiki</title>
+<title>Turing Machine</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -143,35 +143,225 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Sitemap for project wiki</h1>
-<ul class="org-ul">
-<li>math
-<ul class="org-ul">
-<li>511
-<ul class="org-ul">
-<li><a href="math/511/lp.html">Linear Programming</a></li>
-<li><a href="math/511/approximation.html">approximation</a></li>
-<li><a href="math/511/jargon.html">jargon</a></li>
-<li><a href="math/511/np.html">np</a></li>
-<li><a href="math/511/np-problems.html">np problems</a></li>
-</ul></li>
-<li>531
-<ul class="org-ul">
-<li><a href="math/531/decidability.html">Decidability</a></li>
-<li><a href="math/531/NPC.html">NPC</a></li>
-<li><a href="math/531/tm.html">Turing Machine</a></li>
-</ul></li>
-<li><a href="math/index.html">Math Index</a></li>
-</ul></li>
-<li>subdir
-<ul class="org-ul">
-<li><a href="subdir/test.html">test</a></li>
-</ul></li>
-<li><a href="emacs.html">Emacs</a></li>
-<li><a href="js.html">Javascript</a></li>
-<li><a href="shell.html">Shell</a></li>
-<li><a href="index.html">The HebiWiki<sup>TM</sup></a></li>
+<h1 class="title">Turing Machine</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. How to get the middle of a string?</a></li>
 </ul>
+</div>
+</div>
+<ul class="org-ul">
+<li>`FSA`: finite state automata. A small amount of memory.</li>
+<li>`PDA`: push-down automata. Unlimited memory, usable only in LIFO.</li>
+<li>`RE`: recursively enumerable language. Turing Recognizable.</li>
+<li>`REC`: recursive language. Turing Decidable.</li>
+</ul>
+
+<p>
+Multi-tape turing machine: The transfer function contains the states and actions of all tapes.
+</p>
+
+<p>
+&gt; Prove: Multi tape TM equals to Single tape TM
+</p>
+
+<p>
+Add new symbol # to separate the different tapes.
+Use upper dot to denote the current position of every tape.
+</p>
+
+<p>
+&gt; Prove: doubly infinite TM equals to TM
+</p>
+
+<ul class="org-ul">
+<li><code>=&gt;</code>: Mark the beginning</li>
+<li><code>&lt;=</code>: Use two tape, first the right half, second the left half.</li>
+</ul>
+
+<p>
+&gt; Prove: Nondeterministic TM equals to Deterministic TM
+</p>
+
+<p>
+Use three tape to simulate the non-deterministic TM.
+</p>
+
+<ul class="org-ul">
+<li>original tape. As a record, never modified.</li>
+<li>simulation tape. The worker.</li>
+<li>address tape. Contains the instruction of how to perform on tape2 when encountering with multiple choice.</li>
+</ul>
+<p>
+Will refill with the next string in standard string order.
+</p>
+
+<p>
+&gt; RE &lt;=&gt; NTM recognize it
+</p>
+
+<p>
+&gt; REC &lt;=&gt; NTM decide it
+</p>
+
+<p>
+&gt; RE &lt;=&gt; some enumerator enumerates it
+</p>
+
+<ul class="org-ul">
+<li>&lt;=: M="On input w: 1. run E, compare with w"</li>
+<li>=&gt;: E=Ignore input:</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-text">for i in {1,2,3}
+  Run M for i steps on each string s1,s2,...,si in standard string order
+  Any accept, output.
+</pre>
+</div>
+
+<p>
+The string will repeat multiple times.
+</p>
+
+<p>
+REC is closed under:
+</p>
+
+<ul class="org-ul">
+<li>union</li>
+<li>complementation</li>
+<li>concatenation</li>
+<li>intersection</li>
+<li>star</li>
+</ul>
+
+<p>
+RE is closed under(no complementation)
+</p>
+
+<ul class="org-ul">
+<li>union</li>
+<li>intersection</li>
+<li>concatenation</li>
+<li>star</li>
+</ul>
+
+<p>
+&gt; REC &lt;=&gt; some enumerator enumerates it in standard string order
+</p>
+
+<ul class="org-ul">
+<li><code>=&gt;</code>: easy</li>
+<li><code>&lt;=</code>:</li>
+</ul>
+<ol class="org-ol">
+<li>if L is finite: just compare with all strings in L</li>
+<li>if L is infinite:</li>
+</ol>
+
+<div class="org-src-container">
+
+<pre class="src src-text">On input w:
+  use E to generate all strings until bigger than w in standard string order
+  if w appears, accept. Otherwise reject
+</pre>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> How to get the middle of a string?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Move two blank from left and right to the middle.
+When the two blank meet, it is the middle.
+</p>
+
+<p>
+&gt; Describe a NTM for L={0<sup>n1</sup><sup>y</sup> | y = x<sup>2</sup> mod n}
+</p>
+
+<ul class="org-ul">
+<li>Non-deterministic guess x: 1, 2, 3, &#x2026;</li>
+<li>calculate x<sup>2</sup></li>
+<li>calculate y mod n</li>
+<li>calculate x<sup>2</sup> mod n</li>
+<li>compare the previous two results</li>
+</ul>
+
+<p>
+&gt; infinite RE has infinite subset that is REC
+</p>
+
+<p>
+E for RE, run E, output the string in increasing order.
+</p>
+
+<p>
+&gt; L={n | at least n consecutive 3s in decimal expansion of PI}
+</p>
+
+<p>
+It is decidable.
+</p>
+
+<p>
+Two possibilities:
+</p>
+
+<ul class="org-ul">
+<li>for every n, there exists</li>
+<li>There's a max N0.</li>
+</ul>
+
+<p>
+They are complementary to each other.
+We don't know which one is right at a time,
+but one of them is guaranteed to be true.
+Both of them are decidable.
+</p>
+
+<p>
+&gt; unary-to-binary
+</p>
+
+<p>
+```
+   1111
+  1X111
+ 10XX11
+ 11XXX1
+100XXXX
+```
+</p>
+
+<ol class="org-ol">
+<li>For every 1 after X, change to X</li>
+<li>Go backward, change all 1 to 0 until encounter a 0, change it to 1</li>
+</ol>
+
+<p>
+&gt; binary-to-unary
+</p>
+
+<p>
+```
+101
+100X
+011XX
+010XXX
+001XXXX
+000XXXXX
+```
+</p>
+
+<p>
+For every 1 from right, change 0 after it to 1, then add a X
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>

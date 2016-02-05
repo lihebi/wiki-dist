@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-04 Thu 18:46 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>np problems</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">np problems</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline7">1. CLIQUE</a>
+<ul>
+<li><a href="#orgheadline6">1.1. 证明CLIQUE是NP-complete</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. 证明NP</a></li>
+<li><a href="#orgheadline2">1.1.2. 证明NP-Hard</a></li>
+<li><a href="#orgheadline3">1.1.3. 构造</a></li>
+<li><a href="#orgheadline4">1.1.4. =&gt;</a></li>
+<li><a href="#orgheadline5">1.1.5. &lt;=</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline14">2. VERTEX-COVER</a>
+<ul>
+<li><a href="#orgheadline13">2.1. 证明NPC</a>
+<ul>
+<li><a href="#orgheadline8">2.1.1. NP:</a></li>
+<li><a href="#orgheadline9">2.1.2. reduction</a></li>
+<li><a href="#orgheadline10">2.1.3. 构造:</a></li>
+<li><a href="#orgheadline11">2.1.4. =&gt;:</a></li>
+<li><a href="#orgheadline12">2.1.5. &lt;=:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline21">3. Hamiltonian-cycle</a>
+<ul>
+<li><a href="#orgheadline20">3.1. 证明NPC</a>
+<ul>
+<li><a href="#orgheadline15">3.1.1. NP</a></li>
+<li><a href="#orgheadline16">3.1.2. reduction</a></li>
+<li><a href="#orgheadline17">3.1.3. 构造</a></li>
+<li><a href="#orgheadline18">3.1.4. =&gt;:</a></li>
+<li><a href="#orgheadline19">3.1.5. &lt;=:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline28">4. Traveling salesman problem</a>
+<ul>
+<li><a href="#orgheadline27">4.1. 证明NPC</a>
+<ul>
+<li><a href="#orgheadline22">4.1.1. NP</a></li>
+<li><a href="#orgheadline23">4.1.2. Deduction: Hamiltonian Cycle</a></li>
+<li><a href="#orgheadline24">4.1.3. 构造</a></li>
+<li><a href="#orgheadline25">4.1.4. =&gt;:</a></li>
+<li><a href="#orgheadline26">4.1.5. &lt;=:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline35">5. Subset sum problem</a>
+<ul>
+<li><a href="#orgheadline34">5.1. 证明NPC</a>
+<ul>
+<li><a href="#orgheadline29">5.1.1. NP</a></li>
+<li><a href="#orgheadline30">5.1.2. reduction: 3-CNF-SAT</a></li>
+<li><a href="#orgheadline31">5.1.3. 构造</a></li>
+<li><a href="#orgheadline32">5.1.4. =&gt;</a></li>
+<li><a href="#orgheadline33">5.1.5. &lt;=</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+说明：证明中都省略了**证明构造能在P内完成**
+</p>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">1</span> CLIQUE</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>英文定义:</li>
+</ul>
+<p>
+A clique in an undirected graph \(G=(V,E)\) is a subset \(V' \subseteq V\) of vertices,
+each pair of which is connected by an edge in E.
+</p>
+<ul class="org-ul">
+<li>中文定义: 首先，clique是无向图G中的一个子集。这个子集中的所有点在G中是两两相连的。</li>
+</ul>
+<p>
+也就是说，clique is a complete subgraph of G.
+</p>
+<ul class="org-ul">
+<li>CLIQUE problem: 我们定义size of clique为该子集中的顶点个数。</li>
+</ul>
+<p>
+那么clique problem就是要找到最大的CLIQUE.
+</p>
+<ul class="org-ul">
+<li>decision problem: 对于一个图G，是否存在size为k的clique.</li>
+<li>正式定义: CLIQUE = { \(<G,k>\): G is a graph containing a clique of size k}</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.1</span> 证明CLIQUE是NP-complete</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> 证明NP</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+对于一个图$G=(V,E)$，我们用$V' \subseteq V$来表示一个certificate。
+为了验证$V'$是否是clique，我们检查每一个pair $u,v &isin; V'\(，其边\)(u,v) &isin; E$.
+可以在Polynomial Time内实现。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.1.2</span> 证明NP-Hard</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+证明\(3-CNF-SAT \le_P CLIQUE\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.1.3</span> 构造</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+对于任何一个3-CNF-SAT，设其有k个clause,每个clause有3个变量。也就是：
+\(\phi = (x_1 \vee x_2 \vee \neg x_3) \wedge \ldots\)
+把所有的变量（允许重复）都放入G中。
+对与每组中三个变量的每一个，将其与其余所有组的所有变量连接，除非他们互补（\(x\) and \(\neg x\)）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.1.4</span> =&gt;</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+如果$&phi;$有一个satisfying assignment，那么：
+其中的每一组至少有一个变量是1.把这些变量全部取出来当作$V'$，这个$V'$的size是k，而且是CLIQUE。
+因为$V'$中任意两个，都是不同组的，而且他们并不互补（否则他们不可能都是1），所以根据我们的构造，他们是相连的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">1.1.5</span> &lt;=</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+如果构造出来的G确实有size为k的CLIQUE，证明$&phi;$可以satisfy:
+该clique中的k个点两两相连，那么所有这k个点都不可能在同一组中（因为同一组的不相连）。
+因为总共有k组，那么刚好每一组有一个。
+我们可以将这些点都assign为1,因为他们不包含互斥的。这种assign可以让$&phi;$满足。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">2</span> VERTEX-COVER</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>英文定义：</li>
+</ul>
+<p>
+A <b><b>vertex cover</b></b> of an undirected graph \(G=(V,E)\) is a subset \(V' \subseteq V\)
+such that if \((u,v) \in E\) then \(u \in V'\) or \(v \in V'\) or both.
+</p>
+<ul class="org-ul">
+<li>中文定义:vertex cover是无向图G的顶点的一个子集$V'$，使得G中任意一条边，至少有一个顶点在其中。</li>
+<li>vertex cover problem: 找到这么一个满足条件的$V'$，其size最小。</li>
+<li>decision problem: 决定G是否有一个size为k的vertex cover</li>
+<li>正式定义:</li>
+</ul>
+<p>
+VERTEX-COVER={\(<G,k>\): G has a vertex cover of size k}
+</p>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">2.1</span> 证明NPC</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.1.1</span> NP:</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+对于certificate $V'$，我们检测1.size is k 2. G中所有edge，检测是否有点在其中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.1.2</span> reduction</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+CLIQUE \(\le_P\) VERTEX-COVER
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">2.1.3</span> 构造:</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+一个CLIQUE的instance \(G(V,E)\). \(G'(V,\overline{E})\).
+也就是，$G'$包含所有顶点，但是边恰好相反。
+对应问题是$G'$有$|V|-k$size的vertex cover
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">2.1.4</span> =&gt;:</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+G有CLIQUE of size k. 在$G'$中，我要证明任何一条边，都有顶点在$V-V'$中。
+对$G'$中的任何一条边，有：它不在G中。
+那么，至少有一个顶点不在$V'$中（$V'$中顶点都是两两相连的）。
+所以至少有一个顶点在$V-V'$中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">2.1.5</span> &lt;=:</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+$G'$有vertex cover \(V'\) of size k. 在G中，要证明$V-V'$中的顶点两两相连。
+有两个点，他们都不在$V'$中（也就是他们都在$V-V'$中)，
+那么他们在$G'$中就肯定不相连（如果相连，必然有至少一个在$V'$中）。
+那么他们在G中肯定相连。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21"><span class="section-number-2">3</span> Hamiltonian-cycle</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>英文定义: a hamiltonian cycle of an undirected graph</li>
+</ul>
+<p>
+is a simple cycle that contains each vertex in V.
+</p>
+<ul class="org-ul">
+<li>中文定义: 无向图中的一条可以包含所有顶点有且仅有一次的圈。</li>
+<li>problem: G是否有这么一条路径。</li>
+<li>正式定义: HAM-CYCLE={\(<G>\): G is a hamiltonian graph(G has a ham cycle)}</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">3.1</span> 证明NPC</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">3.1.1</span> NP</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+certificate是一条路径，直接验证这条路径是否包括所有顶点有且只有1次，并且开始点就是结束点。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">3.1.2</span> reduction</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+VERTEX COVER
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">3.1.3</span> 构造</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+现在我们有图$G=(V,E)$，有size为k的vertex cover. 对每一条边，我们设置一个Widget.如下图
+<img src="https://farm9.staticflickr.com/8568/15887792145_c83e588b4c_m.jpg" alt="15887792145_c83e588b4c_m.jpg" />
+</p>
+
+<p>
+只能从四个角进出。这样的话，为了遍历所有点，那么进出的方式只能是下面两种。
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm9.staticflickr.com/8609/15700237978_576f557c45_n.jpg" alt="15700237978_576f557c45_n.jpg" />
+</p>
+</div>
+
+<p>
+<b><b>第一种边</b></b> 就是widget中包含的边，每个14条。
+</p>
+
+<p>
+<b><b>第二种边</b></b>
+</p>
+
+<p>
+对于每一个widget，$W<sub>uv</sub>$，我们找到所有u相连的边，并把他们随意排序。
+将第i个（\(W_{ui}\)）的左下角的和第i+1个的左上角连起来。
+如果是$W<sub>vu</sub>\(，一样，变成右上角和右下角。
+也就是，将\)[u,ui,6],[u,u(i+1),1]$连起来。
+</p>
+
+<p>
+用下面的图作为示范（图中应为yx,yw）
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm8.staticflickr.com/7473/15700565650_af08a88700_m.jpg" alt="15700565650_af08a88700_m.jpg" />
+</p>
+</div>
+
+<p>
+添加的边为
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm8.staticflickr.com/7510/15701847019_4f4e8bffe0_n.jpg" alt="15701847019_4f4e8bffe0_n.jpg" />
+</p>
+</div>
+
+<p>
+<b><b>第三种边</b></b>
+</p>
+
+<p>
+现在再添加k个点，这些点每个都和这种点连起来：
+在上一步已经排序好的路径中，第一个点的1和最后一个点的6.
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm8.staticflickr.com/7583/15265699974_503cb70323_n.jpg" alt="15265699974_503cb70323_n.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">3.1.4</span> =&gt;:</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<p>
+已知G有k的vertex cover，怎么证明$G'$有ham cycle.
+</p>
+
+<p>
+因为有k个s，所以每个可以对应一个vertex cover。
+从第一个s出发，到第一个vertex cover的点，然后沿着路径一路走下来，最后到第二个s。
+然后再到第二个vertex cover，以此类推。
+</p>
+
+<p>
+每次走一个widget时可以有两条路，一个是走完，一个是走全部。
+如果对面的节点不是vertex cover点的话，走完。
+如果对面也是，那么走一半，剩下一半给他走。
+</p>
+
+<p>
+既然vertex cover可以cover所有的边，那么我们也走完了所有的点。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">3.1.5</span> &lt;=:</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<p>
+已知$G'$有ham cycle，怎么证明G有k的vertex cover.
+</p>
+
+<p>
+我们证明在这个cycle中，任何一个从s出来的直接相连的点，这k个构成vertex cover。
+</p>
+
+<p>
+因为每一个widget只有两种走法，且如果s从u进入，那么后面所有的widget都是$W<sub>ux</sub>$或者$W<sub>xu</sub>$。
+走完回到一个s。
+总共只有k个路径，因为就k个s。
+每个widget都会被走过，所以一定是和那条路径的u相邻。
+所以这k个u就cover了所有路径。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-2">
+<h2 id="orgheadline28"><span class="section-number-2">4</span> Traveling salesman problem</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>英文定义: Salesman wants to make a ham cycle among cities.</li>
+</ul>
+<p>
+for city i and j, the cost of i to j is c(i,j) nonnegative.
+He wants to make the cost minimum.
+</p>
+<ul class="org-ul">
+<li>中文定义：城市是两两相连的。每条边加权，做一个ham cycle，使总cost最小。</li>
+<li>decision problem:</li>
+</ul>
+<p>
+&lt;G,c,k&gt;: G is graph, c is cost function,
+G has a traveling salesman tour with cost at most k.
+</p>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">4.1</span> 证明NPC</h3>
+<div class="outline-text-3" id="text-4-1">
+</div><div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">4.1.1</span> NP</h4>
+</div>
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">4.1.2</span> Deduction: Hamiltonian Cycle</h4>
+</div>
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24"><span class="section-number-4">4.1.3</span> 构造</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+对于一个ham cycle问题\(G=(V,E)\),使用同样的图当作TSP，只不过将其所有边都连上.
+构造c：c(i,j)= 0 if \((i,j) \in E\) and 1 otherwise.
+k=0.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">4.1.4</span> =&gt;:</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<p>
+如果ham cycle有解，那么这条路全是0,则TSP显然有解。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26"><span class="section-number-4">4.1.5</span> &lt;=:</h4>
+<div class="outline-text-4" id="text-4-1-5">
+<p>
+如果TSP有0解，那么这条0解上的所有路都是0.
+那么所有的边都在G中。那么该路径也是G的ham cycle。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline35" class="outline-2">
+<h2 id="orgheadline35"><span class="section-number-2">5</span> Subset sum problem</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>英文定义: we are given a finite set S of positive integers and an integer target t&gt;0.</li>
+</ul>
+<p>
+We ask whether there exists a subset \(S' \subseteq S\) whose sum is t.
+</p>
+<ul class="org-ul">
+<li>中文定义：给定一个整数集S和一个目标t，S中是否存在一个子集其sum为t。</li>
+<li>正式定义：</li>
+</ul>
+<p>
+SUBSET-SUM={\(<S,t>\): there exists a subset \(S' \subseteq S\) such that \(t=\sum_{s\in S'} s}\).
+</p>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">5.1</span> 证明NPC</h3>
+<div class="outline-text-3" id="text-5-1">
+</div><div id="outline-container-orgheadline29" class="outline-4">
+<h4 id="orgheadline29"><span class="section-number-4">5.1.1</span> NP</h4>
+</div>
+<div id="outline-container-orgheadline30" class="outline-4">
+<h4 id="orgheadline30"><span class="section-number-4">5.1.2</span> reduction: 3-CNF-SAT</h4>
+</div>
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">5.1.3</span> 构造</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<p>
+假设总共有n个$x<sub>i</sub>$，总共有k个clause：\(C_i\).
+</p>
+
+<p>
+有这么两个假设。没有任何clause包含一对相反的变量，如\(x\) and \(\neg x\).
+因为这么一个clause一定是1,所以无所谓。
+第二个假设是每个变量都至少出现在一个clause里。
+因为如果这个变量没有出现在任何clause里，那么他是什么也无所谓了。
+</p>
+
+<p>
+对每一个x，搞2个值v。每个C搞两个值s.
+下图中是用10进制表示，最右边是最低位。
+只有右上角一块是变的，原则是：如果C中有$x<sub>i</sub>$，那么$v<sub>i</sub>$相应位置1.否则置0.$v'$刚好相反。
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm8.staticflickr.com/7541/15886319881_0bc44428a3_n.jpg" alt="15886319881_0bc44428a3_n.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">5.1.4</span> =&gt;</h4>
+<div class="outline-text-4" id="text-5-1-4">
+<p>
+已知3-CNF-SAT有解，证明Subset sum有解。
+</p>
+
+<p>
+我们有一个assignment for x that make 3-CNF-SAT satisfies.
+对于这个assignment，如果\(x_i=1\), 那么将$v<sub>i</sub>$包含进去，不包含$v'<sub>i</sub>$。
+这样，前几位都是1,满足t。
+后面几位，对每一位，不可能全是0,那样的话这个Clause就是0了。
+所以后面几位相加是1-3.
+然后从s中选出能匹配为4的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">5.1.5</span> &lt;=</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<p>
+已知subset sum有解，证明3-CNF-SAT有解。
+</p>
+
+<p>
+subset sum的那个子集中，包含的v肯定是不会同时有$v<sub>i</sub>$和$v'<sub>i</sub>$。
+如果有$v<sub>i</sub>$，那么assignment $x<sub>i</sub>$为1,否则为0.
+我们证明这个assignment能使3-CNF-SAT满足。
+</p>
+
+<p>
+如果$C<sub>i</sub>$对应的v都是0,那么那一位就不能构成4了，这不可能，所以C至少有一个对应的v是1.
+这个v也保证了该C是为1的。
+所有C都是1了，所以就satisfies了。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-02-04 Thu 18:46</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
