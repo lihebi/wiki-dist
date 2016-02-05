@@ -6,7 +6,7 @@
 <!-- 2016-02-04 Thu 20:59 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>The HebiWiki<sup>TM</sup></title>
+<title>google test</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -140,118 +140,144 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">The HebiWiki<sup>TM</sup></h1>
+<h1 class="title">google test</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline6">2. sitemap</a>
-<ul>
-<li><a href="#orgheadline2">2.1. emacs</a></li>
-<li><a href="#orgheadline3">2.2. shell</a></li>
-<li><a href="#orgheadline4">2.3. js</a></li>
-<li><a href="#orgheadline5">2.4. math</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline8">3. FAQ</a>
-<ul>
-<li><a href="#orgheadline7">3.1. Why change to a new one instead of the old wiki?</a></li>
-</ul>
-</li>
+<li><a href="#orgheadline1">1. setup</a></li>
+<li><a href="#orgheadline2">2. assertion</a></li>
+<li><a href="#orgheadline3">3. fixture</a></li>
 </ul>
 </div>
 </div>
+
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<h2 id="orgheadline1"><span class="section-number-2">1</span> setup</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-This is the wiki.
-It is not intended to export to a whole pdf file.
-This index file will just do as its name states, giving the index.
-There's no way to organize those chapters, so if needed, I will just export them individually.
+Download google test, make and make install.
+Or use package manager to install gtest.
 </p>
 
-<blockquote>
 <p>
-你必须非常努力，才能看起来毫不费力。
+Inside your program, just insert
 </p>
-</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;gtest/gtest.h&gt;</span>
+<span style="color: #A6E22E; font-weight: bold;">TEST</span>(TestCaseName, TestName) {
+}
+</pre>
+</div>
+
+<p>
+compile use -lgtest
+</p>
+
+<p>
+should supply a main function in ONE file:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;gtest/gtest.h&gt;</span>
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E; font-weight: bold;">main</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">argc</span>, <span style="color: #66D9EF;">char</span>** <span style="color: #FD971F;">argv</span>) {
+  ::testing::InitGoogleTest(&amp;argc, argv);
+  <span style="color: #F92672;">return</span> RUN_ALL_TESTS();
+}
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> sitemap</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> assertion</h2>
 <div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>ASSERT<sub>TRUE</sub></li>
+<li>ASSERT<sub>FALSE</sub></li>
+<li>ASSERT<sub>EQ</sub>(expected, actual)</li>
+<li>ASSERT<sub>NE</sub></li>
+</ul>
+
 <p>
-Use index here or use the <a href="sitemap.html">sitemap</a>.
+all the assertions can be changed into EXPECT<sub>XX</sub>.
 </p>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> <a href="./emacs.html">emacs</a></h3>
-</div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> <a href="./shell.html">shell</a></h3>
-</div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.3</span> <a href="js.html">js</a></h3>
-</div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.4</span> <a href="math/index.html">math</a></h3>
-</div>
 </div>
 
 
-
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">3</span> FAQ</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> fixture</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Why change to a new one instead of the <a href="http://wiki-old.lihebi.com/">old wiki</a>?</h3>
-<div class="outline-text-3" id="text-3-1">
 <p>
-The old one is awesome in terms of that it uses pure Jekyll,
-and it is configured in the sense that it recognizes the new markdown files and organize them by their directory structures.
+Code to test:
 </p>
+<div class="org-src-container">
 
-<ol class="org-ol">
-<li>The main downside is it is not systematic. It is so distributed that I can not easily find where to add new items.</li>
-<li>Second, it lacks of some approach to generate a systematic pdf book for printing.</li>
-<li>What's more, I added some web packages like Katex for formulas. It works fine, except I need to have an ugly `\(formula\)` markup for parsing, and the parsing code needs to be maintained too.</li>
-<li>Fourth, markdown is not powerful enough.</li>
-<li>Org mode has a strong cross reference system, and has powerful Babel evaluating. Most of all, org mode is so tightly integrated with Emacs.</li>
-<li>Last but not least, I don't want to use another layer of software, jekyll. I just need to document something, in a reasonable easy to browse format.</li>
-</ol>
-
-<p>
-So here we go, with org mode, exproting .org into everything, including papers and books.
-</p>
+<pre class="src src-C++"><span style="color: #F92672;">template</span> &lt;<span style="color: #F92672;">typename</span> <span style="color: #66D9EF;">E</span>&gt; <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">E is the element type.</span>
+<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">Queue</span> {
+ <span style="color: #F92672;">public</span>:
+  <span style="color: #A6E22E; font-weight: bold;">Queue</span>();
+  <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E; font-weight: bold;">Enqueue</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">E</span>&amp; <span style="color: #FD971F;">element</span>);
+  <span style="color: #66D9EF;">E</span>* <span style="color: #A6E22E; font-weight: bold;">Dequeue</span>(); <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">Returns NULL if the queue is empty.</span>
+  <span style="color: #66D9EF;">size_t</span> <span style="color: #A6E22E; font-weight: bold;">size</span>() <span style="color: #F92672;">const</span>;
+  ...
+};
+</pre>
 </div>
+
+<p>
+testing code:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #F92672;">class</span> <span style="color: #66D9EF;">QueueTest</span> : <span style="color: #F92672;">public</span> ::<span style="color: #AE81FF;">testing</span>::<span style="color: #66D9EF;">Test</span> {
+ <span style="color: #F92672;">protected</span>:
+  <span style="color: #F92672;">virtual</span> <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E; font-weight: bold;">SetUp</span>() {
+    q1_.Enqueue(1);
+    q2_.Enqueue(2);
+    q2_.Enqueue(3);
+  }
+
+  <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">virtual void TearDown() {}</span>
+
+  <span style="color: #66D9EF;">Queue</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">q0_</span>;
+  <span style="color: #66D9EF;">Queue</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">q1_</span>;
+  <span style="color: #66D9EF;">Queue</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">q2_</span>;
+};
+</pre>
+</div>
+
+<p>
+You need to inherit from <code>::testing::Test</code>.
+</p>
+
+<p>
+You can setup the project in either constructor or SetUp method.
+The calling sequence is: constructor, setup, test, teardown, another test.
+The object is deleted after each test,
+so it is not designed for object reuse, but for code reuse.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #A6E22E; font-weight: bold;">TEST_F</span>(QueueTest, IsEmptyInitially) {
+  EXPECT_EQ(0, q0_.size());
+}
+</pre>
+</div>
+
+<p>
+You need to use TEST<sub>F</sub>, and the first argument to the macro should be the Test class name.
+Note that q0_ is immediately available.
+</p>
 </div>
 </div>
 </div>
