@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-05 Fri 20:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>LLVM</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">LLVM</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Build and install LLVM system</a></li>
+<li><a href="#orgheadline2">2. try the llvm toolchain</a></li>
+<li><a href="#orgheadline6">3. writing a pass outside source tree using cmake</a>
+<ul>
+<li><a href="#orgheadline3">3.1. pass-project/CMakeLists.txt</a></li>
+<li><a href="#orgheadline4">3.2. pass-project/hellopass/CMakeLists.txt</a></li>
+<li><a href="#orgheadline5">3.3. pass-project/hellopass/Pass.cpp</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+llvm version used: 3.9.0svn
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Build and install LLVM system</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-shell">svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+<span style="color: #528FD1;">cd</span> llvm/tools
+svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+<span style="color: #528FD1;">cd</span> llvm/projects
+svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+<span style="color: #528FD1;">cd</span> ../..
+mkdir build
+cmake -G <span style="color: #5D5C01;">"Unix Makefiles"</span> ../llvm
+make
+make install
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> try the llvm toolchain</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-shell">clang --help
+clang file.c -fsyntax-only <span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">(check for correctness)</span>
+clang file.c -S -emit-llvm -o - <span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">(print out unoptimized llvm code)</span>
+clang file.c -S -emit-llvm -o - -O3
+clang file.c -S -O3 -o - <span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">(output native machine code)</span>
+</pre>
+</div>
+
+<p>
+from <a href="http://llvm.org/docs/GettingStarted.html">http://llvm.org/docs/GettingStarted.html</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">&lt;stdio.h&gt;</span>
+<span style="color: #CD5542;">int</span> <span style="color: #4A8F30; font-weight: bold;">main</span>() {
+  printf(<span style="color: #5D5C01;">"hello world\n"</span>);
+  <span style="color: #4170B3;">return</span> 0;
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">one way to run</span>
+clang hello.c -o hello
+./hello
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">the other way: bitcode</span>
+clang -O3 -emit-llvm hello.c -c -o hello.bc
+lli hello.bc
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">the third way</span>
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">look at the assemble code</span>
+llvm-dis &lt; hello.bc | less
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">compine to native assemble</span>
+llc hello.bc -o hello.s
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">assemble it</span>
+gcc hello.s -o hello.native
+./hello.native
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">3</span> writing a pass outside source tree using cmake</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="http://llvm.org/docs/WritingAnLLVMPass.html">http://llvm.org/docs/WritingAnLLVMPass.html</a>
+</p>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> pass-project/CMakeLists.txt</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-cmake"><span style="color: #4A8F30; font-weight: bold;">find_package</span>(LLVM REQUIRED CONFIG)
+
+<span style="color: #4A8F30; font-weight: bold;">add_definitions</span>(${<span style="color: #787800;">LLVM_DEFINITIONS</span>})
+<span style="color: #4A8F30; font-weight: bold;">include_directories</span>(${<span style="color: #787800;">LLVM_INCLUDE_DIRS</span>})
+
+<span style="color: #4A8F30; font-weight: bold;">add_definitions</span>(-std=c++11) <span style="color: #959595; font-style: italic;"># patch: used c++ 11</span>
+<span style="color: #959595; font-style: italic;"># patch: I didn't compile LLVM with rtti,</span>
+<span style="color: #959595; font-style: italic;"># so I need to disable rtti when compiling pass</span>
+<span style="color: #959595; font-style: italic;"># or I will get error when opt -load my pass</span>
+<span style="color: #4A8F30; font-weight: bold;">SET</span>(CMAKE_CXX_FLAGS <span style="color: #5D5C01;">"-Wall -fno-rtti"</span>)
+
+<span style="color: #4A8F30; font-weight: bold;">add_subdirectory</span>(hellopass)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> pass-project/hellopass/CMakeLists.txt</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+
+<pre class="src src-cmake"><span style="color: #4A8F30; font-weight: bold;">add_library</span>(HebiPass MODULE Pass.cpp)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.3</span> pass-project/hellopass/Pass.cpp</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">"llvm/Pass.h"</span>
+<span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">"llvm/IR/Function.h"</span>
+<span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">"llvm/Support/raw_ostream.h"</span>
+
+<span style="color: #4170B3;">using</span> <span style="color: #4170B3;">namespace</span> <span style="color: #9B55C3;">llvm</span>;
+
+<span style="color: #4170B3;">namespace</span> {
+  <span style="color: #4170B3;">struct</span> <span style="color: #CD5542;">Hello</span> : <span style="color: #4170B3;">public</span> <span style="color: #CD5542;">FunctionPass</span> {
+    <span style="color: #4170B3;">static</span> <span style="color: #CD5542;">char</span> <span style="color: #787800;">ID</span>;
+    <span style="color: #4A8F30; font-weight: bold;">Hello</span>() : FunctionPass(ID) {}
+    <span style="color: #CD5542;">bool</span> <span style="color: #4A8F30; font-weight: bold;">runOnFunction</span>(<span style="color: #CD5542;">Function</span> &amp;<span style="color: #787800;">F</span>) override {
+      errs() &lt;&lt; <span style="color: #5D5C01;">"Hello: "</span>;
+      errs().write_escaped(F.getName()) &lt;&lt; <span style="color: #5D5C01;">"\n"</span>;
+      <span style="color: #4170B3;">return</span> <span style="color: #9B55C3;">false</span>;
+    }
+  };
+}
+<span style="color: #CD5542;">char</span> <span style="color: #9B55C3;">Hello</span>::<span style="color: #787800;">ID</span> = 0;
+<span style="color: #4170B3;">static</span> <span style="color: #CD5542;">RegisterPass</span>&lt;<span style="color: #CD5542;">Hello</span>&gt; <span style="color: #4A8F30; font-weight: bold;">X</span>(<span style="color: #5D5C01;">"hello"</span>, <span style="color: #5D5C01;">"Hello World Pass"</span>, <span style="color: #9B55C3;">false</span>, <span style="color: #9B55C3;">false</span>);
+</pre>
+</div>
+
+<p>
+cmake, and make, generate the file <code>hellopass/libHebiPass.so</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">opt -load ./hellopass/libHebiPass.so -hello &lt; hello.bc
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-02-05 Fri 20:37</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
