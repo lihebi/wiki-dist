@@ -6,7 +6,7 @@
 <!-- 2016-02-21 Sun 22:31 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>The HebiWiki<sup>TM</sup></title>
+<title>awk</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -140,119 +140,101 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">The HebiWiki<sup>TM</sup></h1>
+<h1 class="title">awk</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline2">2. sitemap</a></li>
-<li><a href="#orgheadline4">3. FAQ</a>
-<ul>
-<li><a href="#orgheadline3">3.1. Why change to a new one instead of the old wiki?</a></li>
-</ul>
-</li>
+<li><a href="#orgheadline1">1. usage</a></li>
+<li><a href="#orgheadline2">2. patterns</a></li>
+<li><a href="#orgheadline3">3. actions</a></li>
+<li><a href="#orgheadline4">4. variable</a></li>
+<li><a href="#orgheadline5">5. examples</a></li>
 </ul>
 </div>
 </div>
+
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<h2 id="orgheadline1"><span class="section-number-2">1</span> usage</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-This is the wiki.
-It is not intended to export to a whole pdf file.
-This index file will just do as its name states, giving the index.
-There's no way to organize those chapters, so if needed, I will just export them individually.
+in shell:
 </p>
 
-<blockquote id="quote">
-<script>
-var i = Math.round(Math.random()*100);
-var quotes = [
-"你一出场别人都显得不过如此。",
-"你必须非常努力，才能看起来毫不费力。"
-];
-document.getElementById("quote").innerHTML = quotes[i % quotes.length];
-</script>
-</blockquote>
+<div class="org-src-container">
+
+<pre class="src src-shell">awk <span style="color: #E6DB74;">'pattern {action}'</span>
+awk <span style="color: #E6DB74;">'pattern {action}'</span> input.txt
+awk -f script.awk input.txt
+</pre>
+</div>
+
+<p>
+<code>pattern {action}</code>
+</p>
+
+<p>
+A missing { action } means print the line;
+a missing pattern always matches.
+Pattern-action statements are separated by newlines or semicolons.
+</p>
 </div>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> sitemap</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> patterns</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Use index here or use the <a href="sitemap.html">sitemap</a>.
+Patterns are arbitrary Boolean combinations (with <code>!</code> <code>||</code> <code>&amp;&amp;</code>)
+of regular expressions and relational expressions.
 </p>
 
 <p>
-The <a href="./shell.html">shell</a> is the fundamental knowledge to be linux master.
-Utilities like <a href="awk.html">awk</a> and <a href="sed.html">sed</a> should be handy for text editing in scripts.
+A pattern may consist of two patterns separated by a comma;
+in this case, the action is performed for all lines from an occurrence of the first pattern though an occurrence of the second.
 </p>
 
 <p>
-No more words needed for <a href="./emacs.html">emacs</a>, the editor of god.
-</p>
-
-<p>
-<a href="math/index.html">Math</a> is beautiful.
-</p>
-
-<p>
-Web technique like <a href="js.html">js</a> is interesting because I need to speak out to the world.
+special patterns: <code>BEGIN</code>, <code>END</code>.
+Cannot combine with other patterns.
 </p>
 </div>
 </div>
 
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> actions</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+An action is a sequence of statements.
+Statements are terminated by semicolons, newlines or right braces
+</p>
+</div>
+</div>
 
 <div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">3</span> FAQ</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Why change to a new one instead of the <a href="http://wiki-old.lihebi.com/">old wiki</a>?</h3>
-<div class="outline-text-3" id="text-3-1">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> variable</h2>
+<div class="outline-text-2" id="text-4">
 <p>
-The old one is awesome in terms of that it uses pure Jekyll,
-and it is configured in the sense that it recognizes the new markdown files and organize them by their directory structures.
+awk is line-based, and the content of lines are splited into fields <code>$1</code>, <code>$2</code>, &#x2026; by the separator <code>FS</code>.
+<code>$0</code> refers to the entire line.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> examples</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+An example is better than a thousand of words.
 </p>
 
-<ol class="org-ol">
-<li>The main downside is it is not systematic. It is so distributed that I can not easily find where to add new items.</li>
-<li>Second, it lacks of some approach to generate a systematic pdf book for printing.</li>
-<li>What's more, I added some web packages like Katex for formulas. It works fine, except I need to have an ugly `\(formula\)` markup for parsing, and the parsing code needs to be maintained too.</li>
-<li>Fourth, markdown is not powerful enough.</li>
-<li>Org mode has a strong cross reference system, and has powerful Babel evaluating. Most of all, org mode is so tightly integrated with Emacs.</li>
-<li>Last but not least, I don't want to use another layer of software, jekyll. I just need to document something, in a reasonable easy to browse format.</li>
-</ol>
+<div class="org-src-container">
 
-<p>
-So here we go, with org mode, exproting .org into everything, including papers and books.
-</p>
+<pre class="src src-shell">awk <span style="color: #E6DB74;">'NR==10 {print}'</span> input.txt <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">output 10th line, or empty is less than 10 lines</span>
+</pre>
 </div>
 </div>
 </div>

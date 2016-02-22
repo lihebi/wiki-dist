@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-02-21 Sun 22:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>sed</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">sed</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. usage</a></li>
+<li><a href="#orgheadline2">2. concepts</a></li>
+<li><a href="#orgheadline3">3. workflow</a></li>
+<li><a href="#orgheadline4">4. cmd args</a></li>
+<li><a href="#orgheadline5">5. range</a></li>
+<li><a href="#orgheadline9">6. commands</a>
+<ul>
+<li><a href="#orgheadline6">6.1. edit</a></li>
+<li><a href="#orgheadline7">6.2. output</a></li>
+<li><a href="#orgheadline8">6.3. flow control</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">7. examples</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> usage</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+in shell script
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #75715E;">#</span><span style="color: #75715E; font-style: italic;">!/bin/</span><span style="color: #F92672;">sed</span><span style="color: #75715E; font-style: italic;"> -f</span>
+<span style="color: #75715E;">#</span><span style="color: #75715E; font-style: italic;">!/bin/sed -nf</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> concepts</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>input</li>
+<li>output</li>
+<li>pattern space</li>
+<li>hold space: This is a spare pattern space, used to remember the data in pattern buffer</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> workflow</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>copy a line from input(exclude the tailing newline) into pattern buffer</li>
+<li>apply command(s) to it</li>
+<li>output</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> cmd args</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>-n: by default each line of input is echoed to the standard output after all of the commands have been applied to it. The -n option suppresses this behavior</li>
+<li>-e: sed -e 'xxx' -e 'xxx' -e 'xxx'</li>
+<li>-f: script file</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> range</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+sed will only apply command for the lines in the specified range.
+If the command is preceded with <code>!</code>, that means the command works on lines not in the range.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">sed <span style="color: #E6DB74;">'1,100 s/A/a/'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">by line number</span>
+sed <span style="color: #E6DB74;">'101,$ s/A/a/'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">$ is last line</span>
+sed <span style="color: #E6DB74;">'/start/,/stop/ s/#.*//'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">by pattern</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">6</span> commands</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">6.1</span> edit</h3>
+<div class="outline-text-3" id="text-6-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">shortcut</th>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">add</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-left">insert</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">change</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">d</td>
+<td class="org-left">delete</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">s</td>
+<td class="org-left">substitute</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">6.2</span> output</h3>
+<div class="outline-text-3" id="text-6-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">shortcut</th>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">=</td>
+<td class="org-left">print</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">l</td>
+<td class="org-left">look</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">p</td>
+<td class="org-left">print</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">n</td>
+<td class="org-left">next</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">r</td>
+<td class="org-left">read</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-left">write</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">6.3</span> flow control</h3>
+<div class="outline-text-3" id="text-6-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">shortcut</th>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">q</td>
+<td class="org-left">quit</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">branch</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">t</td>
+<td class="org-left">test</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">:label</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">7</span> examples</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+print
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">add line numbers first,</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">then use grep,</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">then just print the number</span>
+cat -n file | grep <span style="color: #E6DB74;">'PATTERN'</span> | awk <span style="color: #E6DB74;">'{print $1}'</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">the equilvalence</span>
+sed -n <span style="color: #E6DB74;">'/PATTERN/ ='</span> file
+</pre>
+</div>
+
+<p>
+substitute
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">s/pattern/&amp;/ <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">'&amp;' stands for the total match</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">in extend mode(-E), can use \1 \2</span>
+<span style="color: #A6E22E; font-weight: bold;">s/</span>(a)b/\1/
+s//string/ <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">use the last run-time used pattern</span>
+s/xxx/xxx/g <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">substitute globally: all</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">there will not be recursion. sed will not examine the generated string</span>
+s/loop/loop loop/g <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">will NOT run forever</span>
+s/xxx/xxx/2 <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">only substitute the second match</span>
+s/xxx/xxx/g2 <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">substitute 2,3,4,...</span>
+s/xxx/xxx/p <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">will print out even if -n is used</span>
+s/xxx/xxx/I p <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">ignore case; command can be used together</span>
+s/a/A/2pw /tmp/file <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">combine more</span>
+</pre>
+</div>
+
+<p>
+delete
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">-i: make change to the original file</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">/d: delete the line if match</span>
+sed -i <span style="color: #E6DB74;">'/@slice/d'</span> $<span style="color: #FD971F;">ClassName</span>.java
+sed -i <span style="color: #E6DB74;">'g/@slice/d'</span> xx.java <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">remove all</span>
+sed <span style="color: #E6DB74;">'/^$/d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">remove all empty lines</span>
+sed <span style="color: #E6DB74;">'11,$ d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">only output first 10 lines</span>
+sed <span style="color: #E6DB74;">'1,/^$/ d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">delete everything up to the first blank line.</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-02-21 Sun 22:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
