@@ -3,11 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<<<<<<< HEAD
-<!-- 2016-02-21 Sun 22:31 -->
-=======
-<!-- 2016-02-05 Fri 20:37 -->
->>>>>>> 244313a11161f375ada887ed118dedb052a956ef
+<!-- 2016-02-21 Sun 22:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>google test</title>
@@ -173,8 +169,8 @@ Inside your program, just insert
 
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">&lt;gtest/gtest.h&gt;</span>
-<span style="color: #4A8F30; font-weight: bold;">TEST</span>(TestCaseName, TestName) {
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;gtest/gtest.h&gt;</span>
+<span style="color: #A6E22E; font-weight: bold;">TEST</span>(TestCaseName, TestName) {
 }
 </pre>
 </div>
@@ -189,10 +185,10 @@ should supply a main function in ONE file:
 
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">&lt;gtest/gtest.h&gt;</span>
-<span style="color: #CD5542;">int</span> <span style="color: #4A8F30; font-weight: bold;">main</span>(<span style="color: #CD5542;">int</span> <span style="color: #787800;">argc</span>, <span style="color: #CD5542;">char</span>** <span style="color: #787800;">argv</span>) {
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;gtest/gtest.h&gt;</span>
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E; font-weight: bold;">main</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">argc</span>, <span style="color: #66D9EF;">char</span>** <span style="color: #FD971F;">argv</span>) {
   ::testing::InitGoogleTest(&amp;argc, argv);
-  <span style="color: #4170B3;">return</span> RUN_ALL_TESTS();
+  <span style="color: #F92672;">return</span> RUN_ALL_TESTS();
 }
 </pre>
 </div>
@@ -224,13 +220,13 @@ Code to test:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #4170B3;">template</span> &lt;<span style="color: #4170B3;">typename</span> <span style="color: #CD5542;">E</span>&gt; <span style="color: #959595;">// </span><span style="color: #959595; font-style: italic;">E is the element type.</span>
-<span style="color: #4170B3;">class</span> <span style="color: #CD5542;">Queue</span> {
- <span style="color: #4170B3;">public</span>:
-  <span style="color: #4A8F30; font-weight: bold;">Queue</span>();
-  <span style="color: #CD5542;">void</span> <span style="color: #4A8F30; font-weight: bold;">Enqueue</span>(<span style="color: #4170B3;">const</span> <span style="color: #CD5542;">E</span>&amp; <span style="color: #787800;">element</span>);
-  <span style="color: #CD5542;">E</span>* <span style="color: #4A8F30; font-weight: bold;">Dequeue</span>(); <span style="color: #959595;">// </span><span style="color: #959595; font-style: italic;">Returns NULL if the queue is empty.</span>
-  <span style="color: #CD5542;">size_t</span> <span style="color: #4A8F30; font-weight: bold;">size</span>() <span style="color: #4170B3;">const</span>;
+<pre class="src src-C++"><span style="color: #F92672;">template</span> &lt;<span style="color: #F92672;">typename</span> <span style="color: #66D9EF;">E</span>&gt; <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">E is the element type.</span>
+<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">Queue</span> {
+ <span style="color: #F92672;">public</span>:
+  <span style="color: #A6E22E; font-weight: bold;">Queue</span>();
+  <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E; font-weight: bold;">Enqueue</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">E</span>&amp; <span style="color: #FD971F;">element</span>);
+  <span style="color: #66D9EF;">E</span>* <span style="color: #A6E22E; font-weight: bold;">Dequeue</span>(); <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">Returns NULL if the queue is empty.</span>
+  <span style="color: #66D9EF;">size_t</span> <span style="color: #A6E22E; font-weight: bold;">size</span>() <span style="color: #F92672;">const</span>;
   ...
 };
 </pre>
@@ -242,19 +238,19 @@ testing code:
 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #4170B3;">class</span> <span style="color: #CD5542;">QueueTest</span> : <span style="color: #4170B3;">public</span> ::<span style="color: #9B55C3;">testing</span>::<span style="color: #CD5542;">Test</span> {
- <span style="color: #4170B3;">protected</span>:
-  <span style="color: #4170B3;">virtual</span> <span style="color: #CD5542;">void</span> <span style="color: #4A8F30; font-weight: bold;">SetUp</span>() {
+<pre class="src src-C++"><span style="color: #F92672;">class</span> <span style="color: #66D9EF;">QueueTest</span> : <span style="color: #F92672;">public</span> ::<span style="color: #AE81FF;">testing</span>::<span style="color: #66D9EF;">Test</span> {
+ <span style="color: #F92672;">protected</span>:
+  <span style="color: #F92672;">virtual</span> <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E; font-weight: bold;">SetUp</span>() {
     q1_.Enqueue(1);
     q2_.Enqueue(2);
     q2_.Enqueue(3);
   }
 
-  <span style="color: #959595;">// </span><span style="color: #959595; font-style: italic;">virtual void TearDown() {}</span>
+  <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">virtual void TearDown() {}</span>
 
-  <span style="color: #CD5542;">Queue</span>&lt;<span style="color: #CD5542;">int</span>&gt; <span style="color: #787800;">q0_</span>;
-  <span style="color: #CD5542;">Queue</span>&lt;<span style="color: #CD5542;">int</span>&gt; <span style="color: #787800;">q1_</span>;
-  <span style="color: #CD5542;">Queue</span>&lt;<span style="color: #CD5542;">int</span>&gt; <span style="color: #787800;">q2_</span>;
+  <span style="color: #66D9EF;">Queue</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">q0_</span>;
+  <span style="color: #66D9EF;">Queue</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">q1_</span>;
+  <span style="color: #66D9EF;">Queue</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">q2_</span>;
 };
 </pre>
 </div>
@@ -272,7 +268,7 @@ so it is not designed for object reuse, but for code reuse.
 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #4A8F30; font-weight: bold;">TEST_F</span>(QueueTest, IsEmptyInitially) {
+<pre class="src src-C++"><span style="color: #A6E22E; font-weight: bold;">TEST_F</span>(QueueTest, IsEmptyInitially) {
   EXPECT_EQ(0, q0_.size());
 }
 </pre>
@@ -287,11 +283,7 @@ Note that q0_ is immediately available.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<<<<<<< HEAD
-<p class="date">Created: 2016-02-21 Sun 22:31</p>
-=======
-<p class="date">Created: 2016-02-05 Fri 20:37</p>
->>>>>>> 244313a11161f375ada887ed118dedb052a956ef
+<p class="date">Created: 2016-02-21 Sun 22:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
