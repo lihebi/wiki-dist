@@ -3,7 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<<<<<<< HEAD
 <!-- 2016-02-21 Sun 22:31 -->
+=======
+<!-- 2016-02-05 Fri 20:37 -->
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>LLVM</title>
@@ -170,6 +174,7 @@ llvm version used: 3.9.0svn
 <div class="org-src-container">
 
 <pre class="src src-shell">svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+<<<<<<< HEAD
 <span style="color: #F92672;">cd</span> llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
 <span style="color: #F92672;">cd</span> llvm/projects
@@ -177,6 +182,15 @@ svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
 <span style="color: #F92672;">cd</span> ../..
 mkdir build
 cmake -G <span style="color: #E6DB74;">"Unix Makefiles"</span> ../llvm
+=======
+<span style="color: #528FD1;">cd</span> llvm/tools
+svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+<span style="color: #528FD1;">cd</span> llvm/projects
+svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+<span style="color: #528FD1;">cd</span> ../..
+mkdir build
+cmake -G <span style="color: #5D5C01;">"Unix Makefiles"</span> ../llvm
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 make
 make install
 </pre>
@@ -190,10 +204,17 @@ make install
 <div class="org-src-container">
 
 <pre class="src src-shell">clang --help
+<<<<<<< HEAD
 clang file.c -fsyntax-only <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">(check for correctness)</span>
 clang file.c -S -emit-llvm -o - <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">(print out unoptimized llvm code)</span>
 clang file.c -S -emit-llvm -o - -O3
 clang file.c -S -O3 -o - <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">(output native machine code)</span>
+=======
+clang file.c -fsyntax-only <span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">(check for correctness)</span>
+clang file.c -S -emit-llvm -o - <span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">(print out unoptimized llvm code)</span>
+clang file.c -S -emit-llvm -o - -O3
+clang file.c -S -O3 -o - <span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">(output native machine code)</span>
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 </pre>
 </div>
 
@@ -203,16 +224,24 @@ from <a href="http://llvm.org/docs/GettingStarted.html">http://llvm.org/docs/Get
 
 <div class="org-src-container">
 
+<<<<<<< HEAD
 <pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
 <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E; font-weight: bold;">main</span>() {
   printf(<span style="color: #E6DB74;">"hello world\n"</span>);
   <span style="color: #F92672;">return</span> 0;
+=======
+<pre class="src src-C"><span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">&lt;stdio.h&gt;</span>
+<span style="color: #CD5542;">int</span> <span style="color: #4A8F30; font-weight: bold;">main</span>() {
+  printf(<span style="color: #5D5C01;">"hello world\n"</span>);
+  <span style="color: #4170B3;">return</span> 0;
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 }
 </pre>
 </div>
 
 <div class="org-src-container">
 
+<<<<<<< HEAD
 <pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">one way to run</span>
 clang hello.c -o hello
 ./hello
@@ -225,6 +254,20 @@ llvm-dis &lt; hello.bc | less
 <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">compine to native assemble</span>
 llc hello.bc -o hello.s
 <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">assemble it</span>
+=======
+<pre class="src src-shell"><span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">one way to run</span>
+clang hello.c -o hello
+./hello
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">the other way: bitcode</span>
+clang -O3 -emit-llvm hello.c -c -o hello.bc
+lli hello.bc
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">the third way</span>
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">look at the assemble code</span>
+llvm-dis &lt; hello.bc | less
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">compine to native assemble</span>
+llc hello.bc -o hello.s
+<span style="color: #959595;"># </span><span style="color: #959595; font-style: italic;">assemble it</span>
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 gcc hello.s -o hello.native
 ./hello.native
 </pre>
@@ -245,6 +288,7 @@ gcc hello.s -o hello.native
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
+<<<<<<< HEAD
 <pre class="src src-cmake"><span style="color: #A6E22E; font-weight: bold;">find_package</span>(LLVM REQUIRED CONFIG)
 
 <span style="color: #A6E22E; font-weight: bold;">add_definitions</span>(${<span style="color: #FD971F;">LLVM_DEFINITIONS</span>})
@@ -257,6 +301,20 @@ gcc hello.s -o hello.native
 <span style="color: #A6E22E; font-weight: bold;">SET</span>(CMAKE_CXX_FLAGS <span style="color: #E6DB74;">"-Wall -fno-rtti"</span>)
 
 <span style="color: #A6E22E; font-weight: bold;">add_subdirectory</span>(hellopass)
+=======
+<pre class="src src-cmake"><span style="color: #4A8F30; font-weight: bold;">find_package</span>(LLVM REQUIRED CONFIG)
+
+<span style="color: #4A8F30; font-weight: bold;">add_definitions</span>(${<span style="color: #787800;">LLVM_DEFINITIONS</span>})
+<span style="color: #4A8F30; font-weight: bold;">include_directories</span>(${<span style="color: #787800;">LLVM_INCLUDE_DIRS</span>})
+
+<span style="color: #4A8F30; font-weight: bold;">add_definitions</span>(-std=c++11) <span style="color: #959595; font-style: italic;"># patch: used c++ 11</span>
+<span style="color: #959595; font-style: italic;"># patch: I didn't compile LLVM with rtti,</span>
+<span style="color: #959595; font-style: italic;"># so I need to disable rtti when compiling pass</span>
+<span style="color: #959595; font-style: italic;"># or I will get error when opt -load my pass</span>
+<span style="color: #4A8F30; font-weight: bold;">SET</span>(CMAKE_CXX_FLAGS <span style="color: #5D5C01;">"-Wall -fno-rtti"</span>)
+
+<span style="color: #4A8F30; font-weight: bold;">add_subdirectory</span>(hellopass)
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 </pre>
 </div>
 </div>
@@ -267,7 +325,11 @@ gcc hello.s -o hello.native
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 
+<<<<<<< HEAD
 <pre class="src src-cmake"><span style="color: #A6E22E; font-weight: bold;">add_library</span>(HebiPass MODULE Pass.cpp)
+=======
+<pre class="src src-cmake"><span style="color: #4A8F30; font-weight: bold;">add_library</span>(HebiPass MODULE Pass.cpp)
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 </pre>
 </div>
 </div>
@@ -278,6 +340,7 @@ gcc hello.s -o hello.native
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 
+<<<<<<< HEAD
 <pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">"llvm/Pass.h"</span>
 <span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">"llvm/IR/Function.h"</span>
 <span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">"llvm/Support/raw_ostream.h"</span>
@@ -297,6 +360,27 @@ gcc hello.s -o hello.native
 }
 <span style="color: #66D9EF;">char</span> <span style="color: #AE81FF;">Hello</span>::<span style="color: #FD971F;">ID</span> = 0;
 <span style="color: #F92672;">static</span> <span style="color: #66D9EF;">RegisterPass</span>&lt;<span style="color: #66D9EF;">Hello</span>&gt; <span style="color: #A6E22E; font-weight: bold;">X</span>(<span style="color: #E6DB74;">"hello"</span>, <span style="color: #E6DB74;">"Hello World Pass"</span>, <span style="color: #AE81FF;">false</span>, <span style="color: #AE81FF;">false</span>);
+=======
+<pre class="src src-C++"><span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">"llvm/Pass.h"</span>
+<span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">"llvm/IR/Function.h"</span>
+<span style="color: #FF8512;">#include</span> <span style="color: #5D5C01;">"llvm/Support/raw_ostream.h"</span>
+
+<span style="color: #4170B3;">using</span> <span style="color: #4170B3;">namespace</span> <span style="color: #9B55C3;">llvm</span>;
+
+<span style="color: #4170B3;">namespace</span> {
+  <span style="color: #4170B3;">struct</span> <span style="color: #CD5542;">Hello</span> : <span style="color: #4170B3;">public</span> <span style="color: #CD5542;">FunctionPass</span> {
+    <span style="color: #4170B3;">static</span> <span style="color: #CD5542;">char</span> <span style="color: #787800;">ID</span>;
+    <span style="color: #4A8F30; font-weight: bold;">Hello</span>() : FunctionPass(ID) {}
+    <span style="color: #CD5542;">bool</span> <span style="color: #4A8F30; font-weight: bold;">runOnFunction</span>(<span style="color: #CD5542;">Function</span> &amp;<span style="color: #787800;">F</span>) override {
+      errs() &lt;&lt; <span style="color: #5D5C01;">"Hello: "</span>;
+      errs().write_escaped(F.getName()) &lt;&lt; <span style="color: #5D5C01;">"\n"</span>;
+      <span style="color: #4170B3;">return</span> <span style="color: #9B55C3;">false</span>;
+    }
+  };
+}
+<span style="color: #CD5542;">char</span> <span style="color: #9B55C3;">Hello</span>::<span style="color: #787800;">ID</span> = 0;
+<span style="color: #4170B3;">static</span> <span style="color: #CD5542;">RegisterPass</span>&lt;<span style="color: #CD5542;">Hello</span>&gt; <span style="color: #4A8F30; font-weight: bold;">X</span>(<span style="color: #5D5C01;">"hello"</span>, <span style="color: #5D5C01;">"Hello World Pass"</span>, <span style="color: #9B55C3;">false</span>, <span style="color: #9B55C3;">false</span>);
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 </pre>
 </div>
 
@@ -315,7 +399,11 @@ cmake, and make, generate the file <code>hellopass/libHebiPass.so</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
+<<<<<<< HEAD
 <p class="date">Created: 2016-02-21 Sun 22:31</p>
+=======
+<p class="date">Created: 2016-02-05 Fri 20:37</p>
+>>>>>>> 244313a11161f375ada887ed118dedb052a956ef
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
