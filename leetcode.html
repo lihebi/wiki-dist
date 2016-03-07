@@ -6,7 +6,7 @@
 <!-- 2016-03-06 Sun 20:15 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap for project wiki</title>
+<title>Leet Code</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -143,43 +143,58 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Sitemap for project wiki</h1>
-<ul class="org-ul">
-<li>math
-<ul class="org-ul">
-<li>511
-<ul class="org-ul">
-<li><a href="math/511/lp.html">Linear Programming</a></li>
-<li><a href="math/511/approximation.html">approximation</a></li>
-<li><a href="math/511/jargon.html">jargon</a></li>
-<li><a href="math/511/np.html">np</a></li>
-<li><a href="math/511/np-problems.html">np problems</a></li>
-</ul></li>
-<li>531
-<ul class="org-ul">
-<li><a href="math/531/decidability.html">Decidability</a></li>
-<li><a href="math/531/NPC.html">NPC</a></li>
-<li><a href="math/531/tm.html">Turing Machine</a></li>
-</ul></li>
-<li><a href="math/index.html">Math Index</a></li>
-<li><a href="math/search-alg.html">Search Algorithm</a></li>
-</ul></li>
-<li>subdir
-<ul class="org-ul">
-<li><a href="subdir/test.html">test</a></li>
-</ul></li>
-<li><a href="emacs.html">Emacs</a></li>
-<li><a href="js.html">Javascript</a></li>
-<li><a href="llvm.html">LLVM</a></li>
-<li><a href="latex.html">Latex</a></li>
-<li><a href="leetcode.html">Leet Code</a></li>
-<li><a href="org.html">Org Mode</a></li>
-<li><a href="shell.html">Shell</a></li>
-<li><a href="index.html">The HebiWiki<sup>TM</sup></a></li>
-<li><a href="awk.html">awk</a></li>
-<li><a href="google-test.html">google test</a></li>
-<li><a href="sed.html">sed</a></li>
-</ul>
+<h1 class="title">Leet Code</h1>
+<p>
+Binary Tree Postorder Traversal <i>Iteratively</i>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">1.1 Create an empty stack
+2.1 Do following while root is not NULL
+    a) Push root's right child and then root to stack.
+    b) Set root as root's left child.
+2.2 Pop an item from stack and set it as root.
+    a) If the popped item has a right child and the right child 
+       is at top of stack, then remove the right child from stack,
+       push the root back and set root as root's right child.
+    b) Else print root's data and set root as NULL.
+2.3 Repeat steps 2.1 and 2.2 while stack is not empty.
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #66D9EF;">vector</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #A6E22E; font-weight: bold;">postorderTraversal</span>(<span style="color: #66D9EF;">TreeNode</span>* <span style="color: #FD971F;">root</span>) {
+  <span style="color: #66D9EF;">vector</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">result</span>;
+  <span style="color: #66D9EF;">stack</span>&lt;<span style="color: #66D9EF;">TreeNode</span>*&gt; <span style="color: #FD971F;">worklist</span>;
+  <span style="color: #66D9EF;">TreeNode</span> *<span style="color: #FD971F;">node</span> = root;
+  <span style="color: #F92672;">if</span> (root==<span style="color: #AE81FF;">NULL</span>) <span style="color: #F92672;">return</span> result;
+  <span style="color: #F92672;">do</span> {
+    <span style="color: #F92672;">while</span> (node != <span style="color: #AE81FF;">NULL</span>) {
+      <span style="color: #F92672;">if</span> (node-&gt;right != <span style="color: #AE81FF;">NULL</span>) {
+        worklist.push(node-&gt;right);
+      }
+      worklist.push(node);
+      node = node-&gt;left;
+    }
+    node = worklist.top();
+    worklist.pop();
+    <span style="color: #F92672;">if</span> (node-&gt;right != <span style="color: #AE81FF;">NULL</span> &amp;&amp; <span style="color: #E6DB74; font-weight: bold;">!</span>worklist.empty() &amp;&amp; worklist.top() == node-&gt;right) {
+      <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">the node has right child to process</span>
+      <span style="color: #66D9EF;">TreeNode</span> *<span style="color: #FD971F;">right</span> = node-&gt;right;
+      worklist.pop();
+      worklist.push(node);
+      node = right;
+    } <span style="color: #F92672;">else</span> {
+      result.push_back(node-&gt;val);
+      node = <span style="color: #AE81FF;">NULL</span>;
+    }
+  } <span style="color: #F92672;">while</span> (<span style="color: #E6DB74; font-weight: bold;">!</span>worklist.empty());
+  <span style="color: #F92672;">return</span> result;
+}
+</pre>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
