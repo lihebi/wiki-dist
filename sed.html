@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-01 Tue 13:11 -->
+<!-- 2016-03-09 Wed 01:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>sed</title>
@@ -174,8 +174,8 @@ in shell script
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span style="color: #75715E;">#</span><span style="color: #75715E; font-style: italic;">!/bin/</span><span style="color: #F92672;">sed</span><span style="color: #75715E; font-style: italic;"> -f</span>
-<span style="color: #75715E;">#</span><span style="color: #75715E; font-style: italic;">!/bin/sed -nf</span>
+<pre class="src src-shell"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/</span><span style="color: #0000FF;">sed</span><span style="color: #8D8D84; font-style: italic;"> -f</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/sed -nf</span>
 </pre>
 </div>
 </div>
@@ -225,9 +225,9 @@ If the command is preceded with <code>!</code>, that means the command works on 
 
 <div class="org-src-container">
 
-<pre class="src src-shell">sed <span style="color: #E6DB74;">'1,100 s/A/a/'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">by line number</span>
-sed <span style="color: #E6DB74;">'101,$ s/A/a/'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">$ is last line</span>
-sed <span style="color: #E6DB74;">'/start/,/stop/ s/#.*//'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">by pattern</span>
+<pre class="src src-shell">sed <span style="color: #008000;">'1,100 s/A/a/'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">by line number</span>
+sed <span style="color: #008000;">'101,$ s/A/a/'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">$ is last line</span>
+sed <span style="color: #008000;">'/start/,/stop/ s/#.*//'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">by pattern</span>
 </pre>
 </div>
 </div>
@@ -429,12 +429,12 @@ print
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">add line numbers first,</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">then use grep,</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">then just print the number</span>
-cat -n file | grep <span style="color: #E6DB74;">'PATTERN'</span> | awk <span style="color: #E6DB74;">'{print $1}'</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">the equilvalence</span>
-sed -n <span style="color: #E6DB74;">'/PATTERN/ ='</span> file
+<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">add line numbers first,</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">then use grep,</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">then just print the number</span>
+cat -n file | grep <span style="color: #008000;">'PATTERN'</span> | awk <span style="color: #008000;">'{print $1}'</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">the equilvalence</span>
+sed -n <span style="color: #008000;">'/PATTERN/ ='</span> file
 </pre>
 </div>
 
@@ -444,18 +444,18 @@ substitute
 
 <div class="org-src-container">
 
-<pre class="src src-shell">s/pattern/&amp;/ <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">'&amp;' stands for the total match</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">in extend mode(-E), can use \1 \2</span>
-<span style="color: #A6E22E; font-weight: bold;">s/</span>(a)b/\1/
-s//string/ <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">use the last run-time used pattern</span>
-s/xxx/xxx/g <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">substitute globally: all</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">there will not be recursion. sed will not examine the generated string</span>
-s/loop/loop loop/g <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">will NOT run forever</span>
-s/xxx/xxx/2 <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">only substitute the second match</span>
-s/xxx/xxx/g2 <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">substitute 2,3,4,...</span>
-s/xxx/xxx/p <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">will print out even if -n is used</span>
-s/xxx/xxx/I p <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">ignore case; command can be used together</span>
-s/a/A/2pw /tmp/file <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">combine more</span>
+<pre class="src src-shell">s/pattern/&amp;/ <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">'&amp;' stands for the total match</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">in extend mode(-E), can use \1 \2</span>
+<span style="color: #006699;">s/</span>(a)b/\1/
+s//string/ <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">use the last run-time used pattern</span>
+s/xxx/xxx/g <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">substitute globally: all</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">there will not be recursion. sed will not examine the generated string</span>
+s/loop/loop loop/g <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">will NOT run forever</span>
+s/xxx/xxx/2 <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">only substitute the second match</span>
+s/xxx/xxx/g2 <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">substitute 2,3,4,...</span>
+s/xxx/xxx/p <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">will print out even if -n is used</span>
+s/xxx/xxx/I p <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">ignore case; command can be used together</span>
+s/a/A/2pw /tmp/file <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">combine more</span>
 </pre>
 </div>
 
@@ -465,13 +465,13 @@ delete
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">-i: make change to the original file</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">/d: delete the line if match</span>
-sed -i <span style="color: #E6DB74;">'/@slice/d'</span> $<span style="color: #FD971F;">ClassName</span>.java
-sed -i <span style="color: #E6DB74;">'g/@slice/d'</span> xx.java <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">remove all</span>
-sed <span style="color: #E6DB74;">'/^$/d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">remove all empty lines</span>
-sed <span style="color: #E6DB74;">'11,$ d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">only output first 10 lines</span>
-sed <span style="color: #E6DB74;">'1,/^$/ d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E; font-style: italic;">delete everything up to the first blank line.</span>
+<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-i: make change to the original file</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">/d: delete the line if match</span>
+sed -i <span style="color: #008000;">'/@slice/d'</span> $<span style="color: #BA36A5;">ClassName</span>.java
+sed -i <span style="color: #008000;">'g/@slice/d'</span> xx.java <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">remove all</span>
+sed <span style="color: #008000;">'/^$/d'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">remove all empty lines</span>
+sed <span style="color: #008000;">'11,$ d'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">only output first 10 lines</span>
+sed <span style="color: #008000;">'1,/^$/ d'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">delete everything up to the first blank line.</span>
 </pre>
 </div>
 </div>
@@ -479,7 +479,7 @@ sed <span style="color: #E6DB74;">'1,/^$/ d'</span> <span style="color: #75715E;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-01 Tue 13:11</p>
+<p class="date">Created: 2016-03-09 Wed 01:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

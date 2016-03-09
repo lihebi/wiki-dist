@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-07 Mon 15:16 -->
+<!-- 2016-03-09 Wed 01:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Latex</title>
@@ -170,14 +170,65 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Symbols</a></li>
+<li><a href="#orgheadline2">1. headers</a>
+<ul>
+<li><a href="#orgheadline1">1.1. Headers</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline3">2. Symbols</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Symbols</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">1</span> headers</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+The the default for LaTeX is to have no indent after sectional headings.
+Thus the first paragraph will have no indent.
+To indent it, <code>\usepackage{indentfirst}</code>.
+</p>
+
+<p>
+The default <code>article</code> class has too much margin.
+To change it:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-latex"><span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">this does not work</span>
+<span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">the default should be 1in, 11pt</span>
+<span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">\documentclass[a4paper, margin=1in, 11pt]{article} </span>
+<span style="color: #0000FF;">\usepackage</span>{<span style="color: #006FE0;">geometry</span>}
+<span style="color: #0000FF;">\geometry</span>{margin=1in}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Headers</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+use headers and footers
+</p>
+<div class="org-src-container">
+
+<pre class="src src-latex"><span style="color: #0000FF;">\usepackage</span>{<span style="color: #006FE0;">fancyhdr</span>}
+<span style="color: #0000FF;">\pagestyle</span>{fancy}
+<span style="color: #0000FF;">\fancyhf</span>{}
+<span style="color: #0000FF;">\rhead</span>{573 HW1}
+<span style="color: #0000FF;">\lhead</span>{Hebi Li}
+<span style="color: #0000FF;">\rfoot</span>{Page <span style="color: #0000FF;">\thepage</span>}
+<span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">\lfoot{xxx}</span>
+<span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">\cfoot{xxx}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">2</span> Symbols</h2>
+<div class="outline-text-2" id="text-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -241,6 +292,11 @@ for the JavaScript code in this tag.
 <tr>
 <td class="org-left"><code>\epsilon</code></td>
 <td class="org-left">\(\epsilon\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>\partial</code></td>
+<td class="org-left">\(\partial\)</td>
 </tr>
 </tbody>
 <tbody>
@@ -425,7 +481,7 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-07 Mon 15:16</p>
+<p class="date">Created: 2016-03-09 Wed 01:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

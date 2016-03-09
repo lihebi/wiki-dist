@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-06 Sun 20:15 -->
+<!-- 2016-03-09 Wed 01:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leet Code</title>
@@ -165,14 +165,14 @@ Binary Tree Postorder Traversal <i>Iteratively</i>:
 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #66D9EF;">vector</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #A6E22E; font-weight: bold;">postorderTraversal</span>(<span style="color: #66D9EF;">TreeNode</span>* <span style="color: #FD971F;">root</span>) {
-  <span style="color: #66D9EF;">vector</span>&lt;<span style="color: #66D9EF;">int</span>&gt; <span style="color: #FD971F;">result</span>;
-  <span style="color: #66D9EF;">stack</span>&lt;<span style="color: #66D9EF;">TreeNode</span>*&gt; <span style="color: #FD971F;">worklist</span>;
-  <span style="color: #66D9EF;">TreeNode</span> *<span style="color: #FD971F;">node</span> = root;
-  <span style="color: #F92672;">if</span> (root==<span style="color: #AE81FF;">NULL</span>) <span style="color: #F92672;">return</span> result;
-  <span style="color: #F92672;">do</span> {
-    <span style="color: #F92672;">while</span> (node != <span style="color: #AE81FF;">NULL</span>) {
-      <span style="color: #F92672;">if</span> (node-&gt;right != <span style="color: #AE81FF;">NULL</span>) {
+<pre class="src src-C++"><span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #006699;">postorderTraversal</span>(<span style="color: #6434A3;">TreeNode</span>* <span style="color: #BA36A5;">root</span>) {
+  <span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">result</span>;
+  <span style="color: #6434A3;">stack</span>&lt;<span style="color: #6434A3;">TreeNode</span>*&gt; <span style="color: #BA36A5;">worklist</span>;
+  <span style="color: #6434A3;">TreeNode</span> *<span style="color: #BA36A5;">node</span> = root;
+  <span style="color: #0000FF;">if</span> (root==<span style="color: #D0372D;">NULL</span>) <span style="color: #0000FF;">return</span> result;
+  <span style="color: #0000FF;">do</span> {
+    <span style="color: #0000FF;">while</span> (node != <span style="color: #D0372D;">NULL</span>) {
+      <span style="color: #0000FF;">if</span> (node-&gt;right != <span style="color: #D0372D;">NULL</span>) {
         worklist.push(node-&gt;right);
       }
       worklist.push(node);
@@ -180,25 +180,25 @@ Binary Tree Postorder Traversal <i>Iteratively</i>:
     }
     node = worklist.top();
     worklist.pop();
-    <span style="color: #F92672;">if</span> (node-&gt;right != <span style="color: #AE81FF;">NULL</span> &amp;&amp; <span style="color: #E6DB74; font-weight: bold;">!</span>worklist.empty() &amp;&amp; worklist.top() == node-&gt;right) {
-      <span style="color: #75715E;">// </span><span style="color: #75715E; font-style: italic;">the node has right child to process</span>
-      <span style="color: #66D9EF;">TreeNode</span> *<span style="color: #FD971F;">right</span> = node-&gt;right;
+    <span style="color: #0000FF;">if</span> (node-&gt;right != <span style="color: #D0372D;">NULL</span> &amp;&amp; !worklist.empty() &amp;&amp; worklist.top() == node-&gt;right) {
+      <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">the node has right child to process</span>
+      <span style="color: #6434A3;">TreeNode</span> *<span style="color: #BA36A5;">right</span> = node-&gt;right;
       worklist.pop();
       worklist.push(node);
       node = right;
-    } <span style="color: #F92672;">else</span> {
+    } <span style="color: #0000FF;">else</span> {
       result.push_back(node-&gt;val);
-      node = <span style="color: #AE81FF;">NULL</span>;
+      node = <span style="color: #D0372D;">NULL</span>;
     }
-  } <span style="color: #F92672;">while</span> (<span style="color: #E6DB74; font-weight: bold;">!</span>worklist.empty());
-  <span style="color: #F92672;">return</span> result;
+  } <span style="color: #0000FF;">while</span> (!worklist.empty());
+  <span style="color: #0000FF;">return</span> result;
 }
 </pre>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-06 Sun 20:15</p>
+<p class="date">Created: 2016-03-09 Wed 01:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
