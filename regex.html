@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-03-10 Thu 14:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regular Expression</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Regular Expression</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Some Articles</a></li>
+<li><a href="#orgheadline2">2. 符号表</a></li>
+<li><a href="#orgheadline3">3. Lookahead</a></li>
+<li><a href="#orgheadline4">4. Capturing Group</a></li>
+<li><a href="#orgheadline5">5. Identifier</a></li>
+<li><a href="#orgheadline14">6. Regex for C</a>
+<ul>
+<li><a href="#orgheadline6">6.1. constructor</a></li>
+<li><a href="#orgheadline8">6.2. std::match<sub>results</sub></a>
+<ul>
+<li><a href="#orgheadline7">6.2.1. member functions</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">6.3. std::sub<sub>match</sub></a></li>
+<li><a href="#orgheadline10">6.4. regex<sub>search</sub></a></li>
+<li><a href="#orgheadline11">6.5. std::regex<sub>match</sub></a></li>
+<li><a href="#orgheadline12">6.6. std::regex<sub>replace</sub></a></li>
+<li><a href="#orgheadline13">6.7. iterator</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline15">7. Regex for Java</a></li>
+<li><a href="#orgheadline16">8. Regex for JS</a></li>
+<li><a href="#orgheadline17">9. Regex for Python</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Some Articles</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://swtch.com/~rsc/regexp/">https://swtch.com/~rsc/regexp/</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> 符号表</h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">符号</th>
+<th scope="col" class="org-left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">.</td>
+<td class="org-left">除了换行符以外的任何字符</td>
+</tr>
+
+<tr>
+<td class="org-left">\b</td>
+<td class="org-left">单词的开始或结束</td>
+</tr>
+
+<tr>
+<td class="org-left">\d</td>
+<td class="org-left">一位数字</td>
+</tr>
+
+<tr>
+<td class="org-left">\s</td>
+<td class="org-left">任意空白字符(' ', \t, \ n 等)</td>
+</tr>
+
+<tr>
+<td class="org-left">\w</td>
+<td class="org-left">字母,数字,下划线,汉字 等</td>
+</tr>
+
+<tr>
+<td class="org-left">x{8}</td>
+<td class="org-left">x 要重复8次</td>
+</tr>
+
+<tr>
+<td class="org-left">x{5,8}</td>
+<td class="org-left">x 的重复次数&gt;=5,&lt;=12</td>
+</tr>
+
+<tr>
+<td class="org-left">x{5,}</td>
+<td class="org-left">重复5+</td>
+</tr>
+
+<tr>
+<td class="org-left">*</td>
+<td class="org-left">重复0 或1 次</td>
+</tr>
+
+<tr>
+<td class="org-left">+</td>
+<td class="org-left">重复1+次</td>
+</tr>
+
+<tr>
+<td class="org-left">?</td>
+<td class="org-left">重复0或1次</td>
+</tr>
+
+<tr>
+<td class="org-left">^</td>
+<td class="org-left">字符串开始</td>
+</tr>
+
+<tr>
+<td class="org-left">$</td>
+<td class="org-left">字符串结束</td>
+</tr>
+
+<tr>
+<td class="org-left">[aeiou?,0-9]</td>
+<td class="org-left">匹配这个里面的任何一个</td>
+</tr>
+
+<tr>
+<td class="org-left">[<sup>aeiou</sup>]</td>
+<td class="org-left">除了aeiou 以外的任何字符</td>
+</tr>
+
+<tr>
+<td class="org-left">\B,\D,&sect;,\W</td>
+<td class="org-left">与小写字母相反</td>
+</tr>
+
+<tr>
+<td class="org-left">[a-zA-Z0-9]</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Lookahead</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Positive look ahead: `(?=ABC)`. e.g. `hello(?=ABC)`</li>
+<li>Negative look ahead: `(?!ABC)`: e.g. `hello(?!ABC)`</li>
+<li>Positive look behind: `(?&lt;=ABC)`: e.g. `(?&lt;=ABC)hello`</li>
+<li>Negative look behind: `(?&lt;!ABC)`: e.g. `(?&lt;!ABC)hello`</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Capturing Group</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>`(ABC)`</li>
+<li>`(ABC)abc\1` Backreference. `\1` matches the result of the first capturing group</li>
+<li>`(?:ABC)` non-capturing group</li>
+<li>`$1` insert the first captured group</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> Identifier</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+`p = <i>xxx</i>[gim]`
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">标识</th>
+<th scope="col" class="org-left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">g</td>
+<td class="org-left">全局的（匹配多次）</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-left">大小写不敏感</td>
+</tr>
+
+<tr>
+<td class="org-left">m</td>
+<td class="org-left">多行，`^` `$`可以匹配行结束符</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">6</span> Regex for C</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Only supported by C++11
+</p>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">6.1</span> constructor</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">explicit</span> <span style="color: #006699;">basic_regex</span>(<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">CharT</span>* <span style="color: #BA36A5;">s</span>);
+basic_regex(<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">basic_regex</span>&amp; other);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">6.2</span> std::match<sub>results</sub></h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+std::match<sub>results</sub>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C">template&lt;
+class BidirIt,
+<span style="color: #6434A3;">class</span> <span style="color: #BA36A5;">Alloc</span> = std::allocator&lt;std::sub_match&lt;BidirIt&gt;&gt;
+&gt; class match_results;
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">type</td>
+<td class="org-left">definition</td>
+</tr>
+
+<tr>
+<td class="org-left">:--------</td>
+<td class="org-left">:--------------------------------------------</td>
+</tr>
+
+<tr>
+<td class="org-left">cmatch</td>
+<td class="org-left">match<sub>results</sub>&lt;const char*&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">wcmatch</td>
+<td class="org-left">match<sub>results</sub>&lt;const wchar<sub>t</sub>*&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">smatch</td>
+<td class="org-left">match<sub>results</sub>&lt;std::string::const<sub>iterator</sub>&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">wsmatch</td>
+<td class="org-left">match<sub>results</sub>&lt;std::wstring::const<sub>iterator</sub>&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">6.2.1</span> member functions</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<ul class="org-ul">
+<li>empty</li>
+<li>size</li>
+<li>operator[]</li>
+</ul>
+
+<p>
+`std::match<sub>results</sub>` holds `std::sub<sub>match</sub>`es,
+each of which is a pair of iterators into the original character sequence that was matched,
+it's undefined behavior to examine std::match<sub>results</sub>
+if the original character sequence was destroyed
+or iterators to it were invalidated for other reasons.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">6.3</span> std::sub<sub>match</sub></h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+std::sub<sub>match</sub> inherits from std::pair
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">type</td>
+<td class="org-left">definition</td>
+</tr>
+
+<tr>
+<td class="org-left">:------------</td>
+<td class="org-left">:----------------------------------------</td>
+</tr>
+
+<tr>
+<td class="org-left">csub<sub>match</sub></td>
+<td class="org-left">sub<sub>match</sub>&lt;const char*&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">wcsub<sub>match</sub></td>
+<td class="org-left">sub<sub>match</sub>&lt;const wchar<sub>t</sub>*&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">ssub<sub>match</sub></td>
+<td class="org-left">sub<sub>match</sub>&lt;std::string::const<sub>iterator</sub>&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">wssub<sub>match</sub></td>
+<td class="org-left">sub<sub>match</sub>&lt;std::wstring::const<sub>iterator</sub>&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">6.4</span> regex<sub>search</sub></h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+API
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">bool</span> <span style="color: #006699;">regex_search</span>
+(
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_string&lt;CharT,STraits,SAlloc&gt;&amp; s,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_regex&lt;CharT,Traits&gt;&amp; e
+);
+<span style="color: #6434A3;">bool</span> <span style="color: #006699;">regex_search</span>
+(
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_string&lt;CharT,STraits,SAlloc&gt;&amp;&amp;,
+  std::match_results&amp;,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_regex&lt;CharT, Traits&gt;&amp;
+);
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;string&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;regex&gt;</span>
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+  std::string line = <span style="color: #008000;">"xxx"</span>;
+  std::regex color_regex(<span style="color: #008000;">"([a-f0-9]{2})"</span>);
+  std::regex_search(line, color_regex);
+
+  std::smatch color_match;
+  std::regex_search(line, color_match, color_regex);
+  <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>=0;i&lt;color_match.size();i++) {
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">the first is entire match</span>
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">the followings are () matches</span>
+    color_match[i]; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">string</span>
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">6.5</span> std::regex<sub>match</sub></h3>
+<div class="outline-text-3" id="text-6-5">
+<div class="org-src-container">
+
+<pre class="src src-C">std::regex_match(fname, base_match, base_regex);
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">The first sub_match is the whole string; the next</span>
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">sub_match is the first parenthesized expression.</span>
+<span style="color: #0000FF;">if</span> (std::regex_match(fname, pieces_match, pieces_regex)) {
+  std::cout &lt;&lt; fname &lt;&lt; <span style="color: #008000;">'\n'</span>;
+  <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">size_t</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; pieces_match.size(); ++i) {
+    std::ssub_match sub_match = pieces_match[i];
+    std::string piece = sub_match.str();
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">can also piece = sub_match, implicit convertion</span>
+  }   
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">6.6</span> std::regex<sub>replace</sub></h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+API
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C">std::basic_string&lt;CharT,STraits,SAlloc&gt;
+regex_replace(
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_string&lt;CharT,STraits,SAlloc&gt;&amp; s,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_regex&lt;CharT,Traits&gt;&amp; re,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">CharT</span>* <span style="color: #BA36A5;">fmt</span>
+);
+std::basic_string&lt;CharT&gt;
+regex_replace(
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">CharT</span>* <span style="color: #BA36A5;">s</span>,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_regex&lt;CharT,Traits&gt;&amp; re,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_string&lt;CharT,STraits,SAlloc&gt;&amp; fmt
+);
+std::basic_string&lt;CharT&gt;
+regex_replace(
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">CharT</span>* <span style="color: #BA36A5;">s</span>,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::basic_regex&lt;CharT,Traits&gt;&amp; re,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">CharT</span>* <span style="color: #BA36A5;">fmt</span>
+);
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-C">std::regex_replace(s, reg, <span style="color: #008000;">""</span>);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">6.7</span> iterator</h3>
+<div class="outline-text-3" id="text-6-7">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>()
+{
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">std</span>::string s = <span style="color: #008000;">"Quick brown fox."</span>;
+
+  std::regex words_regex(<span style="color: #008000;">"[^\\s]+"</span>);
+  std::sregex_iterator words_begin = std::sregex_iterator(s.begin(), s.end(), words_regex);
+  std::sregex_iterator words_end = std::sregex_iterator();
+
+  std::cout &lt;&lt; <span style="color: #008000;">"Found "</span>
+  &lt;&lt; std::distance(words_begin, words_end)
+  &lt;&lt; <span style="color: #008000;">" words:\n"</span>;
+
+  <span style="color: #0000FF;">for</span> (std::sregex_iterator i = words_begin; i != words_end; ++i) {
+    std::smatch match = * i;                                                 
+    std::string match_str = match.str(); 
+    std::cout &lt;&lt; match_str &lt;&lt; <span style="color: #008000;">'\n'</span>;
+  }   
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">7</span> Regex for Java</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #6434A3;">Pattern</span> <span style="color: #BA36A5;">p</span> = Pattern.compile(<span style="color: #008000;">"a*b"</span>);
+<span style="color: #6434A3;">Matcher</span> <span style="color: #BA36A5;">m</span> = p.matcher(<span style="color: #008000;">"aaaaab"</span>);
+<span style="color: #6434A3;">boolean</span> <span style="color: #BA36A5;">b</span> = m.matches();
+m.group(3); <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">=&gt; String</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">8</span> Regex for JS</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">(xxx) &#25429;&#33719;&#22411;&#20998;&#32452;</span>
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">(?:xxx) &#38750;&#25429;&#33719;&#22411;&#20998;&#32452;</span>
+<span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">pattern</span> = <span style="color: #008000;">/(xxx)(?:xxx)/</span>;
+<span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">result</span> = pattern.exec(<span style="color: #008000;">'string here'</span>);
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">=&gt; result = ['match', '&#20998;&#32452;1', '&#20998;&#32452;2', ...]</span>
+<span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">result</span> = pattern.test(<span style="color: #008000;">'string here'</span>);
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">=&gt; result = true or false</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">9</span> Regex for Python</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #0000FF;">import</span> re
+
+<span style="color: #BA36A5;">pattern</span> = re.<span style="color: #006FE0;">compile</span>(<span style="color: #008000;">'\d+.*$'</span>)
+<span style="color: #006FE0;">type</span>(pattern) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">_sre.SRE_Pattern</span>
+<span style="color: #BA36A5;">s</span> = <span style="color: #008000;">'this is a test string'</span>
+pattern.match(s)    //<span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span> <span style="color: #0000FF;">or</span> <span style="color: #D0372D;">False</span>
+pattern.findall(s)
+
+<span style="color: #BA36A5;">m</span> = re.match(<span style="color: #008000;">"[pattern]"</span>, <span style="color: #008000;">"string"</span>)
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">match &#38656;&#35201;&#20840;&#21305;&#37197;&#12290; &#33509;&#19981;&#21305;&#37197;&#65292;&#36820;&#22238;None</span>
+<span style="color: #006FE0;">type</span>(m) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">_sre.SRE_Match</span>
+<span style="color: #006FE0;">type</span>(m.re) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">_sre.SRE_Match</span>
+m.group() <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#21305;&#37197;&#30340;&#23383;&#31526;&#20018;</span>
+
+<span style="color: #BA36A5;">m</span> = re.search(<span style="color: #008000;">"[pattern]"</span>, <span style="color: #008000;">"string"</span>)
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">search&#21482;&#35201;&#26377;&#23601;&#34892;</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">if can't find anything, m will simply be None.</span>
+<span style="color: #006FE0;">type</span>(m) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">_sre.SRE_Match</span>
+m.group()
+
+re.search(<span style="color: #008000;">"pattern"</span>, <span style="color: #008000;">"string"</span>, re.IGNORECASE)
+
+<span style="color: #BA36A5;">m</span> = re.findall(<span style="color: #008000;">"[pattern]"</span>, <span style="color: #008000;">"string"</span>)
+<span style="color: #006FE0;">type</span>(m) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">list, a list of string that match</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-03-10 Thu 14:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

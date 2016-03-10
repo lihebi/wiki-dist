@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-10 Thu 14:43 -->
+<!-- 2016-03-10 Thu 13:10 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Emacs</title>
+<title>Make</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -146,151 +146,74 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Emacs</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgheadline1">1. text transformation</a></li>
-<li><a href="#orgheadline2">2. marking</a></li>
-<li><a href="#orgheadline3">3. window manage</a></li>
-<li><a href="#orgheadline4">4. navigating</a></li>
-<li><a href="#orgheadline5">5. register</a></li>
-<li><a href="#orgheadline6">6. killing</a></li>
-<li><a href="#orgheadline7">7. dired</a></li>
-<li><a href="#orgheadline8">8. packages</a></li>
-<li><a href="#orgheadline9">9. elisp</a></li>
-</ul>
-</div>
-</div>
+<h1 class="title">Make</h1>
 <p>
-This is what I all need about emacs.
-It is a list of commands useful. It serves as a extremely tight reference.
+易错点：
 </p>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> text transformation</h2>
-<div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li><code>replace-rectangle</code></li>
-<li><code>upcase-word</code></li>
-<li><code>downcase-word</code></li>
-<li><code>transpose-words</code></li>
-<li><code>transpose-lines</code></li>
+<li><code>g++</code> or <code>gcc</code></li>
+<li><code>%.c</code> instead of <code>%c</code></li>
+<li><code>.cpp</code> or <code>.c</code></li>
+<li><code>OBJS = $(SRCS:.cpp=.o)</code> 注意cpp</li>
 </ul>
 
 <p>
-To insert a control sequence, use <code>C-q xxx</code>.
+变量:
 </p>
-</div>
-</div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> marking</h2>
-<div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li><code>exhange-point-and-mark</code></li>
-<li><code>mark-word</code></li>
-<li><code>mark-sexp</code></li>
-<li><code>mark-paragraph</code></li>
-<li><code>mark-defun</code></li>
-<li><code>mark-page</code></li>
-<li><code>mark-whole-buffer</code></li>
-<li><code>point-to-register</code>: save ppposition in a register</li>
-<li><code>jump-to-register</code></li>
-<li><code>set-mark-command</code>: C-SPC, set mark, and activate it</li>
-<li><code>C-SPC C-SPC</code>: set mark, but not activate it.</li>
-<li><code>C-u C-SPC</code>: pop to previous mark in mark ring. current is stored at the end of mark ring(rotating)</li>
-<li><code>pop-global-mark</code>: will store both position and buffer</li>
+<li><code>$&lt;</code> name of the prerequisite of the rule</li>
+<li><code>$@</code> name of the target of the rule</li>
+<li><code>$^</code> names of all the prerequisites, with spaces between them</li>
 </ul>
 
 <p>
-All events that set the mark:
+两种变量定义方式:
 </p>
+
 <ul class="org-ul">
-<li><code>C-SPC C-SPC</code></li>
-<li><code>C-w</code></li>
-<li>search</li>
+<li><code>A=xxx</code>: <code>A=$(A) -o</code> will recursive, infinite loop</li>
+<li><code>A:=xxx</code>: <code>A=$(A) -o</code> will interpret the current A into $(A). Never recursive.</li>
 </ul>
-</div>
-</div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> window manage</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><code>balance-window</code></li>
-<li><code>toggle-window-split</code></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> navigating</h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><code>forward-sexp</code></li>
-<li><code>backward-sexp</code></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">5</span> register</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li><code>jump-to-register</code>: the register can store a file</li>
-<li><code>copy-to-register</code></li>
-<li><code>insert-register</code></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">6</span> killing</h2>
-<div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li><code>zap-to-char</code></li>
-<li><code>zap-up-to-char</code></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">7</span> dired</h2>
-<div class="outline-text-2" id="text-7">
-<ul class="org-ul">
-<li><code>dired-next-subdir</code></li>
-<li><code>dired-prev-subdir</code></li>
-<li><code>dired-tree-up</code></li>
-<li><code>dired-tree-down</code></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">8</span> packages</h2>
-<div class="outline-text-2" id="text-8">
-<p>
-In <code>*package*</code> buffer, <code>Ux</code> to update all packages.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">9</span> elisp</h2>
-<div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #707183;">(</span>cl-prettyprint <span style="color: #7388D6;">(</span>font-family-list<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<pre class="src src-makefile"><span style="color: #BA36A5;">CC</span>=g++
+<span style="color: #BA36A5;">CFLAGS</span> = -g -Wall
+<span style="color: #BA36A5;">INCLUDES</span> = -I/home/newhall/include  -I../include
+<span style="color: #BA36A5;">LFLAGS</span> = -L/home/newhall/lib  -L../lib
+<span style="color: #BA36A5;">LIBS</span> = -lmylib -lm
+<span style="color: #BA36A5;">SRCS</span> = majority_element.cpp
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">SRCS = $(</span><span style="color: #BA36A5; font-style: italic;">wildcard</span><span style="color: #8D8D84; font-style: italic;"> *.c)</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">SRCS = $(</span><span style="color: #BA36A5; font-style: italic;">filter-out</span><span style="color: #8D8D84; font-style: italic;"> support.c, $(</span><span style="color: #BA36A5; font-style: italic;">wildcard</span><span style="color: #8D8D84; font-style: italic;"> *.c))</span>
+<span style="color: #BA36A5;">OBJS</span> = $(<span style="color: #BA36A5;">SRCS</span>:<span style="color: #BA36A5;">.c</span>=.o)
+<span style="color: #BA36A5;">MAIN</span> = myprog
+
+<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: all clean
+
+
+<span style="color: #0000ff; font-weight: bold;">all</span>: $(<span style="color: #BA36A5;">MAIN</span>)
+  @echo Compiled $(<span style="color: #BA36A5;">MAIN</span>)
+
+<span style="color: #0000ff; font-weight: bold;">$(</span><span style="color: #0000ff; font-weight: bold;">MAIN</span><span style="color: #0000ff; font-weight: bold;">)</span>: $(<span style="color: #BA36A5;">OBJS</span>)
+  $(<span style="color: #BA36A5;">CC</span>) $(<span style="color: #BA36A5;">CFLAGS</span>) $(<span style="color: #BA36A5;">INCLUDES</span>) -o $(<span style="color: #BA36A5;">MAIN</span>) $(<span style="color: #BA36A5;">OBJS</span>) $(<span style="color: #BA36A5;">LFLAGS</span>) $(<span style="color: #BA36A5;">LIBS</span>)
+
+<span style="color: #0000ff; font-weight: bold;">test</span>: test.cpp
+  $(<span style="color: #BA36A5;">CC</span>) $(<span style="color: #BA36A5;">CFLAGS</span>) $(<span style="color: #BA36A5;">INCLUDES</span>) -o test test.cpp
+
+<span style="color: #0000ff; font-weight: bold;">%.o</span> : %.cpp
+  $(<span style="color: #BA36A5;">CC</span>) $(<span style="color: #BA36A5;">CFLAGS</span>) $(<span style="color: #BA36A5;">INCLUDES</span>) -c $<span style="color: #D0372D;">&lt;</span> -o <span style="color: #0000ff; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span>
+
+<span style="color: #0000ff; font-weight: bold;">clean</span>:
+  $(<span style="color: #BA36A5;">RM</span>) *.o *~ $(<span style="color: #BA36A5;">MAIN</span>) test
 </pre>
-</div>
-</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-10 Thu 14:43</p>
+<p class="date">Created: 2016-03-10 Thu 13:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
