@@ -6,7 +6,7 @@
 <!-- 2016-03-09 Wed 15:52 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>NPC</title>
+<title>Search ALgorithm</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -168,86 +168,149 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">NPC</h1>
+<h1 class="title">Search ALgorithm</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">1. Prove clique is in NP</a>
+<li><a href="#orgheadline5">1. Branch &amp; Bound algorithm</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Proof 1:</a></li>
-<li><a href="#orgheadline2">1.2. Proof 2:</a></li>
+<li><a href="#orgheadline1">1.1. problem</a></li>
+<li><a href="#orgheadline2">1.2. notation</a></li>
+<li><a href="#orgheadline3">1.3. Algorithm</a></li>
+<li><a href="#orgheadline4">1.4. natual langauge description</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">2. A* algorithm</a>
+<ul>
+<li><a href="#orgheadline6">2.1. Problem</a></li>
+<li><a href="#orgheadline7">2.2. noatation</a></li>
+<li><a href="#orgheadline8">2.3. algorithm</a></li>
+<li><a href="#orgheadline9">2.4. natual language description</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<p>
-TIME(t(n)): the collection of languages that are decidable by an O(t(n)) time TM. ==&gt; P
-</p>
 
-<p>
-NTIME(t(n)): the collection of languages that are decidable by an O(t(n)) time NTM. ==&gt; NP
-</p>
-
-<p>
-Assume t(n)&gt;n. Every t(n) time single tape NTM equals to a `\(2^{O(t(n))}\)` time single tape Deterministic TM
-</p>
-
-<p>
-Assume t(n)&gt;n. Every t(n) time multi-tape TM equals to a `\(O(t^2(n))\)` time single tape TM.
-</p>
-
-
-<p>
-a language is in NP &lt;=&gt; decided by some polynomial time NTM
-</p>
-
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">1</span> Prove clique is in NP</h2>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">1</span> Branch &amp; Bound algorithm</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Proof 1:</h3>
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> problem</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-```
-V=on input &lt;&lt;G,k&gt;,c&gt;:
-</p>
-<ol class="org-ol">
-<li>Test whether c is a subgraph of k nodes in G</li>
-<li>Test whether G contains all edgesconnecting nodes in c</li>
-<li>if both pass accept, otherwise reject.</li>
-</ol>
-<p>
-```
+The problem is to minimize a function f(x) of variables \(x_1,...,x_n\) over a region of feasible solutions S.
+\[min_{x\in S} f(x)\]
+The solutions state space S is formed as a <i>rooted tree</i>.
+The key to this algorithm is the efficient estimation of lower or upper bound.
+The problem is NP-hard.
 </p>
 </div>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Proof 2:</h3>
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> notation</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-```
-N=on input &lt;G,k&gt;:
+f(x) is called <i>objective function</i>.
+a function g(x) is the lower bound, defines on S with the property that g(x) &le; f(x) for all x &isin; S.
 </p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> Algorithm</h3>
+<div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
-<li>non-deterministically select a subset c of k nodes in G</li>
-<li>Test whether c contains all edges connecting nodes in c</li>
-<li>if yes, accept. Otherwise reject.</li>
+<li>use a heuristic, find a solution x<sub>h</sub>. Store its value B &larr; f(x<sub>h</sub>). B is the global best solution so far. If no solution found, init B to &infin;</li>
+<li>init a queue with the root ??</li>
+<li>loop until the queue is empty
+<ol class="org-ol">
+<li>take a node N off the queue</li>
+<li>if N represents a single candidate solution x (N is a leaf?) and f(x) &lt; B, then B = f(x).</li>
+<li>Else, branch on N to produce new nodes \(N_1,...,N_i\). For each new node:
+<ol class="org-ol">
+<li>if g(N<sub>i</sub>) &gt; B, do nothing.</li>
+<li>else store N<sub>i</sub> onto the queue</li>
+</ol></li>
+</ol></li>
 </ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.4</span> natual langauge description</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
-```
+The problem is to minimize (or maximize) the objective function f(x) over \(x_1,..,x_n\).
+The feasible solution search state space is a tree.
+The initial best known value is B=f(x<sub>h</sub>) or &infin; if no solution x<sub>h</sub> found by heuristic.
+From the root, everytime branch into two or more branches.
+For those branches, compute the lower bound.
+If the lower bound is larger than current best, then do not need to go into these branch.
+Thus we can eliminate the computation of this branch.
 </p>
 
 <p>
-language B is in NPC if:
+The assumption is the lower (or upper) bound is efficient to compute.
+Every time branch may or may not overlap, as long as the optimal solution is inside at least one branch.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">2</span> A* algorithm</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.1</span> Problem</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+from an initial node, find the least-cost path to one <i>goal node</i> (out of one or more possible goals).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.2</span> noatation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+\[f(n) = g(n) + h(n)\]
 </p>
 
-<ol class="org-ol">
-<li>B is NP</li>
-<li>every A in NP is polynomial time reducible to B</li>
-</ol>
+<p>
+where n is current node.
+f(n) is the cost function.
+g(n) is the known cost of getting from initial node to n.
+h(n) is a heuristic esitimate of the cost to get from n to any goal node.
+h(n) must be <i>admissible</i>, i.e. it never overestimates the actual cost, i.e. it is always less then or equal to the actual cost.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.3</span> algorithm</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+from initial node, it maintains a priority queue of nodes.
+The lower \(f(n)\), the higher its priority.
+At each step, the node with lowest \(f(x)\) is removed, and \(f\) and \(g\) of its neighbors are updated.
+Add these neighbors into the queue.
+The algorithm terminates when one goal node has a lower \(f\) value than any node in the queue.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">2.4</span> natual language description</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+from the start point, try all neighbors, and remember both the actual cost from the initial node,
+and the estimate from this node to one goal.
+Repeat trying neighbors until reach goal nodes.
+Stop when the goal nodes has the lowest cost function value.
+</p>
 </div>
 </div>
 </div>

@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-03-09 Wed 18:24 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>C</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">C</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. idioms</a></li>
+<li><a href="#orgheadline9">2. Cast</a>
+<ul>
+<li><a href="#orgheadline2">2.1. In a word</a></li>
+<li><a href="#orgheadline3">2.2. C style cast: <b><b>DO NOT USE</b></b></a></li>
+<li><a href="#orgheadline4">2.3. Static Cast</a></li>
+<li><a href="#orgheadline5">2.4. Const Cast</a></li>
+<li><a href="#orgheadline6">2.5. Dynamic Cast</a></li>
+<li><a href="#orgheadline7">2.6. Reinterpret Cast</a></li>
+<li><a href="#orgheadline8">2.7. C style cast</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">3. Compound Literals</a>
+<ul>
+<li><a href="#orgheadline10">3.1. Example</a></li>
+<li><a href="#orgheadline11">3.2. more examples</a></li>
+<li><a href="#orgheadline12">3.3. static</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline18">4. extern</a>
+<ul>
+<li><a href="#orgheadline14">4.1. Function</a></li>
+<li><a href="#orgheadline15">4.2. Variable</a></li>
+<li><a href="#orgheadline16">4.3. extern "C"</a></li>
+<li><a href="#orgheadline17">4.4. syntax</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline19">5. restrict</a></li>
+<li><a href="#orgheadline25">6. volatile</a>
+<ul>
+<li><a href="#orgheadline20">6.1. syntax</a></li>
+<li><a href="#orgheadline24">6.2. When to use it</a>
+<ul>
+<li><a href="#orgheadline21">6.2.1. Memory-mapped peripheral registers</a></li>
+<li><a href="#orgheadline22">6.2.2. Global variables modified by an ISR(Interrupt Service Routine)</a></li>
+<li><a href="#orgheadline23">6.2.3. Global variables accessed by multiple tasks within a multi-threaded application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline30">7. Operator Precedence</a>
+<ul>
+<li><a href="#orgheadline29">7.1. notes</a>
+<ul>
+<li><a href="#orgheadline26">7.1.1. For <code>?:</code></a></li>
+<li><a href="#orgheadline27">7.1.2. For C++</a></li>
+<li><a href="#orgheadline28">7.1.3. In c++ table, the <code>?:</code> is also in 14 cell</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> idioms</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">typedef</span> <span style="color: #0000FF;">enum</span> { <span style="color: #D0372D;">false</span>, <span style="color: #D0372D;">true</span> } <span style="color: #6434A3;">bool</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">2</span> Cast</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> In a word</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>static<sub>cast</sub>: ordinary type conversions.</li>
+<li>dynamic<sub>cast</sub>: converting pointers/references within an inheritance hierarchy.</li>
+<li>reinterpret<sub>cast</sub>: low-level reinterpreting of bit patterns.</li>
+</ul>
+<p>
+Use with extreme caution.
+</p>
+<ul class="org-ul">
+<li>const<sub>cast</sub>: casting away const/volatile.</li>
+</ul>
+<p>
+Avoid this unless you are stuck using a const-incorrect API.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> C style cast: <b><b>DO NOT USE</b></b></h3>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.3</span> Static Cast</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+static<sub>cast</sub> is the first cast you should attempt to use.
+It does things like implicit conversions between types
+(such as <code>int</code> to <code>float</code>, or pointer to <code>void*</code>),
+and it can also call explicit conversion functions (or implicit ones).
+In many cases, explicitly stating static<sub>cast</sub> isn't necessary,
+but it's important to note that the T(something) syntax is equivalent to (T)something
+and should be avoided (more on that later).
+A T(something, something<sub>else</sub>) is safe, however, and guaranteed to call the constructor.
+</p>
+
+<p>
+static<sub>cast</sub> can also cast through inheritance hierarchies.
+It is unnecessary when casting upwards (towards a base class),
+but when casting downwards it can be used as long as it doesn't cast through virtual inheritance.
+It does not do checking, however,
+and it is undefined behavior to static<sub>cast</sub> down a hierarchy to a type that isn't actually the type of the object.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.4</span> Const Cast</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+const<sub>cast</sub> can be used to remove or add const to a variable;
+no other C++ cast is capable of removing it (not even reinterpret<sub>cast</sub>).
+It is important to note that modifying a formerly const value is only undefined if the original variable is const;
+if you use it to take the const off a reference to something that wasn't declared with const,
+it is safe.
+This can be useful when overloading member functions based on const, for instance.
+It can also be used to add const to an object,
+such as to call a member function overload.
+</p>
+
+<p>
+const<sub>cast</sub> also works similarly on volatile,
+though that's less common.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.5</span> Dynamic Cast</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+dynamic<sub>cast</sub> is almost exclusively used for handling polymorphism.
+You can cast a pointer or reference to any polymorphic type to any other class type
+(a polymorphic type has at least one virtual function, declared or inherited).
+You can use it for more than just casting downwards &#x2013; you can cast sideways or even up another chain.
+The dynamic<sub>cast</sub> will seek out the desired object and return it if possible.
+If it can't, it will return NULL in the case of a pointer,
+or throw std::bad<sub>cast</sub> in the case of a reference.
+</p>
+
+<p>
+dynamic<sub>cast</sub> has some limitations, though.
+It doesn't work if there are multiple objects of the same type in the inheritance hierarchy
+(the so-called 'dreaded diamond') and you aren't using virtual inheritance.
+It also can only go through public inheritance -
+it will always fail to travel through protected or private inheritance.
+This is rarely an issue, however, as such forms of inheritance are rare.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.6</span> Reinterpret Cast</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+reinterpret<sub>cast</sub> is the most dangerous cast, and should be used very sparingly.
+It turns one type directly into another -
+such as casting the value from one pointer to another,
+or storing a pointer in an int, or all sorts of other nasty things.
+Largely, the only guarantee you get with reinterpret<sub>cast</sub> is that normally if you cast the result back to the original type,
+you will get the exact same value (but not if the intermediate type is smaller than the original type).
+There are a number of conversions that reinterpret<sub>cast</sub> cannot do, too.
+It's used primarily for particularly weird conversions and bit manipulations,
+like turning a raw data stream into actual data,
+or storing data in the low bits of an aligned pointer.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.7</span> C style cast</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+C casts are casts using (type)object or type(object).
+A C-style cast is defined as the first of the following which succeeds:
+</p>
+
+<ul class="org-ul">
+<li>const<sub>cast</sub></li>
+<li>static<sub>cast</sub> (though ignoring access restrictions)</li>
+<li>static<sub>cast</sub> (see above), then const<sub>cast</sub></li>
+<li>reinterpret<sub>cast</sub></li>
+<li>reinterpret<sub>cast</sub>, then const<sub>cast</sub></li>
+</ul>
+
+<p>
+It can therefore be used as a replacement for other casts in some instances,
+but can be extremely dangerous because of the ability to devolve into a reinterpret<sub>cast</sub>,
+and the latter should be preferred when explicit casting is needed,
+unless you are sure static<sub>cast</sub> will succeed or reinterpret<sub>cast</sub> will fail.
+Even then, consider the longer, more explicit option.
+</p>
+
+<p>
+C-style casts also <b><b>ignore access control when performing a static<sub>cast</sub></b></b>,
+which means that they have the ability to perform an operation that no other cast can.
+This is mostly a kludge, though,
+and in my mind is just another reason to avoid C-style casts.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> Compound Literals</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A compound literal looks like a cast containing an initializer.
+Its value is an object of the type specified in the cast,
+containing the elements specified in the initializer;
+it is an lvalue.
+</p>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.1</span> Example</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">foo</span> {<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span>; <span style="color: #6434A3;">char</span> <span style="color: #BA36A5;">b</span>[2];} <span style="color: #BA36A5;">structure</span>;
+</pre>
+</div>
+
+<p>
+The constructing:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C">structure = ((<span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">foo</span>) {x + y, <span style="color: #008000;">'a'</span>, 0});
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.2</span> more examples</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">char</span> **<span style="color: #BA36A5;">foo</span> = (<span style="color: #6434A3;">char</span> *[]) { <span style="color: #008000;">"x"</span>, <span style="color: #008000;">"y"</span>, <span style="color: #008000;">"z"</span> };
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.3</span> static</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Value in the compound literals must be constant.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">static</span> <span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">foo</span> <span style="color: #BA36A5;">x</span> = (<span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">foo</span>) {1, <span style="color: #008000;">'a'</span>, <span style="color: #008000;">'b'</span>};
+<span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">y</span>[] = (<span style="color: #6434A3;">int</span> []) {1, 2, 3};
+<span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">z</span>[] = (<span style="color: #6434A3;">int</span> [3]) {1};
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">4</span> extern</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>extern means extend the visibility of a variable or function.</li>
+<li>Declaration can be many times, but definition can only appear once.</li>
+<li>Definition will allocate memory, but declaration will never allocate memory.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">4.1</span> Function</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+For function declare and define, `extern` is added by compiler by default.
+So use or not use `extern` for functions are equivalent.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">4.2</span> Variable</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+define a variable
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span>;
+</pre>
+</div>
+
+<p>
+declare a variable
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">extern</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span>;
+</pre>
+</div>
+
+<p>
+This can be used so that in this file,
+a refer to the variable actually defined and allocated in another file.
+The definition of the variable in the other file does not have extern,
+but it is still available by this file &#x2026;
+</p>
+
+<p>
+An exception: extern a variable with initialization
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">extern</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span> = 8;
+</pre>
+</div>
+
+<p>
+This will be treated as definition.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">4.3</span> extern "C"</h3>
+<div class="outline-text-3" id="text-4-3">
+<blockquote>
+<p>
+extern "C" makes a function-name in C++ have 'C' linkage
+(compiler does not mangle the name)
+so that client C code can link to (i.e use) your function
+using a 'C' compatible header file
+that contains just the declaration of your function.
+</p>
+</blockquote>
+
+<ol class="org-ol">
+<li>Since C++ has overloading of function names and C does not</li>
+<li>C++ compiler cannot just use the function name as a unique id to link to, so it mangles the name by adding information about the arguments</li>
+<li>A C compiler does not need to mangle the name since you can not overload function names in C</li>
+</ol>
+
+<p>
+When you state that a function has extern "C" linkage in C++,
+the C++ compiler does not add argument/parameter type information
+to the name used for linkage.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">4.4</span> syntax</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li>can specify "C" linkage to each individual declaration/definition explicitly</li>
+<li>use a block to group a sequence of declarations/definitions to have a certain linkage:</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">extern</span> <span style="color: #008000;">"C"</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">foo</span>(<span style="color: #6434A3;">int</span>);
+<span style="color: #0000FF;">extern</span> <span style="color: #008000;">"C"</span>
+{
+   <span style="color: #6434A3;">void</span> <span style="color: #006699;">g</span>(<span style="color: #6434A3;">char</span>);
+   <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">5</span> restrict</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The restrict keyword is a declaration of intent given by the programmer to the compiler.
+</p>
+
+<p>
+It says that for the lifetime of the pointer,
+only it or a value directly derived from it (such as pointer + 1)
+will be used to access the object to which it points.
+</p>
+
+<p>
+This limits the effects of pointer aliasing, aiding optimizations.
+</p>
+
+<p>
+If the declaration of intent is not followed
+and the object is accessed by an independent pointer,
+this will result in undefined behavior.
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25"><span class="section-number-2">6</span> volatile</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+When your code works without compiler optimization, but fails when you turn optimization on,
+perhaps it is because of `volatile`.
+</p>
+
+<p>
+If compiler found that around a variable, no one change it, it will do some optimization based on this.
+Maybe remove unnecessary code which it thinks will never execute.
+</p>
+
+<p>
+The keyword tells the compiler that the value of the variable may change at any time.
+It may change unexpectedly,
+so DO NOT optimize the code when you compiler think it would not change.
+</p>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">6.1</span> syntax</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+declare a variable(both are equalvalent)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">volatile</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">foo</span>;
+<span style="color: #6434A3;">int</span> <span style="color: #0000FF;">volatile</span> <span style="color: #BA36A5;">foo</span>;
+</pre>
+</div>
+
+<p>
+declare pointers to volatile varialbes(common usage)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #0000FF;">volatile</span> <span style="color: #6434A3;">uint8_t</span> *<span style="color: #BA36A5;">pReg</span>;
+<span style="color: #6434A3;">uint8_t</span> <span style="color: #0000FF;">volatile</span> *<span style="color: #BA36A5;">pReg</span>;
+</pre>
+</div>
+
+<p>
+volatile pointers to non-volatile data(very rare)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">int</span> * <span style="color: #0000FF;">volatile</span> <span style="color: #BA36A5;">p</span>;
+</pre>
+</div>
+
+<p>
+volatile pointer to volatile variable(also rare)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">int</span> <span style="color: #0000FF;">volatile</span> * <span style="color: #0000FF;">volatile</span> <span style="color: #BA36A5;">p</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">6.2</span> When to use it</h3>
+<div class="outline-text-3" id="text-6-2">
+</div><div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">6.2.1</span> Memory-mapped peripheral registers</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+The register's value may change by hardware.
+But in the code, compiler cannot see it,
+so it may assume it is constant, and do some optimization.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">uint8_t</span> *<span style="color: #BA36A5;">pReg</span> = (<span style="color: #6434A3;">uint8_t</span>) 0x1234;
+<span style="color: #0000FF;">while</span> (*pReg==0) {}
+</pre>
+</div>
+
+<p>
+Since no `volatile`, the assembly looks like:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-asm">  <span style="color: #0000FF;">mov</span> ptr, #0x1234
+  <span style="color: #0000FF;">mov</span> a, @ptr
+<span style="color: #006699;">loop</span>:
+  <span style="color: #0000FF;">bz</span> loop
+</pre>
+</div>
+
+<p>
+To fix it, use volatile to declare it:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">uint8_t</span> <span style="color: #0000FF;">volatile</span> *<span style="color: #BA36A5;">pReg</span> = (uint8_t <span style="color: #0000FF;">volatile</span> *)0x1234
+</pre>
+</div>
+
+<p>
+The assembly will be:
+</p>
+
+<p>
+```asm
+  mov ptr, #0x1234
+loop:
+  mov a, @ptr
+  bz loop
+```
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">6.2.2</span> Global variables modified by an ISR(Interrupt Service Routine)</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+Compiler will of course not know about interrupt.
+So when the global file can be modified by interrupt,
+we must tell it.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">int</span> <span style="color: #0000FF;">volatile</span> <span style="color: #BA36A5;">etx_rcvd</span> = FALSE;
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span>() {
+  <span style="color: #0000FF;">while</span>(!ext_rcvd) {}
+}
+interrupt <span style="color: #6434A3;">void</span> <span style="color: #006699;">rx_isr</span>(<span style="color: #6434A3;">void</span>) {
+  <span style="color: #0000FF;">if</span> (ETX == rx_char) {
+    etx_rcvd = TRUE;
+  }
+}
+</pre>
+</div>
+
+<p>
+If no volatile, compiler will think the while condition always be true,
+thus never go out of the loop.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">6.2.3</span> Global variables accessed by multiple tasks within a multi-threaded application</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<p>
+Compiler doesn't find the variable change near the code it is defined,
+so it may assume it is unchanged.
+While another task in the same time may change it,
+it is just like the interrupt.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline30" class="outline-2">
+<h2 id="orgheadline30"><span class="section-number-2">7</span> Operator Precedence</h2>
+<div class="outline-text-2" id="text-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Precedence</th>
+<th scope="col" class="org-left">Operator</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Associativity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-left"><b><b>::</b></b></td>
+<td class="org-left">scope resolution</td>
+<td class="org-left">L to R</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">++ --</td>
+<td class="org-left">Suffix increment and decrement</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">()</td>
+<td class="org-left">Function call</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">[]</td>
+<td class="org-left">Array subscripting</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">.</td>
+<td class="org-left">Structure and union member access</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">-&gt;</td>
+<td class="org-left">Structure and union member access through pointer</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">(type){list}</td>
+<td class="org-left">Compound literal(C99)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">++ --</td>
+<td class="org-left">Prefix increment and decrement</td>
+<td class="org-left">R to L</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">+ -</td>
+<td class="org-left">Unary plus and minus</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">! ~</td>
+<td class="org-left">Logical NOT and bitwise NOT</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">(type)</td>
+<td class="org-left">Type cast</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">*</td>
+<td class="org-left">dereference</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&amp;</td>
+<td class="org-left">Address-of</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">sizeof</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">_Alignof</td>
+<td class="org-left">Alignment requirement(C11)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><b><b>new, new[]</b></b></td>
+<td class="org-left">Dynamic memory allocation</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><b><b>delete, delete[]</b></b></td>
+<td class="org-left">Dynamic memory deallocation</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">* / %</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">L to R</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">+ -</td>
+<td class="org-left">Addition and subtraction</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">&lt;&lt; &gt;&gt;</td>
+<td class="org-left">Bitwise left shift and right shift</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">&lt; &lt;=</td>
+<td class="org-left">Compare</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&gt; &gt;=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left"><code>= !</code></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">&amp;</td>
+<td class="org-left">Bitwise AND</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">9</td>
+<td class="org-left">^</td>
+<td class="org-left">Bitwise XOR (exclusive or)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">l</td>
+<td class="org-left">Bitwise OR (inclusive or)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">&amp;&amp;</td>
+<td class="org-left">Logical AND</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">ll</td>
+<td class="org-left">Logical OR</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">?:</td>
+<td class="org-left">Ternary conditional</td>
+<td class="org-left">R to L</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">14</td>
+<td class="org-left"><b><b>throw</b></b></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">+= -=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">*= /= %=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&lt;&lt;= &gt;&gt;=</td>
+<td class="org-left">Assignment by bitwise left shift and right shift</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&amp;= ^= l=</td>
+<td class="org-left">Assignment by bitwise AND, XOR, and OR</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">15</td>
+<td class="org-left">,</td>
+<td class="org-left">Comma</td>
+<td class="org-left">L to R</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">7.1</span> notes</h3>
+<div class="outline-text-3" id="text-7-1">
+</div><div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26"><span class="section-number-4">7.1.1</span> For <code>?:</code></h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+the middle of the conditional operator (between ? and :)
+is parsed as if parenthesized: its precedence relative to <code>?:</code> is ignored
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27"><span class="section-number-4">7.1.2</span> For C++</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+The operand of sizeof can't be a C-style type cast:
+the expression <code>sizeof (int) * p</code> is unambiguously interpreted as <code>(sizeof(int)) * p</code>,
+but not <code>sizeof((int)*p)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline28" class="outline-4">
+<h4 id="orgheadline28"><span class="section-number-4">7.1.3</span> In c++ table, the <code>?:</code> is also in 14 cell</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-03-09 Wed 18:24</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
