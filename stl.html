@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-03-13 Sun 20:49 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>STL</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">STL</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline10">1. Containers</a>
+<ul>
+<li><a href="#orgheadline1">1.1. Comparison</a></li>
+<li><a href="#orgheadline2">1.2. vector</a></li>
+<li><a href="#orgheadline3">1.3. set</a></li>
+<li><a href="#orgheadline5">1.4. map</a>
+<ul>
+<li><a href="#orgheadline4">1.4.1. <code>multimap</code></a></li>
+</ul>
+</li>
+<li><a href="#orgheadline6">1.5. deque</a></li>
+<li><a href="#orgheadline9">1.6. pass to legacy API</a>
+<ul>
+<li><a href="#orgheadline7">1.6.1. vector</a></li>
+<li><a href="#orgheadline8">1.6.2. String</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline27">2. Algorithms</a>
+<ul>
+<li><a href="#orgheadline11">2.1. comparison function</a></li>
+<li><a href="#orgheadline26">2.2. Algorithm</a>
+<ul>
+<li><a href="#orgheadline12">2.2.1. <code>count</code> &amp; <code>count_if</code></a></li>
+<li><a href="#orgheadline13">2.2.2. <code>std::find</code></a></li>
+<li><a href="#orgheadline14">2.2.3. <code>std::find_if</code></a></li>
+<li><a href="#orgheadline15">2.2.4. for</a></li>
+<li><a href="#orgheadline16">2.2.5. <code>std::for_each</code></a></li>
+<li><a href="#orgheadline17">2.2.6. <code>mem_fun</code></a></li>
+<li><a href="#orgheadline18">2.2.7. <code>std::move</code></a></li>
+<li><a href="#orgheadline19">2.2.8. not1</a></li>
+<li><a href="#orgheadline20">2.2.9. reverse</a></li>
+<li><a href="#orgheadline24">2.2.10. sort</a>
+<ul>
+<li><a href="#orgheadline21">2.2.10.1. <code>partition</code></a></li>
+<li><a href="#orgheadline22">2.2.10.2. <code>nth_element</code></a></li>
+<li><a href="#orgheadline23">2.2.10.3. <code>partial_sort</code></a></li>
+</ul>
+</li>
+<li><a href="#orgheadline25">2.2.11. transform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline29">3. Idioms</a>
+<ul>
+<li><a href="#orgheadline28">3.1. erase-remove idiom</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">1</span> Containers</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Comparison</h3>
+<div class="outline-text-3" id="text-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">container</th>
+<th scope="col" class="org-left">time complexity</th>
+<th scope="col" class="org-left">iterator validity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>vector</code></td>
+<td class="org-left">constant at beginning, linear in middle and end</td>
+<td class="org-left">Memory allocate; Insert at beginning and middle</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>deque</code></td>
+<td class="org-left">constant at beginning and end, linear in the middle</td>
+<td class="org-left">All insertions; Erase in middle.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>set</code></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">erase invalidates the element removed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> vector</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Time complexity: constant time insertion or removal at the end, linear at the beginning or middle.
+</p>
+
+<p>
+Iterator invalidity: Memory will be allocated automatically, which, when happens, invalidates all iterators.
+Reserve() causes a reallocation manually.
+inserting or deleting an element in the middle of a vector invalidates all iterators that point to elements <i>following the insertion or deletion point</i>.
+</p>
+
+<p>
+The initiation of vector can have the following forms:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">ONLY WITH C++11, compile with flag =-std=c++11=</span>
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">1</span>
+<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">v</span> {1,2,3};
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">2</span>
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">row</span>,<span style="color: #BA36A5;">col</span>;
+<span style="color: #6434A3;">vector</span>&lt; <span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #006699;">heights</span>(row, <span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt;(<span style="color: #BA36A5;">col</span>));
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">3</span>
+<span style="color: #6434A3;">char</span> <span style="color: #BA36A5;">init</span>[] = <span style="color: #008000;">"1111"</span>;
+<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">char</span>&gt; <span style="color: #006699;">v</span>(init, <span style="color: #6434A3;">end</span>(<span style="color: #BA36A5;">init</span>)-1); <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">remove '\0'</span>
+</pre>
+</div>
+
+<p>
+Reserve() causes a reallocation manually.
+The main reason for using reserve() is efficiency: if you know the capacity to which your vector must eventually grow,
+then it is usually more efficient to allocate that memory all at once rather than relying on the automatic reallocation scheme.
+The other reason for using reserve() is so that you can control the invalidation of iterators
+</p>
+
+<p>
+Do not use <code>vector&lt;bool&gt;</code>.
+It actually not store bool,
+but proxy object, as the design to save space.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> set</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Set has the important property that inserting a new element into a set does not invalidate iterators that point to existing elements.
+Erasing an element from a set also does not invalidate any iterators, except, of course, for iterators that actually point to the element that is being erased.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.4</span> map</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The map is usually used as the following example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">map</span>&lt;<span style="color: #6434A3;">int</span>,<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">m</span>;
+m[2]=3;
+m[3]=4;
+<span style="color: #0000FF;">for</span>(map&lt;<span style="color: #6434A3;">int</span>,<span style="color: #6434A3;">int</span>&gt;::<span style="color: #6434A3;">iterator</span> <span style="color: #BA36A5;">it</span>=m.begin;it!=m.end();it++) {
+  it-&gt;first;
+  it-&gt;second;
+}
+</pre>
+</div>
+
+<p>
+In a map, when using <code>[]</code> operator, the item will be inserted and init to default value for that type, e.g. 0 for a <code>int</code>.
+</p>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.4.1</span> <code>multimap</code></h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+<code>multimap</code> do not have <code>[]</code> operator!
+The following is an example for the usage of <code>multimap</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">multimap</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">mymm</span>;
+
+mymm.insert(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;(<span style="color: #008000;">'a'</span>,10));
+mymm.insert(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;(<span style="color: #008000;">'b'</span>,20));
+mymm.insert(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;(<span style="color: #008000;">'b'</span>,30));
+mymm.insert(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;(<span style="color: #008000;">'b'</span>,40));
+mymm.insert(<span style="color: #D0372D;">std</span>::make_pair(<span style="color: #008000;">'c'</span>,50));
+mymm.insert(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;(<span style="color: #008000;">'c'</span>,60));
+mymm.insert(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;(<span style="color: #008000;">'d'</span>,60));
+
+<span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"mymm contains:\n"</span>;
+<span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">char</span> <span style="color: #BA36A5;">ch</span>=<span style="color: #008000;">'a'</span>; ch&lt;=<span style="color: #008000;">'d'</span>; ch++)
+{
+  <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">pair</span> &lt;<span style="color: #D0372D;">std</span>::<span style="color: #D0372D;">multimap</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;::iterator, <span style="color: #D0372D;">std</span>::<span style="color: #D0372D;">multimap</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;::iterator&gt; <span style="color: #BA36A5;">ret</span>;
+  ret = mymm.equal_range(ch);
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; ch &lt;&lt; <span style="color: #008000;">" =&gt;"</span>;
+  <span style="color: #0000FF;">for</span> (<span style="color: #D0372D;">std</span>::<span style="color: #D0372D;">multimap</span>&lt;<span style="color: #6434A3;">char</span>,<span style="color: #6434A3;">int</span>&gt;::<span style="color: #6434A3;">iterator</span> <span style="color: #BA36A5;">it</span>=ret.first; it!=ret.second; ++it) {
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">' '</span> &lt;&lt; it-&gt;second;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.5</span> deque</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+<code>deque</code> refers to <i>Double Ended Queue</i>.
+It differs from <code>vector</code> in the sense that the insertion at the front is constant time.
+Like <code>vector</code>, insertion in the end is constant, and insertion in the middle is <code>n</code>.
+</p>
+
+<p>
+Iterator Validity:
+</p>
+<ul class="org-ul">
+<li>Insert (including push<sub>front</sub> and push<sub>back</sub>) invalidates all iterators that refer to a deque.</li>
+<li>Erase in the middle of a deque invalidates all iterators that refer to the deque.</li>
+<li>Erase at the beginning or end of a deque (including pop<sub>front</sub> and pop<sub>back</sub>) invalidates an iterator only if it points to the erased element.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">1.6</span> pass to legacy API</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">1.6.1</span> vector</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">v</span>;
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">func</span>(<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">int</span>* <span style="color: #BA36A5;">pi</span>, <span style="color: #6434A3;">size_t</span> <span style="color: #BA36A5;">num</span>);
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">wrong, the size of v may be 0</span>
+func(&amp;v[0], v.size());
+<span style="color: #0000FF;">if</span> (!v.empty()) {
+  func(&amp;v[0], v.size());
+}
+</pre>
+</div>
+
+<p>
+do not use <code>v.begin()</code> instead of <code>&amp;v[0]</code>, because:
+</p>
+
+<ul class="org-ul">
+<li>v.begin() is a iterator, not always a pointer</li>
+<li><code>&amp;*v.begin()</code> is same as <code>&amp;v[0]</code>, but &#x2026;</li>
+</ul>
+
+<p>
+Note, the legacy API should not add/remove items,
+because no way for the container to know the size.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">1.6.2</span> String</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Only vectors are guarnteed to have the same underlying memory layout as arrays.
+String not.
+</p>
+
+<ul class="org-ul">
+<li>data for strings is not guaranteed to be stored in contiguous memory.</li>
+<li>is not guaranteed to be null terminated</li>
+</ul>
+
+<p>
+so put the data into a <code>vector&lt;char&gt;</code> first, and use vector trick.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27"><span class="section-number-2">2</span> Algorithms</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.1</span> comparison function</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Always have comparison functions return false for equal values.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">set</span>&lt;<span style="color: #6434A3;">int</span>, <span style="color: #6434A3;">less_equal</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #BA36A5;">s</span>;
+s.insert(10);
+s.insert(10);
+</pre>
+</div>
+
+<p>
+check equivalence:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++">!(10A&lt;=10B) &amp;&amp; !(10B&lt;=10A);
+!<span style="color: #D0372D;">true</span> &amp;&amp; !<span style="color: #D0372D;">true</span>
+<span style="color: #D0372D;">false</span>
+</pre>
+</div>
+
+<p>
+a easy-to-made error:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">bool</span> <span style="color: #0000FF;">operator</span><span style="color: #006699;">()</span>(<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">string</span>* <span style="color: #BA36A5;">ps1</span>, <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">string</span>* <span style="color: #BA36A5;">ps2</span>) onst {
+  <span style="color: #0000FF;">return</span> !(* ps1&lt;* ps2); <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">always pay attention to negative</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">2.2</span> Algorithm</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">2.2.1</span> <code>count</code> &amp; <code>count_if</code></h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">T</span> &gt;
+<span style="color: #0000FF;">typename</span> <span style="color: #D0372D;">iterator_traits</span>&lt;<span style="color: #6434A3;">InputIt</span>&gt;::<span style="color: #6434A3;">difference_type</span>
+<span style="color: #006699;">count</span>(
+  <span style="color: #6434A3;">InputIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">InputIt</span> <span style="color: #BA36A5;">last</span>,
+  <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">T</span> &amp;<span style="color: #BA36A5;">value</span>
+);
+<span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">UnaryPredicate</span> &gt;
+<span style="color: #0000FF;">typename</span> <span style="color: #D0372D;">iterator_traits</span>&lt;<span style="color: #6434A3;">InputIt</span>&gt;::<span style="color: #6434A3;">difference_type</span>
+<span style="color: #006699;">count_if</span>(
+  <span style="color: #6434A3;">InputIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">InputIt</span> <span style="color: #BA36A5;">last</span>,
+  <span style="color: #6434A3;">UnaryPredicate</span> <span style="color: #BA36A5;">p</span>
+);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">2.2.2</span> <code>std::find</code></h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Returns an iterator to the first element in the range [first,last) that compares equal to val. If no such element is found, the function returns last.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt;<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIterator</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">T</span>&gt;
+<span style="color: #6434A3;">InputIterator</span> <span style="color: #006699;">find</span> (<span style="color: #6434A3;">InputIterator</span> <span style="color: #BA36A5;">first</span>, <span style="color: #6434A3;">InputIterator</span> <span style="color: #BA36A5;">last</span>, <span style="color: #0000FF;">const</span> <span style="color: #6434A3;">T</span>&amp; <span style="color: #BA36A5;">val</span>)
+{
+  <span style="color: #0000FF;">while</span> (first!=last) {
+    <span style="color: #0000FF;">if</span> (*first==val) <span style="color: #0000FF;">return</span> first; <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">*</span>
+    ++first;
+  }
+  <span style="color: #0000FF;">return</span> last;
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">2.2.3</span> <code>std::find_if</code></h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+Returns an iterator to the first element in the range [first,last) for which pred returns true. If no such element is found, the function returns last.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt;<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIterator</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">UnaryPredicate</span>&gt;
+<span style="color: #6434A3;">InputIterator</span> <span style="color: #006699;">find_if</span> (<span style="color: #6434A3;">InputIterator</span> <span style="color: #BA36A5;">first</span>, <span style="color: #6434A3;">InputIterator</span> <span style="color: #BA36A5;">last</span>, <span style="color: #6434A3;">UnaryPredicate</span> <span style="color: #BA36A5;">pred</span>)
+{
+  <span style="color: #0000FF;">while</span> (first!=last) {
+    <span style="color: #0000FF;">if</span> (pred(* first)) <span style="color: #0000FF;">return</span> first;
+    ++first;
+  }
+  <span style="color: #0000FF;">return</span> last;
+}
+</pre>
+</div>
+
+<p>
+for example
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span> &lt;<span style="color: #0000FF;">typename</span> <span style="color: #6434A3;">T</span>&gt;
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">is_greater_than</span>
+{
+<span style="color: #0000FF;">public</span>:
+  <span style="color: #006699;">is_greater_than</span> (<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">T</span> &amp; <span style="color: #BA36A5;">n</span>)
+  : value(n)
+{}
+
+  <span style="color: #6434A3;">bool</span> <span style="color: #0000FF;">operator</span><span style="color: #006699;">()</span> (<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">T</span> &amp; <span style="color: #BA36A5;">element</span>) <span style="color: #0000FF;">const</span>
+{
+  <span style="color: #0000FF;">return</span> element &gt; value;
+}
+
+<span style="color: #0000FF;">private</span>:
+  <span style="color: #6434A3;">T</span> <span style="color: #BA36A5;">value</span>;
+};
+</pre>
+</div>
+
+<p>
+use here:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++">find_if (values.begin(), values.end(), <span style="color: #6434A3;">is_greater_than</span>&lt;<span style="color: #6434A3;">int</span>&gt; (5)) != values.end();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">2.2.4</span> for</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">v</span>;
+<span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #6434A3;">i</span> : v) {
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">do with i</span>
+}
+</pre>
+</div>
+
+<p>
+here <code>auto</code> means <code>vector&lt;int&gt;::value_type</code>.
+</p>
+
+<p>
+is equal-valent to:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">v</span>;
+<span style="color: #0000FF;">for</span> (<span style="color: #D0372D;">std</span>::<span style="color: #D0372D;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt;::<span style="color: #6434A3;">const_iterator</span> <span style="color: #BA36A5;">it</span>=v.begin();it!=v.end();it++) {
+  <span style="color: #0000FF;">auto</span> <span style="color: #6434A3;">i</span>=*it; <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">*</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">do with i</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">2.2.5</span> <code>std::for_each</code></h4>
+<div class="outline-text-4" id="text-2-2-5">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">void</span> <span style="color: #006699;">myfunction</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>) {  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">function:</span>
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">' '</span> &lt;&lt; i;
+}
+
+<span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">myclass</span> {           <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">function object type:</span>
+  <span style="color: #6434A3;">void</span> <span style="color: #0000FF;">operator</span><span style="color: #006699;">()</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>) {<span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">' '</span> &lt;&lt; i;}
+} <span style="color: #BA36A5;">myobject</span>;
+
+<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">myvector</span>;
+
+for_each (myvector.begin(), myvector.end(), myfunction);
+for_each (myvector.begin(), myvector.end(), myobject);
+for_each (v.begin(),v.end(),[](<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>) { cout&lt;&lt;i; });
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">2.2.6</span> <code>mem_fun</code></h4>
+<div class="outline-text-4" id="text-2-2-6">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">list</span>&lt;<span style="color: #6434A3;">Widget</span>*&gt; <span style="color: #BA36A5;">lpw</span>;
+for_each(
+  lpw.begin(),
+  lpw.end(),
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">because the test is the member function of Widget</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">and we want to call it on all for_each item.</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">If no mem_fun, it can not compile</span>
+  mem_fun(&amp;<span style="color: #D0372D;">Widget</span>::test)
+);
+</pre>
+</div>
+
+<p>
+TODO:
+</p>
+
+<ul class="org-ul">
+<li>ptr<sub>fun</sub></li>
+<li>mem<sub>fun</sub><sub>ref</sub></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">2.2.7</span> <code>std::move</code></h4>
+<div class="outline-text-4" id="text-2-2-7">
+<p>
+<code>#include &lt;utility&gt;</code>
+</p>
+
+<p>
+transfer ownership of the assets and properties of an object directly without having to copy them when the argument is an rvalue.
+</p>
+
+<p>
+moved-from object is left in a valid but unspecified state
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">foo</span> = <span style="color: #008000;">"foo-string"</span>;
+<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">bar</span> = <span style="color: #008000;">"bar-string"</span>;
+<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span>&gt; <span style="color: #BA36A5;">myvector</span>;
+myvector.push_back (foo);                    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">copies. foo remain.</span>
+myvector.push_back (<span style="color: #D0372D;">std</span>::move(bar));         <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">moves. bar contain unspecified value.</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>()
+{
+  <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">str</span> = <span style="color: #008000;">"Hello"</span>;
+  <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span>&gt; <span style="color: #BA36A5;">v</span>;
+
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">uses the push_back(const T&amp;) overload, which means</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">we'll incur the cost of copying str</span>
+  v.push_back(str);
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"After copy, str is \""</span> &lt;&lt; str &lt;&lt; <span style="color: #008000;">"\"\n"</span>;
+
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">uses the rvalue reference push_back(T&amp;&amp;) overload,</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">which means no strings will be copied; instead, the contents</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">of str will be moved into the vector.  This is less</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">expensive, but also means str might now be empty.</span>
+  v.push_back(<span style="color: #D0372D;">std</span>::move(str));
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"After move, str is \""</span> &lt;&lt; str &lt;&lt; <span style="color: #008000;">"\"\n"</span>;
+
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"The contents of the vector are \""</span> &lt;&lt; v[0]
+  &lt;&lt; <span style="color: #008000;">"\", \""</span> &lt;&lt; v[1] &lt;&lt; <span style="color: #008000;">"\"\n"</span>;
+
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">string move assignment operator is often implemented as swap,</span>
+  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">in this case, the moved-from object is NOT empty</span>
+  <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">str2</span> = <span style="color: #008000;">"Good-bye"</span>;
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"Before move from str2, str2 = '"</span> &lt;&lt; str2 &lt;&lt; <span style="color: #008000;">"'\n"</span>;
+  v[0] = <span style="color: #D0372D;">std</span>::move(str2);
+  <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"After move from str2, str2 = '"</span> &lt;&lt; str2 &lt;&lt; <span style="color: #008000;">"'\n"</span>;
+}
+</pre>
+</div>
+
+<p>
+Possible output:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">After copy, str is "Hello"
+After move, str is ""
+The contents of the vector are "Hello", "Hello"
+Before move from str2, str2 = 'Good-bye'
+After move from str2, str2 = 'Hello'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">2.2.8</span> not1</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Predicate</span> &gt;
+<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">unary_negate</span>&lt;<span style="color: #6434A3;">Predicate</span>&gt; <span style="color: #006699;">not1</span>(<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">Predicate</span>&amp; <span style="color: #BA36A5;">pred</span>);
+<span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Predicate</span> &gt;
+constexpr <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">unary_negate</span>&lt;<span style="color: #6434A3;">Predicate</span>&gt; <span style="color: #006699;">not1</span>(<span style="color: #0000FF;">const</span> <span style="color: #6434A3;">Predicate</span>&amp; <span style="color: #BA36A5;">pred</span>);
+</pre>
+</div>
+
+<p>
+not1 is a helper function to create a function object that returns the complement of the unary predicate function passed.
+</p>
+
+<p>
+example:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">LessThan7</span> : <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">unary_function</span>&lt;<span style="color: #6434A3;">int</span>, <span style="color: #6434A3;">bool</span>&gt;
+{
+  <span style="color: #6434A3;">bool</span> <span style="color: #0000FF;">operator</span><span style="color: #006699;">()</span>(<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>) <span style="color: #0000FF;">const</span> { <span style="color: #0000FF;">return</span> i &lt; 7; }
+};
+<span style="color: #D0372D;">std</span>::not1(LessThan7());
+<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">function</span>&lt;<span style="color: #6434A3;">int</span>(<span style="color: #6434A3;">int</span>)&gt; <span style="color: #BA36A5;">less_than_9</span> = [](<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">x</span>){ <span style="color: #0000FF;">return</span> x &lt; 9; };
+<span style="color: #D0372D;">std</span>::not1(less_than_9);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-4">
+<h4 id="orgheadline20"><span class="section-number-4">2.2.9</span> reverse</h4>
+<div class="outline-text-4" id="text-2-2-9">
+<div class="org-src-container">
+
+<pre class="src src-C++">reverse(v.begin(), v.end());
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24"><span class="section-number-4">2.2.10</span> sort</h4>
+<div class="outline-text-4" id="text-2-2-10">
+<p>
+Do not use <code>qsort</code> for some unknown reason..
+</p>
+
+<p>
+faster to slower:
+</p>
+
+<ol class="org-ol">
+<li>partition</li>
+<li>stable<sub>partition</sub></li>
+<li>nth<sub>element</sub></li>
+<li>partial<sub>sort</sub></li>
+<li>sort</li>
+<li>stable<sub>sort</sub></li>
+</ol>
+
+<p>
+stable means the order of equal element is guaranteed to maintain.
+</p>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-5">
+<h5 id="orgheadline21"><span class="section-number-5">2.2.10.1</span> <code>partition</code></h5>
+<div class="outline-text-5" id="text-2-2-10-1">
+<p>
+The returned iterator is middle.
+From first to middle, the predicate is true.
+From middle to last, the predicate is false.
+</p>
+
+<p>
+API:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">BidirIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">UnaryPredicate</span> &gt;
+<span style="color: #6434A3;">BidirIt</span> <span style="color: #006699;">partition</span>(
+  <span style="color: #6434A3;">BidirIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">BidirIt</span> <span style="color: #BA36A5;">last</span>,
+  <span style="color: #6434A3;">UnaryPredicate</span> <span style="color: #BA36A5;">p</span>
+);
+<span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">ForwardIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">UnaryPredicate</span> &gt;
+<span style="color: #6434A3;">ForwardIt</span> <span style="color: #006699;">partition</span>(
+  <span style="color: #6434A3;">ForwardIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">ForwardIt</span> <span style="color: #BA36A5;">last</span>,
+  <span style="color: #6434A3;">UnaryPredicate</span> <span style="color: #BA36A5;">p</span>
+);
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline22" class="outline-5">
+<h5 id="orgheadline22"><span class="section-number-5">2.2.10.2</span> <code>nth_element</code></h5>
+<div class="outline-text-5" id="text-2-2-10-2">
+<p>
+The first n elements in the container are best, but not sorted.
+</p>
+
+<p>
+API:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RandomIt</span> &gt;
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">nth_element</span>(
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">nth</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">last</span>
+);
+<span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RandomIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Compare</span> &gt;
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">nth_element</span>(
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">nth</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">last</span>,
+  <span style="color: #6434A3;">Compare</span> <span style="color: #BA36A5;">comp</span>
+);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-5">
+<h5 id="orgheadline23"><span class="section-number-5">2.2.10.3</span> <code>partial_sort</code></h5>
+<div class="outline-text-5" id="text-2-2-10-3">
+<p>
+The first n elements in the container are the best, and in order.
+</p>
+
+<p>
+API:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RandomIt</span> &gt;
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">partial_sort</span>(
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">middle</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">last</span>
+);
+<span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RandomIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Compare</span> &gt;
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">partial_sort</span>(
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">first</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">middle</span>,
+  <span style="color: #6434A3;">RandomIt</span> <span style="color: #BA36A5;">last</span>,
+  <span style="color: #6434A3;">Compare</span> <span style="color: #BA36A5;">comp</span>
+);
+</pre>
+</div>
+
+<p>
+example:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++">partial_sort(
+  v.begin(),
+  v.begin()+20,
+  v.end(),
+  compare
+);
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">2.2.11</span> transform</h4>
+<div class="outline-text-4" id="text-2-2-11">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">OutputIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">UnaryOperation</span> &gt;
+<span style="color: #6434A3;">OutputIt</span> <span style="color: #006699;">transform</span>(
+  <span style="color: #6434A3;">InputIt</span> <span style="color: #BA36A5;">first1</span>,
+  <span style="color: #6434A3;">InputIt</span> <span style="color: #BA36A5;">last1</span>,
+  <span style="color: #6434A3;">OutputIt</span> <span style="color: #BA36A5;">d_first</span>,
+  <span style="color: #6434A3;">UnaryOperation</span> <span style="color: #BA36A5;">unary_op</span>
+);
+<span style="color: #0000FF;">template</span>&lt; <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIt1</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">InputIt2</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">OutputIt</span>, <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">BinaryOperation</span> &gt;
+<span style="color: #6434A3;">OutputIt</span> <span style="color: #006699;">transform</span>(
+  <span style="color: #6434A3;">InputIt1</span> <span style="color: #BA36A5;">first1</span>,
+  <span style="color: #6434A3;">InputIt1</span> <span style="color: #BA36A5;">last1</span>,
+  <span style="color: #6434A3;">InputIt2</span> <span style="color: #BA36A5;">first2</span>,
+  <span style="color: #6434A3;">OutputIt</span> <span style="color: #BA36A5;">d_first</span>,
+  <span style="color: #6434A3;">BinaryOperation</span> <span style="color: #BA36A5;">binary_op</span>
+);
+</pre>
+</div>
+
+<p>
+<code>std::transform</code> applies the given function to a range and stores the result in another range, beginning at d<sub>first</sub>.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29"><span class="section-number-2">3</span> Idioms</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">3.1</span> erase-remove idiom</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+To erase certain elements in a container, the <code>remove</code> and <code>remove_if</code> is provided in <code>&lt;algorithm&gt;</code>.
+Algorithms operate on a range of elements denoted by two forward iterators, they have no knowledge of the underlying container or collection.
+Thus, no elements are actually removed from the container.
+Rather, all elements which don't fit the remove criteria are brought together to the front of the range, in the same relative order.
+The remaining elements are left in a valid, but unspecified, state.
+So, after using <code>remove</code>, the <code>size()</code> of the container is unchanged.
+To actually remove those, it should be used together with the <code>erase()</code> member function of the container.
+</p>
+
+<p>
+When the <code>remove</code> function is done, remove returns an iterator pointing one element past the last unremoved element.
+So the erase is used as follows:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++">v.erase( <span style="color: #D0372D;">std</span>::remove( v.begin(), v.end(), 5 ), v.end() );
+</pre>
+</div>
+
+<p>
+However, this is not the case for <code>map</code> and <code>set</code>.
+</p>
+<blockquote>
+<p>
+In simple associative containers, where the elements are the keys, the elements are completely immutable;
+the nested types iterator and const<sub>iterator</sub> are therefore the same.
+</p>
+</blockquote>
+<p>
+That means the <code>iterator</code> and <code>const_iterator</code> are actually the same for <code>set</code> and <code>map</code>.
+The <i>erase-remove idiom</i> cannot be used here.
+Rather, it should use the following loop:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #0000FF;">typedef</span> <span style="color: #D0372D;">std</span>::<span style="color: #D0372D;">set</span>::<span style="color: #6434A3;">iterator</span> <span style="color: #6434A3;">set_iter</span>; 
+<span style="color: #0000FF;">for</span>( <span style="color: #6434A3;">set_iter</span> <span style="color: #BA36A5;">it</span> = s.begin(); it != s.end(); <span style="color: #8D8D84;">/* </span><span style="color: #8D8D84; font-style: italic;">blank */</span> ) {
+  <span style="color: #0000FF;">if</span>( some_condition() ) {
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">s.erase( it++ );       // Note the subtlety here</span>
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">I think this is better, erase return iterator to the next element</span>
+    it = s.erase(it);
+  }
+  <span style="color: #0000FF;">else</span> {
+    ++it;
+  }
+ }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-03-13 Sun 20:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

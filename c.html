@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-10 Thu 13:11 -->
+<!-- 2016-03-11 Fri 11:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>C</title>
@@ -503,19 +503,13 @@ string默认为空串。
 <h3 id="orgheadline9"><span class="section-number-3">3.1</span> In a word</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
-<li>static<sub>cast</sub>: ordinary type conversions.</li>
-<li>dynamic<sub>cast</sub>: converting pointers/references within an inheritance hierarchy.</li>
-<li>reinterpret<sub>cast</sub>: low-level reinterpreting of bit patterns.</li>
+<li><code>static_cast</code>: ordinary type conversions.</li>
+<li><code>dynamic_cast</code>: converting pointers/references within an inheritance hierarchy.</li>
+<li><code>reinterpret_cast</code>: low-level reinterpreting of bit patterns.
+Use with extreme caution.</li>
+<li><code>const_cast</code>: casting away const/volatile.
+Avoid this unless you are stuck using a const-incorrect API.</li>
 </ul>
-<p>
-Use with extreme caution.
-</p>
-<ul class="org-ul">
-<li>const<sub>cast</sub>: casting away const/volatile.</li>
-</ul>
-<p>
-Avoid this unless you are stuck using a const-incorrect API.
-</p>
 </div>
 </div>
 <div id="outline-container-orgheadline10" class="outline-3">
@@ -526,22 +520,22 @@ Avoid this unless you are stuck using a const-incorrect API.
 <h3 id="orgheadline11"><span class="section-number-3">3.3</span> Static Cast</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-static<sub>cast</sub> is the first cast you should attempt to use.
+<code>static_cast</code> is the first cast you should attempt to use.
 It does things like implicit conversions between types
 (such as <code>int</code> to <code>float</code>, or pointer to <code>void*</code>),
 and it can also call explicit conversion functions (or implicit ones).
-In many cases, explicitly stating static<sub>cast</sub> isn't necessary,
-but it's important to note that the T(something) syntax is equivalent to (T)something
+In many cases, explicitly stating <code>static_cast</code> isn't necessary,
+but it's important to note that the <code>T(something)</code> syntax is equivalent to <code>(T)something</code>
 and should be avoided (more on that later).
-A T(something, something<sub>else</sub>) is safe, however, and guaranteed to call the constructor.
+A <code>T(something, something_else)</code> is safe, however, and guaranteed to call the constructor.
 </p>
 
 <p>
-static<sub>cast</sub> can also cast through inheritance hierarchies.
+<code>static_cast</code> can also cast through inheritance hierarchies.
 It is unnecessary when casting upwards (towards a base class),
 but when casting downwards it can be used as long as it doesn't cast through virtual inheritance.
 It does not do checking, however,
-and it is undefined behavior to static<sub>cast</sub> down a hierarchy to a type that isn't actually the type of the object.
+and it is undefined behavior to <code>static_cast</code> down a hierarchy to a type that isn't actually the type of the object.
 </p>
 </div>
 </div>
@@ -550,8 +544,8 @@ and it is undefined behavior to static<sub>cast</sub> down a hierarchy to a type
 <h3 id="orgheadline12"><span class="section-number-3">3.4</span> Const Cast</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-const<sub>cast</sub> can be used to remove or add const to a variable;
-no other C++ cast is capable of removing it (not even reinterpret<sub>cast</sub>).
+<code>const_cast</code> can be used to remove or add const to a variable;
+no other C++ cast is capable of removing it (not even <code>reinterpret_cast</code>).
 It is important to note that modifying a formerly const value is only undefined if the original variable is const;
 if you use it to take the const off a reference to something that wasn't declared with const,
 it is safe.
@@ -561,7 +555,7 @@ such as to call a member function overload.
 </p>
 
 <p>
-const<sub>cast</sub> also works similarly on volatile,
+<code>const_cast</code> also works similarly on volatile,
 though that's less common.
 </p>
 </div>
@@ -571,17 +565,17 @@ though that's less common.
 <h3 id="orgheadline13"><span class="section-number-3">3.5</span> Dynamic Cast</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
-dynamic<sub>cast</sub> is almost exclusively used for handling polymorphism.
+<code>dynamic_cast</code> is almost exclusively used for handling polymorphism.
 You can cast a pointer or reference to any polymorphic type to any other class type
 (a polymorphic type has at least one virtual function, declared or inherited).
 You can use it for more than just casting downwards &#x2013; you can cast sideways or even up another chain.
-The dynamic<sub>cast</sub> will seek out the desired object and return it if possible.
+The <code>dynamic_cast</code> will seek out the desired object and return it if possible.
 If it can't, it will return NULL in the case of a pointer,
-or throw std::bad<sub>cast</sub> in the case of a reference.
+or throw <code>std::bad_cast</code> in the case of a reference.
 </p>
 
 <p>
-dynamic<sub>cast</sub> has some limitations, though.
+<code>dynamic_cast</code> has some limitations, though.
 It doesn't work if there are multiple objects of the same type in the inheritance hierarchy
 (the so-called 'dreaded diamond') and you aren't using virtual inheritance.
 It also can only go through public inheritance -
@@ -595,13 +589,13 @@ This is rarely an issue, however, as such forms of inheritance are rare.
 <h3 id="orgheadline14"><span class="section-number-3">3.6</span> Reinterpret Cast</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
-reinterpret<sub>cast</sub> is the most dangerous cast, and should be used very sparingly.
+<code>reinterpret_cast</code> is the most dangerous cast, and should be used very sparingly.
 It turns one type directly into another -
 such as casting the value from one pointer to another,
 or storing a pointer in an int, or all sorts of other nasty things.
-Largely, the only guarantee you get with reinterpret<sub>cast</sub> is that normally if you cast the result back to the original type,
+Largely, the only guarantee you get with <code>reinterpret_cast</code> is that normally if you cast the result back to the original type,
 you will get the exact same value (but not if the intermediate type is smaller than the original type).
-There are a number of conversions that reinterpret<sub>cast</sub> cannot do, too.
+There are a number of conversions that <code>reinterpret_cast</code> cannot do, too.
 It's used primarily for particularly weird conversions and bit manipulations,
 like turning a raw data stream into actual data,
 or storing data in the low bits of an aligned pointer.
@@ -618,23 +612,23 @@ A C-style cast is defined as the first of the following which succeeds:
 </p>
 
 <ul class="org-ul">
-<li>const<sub>cast</sub></li>
-<li>static<sub>cast</sub> (though ignoring access restrictions)</li>
-<li>static<sub>cast</sub> (see above), then const<sub>cast</sub></li>
-<li>reinterpret<sub>cast</sub></li>
-<li>reinterpret<sub>cast</sub>, then const<sub>cast</sub></li>
+<li><code>const_cast</code></li>
+<li><code>static_cast</code> (though ignoring access restrictions)</li>
+<li><code>static_cast</code> (see above), then <code>const_cast</code></li>
+<li><code>reinterpret_cast</code></li>
+<li><code>reinterpret_cast</code>, then <code>const_cast</code></li>
 </ul>
 
 <p>
 It can therefore be used as a replacement for other casts in some instances,
-but can be extremely dangerous because of the ability to devolve into a reinterpret<sub>cast</sub>,
+but can be extremely dangerous because of the ability to devolve into a <code>reinterpret_cast</code>,
 and the latter should be preferred when explicit casting is needed,
-unless you are sure static<sub>cast</sub> will succeed or reinterpret<sub>cast</sub> will fail.
+unless you are sure <code>static_cast</code> will succeed or <code>reinterpret_cast</code> will fail.
 Even then, consider the longer, more explicit option.
 </p>
 
 <p>
-C-style casts also <b><b>ignore access control when performing a static<sub>cast</sub></b></b>,
+C-style casts also ignore access control when performing a <code>static_cast</code>,
 which means that they have the ability to perform an operation that no other cast can.
 This is mostly a kludge, though,
 and in my mind is just another reason to avoid C-style casts.
@@ -1337,7 +1331,7 @@ but not <code>sizeof((int)*p)</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-10 Thu 13:11</p>
+<p class="date">Created: 2016-03-11 Fri 11:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
