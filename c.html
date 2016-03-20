@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-11 Fri 11:37 -->
+<!-- 2016-03-20 Sun 18:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>C</title>
@@ -237,6 +237,7 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
+<li><a href="#orgheadline38">9. Unix Library</a></li>
 </ul>
 </div>
 </div>
@@ -1328,10 +1329,65 @@ but not <code>sizeof((int)*p)</code>.
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline38" class="outline-2">
+<h2 id="orgheadline38"><span class="section-number-2">9</span> Unix Library</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+sleep
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;unistd.h&gt;</span>
+<span style="color: #6434A3;">unsigned</span> <span style="color: #6434A3;">int</span> <span style="color: #006699;">sleep</span>(<span style="color: #6434A3;">unsigned</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">seconds</span>); <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">seconds</span>
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">usleep</span>(<span style="color: #6434A3;">useconds_t</span> <span style="color: #BA36A5;">useconds</span>); <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">microseconds</span>
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">nanosleep</span>(<span style="color: #0000FF;">const</span> <span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">timespec</span> *<span style="color: #BA36A5;">rqtp</span>, <span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">timespec</span> *<span style="color: #BA36A5;">rmtp</span>);
+</pre>
+</div>
+
+<p>
+There's no implementation of <code>clock_gettime</code> as in Unix, the following serves as an portable solution.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #808080;">#ifdef</span> __MACH__
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;sys/time.h&gt;</span>
+<span style="color: #808080;">#define</span> <span style="color: #BA36A5;">CLOCK_REALTIME</span> 0
+<span style="color: #808080;">#define</span> <span style="color: #BA36A5;">CLOCK_MONOTONIC</span> 0
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">clock_gettime is not implemented on OSX</span>
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">clock_gettime</span>(<span style="color: #6434A3;">int</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">clk_id</span><span style="color: #8D8D84;">*/</span>, <span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">timespec</span>* <span style="color: #BA36A5;">t</span>) {
+    <span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">timeval</span> <span style="color: #BA36A5;">now</span>;
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">rv</span> = gettimeofday(&amp;now, <span style="color: #D0372D;">NULL</span>);
+    <span style="color: #0000FF;">if</span> (rv) <span style="color: #0000FF;">return</span> rv;
+    t-&gt;tv_sec  = now.tv_sec;
+    t-&gt;tv_nsec = now.tv_usec * 1000;
+    <span style="color: #0000FF;">return</span> 0;
+}
+<span style="color: #808080;">#endif</span>
+</pre>
+</div>
+
+<p>
+use it like this
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #6434A3;">double</span> <span style="color: #006699;">get_time</span>() {
+  <span style="color: #0000FF;">struct</span> <span style="color: #6434A3;">timespec</span> <span style="color: #BA36A5;">ts</span>;
+  ts.tv_sec=0;
+  ts.tv_nsec=0;
+  clock_gettime(CLOCK_REALTIME, &amp;ts);
+  <span style="color: #6434A3;">double</span> <span style="color: #BA36A5;">d</span> = (<span style="color: #6434A3;">double</span>)ts.tv_sec + 1.0e-9*ts.tv_nsec;
+  <span style="color: #0000FF;">return</span> d;
+}
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-11 Fri 11:37</p>
+<p class="date">Created: 2016-03-20 Sun 18:51</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
