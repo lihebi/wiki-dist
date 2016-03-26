@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-10 Thu 14:31 -->
+<!-- 2016-03-26 Sat 12:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>R</title>
@@ -179,10 +179,10 @@ for the JavaScript code in this tag.
 </div>
 <div class="org-src-container">
 
-<pre class="src src-R">library(class)
-setwd("/absolute/path")
-# the following can be the relative path to the above path
-source("./xxx.R") # load a script
+<pre class="src src-R"><span style="color: #D0372D;">library</span>(class)
+setwd(<span style="color: #008000;">"/absolute/path"</span>)
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">the following can be the relative path to the above path</span>
+<span style="color: #D0372D;">source</span>(<span style="color: #008000;">"./xxx.R"</span>) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">load a script</span>
 </pre>
 </div>
 
@@ -254,14 +254,14 @@ all these assignments are equivalent
 
 <div class="org-src-container">
 
-<pre class="src src-R"># c() can take an arbitrary number of vector arguments.
-# return a vector got by concatenating its arguments end to end
-&gt; x &lt;- c(10.4, 5.6, 3.1, 6.4, 21.7)
+<pre class="src src-R"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">c() can take an arbitrary number of vector arguments.</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">return a vector got by concatenating its arguments end to end</span>
+&gt; x <span style="color: #D0372D;">&lt;-</span> c(10.4, 5.6, 3.1, 6.4, 21.7)
 &gt; x = c(10.4, 5.6, 3.1, 6.4, 21.7)
 &gt; x
-# display x
-&gt; assign("x", c(10.4, 5.6, 3.1, 6.4, 21.7))
-&gt; c(10.4, 5.6, 3.1, 6.4, 21.7) -&gt; x
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">display x</span>
+&gt; assign(<span style="color: #008000;">"x"</span>, c(10.4, 5.6, 3.1, 6.4, 21.7))
+&gt; c(10.4, 5.6, 3.1, 6.4, 21.7) <span style="color: #D0372D;">-&gt;</span> x
 </pre>
 </div>
 
@@ -271,11 +271,11 @@ operation on vector
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; 1/x # will use 1 divides all 5 values of x, just like matrix in matlab
-&gt; y &lt;- c(x, 0, x)
-# the oprand does not need to be the same length
-# The result is the longest, small ones repeat.
-&gt; v &lt;- 2*x + y + 1
+<pre class="src src-R">&gt; 1/x <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">will use 1 divides all 5 values of x, just like matrix in matlab</span>
+&gt; y <span style="color: #D0372D;">&lt;-</span> c(x, 0, x)
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">the oprand does not need to be the same length</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">The result is the longest, small ones repeat.</span>
+&gt; v <span style="color: #D0372D;">&lt;-</span> 2*x + y + 1
 </pre>
 </div>
 </div>
@@ -332,8 +332,8 @@ The recycling rule also takes place here.
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; labs &lt;- paste(c("X","Y"), 1:10, sep="")
-# c("X1", "Y2", "X3", "Y4", "X5", "Y6", "X7", "Y8", "X9", "Y10")
+<pre class="src src-R">&gt; labs <span style="color: #D0372D;">&lt;-</span> paste(c(<span style="color: #008000;">"X"</span>,<span style="color: #008000;">"Y"</span>), 1:10, sep=<span style="color: #008000;">""</span>)
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">c("X1", "Y2", "X3", "Y4", "X5", "Y6", "X7", "Y8", "X9", "Y10")</span>
 </pre>
 </div>
 </div>
@@ -372,13 +372,13 @@ Have two system functions:
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; seq(-5, 5, by=.2) -&gt; s3
-&gt; s4 &lt;- seq(length=51, from=-5, by=.2)
-# x = [1,2,3]
-&gt; s5 &lt;- rep(x, times=5) # put five copies of x end-to-end in s5
-# [1,2,3,1,2,3,...]
-&gt; s6 &lt;- rep(x, each=5) # repeats each element of x five times before moving on to the next.
-# [1,1,1,1,1,2,2,2,2,2,...]
+<pre class="src src-R">&gt; seq(-5, 5, by=.2) <span style="color: #D0372D;">-&gt;</span> s3
+&gt; s4 <span style="color: #D0372D;">&lt;-</span> seq(length=51, from=-5, by=.2)
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">x = [1,2,3]</span>
+&gt; s5 <span style="color: #D0372D;">&lt;-</span> rep(x, times=5) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">put five copies of x end-to-end in s5</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">[1,2,3,1,2,3,...]</span>
+&gt; s6 <span style="color: #D0372D;">&lt;-</span> rep(x, each=5) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">repeats each element of x five times before moving on to the next.</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">[1,1,1,1,1,2,2,2,2,2,...]</span>
 </pre>
 </div>
 </div>
@@ -390,15 +390,15 @@ Have two system functions:
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; y &lt;- x[!is.na(x)]
-# x's none-NA elements.
-&gt; (x+1)[(!is.na(x)) &amp; x&gt;0] -&gt; z
-&gt; x[6] # 6th element
-&gt; x[1:10] # first 10 elements
-&gt; c("x","y")[rep(c(1,2,2,1), times=4)]
-# a character vector of length 16 consisting of "x", "y", "y", "x" repeated four times.
-&gt; y &lt;- x[-(1:5)]
-# all but the first five elements of x.
+<pre class="src src-R">&gt; y <span style="color: #D0372D;">&lt;-</span> x[!is.na(x)]
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">x's none-NA elements.</span>
+&gt; (x+1)[(!is.na(x)) &amp; x&gt;0] <span style="color: #D0372D;">-&gt;</span> z
+&gt; x[6] <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">6th element</span>
+&gt; x[1:10] <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">first 10 elements</span>
+&gt; c(<span style="color: #008000;">"x"</span>,<span style="color: #008000;">"y"</span>)[rep(c(1,2,2,1), times=4)]
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">a character vector of length 16 consisting of "x", "y", "y", "x" repeated four times.</span>
+&gt; y <span style="color: #D0372D;">&lt;-</span> x[-(1:5)]
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">all but the first five elements of x.</span>
 </pre>
 </div>
 
@@ -408,9 +408,9 @@ naming
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; fruit &lt;- c(5, 10, 1, 20)
-&gt; names(fruit) &lt;- c("orange", "banana", "apple", "peach")
-&gt; lunch &lt;- fruit[c("apple","orange")]
+<pre class="src src-R">&gt; fruit <span style="color: #D0372D;">&lt;-</span> c(5, 10, 1, 20)
+&gt; names(fruit) <span style="color: #D0372D;">&lt;-</span> c(<span style="color: #008000;">"orange"</span>, <span style="color: #008000;">"banana"</span>, <span style="color: #008000;">"apple"</span>, <span style="color: #008000;">"peach"</span>)
+&gt; lunch <span style="color: #D0372D;">&lt;-</span> fruit[c(<span style="color: #008000;">"apple"</span>,<span style="color: #008000;">"orange"</span>)]
 </pre>
 </div>
 
@@ -420,11 +420,11 @@ change the subset:
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; x[is.na(x)] &lt;- 0
-# replaces any missing values in x by zeros
-&gt; y[y &lt; 0] &lt;- -y[y &lt; 0]
-# is same as:
-&gt; y &lt;- abs(y)
+<pre class="src src-R">&gt; x[is.na(x)] <span style="color: #D0372D;">&lt;-</span> 0
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">replaces any missing values in x by zeros</span>
+&gt; y[y &lt; 0] <span style="color: #D0372D;">&lt;-</span> -y[y &lt; 0]
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">is same as:</span>
+&gt; y <span style="color: #D0372D;">&lt;-</span> abs(y)
 </pre>
 </div>
 </div>
@@ -436,10 +436,10 @@ change the subset:
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; dim(z) &lt;- c(3,5,100)
-# 3 by 5 by 100 array
-&gt; z[2,,] # is 5,100 array
-&gt; z[,,] # is the entire array
+<pre class="src src-R">&gt; dim(z) <span style="color: #D0372D;">&lt;-</span> c(3,5,100)
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">3 by 5 by 100 array</span>
+&gt; z[2,,] <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">is 5,100 array</span>
+&gt; z[,,] <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">is the entire array</span>
 </pre>
 </div>
 </div>
@@ -450,22 +450,22 @@ change the subset:
 <div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; x &lt;- array(1:20, dim=c(4,5))   # Generate a 4 by 5 array.
+<pre class="src src-R">&gt; x <span style="color: #D0372D;">&lt;-</span> array(1:20, dim=c(4,5))   <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Generate a 4 by 5 array.</span>
 &gt; x
      [,1] [,2] [,3] [,4] [,5]
 [1,]    1    5    9   13   17
 [2,]    2    6   10   14   18
 [3,]    3    7   11   15   19
 [4,]    4    8   12   16   20
-&gt; i &lt;- array(c(1:3,3:1), dim=c(3,2))
-&gt; i                             # i is a 3 by 2 index array.
+&gt; i <span style="color: #D0372D;">&lt;-</span> array(c(1:3,3:1), dim=c(3,2))
+&gt; i                             <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">i is a 3 by 2 index array.</span>
      [,1] [,2]
 [1,]    1    3
 [2,]    2    2
 [3,]    3    1
-&gt; x[i]                          # Extract those elements
+&gt; x[i]                          <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Extract those elements</span>
 [1] 9 6 3
-&gt; x[i] &lt;- 0                     # Replace those elements by zeros.
+&gt; x[i] <span style="color: #D0372D;">&lt;-</span> 0                     <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Replace those elements by zeros.</span>
 &gt; x
      [,1] [,2] [,3] [,4] [,5]
 [1,]    1    5    0   13   17
@@ -482,9 +482,9 @@ change the subset:
 <div class="outline-text-3" id="text-7-5">
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; ab &lt;- a %o% b
-# the same as
-&gt; ab &lt;- outer(a, b, "*")
+<pre class="src src-R">&gt; ab <span style="color: #D0372D;">&lt;-</span> a %o% b
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">the same as</span>
+&gt; ab <span style="color: #D0372D;">&lt;-</span> outer(a, b, <span style="color: #008000;">"*"</span>)
 </pre>
 </div>
 
@@ -494,8 +494,8 @@ we can change the function used in `outer`
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; f &lt;- function(x, y) cos(y)/(1 + x^2)
-&gt; z &lt;- outer(x, y, f)
+<pre class="src src-R">&gt; <span style="color: #006699;">f</span> <span style="color: #D0372D;">&lt;-</span> <span style="color: #0000FF;">function</span>(x, y) cos(y)/(1 + x^2)
+&gt; z <span style="color: #D0372D;">&lt;-</span> outer(x, y, f)
 </pre>
 </div>
 </div>
@@ -506,9 +506,9 @@ we can change the function used in `outer`
 <div class="outline-text-3" id="text-7-6">
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; A * B # matrix of element by element products
-&gt; A %*% B # matrix product
-&gt; x %*% A %*% x # quadratic form ... 二次多项式 ax^2 + bxy + cy^2
+<pre class="src src-R">&gt; A * B <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">matrix of element by element products</span>
+&gt; A %*% B <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">matrix product</span>
+&gt; x %*% A %*% x <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">quadratic form ... &#20108;&#27425;&#22810;&#39033;&#24335; ax^2 + bxy + cy^2</span>
 </pre>
 </div>
 </div>
@@ -519,10 +519,10 @@ we can change the function used in `outer`
 <div class="outline-text-3" id="text-7-7">
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; b &lt;- A %*% x
-# if b and A are given, but not x, x will contain the result
-&gt; solve(A,b) # will also solve the system.
-# I'm not sure this should be execute after the previous statement.
+<pre class="src src-R">&gt; b <span style="color: #D0372D;">&lt;-</span> A %*% x
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">if b and A are given, but not x, x will contain the result</span>
+&gt; solve(A,b) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">will also solve the system.</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">I'm not sure this should be execute after the previous statement.</span>
 </pre>
 </div>
 </div>
@@ -564,7 +564,7 @@ Basic help:
 <pre class="src src-R">R
 &gt; q()
 &gt; help(lm)
-&gt; help("if")
+&gt; help(<span style="color: #008000;">"if"</span>)
 &gt; ?lm
 &gt; example(topic)
 &gt; ??solve
@@ -577,12 +577,12 @@ Function command:
 
 <div class="org-src-container">
 
-<pre class="src src-R">&gt; source("a.R") # load another file
-&gt; sink("a.lis") # redirect output to a.lis
-&gt; sink() # retore output to stdio
-&gt; ls() # list the objects currently stored
-&gt; objects() # create and store current objects
-&gt; rm(x, y, z, ink, junk, temp, foo, bar) # remove objects
+<pre class="src src-R">&gt; <span style="color: #D0372D;">source</span>(<span style="color: #008000;">"a.R"</span>) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">load another file</span>
+&gt; sink(<span style="color: #008000;">"a.lis"</span>) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">redirect output to a.lis</span>
+&gt; sink() <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">retore output to stdio</span>
+&gt; ls() <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">list the objects currently stored</span>
+&gt; objects() <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">create and store current objects</span>
+&gt; rm(x, y, z, ink, junk, temp, foo, bar) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">remove objects</span>
 </pre>
 </div>
 </div>
@@ -590,7 +590,7 @@ Function command:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-10 Thu 14:31</p>
+<p class="date">Created: 2016-03-26 Sat 12:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
