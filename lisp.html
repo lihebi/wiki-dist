@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-04-28 Thu 14:31 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lisp</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Lisp</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Introduction</a></li>
+<li><a href="#orgheadline13">2. Programming Concepts &amp; Reference</a>
+<ul>
+<li><a href="#orgheadline2">2.1. List (Con Cell)</a></li>
+<li><a href="#orgheadline10">2.2. Loop</a>
+<ul>
+<li><a href="#orgheadline3">2.2.1. Overview</a></li>
+<li><a href="#orgheadline7">2.2.2. For</a>
+<ul>
+<li><a href="#orgheadline4">2.2.2.1. for VAR from EXPR1 to EXPR2 by EXPR3</a></li>
+<li><a href="#orgheadline5">2.2.2.2. for VAR in LIST by FUNCTION</a></li>
+<li><a href="#orgheadline6">2.2.2.3. for VAR = EXPR1 then EXPR2</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline8">2.2.3. The condition</a></li>
+<li><a href="#orgheadline9">2.2.4. accumulation clause</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">2.3. Map</a></li>
+<li><a href="#orgheadline12">2.4. String</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline19">3. Topics</a>
+<ul>
+<li><a href="#orgheadline14">3.1. Buffer related</a></li>
+<li><a href="#orgheadline18">3.2. File System Related</a>
+<ul>
+<li><a href="#orgheadline15">3.2.1. Traversing</a></li>
+<li><a href="#orgheadline16">3.2.2. Predicates</a></li>
+<li><a href="#orgheadline17">3.2.3. accessing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline22">4. Third Party Libraries</a>
+<ul>
+<li><a href="#orgheadline20">4.1. Dash.el</a></li>
+<li><a href="#orgheadline21">4.2. s.el</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline24">5. Other interesting functions</a>
+<ul>
+<li><a href="#orgheadline23">5.1. make-obsolete-variable</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline26">6. Some random code snippets</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline25">6.0.1. Url retrieval</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Although lisp is closely related to Emacs,
+it makes sense to write a single page for it,
+due that it is a complete programming language.
+</p>
+
+<p>
+<a href="https://github.com/magnars">Magnar Sveen</a> wrote <a href="https://github.com/magnars/dash.el">dash.el</a>, <a href="https://github.com/magnars/s.el">s.el</a>, <a href="https://github.com/magnars/multiple-cursors.el">multiple-cursors.el</a>, <a href="https://github.com/magnars/expand-region.el">expand-region.el</a>, <a href="https://github.com/magnars/stasis">stasis</a>,
+and of course, <a href="https://github.com/magnars/emacsrocks.com">emacsrocks.com</a>.
+</p>
+
+<p>
+Clojure is another lisp family member.
+Some interesting projects:
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/ring-clojure/ring">https://github.com/ring-clojure/ring</a></li>
+<li><a href="http://liquidz.github.io/">http://liquidz.github.io/</a></li>
+<li><a href="https://github.com/liquidz/misaki">https://github.com/liquidz/misaki</a></li>
+<li><a href="http://nakkaya.com/">http://nakkaya.com/</a></li>
+
+<li><code>(or CONDITIONS...)</code>: Eval args until one of them yields non-nil, then <i>return that value</i>.</li>
+<li><code>(defalias SYMBOL DEFINITION &amp;optional DOCSTRING)</code>: Set SYMBOL's function definition to DEFINITION.
+E.g. <code>(defalias 'helm-bibtex-get-value 'bibtex-completion-get-value)</code>,
+serves as a temporary patch for <code>helm-bibtex</code> update its API to <code>bibtex-completion</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">2</span> Programming Concepts &amp; Reference</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> List (Con Cell)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<code>car</code> is the first cell, and <code>cdr</code> is the second, meaning the address.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(cdr l)
+(cdrr l) <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">== (cdr (cdr l))</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>(assoc KEY LIST)</code>: the first element of LIST whose car equals KEY, otherwise <code>nil</code></li>
+<li><code>(assq KEY LIST)</code>: the first element of LIST whose car is KEY.</li>
+</ul>
+
+<p>
+The difference of the above two functions is: <code>assoc</code> makes comparison using <code>equal</code>, but <code>assq</code> uses <code>eq</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>(eq OBJ1 OBJ2)</code>: Return t if the two args are the same Lisp object. It is faster than <code>equal</code>.</li>
+<li><code>(equal O1 O2)</code>: Return t if two Lisp objects have similar structure and contents. So it does <i>comparison only</i>.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>(assoc-string KEY LIST &amp;optional CASE-FOLD)</code>: <code>assoc</code> for string. if <code>CASE-FOLD</code> is <code>non-nil</code>, case is ignored.</li>
+
+<li><code>(list &amp;rest OBJECTS)</code>: create a list</li>
+<li><code>(append &amp;rest SEQUENCES)</code>:
+Concatenate all the arguments and make the result a list.
+Each argument may be a list, vector or string.
+The last argument is not copied, just used as the tail of the new list.
+Thus the common usage is <code>fields = (append fields (list "a" "b"))</code>, FIXME should I put fields at the end?</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>(apply FUNCTION &amp;rest ARGUMENTS)</code>: Call FUNCTION with our remaining args, using our <i>last arg</i> as list of args.
+<code>(apply '+ 1 2 '(3 4))</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.2</span> Loop</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">2.2.1</span> Overview</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+The <code>cl-loop</code> refers to the common lisp, see the detailed manual in info, <code>cl</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for buf in <span style="color: #7388D6;">(</span>buffer-list<span style="color: #7388D6;">)</span>
+         collect <span style="color: #7388D6;">(</span>buffer-file-name buf<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">in the end the collected list will be returned</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> repeat 20 do <span style="color: #7388D6;">(</span>insert <span style="color: #008000;">"Yowsa\n"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">repeat &lt;num&gt;</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> until <span style="color: #7388D6;">(</span>eobp<span style="color: #7388D6;">)</span> do <span style="color: #7388D6;">(</span>munch-line<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>forward-line 1<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">eobp: end of buffer predicate</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> do <span style="color: #7388D6;">(</span>munch-line<span style="color: #7388D6;">)</span> until <span style="color: #7388D6;">(</span>eobp<span style="color: #7388D6;">)</span> do <span style="color: #7388D6;">(</span>forward-line 1<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">do (much-line) at least once</span>
+</pre>
+</div>
+<p>
+Last, the if you want to nest the loop, you need multiple <code>cl-loop</code>.
+One cl-loop with multiple <code>for</code> and <code>until</code> will only result in one loop, e.g. the following code.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(cl-loop for x from 1 to 100 <span style="color: #8D8D84; font-style: italic;">; x from 1 to 100</span>
+         for y = (* x x) <span style="color: #8D8D84; font-style: italic;">; this is evaluated for every iteration</span>
+         until (&gt;= y 729) <span style="color: #8D8D84; font-style: italic;">; the end condition</span>
+         finally return (list x (= y 729))) <span style="color: #8D8D84; font-style: italic;">; finally defines what to do when the loop finish</span>
+</pre>
+</div>
+
+<p>
+Some other clauses are not recorded in this page, but there <i>are</i> some. E.g.
+</p>
+<ul class="org-ul">
+<li><code>with VAR = VALUE</code>: bind the initial value,
+like the <code>EXPR1</code> in <code>for</code> clause,
+but different in terms of only evaluate once for the initial iteration.
+The effect is like <code>let</code>.</li>
+<li><code>if CONDITION CLAUSE</code>: execute the <i>following</i> code only if the condition matches.
+<code>else</code> can be added, and <code>end</code> can also be presented. This means, this grammar is ambiguous.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">2.2.2</span> For</h4>
+<div class="outline-text-4" id="text-2-2-2">
+</div><div id="outline-container-orgheadline4" class="outline-5">
+<h5 id="orgheadline4"><span class="section-number-5">2.2.2.1</span> for VAR from EXPR1 to EXPR2 by EXPR3</h5>
+<div class="outline-text-5" id="text-2-2-2-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for x to 10 collect x<span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#8658; (0 1 2 3 4 5 6 7 8 9 10)</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for x below 10 collect x<span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#8658; (0 1 2 3 4 5 6 7 8 9)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-5">
+<h5 id="orgheadline5"><span class="section-number-5">2.2.2.2</span> for VAR in LIST by FUNCTION</h5>
+<div class="outline-text-5" id="text-2-2-2-2">
+<p>
+If the function is provided, the iterating function will be changed from the default <code>cdr</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for x in '<span style="color: #7388D6;">(</span>1 2 3 4 5 6<span style="color: #7388D6;">)</span> collect <span style="color: #7388D6;">(</span>* x x<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#8658; (1 4 9 16 25 36)</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for x in '<span style="color: #7388D6;">(</span>1 2 3 4 5 6<span style="color: #7388D6;">)</span> by 'cddr collect <span style="color: #7388D6;">(</span>* x x<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#8658; (1 9 25)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-5">
+<h5 id="orgheadline6"><span class="section-number-5">2.2.2.3</span> for VAR = EXPR1 then EXPR2</h5>
+<div class="outline-text-5" id="text-2-2-2-3">
+<p>
+If <code>EXPR2</code> is omitted, <code>EXPR1</code> will be set in each iteration.
+If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial value, and <code>EXPR2</code> will execute and set the variable.
+<code>EXPR2</code> can refer to the previous value of <code>VAR</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">these two loops are equivalent</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for x on my-list by 'cddr do &#8230;<span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span> for x = my-list then <span style="color: #7388D6;">(</span>cddr x<span style="color: #7388D6;">)</span> while x do &#8230;<span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.2.3</span> The condition</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<ul class="org-ul">
+<li><code>repeat INTEGER</code></li>
+<li><code>while CONDITION</code></li>
+<li><code>until CONDITION</code></li>
+<li><code>always CONDITION</code>: the condition should evaluate to t for it to continue</li>
+<li><code>never CONDITION</code></li>
+<li><code>thereis CONDITION</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.2.4</span> accumulation clause</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<ul class="org-ul">
+<li><code>collect FORM</code></li>
+<li><code>concat FORM</code></li>
+<li><code>count FORM</code></li>
+<li><code>sum FORM</code></li>
+<li><code>maximize FORM</code></li>
+<li><code>minimize FORM</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.3</span> Map</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li><code>(mapc FUNCTION SEQUENCE)</code>: Apply FUNCTION to each element of SEQUENCE.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">2.4</span> String</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li><code>(string= S1 S2)</code>: Return t if two strings have identical contents.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">3</span> Topics</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">3.1</span> Buffer related</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li><code>with-temp-buffer</code>
+  <code>(with-temp-buffer &amp;rest BODY)</code> Create a temporary buffer, and evaluate BODY there like <code>progn</code>.</li>
+
+<li><code>(insert-file-contents FILENAME &amp;optional VISIT BEG END REPLACE)</code>: Insert contents of file FILENAME after point.</li>
+<li><code>(secure-hash ALGORITHM OBJECT &amp;optional START END BINARY)</code>: the object can be a buffer.
+This can be used to compare if a file has changed.</li>
+<li><code>(current-buffer)</code>: Return the current buffer as a Lisp object.</li>
+<li><code>(message FORMAT-STRING &amp;rest ARGS)</code>: Display a message at the bottom of the screen.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">3.2</span> File System Related</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">3.2.1</span> Traversing</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span>directory-files DIRECTORY <span style="color: #6434A3;">&amp;optional</span> FULL MATCH NOSORT<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<p>
+Return a list of names of files in DIRECTORY.
+</p>
+
+<p>
+Usage example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span>bib-files <span style="color: #7388D6;">(</span>directory-files bib-dir t <span style="color: #008000;">".*\.bib$"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">3.2.2</span> Predicates</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+<code>directory-files</code> will throw error if the directory does not exist.
+So a safe way is to check if the directory exists first.
+This predicate does this:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span>file-exists-p FILENAME<span style="color: #707183;">)</span>
+</pre>
+</div>
+<p>
+Directory is also a file.
+</p>
+
+<p>
+Other predicates includes:
+</p>
+<pre class="example">
+file-readable-p
+file-executable-p
+file-writable-p
+file-accessible-directory-p
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">3.2.3</span> accessing</h4>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline22" class="outline-2">
+<h2 id="orgheadline22"><span class="section-number-2">4</span> Third Party Libraries</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">4.1</span> Dash.el</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<a href="https://github.com/magnars/dash.el">https://github.com/magnars/dash.el</a>
+</p>
+
+<p>
+This is a collection of list libraries.
+</p>
+
+<ul class="org-ul">
+<li><p>
+<code>-map</code> takes a function to map over the list,
+the anaphoric form with double dashes executed with <code>it</code> exposed as the list item. 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">normal version</span>
+<span style="color: #707183;">(</span>-map <span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span> <span style="color: #909183;">(</span>n<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>* n n<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span> '<span style="color: #7388D6;">(</span>1 2 3 4<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">also works for defun, of course</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defun</span> <span style="color: #006699;">square</span> <span style="color: #7388D6;">(</span>n<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>* n n<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span>-map 'square '<span style="color: #7388D6;">(</span>1 2 3 4<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">anaphoric version</span>
+<span style="color: #707183;">(</span>--map <span style="color: #7388D6;">(</span>* it it<span style="color: #7388D6;">)</span> '<span style="color: #7388D6;">(</span>1 2 3 4<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div></li>
+
+<li><code>-update-at</code>: <code>(-update-at N FUNC LIST)</code> Return a list with element at Nth position in LIST replaced with `(func (nth n list))`.</li>
+<li><code>-flatten</code>: <code>(-flatten L)</code>: Take a nested list L and return its contents as a single, flat list.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">4.2</span> s.el</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<a href="https://github.com/magnars/s.el">https://github.com/magnars/s.el</a>
+</p>
+
+<p>
+The string manipulation library
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">5</span> Other interesting functions</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">5.1</span> make-obsolete-variable</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<code>(make-obsolete-variable OBSOLETE-NAME CURRENT-NAME WHEN &amp;optional ACCESS-TYPE)</code>
+</p>
+
+<p>
+Make the byte-compiler warn that OBSOLETE-NAME is obsolete.
+</p>
+
+<p>
+<code>helm-bibte</code> used it when it refactored the "helm" part off into a module,
+to support different backend other than <code>helm</code>.
+As a result, most <code>helm-bibtex-</code> prefixes are changed to <code>bibtex-completion-</code> ones.
+But they want the end user's configuration will not break,
+and at the same time warn them to update to the new name.
+Here's the code, and the last line is what actually uses the function.
+The actual effect is the user's configuration will be marked as warning,
+the mini-buffer will describe the obsolete detail.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span><span style="color: #0000FF;">cl-loop</span>
+ for var in '<span style="color: #7388D6;">(</span><span style="color: #008000;">"bibliography"</span> <span style="color: #008000;">"library-path"</span> <span style="color: #008000;">"pdf-open-function"</span>
+              <span style="color: #008000;">"pdf-symbol"</span> <span style="color: #008000;">"format-citation-functions"</span> <span style="color: #008000;">"notes-path"</span>
+              <span style="color: #008000;">"notes-template-multiple-files"</span>
+              <span style="color: #008000;">"notes-template-one-file"</span> <span style="color: #008000;">"notes-key-pattern"</span>
+              <span style="color: #008000;">"notes-extension"</span> <span style="color: #008000;">"notes-symbol"</span> <span style="color: #008000;">"fallback-options"</span>
+              <span style="color: #008000;">"browser-function"</span> <span style="color: #008000;">"additional-search-fields"</span>
+              <span style="color: #008000;">"no-export-fields"</span> <span style="color: #008000;">"cite-commands"</span>
+              <span style="color: #008000;">"cite-default-command"</span>
+              <span style="color: #008000;">"cite-prompt-for-optional-arguments"</span>
+              <span style="color: #008000;">"cite-default-as-initial-input"</span> <span style="color: #008000;">"pdf-field"</span><span style="color: #7388D6;">)</span>
+ for oldvar = <span style="color: #7388D6;">(</span>intern <span style="color: #909183;">(</span>concat <span style="color: #008000;">"helm-bibtex-"</span> var<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+ for newvar = <span style="color: #7388D6;">(</span>intern <span style="color: #909183;">(</span>concat <span style="color: #008000;">"bibtex-completion-"</span> var<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+ do
+ <span style="color: #7388D6;">(</span><span style="color: #0000FF;">defvaralias</span> <span style="color: #BA36A5;">newvar</span> oldvar<span style="color: #7388D6;">)</span>
+ <span style="color: #7388D6;">(</span>make-obsolete-variable oldvar newvar <span style="color: #008000;">"2016-03-20"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">6</span> Some random code snippets</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span>cl-prettyprint <span style="color: #7388D6;">(</span>font-family-list<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">see all font family available on this system</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">6.0.1</span> Url retrieval</h4>
+<div class="outline-text-4" id="text-6-0-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span><span style="color: #0000FF;">with-current-buffer</span> <span style="color: #7388D6;">(</span>url-retrieve-synchronously <span style="color: #008000;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span>goto-char <span style="color: #909183;">(</span>point-min<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span>kill-ring-save <span style="color: #909183;">(</span>point-min<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>point-max<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>framed-url <span style="color: #709870;">(</span>match-string 1<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">with-current-buffer</span> <span style="color: #909183;">(</span>url-retrieve-synchronously framed-url<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>goto-char <span style="color: #709870;">(</span>point-min<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">when</span> <span style="color: #709870;">(</span>re-search-forward <span style="color: #008000;">"&lt;frame src=\"</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">(</span><span style="color: #008000;">http[[:ascii:]]*?</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">)</span><span style="color: #008000;">\""</span><span style="color: #709870;">)</span>
+      <span style="color: #709870;">(</span>match-string 1<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-04-28 Thu 14:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-12 Sat 23:03 -->
+<!-- 2016-04-26 Tue 23:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs</title>
@@ -152,36 +152,51 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Getting Help</a></li>
-<li><a href="#orgheadline5">2. Window and Frame</a>
+<li><a href="#orgheadline2">2. Configuration</a></li>
+<li><a href="#orgheadline6">3. Window and Frame</a>
 <ul>
-<li><a href="#orgheadline2">2.1. window manage</a></li>
-<li><a href="#orgheadline3">2.2. dired</a></li>
-<li><a href="#orgheadline4">2.3. packages</a></li>
+<li><a href="#orgheadline3">3.1. window manage</a></li>
+<li><a href="#orgheadline4">3.2. dired</a></li>
+<li><a href="#orgheadline5">3.3. packages</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">3. Editing</a>
+<li><a href="#orgheadline7">4. File Operation</a></li>
+<li><a href="#orgheadline11">5. Editing</a>
 <ul>
-<li><a href="#orgheadline6">3.1. text transformation</a></li>
-<li><a href="#orgheadline7">3.2. killing</a></li>
-<li><a href="#orgheadline8">3.3. spell checking</a></li>
+<li><a href="#orgheadline8">5.1. text transformation</a></li>
+<li><a href="#orgheadline9">5.2. killing</a></li>
+<li><a href="#orgheadline10">5.3. spell checking</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">4. Navigating</a>
+<li><a href="#orgheadline15">6. Navigating</a>
 <ul>
-<li><a href="#orgheadline10">4.1. marking</a></li>
-<li><a href="#orgheadline11">4.2. register</a></li>
+<li><a href="#orgheadline12">6.1. marking</a></li>
+<li><a href="#orgheadline13">6.2. register</a></li>
+<li><a href="#orgheadline14">6.3. Tags</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline16">5. Advanced Topics</a>
+<li><a href="#orgheadline17">7. Special Modes</a>
 <ul>
-<li><a href="#orgheadline14">5.1. Info</a>
-<ul>
-<li><a href="#orgheadline13">5.1.1. Operations</a></li>
+<li><a href="#orgheadline16">7.1. Tex Mode</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">5.2. Elisp</a></li>
+<li><a href="#orgheadline20">8. Variables</a>
+<ul>
+<li><a href="#orgheadline18">8.1. File Local Variable</a></li>
+<li><a href="#orgheadline19">8.2. Directory Local Variable</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline24">9. Advanced Topics</a>
+<ul>
+<li><a href="#orgheadline22">9.1. Info</a>
+<ul>
+<li><a href="#orgheadline21">9.1.1. Operations</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline23">9.2. Babel</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline25">10. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -193,25 +208,44 @@ for the JavaScript code in this tag.
 <li><code>describe-key-briefly</code>: defaults to <code>C-h c</code>, return the command name of a key stroke.</li>
 <li><code>where-is</code>: defaults to <code>C-h w</code>, return the current shortcut for a command</li>
 <li><code>info</code>: defaults to <code>C-h i</code>, open the built-in info reader.</li>
+<li><code>view-echo-area-messages</code></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">2</span> Window and Frame</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Configuration</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> window manage</h3>
-<div class="outline-text-3" id="text-2-1">
+<p>
+To configure a specific key map.
+Note that the <code>global-set-key</code> will <i>not</i> overwrite a specific key map,
+because the specific one has a higher priority.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span>define-key org-mode-map <span style="color: #7388D6;">(</span>kbd <span style="color: #008000;">"C-j"</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span><span style="color: #909183;">()</span>
+                                       <span style="color: #909183;">(</span>interactive<span style="color: #909183;">)</span>
+                                       <span style="color: #909183;">(</span>join-line -1<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">3</span> Window and Frame</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> window manage</h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><code>balance-window</code></li>
 <li><code>toggle-window-split</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> dired</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> dired</h3>
+<div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>dired-next-subdir</code></li>
 <li><code>dired-prev-subdir</code></li>
@@ -220,22 +254,30 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.3</span> packages</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.3</span> packages</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 In <code>*package*</code> buffer, <code>Ux</code> to update all packages.
 </p>
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">4</span> File Operation</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><code>revert-buffer</code>: Replace current buffer text with the text of the visited file on disk. I.e. Reload file.</li>
+</ul>
+</div>
+</div>
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">3</span> Editing</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">3.1</span> text transformation</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">5</span> Editing</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">5.1</span> text transformation</h3>
+<div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li><code>replace-rectangle</code></li>
 <li><code>upcase-word</code></li>
@@ -246,12 +288,19 @@ In <code>*package*</code> buffer, <code>Ux</code> to update all packages.
 <p>
 To insert a control sequence, use <code>C-q xxx</code>.
 </p>
+<ul class="org-ul">
+<li><code>capitalize-word</code></li>
+
+<li><code>fill-paragraph</code></li>
+<li><code>fill-region</code></li>
+<li><code>auto-fill-mode</code></li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.2</span> killing</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">5.2</span> killing</h3>
+<div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li><code>zap-to-char</code></li>
 <li><code>zap-up-to-char</code></li>
@@ -259,26 +308,28 @@ To insert a control sequence, use <code>C-q xxx</code>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.3</span> spell checking</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">5.3</span> spell checking</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
 Use <code>ispell</code>, and <code>flycheck</code> to check on-the-fly. Check emacs manual for detail.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">4</span> Navigating</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">6</span> Navigating</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>forward-sexp</code>: forward semantic block</li>
 <li><code>backward-sexp</code></li>
+<li><code>org-forward-heading-same-level</code>: <code>C-c C-f</code></li>
+<li><code>org-backword-heading-same-level</code>: <code>C-c C-b</code></li>
 </ul>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.1</span> marking</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">6.1</span> marking</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li><code>exhange-point-and-mark</code></li>
 <li><code>mark-word</code></li>
@@ -305,9 +356,9 @@ All events that set the mark:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">4.2</span> register</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">6.2</span> register</h3>
+<div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li><code>jump-to-register</code>: the register can store a file</li>
 <li><code>copy-to-register</code></li>
@@ -315,15 +366,92 @@ All events that set the mark:
 </ul>
 </div>
 </div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">6.3</span> Tags</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li><code>helm-etags-select</code></li>
+</ul>
+</div>
+</div>
 </div>
 
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">7</span> Special Modes</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">7.1</span> Tex Mode</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li><code>tex-validate-region</code></li>
+</ul>
+</div>
+</div>
+</div>
 
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16"><span class="section-number-2">5</span> Advanced Topics</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">5.1</span> Info</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20"><span class="section-number-2">8</span> Variables</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">8.1</span> File Local Variable</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+On first line, emacs will try to find
+</p>
+<pre class="example">
+-*- mode: Lisp; fill-column: 75; comment-column: 50; -*-=
+</pre>
+
+<p>
+<code>mode</code> defines the major mode for this file, while unlimited numbers of variables follows, separated by <code>;</code>
+Emacs looks for local variable specifications in the second line if the first line specifies an interpreter, e.g. <i>shebang</i>.
+</p>
+
+<p>
+A second way to specify file local variable is to have a "local variables list" near the end of the file
+(no more than 3000 characters from the end of the file).
+The <code>Local Variables:</code> and <code>End:</code> will be matched literally.
+</p>
+
+<pre class="example">
+This     /* Local Variables:  */
+Is       /* mode: c           */
+Garbage  /* comment-column: 0 */
+Data     /* End:              */
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">8.2</span> Directory Local Variable</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Put <code>.dir-locals.el</code> at the root directory, and it will be in effect for all the files under that directory, recursively.
+It should be an associate list, the car can be either a mode name (or <code>nil</code> applies to all modes) indicating the variables are for that mode,
+or a sub-directory name to apply only in that directory.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>nil . <span style="color: #909183;">(</span><span style="color: #709870;">(</span>indent-tabs-mode . t<span style="color: #709870;">)</span>
+         <span style="color: #709870;">(</span>fill-column . 80<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+ <span style="color: #7388D6;">(</span>c-mode . <span style="color: #909183;">(</span><span style="color: #709870;">(</span>c-file-style . <span style="color: #008000;">"BSD"</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">(</span>subdirs . nil<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+ <span style="color: #7388D6;">(</span><span style="color: #008000;">"src/imported"</span>
+  . <span style="color: #909183;">(</span><span style="color: #709870;">(</span>nil . <span style="color: #907373;">(</span><span style="color: #6276BA;">(</span>change-log-default-name
+              . <span style="color: #008000;">"ChangeLog.local"</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">9</span> Advanced Topics</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">9.1</span> Info</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 Info is a document system.
 It is closely bundled with emacs, so I put it here.
@@ -342,9 +470,9 @@ sudo install-info --info-file=gnu-c-manual.info --info-dir=.
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13"><span class="section-number-4">5.1.1</span> Operations</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">9.1.1</span> Operations</h4>
+<div class="outline-text-4" id="text-9-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -430,21 +558,41 @@ sudo install-info --info-file=gnu-c-manual.info --info-dir=.
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15"><span class="section-number-3">5.2</span> Elisp</h3>
-<div class="outline-text-3" id="text-5-2">
-<div class="org-src-container">
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">9.2</span> Babel</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+How to write a <code>ob-xxx.el</code> file?
+</p>
 
-<pre class="src src-elisp"><span style="color: #707183;">(</span>cl-prettyprint <span style="color: #7388D6;">(</span>font-family-list<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">see all font family available on this system</span>
-</pre>
+<ul class="org-ul">
+<li>search org-mode babel, you will get a link: <a href="http://orgmode.org/worg/org-contrib/babel/">http://orgmode.org/worg/org-contrib/babel/</a></li>
+<li>In this link, there's a "languages" link. <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">http://orgmode.org/worg/org-contrib/babel/languages.html</a></li>
+<li>Under "Develop support for new languages" section, there's link to ob-template.el: <a href="http://orgmode.org/w/worg.git/blob/HEAD:/org-contrib/babel/ob-template.el">http://orgmode.org/w/worg.git/blob/HEAD:/org-contrib/babel/ob-template.el</a></li>
+<li>follow instruction to modify it.</li>
+</ul>
+
+<p>
+some good example to look at: ob-plantuml.el, ob-C.el
+</p>
 </div>
 </div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25"><span class="section-number-2">10</span> Reference</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Sacha's super long Emacs Config: <a href="http://pages.sachachua.com/.emacs.d/Sacha.html">http://pages.sachachua.com/.emacs.d/Sacha.html</a>
+Some emacs.d I started with <a href="https://github.com/jordonbiondo/.emacs.d/blob/master/init.el">https://github.com/jordonbiondo/.emacs.d/blob/master/init.el</a>
+C++ IDE and some tutorials: <a href="http://tuhdo.github.io/">http://tuhdo.github.io/</a>
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-12 Sat 23:03</p>
+<p class="date">Created: 2016-04-26 Tue 23:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

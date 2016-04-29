@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-26 Sat 12:09 -->
+<!-- 2016-04-20 Wed 12:41 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Org Mode</title>
@@ -151,101 +151,226 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline5">1. Org mode latex exporting</a>
+<li><a href="#orgheadline8">1. Exporting</a>
 <ul>
-<li><a href="#orgheadline1">1.1. doc class &amp; options</a></li>
-<li><a href="#orgheadline2">1.2. appendix</a></li>
-<li><a href="#orgheadline3">1.3. table</a></li>
-<li><a href="#orgheadline4">1.4. code referencing</a></li>
+<li><a href="#orgheadline6">1.1. Latex Exporting</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. doc class &amp; options</a></li>
+<li><a href="#orgheadline2">1.1.2. appendix</a></li>
+<li><a href="#orgheadline3">1.1.3. table</a></li>
+<li><a href="#orgheadline4">1.1.4. code referencing</a></li>
+<li><a href="#orgheadline5">1.1.5. <code>ATTR_LATEX</code></a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">2. Spreadsheet</a></li>
+<li><a href="#orgheadline7">1.2. Beamer</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">2. Spreadsheet</a></li>
+<li><a href="#orgheadline14">3. Other Packages</a>
+<ul>
+<li><a href="#orgheadline13">3.1. org-ref</a>
+<ul>
+<li><a href="#orgheadline10">3.1.1. Configuration</a></li>
+<li><a href="#orgheadline12">3.1.2. Commands</a>
+<ul>
+<li><a href="#orgheadline11">3.1.2.1. Navigation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">1</span> Org mode latex exporting</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">1</span> Exporting</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> doc class &amp; options</h3>
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.1</span> Latex Exporting</h3>
 <div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> doc class &amp; options</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<pre class="example">
+#+LATEX_CLASS: fse
+#+OPTIONS: toc:nil author:nil
 
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_CLASS: fse</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: toc:nil author:nil</span>
+#+BIBLIOGRAPHY: slicing plain
+#+INCLUDE: "appendix.org" :minlevel 1
+</pre>
+</div>
+</div>
 
-<span style="color: #008ED1; background-color: #EAEAFF;">#+BIBLIOGRAPHY: slicing plain</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+INCLUDE: "appendix.org" :minlevel 1</span>
+
+
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.1.2</span> appendix</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<pre class="example">
+#+LaTeX: \appendix
+
+#+INCLUDE: "appendix-todo.org" :minlevel 1
+#+INCLUDE: "appendix-context.org" :minlevel 1
+#+INCLUDE: "appendix-helium-guard.org" :minlevel 1
+#+INCLUDE: "appendix-valgrind-exp.org" :minlevel 1
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.1.3</span> table</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<pre class="example">
+#+CAPTION: The caption
+#+NAME: tab:stack-vs
+#+ATTR_LATEX: :float multicolumn
+\[\[tab:stack-vs\]\]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.1.4</span> code referencing</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<pre class="example">
+<span id="coderef-1" class="coderef-off">src = array[i]; (1)</span>
+<span id="coderef-2" class="coderef-off">buf = p; (2)</span>
+<span id="coderef-3" class="coderef-off">sum += i; (3)</span>
+
+\[\[(ref:1)\]\]
+\[\[(ref:1)\]\[name\]\]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">1.1.5</span> <code>ATTR_LATEX</code></h4>
+<div class="outline-text-4" id="text-1-1-5">
+<pre class="example">
+#+ATTR_LATEX: :float sideways
+#+ATTR_LATEX: :height 0.7\textheight :float t
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> appendix</h3>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">1.2</span> Beamer</h3>
 <div class="outline-text-3" id="text-1-2">
-<div class="org-src-container">
-
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+LaTeX: \appendix</span>
-
-<span style="color: #008ED1; background-color: #EAEAFF;">#+INCLUDE: "appendix-todo.org" :minlevel 1</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+INCLUDE: "appendix-context.org" :minlevel 1</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+INCLUDE: "appendix-helium-guard.org" :minlevel 1</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+INCLUDE: "appendix-valgrind-exp.org" :minlevel 1</span>
+<p>
+The header setup:
+</p>
+<pre class="example">
+#+STARTUP: beamer
+#+AUTHOR: Hebi Li
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: Madrid
+#+OPTIONS: H:2 toc:t num:t
+</pre>
+<p>
+The above configuration define "H" to be 2, meaning the frame is the second level heading (<code>**</code>).
+The top level heading (<code>*</code>) can be used to organize the presentation.
+To show the current section, add this just <i>after</i> every top level heading.
+</p>
+<pre class="example">
+#+TOC: headlines [currentsection]
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> table</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+CAPTION:</span> <span style="color: #000088; background-color: #FFFFE0;">The caption</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+NAME: tab:stack-vs</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+ATTR_LATEX: :float multicolumn</span>
-
-<span style="color: #006DAF; text-decoration: underline;"><a href="tab:stack-vs">tab:stack-vs</a></span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">1.4</span> code referencing</h3>
-<div class="outline-text-3" id="text-1-4">
-<div class="org-src-container">
-
-<pre class="src src-org"><span id="coderef-1" class="coderef-off">    src = array[i]; (1)</span>
-<span id="coderef-2" class="coderef-off">    buf = p; (2)</span>
-<span id="coderef-3" class="coderef-off">    sum += i; (3)</span>
-
-<span style="color: #006DAF; text-decoration: underline;"><a href="(ref:1)">(ref:1)</a></span>
-<span style="color: #006DAF; text-decoration: underline;"><a href="(ref:1)">name</a></span>
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> Spreadsheet</h2>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">2</span> Spreadsheet</h2>
 <div class="outline-text-2" id="text-2">
-<div class="org-src-container">
-
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+TBLFM: $4=$2/10</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+TBLFM: $4=$2*100/$3</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+TBLFM: $4=(round $4)</span>
+<pre class="example">
+#+TBLFM: $4=$2/10
+#+TBLFM: $4=$2*100/$3
+#+TBLFM: $4=(round $4)
 </pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">3</span> Other Packages</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.1</span> org-ref</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Used to manage the cross reference in Org Mode.
+</p>
+</div>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">3.1.1</span> Configuration</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<pre class="example">
+(use-package org-ref
+  :config
+  (setq reftex-default-bibliography '("~/github/bibliography/references.bib"))
+  (setq org-ref-bibliography-notes "~/github/bibliography/notes.org"
+        org-ref-default-bibliography '("~/github/bibliography/references.bib")
+        org-ref-pdf-directory "~/github/bibliography/bibtex-pdfs/")
+  (setq helm-bibtex-bibliography "~/github/bibliography/references.bib")
+  (setq helm-bibtex-library-path "~/github/bibliography/bibtex-pdfs")
+  ;; open pdf with system pdf viewer (works on mac)
+  (setq helm-bibtex-pdf-open-function
+        (lambda (fpath)
+          (start-process "open" "*open*" "open" fpath)))
+  ;; alternative
+  ;; (setq helm-bibtex-pdf-open-function 'org-open-file)
+  (setq helm-bibtex-notes-path "~/github/bibliography/helm-bibtex-notes")
+
+  (require 'org-ref-pdf)
+  (require 'doi-utils)
+  (require 'org-ref-isbn)
+  (require 'org-ref-url-utils)
+  )
+</pre>
+
+<p>
+You will need to manually create <code>~/github/bibliography</code> and <code>$ORGREF/bibtex-pdfs</code> (<code>$ORGREF</code> just the alias of that path, I don't want to type it again)
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">3.1.2</span> Commands</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li><code>C-c ]</code>: insert citation, typically with helm: <code>org-ref-helm-insert-cite-link</code></li>
+<li><code>crossref-add-bibtex-entry</code></li>
+<li><code>org-ref-helm-insert-label-link</code></li>
+<li><code>org-ref-insert-ref-link</code></li>
+
+<li><code>doi-utils-get-bibtex-entry-pdf</code></li>
+<li><code>doi-utils-google-scholar</code></li>
+<li><code>doi-utils-add-bibtex-entry-from-doi</code></li>
+<li><code>doi-utils-add-bibtex-entry-from-crossref-query</code>: the same as <code>crossref-add-bibtex-entry</code></li>
+<li><code>org-ref-open-bibtex-pdf</code></li>
+
+<li><code>org-ref-clean-bibtex-entry</code>: in side a bibtex entry in a bib file, reformat it.</li>
+<li><code>org-ref-extract-bibtex-entries</code> will create a bibtex file from the citations in the current buffer.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-5">
+<h5 id="orgheadline11"><span class="section-number-5">3.1.2.1</span> Navigation</h5>
+<div class="outline-text-5" id="text-3-1-2-1">
+<ul class="org-ul">
+<li><code>org-ref-bibtex-next-entry</code> M-n</li>
+<li><code>org-ref-bibtex-previous-entry</code> M-p</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-26 Sat 12:09</p>
+<p class="date">Created: 2016-04-20 Wed 12:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

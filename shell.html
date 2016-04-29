@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-26 Sat 12:09 -->
+<!-- 2016-04-28 Thu 14:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell</title>
@@ -151,92 +151,109 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline5">1. command interactions</a>
+<li><a href="#orgheadline3">1. Common Tips</a>
 <ul>
-<li><a href="#orgheadline1">1.1. pipeline</a></li>
-<li><a href="#orgheadline2">1.2. redirection</a></li>
-<li><a href="#orgheadline3">1.3. list</a></li>
-<li><a href="#orgheadline4">1.4. grouping</a></li>
+<li><a href="#orgheadline1">1.1. grouping</a></li>
+<li><a href="#orgheadline2">1.2. Operation</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">2. Control Flow</a>
+<li><a href="#orgheadline6">2. General Concepts</a>
 <ul>
-<li><a href="#orgheadline6">2.1. loop</a></li>
-<li><a href="#orgheadline7">2.2. if</a></li>
-<li><a href="#orgheadline8">2.3. case</a></li>
-<li><a href="#orgheadline9">2.4. select</a></li>
-<li><a href="#orgheadline10">2.5. (())</a></li>
-<li><a href="#orgheadline11">2.6. [[]]</a></li>
+<li><a href="#orgheadline4">2.1. pipeline</a></li>
+<li><a href="#orgheadline5">2.2. redirection</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">3. Condition</a>
+<li><a href="#orgheadline9">3. Scripting Parameter</a>
 <ul>
-<li><a href="#orgheadline13">3.1. About [] [[]]</a></li>
+<li><a href="#orgheadline7">3.1. special parameters</a></li>
+<li><a href="#orgheadline8">3.2. 特殊变量</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">4. diff and patch</a></li>
-<li><a href="#orgheadline16">5. My Scripts</a></li>
-<li><a href="#orgheadline24">6. Builtin Utilities</a>
+<li><a href="#orgheadline14">4. Control Flow</a>
 <ul>
-<li><a href="#orgheadline17">6.1. xargs</a></li>
-<li><a href="#orgheadline18">6.2. grep</a></li>
-<li><a href="#orgheadline19">6.3. man</a></li>
-<li><a href="#orgheadline20">6.4. find</a></li>
-<li><a href="#orgheadline21">6.5. tr: translate characters</a></li>
-<li><a href="#orgheadline22">6.6. uniq: report or filter out repeated lines in a file</a></li>
-<li><a href="#orgheadline23">6.7. sort</a></li>
+<li><a href="#orgheadline10">4.1. loop</a></li>
+<li><a href="#orgheadline11">4.2. if</a></li>
+<li><a href="#orgheadline12">4.3. case</a></li>
+<li><a href="#orgheadline13">4.4. select</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline25">7. IO</a></li>
-<li><a href="#orgheadline28">8. Unix Management</a>
+<li><a href="#orgheadline18">5. Condition</a>
 <ul>
-<li><a href="#orgheadline26">8.1. job control</a></li>
-<li><a href="#orgheadline27">8.2. return status</a></li>
+<li><a href="#orgheadline15">5.1. (())</a></li>
+<li><a href="#orgheadline16">5.2. [[]]</a></li>
+<li><a href="#orgheadline17">5.3. About [] [[]]</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">9. Unix Shell Operation</a></li>
-<li><a href="#orgheadline30">10. escape color</a></li>
-<li><a href="#orgheadline38">11. expansion</a>
+<li><a href="#orgheadline19">6. IO</a></li>
+<li><a href="#orgheadline22">7. Unix Management</a>
 <ul>
-<li><a href="#orgheadline31">11.1. brace expansion</a></li>
-<li><a href="#orgheadline32">11.2. tilde expansion</a></li>
-<li><a href="#orgheadline33">11.3. variable expansion</a></li>
-<li><a href="#orgheadline34">11.4. 变量替换</a></li>
-<li><a href="#orgheadline35">11.5. filename expansion</a></li>
-<li><a href="#orgheadline36">11.6. 字符串</a></li>
-<li><a href="#orgheadline37">11.7. 数值计算</a></li>
+<li><a href="#orgheadline20">7.1. job control</a></li>
+<li><a href="#orgheadline21">7.2. return status</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline39">12. function</a></li>
-<li><a href="#orgheadline42">13. Script</a>
+<li><a href="#orgheadline23">8. escape color</a></li>
+<li><a href="#orgheadline31">9. expansion</a>
 <ul>
-<li><a href="#orgheadline40">13.1. special parameters</a></li>
-<li><a href="#orgheadline41">13.2. 特殊变量</a></li>
+<li><a href="#orgheadline24">9.1. brace expansion</a></li>
+<li><a href="#orgheadline25">9.2. tilde expansion</a></li>
+<li><a href="#orgheadline26">9.3. variable expansion</a></li>
+<li><a href="#orgheadline27">9.4. 变量替换</a></li>
+<li><a href="#orgheadline28">9.5. filename expansion</a></li>
+<li><a href="#orgheadline29">9.6. 字符串</a></li>
+<li><a href="#orgheadline30">9.7. 数值计算</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline32">10. function</a></li>
+<li><a href="#orgheadline33">11. Script</a></li>
+<li><a href="#orgheadline34">12. My Scripts</a></li>
 </ul>
 </div>
 </div>
-<ul class="org-ul">
-<li>source 只在本shell可用</li>
-<li>export 声明为全局变量。只有全局变量可以被子shell继承</li>
-</ul>
 
-<div class="org-src-container">
-
-<pre class="src src-shell">find . -type f -name *.flac -exec mv {} ../out/ <span style="color: #008000;">\;</span>
-du -sm * | sort -nr
-</pre>
-</div>
-
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">1</span> command interactions</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> Common Tips</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> pipeline</h3>
+<ul class="org-ul">
+<li><code>source</code> will be in effect in current shell session, but not the sub-shells</li>
+<li><code>export</code> declare global variable, and will be in effect in sub-shells</li>
+</ul>
+</div>
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> grouping</h3>
 <div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><code>( list )</code>: a subshell is created, each command in list will execute in that shell</li>
+<li><code>{ list; }</code>: semicolon or newline is needed. No subshell is created, commands will run in current shell.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Operation</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><code>Ctrl-s</code> 停止显示</li>
+<li><code>Ctrl-q</code> 恢复显示</li>
+
+<li><code>Shift-pageup/down</code> pageup down</li>
+<li><code>shift-Insert</code> 粘贴。鼠标中键。</li>
+
+<li><code>mkdir -p</code> 同时建立父目录</li>
+<li><code>Ctrl-l</code> 清屏</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> General Concepts</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.1</span> pipeline</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-each command execute in its own subshell.
+Each command execute in its own subshell.
+The exit status of a pipeline is the exist status of the last command.
 </p>
 
 <div class="org-src-container">
@@ -246,22 +263,12 @@ each command execute in its own subshell.
 &lt;cmd1&gt; 2&gt;&amp;1 | &lt;cmd2&gt;
 </pre>
 </div>
-
-<p>
-The exit status of a pipeline is
-</p>
-
-<ul class="org-ul">
-<li>the exist status of the last command</li>
-<li>if <code>pipefail</code> option is enabled, the last command to exit with a non-zero status</li>
-<li>if <code>!</code> precedes the pipeline, it is logical negation</li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> redirection</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.2</span> redirection</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 
 <pre class="src src-shell">ls &gt; dirlist 2&gt;&amp;1
@@ -275,45 +282,83 @@ ls 2&gt;&amp;1 dirlist <span style="color: #8D8D84;"># </span><span style="color
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> list</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">3</span> Scripting Parameter</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+In shell script, <code>cd -</code> will cause the folder name to be printed.
+To disable the output, simply <code>cd - &gt; /dev/null</code>.
+</p>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.1</span> special parameters</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li><code>$*</code>: "$1c$2c$3c&#x2026;", c is the first character of $IFS</li>
+<li><code>$@</code>: "$1" "$2" "$3" &#x2026;</li>
+<li><code>$#</code>: the number of positional parameters, for <code>a.out -h</code> it is 1</li>
+<li><code>$?</code>: exit status</li>
+<li><code>$-</code>: current option flags</li>
+<li><code>$$</code>: process ID of the shell</li>
+<li><code>$!</code>: process ID of the job most recently placed into the background</li>
+<li><code>$0</code>:</li>
+<li><code>$n</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.2</span> 特殊变量</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 
-<pre class="src src-shell">&lt;cmd1&gt; &amp;&amp; &lt;cmd2&gt;
-&lt;cmd1&gt; || &lt;cmd2&gt;
-&lt;cmd1&gt; &amp; <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">background, return 0 immediately. input is redirected to /dev/null</span>
-&lt;cmd1&gt; ; &lt;cmd2&gt; <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">return status is the last one</span>
+<pre class="src src-shell">$<span style="color: #BA36A5;">0</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#33050;&#26412;&#21517;&#31216;</span>
+$&lt;n&gt; <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#31532;n&#20010;&#21442;&#25968;</span>
+$<span style="color: #BA36A5;">#</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#21442;&#25968;&#25968;&#37327;</span>
+$<span style="color: #BA36A5;">*</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#25152;&#26377;&#21442;&#25968;&#65292;&#20316;&#20026;&#19968;&#20010;&#23383;&#31526;&#20018;</span>
+$<span style="color: #BA36A5;">@</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#25152;&#26377;&#21442;&#25968;&#65292;&#20316;&#20026;&#23383;&#31526;&#20018;&#25968;&#32452;</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">example</span>
+./a.sh hello world
+<span style="color: #008000;">"$0"</span> =&gt; ./a.sh
+<span style="color: #008000;">"$1"</span> =&gt; hello
+<span style="color: #008000;">"$2"</span> =&gt; world
+<span style="color: #008000;">"$#"</span> =&gt; 2
+<span style="color: #008000;">"$*"</span> =&gt; <span style="color: #008000;">"./a.sh hello world"</span>
+<span style="color: #008000;">"$@"</span> =&gt; [ <span style="color: #008000;">"./a.sh"</span> <span style="color: #008000;">"hello"</span> <span style="color: #008000;">"world"</span> ]
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">$<span style="color: #BA36A5;">$</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#24403;&#21069;&#36827;&#31243;&#30340;PID</span>
+$<span style="color: #BA36A5;">?</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#19978;&#19968;&#20010;&#21629;&#20196;&#30340;&#36820;&#22238;&#20540;</span>
+$<span style="color: #BA36A5;">!</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#36816;&#34892;&#22312;&#21518;&#21488;&#30340;&#26368;&#21518;&#19968;&#20010;&#36827;&#31243;&#30340;PID&#12290;done&#20102;&#20063;&#31639;&#12290;</span>
+$<span style="color: #BA36A5;">_</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#19978;&#20010;&#21629;&#20196;&#30340;&#26368;&#21518;&#19968;&#20010;&#23383;&#27573;</span>
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">1.4</span> grouping</h3>
-<div class="outline-text-3" id="text-1-4">
-<ul class="org-ul">
-<li><code>( list )</code>: a subshell is created, each command in list will execute in that shell</li>
-<li><code>{ list; }</code>: semicolon or newline is needed. No subshell is created, commands will run in current shell.</li>
-</ul>
-</div>
-</div>
 </div>
 
 
-
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">2</span> Control Flow</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">4</span> Control Flow</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Any redirections apply to all commands within that compound, unless explicitly overwritten.
 </p>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">2.1</span> loop</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">4.1</span> loop</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 wherever a ';' appears, it may be replaced with one or more newlines.
 </p>
@@ -336,9 +381,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">2.2</span> if</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">4.2</span> if</h3>
+<div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #0000FF;">if</span> test-commands; <span style="color: #0000FF;">then</span>
@@ -352,9 +397,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">2.3</span> case</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">4.3</span> case</h3>
+<div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #0000FF;">case</span> word<span style="color: #0000FF;"> in</span>
@@ -369,9 +414,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">2.4</span> select</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">4.4</span> select</h3>
+<div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #0000FF;">select</span> name [in words ...]; <span style="color: #0000FF;">do</span> commands; <span style="color: #0000FF;">done</span>
@@ -387,41 +432,12 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">2.5</span> (())</h3>
-<div class="outline-text-3" id="text-2-5">
-<div class="org-src-container">
-
-<pre class="src src-shell">(( exp ))
-</pre>
 </div>
 
-<p>
-arithmetic expression is evaluated
-</p>
-</div>
-</div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">2.6</span> [[]]</h3>
-<div class="outline-text-3" id="text-2-6">
-<div class="org-src-container">
-
-<pre class="src src-shell">[[exp]]
-</pre>
-</div>
-
-<p>
-evaluation of conditional expression
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14"><span class="section-number-2">3</span> Condition</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">5</span> Condition</h2>
+<div class="outline-text-2" id="text-5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -555,10 +571,39 @@ evaluation of conditional expression
 </table>
 </div>
 
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">5.1</span> (())</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">3.1</span> About [] [[]]</h3>
-<div class="outline-text-3" id="text-3-1">
+<pre class="src src-shell">(( exp ))
+</pre>
+</div>
+
+<p>
+arithmetic expression is evaluated
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">5.2</span> [[]]</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+
+<pre class="src src-shell">[[exp]]
+</pre>
+</div>
+
+<p>
+evaluation of conditional expression
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">5.3</span> About [] [[]]</h3>
+<div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li><code>[</code> is a synonym for test, and a builtin for efficiency. It is a command.</li>
 <li><code>[[</code> is a keyword, perform comparisons in a manner more familiar to programmers.</li>
@@ -568,218 +613,9 @@ evaluation of conditional expression
 </div>
 
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">4</span> diff and patch</h2>
-<div class="outline-text-2" id="text-4">
-<div class="org-src-container">
-
-<pre class="src src-shell">diff -u old new &gt; patch
-diff -Naur olddir newdir &gt; patch
-patch -p&lt;num&gt; &lt;patch
-</pre>
-</div>
-
-<p>
-The format I used most: <code>patch -p&lt;num&gt; -d /path/to/dir &lt;p.patch</code>
-</p>
-
-<ul class="org-ul">
-<li><code>-p&lt;num&gt;</code>: how many leading slash to be skipped.
-e.g. <code>/usr/local/include</code>, <code>-p0</code> gives the whole,
-<code>-p1</code> gives <code>usr/loca/include</code>, while <code>-p2</code> gives <code>local/include</code>.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16"><span class="section-number-2">5</span> My Scripts</h2>
-<div class="outline-text-2" id="text-5">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">papers.txt contains titles of papers, one per line</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">scholar.py is from web, an API-like project for Google Scholar</span>
-<span style="color: #0000FF;">while </span><span style="color: #006FE0;">read</span> -r line; <span style="color: #0000FF;">do</span>
-    <span style="color: #BA36A5;">ID</span>=~./scholar.py -c 1 -t -p <span style="color: #008000;">"\"$line\""</span> | grep <span style="color: #008000;">"Cluster ID"</span> | awk <span style="color: #008000;">'{print $3}'</span>~
-    ./scholar.py -c 1 -C $<span style="color: #BA36A5;">ID</span> --citation=bt &gt;&gt; out.bib
-<span style="color: #0000FF;">done</span> &lt; papers.txt
-</pre>
-</div>
-
-<p>
-loop counter
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #BA36A5;">count</span>=1
-<span style="color: #0000FF;">while </span><span style="color: #006FE0;">read</span> -r line; <span style="color: #0000FF;">do</span>
-    <span style="color: #006FE0;">echo</span> $<span style="color: #BA36A5;">count</span>
-    <span style="color: #006FE0;">let</span> <span style="color: #BA36A5;">count</span>=count+1
-<span style="color: #0000FF;">done</span> &lt; papers.txt
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24"><span class="section-number-2">6</span> Builtin Utilities</h2>
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">6</span> IO</h2>
 <div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li><code>time &lt;command&gt;</code>: # the total user and system time consumed by the shell and its children</li>
-<li><code>column</code>: formats its input into multiple columns. <code>mount | column -t</code></li>
-<li><code>dd</code>: <code>dd if=xxx.iso of=/dev/sdb bs=4m; sync</code></li>
-<li><code>convert</code>: <code>convert xxx.jpg -resize 800 xxx.out.jpg # 800x&lt;height&gt;</code></li>
-<li><code>nl</code>: <code>nl &lt;filename&gt;</code> 添加行号。输出到stdout</li>
-<li><code>ln</code>: <code>ln -s &lt;target&gt; &lt;linkname&gt;</code> 记忆：新的东西总要最后才发布。</li>
-<li><code>ls</code>: order: <code>-r</code> reverse; <code>-s</code> file size; <code>X</code> extension; <code>-t</code> time</li>
-<li><code>tree</code>
-<ul class="org-ul">
-<li><code>-d</code> 只显示目录</li>
-<li><code>-f</code> 显示路径</li>
-<li><code>-F</code> 条目后有 [\*/=@|]</li>
-<li><code>-r</code> 倒序</li>
-<li><code>-t</code> 修改时间排序</li>
-<li><code>-L(\d)</code> 显示n层</li>
-</ul></li>
-<li><code>cat</code>: <code>-n</code> output with line number</li>
-<li>tail
-<ul class="org-ul">
-<li><code>-&lt;n&gt;</code> 显示后n行</li>
-<li><code>+&lt;n&gt;</code> 显示第n行到结尾</li>
-<li><code>-F</code> 跟踪显示不断增长的文件结尾</li>
-</ul></li>
-</ul>
-</div>
-
-
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">6.1</span> xargs</h3>
-<div class="outline-text-3" id="text-6-1">
-<p>
-相当于~~，并把输出放 <i>结尾</i>
-</p>
-<div class="org-src-container">
-
-<pre class="src src-shell">find /etc -name <span style="color: #008000;">'*.conf'</span> | xargs ls -l
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">the same as:</span>
-ls -l ~find ...~
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">6.2</span> grep</h3>
-<div class="outline-text-3" id="text-6-2">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-n: &#26174;&#31034;&#34892;&#21495;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
-grep &lt;pattern&gt; &lt;file&gt;
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19"><span class="section-number-3">6.3</span> man</h3>
-<div class="outline-text-3" id="text-6-3">
-<ol class="org-ol">
-<li>普通用户可执行的命令</li>
-<li>系统调用手册，内核函数说明</li>
-<li>子程序手册，库函数说明</li>
-<li>系统设备手册，~/dev~目录中设备文件的参考说明</li>
-<li>配置文件格式手册</li>
-<li>游戏说明手册</li>
-<li>协议转换手册</li>
-<li>系统管理工具手册</li>
-<li>linux系统例程手册</li>
-</ol>
-
-<p>
-<code>man [num] &lt;item&gt;</code>
-</p>
-</div>
-</div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">6.4</span> find</h3>
-<div class="outline-text-3" id="text-6-4">
-<p>
-Copy file based on find, and take care of quotes and spaces:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-shell">find CloudMusic -type f -name <span style="color: #008000;">"*mp3"</span> -exec cp <span style="color: #008000;">"{}"</span> all_music <span style="color: #008000;">\;</span>
-</pre>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">6.5</span> tr: translate characters</h3>
-<div class="outline-text-3" id="text-6-5">
-<p>
-tr &lt;string1&gt; &lt;string2&gt;
-</p>
-
-<p>
-the characters in string1 are translated into the characters in string2
-where the first character in string1 is translated into the first character in string2 and so on.  If string1 is longer than string2,
-the last character found in string2 is duplicated until string1 is exhausted.
-</p>
-
-<p>
-characters in the string can be:
-</p>
-
-<p>
-any characters will represent itself if not:
-</p>
-
-<ul class="org-ul">
-<li><code>\\octal</code>: A backslash followed by 1, 2 or 3 octal digits</li>
-<li><code>\n</code>, <code>\t</code></li>
-<li><code>a-z</code>: inclusive, ascending</li>
-<li><code>[:class:]</code>: space, upper, lower, alnum
-<ul class="org-ul">
-<li>if <code>[:upper:]</code> and <code>[:lower:]</code> appears in the same relative position, they will correlate.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22"><span class="section-number-3">6.6</span> uniq: report or filter out repeated lines in a file</h3>
-<div class="outline-text-3" id="text-6-6">
-<p>
-Repeated lines in the input will not be detected if they are not adjacent,
-so it may be necessary to sort the files first.
-</p>
-
-<ul class="org-ul">
-<li><code>uniq -c</code>: Precede each output line with the count of the number of times the line occurred in the input, followed by a single space.</li>
-<li><code>-u</code>: Only output lines that are not repeated in the input.</li>
-<li><code>-i</code>: Case insensitive comparison of lines.</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23"><span class="section-number-3">6.7</span> sort</h3>
-<div class="outline-text-3" id="text-6-7">
-<ul class="org-ul">
-<li><code>-n</code>: compare according to string numerical value</li>
-<li><code>-r</code>: reverse</li>
-</ul>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline25" class="outline-2">
-<h2 id="orgheadline25"><span class="section-number-2">7</span> IO</h2>
-<div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #006FE0;">read</span> -p <span style="color: #008000;">"please input: "</span> a b c
@@ -789,11 +625,9 @@ so it may be necessary to sort the files first.
 </div>
 </div>
 
-
-
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="orgheadline28"><span class="section-number-2">8</span> Unix Management</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline22" class="outline-2">
+<h2 id="orgheadline22"><span class="section-number-2">7</span> Unix Management</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>id # 显示用户和组的信息</li>
 <li>dmesg # 查看内核日志</li>
@@ -830,9 +664,9 @@ so it may be necessary to sort the files first.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26"><span class="section-number-3">8.1</span> job control</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">7.1</span> job control</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>C-Z suspend</li>
 <li>refer a job
@@ -852,9 +686,9 @@ so it may be necessary to sort the files first.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27"><span class="section-number-3">8.2</span> return status</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">7.2</span> return status</h3>
+<div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>simple command: provided by POSIX 1003.1 <code>waitpid</code> function(less than 128)</li>
 <li>if command terminated by signal <code>n</code>, it is <code>128+n</code></li>
@@ -865,26 +699,9 @@ so it may be necessary to sort the files first.
 </div>
 
 
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29"><span class="section-number-2">9</span> Unix Shell Operation</h2>
-<div class="outline-text-2" id="text-9">
-<ul class="org-ul">
-<li><code>Ctrl-s</code> 停止显示</li>
-<li><code>Ctrl-q</code> 恢复显示</li>
-
-<li><code>Shift-pageup/down</code> pageup down</li>
-<li><code>shift-Insert</code> 粘贴。鼠标中键。</li>
-
-<li><code>mkdir -p</code> 同时建立父目录</li>
-<li><code>Ctrl-l</code> 清屏</li>
-</ul>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline30" class="outline-2">
-<h2 id="orgheadline30"><span class="section-number-2">10</span> escape color</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23"><span class="section-number-2">8</span> escape color</h2>
+<div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/</span><span style="color: #0000FF;">bash</span>
@@ -955,17 +772,17 @@ in PS1, use:
 </div>
 </div>
 
-<div id="outline-container-orgheadline38" class="outline-2">
-<h2 id="orgheadline38"><span class="section-number-2">11</span> expansion</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-orgheadline31" class="outline-2">
+<h2 id="orgheadline31"><span class="section-number-2">9</span> expansion</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><code>xxx</code> &lt;=&gt; <code>$(xxx)</code></li>
 </ul>
 </div>
 
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31"><span class="section-number-3">11.1</span> brace expansion</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">9.1</span> brace expansion</h3>
+<div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #006FE0;">echo</span> a{d,b,c}e
@@ -976,9 +793,9 @@ mkdir /usr/local/{old,new,dist}
 </div>
 </div>
 
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32"><span class="section-number-3">11.2</span> tilde expansion</h3>
-<div class="outline-text-3" id="text-11-2">
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">9.2</span> tilde expansion</h3>
+<div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 
 <pre class="src src-shell">~/foo <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">$HOME/foo</span>
@@ -988,9 +805,9 @@ mkdir /usr/local/{old,new,dist}
 </div>
 </div>
 
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33"><span class="section-number-3">11.3</span> variable expansion</h3>
-<div class="outline-text-3" id="text-11-3">
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">9.3</span> variable expansion</h3>
+<div class="outline-text-3" id="text-9-3">
 <p>
 return value:
 </p>
@@ -1006,9 +823,9 @@ Otherwise the value of var is returned.</li>
 </div>
 
 
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34"><span class="section-number-3">11.4</span> 变量替换</h3>
-<div class="outline-text-3" id="text-11-4">
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">9.4</span> 变量替换</h3>
+<div class="outline-text-3" id="text-9-4">
 <p>
 <b>返回结果，但不改变原变量的值。</b>
 </p>
@@ -1056,9 +873,9 @@ if pattern begins with
 </div>
 </div>
 
-<div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35"><span class="section-number-3">11.5</span> filename expansion</h3>
-<div class="outline-text-3" id="text-11-5">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">9.5</span> filename expansion</h3>
+<div class="outline-text-3" id="text-9-5">
 <ul class="org-ul">
 <li><code>*</code>: match any string, including null string</li>
 <li><code>?</code>: match any single character</li>
@@ -1073,9 +890,9 @@ if pattern begins with
 </div>
 </div>
 
-<div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36"><span class="section-number-3">11.6</span> 字符串</h3>
-<div class="outline-text-3" id="text-11-6">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">9.6</span> 字符串</h3>
+<div class="outline-text-3" id="text-9-6">
 <p>
 substring使用的是bash中的正则。
 </p>
@@ -1100,9 +917,9 @@ substring若不加引号,则为正常字符串,加引号则可用$转义.
 </div>
 </div>
 
-<div id="outline-container-orgheadline37" class="outline-3">
-<h3 id="orgheadline37"><span class="section-number-3">11.7</span> 数值计算</h3>
-<div class="outline-text-3" id="text-11-7">
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">9.7</span> 数值计算</h3>
+<div class="outline-text-3" id="text-9-7">
 <div class="org-src-container">
 
 <pre class="src src-shell">(( <span style="color: #BA36A5;">a</span>=2+3 ))
@@ -1119,9 +936,9 @@ a = ((12))
 </div>
 </div>
 
-<div id="outline-container-orgheadline39" class="outline-2">
-<h2 id="orgheadline39"><span class="section-number-2">12</span> function</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-orgheadline32" class="outline-2">
+<h2 id="orgheadline32"><span class="section-number-2">10</span> function</h2>
+<div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #006699;">name</span>() compound-command [ redirections ]
@@ -1138,67 +955,43 @@ a = ((12))
 </div>
 </div>
 
-<div id="outline-container-orgheadline42" class="outline-2">
-<h2 id="orgheadline42"><span class="section-number-2">13</span> Script</h2>
-<div class="outline-text-2" id="text-13">
-</div><div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40"><span class="section-number-3">13.1</span> special parameters</h3>
-<div class="outline-text-3" id="text-13-1">
-<ul class="org-ul">
-<li><code>$*</code>: "$1c$2c$3c&#x2026;", c is the first character of $IFS</li>
-<li><code>$@</code>: "$1" "$2" "$3" &#x2026;</li>
-<li><code>$#</code>: the number of positional parameters</li>
-<li><code>$?</code>: exit status</li>
-<li><code>$-</code>: current option flags</li>
-<li><code>$$</code>: process ID of the shell</li>
-<li><code>$!</code>: process ID of the job most recently placed into the background</li>
-<li><code>$0</code>:</li>
-<li><code>$n</code></li>
-</ul>
-</div>
+<div id="outline-container-orgheadline33" class="outline-2">
+<h2 id="orgheadline33"><span class="section-number-2">11</span> Script</h2>
 </div>
 
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41"><span class="section-number-3">13.2</span> 特殊变量</h3>
-<div class="outline-text-3" id="text-13-2">
+<div id="outline-container-orgheadline34" class="outline-2">
+<h2 id="orgheadline34"><span class="section-number-2">12</span> My Scripts</h2>
+<div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 
-<pre class="src src-shell">$<span style="color: #BA36A5;">0</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#33050;&#26412;&#21517;&#31216;</span>
-$&lt;n&gt; <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#31532;n&#20010;&#21442;&#25968;</span>
-$<span style="color: #BA36A5;">#</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#21442;&#25968;&#25968;&#37327;</span>
-$<span style="color: #BA36A5;">*</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#25152;&#26377;&#21442;&#25968;&#65292;&#20316;&#20026;&#19968;&#20010;&#23383;&#31526;&#20018;</span>
-$<span style="color: #BA36A5;">@</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#25152;&#26377;&#21442;&#25968;&#65292;&#20316;&#20026;&#23383;&#31526;&#20018;&#25968;&#32452;</span>
+<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">papers.txt contains titles of papers, one per line</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">scholar.py is from web, an API-like project for Google Scholar</span>
+<span style="color: #0000FF;">while </span><span style="color: #006FE0;">read</span> -r line; <span style="color: #0000FF;">do</span>
+    <span style="color: #BA36A5;">ID</span>=~./scholar.py -c 1 -t -p <span style="color: #008000;">"\"$line\""</span> | grep <span style="color: #008000;">"Cluster ID"</span> | awk <span style="color: #008000;">'{print $3}'</span>~
+    ./scholar.py -c 1 -C $<span style="color: #BA36A5;">ID</span> --citation=bt &gt;&gt; out.bib
+<span style="color: #0000FF;">done</span> &lt; papers.txt
 </pre>
 </div>
 
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">example</span>
-./a.sh hello world
-<span style="color: #008000;">"$0"</span> =&gt; ./a.sh
-<span style="color: #008000;">"$1"</span> =&gt; hello
-<span style="color: #008000;">"$2"</span> =&gt; world
-<span style="color: #008000;">"$#"</span> =&gt; 2
-<span style="color: #008000;">"$*"</span> =&gt; <span style="color: #008000;">"./a.sh hello world"</span>
-<span style="color: #008000;">"$@"</span> =&gt; [ <span style="color: #008000;">"./a.sh"</span> <span style="color: #008000;">"hello"</span> <span style="color: #008000;">"world"</span> ]
-</pre>
-</div>
+<p>
+loop counter
+</p>
 
 <div class="org-src-container">
 
-<pre class="src src-shell">$<span style="color: #BA36A5;">$</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#24403;&#21069;&#36827;&#31243;&#30340;PID</span>
-$<span style="color: #BA36A5;">?</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#19978;&#19968;&#20010;&#21629;&#20196;&#30340;&#36820;&#22238;&#20540;</span>
-$<span style="color: #BA36A5;">!</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#36816;&#34892;&#22312;&#21518;&#21488;&#30340;&#26368;&#21518;&#19968;&#20010;&#36827;&#31243;&#30340;PID&#12290;done&#20102;&#20063;&#31639;&#12290;</span>
-$<span style="color: #BA36A5;">_</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#19978;&#20010;&#21629;&#20196;&#30340;&#26368;&#21518;&#19968;&#20010;&#23383;&#27573;</span>
+<pre class="src src-shell"><span style="color: #BA36A5;">count</span>=1
+<span style="color: #0000FF;">while </span><span style="color: #006FE0;">read</span> -r line; <span style="color: #0000FF;">do</span>
+    <span style="color: #006FE0;">echo</span> $<span style="color: #BA36A5;">count</span>
+    <span style="color: #006FE0;">let</span> <span style="color: #BA36A5;">count</span>=count+1
+<span style="color: #0000FF;">done</span> &lt; papers.txt
 </pre>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-26 Sat 12:09</p>
+<p class="date">Created: 2016-04-28 Thu 14:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
