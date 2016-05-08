@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-07 Sat 18:22 -->
+<!-- 2016-05-03 Tue 13:10 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mac OS</title>
+<title>GDB</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -146,68 +146,70 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Mac OS</h1>
+<h1 class="title">GDB</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Check List of clean installation</a></li>
-<li><a href="#orgheadline2">2. Alfred</a></li>
+<li><a href="#orgheadline1">1. Core Dump</a></li>
+<li><a href="#orgheadline2">2. Batch mode</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Check List of clean installation</h2>
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Core Dump</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>seil</li>
-<li>karabiner</li>
-<li>chrome</li>
-<li>netease music</li>
-<li>cd to</li>
-<li>Graphviz/Dot</li>
-<li>latex</li>
-<li>emacs</li>
-<li>vlc</li>
-<li>Disk Inventory</li>
-<li>Dash</li>
-<li>remote viewer</li>
-<li>unarchiver</li>
-<li>alfred</li>
-<li>artrage lite</li>
-</ul>
+<p>
+The "core" may not be there.
+On ubuntu, this is possibly because you have a core file size ulimit of 0.
+</p>
 
-<div class="org-src-container">
-
-<pre class="src src-shell">brew install --with-cocoa emacs
+<p>
+Use this to enable it:
+</p>
+<pre class="example">
+ulimit -c unlimited
 </pre>
-</div>
+
+<p>
+The core will be dumped to <code>./core</code> file.
+</p>
+
+<p>
+Use gdb to analyze the core:
+</p>
+<pre class="example">
+gdb /path/to/executable ./core
+</pre>
+
+<p>
+print the stack trace:
+</p>
+
+<pre class="example">
+bt
+bt full
+</pre>
 </div>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Alfred</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Batch mode</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-<a href="https://github.com/zenorocha/alfred-workflows">https://github.com/zenorocha/alfred-workflows</a>
+It is useful to run gdb in batch mode instead of interactively.
 </p>
-<ul class="org-ul">
-<li>Kill Process</li>
-<li>VirtualBox</li>
-<li>scholar
-<ul class="org-ul">
-<li>with space</li>
-<li>argument required</li>
-<li>URL: <a href="https://scholar.google.com/scholar?hl=en&amp;q=%7Bquery">https://scholar.google.com/scholar?hl=en&amp;q=%7Bquery</a>}</li>
-</ul></li>
-</ul>
+
+<pre class="example">
+gdb -batch -x commands.gdb /path/to/executable [/path/to/core/dump/file]
+</pre>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-05-07 Sat 18:22</p>
+<p class="date">Created: 2016-05-03 Tue 13:10</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
