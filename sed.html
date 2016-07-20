@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-26 Sat 12:09 -->
+<!-- 2016-06-14 Tue 13:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>sed</title>
@@ -151,26 +151,81 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. usage</a></li>
-<li><a href="#orgheadline2">2. concepts</a></li>
-<li><a href="#orgheadline3">3. workflow</a></li>
-<li><a href="#orgheadline4">4. cmd args</a></li>
-<li><a href="#orgheadline5">5. range</a></li>
-<li><a href="#orgheadline9">6. commands</a>
+<li><a href="#orgheadline2">1. Introduction</a>
 <ul>
-<li><a href="#orgheadline6">6.1. edit</a></li>
-<li><a href="#orgheadline7">6.2. output</a></li>
-<li><a href="#orgheadline8">6.3. flow control</a></li>
+<li><a href="#orgheadline1">1.1. About the regular expression version</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">7. examples</a></li>
+<li><a href="#orgheadline3">2. usage</a></li>
+<li><a href="#orgheadline4">3. concepts</a></li>
+<li><a href="#orgheadline5">4. workflow</a></li>
+<li><a href="#orgheadline6">5. cmd args</a></li>
+<li><a href="#orgheadline7">6. range</a></li>
+<li><a href="#orgheadline11">7. commands</a>
+<ul>
+<li><a href="#orgheadline8">7.1. edit</a></li>
+<li><a href="#orgheadline9">7.2. output</a></li>
+<li><a href="#orgheadline10">7.3. flow control</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">8. examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> usage</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+The sed version on Mac OS and GNU Linux are different.
+So, use gnu! On Mac, install
+</p>
+<pre class="example">
+brew install gnu-sed
+</pre>
+
+<p>
+This will make a <code>gsed</code> command available.
+To write a cross platform script, use
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #006FE0;">echo</span> <span style="color: #008000;">"OSTYPE: "</span> $<span style="color: #BA36A5;">OSTYPE</span>
+<span style="color: #BA36A5;">SED</span>=sed
+<span style="color: #0000FF;">if</span> [[ <span style="color: #008000;">"$OSTYPE"</span> == <span style="color: #008000;">"linux-gnu"</span> ]]; <span style="color: #0000FF;">then</span>
+    <span style="color: #BA36A5;">SED</span>=sed
+<span style="color: #0000FF;">elif</span> [[ <span style="color: #008000;">"$OSTYPE"</span> == <span style="color: #008000;">"darwin"</span>* ]]; <span style="color: #0000FF;">then</span>
+    <span style="color: #BA36A5;">SED</span>=gsed
+<span style="color: #0000FF;">fi</span>
+$<span style="color: #BA36A5;">SED</span> -E -e <span style="color: #008000;">"460,$ s/REG[0-9]{1,2}//g"</span> compress42.c.orig &gt; compress42.bugsig.c
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> About the regular expression version</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<code>-E</code> will enable extra features, such as:
+</p>
+<ul class="org-ul">
+<li>a{1,2}</li>
+</ul>
+
+<p>
+See <code>re_format(7)</code> for details.
+</p>
+
+<p>
+There's no <code>\d</code>, so use <code>[0-9]</code> instead. The man page says <code>[:digit:]</code> can be used, but it seems not working.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">2</span> usage</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 in shell script
 </p>
@@ -184,9 +239,9 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> concepts</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">3</span> concepts</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>input</li>
 <li>output</li>
@@ -196,9 +251,9 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> workflow</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">4</span> workflow</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>copy a line from input(exclude the tailing newline) into pattern buffer</li>
 <li>apply command(s) to it</li>
@@ -207,9 +262,9 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> cmd args</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">5</span> cmd args</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>-n: by default each line of input is echoed to the standard output after all of the commands have been applied to it. The -n option suppresses this behavior</li>
 <li>-e: sed -e 'xxx' -e 'xxx' -e 'xxx'</li>
@@ -218,9 +273,9 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">5</span> range</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">6</span> range</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 sed will only apply command for the lines in the specified range.
 If the command is preceded with <code>!</code>, that means the command works on lines not in the range.
@@ -236,12 +291,12 @@ sed <span style="color: #008000;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">6</span> commands</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">6.1</span> edit</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">7</span> commands</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">7.1</span> edit</h3>
+<div class="outline-text-3" id="text-7-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -304,9 +359,9 @@ sed <span style="color: #008000;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">6.2</span> output</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">7.2</span> output</h3>
+<div class="outline-text-3" id="text-7-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -369,9 +424,9 @@ sed <span style="color: #008000;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">6.3</span> flow control</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">7.3</span> flow control</h3>
+<div class="outline-text-3" id="text-7-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -423,9 +478,9 @@ sed <span style="color: #008000;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10"><span class="section-number-2">7</span> examples</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">8</span> examples</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 print
 </p>
@@ -482,7 +537,7 @@ sed <span style="color: #008000;">'1,/^$/ d'</span> <span style="color: #8D8D84;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-03-26 Sat 12:09</p>
+<p class="date">Created: 2016-06-14 Tue 13:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
