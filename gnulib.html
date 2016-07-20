@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-20 Wed 14:12 -->
+<!-- 2016-07-20 Wed 14:13 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tmux</title>
+<title>GNULib</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -146,19 +146,169 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Tmux</h1>
-<div class="org-src-container">
+<h1 class="title">GNULib</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Workflow</a></li>
+<li><a href="#orgheadline4">2. Trouble shooting</a>
+<ul>
+<li><a href="#orgheadline2">2.1. workflow</a></li>
+<li><a href="#orgheadline3">2.2. The gettextize and autopoint</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This is a source level library.
+</p>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Workflow</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Set the <code>configure.ac</code>, <code>a.c</code>, <code>Makefile.am</code>.
+</p>
 
-<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">start a new session, with the session name set to "helium"</span>
-tmux new -s helium
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">attach, and the target is "helium"</span>
-tmux a -t helium
+<p>
+Add the following to <code>Makefile.am</code>:
+</p>
+<pre class="example">
+# old staff
+bin_PROGRAMS = foo
+foo_SOURCES = a.c
+
+# new staff
+SUBDIRS = lib
+ACLOCAL_AMFLAGS = -I m4
+
+AM_CPPFLAGS = -Ilib
+LDADD = lib/libgnu.a
+
+EXTRA_DIST = m4/gnulib-cache.m4
 </pre>
+
+<p>
+Add to <code>configure.ac</code> after <code>AC_PROG_CC</code>:
+</p>
+<pre class="example">
+gl_EARLY
+gl_INIT
+
+# not sure if sharp is comment
+AC_CONFIG_FILES([Makefile lib/Makefile]) # this is to add lib/Makefile
+AC_CONFIG_HEADERS([config.h]) # this is to output config.h
+</pre>
+
+<p>
+Then
+</p>
+<pre class="example">
+aclocal
+autoconf
+automake --add-missing
+./configure
+make
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> workflow</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+I did this
+</p>
+<pre class="example">
+gnulib-tool --import exclude
+</pre>
+
+<p>
+And I got this message:
+</p>
+<blockquote>
+<p>
+You may need to add #include directives for the following .h files.
+  #include "exclude.h"
+</p>
+
+<p>
+You may need to use the following Makefile variables when linking.
+Use them in &lt;program&gt;<sub>LDADD</sub> when linking a program, or
+in &lt;library&gt;<sub>a</sub><sub>LDFLAGS</sub> or &lt;library&gt;<sub>la</sub><sub>LDFLAGS</sub> when linking a library.
+  $(LTLIBINTL) when linking with libtool, $(LIBINTL) otherwise
+  $(LTLIBTHREAD) when linking with libtool, $(LIBTHREAD) otherwise
+</p>
+
+<p>
+Don't forget to
+</p>
+<ul class="org-ul">
+<li>add "lib/Makefile" to AC<sub>CONFIG</sub><sub>FILES</sub> in ./configure.ac,</li>
+<li>mention "lib" in SUBDIRS in Makefile.am,</li>
+<li>mention "-I m4" in ACLOCAL<sub>AMFLAGS</sub> in Makefile.am,</li>
+<li>mention "m4/gnulib-cache.m4" in EXTRA<sub>DIST</sub> in Makefile.am,</li>
+<li>invoke gl<sub>EARLY</sub> in ./configure.ac, right after AC<sub>PROG</sub><sub>CC</sub>,</li>
+<li>invoke gl<sub>INIT</sub> in ./configure.ac.</li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> The gettextize and autopoint</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+After <code>gettextize</code>:
+</p>
+
+<blockquote>
+<p>
+Please use AM<sub>GNU</sub><sub>GETTEXT</sub>([external]) in order to cause autoconfiguration
+to look for an external libintl.
+</p>
+
+<p>
+Please create po/Makevars from the template in po/Makevars.template.
+You can then remove po/Makevars.template.
+</p>
+
+<p>
+Please fill po/POTFILES.in as described in the documentation.
+</p>
+
+<p>
+Please run 'aclocal' to regenerate the aclocal.m4 file.
+You need aclocal from GNU automake 1.9 (or newer) to do this.
+Then run 'autoconf' to regenerate the configure file.
+</p>
+
+<p>
+You will also need config.guess and config.sub, which you can get from the CVS
+of the 'config' project at <a href="http://savannah.gnu.org/">http://savannah.gnu.org/</a>. The commands to fetch them
+are
+$ wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.guess'
+$ wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.sub'
+</p>
+
+<p>
+You might also want to copy the convenience header file gettext.h
+from the /usr/local/Cellar/gettext/0.19.8.1/share/gettext directory into your package.
+It is a wrapper around &lt;libintl.h&gt; that implements the configure &#x2013;disable-nls
+option.
+</p>
+</blockquote>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-07-20 Wed 14:12</p>
+<p class="date">Created: 2016-07-20 Wed 14:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
