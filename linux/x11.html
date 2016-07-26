@@ -6,7 +6,7 @@
 <!-- 2016-07-25 Mon 18:10 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fundamental of Math</title>
+<title>X11</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -143,102 +143,206 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Fundamental of Math</h1>
+<h1 class="title">X11</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. 证明 \(ln(\frac{x+1}{x}) > \frac{1}{1+x}\)</a></li>
-<li><a href="#orgheadline2">2. 求 \(\frac{d}{dx} (1+\frac{1}{x}) ^x\)</a></li>
-<li><a href="#orgheadline3">3. \(f(k)\) 是单调的，给 \(\sum_m^n f(k)\) 个bound</a></li>
+<li><a href="#orgheadline3">1. Window Manager</a>
+<ul>
+<li><a href="#orgheadline1">1.1. ratpoison</a></li>
+<li><a href="#orgheadline2">1.2. stumpwm</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">2. Emacs As Window Manager</a>
+<ul>
+<li><a href="#orgheadline4">2.1. A time sink</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> 证明 \(ln(\frac{x+1}{x}) > \frac{1}{1+x}\)</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> Window Manager</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-证明：
+Candidates:
 </p>
-
-\begin{equation}
-ln(\frac{x+1}{x}) = ln(x+1) - ln(x) = ln(x)|_x^{x+1} = \int_x^{x+1} \frac{1}{x} dx
-\end{equation}
+<ul class="org-ul">
+<li>ratpoison</li>
+<li>dwm</li>
+<li>stumpwm: written in common lisp</li>
+<li>exwm: emacs X window manager</li>
+</ul>
 
 <p>
-画图可以看出。
+Noop:
+</p>
+<ul class="org-ul">
+<li>i3: flavor VI, Noop!</li>
+</ul>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> ratpoison</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+This is actually a wonderful WM.
+To start:
 </p>
 
+<pre class="example">
+aptitude install ratpoison
+</pre>
 
-<div class="figure">
-<p><img src="https://farm9.staticflickr.com/8657/15427987273_5b4abb8c30_q.jpg" alt="15427987273_5b4abb8c30_q.jpg" />
+<p>
+In <code>.xinitrc</code>:
 </p>
+
+<pre class="example">
+exec ratpoison
+</pre>
+
+<ul class="org-ul">
+<li><code>C-t ?</code> to show the help</li>
+</ul>
+
+<p>
+actually <code>C-t</code> is the prefix of every command, <code>C-g</code> to abort.
+</p>
+<ul class="org-ul">
+<li><code>C-t :</code>: type command</li>
+<li><code>C-t !</code>: run shell command</li>
+<li><code>C-t .</code>: open menu</li>
+<li><code>C-t c</code>: open terminal</li>
+</ul>
+
+
+<p>
+HOWEVER, this is pretty old, and it cause the screen to go brighter and darker back and force.
+Fortunately the stumpwm is very like this one, but
+</p>
+<ol class="org-ol">
+<li>actively maintained on github.</li>
+<li>written in common lisp</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> stumpwm</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Same as ratpoison:
+</p>
+<ul class="org-ul">
+<li><code>C-t ?</code>: show help</li>
+<li><code>C-t !</code>: run shell command</li>
+<li><code>C-t s</code>: hsplit</li>
+<li><code>C-t S</code>: vsplit</li>
+<li><code>C-t Q</code>: kill other frames, only retains this one</li>
+<li><code>C-t r</code>: resize, can use <code>C-n</code>, <code>C-p</code> interactively</li>
+</ul>
+
+
+<p>
+Different from ratpoison:
+</p>
+<ul class="org-ul">
+<li><code>C-t e</code>: open emacs!</li>
+<li><code>C-t ;</code>: type a command</li>
+<li><code>C-t :</code>: eval</li>
+</ul>
+
+<p>
+OK, it is good, except the default cursor. How can I change it?
+</p>
+
+<p>
+Install xcursor-themes:
+</p>
+<pre class="example">
+aptitude install xcursor-themes
+aptitude show xcursor-themes # here it will output the themes name
+</pre>
+
+<p>
+In <code>.Xresources</code>:
+</p>
+<pre class="example">
+Xcursor.theme: redglass
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> 求 \(\frac{d}{dx} (1+\frac{1}{x}) ^x\)</h2>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">2</span> Emacs As Window Manager</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-解：
+<a href="http://www.howardism.org/Technical/Emacs/new-window-manager.html">http://www.howardism.org/Technical/Emacs/new-window-manager.html</a>
 </p>
 
-\begin{equation}
-f(x)=(1+\frac{1}{x})^x
-ln(f(x)) = x ln(1+\frac{1}{x})
-\frac{f'(x)}{f(x)}=ln(1+\frac{1}{x})+\frac{x}{1+\frac{1}{x}}(-\frac{1}{x^2})
-\end{equation}
-</div>
-</div>
+<pre class="example">
+sudo aptitude install xinit
+sudo aptitude install emacs
+</pre>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> \(f(k)\) 是单调的，给 \(\sum_m^n f(k)\) 个bound</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-如果单增，则
-</p>
-\begin{equation}
-\int_{m-1}^n f(x) dx \le \sum_m^n f(k) \le \int_m^{n+1} f(x) dx
-\end{equation}
 
 <p>
-如果单减，则
+In <code>.initrc</code>:
 </p>
-\begin{equation}
-\int_m^{n+1}f(x)dx \le \sum_m^n f(k) \le \int_{m-1}^n f(x)dx
-\end{equation}
+<pre class="example">
+exec emacs
+</pre>
 
-
-<div class="figure">
-<p><img src="https://farm8.staticflickr.com/7498/15427981453_032c4621bc_q.jpg" alt="15427981453_032c4621bc_q.jpg" />
+<p>
+In emacs configure:
 </p>
+<pre class="example">
+(set-frame-parameter nil 'fullscreen 'fullboth)
+</pre>
+
+<p>
+When you need to run something, just <code>M-x !</code> and call <code>xterm</code>.
+</p>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.1</span> A time sink</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">setup-windows</span> ()
+  <span style="color: #036A07;">"Organize a series of windows for ultimate distraction."</span>
+  (interactive)
+  (delete-other-windows)
+
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Start with the Stack Overflow interface</span>
+  (sx-tab-frontpage t nil)
+
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Put IRC on the other side</span>
+  (split-window-horizontally)
+  (other-window 1)
+  (circe-connect-all)
+
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">My RSS Feed goes on top:</span>
+  (split-window-vertically)
+  (elfeed)
+
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">And start up the Twitter interface above that:</span>
+  (other-window 2)
+  (split-window-vertically)
+  (twit)
+
+  (window-configuration-to-register ?w))
+</pre>
+</div>
 </div>
 </div>
 </div>
