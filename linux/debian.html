@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-25 Mon 18:10 -->
+<!-- 2016-08-04 Thu 18:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Debian</title>
@@ -163,6 +163,15 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline5">3.2. systemd</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline11">4. Package Management</a>
+<ul>
+<li><a href="#orgheadline7">4.1. binary or source</a></li>
+<li><a href="#orgheadline8">4.2. code name</a></li>
+<li><a href="#orgheadline9">4.3. source</a></li>
+<li><a href="#orgheadline10">4.4. Upgrade the system: from stable to testing</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">5. Debian boost up scripts</a></li>
 </ul>
 </div>
 </div>
@@ -170,7 +179,34 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgheadline2" class="outline-2">
 <h2 id="orgheadline2"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
+<p>
+<a href="debian-setup.html">Debian setup</a>.
+</p>
+
+<p>
+A new debian installation: choose not to use any desktop environment!
+Essential packages:
+</p>
+<ul class="org-ul">
+<li>git</li>
+<li>emacs</li>
+<li>xinit</li>
+<li>build-essential</li>
+<li>linux-headers-$(uname -r)</li>
+<li>stumpwm</li>
+</ul>
+
+<p>
+Install google-chrome.
+</p>
+
+<p>
+Get the <code>.hebi</code> and <code>.emacs.d</code> set up.
+</p>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-3">
 <h3 id="orgheadline1"><span class="section-number-3">1.1</span> VirtualBox Guest addition</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
@@ -184,6 +220,11 @@ sudo mount /dev/src0 /media/cdrom
 cd /media/cdrom
 sudo ./VBoxLinuxAdditions.run
 </pre>
+
+<p>
+Guest addition is needed for clipboard sharing.
+To enable it, you need: <code>VBoxClient --clipboard</code>.
+</p>
 </div>
 </div>
 </div>
@@ -250,10 +291,121 @@ Some examples:
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">4</span> Package Management</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><code>/etc/apt/sources.list</code></li>
+</ul>
+
+<p>
+Once installed google-chrome deb file downloaded from google,
+it will add one file: <code>/etc/apt/sources.list.d/google-chrome</code>.
+</p>
+
+<p>
+The original sources.list after a minimal installation:
+</p>
+<pre class="example">
+# deb cdrom:[Debian GNU/Linux 8.5.0 _Jessie_ - Official amd64 NETINST Binary-1 20160604-15:31]/ jessie main
+#deb cdrom:[Debian GNU/Linux 8.5.0 _Jessie_ - Official amd64 NETINST Binary-1 20160604-15:31]/ jessie main
+
+deb http://ftp.us.debian.org/debian/ jessie main
+deb-src http://ftp.us.debian.org/debian/ jessie main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main
+</pre>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">4.1</span> binary or source</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li><code>deb</code>: binary</li>
+<li><code>deb-src</code>: source</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">4.2</span> code name</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>jessie</code> is the current name code for the stable release version of Debian.
+The next release and the next next release code name are also available.
+</p>
+
+<ul class="org-ul">
+<li><code>jessie</code> is equal to <code>stable</code></li>
+<li><code>stretch</code> is equal to <code>testing</code></li>
+<li><code>sid</code> is equal to <code>unstable</code></li>
+</ul>
+
+<p>
+Sometimes you want to use stable, but with new versions of packages from <code>testing</code> release.
+This is called, for <code>jessie</code>, the <code>jessie-backports</code> release.
+</p>
+
+<p>
+<a href="https://backports.debian.org/Instructions/">https://backports.debian.org/Instructions/</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">4.3</span> source</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Another part is the <code>main</code>.
+If you want some 3rd party contributor packages, add <code>contrib</code> after <code>main</code>.
+If you further want some non-free packages, add also <code>non-free</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">4.4</span> Upgrade the system: from stable to testing</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Follow the following process EXACTLY.
+</p>
+<ul class="org-ul">
+<li>First, change the code name <code>stable</code> in sources.list to <code>testing</code>.</li>
+<li>Then, <code>apt-get update</code></li>
+<li><code>apt-get upgrade</code></li>
+<li><code>apt-get dist-upgrade</code></li>
+</ul>
+
+<p>
+Do not use <code>aptitude</code>, it will stuck resolving dependence.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">5</span> Debian boost up scripts</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+This is based on the following snippets:
+</p>
+<pre class="example">
+list="git xinit xorg"
+apt-get update
+apt-get install -y $list
+cat example.list | xargs sudo apt-get -y install
+</pre>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-07-25 Mon 18:10</p>
+<p class="date">Created: 2016-08-04 Thu 18:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

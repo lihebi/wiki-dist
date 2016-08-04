@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-25 Mon 18:10 -->
+<!-- 2016-08-04 Thu 18:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>X11</title>
@@ -162,6 +162,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline4">2.1. A time sink</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline6">3. Trouble shooting</a></li>
 </ul>
 </div>
 </div>
@@ -346,10 +347,37 @@ When you need to run something, just <code>M-x !</code> and call <code>xterm</co
 </div>
 </div>
 </div>
+
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">3</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+On Debian, when I <code>dist-upgrade</code> Debian 8 Jessie to 9 Stretch,
+the <code>startx</code> stop working.
+I try install a Debian 9 from its own image, and still the same result.
+The error message says:
+</p>
+<blockquote>
+<p>
+vesa cannot read int vect
+screen found but none leave a usable configuration
+xf86enableioports failed to set iopl for i/o
+</p>
+</blockquote>
+
+<p>
+The trick is you need:
+</p>
+<pre class="example">
+chomd u+s /usr/bin/xinit
+</pre>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-07-25 Mon 18:10</p>
+<p class="date">Created: 2016-08-04 Thu 18:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

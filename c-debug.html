@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-08-04 Thu 18:03 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>C Debugging Techniques</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">C Debugging Techniques</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. backtrace(3)</a></li>
+<li><a href="#orgheadline2">2. -finstrument-funcitons</a></li>
+<li><a href="#orgheadline3">3. Callgrind</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> backtrace(3)</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdio.h&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;execinfo.h&gt;</span>
+
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdlib.h&gt;</span>
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">handler</span>(<span style="color: #6434A3;">char</span> *<span style="color: #BA36A5;">caller</span>) {
+  <span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">array</span>[10];
+  <span style="color: #6434A3;">size_t</span> <span style="color: #BA36A5;">size</span>;
+  printf(<span style="color: #008000;">"Stack trace start for %s\n"</span>, caller);
+  size = backtrace(array, 10);
+  backtrace_symbols_fd(array, size, 2);
+  printf(<span style="color: #008000;">"Stack Trace End\n"</span>);
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">car</span>() {
+  handler(<span style="color: #008000;">"char()"</span>);
+  printf(<span style="color: #008000;">"continue"</span>);
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">baz</span>() {car();}
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">bar</span>() { baz();}
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">foo</span>() {bar();}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>(<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">argc</span>, <span style="color: #6434A3;">char</span> **<span style="color: #BA36A5;">argv</span>) {
+  foo();
+}
+</pre>
+</div>
+
+<p>
+compile:
+</p>
+<pre class="example">
+gcc -g -rdynamic a.c
+</pre>
+
+<p>
+Output:
+</p>
+<pre class="example">
+Stack trace start for char()
+./b.out(handler+0x33)[0x400969]
+./b.out(car+0xe)[0x4009a2]
+./b.out(baz+0xe)[0x4009c1]
+./b.out(bar+0xe)[0x4009d1]
+./b.out(foo+0xe)[0x4009e1]
+./b.out(main+0x19)[0x4009fc]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5)[0x7ffff7a52b45]
+./b.out[0x400869]
+Stack Trace End
+continue
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+See gcc options.
+</p>
+
+<blockquote>
+<p>
+Generate instrumentation calls for entry and exit to functions. Just after function entry and just before function exit, the following profiling functions are called with the address of the current function and its call site. (On some platforms, _<sub>builtin</sub><sub>return</sub><sub>address</sub> does not work beyond the current function, so the call site information may not be available to the profiling functions otherwise.)
+          void _<sub>cyg</sub><sub>profile</sub><sub>func</sub><sub>enter</sub> (void *this<sub>fn</sub>,
+                                         void *call<sub>site</sub>);
+          void _<sub>cyg</sub><sub>profile</sub><sub>func</sub><sub>exit</sub>  (void *this<sub>fn</sub>,
+                                         void *call<sub>site</sub>);
+</p>
+</blockquote>
+
+<p>
+trace.c:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdio.h&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;time.h&gt;</span>
+
+<span style="color: #0000FF;">static</span> <span style="color: #6434A3;">FILE</span> *<span style="color: #BA36A5;">fp_trace</span>;
+
+<span style="color: #6434A3;">void</span> <span style="color: #0000FF;">__attribute__</span> ((constructor))
+<span style="color: #006699;">trace_begin</span> (<span style="color: #6434A3;">void</span>)
+{
+  fp_trace = fopen(<span style="color: #008000;">"trace.out"</span>, <span style="color: #008000;">"w"</span>);
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #0000FF;">__attribute__</span> ((destructor))
+<span style="color: #006699;">trace_end</span> (<span style="color: #6434A3;">void</span>)
+{
+  <span style="color: #0000FF;">if</span> (fp_trace != <span style="color: #D0372D;">NULL</span>) {
+    fclose(fp_trace);
+  }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">__cyg_profile_func_enter</span> (<span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">func</span>, <span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">caller</span>) {
+  <span style="color: #0000FF;">if</span> (fp_trace != <span style="color: #D0372D;">NULL</span>) {
+    fprintf(fp_trace, <span style="color: #008000;">"e %p %p %lu\n"</span>, func, caller, time(<span style="color: #D0372D;">NULL</span>));
+  }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">__cyg_profile_func_exit</span>(<span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">func</span>, <span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">caller</span>) {
+  <span style="color: #0000FF;">if</span> (fp_trace != <span style="color: #D0372D;">NULL</span>) {
+    fprintf(fp_trace, <span style="color: #008000;">"x %p %p %lu\n"</span>, func, caller, time(<span style="color: #D0372D;">NULL</span>));
+  }
+}
+</pre>
+</div>
+
+<p>
+a.c:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdio.h&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;string.h&gt;</span>
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">foo</span>() {
+  printf(<span style="color: #008000;">"foo\n"</span>);
+}
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+  foo();
+}
+</pre>
+</div>
+
+<p>
+Compile:
+</p>
+<pre class="example">
+gcc -finstrument-functions -g -c -o a.o a.c
+gcc -c -o trace.o trace.c
+gcc a.o trace.o -o a.out
+./a.out
+</pre>
+
+<p>
+The <code>trace.out</code> will be generated:
+</p>
+<pre class="example">
+e 0x4006c8 0x7ffff7a52b45 1470343711
+e 0x400696 0x4006e7 1470343711
+x 0x400696 0x4006e7 1470343711
+x 0x4006c8 0x7ffff7a52b45 1470343711
+</pre>
+
+<p>
+For those addrees:
+</p>
+<pre class="example">
+nm a.out | grep 4006c8
+addr2line -f -e a.out 0x4006c8 | head -1 # function name
+addr2line -s -e a.out 0x4006c8 # filename:linum
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Callgrind</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example">
+valgrind --tool=callgrind ./a.out
+</pre>
+
+<p>
+Open another terminal and callgrind<sub>control</sub> -b to see the trace.
+The program must be running.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-08-04 Thu 18:03</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

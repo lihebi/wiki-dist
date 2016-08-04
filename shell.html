@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-25 Mon 18:10 -->
+<!-- 2016-08-04 Thu 18:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell</title>
@@ -151,76 +151,90 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">1. Common Tips</a>
+<li><a href="#orgheadline1">1. Tmp</a></li>
+<li><a href="#orgheadline4">2. Common Tips</a>
 <ul>
-<li><a href="#orgheadline1">1.1. grouping</a></li>
-<li><a href="#orgheadline2">1.2. Operation</a></li>
+<li><a href="#orgheadline2">2.1. grouping</a></li>
+<li><a href="#orgheadline3">2.2. Operation</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">2. General Concepts</a>
+<li><a href="#orgheadline7">3. General Concepts</a>
 <ul>
-<li><a href="#orgheadline4">2.1. pipeline</a></li>
-<li><a href="#orgheadline5">2.2. redirection</a></li>
+<li><a href="#orgheadline5">3.1. pipeline</a></li>
+<li><a href="#orgheadline6">3.2. redirection</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">3. Scripting Parameter</a>
+<li><a href="#orgheadline10">4. Scripting Parameter</a>
 <ul>
-<li><a href="#orgheadline7">3.1. special parameters</a></li>
-<li><a href="#orgheadline8">3.2. 特殊变量</a></li>
+<li><a href="#orgheadline8">4.1. special parameters</a></li>
+<li><a href="#orgheadline9">4.2. 特殊变量</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">4. Control Flow</a>
+<li><a href="#orgheadline15">5. Control Flow</a>
 <ul>
-<li><a href="#orgheadline10">4.1. loop</a></li>
-<li><a href="#orgheadline11">4.2. if</a></li>
-<li><a href="#orgheadline12">4.3. case</a></li>
-<li><a href="#orgheadline13">4.4. select</a></li>
+<li><a href="#orgheadline11">5.1. loop</a></li>
+<li><a href="#orgheadline12">5.2. if</a></li>
+<li><a href="#orgheadline13">5.3. case</a></li>
+<li><a href="#orgheadline14">5.4. select</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">5. Condition</a>
+<li><a href="#orgheadline19">6. Condition</a>
 <ul>
-<li><a href="#orgheadline15">5.1. (())</a></li>
-<li><a href="#orgheadline16">5.2. [[]]</a></li>
-<li><a href="#orgheadline17">5.3. About [] [[]]</a></li>
+<li><a href="#orgheadline16">6.1. (())</a></li>
+<li><a href="#orgheadline17">6.2. [[]]</a></li>
+<li><a href="#orgheadline18">6.3. About [] [[]]</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">6. IO</a></li>
-<li><a href="#orgheadline22">7. Unix Management</a>
+<li><a href="#orgheadline20">7. IO</a></li>
+<li><a href="#orgheadline23">8. Unix Management</a>
 <ul>
-<li><a href="#orgheadline20">7.1. job control</a></li>
-<li><a href="#orgheadline21">7.2. return status</a></li>
+<li><a href="#orgheadline21">8.1. job control</a></li>
+<li><a href="#orgheadline22">8.2. return status</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">8. escape color</a></li>
-<li><a href="#orgheadline31">9. expansion</a>
+<li><a href="#orgheadline24">9. escape color</a></li>
+<li><a href="#orgheadline32">10. expansion</a>
 <ul>
-<li><a href="#orgheadline24">9.1. brace expansion</a></li>
-<li><a href="#orgheadline25">9.2. tilde expansion</a></li>
-<li><a href="#orgheadline26">9.3. variable expansion</a></li>
-<li><a href="#orgheadline27">9.4. 变量替换</a></li>
-<li><a href="#orgheadline28">9.5. filename expansion</a></li>
-<li><a href="#orgheadline29">9.6. 字符串</a></li>
-<li><a href="#orgheadline30">9.7. 数值计算</a></li>
+<li><a href="#orgheadline25">10.1. brace expansion</a></li>
+<li><a href="#orgheadline26">10.2. tilde expansion</a></li>
+<li><a href="#orgheadline27">10.3. variable expansion</a></li>
+<li><a href="#orgheadline28">10.4. 变量替换</a></li>
+<li><a href="#orgheadline29">10.5. filename expansion</a></li>
+<li><a href="#orgheadline30">10.6. 字符串</a></li>
+<li><a href="#orgheadline31">10.7. 数值计算</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline32">10. function</a></li>
-<li><a href="#orgheadline33">11. Script</a></li>
-<li><a href="#orgheadline34">12. My Scripts</a></li>
+<li><a href="#orgheadline33">11. function</a></li>
+<li><a href="#orgheadline34">12. Script</a></li>
+<li><a href="#orgheadline35">13. My Scripts</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">1</span> Common Tips</h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Tmp</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script">http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script</a></li>
+</ul>
+<pre class="example">
+$ command -v foo &gt;/dev/null 2&gt;&amp;1 || { echo &gt;&amp;2 "I require foo but it's not installed.  Aborting."; exit 1; }
+$ type foo &gt;/dev/null 2&gt;&amp;1 || { echo &gt;&amp;2 "I require foo but it's not installed.  Aborting."; exit 1; }
+$ hash foo 2&gt;/dev/null || { echo &gt;&amp;2 "I require foo but it's not installed.  Aborting."; exit 1; }
+</pre>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> Common Tips</h2>
+<div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>source</code> will be in effect in current shell session, but not the sub-shells</li>
 <li><code>export</code> declare global variable, and will be in effect in sub-shells</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> grouping</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> grouping</h3>
+<div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><code>( list )</code>: a subshell is created, each command in list will execute in that shell</li>
 <li><code>{ list; }</code>: semicolon or newline is needed. No subshell is created, commands will run in current shell.</li>
@@ -228,9 +242,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Operation</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Operation</h3>
+<div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li><code>Ctrl-s</code> 停止显示</li>
 <li><code>Ctrl-q</code> 恢复显示</li>
@@ -245,12 +259,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> General Concepts</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.1</span> pipeline</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">3</span> General Concepts</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.1</span> pipeline</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 Each command execute in its own subshell.
 The exit status of a pipeline is the exist status of the last command.
@@ -266,9 +280,9 @@ The exit status of a pipeline is the exist status of the last command.
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.2</span> redirection</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">3.2</span> redirection</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 
 <pre class="src src-shell">ls &gt; dirlist 2&gt;&amp;1
@@ -284,17 +298,17 @@ ls 2&gt;&amp;1 dirlist <span style="color: #8D8D84;"># </span><span style="color
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">3</span> Scripting Parameter</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">4</span> Scripting Parameter</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 In shell script, <code>cd -</code> will cause the folder name to be printed.
 To disable the output, simply <code>cd - &gt; /dev/null</code>.
 </p>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> special parameters</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">4.1</span> special parameters</h3>
+<div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><code>$*</code>: "$1c$2c$3c&#x2026;", c is the first character of $IFS</li>
 <li><code>$@</code>: "$1" "$2" "$3" &#x2026;</li>
@@ -309,9 +323,9 @@ To disable the output, simply <code>cd - &gt; /dev/null</code>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.2</span> 特殊变量</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">4.2</span> 特殊变量</h3>
+<div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 
 <pre class="src src-shell">$<span style="color: #BA36A5;">0</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#33050;&#26412;&#21517;&#31216;</span>
@@ -348,17 +362,17 @@ $<span style="color: #BA36A5;">_</span> <span style="color: #8D8D84;"># </span><
 </div>
 
 
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14"><span class="section-number-2">4</span> Control Flow</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">5</span> Control Flow</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Any redirections apply to all commands within that compound, unless explicitly overwritten.
 </p>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.1</span> loop</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">5.1</span> loop</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 wherever a ';' appears, it may be replaced with one or more newlines.
 </p>
@@ -381,9 +395,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">4.2</span> if</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">5.2</span> if</h3>
+<div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #0000FF;">if</span> test-commands; <span style="color: #0000FF;">then</span>
@@ -397,9 +411,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">4.3</span> case</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">5.3</span> case</h3>
+<div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #0000FF;">case</span> word<span style="color: #0000FF;"> in</span>
@@ -414,9 +428,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">4.4</span> select</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">5.4</span> select</h3>
+<div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #0000FF;">select</span> name [in words ...]; <span style="color: #0000FF;">do</span> commands; <span style="color: #0000FF;">done</span>
@@ -435,9 +449,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </div>
 
 
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18"><span class="section-number-2">5</span> Condition</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">6</span> Condition</h2>
+<div class="outline-text-2" id="text-6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -571,9 +585,9 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </table>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15"><span class="section-number-3">5.1</span> (())</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">6.1</span> (())</h3>
+<div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
 <pre class="src src-shell">(( exp ))
@@ -586,9 +600,9 @@ arithmetic expression is evaluated
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">5.2</span> [[]]</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">6.2</span> [[]]</h3>
+<div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 
 <pre class="src src-shell">[[exp]]
@@ -598,12 +612,17 @@ arithmetic expression is evaluated
 <p>
 evaluation of conditional expression
 </p>
+
+<pre class="example">
+[[ $a == z* ]]   # True if $a starts with an "z" (wildcard matching).
+[[ $a == "z*" ]] # True if $a is equal to z* (literal matching).
+</pre>
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">5.3</span> About [] [[]]</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">6.3</span> About [] [[]]</h3>
+<div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li><code>[</code> is a synonym for test, and a builtin for efficiency. It is a command.</li>
 <li><code>[[</code> is a keyword, perform comparisons in a manner more familiar to programmers.</li>
@@ -613,9 +632,9 @@ evaluation of conditional expression
 </div>
 
 
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19"><span class="section-number-2">6</span> IO</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20"><span class="section-number-2">7</span> IO</h2>
+<div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #006FE0;">read</span> -p <span style="color: #008000;">"please input: "</span> a b c
@@ -625,9 +644,9 @@ evaluation of conditional expression
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22"><span class="section-number-2">7</span> Unix Management</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23"><span class="section-number-2">8</span> Unix Management</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>id # 显示用户和组的信息</li>
 <li>dmesg # 查看内核日志</li>
@@ -664,9 +683,9 @@ evaluation of conditional expression
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">7.1</span> job control</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">8.1</span> job control</h3>
+<div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>C-Z suspend</li>
 <li>refer a job
@@ -686,9 +705,9 @@ evaluation of conditional expression
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">7.2</span> return status</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">8.2</span> return status</h3>
+<div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>simple command: provided by POSIX 1003.1 <code>waitpid</code> function(less than 128)</li>
 <li>if command terminated by signal <code>n</code>, it is <code>128+n</code></li>
@@ -699,9 +718,9 @@ evaluation of conditional expression
 </div>
 
 
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23"><span class="section-number-2">8</span> escape color</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">9</span> escape color</h2>
+<div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/</span><span style="color: #0000FF;">bash</span>
@@ -772,17 +791,17 @@ in PS1, use:
 </div>
 </div>
 
-<div id="outline-container-orgheadline31" class="outline-2">
-<h2 id="orgheadline31"><span class="section-number-2">9</span> expansion</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-orgheadline32" class="outline-2">
+<h2 id="orgheadline32"><span class="section-number-2">10</span> expansion</h2>
+<div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li><code>xxx</code> &lt;=&gt; <code>$(xxx)</code></li>
 </ul>
 </div>
 
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24"><span class="section-number-3">9.1</span> brace expansion</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">10.1</span> brace expansion</h3>
+<div class="outline-text-3" id="text-10-1">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #006FE0;">echo</span> a{d,b,c}e
@@ -793,9 +812,9 @@ mkdir /usr/local/{old,new,dist}
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25"><span class="section-number-3">9.2</span> tilde expansion</h3>
-<div class="outline-text-3" id="text-9-2">
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">10.2</span> tilde expansion</h3>
+<div class="outline-text-3" id="text-10-2">
 <div class="org-src-container">
 
 <pre class="src src-shell">~/foo <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">$HOME/foo</span>
@@ -805,9 +824,9 @@ mkdir /usr/local/{old,new,dist}
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26"><span class="section-number-3">9.3</span> variable expansion</h3>
-<div class="outline-text-3" id="text-9-3">
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">10.3</span> variable expansion</h3>
+<div class="outline-text-3" id="text-10-3">
 <p>
 return value:
 </p>
@@ -823,9 +842,9 @@ Otherwise the value of var is returned.</li>
 </div>
 
 
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27"><span class="section-number-3">9.4</span> 变量替换</h3>
-<div class="outline-text-3" id="text-9-4">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">10.4</span> 变量替换</h3>
+<div class="outline-text-3" id="text-10-4">
 <p>
 <b>返回结果，但不改变原变量的值。</b>
 </p>
@@ -873,9 +892,9 @@ if pattern begins with
 </div>
 </div>
 
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28"><span class="section-number-3">9.5</span> filename expansion</h3>
-<div class="outline-text-3" id="text-9-5">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">10.5</span> filename expansion</h3>
+<div class="outline-text-3" id="text-10-5">
 <ul class="org-ul">
 <li><code>*</code>: match any string, including null string</li>
 <li><code>?</code>: match any single character</li>
@@ -890,9 +909,9 @@ if pattern begins with
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29"><span class="section-number-3">9.6</span> 字符串</h3>
-<div class="outline-text-3" id="text-9-6">
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">10.6</span> 字符串</h3>
+<div class="outline-text-3" id="text-10-6">
 <p>
 substring使用的是bash中的正则。
 </p>
@@ -917,9 +936,9 @@ substring若不加引号,则为正常字符串,加引号则可用$转义.
 </div>
 </div>
 
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30"><span class="section-number-3">9.7</span> 数值计算</h3>
-<div class="outline-text-3" id="text-9-7">
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">10.7</span> 数值计算</h3>
+<div class="outline-text-3" id="text-10-7">
 <div class="org-src-container">
 
 <pre class="src src-shell">(( <span style="color: #BA36A5;">a</span>=2+3 ))
@@ -936,9 +955,9 @@ a = ((12))
 </div>
 </div>
 
-<div id="outline-container-orgheadline32" class="outline-2">
-<h2 id="orgheadline32"><span class="section-number-2">10</span> function</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgheadline33" class="outline-2">
+<h2 id="orgheadline33"><span class="section-number-2">11</span> function</h2>
+<div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #006699;">name</span>() compound-command [ redirections ]
@@ -955,13 +974,13 @@ a = ((12))
 </div>
 </div>
 
-<div id="outline-container-orgheadline33" class="outline-2">
-<h2 id="orgheadline33"><span class="section-number-2">11</span> Script</h2>
+<div id="outline-container-orgheadline34" class="outline-2">
+<h2 id="orgheadline34"><span class="section-number-2">12</span> Script</h2>
 </div>
 
-<div id="outline-container-orgheadline34" class="outline-2">
-<h2 id="orgheadline34"><span class="section-number-2">12</span> My Scripts</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-orgheadline35" class="outline-2">
+<h2 id="orgheadline35"><span class="section-number-2">13</span> My Scripts</h2>
+<div class="outline-text-2" id="text-13">
 <div class="org-src-container">
 
 <pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">papers.txt contains titles of papers, one per line</span>
@@ -991,7 +1010,7 @@ loop counter
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-07-25 Mon 18:10</p>
+<p class="date">Created: 2016-08-04 Thu 18:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

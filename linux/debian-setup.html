@@ -6,7 +6,7 @@
 <!-- 2016-08-04 Thu 18:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>CSAPP Study Notes</title>
+<title>Debian Setup</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -143,55 +143,164 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">CSAPP Study Notes</h1>
+<h1 class="title">Debian Setup</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Signed int encodig</a></li>
+<li><a href="#orgheadline1">1. Vanilla</a></li>
+<li><a href="#orgheadline2">2. Basic System</a></li>
+<li><a href="#orgheadline11">3. Helium Ready</a>
+<ul>
+<li><a href="#orgheadline3">3.1. Packages</a></li>
+<li><a href="#orgheadline8">3.2. Manual</a>
+<ul>
+<li><a href="#orgheadline4">3.2.1. gtest</a></li>
+<li><a href="#orgheadline5">3.2.2. pugixml</a></li>
+<li><a href="#orgheadline6">3.2.3. ctags</a></li>
+<li><a href="#orgheadline7">3.2.4. helium-lib</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">3.3. Donwload</a>
+<ul>
+<li><a href="#orgheadline9">3.3.1. srcml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline12">4. 3rd party lib</a></li>
+<li><a href="#orgheadline13">5. other apps</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Signed int encodig</h2>
-<div class="outline-text-2" id="text-1">
-\begin{equation}
-B2T_w(x) = - x_{w-1} 2^{w-1} + \sum_{i=0}^{w-2} x_i 2^i
-\end{equation}
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Vanilla</h2>
+</div>
 
-\begin{eqnarray}
-& 0001 & = - 0 * 2^3 + 0 * 2^2  + .. = 1 \\
-& 0101 & = ... = 5 \\
-& 1011 & = - 1 * 2^3 + 0 * 2^2 + .. = -5 \\
-& 1000 & = - 1 * 2^3 = - 2^3 \\
-& 1111 & = -1 * 2^3 + ... = -1
-\end{eqnarray}
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Basic System</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Install these packages:
+</p>
+<pre class="example">
+emacs xorg xinit build-essential tmux
+stumpwm exuberant-ctags global cmake libsqlite3-dev autoconf
+silversearcher-ag xcursor-themes
+sudo chromium
+llvm clang cifs-utils
+</pre>
+
+<p>
+Add to sudo
+</p>
+<blockquote>
+<p>
+usermod -aG sudo hebi
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Config:
+<ul class="org-ul">
+<li>dothebi
+<ul class="org-ul">
+<li>tmux</li>
+<li>bash</li>
+<li>linux</li>
+</ul></li>
+<li>emacs.d</li>
+</ul></li>
+<li>Source code pro</li>
+</ul>
+
+<pre class="example">
+update-alternative --config x-terminal-emulator
+</pre>
+
+<p>
+git setup
+</p>
+<pre class="example">
+git config --global user.name "Hebi Li"
+git config --global user.email "lihebi.com@gmail.com"
+git config --global credential.helper cache
+git config --global push.default simple
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">3</span> Helium Ready</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Packages</h3>
+<div class="outline-text-3" id="text-3-1">
+<pre class="example">
+gnulib libboost-all-dev libgtest-dev
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Manual</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">3.2.1</span> gtest</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<pre class="example">
+cd /tmp
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest
+make
+sudo mv libg* /usr/lib/
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">3.2.2</span> pugixml</h4>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">3.2.3</span> ctags</h4>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">3.2.4</span> helium-lib</h4>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.3</span> Donwload</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">3.3.1</span> srcml</h4>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">4</span> 3rd party lib</h2>
+<div class="outline-text-2" id="text-4">
+<blockquote>
+<p>
+zlib1g-dev
+</p>
+</blockquote>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">5</span> other apps</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>zeal</li>
+</ul>
 </div>
 </div>
 </div>
