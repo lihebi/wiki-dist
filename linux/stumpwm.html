@@ -6,7 +6,7 @@
 <!-- 2016-08-06 Sat 23:21 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>X11</title>
+<title>StumpWM</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -146,223 +146,134 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">X11</h1>
+<h1 class="title">StumpWM</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">1. Window Manager</a>
+<li><a href="#orgheadline1">1. <span class="todo TODO">TODO</span> </a></li>
+<li><a href="#orgheadline3">2. General</a>
 <ul>
-<li><a href="#orgheadline1">1.1. ratpoison</a></li>
+<li><a href="#orgheadline2">2.1. Get Help</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline5">2. Theme</a>
-<ul>
-<li><a href="#orgheadline3">2.1. cursor</a></li>
-<li><a href="#orgheadline4">2.2. color</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline7">3. Emacs As Window Manager</a>
-<ul>
-<li><a href="#orgheadline6">3.1. A time sink</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline8">4. Trouble shooting</a></li>
+<li><a href="#orgheadline4">3. Window</a></li>
+<li><a href="#orgheadline5">4. Frame</a></li>
+<li><a href="#orgheadline6">5. Groups</a></li>
+<li><a href="#orgheadline7">6. Configuration</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">1</span> Window Manager</h2>
+<p>
+This is an excellent Window Manager! It has an info document ready in Emacs.
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> </h2>
 <div class="outline-text-2" id="text-1">
-<p>
-Candidates:
-</p>
 <ul class="org-ul">
-<li>ratpoison</li>
-<li>dwm</li>
-<li>stumpwm: written in common lisp</li>
-<li>exwm: emacs X window manager</li>
+<li>mode-line add group information</li>
+<li>like <code>C-e</code> for opening a browser</li>
+<li>rule based window</li>
 </ul>
-
-<p>
-Noop:
-</p>
-<ul class="org-ul">
-<li>i3: flavor VI, Noop!</li>
-</ul>
+</div>
 </div>
 
 
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> ratpoison</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">2</span> General</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-This is actually a wonderful WM.
-To start:
-</p>
-
-<pre class="example">
-aptitude install ratpoison
-</pre>
-
-<p>
-In <code>.xinitrc</code>:
-</p>
-
-<pre class="example">
-exec ratpoison
-</pre>
-
-<ul class="org-ul">
-<li><code>C-t ?</code> to show the help</li>
-</ul>
-
-<p>
-actually <code>C-t</code> is the prefix of every command, <code>C-g</code> to abort.
+Same as ratpoison:
 </p>
 <ul class="org-ul">
-<li><code>C-t :</code>: type command</li>
+<li><code>C-t C-h</code>: show help</li>
 <li><code>C-t !</code>: run shell command</li>
-<li><code>C-t .</code>: open menu</li>
-<li><code>C-t c</code>: open terminal</li>
+<li><code>C-t c</code> terminal</li>
+<li><code>C-t e</code>: open emacs!</li>
+<li><code>C-t ;</code>: type a command</li>
+<li><code>C-t :</code>: eval</li>
+<li><code>C-t C-g</code>: abort</li>
+<li><code>C-t a</code>: display time</li>
+<li><code>C-t t</code>: send C-t</li>
+<li><code>C-t m</code>: display last message</li>
 </ul>
+</div>
 
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Get Help</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><code>C-t h k</code>: from key binding to command: <code>describe-key</code></li>
+<li><code>C-t h w</code>: from command to key binding: <code>where-is</code></li>
+<li><code>C-t h c</code>: describe command</li>
+<li><code>C-t h f</code>: describe function</li>
+<li><code>C-t h v</code>: describe variable</li>
 
-<p>
-HOWEVER, this is pretty old, and it cause the screen to go brighter and darker back and force.
-Fortunately the stumpwm is very like this one, but
-</p>
-<ol class="org-ol">
-<li>actively maintained on github.</li>
-<li>written in common lisp</li>
-</ol>
+<li><code>mode-line</code>: start mode-line</li>
+</ul>
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">3</span> Window</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><code>C-t n</code></li>
+<li><code>C-t p</code></li>
+<li><code>C-t &lt;double-quote&gt;</code></li>
+<li><code>C-t w</code> list all windows</li>
+<li><code>C-t k</code> kill current frame (K to force quit)</li>
+<li><code>C-t #</code> toggle mark of current window</li>
+</ul>
+</div>
+</div>
+
 
 <div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">2</span> Theme</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.1</span> cursor</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-Install xcursor-themes:
-</p>
-<pre class="example">
-aptitude install xcursor-themes
-aptitude show xcursor-themes # here it will output the themes name
-</pre>
-
-<p>
-In <code>.Xresources</code>:
-</p>
-<pre class="example">
-Xcursor.theme: redglass
-</pre>
+<h2 id="orgheadline5"><span class="section-number-2">4</span> Frame</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><code>C-t s</code>: hsplit</li>
+<li><code>C-t S</code>: vsplit</li>
+<li><code>C-t Q</code>: kill other frames, only retains this one</li>
+<li><code>C-t r</code>: resize, can use <code>C-n</code>, <code>C-p</code> interactively</li>
+<li><code>C-t +</code>: balance frame</li>
+<li><code>C-t o</code>: next frame</li>
+<li><code>C-t -</code>: show desktop</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.2</span> color</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">5</span> Groups</h2>
+<div class="outline-text-2" id="text-5">
 <p>
-X11 color names: <code>/etc/X11/rgb.txt</code>
+Shortcuts:
 </p>
-</div>
+<ul class="org-ul">
+<li><code>C-t g c</code>: create: <code>gnew</code>. Also available for float: <code>gnew-float</code></li>
+<li><code>C-t g n</code>: next</li>
+<li><code>C-t g o</code>: <code>gother</code></li>
+<li><code>C-t g p</code>: previous</li>
+<li><code>C-t g &lt;double-quote&gt;</code>: interactively select groups: <code>grouplist</code></li>
+<li><code>C-t g k</code>: kill current group, move windows to next group: <code>gkill</code></li>
+<li><code>C-t g r</code>: rename current group: <code>grename</code></li>
+<li><code>C-t G</code>: display all groups and their windows</li>
+<li><code>C-t g g</code>: show list of group</li>
+<li><code>C-t g m</code>: move current window to group X</li>
+<li><code>C-t g &lt;d&gt;</code>: go to group &lt;d&gt;</li>
+</ul>
 </div>
 </div>
 
 
 <div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">3</span> Emacs As Window Manager</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-<a href="http://www.howardism.org/Technical/Emacs/new-window-manager.html">http://www.howardism.org/Technical/Emacs/new-window-manager.html</a>
-</p>
-
+<h2 id="orgheadline7"><span class="section-number-2">6</span> Configuration</h2>
+<div class="outline-text-2" id="text-6">
 <pre class="example">
-sudo aptitude install xinit
-sudo aptitude install emacs
-</pre>
-
-
-<p>
-In <code>.initrc</code>:
-</p>
-<pre class="example">
-exec emacs
-</pre>
-
-<p>
-In emacs configure:
-</p>
-<pre class="example">
-(set-frame-parameter nil 'fullscreen 'fullboth)
-</pre>
-
-<p>
-When you need to run something, just <code>M-x !</code> and call <code>xterm</code>.
-</p>
-</div>
-
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">3.1</span> A time sink</h3>
-<div class="outline-text-3" id="text-3-1">
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">setup-windows</span> ()
-  <span style="color: #036A07;">"Organize a series of windows for ultimate distraction."</span>
-  (interactive)
-  (delete-other-windows)
-
-  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Start with the Stack Overflow interface</span>
-  (sx-tab-frontpage t nil)
-
-  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Put IRC on the other side</span>
-  (split-window-horizontally)
-  (other-window 1)
-  (circe-connect-all)
-
-  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">My RSS Feed goes on top:</span>
-  (split-window-vertically)
-  (elfeed)
-
-  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">And start up the Twitter interface above that:</span>
-  (other-window 2)
-  (split-window-vertically)
-  (twit)
-
-  (window-configuration-to-register ?w))
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">4</span> Trouble shooting</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-On Debian, when I <code>dist-upgrade</code> Debian 8 Jessie to 9 Stretch,
-the <code>startx</code> stop working.
-I try install a Debian 9 from its own image, and still the same result.
-The error message says:
-</p>
-<blockquote>
-<p>
-vesa cannot read int vect
-screen found but none leave a usable configuration
-xf86enableioports failed to set iopl for i/o
-</p>
-</blockquote>
-
-<p>
-The trick is you need:
-</p>
-<pre class="example">
-chomd u+s /usr/bin/xinit
+(stumpwm:define-key stumpwm:*root-map* (stumpwm:kbd "C-z") "echo Zzzzz...")
 </pre>
 </div>
 </div>
