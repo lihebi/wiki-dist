@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-04 Thu 18:03 -->
+<!-- 2016-08-12 Fri 15:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Windows</title>
@@ -147,6 +147,15 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Windows</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. AutoHotKeys</a></li>
+<li><a href="#orgheadline2">2. Wake Timer</a></li>
+</ul>
+</div>
+</div>
 <ul class="org-ul">
 <li>Check CPU and GPU status and temperature: <a href="http://cpuid.com/">http://cpuid.com/</a></li>
 <li>Monitoring system status: MSI Afterburner</li>
@@ -164,10 +173,72 @@ The alfred for windows, open source!
 They have plugins, for example the google translate plugin.
 But it is awkward to use: <code>tr en zh hello</code>
 </p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> AutoHotKeys</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Right click and create new "AutoHotKey script".
+</p>
+
+<p>
+Edit that script:
+</p>
+
+<p>
+Rotate.ahk:
+</p>
+<pre class="example">
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+; this is a comment
+; #n::Run Notepad
+
+; normal rotation
+#n::Run D:\tools\display.exe /rotate:0
+; portrait rotation
+#m::Run D:\tools\display.exe /rotate:90
+</pre>
+
+<p>
+<a href="http://noeld.com/programs.asp#Display"><code>display.exe</code></a> is a command line tool to change orientation.
+</p>
+
+<p>
+Double click to enable it. Change the content and run it again to replace old configure.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Wake Timer</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+My computer wake up 10 secs after I asked it to sleep, and I want to know why.
+Use this command:
+</p>
+
+<pre class="example">
+powercfg -lastwake
+</pre>
+
+<p>
+The output shows the type of wakeup is <i>Wake Timer</i> and source is <code>VBoxSVC.exe</code>.
+</p>
+
+<p>
+Solution:
+power setting -&gt; advanced setting -&gt; more advanced setting -&gt; sleep -&gt; allow wake timers -&gt; disable
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-08-04 Thu 18:03</p>
+<p class="date">Created: 2016-08-12 Fri 15:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
