@@ -6,7 +6,7 @@
 <!-- 2016-08-19 Fri 15:19 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title></title>
+<title>Debian Installation</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -146,19 +146,113 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
+<h1 class="title">Debian Installation</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. test</a></li>
+<li><a href="#orgheadline1">1. wireless driver for mac</a></li>
 </ul>
 </div>
 </div>
+<ol class="org-ol">
+<li>Use DVD because it has <code>dkms</code> package, used for Broadcam wireless chipset.</li>
+<li>Clean install Mac OS</li>
+<li>Reboot, Cmd-R to boot into recover, partition two more partitions for debian and swap.</li>
+<li>Use unetbootin to create Debian USB stick</li>
+<li>Install Debian normally, but use the pre-defined partition! Use ext-4 and mount at <code>/</code></li>
+</ol>
+
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> test</h2>
+<h2 id="orgheadline1"><span class="section-number-2">1</span> wireless driver for mac</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://wiki.debian.org/MacBook/Wireless">https://wiki.debian.org/MacBook/Wireless</a></li>
+<li><a href="https://wiki.debian.org/wl">https://wiki.debian.org/wl</a></li>
+</ul>
+<pre class="example">
+iwconfig
+</pre>
+
 <p>
-this is test
+if the wlan card shows up, it is good, otherwise:
+</p>
+
+<pre class="example">
+update-pciids # if necessary; run as root, to update PCI database
+lspci | grep -E "Atheros|Broadcom" # Finds card
+</pre>
+
+<p>
+Note: for 4360, there're actually two chipsets: <code>14E4:4360</code> and <code>14E4:43A0</code>, the first one does not have a driver, the second one can use <code>wl</code> (broadcom-sta-dkms).
+To see which one (<a href="http://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro">http://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro</a>):
+</p>
+<pre class="example">
+lspci -vnn | grep -i net
+</pre>
+
+
+<p>
+My macbook shows BCM4360, I installed from outside:
+</p>
+<pre class="example">
+b43-fwcutter
+dkms
+broadcom-sta-dkms
+</pre>
+
+<p>
+Install from USB stick needs:
+</p>
+<ol class="org-ol">
+<li>mount</li>
+<li><code>apt-cdrom -d /path/to/mount add</code>
+   make sure the mount actually mounted, and the entries in <code>/etc/apt/sources.list</code> correct.</li>
+</ol>
+
+<p>
+After making the wireless working, put in the sources.list:
+</p>
+<pre class="example">
+deb http://ftp.us.debian.org/debian jessie main
+deb-src http://ftp.us.debian.org/debian jessie main
+</pre>
+
+<p>
+Then run
+</p>
+<pre class="example">
+modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+modprobe wl
+</pre>
+
+<p>
+Then, config wifi:
+make sure the <code>iwconfig</code> shows the card information (something with wlan0 xxx)
+</p>
+
+<pre class="example">
+ip a
+iwconfig
+ip link set wlan0 up
+# scan wifi
+iwlist scan
+</pre>
+
+<p>
+Add to <code>/etc/network/interfaces</code>: (see also <code>man interfaces</code>, <code>man wireless</code>)
+</p>
+<pre class="example">
+# my wifi device
+auto wlan0
+iface wlan0 inet dhcp
+        wireless-essid [ESSID]
+        wireless-mode [MODE]
+</pre>
+
+<p>
+finally, <code>ifup</code> and <code>ifdown</code> toggle the wifi.
+The <code>auto wlan0</code> in the config file will start it after boot.
 </p>
 </div>
 </div>
