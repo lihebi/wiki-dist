@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-19 Fri 15:19 -->
+<!-- 2016-08-19 Fri 15:31 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Debian</title>
@@ -151,35 +151,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">1. Installation</a>
+<li><a href="#orgheadline1">1. Tmp</a></li>
+<li><a href="#orgheadline3">2. Installation</a>
 <ul>
-<li><a href="#orgheadline1">1.1. VirtualBox Guest addition</a></li>
+<li><a href="#orgheadline2">2.1. VirtualBox Guest addition</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">2. Startup</a></li>
-<li><a href="#orgheadline6">3. Configuration</a>
+<li><a href="#orgheadline4">3. Startup</a></li>
+<li><a href="#orgheadline7">4. Configuration</a>
 <ul>
-<li><a href="#orgheadline4">3.1. update-alternatives</a></li>
-<li><a href="#orgheadline5">3.2. systemd</a></li>
+<li><a href="#orgheadline5">4.1. update-alternatives</a></li>
+<li><a href="#orgheadline6">4.2. systemd</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">4. Package Management</a>
+<li><a href="#orgheadline12">5. Package Management</a>
 <ul>
-<li><a href="#orgheadline7">4.1. binary or source</a></li>
-<li><a href="#orgheadline8">4.2. code name</a></li>
-<li><a href="#orgheadline9">4.3. source</a></li>
-<li><a href="#orgheadline10">4.4. Upgrade the system: from stable to testing</a></li>
+<li><a href="#orgheadline8">5.1. binary or source</a></li>
+<li><a href="#orgheadline9">5.2. code name</a></li>
+<li><a href="#orgheadline10">5.3. source</a></li>
+<li><a href="#orgheadline11">5.4. Upgrade the system: from stable to testing</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">5. Debian boost up scripts</a></li>
-<li><a href="#orgheadline13">6. MIME</a></li>
+<li><a href="#orgheadline13">6. Debian boost up scripts</a></li>
+<li><a href="#orgheadline14">7. MIME</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Tmp</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+change laptop screen brightness:
+</p>
+<pre class="example">
+cat /sys/class/backlight/intel_backlight/max_brightness
+cat /sys/class/backlight/intel_backlight/brightness
+
+echo 400 &gt; /sys/class/backlight/intel_backlight/brightness
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">2</span> Installation</h2>
+<div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="debian-setup.html">Debian setup</a></li>
 <li><a href="debian-install.html">Debian Installation on Mac</a></li>
@@ -208,9 +224,9 @@ Get the <code>.hebi</code> and <code>.emacs.d</code> set up.
 </div>
 
 
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> VirtualBox Guest addition</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> VirtualBox Guest addition</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 It seems need the <code>xinit</code> to be installed.
 </p>
@@ -231,9 +247,9 @@ To enable it, you need: <code>VBoxClient --clipboard</code>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">2</span> Startup</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">3</span> Startup</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Change default desktop environment:
 </p>
@@ -254,18 +270,18 @@ Change (three approaches):
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">3</span> Configuration</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">4</span> Configuration</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><code>dpkg-reconfigure</code> reconfigure a installed package</li>
 <li><code>defconf-show</code> show the current configuration of a package</li>
 </ul>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">3.1</span> update-alternatives</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">4.1</span> update-alternatives</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 Options:
 </p>
@@ -283,9 +299,9 @@ Some examples:
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">3.2</span> systemd</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">4.2</span> systemd</h3>
+<div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li><code>systemctl disable lightdm</code>
   This will replace the <code>/etc/rc2.d/S03lightdm</code> with <code>/etc/rc2.d/K01lightdm</code>.</li>
@@ -294,9 +310,9 @@ Some examples:
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">4</span> Package Management</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">5</span> Package Management</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><code>/etc/apt/sources.list</code></li>
 </ul>
@@ -325,18 +341,18 @@ deb-src http://ftp.us.debian.org/debian/ jessie-updates main
 </pre>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">4.1</span> binary or source</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">5.1</span> binary or source</h3>
+<div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li><code>deb</code>: binary</li>
 <li><code>deb-src</code>: source</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">4.2</span> code name</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">5.2</span> code name</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 <code>jessie</code> is the current name code for the stable release version of Debian.
 The next release and the next next release code name are also available.
@@ -359,9 +375,9 @@ This is called, for <code>jessie</code>, the <code>jessie-backports</code> relea
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">4.3</span> source</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">5.3</span> source</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
 Another part is the <code>main</code>.
 If you want some 3rd party contributor packages, add <code>contrib</code> after <code>main</code>.
@@ -370,9 +386,9 @@ If you further want some non-free packages, add also <code>non-free</code>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.4</span> Upgrade the system: from stable to testing</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">5.4</span> Upgrade the system: from stable to testing</h3>
+<div class="outline-text-3" id="text-5-4">
 <p>
 Follow the following process EXACTLY.
 </p>
@@ -390,9 +406,9 @@ Do not use <code>aptitude</code>, it will stuck resolving dependence.
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">5</span> Debian boost up scripts</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">6</span> Debian boost up scripts</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 This is based on the following snippets:
 </p>
@@ -407,9 +423,9 @@ cat example.list | xargs sudo apt-get -y install
 
 
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">6</span> MIME</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">7</span> MIME</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 check the MIME of a file.
 </p>
@@ -445,7 +461,7 @@ application/pdf=firefox-esr.desktop
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-08-19 Fri 15:19</p>
+<p class="date">Created: 2016-08-19 Fri 15:31</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
