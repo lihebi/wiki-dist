@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-19 Fri 15:19 -->
+<!-- 2016-08-20 Sat 00:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Debian Installation</title>
@@ -206,8 +206,9 @@ Install from USB stick needs:
 </p>
 <ol class="org-ol">
 <li>mount</li>
-<li><code>apt-cdrom -d /path/to/mount add</code>
-   make sure the mount actually mounted, and the entries in <code>/etc/apt/sources.list</code> correct.</li>
+<li><code>apt-cdrom -m -d /path/to/mount add</code>
+make sure the mount actually mounted, and the entries in <code>/etc/apt/sources.list</code> correct.
+When installing, it is still needed to mount to <code>/media/cdrom</code>.</li>
 </ol>
 
 <p>
@@ -228,8 +229,21 @@ modprobe wl
 
 <p>
 Then, config wifi:
-make sure the <code>iwconfig</code> shows the card information (something with wlan0 xxx)
+make sure the <code>iwconfig</code> shows the card information (something with wlan0 xxx).
 </p>
+
+<p>
+At this point, just use <code>wicd</code> (available on DVD-2) and you will be fine.
+The following "manual interface" way is OK for IASTATE wifi because it does not require password, but for a WPA encrypted one, it does not work.
+In this case, <code>wpa_supplicant</code> is needed, but I didn't make it work.
+In a word, just use <code>wicd</code>.
+<code>wicd</code> is a daemon, install and start, make sure you only have <code>lo</code> loopback entry in <code>/etc/network/interfaces</code>.
+</p>
+
+<pre class="example">
+apt-get install wicd
+systemctl restart wicd
+</pre>
 
 <pre class="example">
 ip a
@@ -259,7 +273,7 @@ The <code>auto wlan0</code> in the config file will start it after boot.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-08-19 Fri 15:19</p>
+<p class="date">Created: 2016-08-20 Sat 00:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
