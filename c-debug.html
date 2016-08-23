@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-19 Fri 15:19 -->
+<!-- 2016-08-22 Mon 20:20 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>C Debugging Techniques</title>
@@ -97,6 +97,630 @@
 <style>
 a:visited {color: red;}
 </style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -163,30 +787,30 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdio.h&gt;</span>
-<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;execinfo.h&gt;</span>
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;execinfo.h&gt;</span>
 
-<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdlib.h&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdlib.h&gt;</span>
 
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">handler</span>(<span style="color: #6434A3;">char</span> *<span style="color: #BA36A5;">caller</span>) {
-  <span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">array</span>[10];
-  <span style="color: #6434A3;">size_t</span> <span style="color: #BA36A5;">size</span>;
-  printf(<span style="color: #008000;">"Stack trace start for %s\n"</span>, caller);
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">handler</span>(<span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">caller</span>) {
+  <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">array</span>[10];
+  <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">size</span>;
+  printf(<span style="color: #E6DB74;">"Stack trace start for %s\n"</span>, caller);
   size = backtrace(array, 10);
   backtrace_symbols_fd(array, size, 2);
-  printf(<span style="color: #008000;">"Stack Trace End\n"</span>);
+  printf(<span style="color: #E6DB74;">"Stack Trace End\n"</span>);
 }
 
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">car</span>() {
-  handler(<span style="color: #008000;">"char()"</span>);
-  printf(<span style="color: #008000;">"continue"</span>);
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">car</span>() {
+  handler(<span style="color: #E6DB74;">"char()"</span>);
+  printf(<span style="color: #E6DB74;">"continue"</span>);
 }
 
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">baz</span>() {car();}
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">bar</span>() { baz();}
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">foo</span>() {bar();}
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">baz</span>() {car();}
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">bar</span>() { baz();}
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">foo</span>() {bar();}
 
-<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>(<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">argc</span>, <span style="color: #6434A3;">char</span> **<span style="color: #BA36A5;">argv</span>) {
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">argc</span>, <span style="color: #66D9EF;">char</span> **<span style="color: #FD971F;">argv</span>) {
   foo();
 }
 </pre>
@@ -240,34 +864,34 @@ trace.c:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdio.h&gt;</span>
-<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;time.h&gt;</span>
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;time.h&gt;</span>
 
-<span style="color: #0000FF;">static</span> <span style="color: #6434A3;">FILE</span> *<span style="color: #BA36A5;">fp_trace</span>;
+<span style="color: #F92672;">static</span> <span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">fp_trace</span>;
 
-<span style="color: #6434A3;">void</span> <span style="color: #0000FF;">__attribute__</span> ((constructor))
-<span style="color: #006699;">trace_begin</span> (<span style="color: #6434A3;">void</span>)
+<span style="color: #66D9EF;">void</span> <span style="color: #F92672;">__attribute__</span> ((constructor))
+<span style="color: #A6E22E;">trace_begin</span> (<span style="color: #66D9EF;">void</span>)
 {
-  fp_trace = fopen(<span style="color: #008000;">"trace.out"</span>, <span style="color: #008000;">"w"</span>);
+  fp_trace = fopen(<span style="color: #E6DB74;">"trace.out"</span>, <span style="color: #E6DB74;">"w"</span>);
 }
 
-<span style="color: #6434A3;">void</span> <span style="color: #0000FF;">__attribute__</span> ((destructor))
-<span style="color: #006699;">trace_end</span> (<span style="color: #6434A3;">void</span>)
+<span style="color: #66D9EF;">void</span> <span style="color: #F92672;">__attribute__</span> ((destructor))
+<span style="color: #A6E22E;">trace_end</span> (<span style="color: #66D9EF;">void</span>)
 {
-  <span style="color: #0000FF;">if</span> (fp_trace != <span style="color: #D0372D;">NULL</span>) {
+  <span style="color: #F92672;">if</span> (fp_trace != <span style="color: #AE81FF;">NULL</span>) {
     fclose(fp_trace);
   }
 }
 
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">__cyg_profile_func_enter</span> (<span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">func</span>, <span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">caller</span>) {
-  <span style="color: #0000FF;">if</span> (fp_trace != <span style="color: #D0372D;">NULL</span>) {
-    fprintf(fp_trace, <span style="color: #008000;">"e %p %p %lu\n"</span>, func, caller, time(<span style="color: #D0372D;">NULL</span>));
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">__cyg_profile_func_enter</span> (<span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">func</span>, <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">caller</span>) {
+  <span style="color: #F92672;">if</span> (fp_trace != <span style="color: #AE81FF;">NULL</span>) {
+    fprintf(fp_trace, <span style="color: #E6DB74;">"e %p %p %lu\n"</span>, func, caller, time(<span style="color: #AE81FF;">NULL</span>));
   }
 }
 
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">__cyg_profile_func_exit</span>(<span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">func</span>, <span style="color: #6434A3;">void</span> *<span style="color: #BA36A5;">caller</span>) {
-  <span style="color: #0000FF;">if</span> (fp_trace != <span style="color: #D0372D;">NULL</span>) {
-    fprintf(fp_trace, <span style="color: #008000;">"x %p %p %lu\n"</span>, func, caller, time(<span style="color: #D0372D;">NULL</span>));
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">__cyg_profile_func_exit</span>(<span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">func</span>, <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">caller</span>) {
+  <span style="color: #F92672;">if</span> (fp_trace != <span style="color: #AE81FF;">NULL</span>) {
+    fprintf(fp_trace, <span style="color: #E6DB74;">"x %p %p %lu\n"</span>, func, caller, time(<span style="color: #AE81FF;">NULL</span>));
   }
 }
 </pre>
@@ -278,12 +902,12 @@ a.c:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;stdio.h&gt;</span>
-<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;string.h&gt;</span>
-<span style="color: #6434A3;">void</span> <span style="color: #006699;">foo</span>() {
-  printf(<span style="color: #008000;">"foo\n"</span>);
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;string.h&gt;</span>
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">foo</span>() {
+  printf(<span style="color: #E6DB74;">"foo\n"</span>);
 }
-<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>() {
   foo();
 }
 </pre>
@@ -336,7 +960,7 @@ The program must be running.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-08-19 Fri 15:19</p>
+<p class="date">Created: 2016-08-22 Mon 20:20</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
