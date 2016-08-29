@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-08-29 Mon 10:38 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>COMS342 Recitation 1</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">COMS342 Recitation 1</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Information</a></li>
+<li><a href="#orgheadline8">2. program paradigm</a>
+<ul>
+<li><a href="#orgheadline2">2.1. imperative</a></li>
+<li><a href="#orgheadline3">2.2. Declarative</a></li>
+<li><a href="#orgheadline4">2.3. object orient</a></li>
+<li><a href="#orgheadline5">2.4. functional</a></li>
+<li><a href="#orgheadline6">2.5. event-driven</a></li>
+<li><a href="#orgheadline7">2.6. logic</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline22">3. Language</a>
+<ul>
+<li><a href="#orgheadline16">3.1. regular language</a>
+<ul>
+<li><a href="#orgheadline11">3.1.1. Informal Definition</a>
+<ul>
+<li><a href="#orgheadline9">3.1.1.1. Two alternative informal definition:</a></li>
+<li><a href="#orgheadline10">3.1.1.2. Example:</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">3.1.2. Formal Definition</a></li>
+<li><a href="#orgheadline15">3.1.3. Prove non-regular</a>
+<ul>
+<li><a href="#orgheadline13">3.1.3.1. Pumping lemma for regular languages</a></li>
+<li><a href="#orgheadline14">3.1.3.2. Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline20">3.2. context-free language</a>
+<ul>
+<li><a href="#orgheadline19">3.2.1. Prove non-context-free</a>
+<ul>
+<li><a href="#orgheadline17">3.2.1.1. Lemma</a></li>
+<li><a href="#orgheadline18">3.2.1.2. Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline21">3.3. context-sensitive language</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Information</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Hebi Li
+(hebi@iastate.edu)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">2</span> program paradigm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A programming paradigm is a style or “way” of programming.
+</p>
+
+<ul class="org-ul">
+<li>Some languages make it easy to write in some paradigms but not others.</li>
+<li>A language can fall into multiple paradigms.
+e.g. Most object oriented languages are also imperative languages.</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Program Paradigm</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Imperative</td>
+<td class="org-left">First do this then do that (How to do)</td>
+<td class="org-left">Fortran, Algol, Pascal, Basic,C</td>
+</tr>
+
+<tr>
+<td class="org-left">Declarative</td>
+<td class="org-left">Describes what you want to do</td>
+<td class="org-left">yacc, SQL, makefile</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Functional</td>
+<td class="org-left">Side-Effect Free</td>
+<td class="org-left">Lisp, Scheme, Haskell, Erlang, OCaml</td>
+</tr>
+
+<tr>
+<td class="org-left">Object-Oriented</td>
+<td class="org-left">simulate real-world objects</td>
+<td class="org-left">C++, Java, Ruby</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Event-Driven</td>
+<td class="org-left">OnDoingSometing()</td>
+<td class="org-left">Android</td>
+</tr>
+
+<tr>
+<td class="org-left">Logic (Rule-based)</td>
+<td class="org-left">Rules and queries</td>
+<td class="org-left">Prolog</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> imperative</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Control flow is explicit. E.g. the following C code:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">array</span>[10];
+<span style="color: #4c83ff;">for</span> (<span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">i</span>=0;i&lt;10;i++) {
+  <span style="color: #4c83ff;">if</span> (i % 2 == 0) {
+    array[i] = foo(i);
+  } <span style="color: #4c83ff;">else</span> {
+    array[i] = bar(i-1);
+  }
+}
+<span style="color: #afd8af;">int</span> <span style="color: #ff1493;">foo</span>(<span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">a</span>) {}
+<span style="color: #afd8af;">int</span> <span style="color: #ff1493;">bar</span>(<span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">a</span>) {}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Declarative</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Describes what you want to do, and not how you want to do it.</li>
+<li>Control flow is implicit.</li>
+</ul>
+
+<p>
+This is a SQL query:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #4c83ff;">select</span> <span style="color: #4c83ff;">upper</span>(<span style="color: #4c83ff;">name</span>)
+<span style="color: #4c83ff;">from</span> people
+<span style="color: #4c83ff;">where</span> <span style="color: #4c83ff;">length</span>(<span style="color: #4c83ff;">name</span>) &gt; 5
+<span style="color: #4c83ff;">order</span> <span style="color: #4c83ff;">by</span> <span style="color: #4c83ff;">name</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.3</span> object orient</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Send messages between objects, simulate real world interaction.
+</p>
+
+<p>
+E.g. C++ code:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #4c83ff;">class</span> <span style="color: #afd8af;">Rect</span> {
+<span style="color: #4c83ff;">public</span>:
+  <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">SetHeight</span>(<span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">height</span>) {
+    m_height = height;
+  }
+  <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">SetWidth</span>(<span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">width</span>) {
+    m_width = width;
+  }
+  <span style="color: #afd8af;">int</span> <span style="color: #ff1493;">GetArea</span>() {
+    <span style="color: #4c83ff;">return</span> m_height * m_width;
+  }
+<span style="color: #4c83ff;">private</span>:
+  <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">m_height</span> = 0;
+  <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">m_width</span> = 0;
+};
+
+
+<span style="color: #afd8af;">int</span> <span style="color: #ff1493;">main</span>() {
+  <span style="color: #afd8af;">Rect</span> <span style="color: #ff69b4;">rect</span>;
+  rect.SetHeight(5);
+  rect.SetWidth(6);
+  rect.GetArea(); <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">=&gt; 30</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.4</span> functional</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>All computations are done by applying (calling) functions.</li>
+<li>All functions are without side effects, and state changes are only represented as functions that transform the state.</li>
+</ul>
+
+<p>
+The output value of a function depends only on the arguments that are input to the function, so calling a function f twice with the same value will always produce the same result.
+</p>
+
+<p>
+A simple lisp example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #4c83ff;">defun</span> <span style="color: #ff1493;">do-the-math</span> (x y z)
+  (+ x (* z (+ x y))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.5</span> event-driven</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Android:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #4c83ff;">public</span> <span style="color: #4c83ff;">class</span> <span style="color: #afd8af;">MainActivity</span> <span style="color: #4c83ff;">extends</span> <span style="color: #afd8af;">Activity</span> {
+    <span style="color: #4c83ff;">public</span> <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">onCreate</span>(<span style="color: #afd8af;">Bundle</span> <span style="color: #ff69b4;">savedInstanceState</span>) {
+        <span style="color: #4c83ff;">super</span>.onCreate(savedInstanceState);
+    }
+    <span style="color: #4c83ff;">protected</span> <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">onStart</span>() {
+        <span style="color: #4c83ff;">super</span>.onStart();
+    }
+    <span style="color: #4c83ff;">protected</span> <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">onResume</span>() {
+        <span style="color: #4c83ff;">super</span>.onResume();
+    }
+    <span style="color: #4c83ff;">protected</span> <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">onPause</span>() {
+        <span style="color: #4c83ff;">super</span>.onPause();
+    }
+    <span style="color: #4c83ff;">protected</span> <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">onStop</span>() {
+        <span style="color: #4c83ff;">super</span>.onStop();
+    }
+    <span style="color: #4c83ff;">public</span> <span style="color: #afd8af;">void</span> <span style="color: #ff1493;">onDestroy</span>() {
+        <span style="color: #4c83ff;">super</span>.onDestroy();
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.6</span> logic</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+Provide rules, and asking whether or not something is true.
+</p>
+
+<p>
+Prolog is the typical logic language. Take the family tree below as example:
+</p>
+<pre class="example">
+                             James I
+                                |
+                                |
+               +----------------+-----------------+
+               |                                  |
+            Charles I                          Elizabeth
+               |                                  |
+               |                                  |
+    +----------+------------+                     |
+    |          |            |                     |
+Catherine   Charles II   James II               Sophia
+                                                  |
+                                                  |
+                                                  |
+                                               George I
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #ff1493;">male</span>(james1).
+<span style="color: #ff1493;">male</span>(charles1).
+<span style="color: #ff1493;">male</span>(charles2).
+<span style="color: #ff1493;">male</span>(james2).
+<span style="color: #ff1493;">male</span>(george1).
+
+<span style="color: #ff1493;">female</span>(catherine).
+<span style="color: #ff1493;">female</span>(elizabeth).
+<span style="color: #ff1493;">female</span>(sophia).
+
+<span style="color: #ff1493;">parent</span>(charles1, james1).
+<span style="color: #ff1493;">parent</span>(elizabeth, james1).
+<span style="color: #ff1493;">parent</span>(charles2, charles1).
+<span style="color: #ff1493;">parent</span>(catherine, charles1).
+<span style="color: #ff1493;">parent</span>(james2, charles1).
+<span style="color: #ff1493;">parent</span>(sophia, elizabeth).
+<span style="color: #ff1493;">parent</span>(george1, sophia).
+
+<span style="color: #ff1493;">parent</span>(charles1, george1) <span style="color: #8B8989; font-style: italic;">/* </span><span style="color: #8B8989; font-style: italic;">Was George I the parent of Charles I? */</span>
+<span style="color: #ff1493;">parent</span>(charles1,<span style="color: #ff69b4;">X</span>) <span style="color: #8B8989; font-style: italic;">/* </span><span style="color: #8B8989; font-style: italic;">Who was Charles I's parent? */</span>
+<span style="color: #ff1493;">parent</span>(<span style="color: #ff69b4;">X</span>,charles1) <span style="color: #8B8989; font-style: italic;">/* </span><span style="color: #8B8989; font-style: italic;">Who were the children of Charles I? */</span>
+</pre>
+</div>
+
+<p>
+Reference:
+</p>
+<ul class="org-ul">
+<li><a href="https://en.wikipedia.org/wiki/Programming_paradigm">https://en.wikipedia.org/wiki/Programming_paradigm</a></li>
+<li><a href="http://cs.lmu.edu/~ray/notes/paradigms/">http://cs.lmu.edu/~ray/notes/paradigms/</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-2">
+<h2 id="orgheadline22"><span class="section-number-2">3</span> Language</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><b>A word</b> is the concatenation of symbols.</li>
+<li>The used symbols are called the <b>alphabet</b>.</li>
+<li><b>A language</b> is a subset of all possible words.</li>
+</ul>
+
+<p>
+For example, the alphabet <code>{0,1,2,3,4,5,6,7,8,9}</code>, the words could be <code>1, 2, 12, 543, 1000, 002</code>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Language</th>
+<th scope="col" class="org-left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">regular language</td>
+<td class="org-left">{42}, {prime number in range less than 100}, {string starting with double zeros}</td>
+</tr>
+
+<tr>
+<td class="org-left">Context free language</td>
+<td class="org-left">\(L = \{a^nb^n : n ≥ 0\}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Context Sensitive Language</td>
+<td class="org-left">\(L = \{ a^nb^nc^n : n > 0 \}\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">3.1</span> regular language</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">3.1.1</span> Informal Definition</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+We call a language regular if it can be decided if a word is in the language with a machine with <b>constant (finite) memory</b> by examining all symbols in the word one after another.
+</p>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-5">
+<h5 id="orgheadline9"><span class="section-number-5">3.1.1.1</span> Two alternative informal definition:</h5>
+<div class="outline-text-5" id="text-3-1-1-1">
+<ul class="org-ul">
+<li>A regular language is a formal language that <b>can be expressed using a regular expression</b></li>
+<li>a language recognized by a <b>finite automaton</b>.</li>
+</ul>
+
+<p>
+The equivalence of regular expressions and finite automata is known as Kleene's theorem.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-5">
+<h5 id="orgheadline10"><span class="section-number-5">3.1.1.2</span> Example:</h5>
+<div class="outline-text-5" id="text-3-1-1-2">
+<ul class="org-ul">
+<li><code>{42}</code>: check first, check second</li>
+<li><code>{00..}</code> (all the words start from double zeros): check whether the first two are 0</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="wikitmp_dot.png" alt="wikitmp_dot.png" />
+</p>
+</div>
+
+<p>
+The regular expression: <code>00[0-9]*</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">3.1.2</span> Formal Definition</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+The collection of regular languages over an alphabet Σ is defined recursively as follows:
+</p>
+
+<ul class="org-ul">
+<li>The empty language Ø, and the empty string language {ε} are regular languages.</li>
+<li>For each a ∈ Σ (a belongs to Σ), the singleton language {a} is a regular language.</li>
+<li>If A and B are regular languages, then A ∪ B (union), A • B (concatenation), and A* (Kleene star) are regular languages.</li>
+<li>No other languages over Σ are regular.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">3.1.3</span> Prove non-regular</h4>
+<div class="outline-text-4" id="text-3-1-3">
+</div><div id="outline-container-orgheadline13" class="outline-5">
+<h5 id="orgheadline13"><span class="section-number-5">3.1.3.1</span> Pumping lemma for regular languages</h5>
+<div class="outline-text-5" id="text-3-1-3-1">
+<p>
+Let L be a regular language.
+Then there exists an integer \(p \ge 1\) depending only on L such that every string w in L of length at least p (p is called the "pumping length")
+can be written as w = xyz (i.e., w can be divided into three substrings), satisfying the following conditions:
+</p>
+
+<ol class="org-ol">
+<li>\(|y| \ge 1\)</li>
+<li>\(|xy| \le p\)</li>
+<li>for all \(i \ge 0\), \(xy^iz \in L\)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-5">
+<h5 id="orgheadline14"><span class="section-number-5">3.1.3.2</span> Example</h5>
+<div class="outline-text-5" id="text-3-1-3-2">
+<p>
+the language \(L = \{a^nb^n : n ≥ 0\}\) over the alphabet Σ = {a, b} is <b>non-regular</b>.
+</p>
+
+<ul class="org-ul">
+<li>For L there exists an integer p satisfying above lemma.</li>
+<li>For the word \(w = a^pb^p\), it can be wrtten as \(w = xyz\).</li>
+<li>Since \(|xy| \le p\), y only consists of \(a\).</li>
+<li>If we "pump" \(y\), i.e. \(xy^iz\), we keep adding "a" to the string, resulting in the number of \(a\) is larger than the number of \(b\), which is not in the language.</li>
+</ul>
+
+<p>
+<b>Convert is not true</b>: a language that satisfies these conditions may still be non-regular.
+</p>
+
+<p>
+Reference: <a href="https://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages">https://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">3.2</span> context-free language</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">3.2.1</span> Prove non-context-free</h4>
+<div class="outline-text-4" id="text-3-2-1">
+</div><div id="outline-container-orgheadline17" class="outline-5">
+<h5 id="orgheadline17"><span class="section-number-5">3.2.1.1</span> Lemma</h5>
+<div class="outline-text-5" id="text-3-2-1-1">
+<p>
+If a language L is context-free, then there exists some integer p ≥ 1 (called a "pumping length") such that every string s in L that has a length of p or more symbols (i.e. with |s| ≥ p) can be written as
+</p>
+
+<ul class="org-ul">
+<li>s = uvwxy</li>
+</ul>
+
+<p>
+with substrings u, v, w, x and y, such that
+</p>
+
+<ol class="org-ol">
+<li>\(|vwx| ≤ p\)</li>
+<li>\(|vx| ≥ 1\), and</li>
+<li>\(uv^nwx^ny\) is in L for all n ≥ 0.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-5">
+<h5 id="orgheadline18"><span class="section-number-5">3.2.1.2</span> Example</h5>
+<div class="outline-text-5" id="text-3-2-1-2">
+<p>
+show language \(L = \{ a^nb^nc^n | n > 0 \}\) is not context-free language.
+</p>
+
+<ul class="org-ul">
+<li>For L there exists an integer p satisfying above lemma.</li>
+<li>For the word \(w = a^pb^pc^p\), it can be wrtten as \(w = uvwxy\).</li>
+<li>Since \(|vwx| \le p\), it can only consists of up to two distinct alphabets in \(a,b,c\).</li>
+<li>If we "pump" \(v\) and \(x\), i.e. $uv<sup>iwx</sup><sup>iy</sup>$$, we keep adding two of them to the string, resulting in the lack of the third.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">3.3</span> context-sensitive language</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-08-29 Mon 10:38</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
