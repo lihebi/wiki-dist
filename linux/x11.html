@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-29 Mon 10:38 -->
+<!-- 2016-09-04 Sun 20:54 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>X11</title>
@@ -113,66 +113,6 @@ a:visited {color: red;}
  pre.src {background-color: #000000; color: #d3d3d3;}</style>
 <style type="text/css">
  pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -228,23 +168,27 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Misc</a></li>
-<li><a href="#orgheadline3">2. Window Manager</a>
+<li><a href="#orgheadline2">2. font</a></li>
+<li><a href="#orgheadline3">3. Xrandr</a></li>
+<li><a href="#orgheadline4">4. Display Manager</a></li>
+<li><a href="#orgheadline6">5. Window Manager</a>
 <ul>
-<li><a href="#orgheadline2">2.1. ratpoison</a></li>
+<li><a href="#orgheadline5">5.1. ratpoison</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">3. Theme</a>
+<li><a href="#orgheadline9">6. Theme</a>
 <ul>
-<li><a href="#orgheadline4">3.1. cursor</a></li>
-<li><a href="#orgheadline5">3.2. color</a></li>
+<li><a href="#orgheadline7">6.1. cursor</a></li>
+<li><a href="#orgheadline8">6.2. color</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">4. Emacs As Window Manager</a>
+<li><a href="#orgheadline11">7. Emacs As Window Manager</a>
 <ul>
-<li><a href="#orgheadline7">4.1. A time sink</a></li>
+<li><a href="#orgheadline10">7.1. A time sink</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">5. Trouble shooting</a></li>
+<li><a href="#orgheadline12">8. Trouble shooting</a></li>
+<li><a href="#orgheadline13">9. Nvidia Driver</a></li>
 </ul>
 </div>
 </div>
@@ -258,7 +202,32 @@ check the screen resolution:
 <pre class="example">
 xdpyinfo | grep -B 2 resolution
 </pre>
+</div>
+</div>
 
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> font</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+How I made the WenQuanYi Micro Hei ttf font (clx-truetype only recognizes ttf, not ttc):
+</p>
+
+<ul class="org-ul">
+<li>input: ttc file</li>
+<li>Tool: fontforge</li>
+</ul>
+
+<p>
+Open ttc file, select one, generate font, choose truetype
+The validation failed, but doesn't matter
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Xrandr</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Multiple Display:
 </p>
@@ -268,12 +237,32 @@ Multiple Display:
 sudo xrandr --output HDMI-2 --same-as eDP-1
 sudo xrandr --output HDMI-2 --off
 </pre>
+
+<p>
+Rotate
+</p>
+<pre class="example">
+xrandr --output HDMI-1 --rotate left
+</pre>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">2</span> Window Manager</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Display Manager</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Install xdm. It will use the file <code>$HOME/.xsession</code>, so
+</p>
+<pre class="example">
+ln -s $HOME/.xinitrc $HOME/.xsession
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">5</span> Window Manager</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Candidates:
 </p>
@@ -293,9 +282,9 @@ Noop:
 </div>
 
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> ratpoison</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">5.1</span> ratpoison</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 This is actually a wonderful WM.
 To start:
@@ -340,12 +329,12 @@ Fortunately the stumpwm is very like this one, but
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">3</span> Theme</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">3.1</span> cursor</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">6</span> Theme</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">6.1</span> cursor</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 Install xcursor-themes:
 </p>
@@ -363,9 +352,9 @@ Xcursor.theme: redglass
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">3.2</span> color</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">6.2</span> color</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 X11 color names: <code>/etc/X11/rgb.txt</code>
 </p>
@@ -374,9 +363,9 @@ X11 color names: <code>/etc/X11/rgb.txt</code>
 </div>
 
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">4</span> Emacs As Window Manager</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">7</span> Emacs As Window Manager</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 <a href="http://www.howardism.org/Technical/Emacs/new-window-manager.html">http://www.howardism.org/Technical/Emacs/new-window-manager.html</a>
 </p>
@@ -406,9 +395,9 @@ When you need to run something, just <code>M-x !</code> and call <code>xterm</co
 </p>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">4.1</span> A time sink</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">7.1</span> A time sink</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
 <pre class="src src-lisp">(<span style="color: #4c83ff;">defun</span> <span style="color: #ff1493;">setup-windows</span> ()
@@ -441,9 +430,9 @@ When you need to run something, just <code>M-x !</code> and call <code>xterm</co
 </div>
 
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">5</span> Trouble shooting</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">8</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 On Debian, when I <code>dist-upgrade</code> Debian 8 Jessie to 9 Stretch,
 the <code>startx</code> stop working.
@@ -466,10 +455,40 @@ chomd u+s /usr/bin/xinit
 </pre>
 </div>
 </div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">9</span> Nvidia Driver</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+I'm installing the driver for my GTX 1060.
+It is a brand new card, the nouveau driver simply does not work.
+</p>
+
+<p>
+Install the kernel header:
+</p>
+<pre class="example">
+linux-headers-`uname -r`
+</pre>
+
+<p>
+Make sure the <code>/tmp</code> has enough space.
+</p>
+
+<p>
+After installation, use <code>nvidia-xconfig</code> will write <code>/etc/X11/xorg.conf</code>.
+The original one will be backed up (actually original one is empty).
+</p>
+
+<p>
+But, I haven't been able to boot to login page using nvidia card&#x2026;
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-08-29 Mon 10:38</p>
+<p class="date">Created: 2016-09-04 Sun 20:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

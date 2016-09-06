@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-23 Tue 22:11 -->
+<!-- 2016-09-05 Mon 20:26 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lisp</title>
@@ -156,62 +156,63 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Some useful packages (though I don't know what are they)</a></li>
-<li><a href="#orgheadline4">2. Slime</a>
+<li><a href="#orgheadline2">2. Common Functions</a></li>
+<li><a href="#orgheadline5">3. Slime</a>
 <ul>
-<li><a href="#orgheadline2">2.1. Installation</a></li>
-<li><a href="#orgheadline3">2.2. Commands</a></li>
+<li><a href="#orgheadline3">3.1. Installation</a></li>
+<li><a href="#orgheadline4">3.2. Commands</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline5">3. Introduction</a></li>
-<li><a href="#orgheadline17">4. Programming Concepts &amp; Reference</a>
+<li><a href="#orgheadline6">4. Introduction</a></li>
+<li><a href="#orgheadline18">5. Programming Concepts &amp; Reference</a>
 <ul>
-<li><a href="#orgheadline6">4.1. List (Con Cell)</a></li>
-<li><a href="#orgheadline14">4.2. Loop</a>
+<li><a href="#orgheadline7">5.1. List (Con Cell)</a></li>
+<li><a href="#orgheadline15">5.2. Loop</a>
 <ul>
-<li><a href="#orgheadline7">4.2.1. Overview</a></li>
-<li><a href="#orgheadline11">4.2.2. For</a>
+<li><a href="#orgheadline8">5.2.1. Overview</a></li>
+<li><a href="#orgheadline12">5.2.2. For</a>
 <ul>
-<li><a href="#orgheadline8">4.2.2.1. for VAR from EXPR1 to EXPR2 by EXPR3</a></li>
-<li><a href="#orgheadline9">4.2.2.2. for VAR in LIST by FUNCTION</a></li>
-<li><a href="#orgheadline10">4.2.2.3. for VAR = EXPR1 then EXPR2</a></li>
+<li><a href="#orgheadline9">5.2.2.1. for VAR from EXPR1 to EXPR2 by EXPR3</a></li>
+<li><a href="#orgheadline10">5.2.2.2. for VAR in LIST by FUNCTION</a></li>
+<li><a href="#orgheadline11">5.2.2.3. for VAR = EXPR1 then EXPR2</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">4.2.3. The condition</a></li>
-<li><a href="#orgheadline13">4.2.4. accumulation clause</a></li>
+<li><a href="#orgheadline13">5.2.3. The condition</a></li>
+<li><a href="#orgheadline14">5.2.4. accumulation clause</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">4.3. Map</a></li>
-<li><a href="#orgheadline16">4.4. String</a></li>
+<li><a href="#orgheadline16">5.3. Map</a></li>
+<li><a href="#orgheadline17">5.4. String</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">5. Topics</a>
+<li><a href="#orgheadline24">6. Topics</a>
 <ul>
-<li><a href="#orgheadline18">5.1. Buffer related</a></li>
-<li><a href="#orgheadline22">5.2. File System Related</a>
+<li><a href="#orgheadline19">6.1. Buffer related</a></li>
+<li><a href="#orgheadline23">6.2. File System Related</a>
 <ul>
-<li><a href="#orgheadline19">5.2.1. Traversing</a></li>
-<li><a href="#orgheadline20">5.2.2. Predicates</a></li>
-<li><a href="#orgheadline21">5.2.3. accessing</a></li>
+<li><a href="#orgheadline20">6.2.1. Traversing</a></li>
+<li><a href="#orgheadline21">6.2.2. Predicates</a></li>
+<li><a href="#orgheadline22">6.2.3. accessing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline26">6. Third Party Libraries</a>
+<li><a href="#orgheadline27">7. Third Party Libraries</a>
 <ul>
-<li><a href="#orgheadline24">6.1. Dash.el</a></li>
-<li><a href="#orgheadline25">6.2. s.el</a></li>
+<li><a href="#orgheadline25">7.1. Dash.el</a></li>
+<li><a href="#orgheadline26">7.2. s.el</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">7. Other interesting functions</a>
+<li><a href="#orgheadline29">8. Other interesting functions</a>
 <ul>
-<li><a href="#orgheadline27">7.1. make-obsolete-variable</a></li>
+<li><a href="#orgheadline28">8.1. make-obsolete-variable</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline30">8. Some random code snippets</a>
+<li><a href="#orgheadline31">9. Some random code snippets</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgheadline29">8.0.1. Url retrieval</a></li>
+<li><a href="#orgheadline30">9.0.1. Url retrieval</a></li>
 </ul>
 </li>
 </ul>
@@ -235,14 +236,24 @@ for the JavaScript code in this tag.
 </div>
 
 
-
-
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">2</span> Slime</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Common Functions</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Installation</h3>
-<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><code>(reverse '(1 2 3 4))</code></li>
+<li>string to int: <code>(values (parse-integer "32"))</code></li>
+<li><code>(expt 2 8)</code> 2<sup>8</sup></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">3</span> Slime</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Installation</h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>slime (emacs IDE)</li>
 <li>sbcl ("lisp" executer)</li>
@@ -279,9 +290,9 @@ The staff added into <code>.sbclrc</code>:
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Commands</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> Commands</h3>
+<div class="outline-text-3" id="text-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -322,9 +333,9 @@ The staff added into <code>.sbclrc</code>:
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">3</span> Introduction</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> Introduction</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Although lisp is closely related to Emacs,
 it makes sense to write a single page for it,
@@ -354,12 +365,12 @@ serves as a temporary patch for <code>helm-bibtex</code> update its API to <code
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">4</span> Programming Concepts &amp; Reference</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">4.1</span> List (Con Cell)</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">5</span> Programming Concepts &amp; Reference</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">5.1</span> List (Con Cell)</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 <code>car</code> is the first cell, and <code>cdr</code> is the second, meaning the address.
 </p>
@@ -404,12 +415,12 @@ Thus the common usage is <code>fields = (append fields (list "a" "b"))</code>, F
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">4.2</span> Loop</h3>
-<div class="outline-text-3" id="text-4-2">
-</div><div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7"><span class="section-number-4">4.2.1</span> Overview</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">5.2</span> Loop</h3>
+<div class="outline-text-3" id="text-5-2">
+</div><div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">5.2.1</span> Overview</h4>
+<div class="outline-text-4" id="text-5-2-1">
 <p>
 The <code>cl-loop</code> refers to the common lisp, see the detailed manual in info, <code>cl</code>.
 </p>
@@ -449,12 +460,12 @@ The effect is like <code>let</code>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11"><span class="section-number-4">4.2.2</span> For</h4>
-<div class="outline-text-4" id="text-4-2-2">
-</div><div id="outline-container-orgheadline8" class="outline-5">
-<h5 id="orgheadline8"><span class="section-number-5">4.2.2.1</span> for VAR from EXPR1 to EXPR2 by EXPR3</h5>
-<div class="outline-text-5" id="text-4-2-2-1">
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">5.2.2</span> For</h4>
+<div class="outline-text-4" id="text-5-2-2">
+</div><div id="outline-container-orgheadline9" class="outline-5">
+<h5 id="orgheadline9"><span class="section-number-5">5.2.2.1</span> for VAR from EXPR1 to EXPR2 by EXPR3</h5>
+<div class="outline-text-5" id="text-5-2-2-1">
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #8b0000;">(</span><span style="color: #4c83ff;">cl-loop</span> for x to 10 collect x<span style="color: #8b0000;">)</span>
@@ -466,9 +477,9 @@ The effect is like <code>let</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-5">
-<h5 id="orgheadline9"><span class="section-number-5">4.2.2.2</span> for VAR in LIST by FUNCTION</h5>
-<div class="outline-text-5" id="text-4-2-2-2">
+<div id="outline-container-orgheadline10" class="outline-5">
+<h5 id="orgheadline10"><span class="section-number-5">5.2.2.2</span> for VAR in LIST by FUNCTION</h5>
+<div class="outline-text-5" id="text-5-2-2-2">
 <p>
 If the function is provided, the iterating function will be changed from the default <code>cdr</code>
 </p>
@@ -482,9 +493,9 @@ If the function is provided, the iterating function will be changed from the def
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-5">
-<h5 id="orgheadline10"><span class="section-number-5">4.2.2.3</span> for VAR = EXPR1 then EXPR2</h5>
-<div class="outline-text-5" id="text-4-2-2-3">
+<div id="outline-container-orgheadline11" class="outline-5">
+<h5 id="orgheadline11"><span class="section-number-5">5.2.2.3</span> for VAR = EXPR1 then EXPR2</h5>
+<div class="outline-text-5" id="text-5-2-2-3">
 <p>
 If <code>EXPR2</code> is omitted, <code>EXPR1</code> will be set in each iteration.
 If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial value, and <code>EXPR2</code> will execute and set the variable.
@@ -501,9 +512,9 @@ If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial val
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12"><span class="section-number-4">4.2.3</span> The condition</h4>
-<div class="outline-text-4" id="text-4-2-3">
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">5.2.3</span> The condition</h4>
+<div class="outline-text-4" id="text-5-2-3">
 <ul class="org-ul">
 <li><code>repeat INTEGER</code></li>
 <li><code>while CONDITION</code></li>
@@ -514,9 +525,9 @@ If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial val
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13"><span class="section-number-4">4.2.4</span> accumulation clause</h4>
-<div class="outline-text-4" id="text-4-2-4">
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">5.2.4</span> accumulation clause</h4>
+<div class="outline-text-4" id="text-5-2-4">
 <ul class="org-ul">
 <li><code>collect FORM</code></li>
 <li><code>concat FORM</code></li>
@@ -529,18 +540,18 @@ If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial val
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15"><span class="section-number-3">4.3</span> Map</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">5.3</span> Map</h3>
+<div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li><code>(mapc FUNCTION SEQUENCE)</code>: Apply FUNCTION to each element of SEQUENCE.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">4.4</span> String</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">5.4</span> String</h3>
+<div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li><code>(string= S1 S2)</code>: Return t if two strings have identical contents.</li>
 </ul>
@@ -548,12 +559,12 @@ If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial val
 </div>
 </div>
 
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23"><span class="section-number-2">5</span> Topics</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">5.1</span> Buffer related</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">6</span> Topics</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">6.1</span> Buffer related</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li><code>with-temp-buffer</code>
   <code>(with-temp-buffer &amp;rest BODY)</code> Create a temporary buffer, and evaluate BODY there like <code>progn</code>.</li>
@@ -566,12 +577,12 @@ This can be used to compare if a file has changed.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22"><span class="section-number-3">5.2</span> File System Related</h3>
-<div class="outline-text-3" id="text-5-2">
-</div><div id="outline-container-orgheadline19" class="outline-4">
-<h4 id="orgheadline19"><span class="section-number-4">5.2.1</span> Traversing</h4>
-<div class="outline-text-4" id="text-5-2-1">
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">6.2</span> File System Related</h3>
+<div class="outline-text-3" id="text-6-2">
+</div><div id="outline-container-orgheadline20" class="outline-4">
+<h4 id="orgheadline20"><span class="section-number-4">6.2.1</span> Traversing</h4>
+<div class="outline-text-4" id="text-6-2-1">
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #8b0000;">(</span>directory-files DIRECTORY <span style="color: #afd8af;">&amp;optional</span> FULL MATCH NOSORT<span style="color: #8b0000;">)</span>
@@ -593,9 +604,9 @@ Usage example:
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-4">
-<h4 id="orgheadline20"><span class="section-number-4">5.2.2</span> Predicates</h4>
-<div class="outline-text-4" id="text-5-2-2">
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">6.2.2</span> Predicates</h4>
+<div class="outline-text-4" id="text-6-2-2">
 <p>
 <code>directory-files</code> will throw error if the directory does not exist.
 So a safe way is to check if the directory exists first.
@@ -622,19 +633,19 @@ file-accessible-directory-p
 </div>
 </div>
 
-<div id="outline-container-orgheadline21" class="outline-4">
-<h4 id="orgheadline21"><span class="section-number-4">5.2.3</span> accessing</h4>
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">6.2.3</span> accessing</h4>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26"><span class="section-number-2">6</span> Third Party Libraries</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24"><span class="section-number-3">6.1</span> Dash.el</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27"><span class="section-number-2">7</span> Third Party Libraries</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">7.1</span> Dash.el</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 <a href="https://github.com/magnars/dash.el">https://github.com/magnars/dash.el</a>
 </p>
@@ -666,9 +677,9 @@ the anaphoric form with double dashes executed with <code>it</code> exposed as t
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25"><span class="section-number-3">6.2</span> s.el</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">7.2</span> s.el</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 <a href="https://github.com/magnars/s.el">https://github.com/magnars/s.el</a>
 </p>
@@ -681,12 +692,12 @@ The string manipulation library
 </div>
 
 
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="orgheadline28"><span class="section-number-2">7</span> Other interesting functions</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27"><span class="section-number-3">7.1</span> make-obsolete-variable</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29"><span class="section-number-2">8</span> Other interesting functions</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">8.1</span> make-obsolete-variable</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 <code>(make-obsolete-variable OBSOLETE-NAME CURRENT-NAME WHEN &amp;optional ACCESS-TYPE)</code>
 </p>
@@ -731,9 +742,9 @@ the mini-buffer will describe the obsolete detail.
 </div>
 
 
-<div id="outline-container-orgheadline30" class="outline-2">
-<h2 id="orgheadline30"><span class="section-number-2">8</span> Some random code snippets</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline31" class="outline-2">
+<h2 id="orgheadline31"><span class="section-number-2">9</span> Some random code snippets</h2>
+<div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #8b0000;">(</span>cl-prettyprint <span style="color: #006400;">(</span>font-family-list<span style="color: #006400;">)</span><span style="color: #8b0000;">)</span> <span style="color: #8B8989; font-style: italic;">;; </span><span style="color: #8B8989; font-style: italic;">see all font family available on this system</span>
@@ -741,9 +752,9 @@ the mini-buffer will describe the obsolete detail.
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-4">
-<h4 id="orgheadline29"><span class="section-number-4">8.0.1</span> Url retrieval</h4>
-<div class="outline-text-4" id="text-8-0-1">
+<div id="outline-container-orgheadline30" class="outline-4">
+<h4 id="orgheadline30"><span class="section-number-4">9.0.1</span> Url retrieval</h4>
+<div class="outline-text-4" id="text-9-0-1">
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #8b0000;">(</span><span style="color: #4c83ff;">with-current-buffer</span> <span style="color: #006400;">(</span>url-retrieve-synchronously <span style="color: #61CE3C;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span><span style="color: #006400;">)</span>
@@ -763,7 +774,7 @@ the mini-buffer will describe the obsolete detail.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-08-23 Tue 22:11</p>
+<p class="date">Created: 2016-09-05 Mon 20:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
