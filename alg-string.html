@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-09-07 Wed 14:53 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>String Algorithm</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">String Algorithm</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline4">1. Knuth–Morris–Pratt(KMP)</a>
+<ul>
+<li><a href="#orgheadline3">1.1. 214. Shortest Palindrome</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. KMP</a></li>
+<li><a href="#orgheadline2">1.1.2. brute force</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline8">2. Boyer Moore</a>
+<ul>
+<li><a href="#orgheadline5">2.1. Bad Character Rule</a></li>
+<li><a href="#orgheadline6">2.2. Good Suffix Rule</a></li>
+<li><a href="#orgheadline7">2.3. Galil Rule</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">3. Rabin-Karp Algorithm</a>
+<ul>
+<li><a href="#orgheadline11">3.1. Rolling Hash</a>
+<ul>
+<li><a href="#orgheadline9">3.1.1. Rabin-Karp rolling hash</a></li>
+<li><a href="#orgheadline10">3.1.2. Cyclic Polynomial (Buzhash)</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">3.2. Tabulation hashing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">1</span> Knuth–Morris–Pratt(KMP)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Match a pattern string P inside given long string T.
+</p>
+
+<p>
+Different from brute-force, we prebuild a look-up table, and when a failure matching happen, we shift not just 1, but multiple position.
+</p>
+
+<p>
+The look up table only relates to P. Basically it tells: if a matching failed at a index \(p_i\) in P, how many position should be shifted.
+</p>
+
+<p>
+An example:
+</p>
+
+<pre class="example">
+ABCDABD
+0000012
+
+PARTICIPATEINPARACHUTE
+-100000012000012300000
+</pre>
+
+<p>
+Table building (O(k)) where k is length of P:
+Scan only once, update is straight-forward.
+</p>
+
+<pre class="example">
+while pos &lt; length(W) do
+        (first case: the substring continues)
+        if W[pos-1] = W[cnd] then
+            let T[pos] ← cnd + 1, cnd ← cnd + 1, pos ← pos + 1
+
+        (second case: it doesn't, but we can fall back)
+        else if cnd &gt; 0 then
+            let cnd ← T[cnd]
+
+        (third case: we have run out of candidates.  Note cnd = 0)
+        else
+            let T[pos] ← 0, pos ← pos + 1
+</pre>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.1</span> 214. Shortest Palindrome</h3>
+<div class="outline-text-3" id="text-1-1">
+<blockquote>
+<p>
+Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> KMP</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+It is easy to convert the problem to find the longest Palindrome at the beginning of s.
+To apply KMP, we write the string as <code>s + '#' + reverse(s)</code>.
+Then we build the KMP table for this string.
+What we need is to find the largest number inside KMP table.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.1.2</span> brute force</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+I have a brute-force that "just" pass the tests.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #4c83ff;">class</span> <span style="color: #afd8af;">Solution</span> {
+<span style="color: #4c83ff;">public</span>:
+  <span style="color: #afd8af;">string</span> <span style="color: #ff1493;">shortestPalindrome</span>(<span style="color: #afd8af;">string</span> <span style="color: #ff69b4;">s</span>) {
+    <span style="color: #4c83ff;">if</span> (s.size() == 0) <span style="color: #4c83ff;">return</span> s;
+    <span style="color: #4c83ff;">if</span> (s.size() == 1) <span style="color: #4c83ff;">return</span> s;
+    <span style="color: #4c83ff;">for</span> (<span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">i</span>=(s.size()-1)/2;i&gt;0;i--) {
+      <span style="color: #4c83ff;">if</span> (check(s, i, <span style="color: #96CBFE;">false</span>)) {
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">std::cout &lt;&lt; "success on " &lt;&lt; i &lt;&lt; " false"  &lt;&lt; "\n";</span>
+        <span style="color: #afd8af;">string</span> <span style="color: #ff69b4;">sub</span> = s.substr(<span style="color: #afd8af;">i</span>*2+2);
+        <span style="color: #96CBFE;">std</span>::reverse(sub.begin(), sub.end());
+        <span style="color: #4c83ff;">return</span> sub + s;
+      } <span style="color: #4c83ff;">else</span> <span style="color: #4c83ff;">if</span> (check(s, <span style="color: #afd8af;">i</span>, <span style="color: #96CBFE;">true</span>)) {
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">std::cout &lt;&lt; "success on " &lt;&lt; i &lt;&lt; " true"  &lt;&lt; "\n";</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">THREE</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">1 2 3 4 5 6</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">- - -|- - -</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">6/2=3</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">1 2 3 4 5</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">- - | - -</span>
+        <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">i*2+1 - end</span>
+        <span style="color: #afd8af;">string</span> <span style="color: #ff69b4;">sub</span> = s.substr(<span style="color: #afd8af;">i</span>*2+1);
+        <span style="color: #96CBFE;">std</span>::reverse(sub.begin(), sub.end());
+        <span style="color: #4c83ff;">return</span> sub + s;
+      }
+    }
+    <span style="color: #afd8af;">string</span> <span style="color: #ff69b4;">sub</span>;
+    <span style="color: #4c83ff;">if</span> (check(s, 0, <span style="color: #96CBFE;">false</span>)) {
+      sub = s.substr(2);
+    } <span style="color: #4c83ff;">else</span> {
+      sub = s.substr(1);
+    }
+    <span style="color: #96CBFE;">std</span>::reverse(sub.begin(), sub.end());
+    <span style="color: #4c83ff;">return</span> sub + s;
+  }
+  <span style="color: #8B8989; font-style: italic;">/**</span>
+<span style="color: #8B8989; font-style: italic;">   * on: pivot on idx or not</span>
+<span style="color: #8B8989; font-style: italic;">   */</span>
+  <span style="color: #afd8af;">bool</span> <span style="color: #ff1493;">check</span>(<span style="color: #afd8af;">string</span> &amp;<span style="color: #ff69b4;">s</span>, <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">idx</span>, <span style="color: #afd8af;">bool</span> <span style="color: #ff69b4;">on</span>) {
+    <span style="color: #8B8989; font-style: italic;">// </span><span style="color: #8B8989; font-style: italic;">std::cout &lt;&lt; idx  &lt;&lt; "\n";</span>
+    <span style="color: #4c83ff;">if</span> (idx &lt;0 || idx &gt;= (<span style="color: #afd8af;">int</span>)s.size()) <span style="color: #4c83ff;">return</span> <span style="color: #96CBFE;">false</span>;
+    <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">i</span>=0,<span style="color: #ff69b4;">j</span>=0;
+    <span style="color: #4c83ff;">if</span> (on) {
+      i=idx-1;
+      j=idx+1;
+    } <span style="color: #4c83ff;">else</span> {
+      i = idx;
+      j = idx+1;
+    }
+    <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">size</span> = s.size();
+    <span style="color: #4c83ff;">while</span> (i &gt;= 0) {
+      <span style="color: #4c83ff;">if</span> (j &gt;= size) <span style="color: #4c83ff;">return</span> <span style="color: #96CBFE;">false</span>;
+      <span style="color: #4c83ff;">if</span> (s[i] != s[j]) <span style="color: #4c83ff;">return</span> <span style="color: #96CBFE;">false</span>;
+      i--;
+      j++;
+    }
+    <span style="color: #4c83ff;">return</span> <span style="color: #96CBFE;">true</span>;
+  }
+};
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">2</span> Boyer Moore</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+It is a string match algorithm.
+</p>
+
+<p>
+The rule lookup is in a hash table,
+which can be formed during proprocessing of pattern.
+</p>
+
+<p>
+In the following examples, the lower case denote the matched or unmatched part for illustration purpose only.
+They are upper case when considering matching.
+</p>
+</div>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.1</span> Bad Character Rule</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Match from last. In the below example, the suffix <code>MAN</code> matches, but <code>N</code> does not match. Shift the pattern so that the first N (counted from last) go to the <code>N</code> place.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">- - - - X - - K - - -
+A N P A n M A N A M -
+- N n A A M A N - - -
+- - - N n A A M A N -
+</pre>
+</div>
+
+<p>
+from right end to left.
+when a mismatch happens at `n`,
+find to left a `n`, then shift it to the position.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.2</span> Good Suffix Rule</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Similar to the bad rule, find the matched, in this case <code>NAM</code>.
+Then, if an failure happens, move the same part to the left of that match (in this case another <code>NAM</code> at the left) to that position.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">- - - - X - - K - - - - -
+M A N P A n a m A N A P -
+A n a m P n a m - - - - -
+- - - - A n a m P N A M -
+</pre>
+</div>
+
+<p>
+when a mismatch happens,
+<code>nam</code> is the longest good suffix.
+Find <code>nam</code> to the left,
+and shift it to the position.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.3</span> Galil Rule</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+As opposed to shifting, the Galil rule deals with speeding up the actual comparisons done at each alignment by skipping sections that are known to match.
+Suppose that at an alignment k1,
+P is compared with T down to character c of T.
+Then if P is shifted to k2 such that its left end is between c and k1,
+in the next comparison phase a prefix of P must match the substring T[(k2 - n)..k1].
+Thus if the comparisons get down to position k1 of T,
+an occurrence of P can be recorded without explicitly comparing past k1.
+In addition to increasing the efficiency of Boyer-Moore,
+the Galil rule is required for proving linear-time execution in the worst case.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> Rabin-Karp Algorithm</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+It is a string searching algorithm.
+</p>
+
+<p>
+The Naive Solution for string search:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #afd8af;">int</span> <span style="color: #ff1493;">func</span>(<span style="color: #afd8af;">char</span> <span style="color: #ff69b4;">s</span>[], <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">n</span>, <span style="color: #afd8af;">char</span> <span style="color: #ff69b4;">pattern</span>[], <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">m</span>) {
+  <span style="color: #afd8af;">char</span> *<span style="color: #ff69b4;">ps</span>,*<span style="color: #ff69b4;">pp</span>; <span style="color: #8B8989; font-style: italic;">//</span><span style="color: #8B8989; font-style: italic;">*</span>
+  ps=s;
+  pp=pattern;
+  <span style="color: #4c83ff;">for</span> (i=0;i&lt;n-m+1;) {
+    <span style="color: #4c83ff;">if</span> (*pp==<span style="color: #61CE3C;">'\0'</span>) <span style="color: #4c83ff;">return</span> i; <span style="color: #8B8989; font-style: italic;">//</span><span style="color: #8B8989; font-style: italic;">*</span>
+    <span style="color: #4c83ff;">if</span> (*ps == *pp) { <span style="color: #8B8989; font-style: italic;">//</span><span style="color: #8B8989; font-style: italic;">*</span>
+      ps++;pp++;
+    } <span style="color: #4c83ff;">else</span> {
+      i++;
+      ps=s+i;
+      pp=pattern;
+    }
+  }
+}
+</pre>
+</div>
+
+<p>
+The running time is \(O(mn)\).
+</p>
+
+<p>
+The Rabin-Karp algorithm use hash for pattern match.
+First calculate <code>hash(pattern)</code>.
+Then for every s[i,i+m-1], calculate the hash.
+Then compare them.
+</p>
+
+<p>
+The key of the algorithm is the hash function.
+If the hash function need time m to compute, then it is still \(O(mn)\).
+If the collision happens often, then even if hash matches, we still need to verify.
+</p>
+
+<p>
+Key point is to select a hast function, such that <code>hash(i,i+m-1)</code> can be computed
+by <code>hash(i-1,i+m-2)</code>.
+</p>
+
+<p>
+If add all characters' ASCII together, collision is often.
+</p>
+
+<p>
+The used hash function is:
+select a large prime as base, 101 for example.
+Hash value is:
+</p>
+
+\begin{equation}
+hash("abc") = ASCII('a')*101^2 + ASCII('b')*101^1 + ASCII('c')*101^0
+\end{equation}
+
+<p>
+Rabin-Karp is not so good for single string match because the worst case is \(O(mn)\),
+but it is the algorithm of choice for multiple pattern search.
+</p>
+
+<p>
+K patterns, in a large string s, find any one of the K patterns.
+</p>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.1</span> Rolling Hash</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">3.1.1</span> Rabin-Karp rolling hash</h4>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">3.1.2</span> Cyclic Polynomial (Buzhash)</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+<code>s(a)</code> means shift a left.
+</p>
+
+\begin{equation}
+H=s^{k-1}(h(c_1)) \oplus s^{k-2}(h(c_2)) \oplus \ldots \oplus s(h(c_{k-1})) \oplus h(c_k)
+\end{equation}
+
+<p>
+<code>h</code> is a tabulation hashing.
+</p>
+
+<p>
+To remove \(c_1\) and add \(c_{k+1}\):
+</p>
+
+\begin{equation}
+H = s(H) \oplus s^k(h(c_1)) \oplus h(c_{k+1})
+\end{equation}
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.2</span> Tabulation hashing</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+input key is <code>p</code> bits, output is <code>q</code> bits.
+choose a <code>r</code> less then <code>p</code>, and \(t=\lceil p/r \rceil\).
+</p>
+
+<p>
+view a key as t r-bit numbers. Use a lookup table filled with random values
+to compute hash value for each of t numbers. Xor them together.
+</p>
+
+<p>
+The choice of r should be made in such a way that this table is not too large,
+so that it fits into the computer's cache memory.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-09-07 Wed 14:53</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

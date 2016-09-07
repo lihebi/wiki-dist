@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-18 Mon 18:03 -->
+<!-- 2016-09-06 Tue 16:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux</title>
@@ -97,6 +97,14 @@
 <style>
 a:visited {color: red;}
 </style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -151,11 +159,19 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Centos Boost Up</a></li>
+<li><a href="#orgheadline1">1. App</a></li>
 <li><a href="#orgheadline2">2. Job control</a></li>
-<li><a href="#orgheadline4">3. Debian</a>
+<li><a href="#orgheadline3">3. Install fonts</a></li>
+<li><a href="#orgheadline4">4. Power management</a></li>
+<li><a href="#orgheadline7">5. Grub</a>
 <ul>
-<li><a href="#orgheadline3">3.1. Install fonts</a></li>
+<li><a href="#orgheadline5">5.1. Introduction</a></li>
+<li><a href="#orgheadline6">5.2. Grub 2</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">6. Run level</a>
+<ul>
+<li><a href="#orgheadline8">6.1. Run level description</a></li>
 </ul>
 </li>
 </ul>
@@ -163,64 +179,30 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Centos Boost Up</h2>
+<h2 id="orgheadline1"><span class="section-number-2">1</span> App</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-On installing a new instance of CentOS, issue the following commands:
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">check the sshd status</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">should use opensshd</span>
-service status sshd
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">add user, -m means create home folder</span>
-useradd -m myname
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">oh, wait, I forget to add myself to wheel</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-a means append, if no -a, the -G will accept a comma separated list, overwrite the previous setting</span>
-usermod -aG wheel myname
-</pre>
-</div>
+<ul class="org-ul">
+<li>File explorer: konquerer</li>
+<li>Image viewer: feh</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
 <h2 id="orgheadline2"><span class="section-number-2">2</span> Job control</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-<code>C-z</code> to suspend.
-<code>fg</code> to bring it to foreground.
-<code>jobs</code> to list all background jobs,
-and <code>kill %1</code> to kill the first.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">3</span> Debian</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Change default desktop environment:
-</p>
 <ul class="org-ul">
-<li>GNome: gdm</li>
-<li>KDE: kdm</li>
-<li>lxfe: lightdm</li>
+<li><code>C-z</code> to suspend.</li>
+<li><code>fg</code> to bring it to foreground.</li>
+<li><code>jobs</code> to list all background jobs,
+and <code>kill %1</code> to kill the first.</li>
 </ul>
-
-<p>
-Change:
-</p>
-<ol class="org-ol">
-<li>edit <code>/etc/X11/default-display-manager</code></li>
-<li>sudo dpkg-reconfigure gdm</li>
-<li>update-alternatives &#x2013;config x-window-manage</li>
-</ol>
+</div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Install fonts</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Install fonts</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>OTF: OpenType</li>
 <li>TTF: TrueType</li>
@@ -239,11 +221,117 @@ fc-list
 </pre>
 </div>
 </div>
+
+
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Power management</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+No extra software needed! <code>systmed</code> can handle it, by <code>acpid</code>.
+The configure file is <code>/etc/systemd/logind.conf</code>.
+<code>man logind.conf</code> for details.
+</p>
+
+<pre class="example">
+HandlePowerKey=hibernate
+HandleLidSwitch=suspend
+</pre>
+
+<p>
+hibernate will save to disk, while suspend save to ram.
+Both of them will resume to the current status.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">5</span> Grub</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">5.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Use grub 2 instead of grub legacy. For a quick look at what they look like:
+</p>
+
+<p>
+Grub Legacy <code>boot/grub/menu.lst</code>:
+</p>
+<pre class="example">
+title           Debian GNU/Linux
+root            (hd0,2)
+kernel          /vmlinuz root=/dev/hda3 ro
+initrd          /initrd.img
+</pre>
+
+<p>
+Grub 2 <code>/boot/grub/grub.cfg</code>:
+</p>
+<pre class="example">
+menuentry "Debian GNU/Linux" {
+        set root=(hd0,3)
+        linux /vmlinuz root=/dev/hda3
+        initrd /initrd.img
+}
+</pre>
+
+<p>
+Note that the root is <code>(hd0,2)</code> in grub legacy vs. <code>(hd0,3)</code> in grub 2.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">5.2</span> Grub 2</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+The menu configure file is located at <code>/boot/grub/grub.cfg</code>.
+It is generated by <code>/usr/sbin/update-grub</code> (8) using templates from <code>/etc/grub.d/*</code> and settings from <code>/etc/default/grub</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">6</span> Run level</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Use debian as example distribution.
+</p>
+
+<p>
+The default run level is 2, corresponding to <code>/etc/rc2.d/XXX</code> scripts.
+By default there's no difference between level 2 to 5.
+</p>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">6.1</span> Run level description</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>0: halt</li>
+<li>S: single user mode on boot</li>
+<li>1: single user mode, switched from multi-user mode</li>
+<li>2: multi-user mode</li>
+<li>3,4,5</li>
+<li>6: reboot</li>
+
+<li><code>telinit(8)</code> can change the run level dynamically.</li>
+<li><code>runlevel(8)</code> check current run level</li>
+</ul>
+
+<p>
+Those scripts starts with "S" or "K" meaning <code>start</code> or <code>stop</code> sent to <code>systemd</code> utility.
+Those scripts are symbol linked to <code>../init.d/xxx</code>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-07-18 Mon 18:03</p>
+<p class="date">Created: 2016-09-06 Tue 16:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-09-07 Wed 14:53 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Data Structure</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Data Structure</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline9">1. 树</a>
+<ul>
+<li><a href="#orgheadline1">1.1. 一些定义</a></li>
+<li><a href="#orgheadline3">1.2. 一些性质</a>
+<ul>
+<li><a href="#orgheadline2">1.2.1. 完全二叉树</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">1.3. 二叉查找树</a>
+<ul>
+<li><a href="#orgheadline4">1.3.1. 删除操作</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline8">1.4. AVL树</a>
+<ul>
+<li><a href="#orgheadline6">1.4.1. 单旋转</a></li>
+<li><a href="#orgheadline7">1.4.2. 双旋转</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline12">2. 堆</a>
+<ul>
+<li><a href="#orgheadline10">2.1. Insert</a></li>
+<li><a href="#orgheadline11">2.2. DeleteMin</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline24">3. 排序</a>
+<ul>
+<li><a href="#orgheadline13">3.1. 插入排序</a></li>
+<li><a href="#orgheadline14">3.2. 希尔排序</a></li>
+<li><a href="#orgheadline16">3.3. 堆排序</a>
+<ul>
+<li><a href="#orgheadline15">3.3.1. 额外阅读</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline17">3.4. 归并排序</a></li>
+<li><a href="#orgheadline23">3.5. 快速排序</a>
+<ul>
+<li><a href="#orgheadline21">3.5.1. 选取枢纽元</a>
+<ul>
+<li><a href="#orgheadline18">3.5.1.1. 错误的方法</a></li>
+<li><a href="#orgheadline19">3.5.1.2. 安全的做法</a></li>
+<li><a href="#orgheadline20">3.5.1.3. 三数中值分割法</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline22">3.5.2. 分割策略</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline34">4. 图</a>
+<ul>
+<li><a href="#orgheadline25">4.1. 一些定义</a></li>
+<li><a href="#orgheadline27">4.2. 拓扑排序</a>
+<ul>
+<li><a href="#orgheadline26">4.2.1. 一个简单的算法</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline30">4.3. 最短路径</a>
+<ul>
+<li><a href="#orgheadline28">4.3.1. 无权最短路径</a></li>
+<li><a href="#orgheadline29">4.3.2. 赋权最短路径</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline33">4.4. 最小生成树</a>
+<ul>
+<li><a href="#orgheadline31">4.4.1. Prim算法</a></li>
+<li><a href="#orgheadline32">4.4.2. Kruskal算法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">1</span> 树</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 一些定义</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>满二叉树:全满.</li>
+<li>完全二叉树:只有最后一层不全满,但是是从左到右填满的.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.2</span> 一些性质</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.2.1</span> 完全二叉树</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+一个位置为=i=的节点,其左孩子为=2i=,父节点为&amp;lfloor;i/2&amp;rfloor;
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.3</span> 二叉查找树</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+对于树中每一个节点，其左子树中所有关键字值小于该节点关键字值，右子树中所有关键字值大于之。
+</p>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.3.1</span> 删除操作</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li>若要删除的节点是一片树叶，直接删。</li>
+<li>若该节点有一个子节点，用该子节点代替它。</li>
+<li>若有两个子节点，使用其右子树中最小的数据代替该节点，再将那个最小的数据的节点（此时是空的）删除（它没有左子树）。</li>
+</ul>
+
+<p>
+如果删除的次数不多，通常使用=惰性删除=:当一个元素被删除时,它仍留在树中,只是做了删除的标记.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">1.4</span> AVL树</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+带有平衡条件的二叉查找树.
+</p>
+
+<p>
+设计要点:
+</p>
+
+<ul class="org-ul">
+<li>平衡条件容易保持</li>
+<li>必须保证树的深度是=O(logN)=</li>
+</ul>
+
+<p>
+常用的定义:每个节点的左子树和右子树的高度最多差1的二叉查找树.下图中左边是,右边不是.
+</p>
+
+
+<div class="figure">
+<p><img src="./images/avl.gif" alt="avl.gif" />
+</p>
+</div>
+
+<p>
+插入节点时,树的平衡容易被破坏,要通过旋转操作修复.
+</p>
+
+<p>
+插入有四种情况:
+</p>
+
+<ul class="org-ul">
+<li>左左: 节点插入成左子树的左子树.</li>
+<li>右右</li>
+<li>左右: 节点插入成左子树的右子树</li>
+<li>右左</li>
+</ul>
+
+<p>
+1,2等价,3,4等价.
+</p>
+
+<p>
+1,2需要进行=单旋转=.3,4需要进行=双旋转=
+</p>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">1.4.1</span> 单旋转</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+下图中X比Z深2,需要修复.
+</p>
+
+<ul class="org-ul">
+<li>把=k1=拎起来</li>
+<li>=Y=挂到=k2=的左子树上</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="https://farm9.staticflickr.com/8640/15627348063_f3c9f7883b_o.jpg" alt="15627348063_f3c9f7883b_o.jpg" />
+</p>
+</div>
+
+<p>
+下面是一个实际的例子
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm8.staticflickr.com/7535/16061388267_d226b3d4a3_o.jpg" alt="16061388267_d226b3d4a3_o.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">1.4.2</span> 双旋转</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+k2那个分支太深了,单旋转解决不了.双旋转修复法:
+</p>
+
+<ul class="org-ul">
+<li>把=k2=拎起来</li>
+<li><code>B</code>,=C=分别放到左右子树上.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="https://farm8.staticflickr.com/7566/16245386281_f590d98a1b_o.jpg" alt="16245386281_f590d98a1b_o.jpg" />
+</p>
+</div>
+
+<p>
+下面是实际的例子.
+</p>
+
+
+<div class="figure">
+<p><img src="https://farm9.staticflickr.com/8564/16061392017_3c30b26cd4_o.jpg" alt="16061392017_3c30b26cd4_o.jpg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">2</span> 堆</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+堆又叫=优先队列=.
+</p>
+
+<p>
+堆有至少如下操作:
+</p>
+
+<ul class="org-ul">
+<li>Insert</li>
+<li>DeleteMin</li>
+</ul>
+
+<p>
+一般的实现都使用=二叉堆=,经常把之简称=堆=.
+</p>
+
+<p>
+堆是一个=完全二叉树=.
+</p>
+
+<p>
+<code>堆序性</code>:堆中每一个节点都小于或等于其后裔.最小元在根上.
+</p>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.1</span> Insert</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+上滤:
+</p>
+
+<ul class="org-ul">
+<li>在该=完全二叉树=的下一个空闲位置建立一个空穴.</li>
+<li>如果=X=可以放入其中而不破坏=堆序性=,结束</li>
+<li>否则,将该空穴的父节点放过来,再尝试将=X=放入.</li>
+<li>循环.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.2</span> DeleteMin</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+下滤:
+</p>
+
+<ul class="org-ul">
+<li>将根删除</li>
+<li>将最后一个数据视为 <code>X</code>,需要将它移动到一个正确的位置.</li>
+</ul>
+
+<p>
+所以步骤为:
+</p>
+
+<ul class="org-ul">
+<li>删根</li>
+<li>将 <code>X</code> 放入空穴,如果不破坏 <code>堆序性</code>,结束</li>
+<li>否则,将空穴的子节点中最小的一个移入空穴,尝试将=X=放入新空穴</li>
+<li>循环</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">3</span> 排序</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.1</span> 插入排序</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+在第 <code>P</code> 趟,将位置 <code>P</code> 上的元素向左移动到它在前 <code>P+1</code> 个元素的正确位置上.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">3.2</span> 希尔排序</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+又叫 <code>缩小增量排序</code>
+</p>
+
+<p>
+使用一个 <code>增量序列</code>: <code>h1,h2,...,hk</code>
+</p>
+
+
+<div class="figure">
+<p><img src="./images/shell.jpeg" alt="shell.jpeg" />
+</p>
+</div>
+
+<p>
+上图中,使用的增量序列是 <code>1,3,5</code>.
+每一行是一次排序.
+</p>
+
+<p>
+第一行中,对 <code>1,6,11</code>, <code>2,7,12</code>, <code>3,8,13</code> 等分别排序.
+</p>
+
+<p>
+第二行中,对 <code>1,4,7,10</code>, <code>2,5,8,11</code> 等单独排序.
+</p>
+
+<p>
+最坏复杂度: \(O(N^2)\).但是好的增量序列往往比堆排序还快.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">3.3</span> 堆排序</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+建立N个元素的二叉堆,花费 \(O(N)\) 时间.
+</p>
+
+<p>
+然后执行N次 <code>DeleteMin</code> 操作输出结果,每次 <code>O(N)</code>.
+</p>
+
+<p>
+总时间复杂度: \(O(NlogN)\)
+</p>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">3.3.1</span> 额外阅读</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+<code>DeleteMin</code> 输出结果时,要使用另一个数组.可以避免的.方法是将出来的放到最后新空出来的空穴中.
+这样就会最终得到一个递减的序列.
+</p>
+
+<p>
+为了得到递增的序列,可以使用=max堆=,即根是最大的.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">3.4</span> 归并排序</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+基本操作是合并两个已经排序的表.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #afd8af;">void</span> <span style="color: #ff1493;">MSort</span>(<span style="color: #afd8af;">ElementType</span> <span style="color: #ff69b4;">A</span>[], <span style="color: #afd8af;">ElementType</span> <span style="color: #ff69b4;">TmpArray</span>[], <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">Left</span>, <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">Right</span>) {
+  <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">Center</span>;
+  <span style="color: #4c83ff;">if</span> (Left&lt;Right) {
+    Center = (Left+Right)/2;
+    MSort(A, TmpArray, Left, Center);
+    MSort(A, TmpArray, Center+1, Right);
+    Merge(A, TmpArrray, Center+1, Right);
+  }
+}
+</pre>
+</div>
+
+<p>
+Merge函数用来连接两个已经排序的表.
+</p>
+
+<p>
+最小的已排序的表是只包含一个元素的表.
+</p>
+
+<p>
+最坏情形的时间复杂度 \(O(NlogN)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">3.5</span> 快速排序</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+快速排序是在实践中最快的已知排序算法.
+</p>
+
+<p>
+平均运行时间 \(O(NlogN)\), 最坏性能 \(O(N^2)\),但稍加努力就可以避免这种情况.
+</p>
+
+<p>
+步骤:
+</p>
+
+<ul class="org-ul">
+<li>在s中取任意一个元素 <code>v</code>,称为枢纽元</li>
+<li>把s中比 <code>v</code> 小的放左边,比 <code>v</code> 大的放右边.</li>
+<li>对两边各进行快速排序</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">3.5.1</span> 选取枢纽元</h4>
+<div class="outline-text-4" id="text-3-5-1">
+</div><div id="outline-container-orgheadline18" class="outline-5">
+<h5 id="orgheadline18"><span class="section-number-5">3.5.1.1</span> 错误的方法</h5>
+<div class="outline-text-5" id="text-3-5-1-1">
+<p>
+使用第一个元素
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline19" class="outline-5">
+<h5 id="orgheadline19"><span class="section-number-5">3.5.1.2</span> 安全的做法</h5>
+<div class="outline-text-5" id="text-3-5-1-2">
+<p>
+随机选取.但是不好,随机数生成一般是昂贵的.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline20" class="outline-5">
+<h5 id="orgheadline20"><span class="section-number-5">3.5.1.3</span> 三数中值分割法</h5>
+<div class="outline-text-5" id="text-3-5-1-3">
+<p>
+最好的方法是使用数组的中值,但是计算昂贵.
+</p>
+
+<p>
+一般选取左端,右端,中心位置这三个元素作为枢纽元.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">3.5.2</span> 分割策略</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+已知枢纽元,如何将小的放前面,大的放后面?
+</p>
+
+<ol class="org-ol">
+<li>将枢纽元与最后的元素交换</li>
+<li><code>i</code> 指向第一个元素, <code>j</code> 指向倒数第二个元素</li>
+<li>将 <code>i</code> 右移,移过比枢纽元小的元素.将 <code>j</code> 左移,移过比枢纽元大的元素</li>
+<li>当 <code>i</code> 和 <code>j</code> 都停止时,交换 <code>i</code> 和 <code>j</code> 的数据,并重复步骤 <code>3</code></li>
+<li>当 <code>i</code> 和 <code>j</code> 交错了,即 <code>i</code> 跑到 <code>j</code> 的右侧了,将i的值和枢纽元交换</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-2">
+<h2 id="orgheadline34"><span class="section-number-2">4</span> 图</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">4.1</span> 一些定义</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li><code>无向图是连通的</code>: 一个无向图,每一个顶点到其他顶点都存在一条路径</li>
+<li><code>有向图是强连通的</code>: 具有如上性质的有向图.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">4.2</span> 拓扑排序</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+拓扑排序是对有向无圈图的顶点的一种排序,使得如果存在vi到vj的路径,那么在排序中vi在vj前面.
+</p>
+
+<p>
+也就是要满足课程先修得条件.
+</p>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26"><span class="section-number-4">4.2.1</span> 一个简单的算法</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<ol class="org-ol">
+<li>在图中找到一个入度为0的点</li>
+<li>将它的邻接点得入度&#x2013;</li>
+<li>将它放入拓扑序列中</li>
+</ol>
+
+<div class="org-src-container">
+
+<pre class="src src-text">for(all vertex) {
+  v = findVertexOfIndegreeZero();
+  for each w adjacent to v {
+    Indegree[w]--;
+  }
+}
+</pre>
+</div>
+
+<p>
+使用队列的算法
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-C">q = createQueue(N);
+MakeEmpty(q);
+<span style="color: #4c83ff;">for</span> each vertex v {
+  <span style="color: #4c83ff;">if</span> (Indegree[v]==0) Enqueue(V,Q);
+}
+<span style="color: #4c83ff;">while</span>(!IsEmpty(q)) {
+  v = Dequeue(q);
+  <span style="color: #4c83ff;">for</span> each w adjacent to v {
+    <span style="color: #4c83ff;">if</span> (--Indegree[v]==0) Enqueue(w,q);
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">4.3</span> 最短路径</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+单源最短路径问题: 从一个特定顶点s到该图种每个个顶点的最短路径.
+</p>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-4">
+<h4 id="orgheadline28"><span class="section-number-4">4.3.1</span> 无权最短路径</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+所有边的权值为1.
+</p>
+
+<p>
+对于每一个顶点,记录3个值:
+</p>
+
+<ul class="org-ul">
+<li>Known: 当前节点有没有被访问过.有则置1</li>
+<li>dv: 当前已知的最短距离</li>
+<li>pv: 路径的上一个节点</li>
+</ul>
+
+<p>
+一个不太好的算法
+</p>
+
+<ol class="org-ol">
+<li>取起始点,其dv设为0</li>
+<li>currDist递增,初值为0.</li>
+<li>将当前dv为currDist且没有访问过的节点,访问之: 设置其所有邻接节点的dv和pv;</li>
+<li>重复2</li>
+</ol>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #afd8af;">void</span> <span style="color: #ff1493;">Unweighted</span>(<span style="color: #afd8af;">Table</span> <span style="color: #ff69b4;">t</span>) {
+  <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">currDist</span>;
+  <span style="color: #afd8af;">Vertex</span> <span style="color: #ff69b4;">v</span>,<span style="color: #ff69b4;">w</span>;
+  <span style="color: #4c83ff;">for</span> (currDist=0;currDist&lt;Num; currDist++) {
+    <span style="color: #4c83ff;">for</span> each vertex v {
+      <span style="color: #4c83ff;">if</span> (!t[v].Known &amp;&amp; t[v].Disk == currDist) {
+        t[v].known = 1;
+        <span style="color: #4c83ff;">for</span> each w adjacent to v {
+          <span style="color: #4c83ff;">if</span> (t[w].dist == Infinity) {
+            t[w].dist = currDist+1;
+            t[w].path = v;
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+</div>
+
+<p>
+更好点的算法
+</p>
+
+<ol class="org-ol">
+<li>创建一个空队列,将初始节点放入</li>
+<li>队列出队,访问: 设置所有邻接点得dv和pv; 将所有邻接点加入队列</li>
+<li>重复2</li>
+</ol>
+
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #afd8af;">void</span> <span style="color: #ff1493;">Unweighted</span>(<span style="color: #afd8af;">Table</span> <span style="color: #ff69b4;">t</span>) {
+  <span style="color: #afd8af;">Queue</span> <span style="color: #ff69b4;">q</span>;
+  <span style="color: #afd8af;">Vertex</span> <span style="color: #ff69b4;">v</span>,<span style="color: #ff69b4;">w</span>;
+  q = CreateQueue(N);
+  MakeEmpty(q);
+  Enqueue(s,q);
+  <span style="color: #4c83ff;">while</span>(!IsEmpty(q)) {
+    v = Dequeue(Q);
+    t[v].known = 1;
+    <span style="color: #4c83ff;">for</span> each w adjacent to v {
+      <span style="color: #4c83ff;">if</span> (t[w].dist == Infinity) {
+        t[w].dist = t[v].dist + 1;
+        t[w].path = v;
+        Enqueue(W,Q);
+      }
+    }
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-4">
+<h4 id="orgheadline29"><span class="section-number-4">4.3.2</span> 赋权最短路径</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+解决单源最短路径问题的一般方法叫做 <code>Dijkstra算法</code>.
+</p>
+
+<ol class="org-ol">
+<li>选取一个起始点,标记其dv为0</li>
+<li>访问一个known为0的点,标记其known为1,更新其邻接的所有known为0的点得dv.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"><span class="section-number-3">4.4</span> 最小生成树</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+一般是在无向图中考虑.
+</p>
+</div>
+
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">4.4.1</span> Prim算法</h4>
+<div class="outline-text-4" id="text-4-4-1">
+<p>
+步骤:
+</p>
+
+<ol class="org-ol">
+<li>选取一个初始点,做为树的根</li>
+<li>选取一个不在树中得点,要求: 它到树中得节点的距离是其他不在树中节点中最小的.</li>
+<li>将这个点加入树中.</li>
+</ol>
+
+<p>
+对每个节点,维护3个值:
+</p>
+
+<ul class="org-ul">
+<li>known</li>
+<li>dv: 该节点到树中节点的最短路径</li>
+<li>pv: 到哪个节点</li>
+</ul>
+
+<p>
+算法步骤:
+</p>
+
+<ol class="org-ol">
+<li>选初始点,放入树中当根</li>
+<li>对树中的但是known为0的点,去dv最小的一个,访问: known设为1; 更新其邻接的所有点得dv和pv;</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">4.4.2</span> Kruskal算法</h4>
+<div class="outline-text-4" id="text-4-4-2">
+<p>
+在所有边上,选择最小的,如果它加入树中,不构成圈,则加入到树中.
+</p>
+
+<p>
+算法:
+</p>
+
+<ul class="org-ul">
+<li>把图种所有边,构建成一个堆</li>
+<li>不断DeleteMin,测试该边的两个顶点是否在同一个集合中.如果在,则不能添加,会成圈.不在,则加入.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-09-07 Wed 14:53</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

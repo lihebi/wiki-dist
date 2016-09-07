@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-09-06 Tue 16:32 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Debian</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Debian</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Power management</a></li>
+<li><a href="#orgheadline2">2. Tmp</a></li>
+<li><a href="#orgheadline5">3. Installation</a>
+<ul>
+<li><a href="#orgheadline3">3.1. VirtualBox Guest addition</a></li>
+<li><a href="#orgheadline4">3.2. dist-upgrade</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline6">4. Startup</a></li>
+<li><a href="#orgheadline9">5. Configuration</a>
+<ul>
+<li><a href="#orgheadline7">5.1. update-alternatives</a></li>
+<li><a href="#orgheadline8">5.2. systemd</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline14">6. Package Management</a>
+<ul>
+<li><a href="#orgheadline10">6.1. binary or source</a></li>
+<li><a href="#orgheadline11">6.2. code name</a></li>
+<li><a href="#orgheadline12">6.3. source</a></li>
+<li><a href="#orgheadline13">6.4. Upgrade the system: from stable to testing</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline15">7. Debian boost up scripts</a></li>
+<li><a href="#orgheadline16">8. MIME</a></li>
+<li><a href="#orgheadline18">9. Trouble shooting</a>
+<ul>
+<li><a href="#orgheadline17">9.1. a stop job is running for make remote cups printers available locally</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline19">10. Man pages</a></li>
+<li><a href="#orgheadline24">11. Wireless</a>
+<ul>
+<li><a href="#orgheadline23">11.1. wireless driver for mac</a>
+<ul>
+<li><a href="#orgheadline20">11.1.1. Debian Installation on mac:</a></li>
+<li><a href="#orgheadline21">11.1.2. wireless</a></li>
+<li><a href="#orgheadline22">11.1.3. Resume wireless after suspend</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline26">12. Networking using NetworkManager</a>
+<ul>
+<li><a href="#orgheadline25">12.1. add a wifi connection</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Power management</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>sudo journalctl | less</li>
+<li>/etc/systemd/logind.conf</li>
+<li>dmesg | grep -i 'acpi'</li>
+<li>/proc/acpi/wakeup</li>
+</ul>
+
+<p>
+Finally I figure it out!
+</p>
+
+<p>
+Install <code>acpitool</code> package.
+Use <code>acpitool -w</code> to list the wake up events.
+Use <code>acpitool -W x</code> where x is the number of the output of above command.
+Try to disable them one by one, and use <code>systemctl suspend</code> to test if the system wake up.
+In my case, I succeed after disable number 5 (there's really nothing to tell from the list!).
+</p>
+
+<p>
+Not sure if it can persist after reboot.
+It remains to be set how to automatically resume the wifi.
+</p>
+
+<pre class="example">
+ Device       S-state   Status   Sysfs node
+---------------------------------------
+1. P0P2         S3    *disabled
+2. EC   S4    *disabled  platform:PNP0C09:00
+3. HDEF         S3    *disabled  pci:0000:00:1b.0
+4. RP01         S3    *disabled  pci:0000:00:1c.0
+5. RP02         S3    *disabled  pci:0000:00:1c.1
+6. RP03         S3    *disabled  pci:0000:00:1c.2
+7. ARPT         S4    *enabled   pci:0000:03:00.0
+8. RP05         S3    *disabled  pci:0000:00:1c.4
+9. RP06         S3    *enabled   pci:0000:00:1c.5
+10. XHC1        S3    *enabled   pci:0000:00:14.0
+11. ADP1        S4    *enabled   platform:ACPI0003:00
+12. LID0        S4    *disabled  platform:PNP0C0D:00
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Tmp</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+change laptop screen brightness:
+</p>
+<pre class="example">
+cat /sys/class/backlight/intel_backlight/max_brightness
+cat /sys/class/backlight/intel_backlight/brightness
+
+echo 400 &gt; /sys/class/backlight/intel_backlight/brightness
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">3</span> Installation</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><a href="debian-setup.html">Debian setup</a></li>
+<li><a href="debian-install.html">Debian Installation on Mac</a></li>
+</ul>
+
+<p>
+A new debian installation: choose not to use any desktop environment!
+Essential packages:
+</p>
+<ul class="org-ul">
+<li>git</li>
+<li>emacs</li>
+<li>xinit</li>
+<li>build-essential</li>
+<li>linux-headers-$(uname -r)</li>
+<li>stumpwm</li>
+</ul>
+
+<p>
+Install google-chrome.
+</p>
+
+<p>
+Get the <code>.hebi</code> and <code>.emacs.d</code> set up.
+</p>
+</div>
+
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> VirtualBox Guest addition</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+It seems need the <code>xinit</code> to be installed.
+</p>
+
+<pre class="example">
+aptitude install build-essential
+aptitude install linux-headers-$(uname -r)
+sudo mount /dev/src0 /media/cdrom
+cd /media/cdrom
+sudo ./VBoxLinuxAdditions.run
+</pre>
+
+<p>
+Guest addition is needed for clipboard sharing.
+To enable it, you need: <code>VBoxClient --clipboard</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> dist-upgrade</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">cp /etc/apt/sources.list{,.bak}
+sed -i -e <span style="color: #61CE3C;">'s/ \(stable\|wheezy\)/ testing/ig'</span> /etc/apt/sources.list
+apt-get update
+apt-get --download-only dist-upgrade
+<span style="color: #8B8989; font-style: italic;"># </span><span style="color: #8B8989; font-style: italic;">Dangerous</span>
+apt-get dist-upgrade
+</pre>
+</div>
+
+<p>
+<code>netselect-apt</code> to select the fastest source!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> Startup</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Change default desktop environment:
+</p>
+<ul class="org-ul">
+<li>GNome: gdm</li>
+<li>KDE: kdm</li>
+<li>lxfe: lightdm</li>
+</ul>
+
+<p>
+Change (three approaches):
+</p>
+<ol class="org-ol">
+<li>edit <code>/etc/X11/default-display-manager</code>: I think we'd better use update-alternative</li>
+<li><code>sudo dpkg-reconfigure gdm</code></li>
+<li><code>update-alternatives --config x-window-manage</code></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">5</span> Configuration</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><code>dpkg-reconfigure</code> reconfigure a installed package</li>
+<li><code>defconf-show</code> show the current configuration of a package</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">5.1</span> update-alternatives</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Options:
+</p>
+<ul class="org-ul">
+<li><code>--config</code>: show options and select configuration interactively</li>
+<li><code>--display</code>: show the options</li>
+</ul>
+
+<p>
+Some examples:
+</p>
+<ul class="org-ul">
+<li><code>update-alternatives --config desktop-background</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">5.2</span> systemd</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li><code>systemctl disable lightdm</code>
+  This will replace the <code>/etc/rc2.d/S03lightdm</code> with <code>/etc/rc2.d/K01lightdm</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">6</span> Package Management</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><code>/etc/apt/sources.list</code></li>
+</ul>
+
+<p>
+Once installed google-chrome deb file downloaded from google,
+it will add one file: <code>/etc/apt/sources.list.d/google-chrome</code>.
+</p>
+
+<p>
+The original sources.list after a minimal installation:
+</p>
+<pre class="example">
+# deb cdrom:[Debian GNU/Linux 8.5.0 _Jessie_ - Official amd64 NETINST Binary-1 20160604-15:31]/ jessie main
+#deb cdrom:[Debian GNU/Linux 8.5.0 _Jessie_ - Official amd64 NETINST Binary-1 20160604-15:31]/ jessie main
+
+deb http://ftp.us.debian.org/debian/ jessie main
+deb-src http://ftp.us.debian.org/debian/ jessie main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main
+</pre>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">6.1</span> binary or source</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li><code>deb</code>: binary</li>
+<li><code>deb-src</code>: source</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">6.2</span> code name</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+<code>jessie</code> is the current name code for the stable release version of Debian.
+The next release and the next next release code name are also available.
+</p>
+
+<ul class="org-ul">
+<li><code>jessie</code> is equal to <code>stable</code></li>
+<li><code>stretch</code> is equal to <code>testing</code></li>
+<li><code>sid</code> is equal to <code>unstable</code></li>
+</ul>
+
+<p>
+Sometimes you want to use stable, but with new versions of packages from <code>testing</code> release.
+This is called, for <code>jessie</code>, the <code>jessie-backports</code> release.
+</p>
+
+<p>
+<a href="https://backports.debian.org/Instructions/">https://backports.debian.org/Instructions/</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">6.3</span> source</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Another part is the <code>main</code>.
+If you want some 3rd party contributor packages, add <code>contrib</code> after <code>main</code>.
+If you further want some non-free packages, add also <code>non-free</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">6.4</span> Upgrade the system: from stable to testing</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+Follow the following process EXACTLY.
+</p>
+<ul class="org-ul">
+<li>First, change the code name <code>stable</code> in sources.list to <code>testing</code>.</li>
+<li>Then, <code>apt-get update</code></li>
+<li><code>apt-get upgrade</code></li>
+<li><code>apt-get dist-upgrade</code></li>
+</ul>
+
+<p>
+Do not use <code>aptitude</code>, it will stuck resolving dependence.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">7</span> Debian boost up scripts</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+This is based on the following snippets:
+</p>
+<pre class="example">
+list="git xinit xorg"
+apt-get update
+apt-get install -y $list
+cat example.list | xargs sudo apt-get -y install
+</pre>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">8</span> MIME</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+check the MIME of a file.
+</p>
+<pre class="example">
+file --mime /path/to/file
+</pre>
+
+<p>
+On debian, the mapping from suffix to MIME type is <code>/etc/mime.types</code>.
+</p>
+
+<p>
+Create default application for <code>xdg-open</code>
+</p>
+<pre class="example">
+mkdir ~/.local/share/applications
+xdg-mime default firefox.desktop application/pdf
+</pre>
+
+<p>
+~/.local/share/applications/mimeapps.list
+</p>
+<pre class="example">
+[Default Applications]
+application/pdf=firefox-esr.desktop
+</pre>
+
+<p>
+<code>/usr/share/applications/*.desktop</code> are files define for each application.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">9</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+When shutting down, systemd is hindered by a message for a long time: "a stop job is running &#x2026;"
+</p>
+
+<p>
+THIS IS STILL OPEN! NO SOLUTION.
+The symptoms:
+If I power of immediately after boot up (before network interface is up), no problem.
+If I wait for some time and the interface is up, even if I ifdown it, the problem still exists.
+</p>
+
+<p>
+<a href="https://www.reddit.com/r/archlinux/comments/4bawf7/a_stop_job_is_running_for_session_c2_of_user/">https://www.reddit.com/r/archlinux/comments/4bawf7/a_stop_job_is_running_for_session_c2_of_user/</a>
+</p>
+
+<p>
+You can add your own rules to a service file like this:
+</p>
+
+<pre class="example">
+sudo systemctl edit systemd-timesyncd.service
+</pre>
+
+<p>
+and then pasting this here into the editor that comes up:
+</p>
+
+<pre class="example">
+[Service]
+TimeoutStopSec=1s
+</pre>
+
+<p>
+It saves a "systemd-timesyncd.service.d/override.conf" file in /etc, does not touch the original files.
+</p>
+
+<p>
+After editing, you can check on what systemd sees by doing:
+</p>
+
+<pre class="example">
+systemctl cat systemd-timesyncd.service
+systemctl show systemd-timesyncd.service
+</pre>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">9.1</span> a stop job is running for make remote cups printers available locally</h3>
+<div class="outline-text-3" id="text-9-1">
+<pre class="example">
+systemctl status cups-browsed.service
+systemctl disable cups-browsed.service
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">10</span> Man pages</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+systemd:
+</p>
+<ul class="org-ul">
+<li><code>systemd-system.conf</code></li>
+<li><code>systemd.service</code></li>
+</ul>
+
+<p>
+Networking:
+</p>
+<ul class="org-ul">
+<li><code>interfaces</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">11</span> Wireless</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">11.1</span> wireless driver for mac</h3>
+<div class="outline-text-3" id="text-11-1">
+</div><div id="outline-container-orgheadline20" class="outline-4">
+<h4 id="orgheadline20"><span class="section-number-4">11.1.1</span> Debian Installation on mac:</h4>
+<div class="outline-text-4" id="text-11-1-1">
+<ol class="org-ol">
+<li>Use DVD because it has <code>dkms</code> package, used for Broadcam wireless chipset.</li>
+<li>Clean install Mac OS</li>
+<li>Reboot, Cmd-R to boot into recover, partition two more partitions for debian and swap.</li>
+<li>Use unetbootin to create Debian USB stick</li>
+<li>Install Debian normally, but use the pre-defined partition! Use ext-4 and mount at <code>/</code></li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">11.1.2</span> wireless</h4>
+<div class="outline-text-4" id="text-11-1-2">
+<ul class="org-ul">
+<li><a href="https://wiki.debian.org/MacBook/Wireless">https://wiki.debian.org/MacBook/Wireless</a></li>
+<li><a href="https://wiki.debian.org/wl">https://wiki.debian.org/wl</a></li>
+</ul>
+<pre class="example">
+iwconfig
+</pre>
+
+<p>
+if the wlan card shows up, it is good, otherwise:
+</p>
+
+<pre class="example">
+update-pciids # if necessary; run as root, to update PCI database
+lspci | grep -E "Atheros|Broadcom" # Finds card
+</pre>
+
+<p>
+Note: for 4360, there're actually two chipsets: <code>14E4:4360</code> and <code>14E4:43A0</code>, the first one does not have a driver, the second one can use <code>wl</code> (broadcom-sta-dkms).
+To see which one (<a href="http://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro">http://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro</a>):
+</p>
+<pre class="example">
+lspci -vnn | grep -i net
+</pre>
+
+
+<p>
+My macbook shows BCM4360, I installed from outside:
+</p>
+<pre class="example">
+b43-fwcutter
+dkms
+broadcom-sta-dkms
+</pre>
+
+<p>
+Install from USB stick needs:
+</p>
+<ol class="org-ol">
+<li>mount</li>
+<li><code>apt-cdrom -m -d /path/to/mount add</code>
+make sure the mount actually mounted, and the entries in <code>/etc/apt/sources.list</code> correct.
+When installing, it is still needed to mount to <code>/media/cdrom</code>.</li>
+</ol>
+
+<p>
+After making the wireless working, put in the sources.list:
+</p>
+<pre class="example">
+deb http://ftp.us.debian.org/debian jessie main
+deb-src http://ftp.us.debian.org/debian jessie main
+</pre>
+
+<p>
+Then run
+</p>
+<pre class="example">
+modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+modprobe wl
+</pre>
+
+<p>
+Then, config wifi:
+make sure the <code>iwconfig</code> shows the card information (something with wlan0 xxx).
+</p>
+
+<p>
+At this point, just use <code>wicd</code> (available on DVD-2) and you will be fine.
+The following "manual interface" way is OK for IASTATE wifi because it does not require password, but for a WPA encrypted one, it does not work.
+In this case, <code>wpa_supplicant</code> is needed, but I didn't make it work.
+In a word, just use <code>wicd</code>.
+<code>wicd</code> is a daemon, install and start, make sure you only have <code>lo</code> loopback entry in <code>/etc/network/interfaces</code>.
+</p>
+
+<pre class="example">
+apt-get install wicd
+systemctl restart wicd
+</pre>
+
+<pre class="example">
+ip a
+iwconfig
+ip link set wlan0 up
+# scan wifi
+iwlist scan
+</pre>
+
+<p>
+Add to <code>/etc/network/interfaces</code>: (see also <code>man interfaces</code>, <code>man wireless</code>)
+</p>
+<pre class="example">
+# my wifi device
+auto wlan0
+iface wlan0 inet dhcp
+        wireless-essid [ESSID] (IASTATE)
+        wireless-mode [MODE] (Master)
+</pre>
+
+<p>
+finally, <code>ifup</code> and <code>ifdown</code> toggle the wifi.
+The <code>auto wlan0</code> in the config file will start it after boot.
+</p>
+
+<p>
+But <code>auto wlan0</code> will make the boot very slow, so use <code>allow-hotplug wlan0</code> instead. This will result in a fast boot, while also give you internet.
+But, after suspension, the network is dead unless <code>ifdown wlan0 &amp;&amp; ifup wlan0</code>.
+</p>
+
+
+
+<p>
+Optionally, <code>NetworkManager</code> service can also be used. The package is <code>network-manager</code>, the front end is <code>network-manager-gnome</code>, but I didn't find a way to invoke it.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">11.1.3</span> Resume wireless after suspend</h4>
+<div class="outline-text-4" id="text-11-1-3">
+<p>
+<a href="http://askubuntu.com/questions/761180/wifi-doesnt-work-after-suspend-after-16-04-upgrade">http://askubuntu.com/questions/761180/wifi-doesnt-work-after-suspend-after-16-04-upgrade</a>
+</p>
+
+<p>
+Originally the wifi does not work after suspension.
+I need to do
+</p>
+<pre class="example">
+ifdown wlan0
+ifup wlan0
+</pre>
+
+<p>
+TODO Now I think this automatic approach might work:
+</p>
+
+<p>
+<code>/etc/systemd/system/wifi-resume.service</code>
+</p>
+<pre class="example">
+#/etc/systemd/system/wifi-resume.service
+#sudo systemctl enable wifi-resume.service
+[Unit]
+Description=Restart networkmanager at resume
+After=suspend.target
+After=hibernate.target
+After=hybrid-sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/systemctl restart network-manager.service
+
+[Install]
+WantedBy=suspend.target
+WantedBy=hibernate.target
+WantedBy=hybrid-sleep.target
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">12</span> Networking using NetworkManager</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+Install network-manager package, and:
+</p>
+
+<p>
+Start the service
+</p>
+<pre class="example">
+systemctl enable NetworkManager
+</pre>
+<p>
+change <code>/etc/NetworkManager$/NetworkManager.conf</code> to:
+</p>
+
+<pre class="example">
+[ifupdown]
+managed=true
+</pre>
+
+<p>
+restart
+</p>
+<pre class="example">
+systemctl restart NetworkManager
+</pre>
+</div>
+
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">12.1</span> add a wifi connection</h3>
+<div class="outline-text-3" id="text-12-1">
+<pre class="example">
+nmcli device wifi list
+nmcli device wifi connect IASTATE
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-09-06 Tue 16:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

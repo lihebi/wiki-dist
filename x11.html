@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-09-06 Tue 16:32 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>X11</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: #000000; color: #d3d3d3;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">X11</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Misc</a></li>
+<li><a href="#orgheadline2">2. font</a></li>
+<li><a href="#orgheadline3">3. Xrandr</a></li>
+<li><a href="#orgheadline4">4. Display Manager</a></li>
+<li><a href="#orgheadline6">5. Window Manager</a>
+<ul>
+<li><a href="#orgheadline5">5.1. ratpoison</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">6. Theme</a>
+<ul>
+<li><a href="#orgheadline7">6.1. cursor</a></li>
+<li><a href="#orgheadline8">6.2. color</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">7. Emacs As Window Manager</a>
+<ul>
+<li><a href="#orgheadline10">7.1. A time sink</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">8. Trouble shooting</a></li>
+<li><a href="#orgheadline13">9. Nvidia Driver</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Misc</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+check the screen resolution:
+</p>
+<pre class="example">
+xdpyinfo | grep -B 2 resolution
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> font</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+How I made the WenQuanYi Micro Hei ttf font (clx-truetype only recognizes ttf, not ttc):
+</p>
+
+<ul class="org-ul">
+<li>input: ttc file</li>
+<li>Tool: fontforge</li>
+</ul>
+
+<p>
+Open ttc file, select one, generate font, choose truetype
+The validation failed, but doesn't matter
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Xrandr</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Multiple Display:
+</p>
+
+<pre class="example">
+# Mirror display
+sudo xrandr --output HDMI-2 --same-as eDP-1
+sudo xrandr --output HDMI-2 --off
+</pre>
+
+<p>
+Rotate
+</p>
+<pre class="example">
+xrandr --output HDMI-1 --rotate left
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Display Manager</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Install xdm. It will use the file <code>$HOME/.xsession</code>, so
+</p>
+<pre class="example">
+ln -s $HOME/.xinitrc $HOME/.xsession
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">5</span> Window Manager</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Candidates:
+</p>
+<ul class="org-ul">
+<li>ratpoison</li>
+<li>dwm</li>
+<li>stumpwm: written in common lisp</li>
+<li>exwm: emacs X window manager</li>
+</ul>
+
+<p>
+Noop:
+</p>
+<ul class="org-ul">
+<li>i3: flavor VI, Noop!</li>
+</ul>
+</div>
+
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">5.1</span> ratpoison</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+This is actually a wonderful WM.
+To start:
+</p>
+
+<pre class="example">
+aptitude install ratpoison
+</pre>
+
+<p>
+In <code>.xinitrc</code>:
+</p>
+
+<pre class="example">
+exec ratpoison
+</pre>
+
+<ul class="org-ul">
+<li><code>C-t ?</code> to show the help</li>
+</ul>
+
+<p>
+actually <code>C-t</code> is the prefix of every command, <code>C-g</code> to abort.
+</p>
+<ul class="org-ul">
+<li><code>C-t :</code>: type command</li>
+<li><code>C-t !</code>: run shell command</li>
+<li><code>C-t .</code>: open menu</li>
+<li><code>C-t c</code>: open terminal</li>
+</ul>
+
+
+<p>
+HOWEVER, this is pretty old, and it cause the screen to go brighter and darker back and force.
+Fortunately the stumpwm is very like this one, but
+</p>
+<ol class="org-ol">
+<li>actively maintained on github.</li>
+<li>written in common lisp</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">6</span> Theme</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">6.1</span> cursor</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Install xcursor-themes:
+</p>
+<pre class="example">
+aptitude install xcursor-themes
+aptitude show xcursor-themes # here it will output the themes name
+</pre>
+
+<p>
+In <code>.Xresources</code>:
+</p>
+<pre class="example">
+Xcursor.theme: redglass
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">6.2</span> color</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+X11 color names: <code>/etc/X11/rgb.txt</code>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">7</span> Emacs As Window Manager</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<a href="http://www.howardism.org/Technical/Emacs/new-window-manager.html">http://www.howardism.org/Technical/Emacs/new-window-manager.html</a>
+</p>
+
+<pre class="example">
+sudo aptitude install xinit
+sudo aptitude install emacs
+</pre>
+
+
+<p>
+In <code>.initrc</code>:
+</p>
+<pre class="example">
+exec emacs
+</pre>
+
+<p>
+In emacs configure:
+</p>
+<pre class="example">
+(set-frame-parameter nil 'fullscreen 'fullboth)
+</pre>
+
+<p>
+When you need to run something, just <code>M-x !</code> and call <code>xterm</code>.
+</p>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">7.1</span> A time sink</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #4c83ff;">defun</span> <span style="color: #ff1493;">setup-windows</span> ()
+  <span style="color: #FBDE2D;">"Organize a series of windows for ultimate distraction."</span>
+  (interactive)
+  (delete-other-windows)
+
+  <span style="color: #8B8989; font-style: italic;">;; </span><span style="color: #8B8989; font-style: italic;">Start with the Stack Overflow interface</span>
+  (sx-tab-frontpage t nil)
+
+  <span style="color: #8B8989; font-style: italic;">;; </span><span style="color: #8B8989; font-style: italic;">Put IRC on the other side</span>
+  (split-window-horizontally)
+  (other-window 1)
+  (circe-connect-all)
+
+  <span style="color: #8B8989; font-style: italic;">;; </span><span style="color: #8B8989; font-style: italic;">My RSS Feed goes on top:</span>
+  (split-window-vertically)
+  (elfeed)
+
+  <span style="color: #8B8989; font-style: italic;">;; </span><span style="color: #8B8989; font-style: italic;">And start up the Twitter interface above that:</span>
+  (other-window 2)
+  (split-window-vertically)
+  (twit)
+
+  (window-configuration-to-register ?w))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">8</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+On Debian, when I <code>dist-upgrade</code> Debian 8 Jessie to 9 Stretch,
+the <code>startx</code> stop working.
+I try install a Debian 9 from its own image, and still the same result.
+The error message says:
+</p>
+<blockquote>
+<p>
+vesa cannot read int vect
+screen found but none leave a usable configuration
+xf86enableioports failed to set iopl for i/o
+</p>
+</blockquote>
+
+<p>
+The trick is you need:
+</p>
+<pre class="example">
+chomd u+s /usr/bin/xinit
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">9</span> Nvidia Driver</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+I'm installing the driver for my GTX 1060.
+It is a brand new card, the nouveau driver simply does not work.
+</p>
+
+<p>
+Install the kernel header:
+</p>
+<pre class="example">
+linux-headers-`uname -r`
+</pre>
+
+<p>
+Make sure the <code>/tmp</code> has enough space.
+</p>
+
+<p>
+After installation, use <code>nvidia-xconfig</code> will write <code>/etc/X11/xorg.conf</code>.
+The original one will be backed up (actually original one is empty).
+</p>
+
+<p>
+But, I haven't been able to boot to login page using nvidia card&#x2026;
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-09-06 Tue 16:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
