@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 14:53 -->
+<!-- 2016-09-09 Fri 15:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode</title>
@@ -103,8 +103,6 @@ a:visited {color: red;}
  pre.src {background-color: #000000; color: #d3d3d3;}</style>
 <style type="text/css">
  pre.src {background-color: #000000; color: #d3d3d3;}</style>
-<style type="text/css">
- pre.src {background-color: #000000; color: #d3d3d3;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -160,43 +158,44 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Common Strategy &amp; Algorithms</a></li>
-<li><a href="#orgheadline2">2. Some links</a></li>
-<li><a href="#orgheadline4">3. General Tips</a>
+<li><a href="#orgheadline2">2. Some snippet</a></li>
+<li><a href="#orgheadline3">3. Some links</a></li>
+<li><a href="#orgheadline5">4. General Tips</a>
 <ul>
-<li><a href="#orgheadline3">3.1. GCD</a></li>
+<li><a href="#orgheadline4">4.1. GCD</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">4. Data Structures</a>
+<li><a href="#orgheadline7">5. Data Structures</a>
 <ul>
-<li><a href="#orgheadline5">4.1. Trie</a></li>
+<li><a href="#orgheadline6">5.1. Trie</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">5. Famous Problems and Algorithms</a>
+<li><a href="#orgheadline16">6. Famous Problems and Algorithms</a>
 <ul>
-<li><a href="#orgheadline7">5.1. Maximum subarray problem and Kadane's algorithm</a></li>
-<li><a href="#orgheadline8">5.2. longest increasing sub-sequence(LIS)</a></li>
-<li><a href="#orgheadline10">5.3. Dynamic Programming</a>
+<li><a href="#orgheadline8">6.1. Maximum subarray problem and Kadane's algorithm</a></li>
+<li><a href="#orgheadline9">6.2. longest increasing sub-sequence(LIS)</a></li>
+<li><a href="#orgheadline11">6.3. Dynamic Programming</a>
 <ul>
-<li><a href="#orgheadline9">5.3.1. Apply to LIS</a></li>
+<li><a href="#orgheadline10">6.3.1. Apply to LIS</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">5.4. Patience sorting</a>
+<li><a href="#orgheadline15">6.4. Patience sorting</a>
 <ul>
-<li><a href="#orgheadline11">5.4.1. The sort algorithm</a></li>
-<li><a href="#orgheadline12">5.4.2. Apply to LIS problem</a></li>
-<li><a href="#orgheadline13">5.4.3. LIS problem another understanding</a></li>
+<li><a href="#orgheadline12">6.4.1. The sort algorithm</a></li>
+<li><a href="#orgheadline13">6.4.2. Apply to LIS problem</a></li>
+<li><a href="#orgheadline14">6.4.3. LIS problem another understanding</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline22">6. Problems</a>
+<li><a href="#orgheadline23">7. Problems</a>
 <ul>
-<li><a href="#orgheadline16">6.1. 363. Max Sum of Rectangle No Larger Than K</a></li>
-<li><a href="#orgheadline17">6.2. 65. valid number</a></li>
-<li><a href="#orgheadline18">6.3. 44. Wildcard Matching (NEEDS REVISIT!!!)</a></li>
-<li><a href="#orgheadline19">6.4. 4. Median of Two Sorted Arrays</a></li>
-<li><a href="#orgheadline20">6.5. last remaining (contest 2)</a></li>
-<li><a href="#orgheadline21">6.6. longest subsequence with at least k repeat / without any repeat</a></li>
+<li><a href="#orgheadline17">7.1. 363. Max Sum of Rectangle No Larger Than K</a></li>
+<li><a href="#orgheadline18">7.2. 65. valid number</a></li>
+<li><a href="#orgheadline19">7.3. 44. Wildcard Matching (NEEDS REVISIT!!!)</a></li>
+<li><a href="#orgheadline20">7.4. 4. Median of Two Sorted Arrays</a></li>
+<li><a href="#orgheadline21">7.5. last remaining (contest 2)</a></li>
+<li><a href="#orgheadline22">7.6. longest subsequence with at least k repeat / without any repeat</a></li>
 </ul>
 </li>
 </ul>
@@ -217,8 +216,29 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Some links</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Some snippet</h2>
 <div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #8B8989; font-style: italic;">/**</span>
+<span style="color: #8B8989; font-style: italic;"> * rotate clockwise</span>
+<span style="color: #8B8989; font-style: italic;"> * (x,y) -&gt; (y, -x)</span>
+<span style="color: #8B8989; font-style: italic;"> */</span>
+<span style="color: #afd8af;">void</span> <span style="color: #ff1493;">rotate</span>(<span style="color: #96CBFE;">std</span>::<span style="color: #afd8af;">vector</span>&lt;<span style="color: #afd8af;">pair</span>&lt;<span style="color: #afd8af;">int</span>, <span style="color: #afd8af;">int</span>&gt; &gt; &amp;<span style="color: #ff69b4;">v</span>) {
+  <span style="color: #4c83ff;">for</span> (pair&lt;<span style="color: #afd8af;">int</span>, <span style="color: #afd8af;">int</span>&gt; &amp;vi : v) {
+    <span style="color: #afd8af;">int</span> <span style="color: #ff69b4;">tmp</span> = vi.first;
+    vi.first = vi.second;
+    vi.second = 0 - tmp;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Some links</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="dp.html">DP</a></li>
 <li><a href="http://stanford.edu/class/cs97si/">http://stanford.edu/class/cs97si/</a></li>
@@ -226,9 +246,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">3</span> General Tips</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">4</span> General Tips</h2>
+<div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
 <pre class="src src-C"><span style="color: #919191;">#include</span> <span style="color: #61CE3C;">&lt;climits&gt;</span>
@@ -272,9 +292,9 @@ To get a smaller iterator, use <code>upper_bound</code> and decrease it (after c
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">3.1</span> GCD</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">4.1</span> GCD</h3>
+<div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>swap</li>
 <li>make sure x,y are POSITIVE</li>
@@ -311,12 +331,12 @@ Be careful, <code>a%b</code> follows the sign of a:
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">4</span> Data Structures</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">4.1</span> Trie</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">5</span> Data Structures</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">5.1</span> Trie</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 Prefix tree.
 </p>
@@ -326,12 +346,12 @@ Prefix tree.
 
 
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">5</span> Famous Problems and Algorithms</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">5.1</span> Maximum subarray problem and Kadane's algorithm</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">6</span> Famous Problems and Algorithms</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">6.1</span> Maximum subarray problem and Kadane's algorithm</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 Problem: finding the contiguous subarray within a one-dimensional array of numbers which has the largest sum
 </p>
@@ -366,9 +386,9 @@ or if 0 is not a predefined return value:
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">5.2</span> longest increasing sub-sequence(LIS)</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">6.2</span> longest increasing sub-sequence(LIS)</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 Find the longest increasing sub-sequence.
 <code>O(n^2)</code>
@@ -420,9 +440,9 @@ Find the longest increasing sub-sequence.
 </div>
 
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">5.3</span> Dynamic Programming</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">6.3</span> Dynamic Programming</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 Solving a complex problem by breaking it down into a collection of simpler subproblems,
 solving each of those subproblems just once, and storing their solutions
@@ -440,9 +460,9 @@ There're generally just two ways for DP:
 </ul>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9"><span class="section-number-4">5.3.1</span> Apply to LIS</h4>
-<div class="outline-text-4" id="text-5-3-1">
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">6.3.1</span> Apply to LIS</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <p>
 The length of the LIS ending in the current element is the length of the LIS ending in the smaller one + 1.
 </p>
@@ -451,12 +471,12 @@ The length of the LIS ending in the current element is the length of the LIS end
 </div>
 
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">5.4</span> Patience sorting</h3>
-<div class="outline-text-3" id="text-5-4">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11"><span class="section-number-4">5.4.1</span> The sort algorithm</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">6.4</span> Patience sorting</h3>
+<div class="outline-text-3" id="text-6-4">
+</div><div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">6.4.1</span> The sort algorithm</h4>
+<div class="outline-text-4" id="text-6-4-1">
 <p>
 The algorithm derives from  patience card game.
 </p>
@@ -476,9 +496,9 @@ clearly the complexity is <code>O(nlogn)</code>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12"><span class="section-number-4">5.4.2</span> Apply to LIS problem</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">6.4.2</span> Apply to LIS problem</h4>
+<div class="outline-text-4" id="text-6-4-2">
 <p>
 First, execute the sorting algorithm as described above.
 The number of piles is the length of a longest subsequence.
@@ -490,9 +510,9 @@ its reverse is an answer to the longest increasing subsequence algorithm.
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13"><span class="section-number-4">5.4.3</span> LIS problem another understanding</h4>
-<div class="outline-text-4" id="text-5-4-3">
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">6.4.3</span> LIS problem another understanding</h4>
+<div class="outline-text-4" id="text-6-4-3">
 <p>
 Keep a set of active lists for the longest.
 Actually use the reversed pile of Patience sorting.
@@ -518,12 +538,12 @@ e.g. 58364129
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22"><span class="section-number-2">6</span> Problems</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">6.1</span> 363. Max Sum of Rectangle No Larger Than K</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23"><span class="section-number-2">7</span> Problems</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">7.1</span> 363. Max Sum of Rectangle No Larger Than K</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>If we want to switch row and column of a matrix if col is larger than row, simply
 <ol class="org-ol">
@@ -582,9 +602,9 @@ Thus the problem matters for each one is larger.</li>
 
 
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">6.2</span> 65. valid number</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">7.2</span> 65. valid number</h3>
+<div class="outline-text-3" id="text-7-2">
 <pre class="example">
 EXPECT_TRUE(s.isNumber("+.8"));
 EXPECT_TRUE(s.isNumber(".1"));
@@ -598,9 +618,9 @@ EXPECT_FALSE(s.isNumber("6e6.5"));
 </div>
 
 
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">6.3</span> 44. Wildcard Matching (NEEDS REVISIT!!!)</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">7.3</span> 44. Wildcard Matching (NEEDS REVISIT!!!)</h3>
+<div class="outline-text-3" id="text-7-3">
 <p>
 The recursive one is too cost:
 </p>
@@ -661,9 +681,9 @@ This one does not have that problem, and is linear.
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19"><span class="section-number-3">6.4</span> 4. Median of Two Sorted Arrays</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">7.4</span> 4. Median of Two Sorted Arrays</h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
 If want a log complexity, set up <code>(min, max)</code> and keep update them.
 </p>
@@ -700,9 +720,9 @@ If want a log complexity, set up <code>(min, max)</code> and keep update them.
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">6.5</span> last remaining (contest 2)</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">7.5</span> last remaining (contest 2)</h3>
+<div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>Move head, record step</li>
 <li>according to left and remaining, decide how to update</li>
@@ -737,9 +757,9 @@ If want a log complexity, set up <code>(min, max)</code> and keep update them.
 </div>
 </div>
 
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">6.6</span> longest subsequence with at least k repeat / without any repeat</h3>
-<div class="outline-text-3" id="text-6-6">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">7.6</span> longest subsequence with at least k repeat / without any repeat</h3>
+<div class="outline-text-3" id="text-7-6">
 <p>
 Given a string s, find the longest subsequence that
 </p>
@@ -813,7 +833,7 @@ If we found a character visited before that index, simply update that only.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-09-07 Wed 14:53</p>
+<p class="date">Created: 2016-09-09 Fri 15:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
