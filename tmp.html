@@ -6,7 +6,7 @@
 <!-- 2016-09-21 Wed 23:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dynamic Programming</title>
+<title>A tmp</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -205,6 +205,38 @@ a:visited {color: red;}
  pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -251,165 +283,232 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Dynamic Programming</h1>
+<h1 class="title">A tmp</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">1. One dimension</a>
+<li><a href="#orgheadline11">1. Similarity metrics</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Define sub-problems</a></li>
-<li><a href="#orgheadline2">1.2. Recurrence formula</a></li>
+<li><a href="#orgheadline5">1.1. Token based</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. Jaccard coefficient/index</a></li>
+<li><a href="#orgheadline3">1.1.2. Cosine similarity</a>
+<ul>
+<li><a href="#orgheadline2">1.1.2.1. TF-IDF</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">2. Two Dimensions</a>
-<ul>
-<li><a href="#orgheadline4">2.1. Define sub-problems</a></li>
-<li><a href="#orgheadline5">2.2. Recurrence formula</a></li>
+<li><a href="#orgheadline4">1.1.3. Levenshtein distance</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">3. Interval DP</a>
+<li><a href="#orgheadline10">1.2. Syntax based</a>
 <ul>
-<li><a href="#orgheadline7">3.1. Define sub-problem</a></li>
-<li><a href="#orgheadline8">3.2. Recurrence formula</a></li>
+<li><a href="#orgheadline6">1.2.1. KL divergence</a></li>
+<li><a href="#orgheadline7">1.2.2. Tree kernels</a></li>
+<li><a href="#orgheadline8">1.2.3. Tree edit distance</a></li>
+<li><a href="#orgheadline9">1.2.4. Graph kernels</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">4. Tree DP</a>
-<ul>
-<li><a href="#orgheadline10">4.1. Define</a></li>
-<li><a href="#orgheadline11">4.2. Recurrence</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<p>
-Solve problem by breaking down into simpler sub-problems.
-</p>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">1</span> One dimension</h2>
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">1</span> Similarity metrics</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-Given n, find the number of different ways to write n as the sum of 1,3,4
-</p>
-</div>
-
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Define sub-problems</h3>
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.1</span> Token based</h3>
 <div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> Jaccard coefficient/index</h4>
+<div class="outline-text-4" id="text-1-1-1">
 <p>
-D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
+<i>Jaccard index</i>, also known as the <i>Jaccard similarity coefficient</i>, compares two sets, A and B.
+</p>
+
+<p>
+\(J(A,B) = \frac{A \cap B}{A \cup B}\)
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Recurrence formula</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> Two Dimensions</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Given two string x and y, find the length of longest common sub-sequence.
-</p>
-</div>
-
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.1</span> Define sub-problems</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.2</span> Recurrence formula</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-D<sub>ij</sub> =
-</p>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.1.2</span> Cosine similarity</h4>
+<div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
-<li>if x<sub>i</sub> = y<sub>i</sub>: D<sub>i-1,j-1</sub> + 1</li>
-<li>otherwise: max{D<sub>i-1,j</sub>, D<sub>i,j-1</sub>}</li>
+<li>most widely used</li>
+<li>typically the terms are weighted with TF-IDF</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-5">
+<h5 id="orgheadline2"><span class="section-number-5">1.1.2.1</span> TF-IDF</h5>
+<div class="outline-text-5" id="text-1-1-2-1">
+<ul class="org-ul">
+<li>In information retrieval.</li>
+<li>short for <i>term frequency–inverse document frequency</i></li>
+<li>a numerical statistic that is intended to reflect how important a word is to a document</li>
+
+<li><i>term frequency</i>:: the number of times a term occurs in a document. E.g. "good" appears 3 times.</li>
+<li><i>inverse document frequency</i>:: this is to fix the word "the" appears so often and not that useful.
+\(idf(t,D) = log \frac{N}{|\{d \in D : t \in d\}}\)
+Meaning the total number of documents, divided by the documents that contains the word <code>t</code>.</li>
+<li><i>term frequency–inverse document frequency</i>:: tfidf(t, d) = tf(t, d) * idf(t, D)</li>
+</ul>
+<p>
+Example:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">term</th>
+<th scope="col" class="org-right">doc 1</th>
+<th scope="col" class="org-right">doc 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">this</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">is</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-right">2</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">sample</td>
+<td class="org-right">1</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">another</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">example</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>tf("this", d1) = 1/5</li>
+<li>tf("this", d2) = 1/7</li>
+<li>idf("this", D) = log(2/2) = 0</li>
+<li>tfidf("this", d1) = 1/5 * 0 = 0</li>
+<li>tfidf("this", d2) = 1/7 * 0 = 0</li>
+</ul>
+
+<p>
+Both the tfidf is 0, meaning "this" is not very informative.
+</p>
+
+<ul class="org-ul">
+<li>tf("example", d1) = 0 / 5</li>
+<li>tf("example", d2) = 3/7</li>
+<li>idf("example", D) = log(2/1) = 0.3</li>
+<li>tfidf("example", d1) = 0 / 5 * 0.3 = 0</li>
+<li>tfidf("example", d2) = 3 / 7 * 0.3 = 0.13</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">3</span> Interval DP</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Given a string x=x<sub>1..n</sub>,
-find the minimum number of characters that need to be inserted to make it a palindrome.
-</p>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.1.3</span> Levenshtein distance</h4>
 </div>
-
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Define sub-problem</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-D<sub>i,j</sub> be the minimum number of characters.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Recurrence formula</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-say y<sub>1..k</sub> is the palindrome for x<sub>i..j</sub>,
-<b>we have either y<sub>1</sub> = x<sub>i</sub> or y<sub>k</sub> = x<sub>j</sub></b>
-</p>
-
-<p>
-D<sub>ij</sub> =
-</p>
-<ul class="org-ul">
-<li>if x<sub>i</sub> &ne; x<sub>j</sub>: 1 + min{D<sub>i+1,j</sub>, D<sub>i,j-1</sub>}</li>
-<li>if x<sub>i</sub> = x<sub>j</sub>: D<sub>i+1,j-1</sub></li>
-</ul>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">4</span> Tree DP</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-Given a tree, color nodes black as many as possible without coloring two adjacent nodes.
-</p>
 </div>
 
 <div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.1</span> Define</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>B(r) as the maximum nodes if the (root) node r is colored black.</li>
-<li>W(r) as the maximum nodes if the (root) node r is colored white.</li>
-</ul>
+<h3 id="orgheadline10"><span class="section-number-3">1.2</span> Syntax based</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">1.2.1</span> KL divergence</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+<i>Kullback–Leibler divergence</i>
+</p>
+<blockquote>
+<p>
+KL divergence between language models (it is actually somewhere between token and syntax)
+</p>
+</blockquote>
 </div>
 </div>
-
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">4.2</span> Recurrence</h3>
-<div class="outline-text-3" id="text-4-2">
-<ul class="org-ul">
-<li>B(v) = 1 + &sum;<sub>children</sub> W(c)</li>
-<li>W(v) = 1 + &sum;<sub>children</sub> max{B(c), W(c)}</li>
-</ul>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">1.2.2</span> Tree kernels</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+<a href="https://en.wikipedia.org/wiki/Tree_kernel">https://en.wikipedia.org/wiki/Tree_kernel</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">1.2.3</span> Tree edit distance</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+extensions of Levenshtein into the tree setting
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">1.2.4</span> Graph kernels</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+defined on dependency graphs (counterpart in PA is CFG?)
+</p>
+</div>
 </div>
 </div>
 </div>
