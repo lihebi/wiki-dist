@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-21 Wed 23:53 -->
+<!-- 2016-09-27 Tue 00:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode</title>
@@ -97,66 +97,6 @@
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <style type="text/css">
@@ -264,6 +204,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline22">7.6. longest subsequence with at least k repeat / without any repeat</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline24">8. 400. Nth Digit</a></li>
 </ul>
 </div>
 </div>
@@ -896,10 +837,116 @@ If we found a character visited before that index, simply update that only.
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24"><span class="section-number-2">8</span> 400. Nth Digit</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #75715E;">/**</span>
+<span style="color: #75715E;"> *</span>
+<span style="color: #75715E;"> 1 - 9 : 9</span>
+<span style="color: #75715E;"> 10 - 99 : 2 * 90</span>
+<span style="color: #75715E;"> 100 - 999 : 3 * 900</span>
+<span style="color: #75715E;"> 1000 - 9999: 4 * 90000</span>
+<span style="color: #75715E;">*/</span>
+<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">Solution</span> {
+<span style="color: #F92672;">public</span>:
+  <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">findNthDigit</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">nn</span>) {
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">n</span> = nn;
+    <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">pair</span>&lt;<span style="color: #66D9EF;">long</span>, <span style="color: #66D9EF;">long</span>&gt; <span style="color: #FD971F;">p</span> = get_lvl(n);
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">lvl</span> = p.first;
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">remaining</span> = p.second;
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">base</span> = get_base(lvl);
+
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">num</span> = remaining / lvl + base - 1;
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">offset</span> = remaining % lvl;
+    <span style="color: #F92672;">if</span> (offset != 0) {
+      num++;
+    }
+    <span style="color: #F92672;">if</span> (offset != 0) {
+      offset = lvl + 1 - offset;
+    }
+    <span style="color: #F92672;">return</span> get_digit(num, offset);
+  }
+
+  <span style="color: #66D9EF;">long</span> <span style="color: #A6E22E;">get_digit</span>(<span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">num</span>, <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">offset</span>) {
+    <span style="color: #F92672;">while</span> (--offset&gt;0) {
+      num /= 10;
+    }
+    <span style="color: #F92672;">return</span> num % 10;
+  }
+
+  <span style="color: #75715E;">/**</span>
+<span style="color: #75715E;">   * Get base number (100..)</span>
+<span style="color: #75715E;">   */</span>
+  <span style="color: #66D9EF;">long</span> <span style="color: #A6E22E;">get_base</span>(<span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">cat</span>) {
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">ret</span>=1;
+    <span style="color: #F92672;">while</span> (--cat&gt;0) {
+      ret *= 10;
+    }
+    <span style="color: #F92672;">return</span> ret;
+  }
+
+  <span style="color: #75715E;">/**</span>
+<span style="color: #75715E;">   * find the lvl it belongs, start from 1</span>
+<span style="color: #75715E;">   * @return (lvl, remaining)</span>
+<span style="color: #75715E;">   */</span>
+  <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">pair</span>&lt;<span style="color: #66D9EF;">long</span>, <span style="color: #66D9EF;">long</span>&gt; <span style="color: #A6E22E;">get_lvl</span>(<span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">n</span>) {
+    <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">pair</span>&lt;<span style="color: #66D9EF;">long</span>, <span style="color: #66D9EF;">long</span>&gt; <span style="color: #FD971F;">p</span> = {1,0};
+    <span style="color: #F92672;">while</span> (n &gt; 0) {
+      n -= get_total(p.first);
+      p.first++;
+    }
+    p.first--;
+    p.second = n + get_total(p.first);
+    <span style="color: #F92672;">return</span> p;
+  }
+
+  <span style="color: #75715E;">/**</span>
+<span style="color: #75715E;">   * get the total num of lvl level</span>
+<span style="color: #75715E;">   */</span>
+  <span style="color: #66D9EF;">long</span> <span style="color: #A6E22E;">get_total</span>(<span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">level</span>) {
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">ret</span>=level * 9;
+    <span style="color: #F92672;">while</span> (--level&gt;0) {
+      ret *= 10;
+    }
+    <span style="color: #F92672;">return</span> ret;
+  }
+};
+</pre>
+</div>
+
+<p>
+neat solution:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #F92672;">public</span> <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">findNthDigit</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">n</span>) {
+    <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">len</span> = 1;
+    <span style="color: #66D9EF;">long</span> <span style="color: #FD971F;">count</span> = 9;
+    <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">start</span> = 1;
+
+    <span style="color: #F92672;">while</span> (n &gt; len * count) {
+        n -= len * count;
+        len += 1;
+        count *= 10;
+        start *= 10;
+    }
+
+    start += (n - 1) / len;
+    <span style="color: #66D9EF;">String</span> <span style="color: #FD971F;">s</span> = Integer.toString(start);
+    <span style="color: #F92672;">return</span> Character.getNumericValue(s.charAt((n - 1) % len));
+}
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-09-21 Wed 23:53</p>
+<p class="date">Created: 2016-09-27 Tue 00:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
