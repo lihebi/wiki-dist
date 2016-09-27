@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-27 Tue 02:28 -->
+<!-- 2016-09-27 Tue 15:50 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Boost</title>
@@ -98,41 +98,33 @@
 a:visited {color: red;}
 </style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #333300; color: #F8F8F2;}</style>
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <script type="text/javascript">
@@ -209,6 +201,30 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline10">3.3. help message</a></li>
 <li><a href="#orgheadline11">3.4. Do the parsing</a></li>
 <li><a href="#orgheadline12">3.5. Retrieve from vm</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline25">4. filesystem</a>
+<ul>
+<li><a href="#orgheadline14">4.1. Usage</a></li>
+<li><a href="#orgheadline18">4.2. Path</a>
+<ul>
+<li><a href="#orgheadline15">4.2.1. modification</a></li>
+<li><a href="#orgheadline16">4.2.2. Decomposite</a></li>
+<li><a href="#orgheadline17">4.2.3. Query</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline22">4.3. path utilities</a>
+<ul>
+<li><a href="#orgheadline19">4.3.1. File operations</a></li>
+<li><a href="#orgheadline21">4.3.2. predicates</a>
+<ul>
+<li><a href="#orgheadline20">4.3.2.1. Linux is file or dir</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline23">4.4. Temp Directory</a></li>
+<li><a href="#orgheadline24">4.5. Iterators</a></li>
 </ul>
 </li>
 </ul>
@@ -376,6 +392,10 @@ An example:
 <span style="color: #F92672;">namespace</span> <span style="color: #AE81FF;">po</span> = <span style="color: #AE81FF;">boost</span>::program_options;
 </pre>
 </div>
+
+<p>
+compile use <code>-lboost_program_options</code> flag.
+</p>
 </div>
 </div>
 
@@ -520,10 +540,268 @@ vm[key].value();
 </div>
 </div>
 </div>
+
+
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25"><span class="section-number-2">4</span> filesystem</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">4.1</span> Usage</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;boost/filesystem.hpp&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;boost/foreach.hpp&gt;</span>
+<span style="color: #F92672;">namespace</span> <span style="color: #AE81FF;">fs</span> = <span style="color: #AE81FF;">boost</span>::filesystem;
+</pre>
+</div>
+
+<p>
+Compile use <code>-lboost_system -lboost_filesystem</code> flag.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">4.2</span> Path</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+These are the methods of class <code>path</code>.
+Basic construct and retrieve string:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #A6E22E;">p</span>(<span style="color: #E6DB74;">"/path"</span>);
+p.string();
+p.clear();
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">4.2.1</span> modification</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+append will concatenate paths by separator, but will not add if duplicate.
+concatenation simply concatenate.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C++">path&amp; <span style="color: #F92672;">operator</span>/=(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">path</span>&amp; <span style="color: #FD971F;">p</span>);
+<span style="color: #66D9EF;">path</span>&amp; <span style="color: #F92672;">operator</span><span style="color: #A6E22E;">+=</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">path</span>&amp; <span style="color: #FD971F;">x</span>);
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>path&amp; replace_extension(const path&amp; new_extension = path());</code>
+<ol class="org-ol">
+<li>will remove existing <code>extension()</code></li>
+<li>iff new extension is not empty and does not start with dot, add it</li>
+</ol></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">4.2.2</span> Decomposite</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+All of these returns a <code>path</code>.
+</p>
+<dl class="org-dl">
+<dt><code>parent_path();</code></dt><dd>remove until last slash
+<ul class="org-ul">
+<li><code>/foo/bar</code> -&gt; <code>/foo</code></li>
+<li><code>/foo/bar/</code> -&gt; <code>/foo/bar</code></li>
+</ul></dd>
+<dt><code>filename();</code></dt><dd><ul class="org-ul">
+<li><code>/foo/bar.txt</code> -&gt; <code>bar.txt</code></li>
+<li><code>/foo/bar/</code> -&gt; <code>.</code></li>
+</ul></dd>
+<dt><code>stem();</code></dt><dd>iff the filename contains dot, and is not '.' or '..', remove until the last dot.
+<ul class="org-ul">
+<li><code>/foo/bar.txt</code> -&gt; <code>bar</code></li>
+<li><code>/foo.bar.txt</code> -&gt; <code>foo.bar</code></li>
+</ul></dd>
+<dt><code>extension();</code></dt><dd>WITH DOT: from last dot to the end.
+<ul class="org-ul">
+<li><code>foo.bar.txt</code> -&gt; <code>.txt</code></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">4.2.3</span> Query</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<ul class="org-ul">
+<li><code>empty</code></li>
+<li><code>is_absolute</code></li>
+<li><code>is_relative</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">4.3</span> path utilities</h3>
+<div class="outline-text-3" id="text-4-3">
+<dl class="org-dl">
+<dt><code>absolute</code></dt><dd>if relative, return current path / p</dd>
+<dt><code>canonical</code></dt><dd>it is absolute, but check to make sure the file exists, otherwise throw exception.
+no symbol link, no dots, no extra slashes.</dd>
+<dt><code>current_path</code></dt><dd>current path, back to root</dd>
+<dt><code>exists</code></dt><dd>returns whether it exists</dd>
+<dt><code>equivalent</code></dt><dd>return true if file<sub>status</sub> for both path equals, and resolve to same file system entity.</dd>
+</dl>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">4.3.1</span> File operations</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+copy
+</p>
+<dl class="org-dl">
+<dt><code>copy(path &amp;from, path &amp;to)</code></dt><dd>should be used, will call the other 3 based on the type</dd>
+<dt><code>copy_directory(path &amp;from, path &amp;to)</code></dt><dd>only apply for directory</dd>
+<dt><code>copy_file(path &amp;from, path &amp;to)</code></dt><dd>only apply for file</dd>
+</dl>
+<p>
+create &amp; remove
+</p>
+<dl class="org-dl">
+<dt><code>create_directory(path p)</code></dt><dd>mkdir</dd>
+<dt><code>create_directories(path p)</code></dt><dd>mkdir -p</dd>
+<dt><code>remove(path p)</code></dt><dd>rm</dd>
+<dt><code>remove_all(path p)</code></dt><dd>rm -r</dd>
+</dl>
+<p>
+modify
+</p>
+<dl class="org-dl">
+<dt><code>rename(path &amp;old, path &amp;new)</code></dt><dd></dd>
+
+<dt><code>resize_file(path &amp;p, uintmax_t new_size)</code></dt><dd></dd>
+
+<dt><code>uintmax_t file_size(path &amp;p)</code></dt><dd>return size in byte</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">4.3.2</span> predicates</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<dl class="org-dl">
+<dt><code>is_directory(path &amp;p)</code></dt><dd></dd>
+
+<dt><code>is_regular_file(path &amp;p)</code></dt><dd></dd>
+
+<dt><code>is_symlink(path &amp;p)</code></dt><dd></dd>
+
+<dt><code>is_other(path &amp;p)</code></dt><dd>the file exists, but is not the above three kind</dd>
+<dt><code>is_empty(path &amp;p)</code></dt><dd>whether the directory is empty, or the file is of size 0</dd>
+</dl>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-5">
+<h5 id="orgheadline20"><span class="section-number-5">4.3.2.1</span> Linux is file or dir</h5>
+<div class="outline-text-5" id="text-4-3-2-1">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #66D9EF;">bool</span> <span style="color: #AE81FF;">utils</span>::<span style="color: #A6E22E;">is_file</span>(<span style="color: #F92672;">const</span> <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> &amp;<span style="color: #FD971F;">file</span>) {
+  <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">stat</span> <span style="color: #FD971F;">sb</span>;
+  <span style="color: #F92672;">if</span> (<span style="color: #FD971F;">stat</span>(file.c_str(), &amp;sb) == 0 &amp;&amp; S_ISREG(sb.st_mode)) <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">true</span>;
+  <span style="color: #F92672;">else</span> <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">false</span>;
+}
+<span style="color: #66D9EF;">bool</span> <span style="color: #AE81FF;">utils</span>::<span style="color: #A6E22E;">is_dir</span>(<span style="color: #F92672;">const</span> <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> &amp;<span style="color: #FD971F;">file</span>) {
+  <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">stat</span> <span style="color: #FD971F;">sb</span>;
+  <span style="color: #F92672;">if</span> (<span style="color: #FD971F;">stat</span>(file.c_str(), &amp;sb) == 0 &amp;&amp; S_ISDIR(sb.st_mode)) <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">true</span>;
+  <span style="color: #F92672;">else</span> <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">false</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">4.4</span> Temp Directory</h3>
+<div class="outline-text-3" id="text-4-4">
+<dl class="org-dl">
+<dt><code>temp_directory_path()</code></dt><dd>return a temp directory name suited for creation.
+Will throw exception if the one being returned exists, so feel free to use.</dd>
+<dt><code>unique_path(path p="%%%%-%%%%-%%%%-%%%%")</code></dt><dd>this will receive a string contains %, and replace it with a hex number. Default is 64 bit randomness.</dd>
+</dl>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #75715E;">/**</span>
+<span style="color: #75715E;"> * create tmp dir, return it.</span>
+<span style="color: #75715E;"> * @input s /tmp/helium-XXXXXX (must have 6 X at the end.)</span>
+<span style="color: #75715E;"> */</span>
+<span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #AE81FF;">utils</span>::<span style="color: #A6E22E;">create_tmp_dir</span>(<span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">s</span>) {
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">char tmp_dir[] = "/tmp/helium-test-temp.XXXXXX";</span>
+  <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">sub</span> = s.substr(s.find_last_not_of(<span style="color: #E6DB74;">'X'</span>));
+  <span style="color: #F92672;">if</span> (sub.size() !=7) <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">""</span>;
+  sub = sub.substr(1);
+  assert(sub.size() == 6 &amp;&amp; <span style="color: #E6DB74;">"tmp dir url format error!"</span>);
+  <span style="color: #F92672;">if</span> (sub.find_first_not_of(<span style="color: #E6DB74;">'X'</span>) != <span style="color: #AE81FF;">std</span>::<span style="color: #AE81FF;">string</span>::npos) <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">""</span>;
+  <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">tmp_dir</span>[s.size()+1];
+  strcpy(tmp_dir, s.c_str());
+
+  <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">result</span> = mkdtemp(tmp_dir);
+
+  <span style="color: #F92672;">if</span> (result == <span style="color: #AE81FF;">NULL</span>) <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">""</span>;
+  <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">dir</span> = tmp_dir;
+  <span style="color: #F92672;">return</span> dir;
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">4.5</span> Iterators</h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li>class directory<sub>iterator</sub></li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #F92672;">if</span> (<span style="color: #AE81FF;">fs</span>::is_directory(p)) {
+  <span style="color: #F92672;">for</span> (<span style="color: #AE81FF;">fs</span>::directory_entry &amp;e : <span style="color: #AE81FF;">fs</span>::directory_iterator(p)) {
+    e.path();
+  }
+}
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>class recursive<sub>directory</sub><sub>iterator</sub></li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #A6E22E;">project_folder</span>(folder);
+<span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">recursive_directory_iterator</span> <span style="color: #A6E22E;">it</span>(folder), <span style="color: #FD971F;">eod</span>;
+<span style="color: #A6E22E;">BOOST_FOREACH</span> (<span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #F92672;">const</span> &amp; <span style="color: #FD971F;">p</span>, <span style="color: #AE81FF;">std</span>::<span style="color: #FD971F;">make_pair</span>(it, eod)) {
+  <span style="color: #F92672;">if</span> (is_regular_file(p)) {
+    vs.push_back(p.string());
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-09-27 Tue 02:28</p>
+<p class="date">Created: 2016-09-27 Tue 15:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
