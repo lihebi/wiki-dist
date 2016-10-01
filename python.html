@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-10-01 Sat 17:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Python</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline21">1. Concept</a>
+<ul>
+<li><a href="#orgheadline1">1.1. Scoping</a></li>
+<li><a href="#orgheadline11">1.2. Collection</a>
+<ul>
+<li><a href="#orgheadline4">1.2.1. String</a>
+<ul>
+<li><a href="#orgheadline2">1.2.1.1. Concatenation</a></li>
+<li><a href="#orgheadline3">1.2.1.2. split</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">1.2.2. <span class="todo TODO">TODO</span> tuple</a></li>
+<li><a href="#orgheadline8">1.2.3. List</a>
+<ul>
+<li><a href="#orgheadline6">1.2.3.1. Slicing</a></li>
+<li><a href="#orgheadline7">1.2.3.2. create a list</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">1.2.4. Dictionary</a></li>
+<li><a href="#orgheadline10">1.2.5. Set</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">1.3. Algorithm</a>
+<ul>
+<li><a href="#orgheadline12">1.3.1. <span class="todo TODO">TODO</span> sort</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline15">1.4. Function</a>
+<ul>
+<li><a href="#orgheadline14">1.4.1. variadic parameter</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline16">1.5. Exception</a></li>
+<li><a href="#orgheadline17">1.6. Lambda</a></li>
+<li><a href="#orgheadline19">1.7. Packaging</a>
+<ul>
+<li><a href="#orgheadline18">1.7.1. importing</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline20">1.8. Thread</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline25">2. Type</a>
+<ul>
+<li><a href="#orgheadline22">2.1. Boolean</a></li>
+<li><a href="#orgheadline23">2.2. Integer</a></li>
+<li><a href="#orgheadline24">2.3. conversion</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline26">3. Black Tech</a></li>
+<li><a href="#orgheadline28">4. Pep8</a>
+<ul>
+<li><a href="#orgheadline27">4.1. document</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">5. IO</a></li>
+<li><a href="#orgheadline32">6. Operating System</a>
+<ul>
+<li><a href="#orgheadline30">6.1. Work filesystem:</a></li>
+<li><a href="#orgheadline31">6.2. Shell command</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline36">7. Third party libraries</a>
+<ul>
+<li><a href="#orgheadline33">7.1. argparse</a></li>
+<li><a href="#orgheadline34">7.2. urllib</a></li>
+<li><a href="#orgheadline35">7.3. XML</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21"><span class="section-number-2">1</span> Concept</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Scoping</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+There're four levels:
+</p>
+<ul class="org-ul">
+<li>current scope</li>
+<li>parent scope</li>
+<li>module scope (global)</li>
+<li>built-in scope</li>
+</ul>
+
+<p>
+<code>nonlocal</code> keyword specify this variable should be referenced to the parent scope.
+But, this will not reach global.
+Instead, the <code>global</code> keyword declares the listed variables to be in the module level scope.
+</p>
+
+<blockquote>
+<p>
+The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals.
+</p>
+</blockquote>
+
+<p>
+As an example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">var</span> = 0 <span style="color: #75715E;"># </span><span style="color: #75715E;">global</span>
+
+<span style="color: #F92672;">def</span> <span style="color: #A6E22E;">outer</span>():
+  <span style="color: #FD971F;">var</span> = 1 <span style="color: #75715E;"># </span><span style="color: #75715E;">parent</span>
+  <span style="color: #F92672;">def</span> <span style="color: #A6E22E;">inner</span>():
+    <span style="color: #F92672;">nonlocal</span> var
+    <span style="color: #FD971F;">var</span> = 2 <span style="color: #75715E;"># </span><span style="color: #75715E;">local</span>
+    <span style="color: #F92672;">global</span> var
+    <span style="color: #FD971F;">var</span> =3
+  inner()
+  <span style="color: #75715E;"># </span><span style="color: #75715E;">var = 2</span>
+
+outer()
+<span style="color: #75715E;"># </span><span style="color: #75715E;">global var = 3</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">1.2</span> Collection</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.2.1</span> String</h4>
+<div class="outline-text-4" id="text-1-2-1">
+</div><div id="outline-container-orgheadline2" class="outline-5">
+<h5 id="orgheadline2"><span class="section-number-5">1.2.1.1</span> Concatenation</h5>
+<div class="outline-text-5" id="text-1-2-1-1">
+<ul class="org-ul">
+<li>concatenate two strings directly by <code>+</code>.</li>
+<li>need to convert integer to string before concatenate: <code>s + str(35)</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-5">
+<h5 id="orgheadline3"><span class="section-number-5">1.2.1.2</span> split</h5>
+<div class="outline-text-5" id="text-1-2-1-2">
+<dl class="org-dl">
+<dt><code>str.split(sep=None)</code></dt><dd>default by white space</dd>
+<dt><code>str.strip()</code></dt><dd>strip out white space at both begin and end</dd>
+<dt><code>str.replace(old, new)</code></dt><dd>replace <i>all</i>.</dd>
+<dt><code>str.startswith(s)</code></dt><dd></dd>
+
+<dt><code>str.endswith(s)</code></dt><dd></dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">1.2.2</span> <span class="todo TODO">TODO</span> tuple</h4>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">1.2.3</span> List</h4>
+<div class="outline-text-4" id="text-1-2-3">
+</div><div id="outline-container-orgheadline6" class="outline-5">
+<h5 id="orgheadline6"><span class="section-number-5">1.2.3.1</span> Slicing</h5>
+<div class="outline-text-5" id="text-1-2-3-1">
+<p>
+The slicing syntax is <code>l[start:end:step]</code>.
+The slicing will return a <i>new</i> list. Change to that list will not change the original one.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">l[4]
+l[4:]
+l[::2]
+l[:-1]
+</pre>
+</div>
+
+<p>
+However, assign to the slicing itself <i>will change</i> the original one:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">l</span>[1:2] = [4,5,6]
+</pre>
+</div>
+
+<p>
+Also, assign to a new variable only assign the reference:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">a</span> = [1,2,3]
+<span style="color: #FD971F;">b</span> = a <span style="color: #75715E;"># </span><span style="color: #75715E;">only a reference</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-5">
+<h5 id="orgheadline7"><span class="section-number-5">1.2.3.2</span> create a list</h5>
+<div class="outline-text-5" id="text-1-2-3-2">
+<ul class="org-ul">
+<li><code>range(stop)</code></li>
+<li><code>range(start, stop[, step])</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">1.2.4</span> Dictionary</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+Create:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">x</span> = {<span style="color: #E6DB74;">'a'</span>: 1, <span style="color: #E6DB74;">'b'</span>: 2}
+</pre>
+</div>
+<p>
+Dictionary is not sorted. Use <code>collections.OrderedDict</code> if you want this feature.
+Basically it remember the order when the elements are inserted.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">import</span> collections
+<span style="color: #FD971F;">od</span> = collections.OrderedDict(<span style="color: #F92672;">sorted</span>(d.items()))
+</pre>
+</div>
+
+<p>
+Merge two dictionary (<code>x</code> and <code>y</code>):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">z</span> = x.copy()
+z.update(y)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">1.2.5</span> Set</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">s</span> = <span style="color: #F92672;">set</span>()
+s.add(x)
+<span style="color: #F92672;">if</span> x <span style="color: #F92672;">in</span> s:
+  <span style="color: #F92672;">pass</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">1.3</span> Algorithm</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">1.3.1</span> <span class="todo TODO">TODO</span> sort</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+sort a dictionary by value:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">sorted</span>(dict1, key=dict1.get) <span style="color: #75715E;"># </span><span style="color: #75715E;">=&gt; list</span>
+<span style="color: #F92672;">sorted</span>(dict1, key=dict1.get, reverse=<span style="color: #AE81FF;">True</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">1.4</span> Function</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">1.4.1</span> variadic parameter</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+use <code>*args</code> syntax, and <code>args</code> will be a <i>tuple</i>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">foo</span>(*args):
+  <span style="color: #F92672;">for</span> a <span style="color: #F92672;">in</span> args:
+    <span style="color: #F92672;">print</span> a
+</pre>
+</div>
+
+<p>
+use <code>**args</code> to capture all <i>keyword arguments</i>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">bar</span>(**kwargs):
+  <span style="color: #F92672;">for</span> a <span style="color: #F92672;">in</span> kwargs:
+    <span style="color: #F92672;">print</span> a, kwargs[a]
+</pre>
+</div>
+
+<p>
+Combine them together:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">foobar</span>(kind, *args, **kwargs):
+  <span style="color: #F92672;">pass</span>
+</pre>
+</div>
+
+<p>
+Also, there's a concept for the reverse thing: unpack argument list from a list, with <code>*list</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">foo</span>(a,b):
+  <span style="color: #F92672;">pass</span>
+
+<span style="color: #FD971F;">l</span> = [1,2]
+foo(*l)
+</pre>
+</div>
+
+<p>
+on python3, this syntax can appear on left side
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">first, *<span style="color: #FD971F;">rest</span> = [1,2,3,4]
+first,*<span style="color: #FD971F;">l</span>,<span style="color: #FD971F;">last</span> = [1,2,3,4]
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">1.5</span> Exception</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+To give a quick feel:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">try</span>:
+  <span style="color: #F92672;">pass</span>
+<span style="color: #F92672;">except</span> <span style="color: #66D9EF;">TypeError</span> <span style="color: #F92672;">as</span> e: <span style="color: #75715E;"># </span><span style="color: #75715E;">capture the exception into a variable</span>
+  <span style="color: #F92672;">pass</span>
+<span style="color: #F92672;">except</span> AnotherError: <span style="color: #75715E;"># </span><span style="color: #75715E;">does not capture</span>
+  <span style="color: #F92672;">pass</span>
+<span style="color: #F92672;">except</span>: <span style="color: #75715E;"># </span><span style="color: #75715E;">all exception</span>
+  <span style="color: #F92672;">pass</span>
+<span style="color: #F92672;">else</span>: <span style="color: #75715E;"># </span><span style="color: #75715E;">if doesn't raise an exception</span>
+  <span style="color: #F92672;">pass</span>
+<span style="color: #F92672;">finally</span>:
+  <span style="color: #F92672;">pass</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">1.6</span> Lambda</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">lambda</span> x : x+2
+<span style="color: #F92672;">lambda</span> x: x%2==0
+</pre>
+</div>
+
+<p>
+The usage of lambda is often in <i>map</i> and <i>filter</i>.
+</p>
+<ul class="org-ul">
+<li><code>map(lambda_exp, mylist)</code> will execute the lambda expression on each element of the list, and return a list containing the results.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">1.7</span> Packaging</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Exposing API: the following only expose <code>foo</code> but not <code>bar</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">__all__</span> = [<span style="color: #E6DB74;">'foo'</span>]
+<span style="color: #F92672;">def</span> <span style="color: #A6E22E;">foo</span>():
+  <span style="color: #F92672;">pass</span>
+<span style="color: #F92672;">def</span> <span style="color: #A6E22E;">bar</span>():
+  <span style="color: #F92672;">pass</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">1.7.1</span> importing</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+The local structure directory must contain the <code>__init__.py</code> file to be able to import.
+</p>
+<pre class="example">
+|-- main.py
+|-- mypackage
+    |-- __init__.py
+    |-- a.py
+    |-- b.py
+    |-- subdir
+        |-- __init__.py
+        |-- c.py
+</pre>
+
+<p>
+The import statements should be:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">from</span> mypackage <span style="color: #F92672;">import</span> a
+<span style="color: #F92672;">from</span> mypackage.b <span style="color: #F92672;">import</span> foo <span style="color: #F92672;">as</span> myfoo
+<span style="color: #F92672;">from</span> mypackage.subdir <span style="color: #F92672;">import</span> c
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">1.8</span> Thread</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">from</span> threading <span style="color: #F92672;">import</span> Thread
+
+<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">MyThread</span>(Thread):
+  <span style="color: #F92672;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672;">self</span>, arg):
+    Thread.__init__(<span style="color: #F92672;">self</span>)
+    <span style="color: #F92672;">self</span>.arg = arg
+  <span style="color: #F92672;">def</span> <span style="color: #A6E22E;">run</span>(<span style="color: #F92672;">self</span>):
+    <span style="color: #F92672;">pass</span>
+
+<span style="color: #FD971F;">t</span> = MyThread(arg)
+t.start()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25"><span class="section-number-2">2</span> Type</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">2.1</span> Boolean</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><code>not True</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">2.2</span> Integer</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li><code>i += 1</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">2.3</span> conversion</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>string to integer: <code>int('45')</code></li>
+<li>integer to string: <code>str(45)</code></li>
+<li>ASCII to char: <code>chr(100)</code> returns 'd'</li>
+<li>char to ASCII: <code>ord('d')</code> returns 100</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">3</span> Black Tech</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+If else or:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">var</span> = d.get(<span style="color: #E6DB74;">'key'</span>) <span style="color: #F92672;">or</span> 0
+<span style="color: #75715E;"># </span><span style="color: #75715E;">is equal to:</span>
+<span style="color: #FD971F;">var</span> = d.get(<span style="color: #E6DB74;">'key'</span>) <span style="color: #F92672;">if</span> d.get(<span style="color: #E6DB74;">'key'</span>) <span style="color: #F92672;">else</span> 0
+</pre>
+</div>
+
+<p>
+list comprehension
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">even_squares</span> = [x**2 <span style="color: #F92672;">for</span> x <span style="color: #F92672;">in</span> l <span style="color: #F92672;">if</span> x%2 == 0]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-2">
+<h2 id="orgheadline28"><span class="section-number-2">4</span> Pep8</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Indent:
+</p>
+<ul class="org-ul">
+<li><b>function and class</b> should be separated by <b>2 lines</b></li>
+<li><b>In a class</b>, function should be separated by <b>1 line</b></li>
+<li>1 space before and after variable assignment</li>
+</ul>
+
+<p>
+Naming
+</p>
+<ul class="org-ul">
+<li>function, variable, attribute: <code>func_var_attr</code></li>
+<li>protected instance attributes: <code>_protected_field</code></li>
+<li>private instance attributes: <code>__private_field</code></li>
+<li>class and exception: <code>ClassExceptionName</code></li>
+<li>module level constants: <code>CONSTANT</code></li>
+<li>instance method of class should use <code>self</code> as first parameter, refer to the object</li>
+<li>class method should use <code>cls</code> as first parameter, refer to the class</li>
+</ul>
+
+<p>
+Expression
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">use</th>
+<th scope="col" class="org-left">DONT use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>a is not b</code></td>
+<td class="org-left"><del><code>not a is b</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>if not list</code></td>
+<td class="org-left"><del><code>if len(list) == 0</code></del></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Import
+</p>
+<ul class="org-ul">
+<li>always use absolute path</li>
+<li>if must use relative, use <code>from . import foo</code> instead of <del><code>import foo</code></del></li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">4.1</span> document</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+One can use one line or multi-line document.
+The doc string can be retrieved by <code>func.__doc__</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">func</span>():
+  <span style="color: #E6DB74;">"""one line doc"""</span>
+
+<span style="color: #F92672;">def</span> <span style="color: #A6E22E;">func</span>():
+  <span style="color: #E6DB74;">"""The outline</span>
+
+<span style="color: #E6DB74;">  The above empty line is required.</span>
+<span style="color: #E6DB74;">  Here's the detailed documentation.</span>
+<span style="color: #E6DB74;">  """</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29"><span class="section-number-2">5</span> IO</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">'xxx'</span>, end=<span style="color: #E6DB74;">''</span>)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">f</span> = <span style="color: #F92672;">open</span>(<span style="color: #E6DB74;">'text.txt'</span>)
+f.read() <span style="color: #75715E;"># </span><span style="color: #75715E;">return all content</span>
+
+<span style="color: #FD971F;">f</span> = <span style="color: #F92672;">open</span>(<span style="color: #E6DB74;">'text.txt'</span>)
+<span style="color: #F92672;">for</span> line <span style="color: #F92672;">in</span> f:
+    <span style="color: #F92672;">print</span>(line)
+
+<span style="color: #F92672;">with</span> <span style="color: #F92672;">open</span>(<span style="color: #E6DB74;">'a.txt'</span>) <span style="color: #F92672;">as</span> f:
+    <span style="color: #F92672;">for</span> line <span style="color: #F92672;">in</span> f:
+        <span style="color: #F92672;">print</span>(line)
+</pre>
+</div>
+
+<p>
+read from stdin:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">for</span> line <span style="color: #F92672;">in</span> sys.stdin:
+  <span style="color: #F92672;">print</span>(line)
+</pre>
+</div>
+
+<p>
+get command line argument: <code>sys.argv</code>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline32" class="outline-2">
+<h2 id="orgheadline32"><span class="section-number-2">6</span> Operating System</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">6.1</span> Work filesystem:</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">import</span> os
+<span style="color: #F92672;">for</span> root,dirs,files <span style="color: #F92672;">in</span> os.walk(<span style="color: #E6DB74;">'.'</span>):
+  <span style="color: #F92672;">for</span> f <span style="color: #F92672;">in</span> files:
+    <span style="color: #F92672;">print</span> f
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>os.path.abspath('relative/path/to/file')</code></li>
+<li><code>os.path.exists("/path/to/file")</code></li>
+<li><code>os.rename('old', 'new')</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">6.2</span> Shell command</h3>
+<div class="outline-text-3" id="text-6-2">
+<dl class="org-dl">
+<dt><code>os.system</code></dt><dd>simply run command</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-python">os.system(<span style="color: #E6DB74;">"some command"</span>)
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt><code>os.popen</code></dt><dd>access to input output</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">stream</span> = os.popen(<span style="color: #E6DB74;">"some command"</span>)
+stream.read()
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>subprocess.Popen</code></li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">p</span> = subprocess.Popen(<span style="color: #E6DB74;">"echo Hello World"</span>, shell=<span style="color: #AE81FF;">True</span>, stdout=subprocess.PIPE)
+p.stdout.read()
+<span style="color: #FD971F;">s</span> = subprocess.check_output(<span style="color: #E6DB74;">'wc -l'</span>, stdin=p.stdout)
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt><code>subprocess.call</code></dt><dd>this is the same as <code>subprocess.Popen</code> except that it waits and gives return code.</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">return_code</span> = subprocess.call(<span style="color: #E6DB74;">"echo Hello World"</span>, shell=<span style="color: #AE81FF;">True</span>, stdout=subprocess.DEVNULL)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline36" class="outline-2">
+<h2 id="orgheadline36"><span class="section-number-2">7</span> Third party libraries</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"><span class="section-number-3">7.1</span> argparse</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">import</span> argparse
+<span style="color: #FD971F;">parser</span> = argparse.ArgumentParser()
+parser.add_argument(<span style="color: #E6DB74;">'-q'</span>, <span style="color: #E6DB74;">'--query'</span>, <span style="color: #F92672;">help</span>=<span style="color: #E6DB74;">'query github api'</span>, require=<span style="color: #AE81FF;">True</span>)
+parser.add_argument(<span style="color: #E6DB74;">'-d'</span>, <span style="color: #E6DB74;">'--download'</span>, <span style="color: #F92672;">help</span>=<span style="color: #E6DB74;">'do download'</span>, action=<span style="color: #E6DB74;">'store_true'</span>)
+<span style="color: #FD971F;">args</span> = parser.parse_args()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">7.2</span> urllib</h3>
+<div class="outline-text-3" id="text-7-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">from</span> urllib <span style="color: #F92672;">import</span> request
+<span style="color: #F92672;">import</span> json
+
+<span style="color: #FD971F;">url</span> = <span style="color: #E6DB74;">'https://api.github.com'</span>
+<span style="color: #FD971F;">api</span> = <span style="color: #E6DB74;">'/search/repositories'</span>
+<span style="color: #FD971F;">query</span> = <span style="color: #E6DB74;">'language:C&amp;stars:&gt;10&amp;per_page='</span>+size
+<span style="color: #FD971F;">response</span> = request.urlopen(url+api+<span style="color: #E6DB74;">"?q="</span>+query)
+
+<span style="color: #FD971F;">s</span> = response.read().decode(<span style="color: #E6DB74;">'utf8'</span>)
+<span style="color: #FD971F;">j</span> = json.loads(s)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">j will be a mix of list and dict</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35"><span class="section-number-3">7.3</span> XML</h3>
+<div class="outline-text-3" id="text-7-3">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">import</span> xml.etree.ElementTree <span style="color: #F92672;">as</span> ET
+<span style="color: #FD971F;">root</span> = ET.fromstring(s)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">XPath</span>
+<span style="color: #FD971F;">nodes</span> = root.findall(<span style="color: #E6DB74;">'{http://www.sdml.info/srcML/src}function'</span>)
+<span style="color: #F92672;">for</span> node <span style="color: #F92672;">in</span> nodes:
+  <span style="color: #75715E;"># </span><span style="color: #75715E;">do with node</span>
+  <span style="color: #F92672;">pass</span>
+</pre>
+</div>
+
+<p>
+APIs
+</p>
+<ul class="org-ul">
+<li><code>node.find(XPath)</code></li>
+<li><code>node.findall(XPath)</code></li>
+<li><code>node.get(Attribute)</code></li>
+<li><code>node.text</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-10-01 Sat 17:37</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

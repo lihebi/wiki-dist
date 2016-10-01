@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-27 Tue 15:50 -->
+<!-- 2016-10-01 Sat 17:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Boost</title>
@@ -97,20 +97,6 @@
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <style type="text/css">
@@ -227,6 +213,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline24">4.5. Iterators</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline26">5. Timer</a></li>
 </ul>
 </div>
 </div>
@@ -798,10 +785,37 @@ Will throw exception if the one being returned exists, so feel free to use.</dd>
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">5</span> Timer</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;boost/timer/timer.hpp&gt;</span>
+<span style="color: #F92672;">using</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #AE81FF;">timer</span>::<span style="color: #66D9EF;">cpu_timer</span>;
+<span style="color: #F92672;">using</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #AE81FF;">timer</span>::<span style="color: #66D9EF;">cpu_times</span>;
+<span style="color: #F92672;">using</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #AE81FF;">timer</span>::<span style="color: #66D9EF;">nanosecond_type</span>;
+
+<span style="color: #66D9EF;">nanosecond_type</span> <span style="color: #F92672;">const</span> <span style="color: #A6E22E;">twenty_seconds</span>(20 * 1000000000LL);
+<span style="color: #66D9EF;">nanosecond_type</span> <span style="color: #A6E22E;">last</span>(0);
+<span style="color: #66D9EF;">cpu_timer</span> <span style="color: #FD971F;">timer</span>;
+<span style="color: #F92672;">while</span> (more_transactions) {
+  process_a_transaction();
+  <span style="color: #66D9EF;">cpu_times</span> <span style="color: #F92672;">const</span> <span style="color: #FD971F;">elapsed_times</span>(timer.elapsed());
+  <span style="color: #66D9EF;">nanosecond_type</span> <span style="color: #F92672;">const</span> <span style="color: #FD971F;">elapsed</span>(elapsed_times.system
+                                + elapsed_times.user);
+  <span style="color: #F92672;">if</span> (elapsed &gt;= twenty_seconds) {
+    last = elapsed;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-09-27 Tue 15:50</p>
+<p class="date">Created: 2016-10-01 Sat 17:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

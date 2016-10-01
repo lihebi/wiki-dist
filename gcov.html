@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-01 Sat 17:37 -->
+<!-- 2016-09-28 Wed 18:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>GDB</title>
+<title>gcov</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -99,18 +99,6 @@ a:visited {color: red;}
 </style>
 <style type="text/css">
  pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -160,99 +148,94 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">GDB</h1>
+<h1 class="title">gcov</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Using with emacs</a></li>
-<li><a href="#orgheadline2">2. Commands</a></li>
-<li><a href="#orgheadline3">3. Core Dump</a></li>
-<li><a href="#orgheadline4">4. Batch mode</a></li>
+<li><a href="#orgheadline1">1. How to run</a></li>
+<li><a href="#orgheadline2">2. Different options</a></li>
+<li><a href="#orgheadline3">3. .gcov file format</a></li>
+<li><a href="#orgheadline4">4. Some experience</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Using with emacs</h2>
+<h2 id="orgheadline1"><span class="section-number-2">1</span> How to run</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><code>M-x gdb</code></li>
-<li><code>M-x gdb-many-windows</code></li>
-<li><code>M-x gdb-restore-windows</code></li>
-</ul>
+<p>
+Compile your program with two flags
+</p>
+<pre class="example">
+gcc -fprofile-arcs -ftest-coverage a.c
+</pre>
 
 <p>
-In the breakpoints buffer, <code>D</code> to remove one.
+This will produce <code>a.gcda</code> (arcs) and <code>a.gcno</code> (coverage).
+</p>
+
+<p>
+Then run the program by
+</p>
+<pre class="example">
+./a.out
+</pre>
+
+<p>
+run <code>gcov</code> in the same directory:
+</p>
+
+<pre class="example">
+gcov a.c
+</pre>
+
+<p>
+This will produce the coverage, and create a <code>a.c.gcov</code> file.
 </p>
 </div>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Commands</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Different options</h2>
 <div class="outline-text-2" id="text-2">
-<dl class="org-dl">
-<dt>next</dt><dd>next instruction</dd>
-<dt>step</dt><dd>into a procedure</dd>
-<dt>finish</dt><dd>finish current procedure</dd>
-<dt>until</dt><dd>until a line is reached. Can be used to jump out of a loop</dd>
-</dl>
+<p>
+When invoking gcov, you can control the output format:
+</p>
+<ul class="org-ul">
+<li><code>gcov -b a.c</code>: output branching information</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> Core Dump</h2>
+<h2 id="orgheadline3"><span class="section-number-2">3</span> .gcov file format</h2>
 <div class="outline-text-2" id="text-3">
-<p>
-The "core" may not be there.
-On ubuntu, this is possibly because you have a core file size ulimit of 0.
-</p>
-
-<p>
-Use this to enable it:
-</p>
 <pre class="example">
-ulimit -c unlimited
+ExeCount : linum : line
 </pre>
 
 <p>
-The core will be dumped to <code>./core</code> file.
+<code>#</code> in the ExeCount means no execution.
 </p>
-
-<p>
-Use gdb to analyze the core:
-</p>
-<pre class="example">
-gdb /path/to/executable ./core
-</pre>
-
-<p>
-print the stack trace:
-</p>
-
-<pre class="example">
-bt
-bt full
-</pre>
 </div>
 </div>
+
 
 <div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> Batch mode</h2>
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Some experience</h2>
 <div class="outline-text-2" id="text-4">
-<p>
-It is useful to run gdb in batch mode instead of interactively.
-</p>
-
-<pre class="example">
-gdb -batch -x commands.gdb /path/to/executable [/path/to/core/dump/file]
-</pre>
+<ul class="org-ul">
+<li>The coverage information will accumulate: run a second time, it will possibly increase.</li>
+<li>branches executed is the for the head of branch.</li>
+<li>branches taken at least once is for the ordinary branch coverage</li>
+</ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-01 Sat 17:37</p>
+<p class="date">Created: 2016-09-28 Wed 18:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
