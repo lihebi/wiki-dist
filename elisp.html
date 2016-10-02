@@ -1,0 +1,1232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-10-02 Sun 00:43 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs Lisp</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style>
+a:visited {color: red;}
+</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: darkslategrey; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs Lisp</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline3">1. Evaluation</a>
+<ul>
+<li><a href="#orgheadline1">1.1. quoting</a></li>
+<li><a href="#orgheadline2">1.2. backquoting</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline4">2. Basic</a></li>
+<li><a href="#orgheadline18">3. Type</a>
+<ul>
+<li><a href="#orgheadline5">3.1. number</a></li>
+<li><a href="#orgheadline6">3.2. conversion</a></li>
+<li><a href="#orgheadline7">3.3. cons cell</a></li>
+<li><a href="#orgheadline11">3.4. list</a>
+<ul>
+<li><a href="#orgheadline8">3.4.1. construct</a></li>
+<li><a href="#orgheadline9">3.4.2. access</a></li>
+<li><a href="#orgheadline10">3.4.3. modify</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">3.5. set</a></li>
+<li><a href="#orgheadline13">3.6. association list</a></li>
+<li><a href="#orgheadline14">3.7. property list</a></li>
+<li><a href="#orgheadline15">3.8. array</a></li>
+<li><a href="#orgheadline16">3.9. sequence</a></li>
+<li><a href="#orgheadline17">3.10. hash table</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline21">4. Symbol</a>
+<ul>
+<li><a href="#orgheadline19">4.1. property list</a></li>
+<li><a href="#orgheadline20">4.2. Variable</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline23">5. Function</a>
+<ul>
+<li><a href="#orgheadline22">5.1. Mapping family</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline35">6. Control Structure</a>
+<ul>
+<li><a href="#orgheadline24">6.1. Sequential</a></li>
+<li><a href="#orgheadline26">6.2. Conditional</a>
+<ul>
+<li><a href="#orgheadline25">6.2.1. logical computation</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline34">6.3. Loop</a>
+<ul>
+<li><a href="#orgheadline27">6.3.1. Overview</a></li>
+<li><a href="#orgheadline31">6.3.2. For</a>
+<ul>
+<li><a href="#orgheadline28">6.3.2.1. for VAR from EXPR1 to EXPR2 by EXPR3</a></li>
+<li><a href="#orgheadline29">6.3.2.2. for VAR in LIST by FUNCTION</a></li>
+<li><a href="#orgheadline30">6.3.2.3. for VAR = EXPR1 then EXPR2</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline32">6.3.3. The condition</a></li>
+<li><a href="#orgheadline33">6.3.4. accumulation clause</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline42">7. Emacs Related</a>
+<ul>
+<li><a href="#orgheadline36">7.1. Buffer related</a></li>
+<li><a href="#orgheadline39">7.2. File System Related</a>
+<ul>
+<li><a href="#orgheadline37">7.2.1. Traversing</a></li>
+<li><a href="#orgheadline38">7.2.2. Predicates</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline41">7.3. Other</a>
+<ul>
+<li><a href="#orgheadline40">7.3.1. make-obsolete-variable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline45">8. Packages</a>
+<ul>
+<li><a href="#orgheadline43">8.1. Dash.el</a></li>
+<li><a href="#orgheadline44">8.2. s.el</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline47">9. Some random code snippets</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline46">9.0.1. Url retrieval</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p>
+The names CAR and CDR derive from the history of Lisp.  The original
+Lisp implementation ran on an IBM 704 computer which divided words into
+two parts, called the “address” part and the “decrement”; CAR was an
+instruction to extract the contents of the address part of a register,
+and CDR an instruction to extract the contents of the decrement.  By
+contrast, “cons cells” are named for the function ‘cons’ that creates
+them, which in turn was named for its purpose, the construction of
+cells.
+</p>
+</blockquote>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> Evaluation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The read and evaluate is <i>seperate</i>. For example, <code>(1 2 3)</code> is a list, and can be read by lisp interpreter as an object: a list.
+But try to evalute it in emacs results in error. It is not because emacs cannot read it.
+It can, but it try to evaluate it using a list form, which check the car of list and treat it as a function. Of course '1' is not a function.
+</p>
+
+<p>
+There's a form called <i>self-evaluating form</i>. It evaluate to itself.
+</p>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> quoting</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+From the elisp info page:
+</p>
+<blockquote>
+<p>
+The special form ‘quote’ returns its single argument, as written,
+without evaluating it.  This provides a way to include constant symbols
+and lists, which are not self-evaluating objects, in a program.  (It is
+not necessary to quote self-evaluating objects such as numbers, strings,
+and vectors.)
+</p>
+</blockquote>
+
+<p>
+The expression <code>\'print</code> means read it without evaluation. So the following expression makes sense:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>eval <span style="color: #66D9EF;">(</span>list 'prin1 '1<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+
+<p>
+Note that <code>(quote x)</code> and <code>\'x</code> are equivalent.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> backquoting</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+It is identical to quoting except that it allows to evaluate part of the object.
+The special marker "," can be used:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp">`<span style="color: #AE81FF;">(</span>a list of ,<span style="color: #66D9EF;">(</span>+ 2 3<span style="color: #66D9EF;">)</span> elements<span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">; </span><span style="color: #75715E;">-&gt; (a list of 5 elements)</span>
+</pre>
+</div>
+
+<p>
+If the partial evaluation returns a list, but you want to <b>splice</b> it with some other elements into a list, you can do it neatly with ",@":
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>setq some-list '<span style="color: #66D9EF;">(</span>2 3<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+`<span style="color: #AE81FF;">(</span>1 ,@some-list 4 ,@some-list<span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">-&gt; (1 2 3 4 2 3)</span>
+</pre>
+</div>
+
+<p>
+Without this feature, you have to write some hard to understand code:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>cons 1 <span style="color: #66D9EF;">(</span>append some-list '<span style="color: #A6E22E;">(</span>4<span style="color: #A6E22E;">)</span> some-list<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">-&gt; (1 2 3 4 2 3)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> Basic</h2>
+<div class="outline-text-2" id="text-2">
+<dl class="org-dl">
+<dt><code>(eq OBJ1 OBJ2)</code></dt><dd>Return t if the two args are the same Lisp object. It is faster than <code>equal</code>.</dd>
+<dt><code>(equal O1 O2)</code></dt><dd>Return t if two Lisp objects have similar structure and contents. So it does <i>comparison only</i>.</dd>
+<dt><code>(=)</code></dt><dd>true if all arguments are equal. Only works for numbers</dd>
+<dt><code>(string=)</code></dt><dd>compare two strings</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">3</span> Type</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.1</span> number</h3>
+<div class="outline-text-3" id="text-3-1">
+<dl class="org-dl">
+<dt><code>(expt 2 8)</code></dt><dd>2<sup>8</sup></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">3.2</span> conversion</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>string to int: <code>(values (parse-integer "32"))</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.3</span> cons cell</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+This is a pair of slots, each of them can hold anything.
+A list is a list of cons cells, in which each cdr is the "address" next list.
+</p>
+
+<p>
+A <i>dotted pair notation</i> is a more general syntax of a cons cell.
+It is written as <code>(A . B)</code>.
+It is more general because the cdr can also hold anything.
+As an example, <code>(1 2 3)</code> is the same as <code>(1 . (2 . (3 . nil)))</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.4</span> list</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+If the CDR of a list’s last cons cell is some value other than ‘nil’,
+we call the structure a "dotted list",
+since its printed representation would use dotted pair notation.
+</p>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">3.4.1</span> construct</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<dl class="org-dl">
+<dt><code>cons obj1 obj2</code></dt><dd>if obj2 is a list, this is called "cons obj1 onto the list"</dd>
+<dt><code>(list &amp;rest OBJECTS)</code></dt><dd>create a list</dd>
+<dt><code>make-list length obj</code></dt><dd>make a list of length, in which each cell holds the <i>same</i> object (<code>eq</code>)</dd>
+<dt><code>(append &amp;rest SEQUENCES)</code></dt><dd>concatenate some lists into one list.
+The last one is usually a list, all arguments except the last one are copied.
+If want to force copy everything, add a <code>nil</code> as the last of append.</dd>
+<dt><code>(reverse '(1 2 3 4))</code></dt><dd></dd>
+
+<dt><code>number-sequence from to</code></dt><dd>the list of <code>[from,to]</code>, inclusive</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">3.4.2</span> access</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<dl class="org-dl">
+<dt><code>car</code></dt><dd></dd>
+
+<dt><code>cdr</code></dt><dd></dd>
+
+<dt><code>car-safe</code></dt><dd></dd>
+
+<dt><code>cdr-safe</code></dt><dd></dd>
+
+<dt><code>pop</code></dt><dd>return the cdr of the list, and also remove it from the list</dd>
+<dt><code>nth n list</code></dt><dd>get the nth element, starting from 0</dd>
+<dt><code>nthcdr n list</code></dt><dd></dd>
+
+<dt><code>last list</code></dt><dd></dd>
+
+<dt><code>length</code></dt><dd></dd>
+
+
+<dt><code>caar</code></dt><dd>car car 11</dd>
+<dt><code>card</code></dt><dd>car cdr 12</dd>
+<dt><code>cdar</code></dt><dd>cdr car 21</dd>
+<dt><code>cddr</code></dt><dd>cdr cdr 22</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">3.4.3</span> modify</h4>
+<div class="outline-text-4" id="text-3-4-3">
+<p>
+<i>destructive</i> means the cdr of the cons cells are modified.
+</p>
+
+<dl class="org-dl">
+<dt><code>push element listname</code></dt><dd>like cons it onto the list, but save it as listname, i.e. modify the variable</dd>
+<dt><code>add-to-list symbol element</code></dt><dd>cons element onto the list if it is not there.
+So the following is equivalent: <code>(add-to-list 'var value)</code> and <code>(or (member value var) (setq var (cons value var)))</code></dd>
+<dt><code>setcar cons obj</code></dt><dd></dd>
+
+<dt><code>setcdr cons obj</code></dt><dd></dd>
+
+<dt><code>sort list predicate</code></dt><dd>this rearrange the cdrs of the list, so, <i>destructive</i>!
+Examples:</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>setq nums '<span style="color: #66D9EF;">(</span>1 3 2 6 5 4 0<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #AE81FF;">(</span>sort nums '&lt;<span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">accending</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.5</span> set</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+We use list as set, by ignoring the order &#x2026;
+<code>append</code> to combine two set, then <code>delete-dups</code> to remove duplication &#x2026;
+</p>
+
+<dl class="org-dl">
+<dt><code>memq obj list</code></dt><dd>whether obj is a member of list, using <code>eq</code></dd>
+<dt><code>delq obj list</code></dt><dd>destructively remove all elements <code>eq</code> to obj.</dd>
+<dt><code>rmq obj list</code></dt><dd>return a copy of list with all obj removed</dd>
+<dt><code>member</code></dt><dd><code>equal</code> counter-part</dd>
+<dt><code>member-ignore-case</code></dt><dd>for string</dd>
+<dt><code>delete</code></dt><dd><code>equal</code> counter-part</dd>
+<dt><code>remove</code></dt><dd><code>equal</code> counter-part</dd>
+<dt><code>delete-dups</code></dt><dd>use <code>equal</code></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.6</span> association list</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+This is a special list, each element is a key-value pair.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>setq alist-of-colors
+  '<span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">(</span>rose . red<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>lily . white<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>buttercup . yellow<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt><code>assoc KEY aLIST</code></dt><dd>the first element of LIST whose car <code>equal</code> KEY.</dd>
+<dt><code>rassoc value alist</code></dt><dd>compare the cdrs instead of cars</dd>
+<dt><code>assq KEY aLIST</code></dt><dd>the first element of LIST whose car <code>eq</code> KEY.</dd>
+<dt><code>rassq</code></dt><dd><code>eq</code> counter-part</dd>
+
+<dt><code>copy-alist alist</code></dt><dd>two-level deep copy</dd>
+<dt><code>assq-delete-all key alist</code></dt><dd>delete all elements whose car <code>eq</code> key</dd>
+<dt><code>rassq-delete-all value alist</code></dt><dd>cdr counter-part</dd>
+<dt><code>(assoc-string KEY LIST &amp;optional CASE-FOLD)</code></dt><dd><code>assoc</code> for string. if <code>CASE-FOLD</code> is <code>non-nil</code>, case is ignored.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">3.7</span> property list</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+It is a flat list. The odd elements are property name, and the even elements are values.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>pine cones numbers <span style="color: #66D9EF;">(</span>1 2 3<span style="color: #66D9EF;">)</span> color <span style="color: #E6DB74;">"blue"</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+
+<p>
+It can be structured as
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">property</th>
+<th scope="col" class="org-left">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">pine</td>
+<td class="org-left">cones</td>
+</tr>
+
+<tr>
+<td class="org-left">numbers</td>
+<td class="org-left">(1 2 3)</td>
+</tr>
+
+<tr>
+<td class="org-left">color</td>
+<td class="org-left">"blue"</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The property names <i>must</i> be unique.
+The order of the "pairs" does not matter.
+</p>
+
+<dl class="org-dl">
+<dt><code>plist-get plist property</code></dt><dd></dd>
+
+<dt><code>plist-put plist property value</code></dt><dd></dd>
+
+<dt><code>lax-plist-get</code></dt><dd><code>equal</code> counterpart</dd>
+<dt><code>lax-plist-put</code></dt><dd><code>equal</code> counterpart</dd>
+<dt><code>plist-member plist property</code></dt><dd>this is useful because it can distinguish the missing property and the property with value "nil"</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">3.8</span> array</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+It is fixed length sequence.
+It contains:
+</p>
+<ul class="org-ul">
+<li>string</li>
+<li>vector</li>
+<li>char table</li>
+<li>bool vector</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">3.9</span> sequence</h3>
+<div class="outline-text-3" id="text-3-9">
+<pre class="example">
+ _____________________________________________
+|                                             |
+|          Sequence                           |
+|  ______   ________________________________  |
+| |      | |                                | |
+| | List | |             Array              | |
+| |      | |    ________       ________     | |
+| |______| |   |        |     |        |    | |
+|          |   | Vector |     | String |    | |
+|          |   |________|     |________|    | |
+|          |  ____________   _____________  | |
+|          | |            | |             | | |
+|          | | Char-table | | Bool-vector | | |
+|          | |____________| |_____________| | |
+|          |________________________________| |
+|_____________________________________________|
+</pre>
+
+<dl class="org-dl">
+<dt><code>copy-sequence seq</code></dt><dd>the sequence is new, but the elements are not.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">3.10</span> hash table</h3>
+<div class="outline-text-3" id="text-3-10">
+<p>
+construct
+</p>
+<dl class="org-dl">
+<dt><code>(make-hash-table)</code></dt><dd></dd>
+</dl>
+
+<p>
+access
+</p>
+<dl class="org-dl">
+<dt><code>gethash key table</code></dt><dd></dd>
+
+<dt><code>puthash key value table</code></dt><dd></dd>
+
+<dt><code>remhash key table</code></dt><dd>remove</dd>
+<dt><code>clrhash table</code></dt><dd>remove all</dd>
+<dt><code>maphash function table</code></dt><dd>call function once for each of the element in table. The function should accept two arguments: key and value</dd>
+</dl>
+<p>
+other
+</p>
+<dl class="org-dl">
+<dt><code>hash-table-count table</code></dt><dd>return number of entries</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21"><span class="section-number-2">4</span> Symbol</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>defvar</li>
+<li>defun</li>
+<li>defmacro</li>
+</ul>
+
+<p>
+A symbol can <i>not</i> be both a function and macro, but it can be a variable and a function at the same time.
+</p>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">4.1</span> property list</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+A symbol can have a property list &#x2026;
+</p>
+<dl class="org-dl">
+<dt><code>get symbol property</code></dt><dd></dd>
+
+<dt><code>put symbol property value</code></dt><dd></dd>
+
+<dt><code>symbol-plist symbol</code></dt><dd>return the p-list</dd>
+<dt><code>setplist symbol plist</code></dt><dd></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">4.2</span> Variable</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Dynamic binding: in the defun, we can refer to free variable. When calling the defun in different environment, it will get the variable from them.
+This is used by default.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defvar</span> <span style="color: #FD971F;">x</span> -99<span style="color: #AE81FF;">)</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">getx</span> <span style="color: #66D9EF;">()</span> x<span style="color: #AE81FF;">)</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">let</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">(</span>x 1<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">(</span>getx<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">-&gt; 1</span>
+<span style="color: #AE81FF;">(</span>getx<span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">-&gt; -99</span>
+</pre>
+</div>
+
+<p>
+Lexical is also introduced as optional feature.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23"><span class="section-number-2">5</span> Function</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">5.1</span> Mapping family</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li><code>(mapc FUNCTION SEQUENCE)</code>: Apply FUNCTION to each element of SEQUENCE.</li>
+<li><code>(apply FUNCTION &amp;rest ARGUMENTS)</code>: Call FUNCTION with our remaining args, using our <i>last arg</i> as list of args.
+<code>(apply '+ 1 2 '(3 4))</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline35" class="outline-2">
+<h2 id="orgheadline35"><span class="section-number-2">6</span> Control Structure</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">6.1</span> Sequential</h3>
+<div class="outline-text-3" id="text-6-1">
+<dl class="org-dl">
+<dt><code>progn forms...</code></dt><dd>return the result of final form</dd>
+<dt><code>prog1 form1 forms...</code></dt><dd>return the result of form1</dd>
+<dt><code>prog2 form1 form2 forms...</code></dt><dd>return the result of form2</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">6.2</span> Conditional</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li><code>if condition then-form else-forms...</code></li>
+<li><code>when condition then-forms...</code></li>
+<li><code>unless condition forms...</code></li>
+<li id="<code>cond clause...</code>">the clause must be a list: <code>(condition body-forms...)</code>.
+It is not exactly the "case" statement, because the condition is evaluted to true or false.
+Any remaining forms are <i>ignored</i>.</li>
+<li id="<code>pcase EXP BRANCH1 BRANCH2 BRANCH3...</code>">this is more like the "case" statement. The EXP is first evaluted and compare with the car of each branches.
+The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">6.2.1</span> logical computation</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<ul class="org-ul">
+<li><code>not</code></li>
+<li><code>and</code></li>
+<li><code>or</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">6.3</span> Loop</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li><code>while condition forms...</code></li>
+<li id="<code>dolist (var list [result]) body...</code>">execute body for each element of list, with the bound of var to the current element and result for return.</li>
+<li id="<code>dotimes (var count [result]) body...</code>">execute body for each index of <code>[0,count)</code>, with var bound to the index, and result bound for return.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27"><span class="section-number-4">6.3.1</span> Overview</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+The <code>cl-loop</code> refers to the common lisp, see the detailed manual in info, <code>cl</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for buf in <span style="color: #66D9EF;">(</span>buffer-list<span style="color: #66D9EF;">)</span>
+         collect <span style="color: #66D9EF;">(</span>buffer-file-name buf<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">in the end the collected list will be returned</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> repeat 20 do <span style="color: #66D9EF;">(</span>insert <span style="color: #E6DB74;">"Yowsa\n"</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">repeat &lt;num&gt;</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> until <span style="color: #66D9EF;">(</span>eobp<span style="color: #66D9EF;">)</span> do <span style="color: #66D9EF;">(</span>munch-line<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">(</span>forward-line 1<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">eobp: end of buffer predicate</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> do <span style="color: #66D9EF;">(</span>munch-line<span style="color: #66D9EF;">)</span> until <span style="color: #66D9EF;">(</span>eobp<span style="color: #66D9EF;">)</span> do <span style="color: #66D9EF;">(</span>forward-line 1<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">;; </span><span style="color: #75715E;">do (much-line) at least once</span>
+</pre>
+</div>
+<p>
+Last, the if you want to nest the loop, you need multiple <code>cl-loop</code>.
+One cl-loop with multiple <code>for</code> and <code>until</code> will only result in one loop, e.g. the following code.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(cl-loop for x from 1 to 100 <span style="color: #75715E;">; x from 1 to 100</span>
+         for y = (* x x) <span style="color: #75715E;">; this is evaluated for every iteration</span>
+         until (&gt;= y 729) <span style="color: #75715E;">; the end condition</span>
+         finally return (list x (= y 729))) <span style="color: #75715E;">; finally defines what to do when the loop finish</span>
+</pre>
+</div>
+
+<p>
+Some other clauses are not recorded in this page, but there <i>are</i> some. E.g.
+</p>
+<ul class="org-ul">
+<li><code>with VAR = VALUE</code>: bind the initial value,
+like the <code>EXPR1</code> in <code>for</code> clause,
+but different in terms of only evaluate once for the initial iteration.
+The effect is like <code>let</code>.</li>
+<li><code>if CONDITION CLAUSE</code>: execute the <i>following</i> code only if the condition matches.
+<code>else</code> can be added, and <code>end</code> can also be presented. This means, this grammar is ambiguous.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">6.3.2</span> For</h4>
+<div class="outline-text-4" id="text-6-3-2">
+</div><div id="outline-container-orgheadline28" class="outline-5">
+<h5 id="orgheadline28"><span class="section-number-5">6.3.2.1</span> for VAR from EXPR1 to EXPR2 by EXPR3</h5>
+<div class="outline-text-5" id="text-6-3-2-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x to 10 collect x<span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (0 1 2 3 4 5 6 7 8 9 10)</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x below 10 collect x<span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (0 1 2 3 4 5 6 7 8 9)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-5">
+<h5 id="orgheadline29"><span class="section-number-5">6.3.2.2</span> for VAR in LIST by FUNCTION</h5>
+<div class="outline-text-5" id="text-6-3-2-2">
+<p>
+If the function is provided, the iterating function will be changed from the default <code>cdr</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x in '<span style="color: #66D9EF;">(</span>1 2 3 4 5 6<span style="color: #66D9EF;">)</span> collect <span style="color: #66D9EF;">(</span>* x x<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (1 4 9 16 25 36)</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x in '<span style="color: #66D9EF;">(</span>1 2 3 4 5 6<span style="color: #66D9EF;">)</span> by 'cddr collect <span style="color: #66D9EF;">(</span>* x x<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (1 9 25)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline30" class="outline-5">
+<h5 id="orgheadline30"><span class="section-number-5">6.3.2.3</span> for VAR = EXPR1 then EXPR2</h5>
+<div class="outline-text-5" id="text-6-3-2-3">
+<p>
+If <code>EXPR2</code> is omitted, <code>EXPR1</code> will be set in each iteration.
+If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial value, and <code>EXPR2</code> will execute and set the variable.
+<code>EXPR2</code> can refer to the previous value of <code>VAR</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">these two loops are equivalent</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x on my-list by 'cddr do &#8230;<span style="color: #AE81FF;">)</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x = my-list then <span style="color: #66D9EF;">(</span>cddr x<span style="color: #66D9EF;">)</span> while x do &#8230;<span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">6.3.3</span> The condition</h4>
+<div class="outline-text-4" id="text-6-3-3">
+<ul class="org-ul">
+<li><code>repeat INTEGER</code></li>
+<li><code>while CONDITION</code></li>
+<li><code>until CONDITION</code></li>
+<li><code>always CONDITION</code>: the condition should evaluate to t for it to continue</li>
+<li><code>never CONDITION</code></li>
+<li><code>thereis CONDITION</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">6.3.4</span> accumulation clause</h4>
+<div class="outline-text-4" id="text-6-3-4">
+<ul class="org-ul">
+<li><code>collect FORM</code></li>
+<li><code>concat FORM</code></li>
+<li><code>count FORM</code></li>
+<li><code>sum FORM</code></li>
+<li><code>maximize FORM</code></li>
+<li><code>minimize FORM</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline42" class="outline-2">
+<h2 id="orgheadline42"><span class="section-number-2">7</span> Emacs Related</h2>
+<div class="outline-text-2" id="text-7">
+<dl class="org-dl">
+<dt><code>print</code></dt><dd>print the object in quotes, with a newline before and after it</dd>
+<dt><code>prin1</code></dt><dd>print the object in quotes without newlines</dd>
+<dt><code>princ</code></dt><dd>print the object without quotes, without newlines</dd>
+<dt>(no term)</dt><dd><code>message</code></dd>
+</dl>
+</div>
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">7.1</span> Buffer related</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li><code>with-temp-buffer</code>
+  <code>(with-temp-buffer &amp;rest BODY)</code> Create a temporary buffer, and evaluate BODY there like <code>progn</code>.</li>
+
+<li><code>(insert-file-contents FILENAME &amp;optional VISIT BEG END REPLACE)</code>: Insert contents of file FILENAME after point.</li>
+<li><code>(secure-hash ALGORITHM OBJECT &amp;optional START END BINARY)</code>: the object can be a buffer.
+This can be used to compare if a file has changed.</li>
+<li><code>(current-buffer)</code>: Return the current buffer as a Lisp object.</li>
+<li><code>(message FORMAT-STRING &amp;rest ARGS)</code>: Display a message at the bottom of the screen.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline39" class="outline-3">
+<h3 id="orgheadline39"><span class="section-number-3">7.2</span> File System Related</h3>
+<div class="outline-text-3" id="text-7-2">
+</div><div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">7.2.1</span> Traversing</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>directory-files DIRECTORY <span style="color: #66D9EF;">&amp;optional</span> FULL MATCH NOSORT<span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+
+<p>
+Return a list of names of files in DIRECTORY.
+</p>
+
+<p>
+Usage example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>bib-files <span style="color: #66D9EF;">(</span>directory-files bib-dir t <span style="color: #E6DB74;">".*\.bib$"</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">7.2.2</span> Predicates</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<p>
+<code>directory-files</code> will throw error if the directory does not exist.
+So a safe way is to check if the directory exists first.
+This predicate does this:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>file-exists-p FILENAME<span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+<p>
+Directory is also a file.
+</p>
+
+<p>
+Other predicates includes:
+</p>
+<pre class="example">
+file-readable-p
+file-executable-p
+file-writable-p
+file-accessible-directory-p
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline41" class="outline-3">
+<h3 id="orgheadline41"><span class="section-number-3">7.3</span> Other</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li><code>(defalias SYMBOL DEFINITION &amp;optional DOCSTRING)</code>: Set SYMBOL's function definition to DEFINITION.
+E.g. <code>(defalias 'helm-bibtex-get-value 'bibtex-completion-get-value)</code>,
+serves as a temporary patch for <code>helm-bibtex</code> update its API to <code>bibtex-completion</code></li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">7.3.1</span> make-obsolete-variable</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<p>
+<code>(make-obsolete-variable OBSOLETE-NAME CURRENT-NAME WHEN &amp;optional ACCESS-TYPE)</code>
+</p>
+
+<p>
+Make the byte-compiler warn that OBSOLETE-NAME is obsolete.
+</p>
+
+<p>
+<code>helm-bibte</code> used it when it refactored the "helm" part off into a module,
+to support different backend other than <code>helm</code>.
+As a result, most <code>helm-bibtex-</code> prefixes are changed to <code>bibtex-completion-</code> ones.
+But they want the end user's configuration will not break,
+and at the same time warn them to update to the new name.
+Here's the code, and the last line is what actually uses the function.
+The actual effect is the user's configuration will be marked as warning,
+the mini-buffer will describe the obsolete detail.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span>
+ for var in '<span style="color: #66D9EF;">(</span><span style="color: #E6DB74;">"bibliography"</span> <span style="color: #E6DB74;">"library-path"</span> <span style="color: #E6DB74;">"pdf-open-function"</span>
+              <span style="color: #E6DB74;">"pdf-symbol"</span> <span style="color: #E6DB74;">"format-citation-functions"</span> <span style="color: #E6DB74;">"notes-path"</span>
+              <span style="color: #E6DB74;">"notes-template-multiple-files"</span>
+              <span style="color: #E6DB74;">"notes-template-one-file"</span> <span style="color: #E6DB74;">"notes-key-pattern"</span>
+              <span style="color: #E6DB74;">"notes-extension"</span> <span style="color: #E6DB74;">"notes-symbol"</span> <span style="color: #E6DB74;">"fallback-options"</span>
+              <span style="color: #E6DB74;">"browser-function"</span> <span style="color: #E6DB74;">"additional-search-fields"</span>
+              <span style="color: #E6DB74;">"no-export-fields"</span> <span style="color: #E6DB74;">"cite-commands"</span>
+              <span style="color: #E6DB74;">"cite-default-command"</span>
+              <span style="color: #E6DB74;">"cite-prompt-for-optional-arguments"</span>
+              <span style="color: #E6DB74;">"cite-default-as-initial-input"</span> <span style="color: #E6DB74;">"pdf-field"</span><span style="color: #66D9EF;">)</span>
+ for oldvar = <span style="color: #66D9EF;">(</span>intern <span style="color: #A6E22E;">(</span>concat <span style="color: #E6DB74;">"helm-bibtex-"</span> var<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
+ for newvar = <span style="color: #66D9EF;">(</span>intern <span style="color: #A6E22E;">(</span>concat <span style="color: #E6DB74;">"bibtex-completion-"</span> var<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
+ do
+ <span style="color: #66D9EF;">(</span><span style="color: #F92672;">defvaralias</span> <span style="color: #FD971F;">newvar</span> oldvar<span style="color: #66D9EF;">)</span>
+ <span style="color: #66D9EF;">(</span>make-obsolete-variable oldvar newvar <span style="color: #E6DB74;">"2016-03-20"</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline45" class="outline-2">
+<h2 id="orgheadline45"><span class="section-number-2">8</span> Packages</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="orgheadline43"><span class="section-number-3">8.1</span> Dash.el</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+<a href="https://github.com/magnars/dash.el">https://github.com/magnars/dash.el</a>
+</p>
+
+<p>
+This is a collection of list libraries.
+</p>
+
+<ul class="org-ul">
+<li><p>
+<code>-map</code> takes a function to map over the list,
+the anaphoric form with double dashes executed with <code>it</code> exposed as the list item. 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">normal version</span>
+<span style="color: #AE81FF;">(</span>-map <span style="color: #66D9EF;">(</span><span style="color: #F92672;">lambda</span> <span style="color: #A6E22E;">(</span>n<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>* n n<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span> '<span style="color: #66D9EF;">(</span>1 2 3 4<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">also works for defun, of course</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">square</span> <span style="color: #66D9EF;">(</span>n<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">(</span>* n n<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #AE81FF;">(</span>-map 'square '<span style="color: #66D9EF;">(</span>1 2 3 4<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">anaphoric version</span>
+<span style="color: #AE81FF;">(</span>--map <span style="color: #66D9EF;">(</span>* it it<span style="color: #66D9EF;">)</span> '<span style="color: #66D9EF;">(</span>1 2 3 4<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div></li>
+
+<li><code>-update-at</code>: <code>(-update-at N FUNC LIST)</code> Return a list with element at Nth position in LIST replaced with `(func (nth n list))`.</li>
+<li><code>-flatten</code>: <code>(-flatten L)</code>: Take a nested list L and return its contents as a single, flat list.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"><span class="section-number-3">8.2</span> s.el</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+<a href="https://github.com/magnars/s.el">https://github.com/magnars/s.el</a>
+</p>
+
+<p>
+The string manipulation library
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline47" class="outline-2">
+<h2 id="orgheadline47"><span class="section-number-2">9</span> Some random code snippets</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span>cl-prettyprint <span style="color: #66D9EF;">(</span>font-family-list<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">;; </span><span style="color: #75715E;">see all font family available on this system</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">9.0.1</span> Url retrieval</h4>
+<div class="outline-text-4" id="text-9-0-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">with-current-buffer</span> <span style="color: #66D9EF;">(</span>url-retrieve-synchronously <span style="color: #E6DB74;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span><span style="color: #66D9EF;">)</span>
+  <span style="color: #66D9EF;">(</span>goto-char <span style="color: #A6E22E;">(</span>point-min<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
+  <span style="color: #66D9EF;">(</span>kill-ring-save <span style="color: #A6E22E;">(</span>point-min<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>point-max<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
+  <span style="color: #AE81FF;">)</span>
+<span style="color: #AE81FF;">(</span><span style="color: #F92672;">let</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">(</span>framed-url <span style="color: #E6DB74;">(</span>match-string 1<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
+  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">with-current-buffer</span> <span style="color: #A6E22E;">(</span>url-retrieve-synchronously framed-url<span style="color: #A6E22E;">)</span>
+    <span style="color: #A6E22E;">(</span>goto-char <span style="color: #E6DB74;">(</span>point-min<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span>
+    <span style="color: #A6E22E;">(</span><span style="color: #F92672;">when</span> <span style="color: #E6DB74;">(</span>re-search-forward <span style="color: #E6DB74;">"&lt;frame src=\"</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">(</span><span style="color: #E6DB74;">http[[:ascii:]]*?</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">)</span><span style="color: #E6DB74;">\""</span><span style="color: #E6DB74;">)</span>
+      <span style="color: #E6DB74;">(</span>match-string 1<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2016-10-02 Sun 00:43</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
