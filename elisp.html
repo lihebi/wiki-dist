@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-03 Mon 03:04 -->
+<!-- 2016-10-03 Mon 03:45 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Lisp</title>
@@ -97,6 +97,10 @@
 <style>
 a:visited {color: red;}
 </style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
@@ -319,11 +323,17 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline52">8. Some random code snippets</a>
+<li><a href="#orgheadline53">8. Unit Testing</a>
+<ul>
+<li><a href="#orgheadline51">8.1. Write test</a></li>
+<li><a href="#orgheadline52">8.2. Run test</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline55">9. Some random code snippets</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgheadline51">8.0.1. Url retrieval</a></li>
+<li><a href="#orgheadline54">9.0.1. Url retrieval</a></li>
 </ul>
 </li>
 </ul>
@@ -1463,9 +1473,87 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 
 
-<div id="outline-container-orgheadline52" class="outline-2">
-<h2 id="orgheadline52"><span class="section-number-2">8</span> Some random code snippets</h2>
+<div id="outline-container-orgheadline53" class="outline-2">
+<h2 id="orgheadline53"><span class="section-number-2">8</span> Unit Testing</h2>
 <div class="outline-text-2" id="text-8">
+<p>
+Use <code>ert</code> for unit testing.
+</p>
+</div>
+
+<div id="outline-container-orgheadline51" class="outline-3">
+<h3 id="orgheadline51"><span class="section-number-3">8.1</span> Write test</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">ert-deftest</span> <span style="color: #A6E22E;">addition-test</span><span style="color: #66D9EF;">()</span>
+  <span style="color: #75715E;">"Outline docstring."</span>
+  <span style="color: #66D9EF;">(</span>should <span style="color: #A6E22E;">(</span>= <span style="color: #E6DB74;">(</span>+ 1 2<span style="color: #E6DB74;">)</span> 4<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+
+<p>
+The family of functions:
+</p>
+<ul class="org-ul">
+<li><code>should</code></li>
+<li><code>shoult-not</code></li>
+<li><code>should-error</code></li>
+</ul>
+
+<p>
+expected failure:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">ert-deftest</span> <span style="color: #A6E22E;">addition-test</span><span style="color: #66D9EF;">()</span>
+  <span style="color: #75715E;">"Outline docstring."</span>
+  <span style="color: #F92672;">:expected-result</span> <span style="color: #F92672;">:failed</span>
+  <span style="color: #66D9EF;">(</span>should <span style="color: #A6E22E;">(</span>= <span style="color: #E6DB74;">(</span>+ 1 2<span style="color: #E6DB74;">)</span> 4<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+
+<p>
+skip test
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">ert-deftest</span> <span style="color: #A6E22E;">addition-test</span><span style="color: #66D9EF;">()</span>
+  <span style="color: #75715E;">"Outline docstring."</span>
+  <span style="color: #66D9EF;">(</span>slip-unless <span style="color: #A6E22E;">(</span><span style="color: #F92672;">featurep</span> '<span style="color: #AE81FF;">dbusbind</span>'<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
+  <span style="color: #66D9EF;">(</span>should <span style="color: #A6E22E;">(</span>= <span style="color: #E6DB74;">(</span>+ 1 2<span style="color: #E6DB74;">)</span> 4<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52"><span class="section-number-3">8.2</span> Run test</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+<code>M-x ert</code> will run it. The selector of test accept some more fancy staff like regular expression matching.
+But in the case of scratch testing, I need to evaluate the deftest and then call <code>ert</code>.
+</p>
+
+<p>
+The nice thing is it supports interactive debugging.
+In the ert buffer, the following commands are available:
+</p>
+<dl class="org-dl">
+<dt><code>r</code></dt><dd>re-run the test</dd>
+<dt><code>.</code></dt><dd>jump to the source code of this test</dd>
+<dt><code>b</code></dt><dd>show back-trace</dd>
+<dt><code>m</code></dt><dd>show the message this test printed</dd>
+<dt><code>d</code></dt><dd>re-run the test with debugger enabled</dd>
+<dt>instrumentation</dt><dd>go to source code, type <code>C-u C-M-x</code>, and re-run the test. You are able to step!</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline55" class="outline-2">
+<h2 id="orgheadline55"><span class="section-number-2">9</span> Some random code snippets</h2>
+<div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #AE81FF;">(</span>cl-prettyprint <span style="color: #66D9EF;">(</span>font-family-list<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">;; </span><span style="color: #75715E;">see all font family available on this system</span>
@@ -1473,9 +1561,9 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-orgheadline51" class="outline-4">
-<h4 id="orgheadline51"><span class="section-number-4">8.0.1</span> Url retrieval</h4>
-<div class="outline-text-4" id="text-8-0-1">
+<div id="outline-container-orgheadline54" class="outline-4">
+<h4 id="orgheadline54"><span class="section-number-4">9.0.1</span> Url retrieval</h4>
+<div class="outline-text-4" id="text-9-0-1">
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">with-current-buffer</span> <span style="color: #66D9EF;">(</span>url-retrieve-synchronously <span style="color: #E6DB74;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span><span style="color: #66D9EF;">)</span>
@@ -1495,7 +1583,7 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-03 Mon 03:04</p>
+<p class="date">Created: 2016-10-03 Mon 03:45</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
