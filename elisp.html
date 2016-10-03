@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-03 Mon 01:26 -->
+<!-- 2016-10-03 Mon 03:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Lisp</title>
@@ -161,6 +161,24 @@ a:visited {color: red;}
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -249,7 +267,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline30">4. Type</a>
 <ul>
 <li><a href="#orgheadline17">4.1. number</a></li>
-<li><a href="#orgheadline18">4.2. conversion</a></li>
+<li><a href="#orgheadline18">4.2. string</a></li>
 <li><a href="#orgheadline19">4.3. cons cell</a></li>
 <li><a href="#orgheadline23">4.4. list</a>
 <ul>
@@ -286,31 +304,26 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline40">6.3. Loop</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline52">7. Packages</a>
+<li><a href="#orgheadline50">7. Packages</a>
 <ul>
 <li><a href="#orgheadline42">7.1. Dash.el</a></li>
 <li><a href="#orgheadline43">7.2. s.el</a></li>
-<li><a href="#orgheadline51">7.3. cl</a>
+<li><a href="#orgheadline49">7.3. cl-lib.el</a>
 <ul>
-<li><a href="#orgheadline44">7.3.1. Overview</a></li>
-<li><a href="#orgheadline48">7.3.2. For</a>
-<ul>
-<li><a href="#orgheadline45">7.3.2.1. for VAR from EXPR1 to EXPR2 by EXPR3</a></li>
-<li><a href="#orgheadline46">7.3.2.2. for VAR in LIST by FUNCTION</a></li>
-<li><a href="#orgheadline47">7.3.2.3. for VAR = EXPR1 then EXPR2</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline49">7.3.3. The condition</a></li>
-<li><a href="#orgheadline50">7.3.4. accumulation clause</a></li>
+<li><a href="#orgheadline44">7.3.1. general loop form</a></li>
+<li><a href="#orgheadline45">7.3.2. for clauses</a></li>
+<li><a href="#orgheadline46">7.3.3. iteration clauses</a></li>
+<li><a href="#orgheadline47">7.3.4. accumulation clauses</a></li>
+<li><a href="#orgheadline48">7.3.5. Other clauses</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline54">8. Some random code snippets</a>
+<li><a href="#orgheadline52">8. Some random code snippets</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgheadline53">8.0.1. Url retrieval</a></li>
+<li><a href="#orgheadline51">8.0.1. Url retrieval</a></li>
 </ul>
 </li>
 </ul>
@@ -846,14 +859,44 @@ replacing
 </dl>
 </div>
 </div>
+
 <div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">4.2</span> conversion</h3>
+<h3 id="orgheadline18"><span class="section-number-3">4.2</span> string</h3>
 <div class="outline-text-3" id="text-4-2">
-<ul class="org-ul">
-<li>string to int: <code>(values (parse-integer "32"))</code> CAUTION this is the <code>cl</code> library</li>
-</ul>
+<dl class="org-dl">
+<dt><code>make-string count character</code></dt><dd>make string by duplicating characters</dd>
+<dt><code>substring string start &amp;optional end</code></dt><dd>substring</dd>
+<dt><code>concat &amp;rest sequences</code></dt><dd></dd>
+
+<dt><code>split-string string &amp;optional separators</code></dt><dd><code>split-string-default-separators</code> is <code>"[ \f\t\n\r\v]+"</code></dd>
+</dl>
+
+<p>
+conversion:
+</p>
+<dl class="org-dl">
+<dt><code>number-to-string number</code></dt><dd></dd>
+
+<dt><code>string-to-number string</code></dt><dd></dd>
+
+<dt><code>char-to-string character</code></dt><dd></dd>
+
+<dt><code>string-to-char string</code></dt><dd>returns the first character in string</dd>
+</dl>
+
+<p>
+case:
+</p>
+<dl class="org-dl">
+<dt><code>downcase string-or-char</code></dt><dd></dd>
+
+<dt><code>upcase string-or-char</code></dt><dd></dd>
+
+<dt><code>capitalize string-to-char</code></dt><dd></dd>
+</dl>
 </div>
 </div>
+
 <div id="outline-container-orgheadline19" class="outline-3">
 <h3 id="orgheadline19"><span class="section-number-3">4.3</span> cons cell</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -1104,6 +1147,9 @@ It contains:
 </pre>
 
 <dl class="org-dl">
+<dt><code>length sequence</code></dt><dd></dd>
+
+<dt><code>elt sequence index</code></dt><dd>returns the element of SEQUENCE at index</dd>
 <dt><code>copy-sequence seq</code></dt><dd>the sequence is new, but the elements are not.</dd>
 </dl>
 </div>
@@ -1227,16 +1273,19 @@ The expression is then evaluated for result.
 <div id="outline-container-orgheadline39" class="outline-3">
 <h3 id="orgheadline39"><span class="section-number-3">6.2</span> Conditional</h3>
 <div class="outline-text-3" id="text-6-2">
-<ul class="org-ul">
-<li><code>if condition then-form else-forms...</code></li>
-<li><code>when condition then-forms...</code></li>
-<li><code>unless condition forms...</code></li>
-<li id="<code>cond clause...</code>">the clause must be a list: <code>(condition body-forms...)</code>.
+<dl class="org-dl">
+<dt><code>if condition then-form else-forms...</code></dt><dd></dd>
+
+<dt><code>when condition then-forms...</code></dt><dd></dd>
+
+<dt><code>unless condition forms...</code></dt><dd></dd>
+
+<dt><code>cond clause...</code></dt><dd>the clause must be a list: <code>(condition body-forms...)</code>.
 It is not exactly the "case" statement, because the condition is evaluted to true or false.
-Any remaining forms are <i>ignored</i>.</li>
-<li id="<code>pcase EXP BRANCH1 BRANCH2 BRANCH3...</code>">this is more like the "case" statement. The EXP is first evaluted and compare with the car of each branches.
-The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</li>
-</ul>
+Any remaining forms are <i>ignored</i>.</dd>
+<dt><code>pcase EXP BRANCH1 BRANCH2 BRANCH3...</code></dt><dd>this is more like the "case" statement. The EXP is first evaluted and compare with the car of each branches.
+The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</dd>
+</dl>
 </div>
 
 <div id="outline-container-orgheadline38" class="outline-4">
@@ -1266,8 +1315,8 @@ The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</li>
 
 
 
-<div id="outline-container-orgheadline52" class="outline-2">
-<h2 id="orgheadline52"><span class="section-number-2">7</span> Packages</h2>
+<div id="outline-container-orgheadline50" class="outline-2">
+<h2 id="orgheadline50"><span class="section-number-2">7</span> Packages</h2>
 <div class="outline-text-2" id="text-7">
 </div><div id="outline-container-orgheadline42" class="outline-3">
 <h3 id="orgheadline42"><span class="section-number-3">7.1</span> Dash.el</h3>
@@ -1316,135 +1365,106 @@ The string manipulation library
 </div>
 </div>
 
-<div id="outline-container-orgheadline51" class="outline-3">
-<h3 id="orgheadline51"><span class="section-number-3">7.3</span> cl</h3>
+<div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49"><span class="section-number-3">7.3</span> cl-lib.el</h3>
 <div class="outline-text-3" id="text-7-3">
-</div><div id="outline-container-orgheadline44" class="outline-4">
-<h4 id="orgheadline44"><span class="section-number-4">7.3.1</span> Overview</h4>
+<p>
+This package ports many common lisp facilities into elisp,
+most importantly, the loop facility.
+So this section, at least for now, focus on <code>cl-loop</code>.
+</p>
+</div>
+
+<div id="outline-container-orgheadline44" class="outline-4">
+<h4 id="orgheadline44"><span class="section-number-4">7.3.1</span> general loop form</h4>
 <div class="outline-text-4" id="text-7-3-1">
-<p>
-The <code>cl-loop</code> refers to the common lisp, see the detailed manual in info, <code>cl</code>.
-</p>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for buf in <span style="color: #66D9EF;">(</span>buffer-list<span style="color: #66D9EF;">)</span>
-         collect <span style="color: #66D9EF;">(</span>buffer-file-name buf<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">in the end the collected list will be returned</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> repeat 20 do <span style="color: #66D9EF;">(</span>insert <span style="color: #E6DB74;">"Yowsa\n"</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">repeat &lt;num&gt;</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> until <span style="color: #66D9EF;">(</span>eobp<span style="color: #66D9EF;">)</span> do <span style="color: #66D9EF;">(</span>munch-line<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">(</span>forward-line 1<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">eobp: end of buffer predicate</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> do <span style="color: #66D9EF;">(</span>munch-line<span style="color: #66D9EF;">)</span> until <span style="color: #66D9EF;">(</span>eobp<span style="color: #66D9EF;">)</span> do <span style="color: #66D9EF;">(</span>forward-line 1<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">;; </span><span style="color: #75715E;">do (much-line) at least once</span>
+<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> clauses...<span style="color: #AE81FF;">)</span>
 </pre>
 </div>
 <p>
-Last, the if you want to nest the loop, you need multiple <code>cl-loop</code>.
-One cl-loop with multiple <code>for</code> and <code>until</code> will only result in one loop, e.g. the following code.
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-lisp">(cl-loop for x from 1 to 100 <span style="color: #75715E;">; x from 1 to 100</span>
-         for y = (* x x) <span style="color: #75715E;">; this is evaluated for every iteration</span>
-         until (&gt;= y 729) <span style="color: #75715E;">; the end condition</span>
-         finally return (list x (= y 729))) <span style="color: #75715E;">; finally defines what to do when the loop finish</span>
-</pre>
-</div>
-
-<p>
-Some other clauses are not recorded in this page, but there <i>are</i> some. E.g.
+The clauses can be:
 </p>
 <ul class="org-ul">
-<li><code>with VAR = VALUE</code>: bind the initial value,
-like the <code>EXPR1</code> in <code>for</code> clause,
-but different in terms of only evaluate once for the initial iteration.
-The effect is like <code>let</code>.</li>
-<li><code>if CONDITION CLAUSE</code>: execute the <i>following</i> code only if the condition matches.
-<code>else</code> can be added, and <code>end</code> can also be presented. This means, this grammar is ambiguous.</li>
+<li>for clauses</li>
+<li>TODO</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-4">
-<h4 id="orgheadline48"><span class="section-number-4">7.3.2</span> For</h4>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">7.3.2</span> for clauses</h4>
 <div class="outline-text-4" id="text-7-3-2">
-</div><div id="outline-container-orgheadline45" class="outline-5">
-<h5 id="orgheadline45"><span class="section-number-5">7.3.2.1</span> for VAR from EXPR1 to EXPR2 by EXPR3</h5>
-<div class="outline-text-5" id="text-7-3-2-1">
-<div class="org-src-container">
-
-<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x to 10 collect x<span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (0 1 2 3 4 5 6 7 8 9 10)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x below 10 collect x<span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (0 1 2 3 4 5 6 7 8 9)</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline46" class="outline-5">
-<h5 id="orgheadline46"><span class="section-number-5">7.3.2.2</span> for VAR in LIST by FUNCTION</h5>
-<div class="outline-text-5" id="text-7-3-2-2">
-<p>
-If the function is provided, the iterating function will be changed from the default <code>cdr</code>
-</p>
-<div class="org-src-container">
-
-<pre class="src src-elisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x in '<span style="color: #66D9EF;">(</span>1 2 3 4 5 6<span style="color: #66D9EF;">)</span> collect <span style="color: #66D9EF;">(</span>* x x<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (1 4 9 16 25 36)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x in '<span style="color: #66D9EF;">(</span>1 2 3 4 5 6<span style="color: #66D9EF;">)</span> by 'cddr collect <span style="color: #66D9EF;">(</span>* x x<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">&#8658; (1 9 25)</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline47" class="outline-5">
-<h5 id="orgheadline47"><span class="section-number-5">7.3.2.3</span> for VAR = EXPR1 then EXPR2</h5>
-<div class="outline-text-5" id="text-7-3-2-3">
-<p>
-If <code>EXPR2</code> is omitted, <code>EXPR1</code> will be set in each iteration.
-If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial value, and <code>EXPR2</code> will execute and set the variable.
-<code>EXPR2</code> can refer to the previous value of <code>VAR</code>.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-elisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">these two loops are equivalent</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x on my-list by 'cddr do &#8230;<span style="color: #AE81FF;">)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">cl-loop</span> for x = my-list then <span style="color: #66D9EF;">(</span>cddr x<span style="color: #66D9EF;">)</span> while x do &#8230;<span style="color: #AE81FF;">)</span>
-</pre>
-</div>
-</div>
+<dl class="org-dl">
+<dt><code>for VAR from FROM to TO by STEP</code></dt><dd><ul class="org-ul">
+<li><code>FROM</code> defaults to 0. <code>STEP</code> must be positive and default to 1.</li>
+<li>inclusive <code>[from,to]</code></li>
+<li><code>from</code> can be <code>upfrom</code> and <code>downfrom</code>. I think it is wired to use this.</li>
+<li><code>to</code> can be <code>upto</code> and <code>downto</code>. This makes more sense.</li>
+<li><code>above</code> and <code>below</code> can be used, but <i>exclusive</i>. e.g. <code>for var below 10</code></li>
+</ul></dd>
+<dt><code>for VAR in LIST by FUNCTION</code></dt><dd><code>FUNCTION</code> is used to traverse the list, defaults to <code>cdr</code></dd>
+<dt><code>for VAR on LIST by FUNCTION</code></dt><dd><code>VAR</code> is bound to the cons cell of the list instead of the element.</dd>
+<dt><code>for VAR across ARRAY</code></dt><dd>iterates all elements of array</dd>
+<dt><code>for VAR = EXPR1 then EXPR2</code></dt><dd>this is the most general form.
+The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set by evaluating <code>EXPR2</code> in successive iterations.
+<code>EXPR2</code> can refer the old <code>VAR</code></dd>
+</dl>
 </div>
 </div>
 
-<div id="outline-container-orgheadline49" class="outline-4">
-<h4 id="orgheadline49"><span class="section-number-4">7.3.3</span> The condition</h4>
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">7.3.3</span> iteration clauses</h4>
 <div class="outline-text-4" id="text-7-3-3">
-<ul class="org-ul">
-<li><code>repeat INTEGER</code></li>
-<li><code>while CONDITION</code></li>
-<li><code>until CONDITION</code></li>
-<li><code>always CONDITION</code>: the condition should evaluate to t for it to continue</li>
-<li><code>never CONDITION</code></li>
-<li><code>thereis CONDITION</code></li>
-</ul>
+<dl class="org-dl">
+<dt><code>repeat integer</code></dt><dd>repeat the loop how many times</dd>
+<dt><code>while condition</code></dt><dd>stops the loop when the condition becomes nil</dd>
+<dt><code>until condition</code></dt><dd></dd>
+
+<dt><code>always condition</code></dt><dd>like while except it returns <code>nil</code>, and <code>finally</code> clauses are not executed.</dd>
+<dt><code>never condition</code></dt><dd>counter part for <code>always</code></dd>
+</dl>
 </div>
 </div>
-<div id="outline-container-orgheadline50" class="outline-4">
-<h4 id="orgheadline50"><span class="section-number-4">7.3.4</span> accumulation clause</h4>
+
+<div id="outline-container-orgheadline47" class="outline-4">
+<h4 id="orgheadline47"><span class="section-number-4">7.3.4</span> accumulation clauses</h4>
 <div class="outline-text-4" id="text-7-3-4">
-<ul class="org-ul">
-<li><code>collect FORM</code></li>
-<li><code>concat FORM</code></li>
-<li><code>count FORM</code></li>
-<li><code>sum FORM</code></li>
-<li><code>maximize FORM</code></li>
-<li><code>minimize FORM</code></li>
-</ul>
+<dl class="org-dl">
+<dt><code>collect form</code></dt><dd>collect into a list and return the list in the end</dd>
+<dt><code>append form</code></dt><dd>collect the lists into a list by appending, and return it in the end</dd>
+<dt><code>concat form</code></dt><dd>for string only</dd>
+<dt><code>count form</code></dt><dd>count how many times form evaluates to non-nil.</dd>
+<dt><code>sum form</code></dt><dd>sum all the values</dd>
+<dt><code>maximize form</code></dt><dd>get the max. If the form is never executed, result is <i>undefined</i></dd>
+<dt><code>minimize form</code></dt><dd></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline48" class="outline-4">
+<h4 id="orgheadline48"><span class="section-number-4">7.3.5</span> Other clauses</h4>
+<div class="outline-text-4" id="text-7-3-5">
+<dl class="org-dl">
+<dt><code>with var = value</code></dt><dd>set the value one-time at the beginning of the loop. Often used as return variable.</dd>
+<dt><code>if condition clause [else clause]</code></dt><dd></dd>
+
+<dt><code>when condition clause</code></dt><dd>same as if</dd>
+<dt><code>unless condition clause</code></dt><dd>similar</dd>
+<dt><code>initially [do] forms...</code></dt><dd>execute before the loop begins, but after the <code>for</code> and <code>with</code> variable bindings. <code>do</code> is optional.</dd>
+<dt><code>finally [do] forms...</code></dt><dd>execute after the loop finishes</dd>
+<dt><code>finally return form</code></dt><dd>finally return it &#x2026;</dd>
+<dt><code>do forms...</code></dt><dd>execute as an implicit <code>progn</code> in the body</dd>
+<dt><code>return form</code></dt><dd>this is often used in <code>if</code> or <code>unless</code>, because put it in top level will cause the loop always execute only once.</dd>
+</dl>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline54" class="outline-2">
-<h2 id="orgheadline54"><span class="section-number-2">8</span> Some random code snippets</h2>
+<div id="outline-container-orgheadline52" class="outline-2">
+<h2 id="orgheadline52"><span class="section-number-2">8</span> Some random code snippets</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
@@ -1453,8 +1473,8 @@ If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial val
 </div>
 </div>
 
-<div id="outline-container-orgheadline53" class="outline-4">
-<h4 id="orgheadline53"><span class="section-number-4">8.0.1</span> Url retrieval</h4>
+<div id="outline-container-orgheadline51" class="outline-4">
+<h4 id="orgheadline51"><span class="section-number-4">8.0.1</span> Url retrieval</h4>
 <div class="outline-text-4" id="text-8-0-1">
 <div class="org-src-container">
 
@@ -1475,7 +1495,7 @@ If <code>EXPR2</code> presents, <code>EXPR1</code> will only set the initial val
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-03 Mon 01:26</p>
+<p class="date">Created: 2016-10-03 Mon 03:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
