@@ -6,7 +6,7 @@
 <!-- 2016-10-05 Wed 20:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Abstract Factory</title>
+<title>Artificial Intelligence</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -513,40 +513,6 @@ a:visited {color: red;}
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -596,53 +562,93 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Abstract Factory</h1>
+<h1 class="title">Artificial Intelligence</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Abstract Factory</a></li>
+<li><a href="#orgheadline4">1. Adversarial Search</a>
+<ul>
+<li><a href="#orgheadline2">1.1. Minimax Algorithm</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. The optimal strategies</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline3">1.2. Alpha-Beta pruning</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Abstract Factory</h2>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">1</span> Adversarial Search</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>Implemented by Factory Method.</li>
-<li>Focus on a family of products.</li>
-<li>ConcreteFactory is often singleton</li>
-</ul>
-
-
-
-<div class="figure">
-<p><img src="wikitmp_plantuml.png" alt="wikitmp_plantuml.png" />
+<p>
+This is multiple agents, also known as <i>game</i>.
 </p>
 </div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.1</span> Minimax Algorithm</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+There're two players, Min and Max, each takes turn to execute.
+Max moves first.
+</p>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> The optimal strategies</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Basically it recursively solve the problem.
+The Utility function is the payoff.
+It actually list the tree of state space, and it is optimal.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.2</span> Alpha-Beta pruning</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The problem of minimax algorithm is its node grow exponential.
+This algorithm is used to prune the subtree that does not affect the result.
+</p>
 
 <p>
-The implementation:
+This is similar for MiniMax algorithm
 </p>
-<div class="org-src-container">
+<ul class="org-ul">
+<li>&alpha; is the value of the best choise so far, for max, init from -&infin;</li>
+<li>&beta; is the best value for min, init from +&infin;</li>
+</ul>
 
-<pre class="src src-C++"><span style="color: #F92672;">class</span> <span style="color: #66D9EF;">AbstractFactory</span> {
-  <span style="color: #F92672;">virtual</span> <span style="color: #A6E22E;">CreateA</span>() {}
-  <span style="color: #F92672;">virtual</span> <span style="color: #A6E22E;">CreateB</span>() {}
-};
-<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">ConcreteFactory1</span> {
-  <span style="color: #F92672;">virtual</span> <span style="color: #A6E22E;">CreateA</span>() {<span style="color: #F92672;">new</span> <span style="color: #66D9EF;">A1</span>;}
-  <span style="color: #F92672;">virtual</span> <span style="color: #A6E22E;">CreateB</span>() {<span style="color: #F92672;">new</span> <span style="color: #66D9EF;">B2</span>;}
-};
-<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">ConcreteFactory2</span> {
-  <span style="color: #F92672;">virtual</span> <span style="color: #A6E22E;">CreateA</span>() {<span style="color: #F92672;">new</span> <span style="color: #66D9EF;">A2</span>;}
-  <span style="color: #F92672;">virtual</span> <span style="color: #A6E22E;">CreateB</span>() {<span style="color: #F92672;">new</span> <span style="color: #66D9EF;">B1</span>;}
-};
-<span style="color: #75715E;">// </span><span style="color: #75715E;">client code</span>
-<span style="color: #66D9EF;">ConcreteFactory1</span> <span style="color: #FD971F;">factory</span>;
-<span style="color: #66D9EF;">AbstractA</span> *<span style="color: #FD971F;">a</span> = factory.CreateA();
-<span style="color: #66D9EF;">AbstractB</span> *<span style="color: #FD971F;">b</span> = factory.CreateB();
+<p>
+There're two procedures:
+</p>
+<dl class="org-dl">
+<dt><code>Alpha-Beta-Search(state)</code></dt><dd>returns an action. state is the current state.</dd>
+<dt><code>Max-Value(state, \alpha, \beta)</code></dt><dd>returns a utility value</dd>
+<dt><code>Min-Value(state, \alpha, \beta)</code></dt><dd>returns a utility value</dd>
+</dl>
+
+<pre class="example">
+Alpha-Beta-Search(state) {
+  v = Max-Value(state, -999, +999);
+  return action in ACTIONS with value v;
+}
+
+Max-Value(state, alpha, beta) {
+  v = INT_MIN;
+  for each a in ACTIONS(state) do
+    v = Max(v, Min-Value(result(s,a), alpha, beta));
+    if v &gt;= beta then return v;
+    alpha = MAX(alpha,v);
+  return v;
+}
 </pre>
 </div>
 </div>
