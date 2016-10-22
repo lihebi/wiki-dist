@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-06 Thu 12:12 -->
+<!-- 2016-10-22 Sat 18:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell</title>
@@ -98,41 +98,29 @@
 a:visited {color: red;}
 </style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ code {background-color: lightgrey;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ code {background-color: lightgrey;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ code {background-color: lightgrey;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ code {background-color: lightgrey;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ code {background-color: lightgrey;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
+ code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -187,307 +175,303 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Tmp</a></li>
-<li><a href="#orgheadline4">2. Common Tips</a>
+<li><a href="#orgheadline3">1. Concepts</a>
 <ul>
-<li><a href="#orgheadline2">2.1. grouping</a></li>
-<li><a href="#orgheadline3">2.2. Operation</a></li>
+<li><a href="#orgheadline1">1.1. Command Interaction</a></li>
+<li><a href="#orgheadline2">1.2. redirection</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">3. General Concepts</a>
+<li><a href="#orgheadline6">2. expansion</a>
 <ul>
-<li><a href="#orgheadline5">3.1. pipeline</a></li>
-<li><a href="#orgheadline6">3.2. redirection</a></li>
+<li><a href="#orgheadline5">2.1. parameter and variable expansion</a>
+<ul>
+<li><a href="#orgheadline4">2.1.1. special parameters</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">4. Scripting Parameter</a>
-<ul>
-<li><a href="#orgheadline8">4.1. special parameters</a></li>
-<li><a href="#orgheadline9">4.2. 特殊变量</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">5. Control Flow</a>
+<li><a href="#orgheadline7">3. IO</a></li>
+<li><a href="#orgheadline12">4. Control Flow</a>
 <ul>
-<li><a href="#orgheadline11">5.1. loop</a></li>
-<li><a href="#orgheadline12">5.2. if</a></li>
-<li><a href="#orgheadline13">5.3. case</a></li>
-<li><a href="#orgheadline14">5.4. select</a></li>
+<li><a href="#orgheadline9">4.1. Condition commands</a>
+<ul>
+<li><a href="#orgheadline8">4.1.1. bash conditional expression</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">6. Condition</a>
-<ul>
-<li><a href="#orgheadline16">6.1. (())</a></li>
-<li><a href="#orgheadline17">6.2. [[]]</a></li>
-<li><a href="#orgheadline18">6.3. About [] [[]]</a></li>
+<li><a href="#orgheadline10">4.2. Conditional</a></li>
+<li><a href="#orgheadline11">4.3. loop</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline20">7. IO</a></li>
-<li><a href="#orgheadline23">8. Unix Management</a>
+<li><a href="#orgheadline13">5. function</a></li>
+<li><a href="#orgheadline15">6. Tips</a>
 <ul>
-<li><a href="#orgheadline21">8.1. job control</a></li>
-<li><a href="#orgheadline22">8.2. return status</a></li>
+<li><a href="#orgheadline14">6.1. Check whether a command exists</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline24">9. escape color</a></li>
-<li><a href="#orgheadline32">10. expansion</a>
-<ul>
-<li><a href="#orgheadline25">10.1. brace expansion</a></li>
-<li><a href="#orgheadline26">10.2. tilde expansion</a></li>
-<li><a href="#orgheadline27">10.3. variable expansion</a></li>
-<li><a href="#orgheadline28">10.4. 变量替换</a></li>
-<li><a href="#orgheadline29">10.5. filename expansion</a></li>
-<li><a href="#orgheadline30">10.6. 字符串</a></li>
-<li><a href="#orgheadline31">10.7. 数值计算</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline33">11. function</a></li>
-<li><a href="#orgheadline34">12. Script</a></li>
-<li><a href="#orgheadline35">13. My Scripts</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Tmp</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> Concepts</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script">http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script</a></li>
-</ul>
-<pre class="example">
-$ command -v foo &gt;/dev/null 2&gt;&amp;1 || { echo &gt;&amp;2 "I require foo but it's not installed.  Aborting."; exit 1; }
-$ type foo &gt;/dev/null 2&gt;&amp;1 || { echo &gt;&amp;2 "I require foo but it's not installed.  Aborting."; exit 1; }
-$ hash foo 2&gt;/dev/null || { echo &gt;&amp;2 "I require foo but it's not installed.  Aborting."; exit 1; }
-</pre>
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Command Interaction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The first type of interaction is pipeline.
+<code>&lt;cmd1&gt; | &lt;cmd2&gt;</code>, Each command execute in its own sub-shell.
+The exit status of a pipeline is the exist status of the last command.
+<code>&lt;cmd1&gt; |&amp; &lt;cmd2&gt;</code> is short hand for <code>&lt;cmd1&gt; 2&gt;&amp;1 | &lt;cmd2&gt;</code>.
+</p>
+
+<p>
+Commands separated by <code>;</code> are executed sequentially.
+The shell waits for each to terminate in turn.
+The return status of last one is returned.
+</p>
+
+<p>
+<code>&amp;&amp;</code> and <code>||</code> have a higher precedence than <code>;</code>.
+The later command is executed based on the return result of previous one.
+The return status is the last executed command.
+</p>
+
+<p>
+Grouping of command is different.
+The grouping can be done by <code>()</code> and <code>{}</code>.
+<code>()</code> will create a sub-shell and execute the body commands,
+while <code>{}</code> will not create sub-shell. The last command in the body MUST terminate with <code>;</code>.
+</p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">2</span> Common Tips</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><code>source</code> will be in effect in current shell session, but not the sub-shells</li>
-<li><code>export</code> declare global variable, and will be in effect in sub-shells</li>
-</ul>
-</div>
+
 <div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> grouping</h3>
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> redirection</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><code>ls &gt; dirlist 2&gt;&amp;1</code></li>
+<li><code>&amp;&gt;word</code> is the same as <code>&gt;word 2&gt;&amp;1</code></li>
+<li><code>&amp;&gt;&gt;word</code> is the same as <code>&gt;&gt;word 2&gt;&amp;1</code></li>
+</ul>
+
+<p>
+<i>Here document</i> is of the form:
+</p>
+<pre class="example">
+cmd &lt;&lt; AUniqueString
+any thing
+interesting
+AUniqueString
+</pre>
+
+<p>
+The start and end unique string must be same and must not appear in the body.
+The block will be used as the input to the command.
+Similarly, the <i>here string</i> is used by:
+</p>
+<pre class="example">
+cmd &lt;&lt;&lt; $word
+</pre>
+
+<p>
+And the expansion of word will be used as the input.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> expansion</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+There are seven kinds of expansions, in order of expansion order.
+After these expansion are performed, the <code>quote removal</code> are performed.
+</p>
+<dl class="org-dl">
+<dt>brace</dt><dd><code>/usr/local/{old,new,dist}</code> will expands to three strings.</dd>
+<dt>tilde</dt><dd>home</dd>
+<dt>parameter and variable</dt><dd>in separate section</dd>
+<dt>arithmetic</dt><dd></dd>
+
+<dt>command substitution</dt><dd>using <code>$()</code> or <code>`cmd`</code>. The value is the output of the command, with any trailing newlines deleted.</dd>
+<dt>word splitting</dt><dd>The shell treats each character of '$IFS' as a delimiter.
+If 'IFS' is unset, or its value is exactly <code>&lt;space&gt;&lt;tab&gt;&lt;newline&gt;</code>.</dd>
+<dt>filename</dt><dd>The file must exists to be expanded.
+<code>*</code> matches any string, including null string.
+<code>?</code> matches a single character.
+<code>[..]</code> matches any one of those.</dd>
+</dl>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.1</span> parameter and variable expansion</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
-<li><code>( list )</code>: a subshell is created, each command in list will execute in that shell</li>
-<li><code>{ list; }</code>: semicolon or newline is needed. No subshell is created, commands will run in current shell.</li>
+<li><code>${var:-word}</code>: if var is unset or null, the value is expansion of word</li>
+<li><code>${var:=word}</code>: if var is unset or null, the expansion of word is assigned to var</li>
 </ul>
-</div>
-</div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Operation</h3>
-<div class="outline-text-3" id="text-2-2">
+<p>
+Meta data:
+</p>
 <ul class="org-ul">
-<li><code>Ctrl-s</code> 停止显示</li>
-<li><code>Ctrl-q</code> 恢复显示</li>
-
-<li><code>Shift-pageup/down</code> pageup down</li>
-<li><code>shift-Insert</code> 粘贴。鼠标中键。</li>
-
-<li><code>mkdir -p</code> 同时建立父目录</li>
-<li><code>Ctrl-l</code> 清屏</li>
+<li><code>${#var}</code>: return length in character of the expansion of var</li>
 </ul>
+
+<p>
+Sub-string:
+</p>
+<ul class="org-ul">
+<li><code>${str:offset}</code>: substr from offset to end</li>
+<li><code>${str:offset:length}</code>: substr from offset for count characters</li>
+</ul>
+
+<p>
+String trimming
+pattern is first expanded, then remove the shortest or longest match from the beginning or tailing of str.
+Return the value, leave str unchanged.
+</p>
+<dl class="org-dl">
+<dt><code>${str#word}</code></dt><dd><i>shortest</i>, beginning</dd>
+<dt><code>${str##word}</code></dt><dd>longest, beginning</dd>
+<dt><code>${str%word}</code></dt><dd>shortest, tailing</dd>
+<dt><code>${str%%word}</code></dt><dd>longest, tailing</dd>
+</dl>
+
+<p>
+Replacing
+</p>
+<ul class="org-ul">
+<li><code>${str/pattern/string}</code>: the first longest match is replaced with string
+if pattern begins with:
+<ul class="org-ul">
+<li><code>/</code>: all matched is replaced</li>
+<li><code>#</code>: match must happen in the begin</li>
+<li><code>%</code>: match must happen in the tail</li>
+</ul></li>
+</ul>
+
+<p>
+Case changing
+match of pattern will change case
+</p>
+<ul class="org-ul">
+<li><code>${str^pattern}</code>: one match, lowercase to uppercase</li>
+<li><code>${str^^pattern}</code>: all match, lower to upper</li>
+<li><code>${str,pattern}</code>: one match, upper to lower</li>
+<li><code>${str,,pattern}</code>: all match, upper to lower</li>
+</ul>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.1.1</span> special parameters</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li><code>$*</code>: "$1c$2c$3c&#x2026;", c is the first character of $IFS (defaults to space)</li>
+<li><code>$@</code>: "$1" "$2" "$3" &#x2026;</li>
+<li><code>$#</code>: the number of positional parameters, for <code>a.out -h</code> it is 1</li>
+<li><code>$?</code>: exit status</li>
+<li id="<code>$n</code>">the nth parameter</li>
+
+<li><code>$-</code>: current option flags</li>
+<li><code>$$</code>: process ID of the shell</li>
+<li><code>$!</code>: process ID of the job most recently placed into the background</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 
 <div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">3</span> General Concepts</h2>
+<h2 id="orgheadline7"><span class="section-number-2">3</span> IO</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">3.1</span> pipeline</h3>
-<div class="outline-text-3" id="text-3-1">
 <p>
-Each command execute in its own subshell.
-The exit status of a pipeline is the exist status of the last command.
+The loop can accept the redirection, thus can be used to read a file:
 </p>
-
 <div class="org-src-container">
 
-<pre class="src src-shell">&lt;cmd1&gt; | &lt;cmd2&gt; <span style="color: #75715E;"># </span><span style="color: #75715E;">pipe</span>
-&lt;cmd1&gt; |&amp; &lt;cmd2&gt; <span style="color: #75715E;"># </span><span style="color: #75715E;">it is short hand for:</span>
-&lt;cmd1&gt; 2&gt;&amp;1 | &lt;cmd2&gt;
+<pre class="src src-shell"><span style="color: #F92672;">while </span><span style="color: #F92672;">read</span> -r line; <span style="color: #F92672;">do</span>
+    <span style="color: #75715E;"># </span><span style="color: #75715E;">some job</span>
+<span style="color: #F92672;">done</span> &lt; papers.txt
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">3.2</span> redirection</h3>
-<div class="outline-text-3" id="text-3-2">
+<p>
+The ordinary reading from command line:
+</p>
 <div class="org-src-container">
 
-<pre class="src src-shell">ls &gt; dirlist 2&gt;&amp;1
-ls 2&gt;&amp;1 dirlist <span style="color: #75715E;"># </span><span style="color: #75715E;">wrong</span>
-&amp;&gt;word <span style="color: #75715E;"># </span><span style="color: #75715E;">the same as</span>
-&gt;word 2&gt;&amp;1
-&amp;&gt;&gt;word <span style="color: #75715E;"># </span><span style="color: #75715E;">the same as</span>
-&gt;&gt;word 2&gt;&amp;1
-&lt;&lt;&lt; word <span style="color: #75715E;"># </span><span style="color: #75715E;">use string directly as input</span>
+<pre class="src src-shell"><span style="color: #F92672;">read</span> -p <span style="color: #E6DB74;">"please input: "</span> a b c
 </pre>
 </div>
-</div>
+
+<p>
+When using <code>echo</code>, use <code>-e</code> option can print out control characters such as <code>\n</code>.
+</p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10"><span class="section-number-2">4</span> Scripting Parameter</h2>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">4</span> Control Flow</h2>
 <div class="outline-text-2" id="text-4">
-<p>
-In shell script, <code>cd -</code> will cause the folder name to be printed.
-To disable the output, simply <code>cd - &gt; /dev/null</code>.
-</p>
-</div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">4.1</span> special parameters</h3>
+</div><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">4.1</span> Condition commands</h3>
 <div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li><code>$*</code>: "$1c$2c$3c&#x2026;", c is the first character of $IFS</li>
-<li><code>$@</code>: "$1" "$2" "$3" &#x2026;</li>
-<li><code>$#</code>: the number of positional parameters, for <code>a.out -h</code> it is 1</li>
-<li><code>$?</code>: exit status</li>
-<li><code>$-</code>: current option flags</li>
-<li><code>$$</code>: process ID of the shell</li>
-<li><code>$!</code>: process ID of the job most recently placed into the background</li>
-<li><code>$0</code>:</li>
-<li><code>$n</code></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">4.2</span> 特殊变量</h3>
-<div class="outline-text-3" id="text-4-2">
-<div class="org-src-container">
-
-<pre class="src src-shell">$<span style="color: #FD971F;">0</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#33050;&#26412;&#21517;&#31216;</span>
-$&lt;n&gt; <span style="color: #75715E;"># </span><span style="color: #75715E;">&#31532;n&#20010;&#21442;&#25968;</span>
-$<span style="color: #FD971F;">#</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#21442;&#25968;&#25968;&#37327;</span>
-$<span style="color: #FD971F;">*</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#25152;&#26377;&#21442;&#25968;&#65292;&#20316;&#20026;&#19968;&#20010;&#23383;&#31526;&#20018;</span>
-$<span style="color: #FD971F;">@</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#25152;&#26377;&#21442;&#25968;&#65292;&#20316;&#20026;&#23383;&#31526;&#20018;&#25968;&#32452;</span>
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E;">example</span>
-./a.sh hello world
-<span style="color: #E6DB74;">"$0"</span> =&gt; ./a.sh
-<span style="color: #E6DB74;">"$1"</span> =&gt; hello
-<span style="color: #E6DB74;">"$2"</span> =&gt; world
-<span style="color: #E6DB74;">"$#"</span> =&gt; 2
-<span style="color: #E6DB74;">"$*"</span> =&gt; <span style="color: #E6DB74;">"./a.sh hello world"</span>
-<span style="color: #E6DB74;">"$@"</span> =&gt; [ <span style="color: #E6DB74;">"./a.sh"</span> <span style="color: #E6DB74;">"hello"</span> <span style="color: #E6DB74;">"world"</span> ]
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-shell">$<span style="color: #FD971F;">$</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#24403;&#21069;&#36827;&#31243;&#30340;PID</span>
-$<span style="color: #FD971F;">?</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#19978;&#19968;&#20010;&#21629;&#20196;&#30340;&#36820;&#22238;&#20540;</span>
-$<span style="color: #FD971F;">!</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#36816;&#34892;&#22312;&#21518;&#21488;&#30340;&#26368;&#21518;&#19968;&#20010;&#36827;&#31243;&#30340;PID&#12290;done&#20102;&#20063;&#31639;&#12290;</span>
-$<span style="color: #FD971F;">_</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#19978;&#20010;&#21629;&#20196;&#30340;&#26368;&#21518;&#19968;&#20010;&#23383;&#27573;</span>
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">5</span> Control Flow</h2>
-<div class="outline-text-2" id="text-5">
 <p>
-Any redirections apply to all commands within that compound, unless explicitly overwritten.
-</p>
-</div>
-
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">5.1</span> loop</h3>
-<div class="outline-text-3" id="text-5-1">
-<p>
-wherever a ';' appears, it may be replaced with one or more newlines.
+<code>[</code>  and <code>]</code> are used to evaluate a conditional expression.
+Expressions can be combined by: <code>!</code>, <code>()</code>, <code>-a</code>, <code>-o</code>.
 </p>
 
-<div class="org-src-container">
+<p>
+<code>((...))</code> will cause the expression to be evaluated by shell arithmetic.
+<i>If the value of the expression is non-0, the return status is 0, which is wired.</i>
+</p>
 
-<pre class="src src-shell"><span style="color: #F92672;">until</span> test-commands; <span style="color: #F92672;">do</span> consequent-commands; <span style="color: #F92672;">done</span>
-<span style="color: #F92672;">while</span> test-commands; <span style="color: #F92672;">do</span> consequent-commands; <span style="color: #F92672;">done</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">if in words is not presented, it is as if ~in $@~ is there</span>
-<span style="color: #F92672;">for</span> name [ [in [words ...] ] ; ] do commands; <span style="color: #F92672;">done</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">if any expr is omit, it is like 1</span>
-<span style="color: #F92672;">for</span> (( expr1 ; expr2 ; expr3 )) ; <span style="color: #F92672;">do</span> commands; <span style="color: #F92672;">done</span>
-<span style="color: #F92672;">for</span> i<span style="color: #F92672;"> in</span> $(<span style="color: #AE81FF; font-weight: bold;">seq</span> 1 10); <span style="color: #F92672;">do</span> say hello; <span style="color: #F92672;">done</span>
-<span style="color: #F92672;">for</span> ((<span style="color: #FD971F;">i</span>=0;i&lt;10;i++)); <span style="color: #F92672;">do </span><span style="color: #F92672;">echo</span> $<span style="color: #FD971F;">i</span>; <span style="color: #F92672;">done</span>
-<span style="color: #F92672;">for</span> i<span style="color: #F92672;"> in</span> {1..10}; <span style="color: #F92672;">do </span><span style="color: #F92672;">echo</span> $<span style="color: #FD971F;">i</span>; <span style="color: #F92672;">done</span>
-<span style="color: #F92672;">break</span>
-<span style="color: #F92672;">continue</span>
-</pre>
-</div>
-</div>
-</div>
+<p>
+<code>[[]]</code> will return 0 or 1, depending on the evaluation of the <i>conditional expression inside</i>.
+The <i>bash conditional expressions</i> are the table done below.
+</p>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">5.2</span> if</h3>
-<div class="outline-text-3" id="text-5-2">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">if</span> test-commands; <span style="color: #F92672;">then</span>
-  consequent-commands;
-[elif more-test-commands; <span style="color: #F92672;">then</span>
-  consequent-commands;
-[else alternative-consequents;]
-<span style="color: #F92672;">fi</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">5.3</span> case</h3>
-<div class="outline-text-3" id="text-5-3">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">case</span> word<span style="color: #F92672;"> in</span>
-  pattern1 | pattern2) command-list ;;
-  pattern) command-list ;&amp; <span style="color: #75715E;"># </span><span style="color: #75715E;">continue with the next clause</span>
-  pattern) command-list ;;&amp; <span style="color: #75715E;"># </span><span style="color: #75715E;">continue to test patterns in next clause</span>
-  pattern) command-list ;;
-  *) default-cmd;;
-<span style="color: #F92672;">esac</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">5.4</span> select</h3>
-<div class="outline-text-3" id="text-5-4">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">select</span> name [in words ...]; <span style="color: #F92672;">do</span> commands; <span style="color: #F92672;">done</span>
-</pre>
-</div>
-
+<p>
+The expression will performs some transformation.
+Not-performed:
+</p>
 <ul class="org-ul">
-<li>if <code>in words</code> is omitted, it is ~in "$@"~.</li>
-<li>PS3 will be the prompt for the selection</li>
-<li>selection should be a number</li>
-<li>anything else will cause the name to be set to null</li>
-<li>the line read is saved in variable <code>REPLY</code></li>
+<li><i>Word splitting</i></li>
+<li><i>filename expansion</i></li>
 </ul>
-</div>
-</div>
+
+<p>
+Performed:
+</p>
+<ul class="org-ul">
+<li><i>tilde expansion</i></li>
+<li>parameter and variable expansion</li>
+<li>arithmetic expansion</li>
+<li>command substitution</li>
+<li>process substitution</li>
+<li>quote removal</li>
+</ul>
+
+<p>
+When using <code>==</code> to compare string, the right hand side string is considered as a pattern,
+and the operation performed is pattern matching, as described in filename expansion.
+</p>
+
+<p>
+The expression can be used with some operators:
+</p>
+<dl class="org-dl">
+<dt><code>(exp)</code></dt><dd>only add the precedence</dd>
+<dt><code>!exp</code></dt><dd>negate</dd>
+<dt><code>exp &amp;&amp; exp</code></dt><dd>and</dd>
+<dt><code>exp || exp</code></dt><dd>or</dd>
+</dl>
 </div>
 
-
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19"><span class="section-number-2">6</span> Condition</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">4.1.1</span> bash conditional expression</h4>
+<div class="outline-text-4" id="text-4-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -516,18 +500,8 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 </tr>
 
 <tr>
-<td class="org-left"><code>-e file</code></td>
+<td class="org-left"><code>-a file</code></td>
 <td class="org-left">file exists</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>-e &lt;file&gt;</code></td>
-<td class="org-left">存在</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>-a &lt;file&gt;</code></td>
-<td class="org-left">更好的存在.(有时候-e会出错)</td>
 </tr>
 
 <tr>
@@ -537,22 +511,23 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 
 <tr>
 <td class="org-left"><code>-L &lt;file&gt;</code></td>
-<td class="org-left">符号链接?</td>
+<td class="org-left">symbolic link</td>
 </tr>
-
+</tbody>
+<tbody>
 <tr>
 <td class="org-left"><code>-r &lt;file&gt;</code></td>
-<td class="org-left">可读?</td>
+<td class="org-left">readable</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-w &lt;file&gt;</code></td>
-<td class="org-left">可写?</td>
+<td class="org-left">writable</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-x &lt;file&gt;</code></td>
-<td class="org-left">可执行?</td>
+<td class="org-left">executable</td>
 </tr>
 
 <tr>
@@ -578,7 +553,7 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 
 <tr>
 <td class="org-left"><code>string1 == string2</code></td>
-<td class="org-left">相等? 也可直接用=</td>
+<td class="org-left">equal</td>
 </tr>
 
 <tr>
@@ -586,467 +561,139 @@ wherever a ';' appears, it may be replaced with one or more newlines.
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>[ num1 -eq num2 ]</code></td>
-<td class="org-left">-eq, -ne, -lt, -le, -gt, -ge</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>(( num1 == num2 ))</code></td>
-<td class="org-left"><code>== != &gt; &gt;= &lt; &lt;=</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>[ false -a true ]</code></td>
-<td class="org-left">and</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[ false -o true ]</code></td>
-<td class="org-left">or</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[ !true ]</code></td>
-<td class="org-left">not</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\[\[ ture &amp;&amp; false 11 ! true ]]</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
 </table>
 </div>
+</div>
+</div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">6.1</span> (())</h3>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">4.2</span> Conditional</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+The <code>if</code> clause signature is <code>if ; then ; elif ; then ; else ; fi</code>.
+The test command is not a condition, but a command.
+The return code of the command is used as the condition.
+If the command returns 0, the body is executed.
+Non-zero will perform the <code>else</code> clause.
+</p>
+
+<p>
+<code>case</code> signature is: <code>case word in p1) cmd;; p2) cmd;; esac</code>
+The word undergoes
+</p>
+<ul class="org-ul">
+<li>tilde expansion</li>
+<li>parameter expansion</li>
+<li>command substitution</li>
+<li>arithmetic expansion
+<ul class="org-ul">
+<li>quote removal</li>
+</ul></li>
+</ul>
+
+<p>
+Use <code>*</code> as the default pattern.
+Patterns can be combined with <code>|</code>.
+</p>
+
+<p>
+Each case must be terminated by <code>;;</code>, <code>;&amp;</code> or <code>;;&amp;</code>.
+</p>
+<dl class="org-dl">
+<dt><code>;;</code></dt><dd>no other matches are attempted</dd>
+<dt><code>;&amp;</code></dt><dd>continue with the next clause, without even evaluate the match</dd>
+<dt><code>;;&amp;</code></dt><dd>test next pattern</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">4.3</span> loop</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+As for other languages, <code>break</code> and <code>continue</code> can be used.
+</p>
+<dl class="org-dl">
+<dt><code>until cond; do cmd; done</code></dt><dd></dd>
+
+<dt><code>while cond; do cmd; done</code></dt><dd></dd>
+
+<dt><code>for name in words; do cmd; done</code></dt><dd>the words can be <code>{1..10}</code>, <code>$(seq 1 10)</code></dd>
+<dt><code>for ((i=0;i&lt;10;i++)); do cmd; done</code></dt><dd></dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">5</span> function</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The function has two methods to declare, use the name and a pair of parenthesis, and the function keyword with optional parenthesis.
+I found using function keyword and NO parenthesis is the best because:
+</p>
+<ul class="org-ul">
+<li>the function keyword tells me it is function, very explicitly</li>
+<li>the parenthesis is not going to accept parameter, thus it causes confusion.</li>
+</ul>
+<p>
+So in a word, use: <code>function foo {}</code>
+</p>
+
+<p>
+A function declaration can be removed by <code>unset -f</code>.
+The argument of the function uses the same way for the argument to the script, the propositional special variables.
+And the call to the function is used as if it is a command.
+</p>
+
+<p>
+Want the return value? The <code>return</code> statement will only set the <i>return code</i> of the command.
+Echo the result and assign the result to a variable may be a choice, but I found it not good because the body might echo something as well.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">6</span> Tips</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><code>source</code> will be in effect in current shell session, but not the sub-shells</li>
+<li><code>export</code> declare global variable, and will be in effect in sub-shells</li>
+</ul>
+</div>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">6.1</span> Check whether a command exists</h3>
 <div class="outline-text-3" id="text-6-1">
-<div class="org-src-container">
-
-<pre class="src src-shell">(( exp ))
-</pre>
-</div>
-
 <p>
-arithmetic expression is evaluated
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">6.2</span> [[]]</h3>
-<div class="outline-text-3" id="text-6-2">
-<div class="org-src-container">
-
-<pre class="src src-shell">[[exp]]
-</pre>
-</div>
-
-<p>
-evaluation of conditional expression
-</p>
-
-<pre class="example">
-[[ $a == z* ]]   # True if $a starts with an "z" (wildcard matching).
-[[ $a == "z*" ]] # True if $a is equal to z* (literal matching).
-</pre>
-</div>
-</div>
-
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">6.3</span> About [] [[]]</h3>
-<div class="outline-text-3" id="text-6-3">
-<ul class="org-ul">
-<li><code>[</code> is a synonym for test, and a builtin for efficiency. It is a command.</li>
-<li><code>[[</code> is a keyword, perform comparisons in a manner more familiar to programmers.</li>
-</ul>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline20" class="outline-2">
-<h2 id="orgheadline20"><span class="section-number-2">7</span> IO</h2>
-<div class="outline-text-2" id="text-7">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">read</span> -p <span style="color: #E6DB74;">"please input: "</span> a b c
-<span style="color: #F92672;">echo</span> -e <span style="color: #E6DB74;">"\n\thello\tworld\n"</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">&#21487;&#20197;&#20351;&#29992;\n&#31561;&#25511;&#21046;&#23383;&#31526;</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23"><span class="section-number-2">8</span> Unix Management</h2>
-<div class="outline-text-2" id="text-8">
-<ul class="org-ul">
-<li>id # 显示用户和组的信息</li>
-<li>dmesg # 查看内核日志</li>
-<li>uname
-<ul class="org-ul">
-<li><code>-v</code> 内核版本 =&gt; <code>Darwin Kernel Version 13.1.0: Wed Apr ... EASE_X86_64</code></li>
-<li><code>-r</code> 内核发行信息 =&gt; <code>13.1.0</code></li>
-<li><code>-m</code> 机器硬件名称 =&gt; <code>x86_64</code></li>
-<li><code>-n</code> 网络节点。等价于~hostname~ =&gt; <code>HebideMacBook-Pro.local</code></li>
-<li><code>-s</code> 操作系统名称。 =&gt; <code>Darwin</code></li>
-<li>如果不加参数，默认使用 -s。 =&gt; <code>Darwin</code></li>
-</ul></li>
-<li>strace ./a.out # details about system calls when a program runs</li>
-<li>tcpdump -tt -r -nn xx.pcap</li>
-<li>curl ifconfig.me</li>
-<li>scp
-<ul class="org-ul">
-<li><code>scp &lt;local&gt; [ -p port ] root@hostname:&lt;path&gt;</code></li>
-<li><code>scp [-p port ] root@hostname:&lt;path&gt; &lt;local&gt;</code></li>
-</ul></li>
-<li>ldd a.out # 打印程序需要的shared lib</li>
-<li>prompt($PS1-4)
-<ul class="org-ul">
-<li><code>\d</code>: date</li>
-<li><code>\D{format}</code></li>
-<li><code>\h</code>: hostname</li>
-<li><code>\H</code>: full hostname</li>
-<li><code>\t</code>: time 24hour HH::MM::SS</li>
-<li><code>\T</code>: time 12hour HH::MM::SS</li>
-<li><code>\@</code>: time 12hour am/pm</li>
-<li><code>\A</code>: time 24hour HH::MM</li>
-<li><code>\w</code>: current working directory</li>
-<li><code>\W</code>: basename of $PWD</li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">8.1</span> job control</h3>
-<div class="outline-text-3" id="text-8-1">
-<ul class="org-ul">
-<li>C-Z suspend</li>
-<li>refer a job
-<ul class="org-ul">
-<li><code>%n</code>: job number</li>
-<li><code>%%</code>: current job</li>
-<li><code>%+</code>: current job</li>
-<li><code>%-</code>: previous job</li>
-<li><code>%</code>: current job</li>
-<li><code>%ce</code>: the job "ce"</li>
-<li><code>%?ce</code>: the job, whose command has "ce"</li>
-</ul></li>
-<li>fg %1: continue it in foreground</li>
-<li>bg %1: continue it in background</li>
-<li>jobs: list jobs</li>
-<li>kill %1: kill the job</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22"><span class="section-number-3">8.2</span> return status</h3>
-<div class="outline-text-3" id="text-8-2">
-<ul class="org-ul">
-<li>simple command: provided by POSIX 1003.1 <code>waitpid</code> function(less than 128)</li>
-<li>if command terminated by signal <code>n</code>, it is <code>128+n</code></li>
-<li>all builtin returns 2 indicating incorrect usage</li>
-</ul>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24"><span class="section-number-2">9</span> escape color</h2>
-<div class="outline-text-2" id="text-9">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #75715E;">#</span><span style="color: #75715E;">!/bin/</span><span style="color: #F92672;">bash</span>
-<span style="color: #75715E;">#</span>
-<span style="color: #75715E;">#   </span><span style="color: #75715E;">This file echoes a bunch of color codes to the</span>
-<span style="color: #75715E;">#   </span><span style="color: #75715E;">terminal to demonstrate what's available.  Each</span>
-<span style="color: #75715E;">#   </span><span style="color: #75715E;">line is the color code of one forground color,</span>
-<span style="color: #75715E;">#   </span><span style="color: #75715E;">out of 17 (default + 16 escapes), followed by a</span>
-<span style="color: #75715E;">#   </span><span style="color: #75715E;">test use of that color on all nine background</span>
-<span style="color: #75715E;">#   </span><span style="color: #75715E;">colors (default + 8 escapes).</span>
-<span style="color: #75715E;">#</span>
-
-<span style="color: #FD971F;">T</span>=<span style="color: #E6DB74;">'gYw'</span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">The test text</span>
-
-<span style="color: #F92672;">echo</span> -e <span style="color: #E6DB74;">"\n                 40m     41m     42m     43m\</span>
-<span style="color: #E6DB74;">     44m     45m     46m     47m"</span>;
-
-<span style="color: #F92672;">for</span> FGs<span style="color: #F92672;"> in</span> <span style="color: #E6DB74;">'    m'</span> <span style="color: #E6DB74;">'   1m'</span> <span style="color: #E6DB74;">'  30m'</span> <span style="color: #E6DB74;">'1;30m'</span> <span style="color: #E6DB74;">'  31m'</span> <span style="color: #E6DB74;">'1;31m'</span> <span style="color: #E6DB74;">'  32m'</span> <span style="color: #E6DB74; font-weight: bold;">\</span>
-           <span style="color: #E6DB74;">'1;32m'</span> <span style="color: #E6DB74;">'  33m'</span> <span style="color: #E6DB74;">'1;33m'</span> <span style="color: #E6DB74;">'  34m'</span> <span style="color: #E6DB74;">'1;34m'</span> <span style="color: #E6DB74;">'  35m'</span> <span style="color: #E6DB74;">'1;35m'</span> <span style="color: #E6DB74; font-weight: bold;">\</span>
-           <span style="color: #E6DB74;">'  36m'</span> <span style="color: #E6DB74;">'1;36m'</span> <span style="color: #E6DB74;">'  37m'</span> <span style="color: #E6DB74;">'1;37m'</span>;
-  <span style="color: #F92672;">do</span> <span style="color: #FD971F;">FG</span>=${<span style="color: #FD971F;">FGs</span>// /}
-  <span style="color: #F92672;">echo</span> -en <span style="color: #E6DB74;">" $FGs \033[$FG  $T  "</span>
-  <span style="color: #F92672;">for</span> BG<span style="color: #F92672;"> in</span> 40m 41m 42m 43m 44m 45m 46m 47m;
-    <span style="color: #F92672;">do </span><span style="color: #F92672;">echo</span> -en <span style="color: #E6DB74;">"$EINS \033[$FG\033[$BG  $T  \033[0m"</span>;
-  <span style="color: #F92672;">done</span>
-  <span style="color: #F92672;">echo</span>;
-<span style="color: #F92672;">done</span>
-<span style="color: #F92672;">echo</span>
-</pre>
-</div>
-
-
-<div class="figure">
-<p><img src="./img/bash-color.png" alt="bash-color.png" />
-</p>
-</div>
-
-<p>
-note:
-</p>
-
-<ul class="org-ul">
-<li>1: bold</li>
-<li>4: underline</li>
-<li>30-37: black, red, green, yellow, blue, pink, cyan, white</li>
-<li>40-47: background</li>
-<li>90-97: light</li>
-<li>100-107: light background</li>
-</ul>
-
-<p>
-example:
-</p>
-
-<ul class="org-ul">
-<li><code>\033[1;4;32;45m</code></li>
-<li><code>\e[32;45m</code></li>
-<li><code>\e[0m</code></li>
-</ul>
-
-<p>
-in PS1, use:
-</p>
-
-<ul class="org-ul">
-<li><code>\[\033[32;45m\]</code></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline32" class="outline-2">
-<h2 id="orgheadline32"><span class="section-number-2">10</span> expansion</h2>
-<div class="outline-text-2" id="text-10">
-<ul class="org-ul">
-<li><code>xxx</code> &lt;=&gt; <code>$(xxx)</code></li>
-</ul>
-</div>
-
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25"><span class="section-number-3">10.1</span> brace expansion</h3>
-<div class="outline-text-3" id="text-10-1">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">echo</span> a{d,b,c}e
-<span style="color: #75715E;"># </span><span style="color: #75715E;">=&gt; ade abe ace</span>
-mkdir /usr/local/{old,new,dist}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26"><span class="section-number-3">10.2</span> tilde expansion</h3>
-<div class="outline-text-3" id="text-10-2">
-<div class="org-src-container">
-
-<pre class="src src-shell">~/foo <span style="color: #75715E;"># </span><span style="color: #75715E;">$HOME/foo</span>
-~hebi/foo <span style="color: #75715E;"># </span><span style="color: #75715E;">home of user hebi</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27"><span class="section-number-3">10.3</span> variable expansion</h3>
-<div class="outline-text-3" id="text-10-3">
-<p>
-return value:
-</p>
-
-<ul class="org-ul">
-<li><code>${var:-word}</code>: if var is unset or null, the value is expansion of word</li>
-<li><code>${var:=word}</code>: if var is unset or null, the expansion of word is assigned to var</li>
-<li><code>${var:?word}</code>: if var is unset or null, the expansion of word is written to stderr, shell exits.
-Otherwise the value of var is returned.</li>
-<li><code>${var:+word}</code>: if var is unset or null, nothing returned. Otherwise expansion of word is returned.</li>
-</ul>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28"><span class="section-number-3">10.4</span> 变量替换</h3>
-<div class="outline-text-3" id="text-10-4">
-<p>
-<b>返回结果，但不改变原变量的值。</b>
+Do not use <code>which</code>, it is expensive, and the return value is not well defined.
+Use <code>hash</code> for commands and <code>type</code> when considering built-in and keywords. <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E;">&#33509;var&#26410;&#34987;&#22768;&#26126;&#65292;&#21017;&#20197;DEFAULT&#20026;&#20854;&#20540;</span>
-${<span style="color: #FD971F;">var</span>-DEFAULT}
-${<span style="color: #FD971F;">var</span>=DEFAULT}
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#33509;</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">1. var &#26410;&#34987;&#22768;&#26126; &#25110;</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">2. &#20854;&#20540;&#20026;&#31354;</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#21017;&#20197;DEFAULT&#20026;&#20854;&#20540;</span>
-${<span style="color: #FD971F;">var</span>:-DEFAULT}
-${<span style="color: #FD971F;">var</span>:=DEFAULT}
-</pre>
-</div>
-
-<p>
-string:
-</p>
-
-<ul class="org-ul">
-<li><code>${str:offset}</code>: substr(offet)</li>
-<li><code>${str:offset:length}</code>: substr(offset, count)</li>
-<li><code>${#var}</code>: return length in character of the expansion of var</li>
-<li><code>${str#word}</code>: pattern is the expansion of word.
-If the pattern matches the beginning of str,
-return the str with the <b><b>shortest</b></b> match of pattern in str deleted.</li>
-<li><code>${str##word}</code>: the same as above, the <b><b>longest</b></b> match is deleted</li>
-<li><code>${str%word}</code>: The tailing of str</li>
-<li><code>${str%%word}</code>: longest</li>
-<li><code>${str/pattern/string}</code>: longest match os pattern is replaced with string
-if pattern begins with
-<ul class="org-ul">
-<li><code>/</code>: all matched is replaced</li>
-<li><code>#</code>: match must happen in the begin</li>
-<li><code>%</code>: match must happen in the tail</li>
-</ul></li>
-<li><code>${str^pattern}</code>: the match is converted from lower case to uppercase</li>
-<li><code>${str^^pattern}</code>: all match</li>
-<li><code>${str,pattern}</code>: upper to lower</li>
-<li><code>${str,,pattern}</code>: all match</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29"><span class="section-number-3">10.5</span> filename expansion</h3>
-<div class="outline-text-3" id="text-10-5">
-<ul class="org-ul">
-<li><code>*</code>: match any string, including null string</li>
-<li><code>?</code>: match any single character</li>
-<li><code>[...]</code>:
-<ul class="org-ul">
-<li><code>[a-dx-z]</code></li>
-<li><code>[!a-d]</code></li>
-<li><code>[^a-d]</code></li>
-<li><code>[[:digit:][:alnum:]]</code></li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30"><span class="section-number-3">10.6</span> 字符串</h3>
-<div class="outline-text-3" id="text-10-6">
-<p>
-substring使用的是bash中的正则。
-</p>
-
-<ul class="org-ul">
-<li><code>${#string}</code> $string的长度</li>
-<li><code>${string:5}</code> $string 从5位置开始的子串</li>
-<li><code>${string:5:3}</code> 5位置开始，提取3个。</li>
-<li><code>${string#substring}</code> 从*开头*删除substring的*最短*匹配</li>
-<li><code>${string##substring}</code> 从*开头*删除substring的*最长*匹配</li>
-<li><code>${string%substring}</code> 从*结尾*删除substring的*最短*匹配</li>
-<li><code>${string%%substring}</code> 从*结尾*删除substring的*最长*匹配</li>
-
-<li><code>${string/substring/replace}</code> 第一个匹配的substring替换为replace</li>
-<li><code>${string/#substring/replace}</code> 开头是substring,则换为replace</li>
-<li><code>${string/%substring/replace}</code> 结尾时substring,则换为replace</li>
-</ul>
-
-<p>
-substring若不加引号,则为正常字符串,加引号则可用$转义.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31"><span class="section-number-3">10.7</span> 数值计算</h3>
-<div class="outline-text-3" id="text-10-7">
-<div class="org-src-container">
-
-<pre class="src src-shell">(( <span style="color: #FD971F;">a</span>=2+3 ))
-a = $(( 2+3 ))
-
-a = ((12))
-<span style="color: #F92672;">echo</span> $((a++)) <span style="color: #75715E;"># </span><span style="color: #75715E;">=&gt; 12</span>
-<span style="color: #F92672;">echo</span> $((++a)) <span style="color: #75715E;"># </span><span style="color: #75715E;">=&gt; 14</span>
-
-<span style="color: #F92672;">echo</span> ((5&gt;3)) <span style="color: #75715E;"># </span><span style="color: #75715E;">=&gt; 1</span>
+<pre class="src src-shell"><span style="color: #F92672;">type</span> foo &gt;/dev/null 2&gt;&amp;1 || 
+    { <span style="color: #F92672;">echo</span> &gt;&amp;2 <span style="color: #E6DB74;">"I require foo but it's not installed.  Aborting."</span>; <span style="color: #F92672;">exit</span> 1; }
+<span style="color: #F92672;">hash</span> foo 2&gt;/dev/null ||
+    { <span style="color: #F92672;">echo</span> &gt;&amp;2 <span style="color: #E6DB74;">"I require foo but it's not installed.  Aborting."</span>; <span style="color: #F92672;">exit</span> 1; }
 </pre>
 </div>
 </div>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
 
-<div id="outline-container-orgheadline33" class="outline-2">
-<h2 id="orgheadline33"><span class="section-number-2">11</span> function</h2>
-<div class="outline-text-2" id="text-11">
-<div class="org-src-container">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script">http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script</a>
+</p></div></div>
 
-<pre class="src src-shell"><span style="color: #A6E22E;">name</span>() compound-command [ redirections ]
-<span style="color: #F92672;">function</span> <span style="color: #A6E22E;">name</span> [()] compound-command [ redirections ]
-</pre>
-</div>
 
-<ul class="org-ul">
-<li>compound commands are often <code>{ list; }</code></li>
-<li>if <code>function</code> keyword is present, <code>()</code> can be omitted.</li>
-<li>function definition may be deleted by <code>unset -f</code></li>
-<li>arguments to function become the positional parameters</li>
-</ul>
 </div>
-</div>
-
-<div id="outline-container-orgheadline34" class="outline-2">
-<h2 id="orgheadline34"><span class="section-number-2">12</span> Script</h2>
-</div>
-
-<div id="outline-container-orgheadline35" class="outline-2">
-<h2 id="orgheadline35"><span class="section-number-2">13</span> My Scripts</h2>
-<div class="outline-text-2" id="text-13">
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E;">papers.txt contains titles of papers, one per line</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">scholar.py is from web, an API-like project for Google Scholar</span>
-<span style="color: #F92672;">while </span><span style="color: #F92672;">read</span> -r line; <span style="color: #F92672;">do</span>
-    <span style="color: #FD971F;">ID</span>=~./scholar.py -c 1 -t -p <span style="color: #E6DB74;">"\"$line\""</span> | grep <span style="color: #E6DB74;">"Cluster ID"</span> | awk <span style="color: #E6DB74;">'{print $3}'</span>~
-    ./scholar.py -c 1 -C $<span style="color: #FD971F;">ID</span> --citation=bt &gt;&gt; out.bib
-<span style="color: #F92672;">done</span> &lt; papers.txt
-</pre>
-</div>
-
-<p>
-loop counter
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #FD971F;">count</span>=1
-<span style="color: #F92672;">while </span><span style="color: #F92672;">read</span> -r line; <span style="color: #F92672;">do</span>
-    <span style="color: #F92672;">echo</span> $<span style="color: #FD971F;">count</span>
-    <span style="color: #F92672;">let</span> <span style="color: #FD971F;">count</span>=count+1
-<span style="color: #F92672;">done</span> &lt; papers.txt
-</pre>
-</div>
-</div>
-</div>
-</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-06 Thu 12:12</p>
+<p class="date">Created: 2016-10-22 Sat 18:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

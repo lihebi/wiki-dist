@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-10 Mon 22:43 -->
+<!-- 2016-10-22 Sat 18:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux</title>
@@ -125,6 +125,10 @@ a:visited {color: red;}
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -180,25 +184,35 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. System</a></li>
-<li><a href="#orgheadline2">2. App</a></li>
-<li><a href="#orgheadline3">3. Job control</a></li>
-<li><a href="#orgheadline4">4. Install fonts</a></li>
-<li><a href="#orgheadline5">5. Power management</a></li>
-<li><a href="#orgheadline8">6. Grub</a>
+<li><a href="#orgheadline2">2. Shell Interaction</a></li>
+<li><a href="#orgheadline4">3. App</a>
 <ul>
-<li><a href="#orgheadline6">6.1. Introduction</a></li>
-<li><a href="#orgheadline7">6.2. Grub 2</a></li>
+<li><a href="#orgheadline3">3.1. Speech recognition engines</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">7. Run level</a>
+<li><a href="#orgheadline6">4. Prompt</a>
 <ul>
-<li><a href="#orgheadline9">7.1. Run level description</a></li>
+<li><a href="#orgheadline5">4.1. escape color</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">8. LD<sub>LIBRARY</sub><sub>PATH</sub></a></li>
-<li><a href="#orgheadline13">9. Networking using NetworkManager</a>
+<li><a href="#orgheadline7">5. Job control</a></li>
+<li><a href="#orgheadline8">6. Install fonts</a></li>
+<li><a href="#orgheadline9">7. Power management</a></li>
+<li><a href="#orgheadline12">8. Grub</a>
 <ul>
-<li><a href="#orgheadline12">9.1. add a wifi connection</a></li>
+<li><a href="#orgheadline10">8.1. Introduction</a></li>
+<li><a href="#orgheadline11">8.2. Grub 2</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline14">9. Run level</a>
+<ul>
+<li><a href="#orgheadline13">9.1. Run level description</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline15">10. LD<sub>LIBRARY</sub><sub>PATH</sub></a></li>
+<li><a href="#orgheadline17">11. Networking using NetworkManager</a>
+<ul>
+<li><a href="#orgheadline16">11.1. add a wifi connection</a></li>
 </ul>
 </li>
 </ul>
@@ -212,39 +226,129 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1"><span class="section-number-2">1</span> System</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>to monitor the IO usage, use the <code>iostat</code> command from <code>sysstat</code> package.</li>
-</ul>
+<dl class="org-dl">
+<dt><code>iostat</code></dt><dd>to monitor the IO usage. (from <code>sysstat</code> package)</dd>
+<dt><code>id</code></dt><dd>show the group information of current user</dd>
+<dt><code>dmesg</code></dt><dd>kernel log</dd>
+</dl>
 </div>
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> App</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Shell Interaction</h2>
 <div class="outline-text-2" id="text-2">
+<dl class="org-dl">
+<dt><code>Ctrl-s</code></dt><dd>stop the screen</dd>
+<dt><code>Ctrl-q</code></dt><dd>recover the screen</dd>
+<dt><code>Shift-pageup/down</code></dt><dd>page up &amp; down</dd>
+<dt><code>shift-Insert</code></dt><dd>paste</dd>
+<dt><code>Ctrl-l</code></dt><dd>clear</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">3</span> App</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>File explorer: konquerer</li>
 <li>Image viewer: feh</li>
 </ul>
 </div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Speech recognition engines</h3>
+<div class="outline-text-3" id="text-3-1">
+<dl class="org-dl">
+<dt><code>gnustep-gui-runtime</code></dt><dd><code>say "hello"</code> It is not working yet</dd>
+<dt><code>festival</code></dt><dd><code>echo "hello" | festival --tts</code> The speech is pretty smooth</dd>
+<dt><code>speech-dispatcher</code></dt><dd><code>spd-say "hello"</code> quality is not that good</dd>
+<dt><code>espeak</code></dt><dd><code>espeak "hello"</code> quality is not that good</dd>
+</dl>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> Job control</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> Prompt</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
-<li><code>C-z</code> to suspend.</li>
-<li><code>fg</code> to bring it to foreground.</li>
-<li><code>jobs</code> to list all background jobs,
-and <code>kill %1</code> to kill the first.</li>
+<li>prompt($PS1-4)
+<ul class="org-ul">
+<li><code>\d</code>: date</li>
+<li><code>\D{format}</code></li>
+<li><code>\h</code>: hostname</li>
+<li><code>\H</code>: full hostname</li>
+<li><code>\t</code>: time 24hour HH::MM::SS</li>
+<li><code>\T</code>: time 12hour HH::MM::SS</li>
+<li><code>\@</code>: time 12hour am/pm</li>
+<li><code>\A</code>: time 24hour HH::MM</li>
+<li><code>\w</code>: current working directory</li>
+<li><code>\W</code>: basename of $PWD</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">4.1</span> escape color</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>1: bold</li>
+<li>4: underline</li>
+<li>30-37: black, red, green, yellow, blue, pink, cyan, white</li>
+<li>40-47: background</li>
+<li>90-97: light</li>
+<li>100-107: light background</li>
+</ul>
 
+<p>
+example:
+</p>
+<ul class="org-ul">
+<li><code>\033[1;4;32;45m</code></li>
+<li><code>\e[32;45m</code></li>
+<li><code>\e[0m</code></li>
+</ul>
+
+<p>
+in PS1, use:
+</p>
+<ul class="org-ul">
+<li><code>\[\033[32;45m\]</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">5</span> Job control</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><code>C-z</code> to suspend.
+<ul class="org-ul">
 <li><code>top</code>, then you can see the CPU usage and all process IDs. Simply press <code>k</code> and enter the PID can kill the process.</li>
+</ul></li>
+<li>refer a job
+<ul class="org-ul">
+<li><code>%n</code>: job number</li>
+<li><code>%%</code>: current job</li>
+<li><code>%+</code>: current job</li>
+<li><code>%-</code>: previous job</li>
+<li><code>%</code>: current job</li>
+<li><code>%ce</code>: the job "ce"</li>
+<li><code>%?ce</code>: the job, whose command has "ce"</li>
+</ul></li>
+<li id="<code>jobs</code>">list all background jobs</li>
+<li id="<code>fg %1</code>">continue it in foreground</li>
+<li id="<code>bg %1</code>">continue it in background</li>
+<li id="<code>kill %1</code>">kill the job (first)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">4</span> Install fonts</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">6</span> Install fonts</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>OTF: OpenType</li>
 <li>TTF: TrueType</li>
@@ -266,9 +370,9 @@ fc-list
 
 
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">5</span> Power management</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">7</span> Power management</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 No extra software needed! <code>systmed</code> can handle it, by <code>acpid</code>.
 The configure file is <code>/etc/systemd/logind.conf</code>.
@@ -287,12 +391,12 @@ Both of them will resume to the current status.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">6</span> Grub</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">6.1</span> Introduction</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">8</span> Grub</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">8.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 Use grub 2 instead of grub legacy. For a quick look at what they look like:
 </p>
@@ -324,9 +428,9 @@ Note that the root is <code>(hd0,2)</code> in grub legacy vs. <code>(hd0,3)</cod
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">6.2</span> Grub 2</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">8.2</span> Grub 2</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
 The menu configure file is located at <code>/boot/grub/grub.cfg</code>.
 It is generated by <code>/usr/sbin/update-grub</code> (8) using templates from <code>/etc/grub.d/*</code> and settings from <code>/etc/default/grub</code>.
@@ -335,9 +439,9 @@ It is generated by <code>/usr/sbin/update-grub</code> (8) using templates from <
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10"><span class="section-number-2">7</span> Run level</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">9</span> Run level</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 Use debian as example distribution.
 </p>
@@ -348,9 +452,9 @@ By default there's no difference between level 2 to 5.
 </p>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">7.1</span> Run level description</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">9.1</span> Run level description</h3>
+<div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li>0: halt</li>
 <li>S: single user mode on boot</li>
@@ -372,9 +476,9 @@ Those scripts are symbol linked to <code>../init.d/xxx</code>.
 </div>
 
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">8</span> LD<sub>LIBRARY</sub><sub>PATH</sub></h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">10</span> LD<sub>LIBRARY</sub><sub>PATH</sub></h2>
+<div class="outline-text-2" id="text-10">
 <p>
 On <code>CentOS</code>, the default <code>LD_LIBRARY_PATH</code> does not contains the <code>/usr/local/lib</code>.
 The consequence is the <code>-lpugi</code> and <code>-lctags</code> are not recognized because they are put in that directory.
@@ -399,9 +503,9 @@ So the solution is <code>sudo ldconfig</code>
 </div>
 
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">9</span> Networking using NetworkManager</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">11</span> Networking using NetworkManager</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 Install network-manager package, and:
 </p>
@@ -430,9 +534,9 @@ systemctl restart NetworkManager
 </div>
 
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">9.1</span> add a wifi connection</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">11.1</span> add a wifi connection</h3>
+<div class="outline-text-3" id="text-11-1">
 <pre class="example">
 nmcli device wifi list
 nmcli device wifi connect IASTATE
@@ -444,7 +548,7 @@ nmcli device wifi connect ID password pwd
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-10 Mon 22:43</p>
+<p class="date">Created: 2016-10-22 Sat 18:29</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

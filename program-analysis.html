@@ -6,7 +6,7 @@
 <!-- 2016-10-22 Sat 18:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>awk</title>
+<title>Program Analysis</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Hebi Li" />
 <style type="text/css">
@@ -109,6 +109,22 @@ a:visited {color: red;}
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -158,123 +174,141 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">awk</h1>
+<h1 class="title">Program Analysis</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">1. usage</a>
+<li><a href="#orgheadline8">1. Tools</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Important Variables</a></li>
+<li><a href="#orgheadline1">1.1. Daikon (forked)</a></li>
+<li><a href="#orgheadline2">1.2. CIL (forked)</a></li>
+<li><a href="#orgheadline3">1.3. Valgrind (forked)</a></li>
+<li><a href="#orgheadline4">1.4. Fjalar (forked)</a></li>
+<li><a href="#orgheadline5">1.5. <del>PIN</del></a></li>
+<li><a href="#orgheadline6">1.6. CCured</a></li>
+<li><a href="#orgheadline7">1.7. Z3</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">2. patterns</a></li>
-<li><a href="#orgheadline4">3. actions</a></li>
-<li><a href="#orgheadline5">4. variable</a></li>
-<li><a href="#orgheadline6">5. examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">1</span> usage</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">1</span> Tools</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-in shell:
-</p>
-
-<p>
-MUST USE single quote.
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-shell">awk <span style="color: #E6DB74;">'pattern {action}'</span>
-awk <span style="color: #E6DB74;">'pattern {action}'</span> input.txt
-awk -f script.awk input.txt
-</pre>
-</div>
-
-<p>
-<code>pattern {action}</code>
-</p>
-
-<p>
-A missing { action } means print the line;
-a missing pattern always matches.
-Pattern-action statements are separated by newlines or semicolons.
-</p>
-</div>
-
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Important Variables</h3>
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Daikon (forked)</h3>
 <div class="outline-text-3" id="text-1-1">
-<dl class="org-dl">
-<dt><code>FS (Field Separator)</code></dt><dd>regular expression used to separate fields; also settable by option -Ffs.</dd>
-<dt><code>NF</code></dt><dd>number of fields in the current record</dd>
-<dt><code>NR</code></dt><dd>ordinal number of the current record</dd>
-<dt><code>FNR</code></dt><dd>ordinal number of the current record in the current file</dd>
-<dt><code>FILENAME</code></dt><dd>the name of the current input file</dd>
-<dt><code>RS</code></dt><dd>input record separator (default newline)</dd>
-<dt><code>OFS</code></dt><dd>output field separator (default blank)</dd>
-<dt><code>ORS</code></dt><dd>output record separator (default newline)</dd>
-</dl>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">2</span> patterns</h2>
-<div class="outline-text-2" id="text-2">
 <p>
-Patterns are arbitrary Boolean combinations (with <code>!</code> <code>||</code> <code>&amp;&amp;</code>)
-of regular expressions and relational expressions.
-</p>
-
-<p>
-A pattern may consist of two patterns separated by a comma;
-in this case, the action is performed for all lines from an occurrence of the first pattern though an occurrence of the second.
-</p>
-
-<p>
-special patterns: <code>BEGIN</code>, <code>END</code>.
-Cannot combine with other patterns.
+Have a set of front end, Fjalar for C.
+Written in Java.
+For C programs, it uses Fjalar to instrument, and run to get trace.
+Then it analyze the invariants.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">3</span> actions</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> CIL (forked)</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
-An action is a sequence of statements.
-Statements are terminated by semicolons, newlines or right braces
+<a href="https://people.eecs.berkeley.edu/~necula/cil/">https://people.eecs.berkeley.edu/~necula/cil/</a>
+</p>
+
+<p>
+CIL (C Intermediate Language) is a high-level representation
+along with a set of tools that permit
+</p>
+<ol class="org-ol">
+<li>easy analysis and</li>
+<li>source-to-source transformation of C programs.</li>
+</ol>
+
+<p>
+It is lower than AST but higher than typical IR.
+It <i>remove the ugly corners of C and output a standard language.</i>
+It can support AST and CFG.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">4</span> variable</h2>
-<div class="outline-text-2" id="text-4">
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> Valgrind (forked)</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
-awk is line-based, and the content of lines are splited into fields <code>$1</code>, <code>$2</code>, &#x2026; by the separator <code>FS</code>.
-<code>$0</code> refers to the entire line.
+Valgrind is an instrumentation framework for building dynamic analysis tools.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">5</span> examples</h2>
-<div class="outline-text-2" id="text-5">
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.4</span> Fjalar (forked)</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
-An example is better than a thousand of words.
+<a href="http://groups.csail.mit.edu/pag/fjalar/">http://groups.csail.mit.edu/pag/fjalar/</a>
 </p>
 
-<div class="org-src-container">
+<p>
+It is a valgrind plugin.
+</p>
 
-<pre class="src src-shell">awk <span style="color: #E6DB74;">'NR==10 {print}'</span> input.txt <span style="color: #75715E;"># </span><span style="color: #75715E;">output 10th line, or empty is less than 10 lines</span>
-</pre>
+<p>
+Kvasir traverses through data structures at run time and outputs their values to a trace file.
+The main role of Kvasir is to serve as a C/C++ front end for the Daikon dynamic invariant detector.
+Kvasir provides Daikon with value traces, and Daikon infers likely invariants over the data structures observed in those traces.
+</p>
+
+
+<p>
+The problem of instrumenting C code is:
+when instrumenting source code, it is
+</p>
+<ol class="org-ol">
+<li>hard to make type safe</li>
+<li>cannot know heap array size</li>
+</ol>
+<p>
+But a binary instrumentation suffers from not getting enough rich information.
+They seem to perform a mixed solution.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.5</span> <del>PIN</del></h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+A dynamic binary instrumentation tool.
+</p>
+
+<p>
+As a dynamic binary instrumentation tool, instrumentation is performed at run time on the compiled binary files.
+Thus, it requires no recompiling of source code and can support instrumenting programs that dynamically generate code.
+</p>
+
+<p>
+They are supporting windows, not good.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.6</span> CCured</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+TODO
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">1.7</span> Z3</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+<a href="https://github.com/Z3Prover/z3">https://github.com/Z3Prover/z3</a>
+</p>
 </div>
 </div>
 </div>
