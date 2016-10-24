@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-10 Mon 22:43 -->
+<!-- 2016-10-23 Sun 23:14 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>R</title>
@@ -109,10 +109,6 @@ a:visited {color: red;}
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -174,30 +170,31 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline3">1.3. Interactive command</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">2. Objects</a>
+<li><a href="#orgheadline8">2. Objects</a>
 <ul>
 <li><a href="#orgheadline5">2.1. Vector</a></li>
 <li><a href="#orgheadline6">2.2. Indexing</a></li>
+<li><a href="#orgheadline7">2.3. data example</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">3. Operators</a></li>
-<li><a href="#orgheadline11">4. Control Structure</a>
+<li><a href="#orgheadline9">3. Operators</a></li>
+<li><a href="#orgheadline12">4. Control Structure</a>
 <ul>
-<li><a href="#orgheadline9">4.1. Conditional</a></li>
-<li><a href="#orgheadline10">4.2. Loop</a></li>
+<li><a href="#orgheadline10">4.1. Conditional</a></li>
+<li><a href="#orgheadline11">4.2. Loop</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">5. Evaluation rules</a></li>
-<li><a href="#orgheadline13">6. Function</a></li>
-<li><a href="#orgheadline14">7. Quote</a></li>
-<li><a href="#orgheadline15">8. Debugging</a></li>
-<li><a href="#orgheadline16">9. Data IO</a></li>
-<li><a href="#orgheadline17">10. Models</a></li>
-<li><a href="#orgheadline21">11. Packages</a>
+<li><a href="#orgheadline13">5. Evaluation rules</a></li>
+<li><a href="#orgheadline14">6. Function</a></li>
+<li><a href="#orgheadline15">7. Quote</a></li>
+<li><a href="#orgheadline16">8. Debugging</a></li>
+<li><a href="#orgheadline17">9. Data IO</a></li>
+<li><a href="#orgheadline18">10. Models</a></li>
+<li><a href="#orgheadline22">11. Packages</a>
 <ul>
-<li><a href="#orgheadline18">11.1. ggplot2</a></li>
-<li><a href="#orgheadline19">11.2. plot(x, y, &#x2026;)</a></li>
-<li><a href="#orgheadline20">11.3. dplyr</a></li>
+<li><a href="#orgheadline19">11.1. ggplot2</a></li>
+<li><a href="#orgheadline20">11.2. plot(x, y, &#x2026;)</a></li>
+<li><a href="#orgheadline21">11.3. dplyr</a></li>
 </ul>
 </li>
 </ul>
@@ -298,8 +295,8 @@ Objects:
 </div>
 
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">2</span> Objects</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">2</span> Objects</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Objects have mode and length.
@@ -391,10 +388,54 @@ z[,,]
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.3</span> data example</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+
+<pre class="src src-R">args = commandArgs(trailingOnly=<span style="color: #66D9EF;">TRUE</span>)
+csvfile = args[1]
+csv = read.csv(csvfile, header=<span style="color: #66D9EF;">TRUE</span>)
+
+total_test <span style="color: #AE81FF;">&lt;-</span> dim(csv)[[1]]
+sub = subset(csv, reach_code&gt;=5)
+total_reach_poi <span style="color: #AE81FF;">&lt;-</span> dim(sub)[[1]]
+sub = subset(csv, reach_code==5 &amp; status_code == 1)
+total_fail_poi <span style="color: #AE81FF;">&lt;-</span> dim(sub)[[1]]
+
+sub <span style="color: #AE81FF;">&lt;-</span> sub[1:(length(csv)-2)]
+<span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: callin ga function)</span>
+funcs = TransferFunction(sub);
+
+<span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: define a function)</span>
+<span style="color: #A6E22E;">Constant</span> <span style="color: #AE81FF;">&lt;-</span> <span style="color: #F92672;">function</span>(data) {
+    <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: return value as a vector)</span>
+    ret <span style="color: #AE81FF;">&lt;-</span> c()
+    i <span style="color: #AE81FF;">&lt;-</span> 1
+    <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: a for loop using the vector as range)</span>
+    <span style="color: #F92672;">for</span> (i <span style="color: #F92672;">in</span> c(1:length(data))) {
+        col = data[i];
+        <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: Get the name of a column)</span>
+        name = names(col);
+        <span style="color: #F92672;">if</span> (substr(name, 1, 6) == <span style="color: #E6DB74;">"output"</span>) {
+            <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: remove of NA)</span>
+            newcol = col[!is.na(col)];
+            <span style="color: #F92672;">if</span> (length(newcol) &gt; 2) {
+                value <span style="color: #AE81FF;">&lt;-</span> newcol[1]
+                <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: check the value of the vector is all the same)</span>
+                <span style="color: #F92672;">if</span> (length(newcol[newcol != value]) == 0) {
+                    <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: pushing a new value to the return vector)</span>
+                    ret <span style="color: #AE81FF;">&lt;-</span> c(ret, paste(<span style="color: #E6DB74;">"name = "</span>,  value))}}}}
+    <span style="color: #F92672;">return</span>(ret)}
+</pre>
+</div>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">3</span> Operators</h2>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">3</span> Operators</h2>
 <div class="outline-text-2" id="text-3">
 <dl class="org-dl">
 <dt>arithmetic</dt><dd><code>+-*/</code>, <code>^</code> for exp, <code>%%</code> for modulus</dd>
@@ -422,15 +463,15 @@ and concatenates them one by one into character strings.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">4</span> Control Structure</h2>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">4</span> Control Structure</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The compound statements are the same as C, can be a single statement without the braces.
 </p>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">4.1</span> Conditional</h3>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">4.1</span> Conditional</h3>
 <div class="outline-text-3" id="text-4-1">
 <dl class="org-dl">
 <dt>if</dt><dd><code>if (STMT) STMT else if (STMT) STMT else STMT</code></dd>
@@ -445,8 +486,8 @@ The compound statements are the same as C, can be a single statement without the
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.2</span> Loop</h3>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">4.2</span> Loop</h3>
 <div class="outline-text-3" id="text-4-2">
 <dl class="org-dl">
 <dt><code>for</code></dt><dd><code>for (NAME in VECTOR) STMT</code></dd>
@@ -458,8 +499,8 @@ The compound statements are the same as C, can be a single statement without the
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">5</span> Evaluation rules</h2>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">5</span> Evaluation rules</h2>
 <div class="outline-text-2" id="text-5">
 <dl class="org-dl">
 <dt>recycling rules</dt><dd>the shortest list is recycled to the length of longest.</dd>
@@ -468,8 +509,8 @@ The compound statements are the same as C, can be a single statement without the
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">6</span> Function</h2>
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">6</span> Function</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <code>function (ARGLIST) BODY</code>
@@ -495,8 +536,8 @@ Partial matching result must be unique, but the exact matched ones are excluded 
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14"><span class="section-number-2">7</span> Quote</h2>
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15"><span class="section-number-2">7</span> Quote</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 The quote will wrap the expression into an object without evaluating it.
@@ -506,8 +547,8 @@ The <code>eval</code> is used to evaluate it.
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">8</span> Debugging</h2>
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">8</span> Debugging</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 To enter the debugger, a call to <code>browser</code> function suffices.
@@ -520,8 +561,8 @@ Every time the function is invoked, the return value will be printed as trace.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16"><span class="section-number-2">9</span> Data IO</h2>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">9</span> Data IO</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><code>write</code></li>
@@ -538,8 +579,8 @@ Every time the function is invoked, the return value will be printed as trace.
 </div>
 
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">10</span> Models</h2>
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">10</span> Models</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Linear model.
@@ -577,11 +618,11 @@ fs <span style="color: #AE81FF;">&lt;-</span> update(fs, sqrt(.) ~ .)
 </div>
 
 
-<div id="outline-container-orgheadline21" class="outline-2">
-<h2 id="orgheadline21"><span class="section-number-2">11</span> Packages</h2>
+<div id="outline-container-orgheadline22" class="outline-2">
+<h2 id="orgheadline22"><span class="section-number-2">11</span> Packages</h2>
 <div class="outline-text-2" id="text-11">
-</div><div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18"><span class="section-number-3">11.1</span> ggplot2</h3>
+</div><div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">11.1</span> ggplot2</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 
@@ -598,8 +639,8 @@ qplot(totbill, tip, geom=<span style="color: #E6DB74;">"point"</span>, colour=da
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19"><span class="section-number-3">11.2</span> plot(x, y, &#x2026;)</h3>
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">11.2</span> plot(x, y, &#x2026;)</h3>
 <div class="outline-text-3" id="text-11-2">
 <p>
 Possible <code>...</code> arguments:
@@ -619,8 +660,8 @@ Possible <code>...</code> arguments:
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">11.3</span> dplyr</h3>
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">11.3</span> dplyr</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 A Grammar of Data Manipulation
@@ -633,7 +674,7 @@ A Grammar of Data Manipulation
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-10 Mon 22:43</p>
+<p class="date">Created: 2016-10-23 Sun 23:14</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
