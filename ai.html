@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-22 Sat 18:29 -->
+<!-- 2016-10-24 Mon 09:34 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Artificial Intelligence</title>
@@ -105,50 +105,6 @@ a:visited {color: red;}
  pre.src {background-color: #01331c; color: #F8F8F2;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -225,53 +181,1066 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline4">1. Adversarial Search</a>
+<li><a href="#orgheadline2">1. Agent Concept</a>
 <ul>
-<li><a href="#orgheadline2">1.1. Minimax Algorithm</a>
-<ul>
-<li><a href="#orgheadline1">1.1.1. The optimal strategies</a></li>
+<li><a href="#orgheadline1">1.1. Agent function v.s. Agent program</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">1.2. Alpha-Beta pruning</a></li>
+<li><a href="#orgheadline11">2. State changing and implementation</a>
+<ul>
+<li><a href="#orgheadline3">2.1. hanoon jugs</a></li>
+<li><a href="#orgheadline10">2.2. 野人与传教士</a>
+<ul>
+<li><a href="#orgheadline7">2.2.1. a. Formulate</a>
+<ul>
+<li><a href="#orgheadline4">2.2.1.1. state</a></li>
+<li><a href="#orgheadline5">2.2.1.2. action</a></li>
+<li><a href="#orgheadline6">2.2.1.3. The complete state space</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">2. Constraint Satisfaction Problems</a>
-<ul>
-<li><a href="#orgheadline5">2.1. Advantage</a></li>
-<li><a href="#orgheadline6">2.2. Variations</a></li>
+<li><a href="#orgheadline8">2.2.2. b. Solve</a></li>
+<li><a href="#orgheadline9">2.2.3. c. discussion</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">3. Logic</a>
+</ul>
+</li>
+<li><a href="#orgheadline13">3. Search Algorithm</a>
 <ul>
-<li><a href="#orgheadline8">3.1. entailment</a></li>
-<li><a href="#orgheadline9">3.2. Propositional logic</a></li>
-<li><a href="#orgheadline10">3.3. First Order Logic</a></li>
+<li><a href="#orgheadline12">3.1. branching factor, BFS, DFS</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline20">4. Formulation</a>
+<ul>
+<li><a href="#orgheadline14">4.1. Floor planning</a></li>
+<li><a href="#orgheadline15">4.2. class scheduling</a></li>
+<li><a href="#orgheadline19">4.3. linving in 5 houses</a>
+<ul>
+<li><a href="#orgheadline16">4.3.1. First representation</a></li>
+<li><a href="#orgheadline17">4.3.2. Second Representation</a></li>
+<li><a href="#orgheadline18">4.3.3. Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline26">5. Propositional Logic</a>
+<ul>
+<li><a href="#orgheadline21">5.1. Simple</a></li>
+<li><a href="#orgheadline22">5.2. Party resolution</a></li>
+<li><a href="#orgheadline23">5.3. 1</a></li>
+<li><a href="#orgheadline24">5.4. 2</a></li>
+<li><a href="#orgheadline25">5.5. 3</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline30">6. Adversarial Search</a>
+<ul>
+<li><a href="#orgheadline28">6.1. Minimax Algorithm</a>
+<ul>
+<li><a href="#orgheadline27">6.1.1. The optimal strategies</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">6.2. Alpha-Beta pruning</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline33">7. Constraint Satisfaction Problems</a>
+<ul>
+<li><a href="#orgheadline31">7.1. Advantage</a></li>
+<li><a href="#orgheadline32">7.2. Variations</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline37">8. Logic</a>
+<ul>
+<li><a href="#orgheadline34">8.1. entailment</a></li>
+<li><a href="#orgheadline35">8.2. Propositional logic</a></li>
+<li><a href="#orgheadline36">8.3. First Order Logic</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline53">9. First order logic</a>
+<ul>
+<li><a href="#orgheadline43">9.1. Some problems</a>
+<ul>
+<li><a href="#orgheadline38">9.1.1. Student problems</a></li>
+<li><a href="#orgheadline39">9.1.2. pollicy problems</a></li>
+<li><a href="#orgheadline40">9.1.3. barber</a></li>
+<li><a href="#orgheadline41">9.1.4. citizen</a></li>
+<li><a href="#orgheadline42">9.1.5. other</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline48">9.2. Unify</a>
+<ul>
+<li><a href="#orgheadline44">9.2.1. {x/A, y/B, z/B}</a></li>
+<li><a href="#orgheadline45">9.2.2. Cannot unify.</a></li>
+<li><a href="#orgheadline46">9.2.3. {x/John, y/John}</a></li>
+<li><a href="#orgheadline47">9.2.4. cannot unify.</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline52">9.3. Barber</a>
+<ul>
+<li><a href="#orgheadline49">9.3.1. 1</a></li>
+<li><a href="#orgheadline50">9.3.2. 2</a></li>
+<li><a href="#orgheadline51">9.3.3. 3</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">1</span> Adversarial Search</h2>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">1</span> Agent Concept</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><i>An agent that senses only partial information about the state cannot be perfectly rational.</i>
+<ul class="org-ul">
+<li>False. The vacuum-cleaning agent is perfectly rational, but it senses only partial information,
+i.e. it doesn't observe the state of the square that is adjacent to it.</li>
+</ul></li>
+<li><i>There exist task environment in which no pure reflex agent can behave rationally.</i>
+<ul class="org-ul">
+<li>True.
+Purely reflective behavior does not take the percept history into account, only the most recent percepts.</li>
+</ul></li>
+<li><i>There exists a task environment in which every agent is rational.</i>
+<ul class="org-ul">
+<li>True.
+A task environment in which there are no decisions to be made: all actions will receive the same output.</li>
+</ul></li>
+<li><i>The input to an agent program is the same as the input to the agent function</i>
+<ul class="org-ul">
+<li>False.
+<ul class="org-ul">
+<li>The input to agent program: current percept</li>
+<li>the input to agent function: entire precept history</li>
+</ul></li>
+</ul></li>
+<li><i>Every agent function is implementable by some program/machine combination</i>
+<ul class="org-ul">
+<li>False. As the textbook said: "No machine can tell <i>in general</i> whether a given program will return an answer on a given input or run forever."</li>
+</ul></li>
+<li><i>suppose an agent selects its action uniformly at random from the set of possible actions.</i>
+    <i>There exists a deterministic task environment in which this agent is rational.</i>
+<ul class="org-ul">
+<li>True.
+In the environment that all actions will produce same output, it is rational.
+Actually all agents are rational in such environment.</li>
+</ul></li>
+<li><i>It is possible for a given agent to be perfectly rational in two distinct task environments.</i>
+<ul class="org-ul">
+<li>True.
+There's recently a kickstarter project that produces dice with more than 6 faces.
+If an agent is rational in a N face dice bet game, it will perform equally well in a 6-face dice or a 8-face dice.</li>
+</ul></li>
+<li><i>Every agent is rational in an un-observable environment.</i>
+<ul class="org-ul">
+<li>False.
+A vacuum agent that can move will be rational, but the one that does not move is not.</li>
+</ul></li>
+<li><i>A perfectly rational poker-playing agent never loses.</i>
+<ul class="org-ul">
+<li>False.
+Two such perfectly rational agent play against each other will give one lose.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Agent function v.s. Agent program</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><i>Can there be more than one agent program that implements a given agent function?</i>
+     <i>Give an example, or show why one is not possible.</i>
+<ul class="org-ul">
+<li>There are infinite agent programs that implement a given agent function.
+If an agent function acts only depend on previous \(n\) percepts.
+Than, the agent implementations that have n or more memory will always produce the same action.</li>
+</ul></li>
+<li><i>Are there agent functions that cannot be implemented by any agent program?</i>
+<ul class="org-ul">
+<li>Yes. As the textbook said: "No machine can tell <i>in general</i> whether a given program will return an answer on a given input or run forever."</li>
+</ul></li>
+<li><i>Given a fixed machine architecture, does each agent program implement exactly one agent function?</i>
+<ul class="org-ul">
+<li>Yes. A program implements a mapping from percepts to actions.
+The same percept will only result in one action.</li>
+</ul></li>
+<li><i>Given an architecture with n bits of storage, how many different possible agent programs are there?</i>
+<ul class="org-ul">
+<li>There would be \(a^{2^n}\) possible programs; \(2^n\) possible states and \(a\) choices for each state.</li>
+</ul></li>
+<li><i>Suppose we keep the agent program fixed but speed up the machine by a factor of two.</i>
+     <i>Does that change the agent function?</i>
+<ul class="org-ul">
+<li>No. The speed does not have influence on the produced action.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">2</span> State changing and implementation</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.1</span> hanoon jugs</h3>
+<div class="outline-text-3" id="text-2-1">
+<blockquote>
+<p>
+<i>Give a complete problem formulation for each of the following.</i>
+<i>Choose a formulation that is precise enough to be implemented.</i>
+<i>d. You have three jugs, measuring 12 gallons, 8 gallons, and 3 gallons, and a water faucet.</i>
+<i>You can fill the jugs up or empty them out from one to another or onto the ground.</i>
+<i>You need to measure out exactly one gallon.</i>
+</p>
+</blockquote>
+
+<p>
+Define a 3-tuple <code>(x,y,z)</code> where x,y,z are the amount of water in the three jugs.
+</p>
+<ul class="org-ul">
+<li>Initial state: <code>(0,0,0)</code>.</li>
+<li>Action:
+<ul class="org-ul">
+<li>FILL: given values <code>(x,y,z)</code> , generate
+<ul class="org-ul">
+<li><code>(12,y,z)</code>, <code>(x,8,z)</code>, <code>(x,y,4)</code></li>
+</ul></li>
+<li>EMPTY: given values <code>(x,y,z)</code> , generate
+<ul class="org-ul">
+<li><code>(0,y,z)</code>, <code>(x,0,z)</code>, <code>(x,y,0)</code></li>
+</ul></li>
+<li>POUR: Given value <code>(x,y)</code>, let <code>t = min(x+y, cap(y))</code>, pour x into y, generate:
+<ul class="org-ul">
+<li><code>(x-(t-y), t)</code></li>
+</ul></li>
+</ul></li>
+<li>Cost function: Number of actions.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.2</span> 野人与传教士</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+三个野人，三个传教士，一艘船。如何过河？
+</p>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">2.2.1</span> a. Formulate</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+<i>a. Formulate the problem precisely,</i>
+<i>making only those distinctions necessary to ensure a valid solution.</i>
+<i>Draw a diagram of the complete state space.</i>
+</p>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-5">
+<h5 id="orgheadline4"><span class="section-number-5">2.2.1.1</span> state</h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<p>
+<code>(M1,C1,B1,M2,C2,B2)</code> where <code>M1,C1,B1</code> is the number of missionaries, cannibals, boats on the left side,
+<code>(M2,C2,B2)</code> is the corresponding number on the right side.
+</p>
+
+<p>
+The start state is <code>(3,3,1,0,0,0)</code>.
+The goal: <code>(0,0,0,3,3,1)</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-5">
+<h5 id="orgheadline5"><span class="section-number-5">2.2.1.2</span> action</h5>
+<div class="outline-text-5" id="text-2-2-1-2">
+<p>
+Action: <code>(m,c,b)</code> on left side: where b means the change of boat, m and c means the change of missionaries and cannibals.
+The action allows the boat number B1 or B2 to change from 1 to 0, along with M and C on the side move to the other side by one or two.
+</p>
+<pre class="example">
+(-1 0 -1)
+(0 -1 -1)
+(-2 0 -1)
+(0 -2 -1)
+(-1 -1 -1)
+
+(1 0 1)
+(0 1 1)
+(2 0 1)
+(0 2 1)
+(1 1 1)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-5">
+<h5 id="orgheadline6"><span class="section-number-5">2.2.1.3</span> The complete state space</h5>
+<div class="outline-text-5" id="text-2-2-1-3">
+<p>
+In the table below, the striped items are those that cannibals will eat missionaries.
+The state that is not reachable (e.g. <code>(3,3,0,0,0,1)</code>) is not striped out.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><code>(3 3 1 0 0 0)</code></td>
+<td class="org-left"><del><code>(3 2 1 0 1 0)</code></del></td>
+<td class="org-left"><del><code>(3 1 1 0 2 0)</code></del></td>
+<td class="org-left"><del><code>(3 0 1 0 3 0)</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><del><code>(2 3 1 1 0 0)</code></del></td>
+<td class="org-left"><code>(2 2 1 1 1 0)</code></td>
+<td class="org-left"><del><code>(2 1 1 1 2 0)</code></del></td>
+<td class="org-left"><del><code>(2 0 1 1 3 0)</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><del><code>(1 3 1 2 0 0)</code></del></td>
+<td class="org-left"><del><code>(1 2 1 2 1 0)</code></del></td>
+<td class="org-left"><code>(1 1 1 2 2 0)</code></td>
+<td class="org-left"><del><code>(1 0 1 2 3 0)</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><del><code>(0 3 1 3 0 0)</code></del></td>
+<td class="org-left"><del><code>(0 2 1 3 1 0)</code></del></td>
+<td class="org-left"><del><code>(0 1 1 3 2 0)</code></del></td>
+<td class="org-left"><code>(0 0 1 3 3 0)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>(3 3 0 0 0 1)</code></td>
+<td class="org-left"><del><code>(3 2 0 0 1 1)</code></del></td>
+<td class="org-left"><del><code>(3 1 0 0 2 1)</code></del></td>
+<td class="org-left"><del><code>(3 0 0 0 3 1)</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><del><code>(2 3 0 1 0 1)</code></del></td>
+<td class="org-left"><code>(2 2 0 1 1 1)</code></td>
+<td class="org-left"><del><code>(2 1 0 1 2 1)</code></del></td>
+<td class="org-left"><del><code>(2 0 0 1 3 1)</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><del><code>(1 3 0 2 0 1)</code></del></td>
+<td class="org-left"><del><code>(1 2 0 2 1 1)</code></del></td>
+<td class="org-left"><code>(1 1 0 2 2 1)</code></td>
+<td class="org-left"><del><code>(1 0 0 2 3 1)</code></del></td>
+</tr>
+
+<tr>
+<td class="org-left"><del><code>(0 3 0 3 0 1)</code></del></td>
+<td class="org-left"><del><code>(0 2 0 3 1 1)</code></del></td>
+<td class="org-left"><del><code>(0 1 0 3 2 1)</code></del></td>
+<td class="org-left"><code>(0 0 0 3 3 1)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.2.2</span> b. Solve</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+<i>Implement and solve the problem optimally using an appropriate search algorithm.</i>
+<i>Is it a good idea to check for repeated states?</i>
+</p>
+
+<p>
+The solution:
+</p>
+<pre class="example">
+(3,3,1,0,0,0)
+-&gt; (2,2,0,1,1,1)
+-&gt; (3,2,1,0,1,0)
+-&gt; (3,0,0,0,3,1)
+-&gt; (3,1,1,0,2,0)
+-&gt; (1,1,0,2,2,1)
+-&gt; (2,2,1,1,1,0)
+-&gt; (0,2,0,3,1,1)
+-&gt; (0,3,1,3,0,0)
+-&gt; (0,1,0,3,2,1)
+-&gt; (0,2,1,3,1,0)
+-&gt; (0,0,0,3,1,0)
+</pre>
+
+<p>
+Yes, we should check repeated states to avoid infinite recursion.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.2.3</span> c. discussion</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+<i>c. Why do you think people have a hard time solving this puzzle,</i>
+<i>given that the state space is so simple?</i>
+</p>
+
+<ol class="org-ol">
+<li>It is hard to manually work it out.</li>
+<li>the repeat states need to be removed, which increase difficulty for manual solving.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> Search Algorithm</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.1</span> branching factor, BFS, DFS</h3>
+<div class="outline-text-3" id="text-3-1">
+<blockquote>
+<p>
+3.26 Consider the unbounded version of regular 2D grid shown in Figure 39.
+The start state is at the origin, (0,0), and the goal state is at (x,y).
+</p>
+
+<ul class="org-ul">
+<li>What is the branching factor b in the state space?</li>
+<li>How many distict states are there at depth k (for k &gt; 0)?</li>
+<li>What is the maximum number of nodes expanded by breadth-first tree search?</li>
+<li>What is the maximum number of nodes expanded by breadth-first graph search?</li>
+<li>Is h= |u-x| + |v-y| an admissible heuristic for a state at (u,v)? explain.</li>
+<li>How many nodes are expanded by A* graph search using h?</li>
+<li>Does h remain admissible if some links are removed?</li>
+<li>Does h remain admissible if some links are added between nonadjacent states?</li>
+</ul>
+</blockquote>
+
+<ul class="org-ul">
+<li><i>What is the branching factor b in the state space?</i>
+<ul class="org-ul">
+<li>Since it is a 2D grid, there're 4 directions for each node. The branching factor is 4.</li>
+</ul></li>
+<li><i>How many distict states are there at depth k (for k &gt; 0)?</i>
+<ul class="org-ul">
+<li>For depth 1, there're 1+4 states;</li>
+<li>For depth 2, there're 1+4+8 states;</li>
+<li>For depth 3, there're 1+4+8+12 states;</li>
+<li>For depth k, there're 1 + 4 + 8 + .. + 4k = 2k<sup>2</sup> + 2k + 1</li>
+</ul></li>
+<li><i>What is the maximum number of nodes expanded by breadth-first tree search?</i>
+<ul class="org-ul">
+<li>The depth of the goal is |x|+|y|, and if we allow the loopy states on the search tree,
+we will have 4 branches for each node. Thus the maximum total nodes to be expanded:
+\(1 + 4^1 + 4^2 + .. +  4^(|x|+|y|)\)</li>
+</ul></li>
+<li><i>What is the maximum number of nodes expanded by breadth-first graph search?</i>
+<ul class="org-ul">
+<li>For graph search, we only expand nodes that are not in exploded set.
+The expanded nodes will be the distinct state of depth |x|+|y|:
+1 + 4 + 8 + .. + 4k</li>
+</ul></li>
+<li><i>Is h= |u-x| + |v-y| an admissible heuristic for a state at (u,v)? explain.</i>
+<ul class="org-ul">
+<li>Yes. Because it never overestimates the cost:
+it is the optimal path from (u,v) to (x,y) in a 2D grid given that all links cost 1.</li>
+</ul></li>
+<li><i>f. How many nodes are expanded by <code>A*</code> graph search using h?</i>
+<ul class="org-ul">
+<li>It is |x|*|y|. Because all the paths in the rectangle are optimal paths.</li>
+</ul></li>
+<li><i>g. Does h remain admissible if some links are removed?</i>
+<ul class="org-ul">
+<li>Yes. Removing links can only make the best path longer if possible,
+so h remains an underestimate.</li>
+</ul></li>
+<li><i>h. Does h remain admissible if some links are added between nonadjacent states?</i>
+<ul class="org-ul">
+<li>No. We could add some links that makes the optimal solution shorter.
+Thus h would overestimate the cost.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20"><span class="section-number-2">4</span> Formulation</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">4.1</span> Floor planning</h3>
+<div class="outline-text-3" id="text-4-1">
+<blockquote>
+<p>
+<i>6.4 Given the precise formulations for each of the following as a Constraint Satisfaction Problems:</i>
+</p>
+<ol class="org-ol">
+<li><i>Rectilinear floor-planning: find non-overlapping places in a large rectangle for a number of smaller rectangles.</i></li>
+</ol>
+</blockquote>
+
+<ul class="org-ul">
+<li>Variables:
+<ul class="org-ul">
+<li>WIDTH and HEIGHT for the large rectangle.</li>
+<li>R<sub>i</sub> for each rectangles, R<sub>i</sub>.w and R<sub>i</sub>.h for the width and height of R<sub>i</sub> respectively.</li>
+<li>the position P<sub>i</sub> for <i>top-left</i> corner of the rectangle R<sub>i</sub> (P<sub>i</sub>.x and P<sub>i</sub>.y for the co-ordinates)</li>
+</ul></li>
+<li>Domains: {P<sub>i</sub>.x &isin; [0, WIDTH]}</li>
+<li>Constraints: the four corners of R<sub>i</sub> should not be inside the area of R<sub>j</sub>, for each \(i \neq j\)
+<ul class="org-ul">
+<li>for each \(i \neq j\)</li>
+<li>for each corner \((x,y)\) in
+\(\{(P_{i}.x, P_{i}.y)\), \((P_i.x + R_i.w, P_i.y)\), \((P_i.x, P_i.y + R_i.h)\), \((P_i.x+R_i.w, P_i.y + R_i.h)\}\)</li>
+<li>\(\neg (P_{j}.x < x < P_{j}.x + R_{j}.w \cap P_{j}.y < y < P_{j}.y + R_{j}.h)\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">4.2</span> class scheduling</h3>
+<div class="outline-text-3" id="text-4-2">
+<blockquote>
+<ol class="org-ol">
+<li><i>Class scheduling: There is a fixed number of professors and classrooms,</i>
+      <i>a list of classes to be offered, and a list of possible time slots for classes.</i>
+      <i>Each professor has a set of classes that he or she can teach.</i></li>
+</ol>
+</blockquote>
+
+<ul class="org-ul">
+<li>Variables:
+<ul class="org-ul">
+<li>P<sub>i</sub> for each professor, with \(P_i.classes\) be the set of classes he or she can teach</li>
+<li>R<sub>i</sub> for each room</li>
+<li>C<sub>i</sub> for each class</li>
+<li>T<sub>i</sub> for each time slot</li>
+<li>Assignment A<sub>i</sub>, the i-th assignment, is a 4-tuple \((A_i.prof, A_i.room, A_i.class, A_i.time)\).</li>
+</ul></li>
+<li>Domain
+<ul class="org-ul">
+<li>\(A_i.prof\) &isin; {P<sub>j</sub>}</li>
+<li>\(A_i.room\) &isin; {R<sub>j</sub>}</li>
+<li>\(A_i.class\) &isin; {C<sub>j</sub>}</li>
+<li>\(A_i.time\) &isin; {T<sub>j</sub>}</li>
+</ul></li>
+<li>Constraint
+<ul class="org-ul">
+<li>\(A_i.class \in A_i.prof.classes\) for all i</li>
+<li>\(\neg (A_i.time = A_j.time \cap A_i.prof = A_j.prof)\) for all \(i \neq j\)</li>
+<li>\(\neg (A_i.time = A_j.time \cap A_i.room = A_j.room)\) for all \(i \neq j\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">4.3</span> linving in 5 houses</h3>
+<div class="outline-text-3" id="text-4-3">
+<blockquote>
+<p>
+<i>Consider the following logic puzzle: In five houses, each with a different color,</i>
+<i>live five persons of different nationalities, each of whom prefers a different brand of candy,</i>
+<i>a different drink, and a different pet.</i>
+<i>Given the following facts, the questions to answer are</i>
+<i>"where does the zebra live, and in which house do they drink water?"</i>
+<i>Discuss different representations of this problem as a CSP.</i>
+<i>Why would one prefer one representation over another?</i>
+</p>
+</blockquote>
+
+<p class="verse">
+<i>The Englishman lives in the red house.</i><br  />
+<i>The Spaniard owns the dog.</i><br  />
+<i>The Norwegian lives in the first house on the left.</i><br  />
+<i>The green house is immediately to the right of the ivory house.</i><br  />
+<i>The man who eats Hershey bars lives in the house next to the man with the fox.</i><br  />
+<i>Kit Kats are eaten in the yellow house.</i><br  />
+<i>The Norwegian lives next to the blue house.</i><br  />
+<i>The Smarties eater owns snails.</i><br  />
+<i>The Snickers eater drinks orange juice.</i><br  />
+<i>The Ukrainian drinks tea.</i><br  />
+<i>The Japanese eats Milky Ways.</i><br  />
+<i>Kit Kats are eaten in a house next to the house where the horse is kept.</i><br  />
+<i>Coffee is drunk in the green house.</i><br  />
+<i>Milk is drunk in the middle house.</i><br  />
+</p>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">4.3.1</span> First representation</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+This representation is based on the house.
+</p>
+
+<ul class="org-ul">
+<li>Variables and domains:
+<ul class="org-ul">
+<li>H for the houses
+<ul class="org-ul">
+<li>.n: nationality</li>
+<li>.b: hold brand of candy</li>
+<li>.lb: the one lived in this house like the brand of candy</li>
+<li>.c: color</li>
+<li>.d: hold drink</li>
+<li>.ld: the man lived in this house like the drink</li>
+<li>.pet: hold pet</li>
+<li>.index: index of the house from left to right</li>
+</ul></li>
+</ul></li>
+<li>Domains
+<ul class="org-ul">
+<li>h.n &isin; Englishman, Spaniard, etc.</li>
+<li>h.c &isin; red, green, etc.</li>
+<li>h.b &isin; ivory, smarties, etc.</li>
+<li>h.d &isin; water, tea, etc.</li>
+<li>h.p &isin; dog, fox, snail, etc.</li>
+<li>h.index &isin; [1,5]</li>
+</ul></li>
+<li>Constraints
+<ul class="org-ul">
+<li><i>The Englishman lives in the red house.</i> <br  />
+&not; h.c=red &cup; h.n=Englishman</li>
+<li><i>The Spaniard owns the dog.</i> <br  />
+&not; h.n=Spanisard &cup; h.pet=dog</li>
+<li><i>The Norwegian lives in the first house on the left.</i><br  />
+&not; h.n = Norwegian &cup; h.index = 1</li>
+<li><i>The green house is immediately to the right of the ivory house.</i><br  />
+&not; (h1.c = green &cap; h2.b = ivory) &cup; h1.index = h2.index + 1</li>
+<li><i>The man who eats Hershey bars lives in the house next to the man with the fox.</i><br  />
+&not; (h1.lb=Hersheybar &cap; &cap; h2.pet = fox) &cup; | h1.index-h2.index | = 1</li>
+<li><i>Kit Kats are eaten in the yellow house.</i><br  />
+&not; h.c=yellow &cup; h.lb = KitKats</li>
+<li><i>The Norwegian lives next to the blue house.</i><br  />
+&not; (h1.n=Norwegian &cap; h2.c = blue) &cup; | h1.index - h2.index |=1</li>
+<li><i>The Smarties eater owns snails.</i><br  />
+&not; h.lb=smarties &cup; h.p = snails</li>
+<li><i>The Snickers eater drinks orange juice.</i><br  />
+&not; h.lb=snickers &cup; h.ld = OrangeJuice</li>
+<li><i>The Ukrainian drinks tea.</i>
+        &not; h.n=Ukrainian &cup; h.ld=tea</li>
+<li><i>The Japanese eats Milky Ways.</i>
+        &not; h.n=Japanese &cup; h.lb=MilkyWays</li>
+<li><i>Kit Kats are eaten in a house next to the house where the horse is kept.</i>
+        &not; (h1.b=Kats &cap; h2.pet=horse) &cup; |h1.index-h2.index|=1</li>
+<li><i>Coffee is drunk in the green house.</i>
+        &not; h.d=coffee &cup; h.c=green</li>
+<li><i>Milk is drunk in the middle house.</i>
+        &not; h.d=milk &cup; h.index=3</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">4.3.2</span> Second Representation</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+This representation is based on the Person.
+</p>
+
+<ul class="org-ul">
+<li>Variables:
+<ul class="org-ul">
+<li>P for person
+<ul class="org-ul">
+<li>.n : nationality</li>
+<li>.b : in his house, the candy that holds</li>
+<li>.lb : the brand of candy he likes</li>
+<li>.c : the color of his house</li>
+<li>.d: the drink held in his house</li>
+<li>.ld: the drink he likes</li>
+<li>.pet: his pet</li>
+<li>.index: the index of his house</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+<p>
+The domains and constraints are similar.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">4.3.3</span> Comparison</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+Similarly, we can also derive the representation based on other variables, e.g. drink, candy, etc.
+One would prefer one to the other based on the query type he want.
+For example, if the query is based on the house, e.g. which house hold some drink, he would prefer the house-based representation.
+Similarly if the query is based on person, e.g. what pet does the Englishman keeps, he would prefer the person-based representation.
+But essentially they are the same.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">5</span> Propositional Logic</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">5.1</span> Simple</h3>
+<div class="outline-text-3" id="text-5-1">
+<blockquote>
+<p>
+<i>Given the following, can you prove that the unicorn is mythical?</i>
+<i>How about magical? Horned?</i>
+</p>
+
+<p>
+<i>If the unicorn is mythical, then it is immortal,</i>
+<i>but if it is not mythical, then it is a mortal mammal.</i>
+<i>If the unicorn is either immortal or a mammal, then it is horned.</i>
+<i>The unicorn is magical if it is horned.</i>
+</p>
+</blockquote>
+
+<p>
+The formula writes:
+</p>
+<ul class="org-ul">
+<li>\(\neg mythical \vee immortal\)</li>
+<li>\(mythical \vee mammal\)</li>
+<li>\(\neg (immortal \vee mammal) \vee horned\)</li>
+<li>\(\neg horned \vee magical\)</li>
+</ul>
+
+<p>
+We have the enumerated truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">mythical</th>
+<th scope="col" class="org-left">immortal</th>
+<th scope="col" class="org-left">mammal</th>
+<th scope="col" class="org-left">horned</th>
+<th scope="col" class="org-left">magical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Based on these, we can derive:
+</p>
+<ul class="org-ul">
+<li>We cannot prove unicorn is mythical.</li>
+<li>We can prove it is magical.</li>
+<li>We can prove it is horned.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">5.2</span> Party resolution</h3>
+<div class="outline-text-3" id="text-5-2">
+<blockquote>
+<p>
+<i>7.18 Consider the following sentence:</i>
+\(((Food \Rightarrow Party) \vee (Drinks \Rightarrow Party)) \Rightarrow ((food \wedge drinks) \Rightarrow Party)\)
+</p>
+<ol class="org-ol">
+<li><i>Determine, use enumeration, whether the sentence is</i>
+      <i>valid, satisfiable (but neg valid), or unsatisfiable.</i></li>
+<li><i>Convert the left-hand and right-hand sides of the main implication into CNF,</i>
+      <i>Showing each step, and explain how the results confirm your answer to (a)</i></li>
+<li><i>Prove your answer to (a) using resolution.</i></li>
+</ol>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">5.3</span> 1</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+It is Valid.
+The enumeration:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">F</th>
+<th scope="col" class="org-left">D</th>
+<th scope="col" class="org-left">P</th>
+<th scope="col" class="org-left">left hand</th>
+<th scope="col" class="org-left">right hand</th>
+<th scope="col" class="org-left">left &rArr; right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">5.4</span> 2</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+left-hand CNF:
+</p>
+
+<blockquote>
+<p>
+((F &rArr; P) &or; (D &rArr; P)
+</p>
+
+<p>
+&spades; (&not; F &or; P) &or; (&not; D &or; P)
+</p>
+
+<p>
+&spades; (&not; F &or; P &or; &not; D &or; P)
+</p>
+
+<p>
+&spades; (&not; F &or; &not; D &or; P)
+</p>
+</blockquote>
+
+<p>
+right-hand CNF:
+</p>
+
+<blockquote>
+<p>
+(F &and; D) &rArr; P
+</p>
+
+<p>
+&spades; &not; (F &and; D) &or; P
+</p>
+
+<p>
+&spades; (&not; F &or; &not; D) &or; P
+</p>
+
+<p>
+&spades; &not; F &or; &not; D &or; P
+</p>
+</blockquote>
+
+<p>
+As we can see, they are exactly the same. Thus the production is valid.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">5.5</span> 3</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+We can prove it by proving the negation is unsatisfiable.
+</p>
+
+<p>
+\(\neg ((F \Rightarrow P) \vee (D \Rightarrow P) \Rightarrow ((F \vee D) \Rightarrow P))\)
+</p>
+
+<blockquote>
+<p>
+&spades; &not; (((F &rArr; P) &or; (D &rArr; P)) &rArr; ((F &and; D) &rArr; P))
+</p>
+
+<p>
+&spades; &not; ( &not; ((F &rArr; P) &or; (D &rArr; P)) &or; ((F &and; D) &rArr; P))
+</p>
+
+<p>
+&spades; ((F &rArr; P) &or; (D &rArr; P)) &and; (&not; ((F &and; D) &rArr; P))
+</p>
+
+<p>
+&spades; ((&not; F &or; P) &or; (&not; D &or; P)) &and; (&not; (&not; (F &and; D) &or; P))
+</p>
+
+<p>
+&spades; (&not; F &or; &not; D &or; P) &and; (F &and; D) &and; &not; P
+</p>
+
+<p>
+&spades; (&not; F &or; &not; D &or; P) &and; F &and; D &and; &not; P
+</p>
+</blockquote>
+
+<p>
+This resolves to empty clause, thus the original sentence is valid.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline30" class="outline-2">
+<h2 id="orgheadline30"><span class="section-number-2">6</span> Adversarial Search</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 This is multiple agents, also known as <i>game</i>.
 </p>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.1</span> Minimax Algorithm</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">6.1</span> Minimax Algorithm</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 There're two players, Min and Max, each takes turn to execute.
 Max moves first.
 </p>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> The optimal strategies</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27"><span class="section-number-4">6.1.1</span> The optimal strategies</h4>
+<div class="outline-text-4" id="text-6-1-1">
 <p>
 Basically it recursively solve the problem.
 The Utility function is the payoff.
@@ -281,9 +1250,9 @@ It actually list the tree of state space, and it is optimal.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.2</span> Alpha-Beta pruning</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">6.2</span> Alpha-Beta pruning</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 The problem of minimax algorithm is its node grow exponential.
 This algorithm is used to prune the subtree that does not affect the result.
@@ -325,9 +1294,9 @@ Max-Value(state, alpha, beta) {
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">2</span> Constraint Satisfaction Problems</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline33" class="outline-2">
+<h2 id="orgheadline33"><span class="section-number-2">7</span> Constraint Satisfaction Problems</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 It seems to formulate the search problems in a uniformed representation:
 </p>
@@ -342,18 +1311,18 @@ The goal is to find the assignment of values to the variables, that satisfies th
 </p>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.1</span> Advantage</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">7.1</span> Advantage</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>it uses <i>general purpose heuristic</i> rather than <i>problem-specific</i> ones.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">2.2</span> Variations</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32"><span class="section-number-3">7.2</span> Variations</h3>
+<div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>continuous or discrete domain</li>
 <li>finite or infinite domain</li>
@@ -366,12 +1335,12 @@ The goal is to find the assignment of values to the variables, that satisfies th
 
 
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">3</span> Logic</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.1</span> entailment</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline37" class="outline-2">
+<h2 id="orgheadline37"><span class="section-number-2">8</span> Logic</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">8.1</span> entailment</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 Entailment: &beta; \models &alpha;, reads:
 the sentence &beta; entails the sentence &alpha;
@@ -381,9 +1350,9 @@ if and only if
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">3.2</span> Propositional logic</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35"><span class="section-number-3">8.2</span> Propositional logic</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
 a.k.a. boolean logic.
 </p>
@@ -474,9 +1443,9 @@ The naming resolution is because, the pair of complementary literals is resolved
 </div>
 
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">3.3</span> First Order Logic</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">8.3</span> First Order Logic</h3>
+<div class="outline-text-3" id="text-8-3">
 <p>
 &and; is the natural connective with &exist;.
 Using &rArr; as the main connective with &exist; often causes errors:
@@ -545,10 +1514,352 @@ Properties:
 </div>
 </div>
 </div>
+
+
+
+<div id="outline-container-orgheadline53" class="outline-2">
+<h2 id="orgheadline53"><span class="section-number-2">9</span> First order logic</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="orgheadline43"><span class="section-number-3">9.1</span> Some problems</h3>
+<div class="outline-text-3" id="text-9-1">
+</div><div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">9.1.1</span> Student problems</h4>
+<div class="outline-text-4" id="text-9-1-1">
+<blockquote>
+<ol class="org-ol">
+<li><i>Some students took French in spring 2001.</i></li>
+<li><i>Every student who takes French passes it.</i></li>
+<li><i>Only one student took Greek in spring 2001.</i></li>
+<li><i>The best score in Greek is always higher than the best score in French.</i></li>
+</ol>
+</blockquote>
+
+<dl class="org-dl">
+<dt><code>student(x)</code></dt><dd>x is student</dd>
+<dt><code>f,g</code></dt><dd>French and German courses</dd>
+<dt><code>take(x,c,s)</code></dt><dd>student <code>x</code> takes course <code>c</code> in semester <code>s</code></dd>
+<dt><code>pass(x,c)</code></dt><dd>student <code>x</code> passes course <code>c</code></dd>
+<dt><code>score(x,c,s)</code></dt><dd>the score of student <code>x</code> in course <code>c</code> in semester <code>s</code>.</dd>
+<dt><code>x&gt;y</code></dt><dd>x is greater than y</dd>
+</dl>
+
+<blockquote>
+<ol class="org-ol">
+<li>\(\exists x student(x) \wedge take(x,f,spring2001)\)</li>
+<li>\(\forall x,s student(s) \wedge take(x,f,s) \Rightarrow pass(x,f,s)\)</li>
+<li>\(\exists x student(x) \wedge take(x,g,sprint2001) \wedge \forall \: y y \ne x \Rightarrow \neg take(y,g,sprint2001)\)</li>
+<li>\(\forall s \exists x \forall y score(x,g,s) > score(y,f,s)\)</li>
+</ol>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">9.1.2</span> pollicy problems</h4>
+<div class="outline-text-4" id="text-9-1-2">
+<blockquote>
+<ol class="org-ol">
+<li><i>Every person who buys a policy is smart.</i></li>
+<li><i>No person buys an expensive policy.</i></li>
+<li><i>There is an agent who sells policies only to people who are not insured.</i></li>
+</ol>
+</blockquote>
+
+<dl class="org-dl">
+<dt><code>person(x)</code></dt><dd>x is person</dd>
+<dt><code>expensive(x)</code></dt><dd>x is expensive</dd>
+<dt><code>agent(x)</code></dt><dd>x is agent</dd>
+<dt><code>insured(x)</code></dt><dd>x is insured</dd>
+<dt><code>smart(x)</code></dt><dd>x is smart</dd>
+<dt><code>buy(x,y,z)</code></dt><dd><code>x</code> buys <code>y</code> from <code>z</code></dd>
+<dt><code>sell(x,y,z)</code></dt><dd><code>x</code> sells <code>y</code> to <code>z</code></dd>
+</dl>
+
+<blockquote>
+<ol class="org-ol">
+<li>&forall; person(x) &and; (&exist; y,z policy(y) &and; buy(x,y,z)) &rArr; smart(x)</li>
+<li>&forall; x,y,z person(x) &and; policy(y) &and; expensive(y) &rArr; &not; buy(x,y,z)</li>
+<li>&exist; x agent(x) &and; &forall; y,z policy(y) &and; sell(x,y,z) &rArr; (person(z) &and; &not; insured(z))</li>
+</ol>
+</blockquote>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">9.1.3</span> barber</h4>
+<div class="outline-text-4" id="text-9-1-3">
+<blockquote>
+<ol class="org-ol">
+<li><i>There is a barber who shaves all men in town who do not shave themselves.</i></li>
+</ol>
+</blockquote>
+
+<dl class="org-dl">
+<dt><code>man(x)</code></dt><dd>x is man</dd>
+<dt><code>barber(x)</code></dt><dd>x is a barber</dd>
+<dt><code>shaves(x,y)</code></dt><dd><code>x</code> shaves <code>y</code></dd>
+</dl>
+
+<blockquote>
+<ol class="org-ol">
+<li>&exist; x &forall; y barber(x) &and; man(y) &and; &not; shaves(y,y) &rArr; shaves(x,y)</li>
+</ol>
+</blockquote>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">9.1.4</span> citizen</h4>
+<div class="outline-text-4" id="text-9-1-4">
+<blockquote>
+<ol class="org-ol">
+<li><i>A person born in the UK, each of whose parents is a UK citizen or a UK resident, is a UK citizen by birth.</i></li>
+<li><i>A person born outside the UK, one of whose parents is a UK citizen by birth, is a UK citizen by descent.</i></li>
+</ol>
+</blockquote>
+<dl class="org-dl">
+<dt><code>person(x)</code></dt><dd>x is person</dd>
+<dt><code>parent(x,y)</code></dt><dd><code>x</code> is parent of <code>y</code></dd>
+<dt><code>citizen(x,c)</code></dt><dd><code>x</code> is a citizen of country <code>c</code></dd>
+<dt><code>citizen(x,c,r)</code></dt><dd><code>x</code> is a citizen of country <code>c</code>, for reason <code>r</code></dd>
+<dt><code>resident(x,c)</code></dt><dd><code>x</code> is a resident of country <code>c</code></dd>
+<dt><code>born(x,c)</code></dt><dd><code>x</code> was born in country <code>c</code></dd>
+</dl>
+<blockquote>
+<ol class="org-ol">
+<li>&forall; x person(x) &and; born(x,UK) &and;
+(&forall; y parent(y,x) &rArr; ((&exist; r citizen(y,UK,r)) &or; resident(y,UK)))
+&rArr; citizen(x,UK,BIRTH)</li>
+<li>&forall; x person(x) &and; &not; born(x,UK) &and;
+(&exist; y parent(y,x) &and; citizen(y,UK,BIRTH))
+&rArr; citizen(x,UK,DESCENT)</li>
+</ol>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">9.1.5</span> other</h4>
+<div class="outline-text-4" id="text-9-1-5">
+<blockquote>
+<ol class="org-ol">
+<li><i>Politicians can fool some of the people all of the time,</i>
+        <i>and they can fool all of the people some of the time,</i>
+        <i>but they can’t fool all of the people all of the time.</i></li>
+
+<li><i>All Greeks speak the same language. (Use Speaks(x,l) to mean that person x speaks language l.)</i></li>
+</ol>
+</blockquote>
+
+<dl class="org-dl">
+<dt><code>person(x)</code></dt><dd>x is person</dd>
+<dt><code>politician(x)</code></dt><dd>x is politician</dd>
+<dt><code>fool(x,y,t)</code></dt><dd><code>x</code> fools <code>y</code> at time <code>t</code></dd>
+<dt><code>german(x)</code></dt><dd><code>x</code> is German.</dd>
+</dl>
+
+<blockquote>
+<ol class="org-ol">
+<li>&forall; x politician(x) &rArr;
+        (&exist; y &forall; t person(y) &and; fool(x,y,t)) &and;
+        (&exist; t &forall; y person(y) &rArr; fool(x,y,t)) &and;
+        &not; (&forall; t &forall; y person(y) &rArr; fool(x,y,t))</li>
+<li>&forall; x,y,l german(x) &and; german(y) &and; Speaks(x,l) &rArr; Speaks(y,l)</li>
+</ol>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48"><span class="section-number-3">9.2</span> Unify</h3>
+<div class="outline-text-3" id="text-9-2">
+<blockquote>
+<p>
+<i>For each pair of atomic sentences, give the most general unifier if it exists:</i>
+</p>
+
+<ol class="org-ol">
+<li><i>P(A,B,B), P(x,y,z)</i></li>
+<li><i>Q(y,G(A,B)),Q(G(x,x),y)</i></li>
+<li><i>Older(Father(y),y),Older(Father(x),John)</i></li>
+<li><i>Knows(Father(y),y), Knows(x,x)</i></li>
+</ol>
+</blockquote>
+</div>
+
+<div id="outline-container-orgheadline44" class="outline-4">
+<h4 id="orgheadline44"><span class="section-number-4">9.2.1</span> {x/A, y/B, z/B}</h4>
+<div class="outline-text-4" id="text-9-2-1">
+<blockquote>
+<p>
+<i>P(A,B,B), P(x,y,z)</i>
+</p>
+
+<p>
+&rArr; <i>P(A,B,B), P(A,y,z)</i> : {x/A}
+</p>
+
+<p>
+&rArr; <i>P(A,B,B), P(A,B,z)</i> : {x/A, y/B}
+</p>
+
+<p>
+&rArr; <i>P(A,B,B), P(A,B,B)</i> : {x/A, y/B, z/B}
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">9.2.2</span> Cannot unify.</h4>
+<div class="outline-text-4" id="text-9-2-2">
+<p>
+To see why:
+</p>
+<blockquote>
+<p>
+Q(y,G(A,B)),Q(G(x,x),y) : {y/G(x,x)}
+</p>
+
+<p>
+&rArr; Q(G(x,x), G(A,B)), Q(G(x,x), G(x,x)) : {y/G(x,x), x/A}
+</p>
+
+<p>
+&rArr; Q(G(A,A), G(A,B)), Q(G(A,A), G(A,A))
+</p>
+</blockquote>
+<p>
+In the last formula, A cannot be unified to B.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">9.2.3</span> {x/John, y/John}</h4>
+<div class="outline-text-4" id="text-9-2-3">
+<blockquote>
+<p>
+<i>Older(Father(y),y),Older(Father(x),John)</i>
+</p>
+
+<p>
+&rArr; <i>Older(Father(John),John),Older(Father(x),John)</i> : {y/John}
+</p>
+
+<p>
+&rArr; <i>Older(Father(John),John),Older(Father(John),John)</i> : {y/John, x/John}
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgheadline47" class="outline-4">
+<h4 id="orgheadline47"><span class="section-number-4">9.2.4</span> cannot unify.</h4>
+<div class="outline-text-4" id="text-9-2-4">
+<blockquote>
+<p>
+Knows(Father(y),y), Knows(x,x) : {x/Father(y)}
+</p>
+
+<p>
+&rArr; Knows(Father(y),y), Knows(Father(y),Father(y))
+</p>
+</blockquote>
+
+<p>
+In the last formula, y cannot be unified to Father(y).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52"><span class="section-number-3">9.3</span> Barber</h3>
+<div class="outline-text-3" id="text-9-3">
+<blockquote>
+<p>
+<i>9.20 Let L be the first-order language with a single predicate S(p, q),</i>
+<i>meaning “p shaves q.” Assume a domain of people.</i>
+</p>
+
+<ol class="org-ol">
+<li><i>Consider the sentence “There exists a person P who shaves every one who does not shave themselves,</i>
+      <i>and only people that do not shave themselves.”</i>
+      <i>Express this in L.</i></li>
+<li><i>Convert the sentence in (a) to clausal form.</i></li>
+<li><i>Construct a resolution proof to show that the clauses in (b) are inherently inconsistent.</i>
+      <i>(Note: you do not need any additional axioms.)</i></li>
+</ol>
+</blockquote>
+</div>
+
+<div id="outline-container-orgheadline49" class="outline-4">
+<h4 id="orgheadline49"><span class="section-number-4">9.3.1</span> 1</h4>
+<div class="outline-text-4" id="text-9-3-1">
+<p>
+&exist; p &forall; q person(p) &and; person(q) &and; (&not; S(q,q) &hArr; S(p,q))
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline50" class="outline-4">
+<h4 id="orgheadline50"><span class="section-number-4">9.3.2</span> 2</h4>
+<div class="outline-text-4" id="text-9-3-2">
+<p>
+1st order formula:
+</p>
+
+\begin{equation}
+\exists p \: \forall q \: person(p) \wedge person(q) \wedge (\neg S(q,q) \Leftrightarrow S(p,q))
+\end{equation}
+
+\begin{equation}
+\exists p \: \forall q \: person(p) \wedge person(q) \wedge (\neg S(q,q) \Rightarrow S(p,q)) \wedge (S(p,q) \Rightarrow \neg S(q,q))
+\end{equation}
+
+<p>
+remove implication:
+</p>
+
+\begin{equation}
+\exists p \: \forall q \: person(p) \wedge person(q) \wedge (S(q,q) \vee S(p,q)) \wedge (\neg S(p,q) \vee \neg S(q,q))
+\end{equation}
+
+<p>
+skolemize off the existence:
+</p>
+
+\begin{equation}
+\forall q \: person(P) \wedge person(q) \wedge (S(q,q) \vee S(P,q)) \wedge (\neg S(P,q) \vee \neg S(q,q)) : \{p={P}\}
+\end{equation}
+
+<p>
+drop universal qualifier:
+</p>
+
+\begin{equation}
+person(P) \wedge person(q) \wedge (S(q,q) \vee S(P,q)) \wedge (\neg S(P,q) \vee \neg S(q,q))
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-orgheadline51" class="outline-4">
+<h4 id="orgheadline51"><span class="section-number-4">9.3.3</span> 3</h4>
+<div class="outline-text-4" id="text-9-3-3">
+<p>
+The CNF above resolves to empty clause, which is false, meaning the logic is not satisfiable.
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-22 Sat 18:29</p>
+<p class="date">Created: 2016-10-24 Mon 09:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
