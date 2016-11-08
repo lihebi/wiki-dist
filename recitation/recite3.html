@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-06 Thu 12:13 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:55 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>COMS342 Recitation 3</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,173 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -311,11 +234,11 @@ for the JavaScript code in this tag.
 <h1 class="title">COMS342 Recitation 3</h1>
 
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">1</span> Visitor</h2>
+<div id="outline-container-org87847fc" class="outline-2">
+<h2 id="org87847fc"><span class="section-number-2">1</span> Visitor</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Visitor pattern</h3>
+</div><div id="outline-container-orgbe46037" class="outline-3">
+<h3 id="orgbe46037"><span class="section-number-3">1.1</span> Visitor pattern</h3>
 <div class="outline-text-3" id="text-1-1">
 <blockquote>
 <p>
@@ -326,8 +249,8 @@ Visitor lets you define a new operation without changing theclasses of the eleme
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> The problem and the naive solution</h3>
+<div id="outline-container-orgeb0a49f" class="outline-3">
+<h3 id="orgeb0a49f"><span class="section-number-3">1.2</span> The problem and the naive solution</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>We have a list of classes in a class hierarchy, e.g. AST nodes.</li>
@@ -346,8 +269,8 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> The pattern</h3>
+<div id="outline-container-orge5353a5" class="outline-3">
+<h3 id="orge5353a5"><span class="section-number-3">1.3</span> The pattern</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>We define a hierarchy of visitors</li>
@@ -362,59 +285,57 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">1.4</span> Example</h3>
+<div id="outline-container-org40dbe1c" class="outline-3">
+<h3 id="org40dbe1c"><span class="section-number-3">1.4</span> Example</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">interface</span> <span style="color: #228b22;">AST</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">ASTNode</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span><span style="color: #909183;">(</span><span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Exp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">ASTNode</span> <span style="color: #7388d6;">{</span>
 
-<pre class="src src-java"><span style="color: #F92672;">public</span> <span style="color: #F92672;">interface</span> <span style="color: #66D9EF;">AST</span> {
-    <span style="color: #F92672;">public</span> <span style="color: #F92672;">static</span> <span style="color: #F92672;">abstract</span> <span style="color: #F92672;">class</span> <span style="color: #66D9EF;">ASTNode</span> {
-        <span style="color: #F92672;">public</span> <span style="color: #F92672;">abstract</span> <span style="color: #66D9EF;">Object</span> <span style="color: #A6E22E;">accept</span>(<span style="color: #66D9EF;">Visitor</span> <span style="color: #FD971F;">visitor</span>);
-    }
-    <span style="color: #F92672;">public</span> <span style="color: #F92672;">static</span> <span style="color: #F92672;">abstract</span> <span style="color: #F92672;">class</span> <span style="color: #66D9EF;">Exp</span> <span style="color: #F92672;">extends</span> <span style="color: #66D9EF;">ASTNode</span> {
-
-    }
-    <span style="color: #F92672;">public</span> <span style="color: #F92672;">static</span> <span style="color: #F92672;">class</span> <span style="color: #66D9EF;">NumExp</span> <span style="color: #F92672;">extends</span> <span style="color: #66D9EF;">Exp</span> {
-        <span style="color: #66D9EF;">double</span> <span style="color: #FD971F;">_val</span>;
-        <span style="color: #F92672;">public</span> <span style="color: #66D9EF;">Object</span> <span style="color: #A6E22E;">accept</span>(<span style="color: #66D9EF;">Visitor</span> <span style="color: #FD971F;">visitor</span>) {
-            <span style="color: #F92672;">return</span> visitor.visit(<span style="color: #F92672;">this</span>);
-        }
-    }
-    <span style="color: #F92672;">public</span> <span style="color: #F92672;">static</span> <span style="color: #F92672;">class</span> <span style="color: #66D9EF;">AddExp</span> <span style="color: #F92672;">extends</span> <span style="color: #66D9EF;">CompoundArithExp</span> {
-        <span style="color: #F92672;">public</span> <span style="color: #A6E22E;">AddExp</span>(<span style="color: #66D9EF;">List</span>&lt;<span style="color: #66D9EF;">Exp</span>&gt; <span style="color: #FD971F;">args</span>) {
-            <span style="color: #F92672;">super</span>(args);
-        }
-        <span style="color: #F92672;">public</span> <span style="color: #66D9EF;">Object</span> <span style="color: #A6E22E;">accept</span>(<span style="color: #66D9EF;">Visitor</span> <span style="color: #FD971F;">visitor</span>) {
-            <span style="color: #F92672;">return</span> visitor.visit(<span style="color: #F92672;">this</span>);
-        }
-    }
-}
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">NumExp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">Exp</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_val</span>;
+        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span><span style="color: #909183;">(</span><span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> visitor.visit<span style="color: #709870;">(</span><span style="color: #a020f0;">this</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">AddExp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">CompoundArithExp</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">AddExp</span><span style="color: #909183;">(</span><span style="color: #228b22;">List</span><span style="color: #709870;">&lt;</span><span style="color: #228b22;">Exp</span><span style="color: #709870;">&gt;</span> <span style="color: #a0522d;">args</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">super</span><span style="color: #709870;">(</span>args<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span><span style="color: #909183;">(</span><span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> visitor.visit<span style="color: #709870;">(</span><span style="color: #a020f0;">this</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">1.5</span> Example - follow</h3>
+<div id="outline-container-orga4f9487" class="outline-3">
+<h3 id="orga4f9487"><span class="section-number-3">1.5</span> Example - follow</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
-
-<pre class="src src-java"><span style="color: #F92672;">public</span> <span style="color: #F92672;">class</span> <span style="color: #66D9EF;">Evaluator</span> <span style="color: #F92672;">implements</span> <span style="color: #66D9EF;">Visitor</span>&lt;<span style="color: #66D9EF;">Value</span>&gt; {
-    <span style="color: #F92672;">public</span> <span style="color: #66D9EF;">Value</span> <span style="color: #A6E22E;">visit</span>(<span style="color: #66D9EF;">NumExp</span> <span style="color: #FD971F;">e</span>) {
-        <span style="color: #F92672;">return</span> <span style="color: #F92672;">new</span> <span style="color: #66D9EF;">NumVal</span>(e.v());
-    }
-    <span style="color: #F92672;">public</span> <span style="color: #66D9EF;">Value</span> <span style="color: #A6E22E;">visit</span>(<span style="color: #66D9EF;">AddExp</span> <span style="color: #FD971F;">e</span>) {
-        <span style="color: #66D9EF;">List</span>&lt;<span style="color: #66D9EF;">Exp</span>&gt; <span style="color: #FD971F;">operands</span> = e.all();
-        <span style="color: #66D9EF;">double</span> <span style="color: #FD971F;">result</span> = 0;
-        <span style="color: #F92672;">for</span> (<span style="color: #66D9EF;">Exp</span> <span style="color: #FD971F;">exp</span> : operands) {
-            <span style="color: #66D9EF;">NumVal</span> <span style="color: #FD971F;">intermediate</span> = (<span style="color: #66D9EF;">NumVal</span>) exp.accept(<span style="color: #F92672;">this</span>); <span style="color: #75715E;">// </span><span style="color: #75715E;">Dynamic</span>
-            <span style="color: #75715E;">// </span><span style="color: #75715E;">type-checking</span>
-            result += intermediate.v(); <span style="color: #75715E;">// </span><span style="color: #75715E;">Semantics of AddExp in terms of the</span>
-            <span style="color: #75715E;">// </span><span style="color: #75715E;">target language.</span>
-        }
-        <span style="color: #F92672;">return</span> <span style="color: #F92672;">new</span> <span style="color: #66D9EF;">NumVal</span>(result);
-    }
-}
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Evaluator</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Visitor</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Value</span><span style="color: #707183;">&gt;</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">NumExp</span> <span style="color: #a0522d;">e</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span><span style="color: #909183;">(</span>e.v<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">AddExp</span> <span style="color: #a0522d;">e</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">Exp</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">operands</span> = e.all<span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">result</span> = 0;
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">Exp</span> <span style="color: #a0522d;">exp</span> : operands<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #228b22;">NumVal</span> <span style="color: #a0522d;">intermediate</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">NumVal</span><span style="color: #709870;">)</span> exp.accept<span style="color: #709870;">(</span><span style="color: #a020f0;">this</span><span style="color: #709870;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Dynamic</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">type-checking</span>
+            result += intermediate.v<span style="color: #709870;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Semantics of AddExp in terms of the</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">target language.</span>
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span><span style="color: #909183;">(</span>result<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -423,7 +344,7 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-06 Thu 12:13</p>
+<p class="date">Created: 2016-11-08 Tue 13:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-06 Thu 12:13 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C Library</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,155 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -295,48 +236,48 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. math</a></li>
-<li><a href="#orgheadline2">2. signal.h</a></li>
-<li><a href="#orgheadline8">3. socket</a>
+<li><a href="#org8194d82">1. math</a></li>
+<li><a href="#orgb2d48f6">2. signal.h</a></li>
+<li><a href="#org82bef2b">3. socket</a>
 <ul>
-<li><a href="#orgheadline4">3.1. API</a>
+<li><a href="#orgc30573f">3.1. API</a>
 <ul>
-<li><a href="#orgheadline3">3.1.1. Server</a></li>
+<li><a href="#org509f395">3.1.1. Server</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">3.2. Code Snippets</a>
+<li><a href="#org58480a7">3.2. Code Snippets</a>
 <ul>
-<li><a href="#orgheadline5">3.2.1. TCP client</a></li>
-<li><a href="#orgheadline6">3.2.2. TCP server</a></li>
+<li><a href="#org5aaac47">3.2.1. TCP client</a></li>
+<li><a href="#org2e57d69">3.2.2. TCP server</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline11">4. stdio</a>
+<li><a href="#org7f1b6d0">4. stdio</a>
 <ul>
-<li><a href="#orgheadline9">4.1. stdio.h</a></li>
-<li><a href="#orgheadline10">4.2. examples</a></li>
+<li><a href="#org6fd72ef">4.1. stdio.h</a></li>
+<li><a href="#org981c351">4.2. examples</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">5. stdlib</a>
+<li><a href="#orge092685">5. stdlib</a>
 <ul>
-<li><a href="#orgheadline12">5.1. stdlib.h</a></li>
-<li><a href="#orgheadline13">5.2. realpath</a></li>
-<li><a href="#orgheadline14">5.3. sys/time.h</a></li>
+<li><a href="#orgaf3d87c">5.1. stdlib.h</a></li>
+<li><a href="#orgb06f062">5.2. realpath</a></li>
+<li><a href="#orgd9c1f2e">5.3. sys/time.h</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline16">6. strings.h</a></li>
-<li><a href="#orgheadline18">7. unistd</a>
+<li><a href="#orgb6f7d7f">6. strings.h</a></li>
+<li><a href="#org6dae4d1">7. unistd</a>
 <ul>
-<li><a href="#orgheadline17">7.1. readlink</a></li>
+<li><a href="#org7e326c6">7.1. readlink</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> math</h2>
+<div id="outline-container-org8194d82" class="outline-2">
+<h2 id="org8194d82"><span class="section-number-2">1</span> math</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>ceil(2.5)</li>
@@ -346,61 +287,59 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> signal.h</h2>
+<div id="outline-container-orgb2d48f6" class="outline-2">
+<h2 id="orgb2d48f6"><span class="section-number-2">2</span> signal.h</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 signal
 </p>
 
 <div class="org-src-container">
+<pre class="src src-C"><span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * sig</span>
+<span style="color: #8b2252;"> * SIGABRT Signal Abort &#20013;&#27490;</span>
+<span style="color: #8b2252;"> * SIGFPE Floating-Point-Exception &#28014;&#28857;&#25968;&#24322;&#24120;</span>
+<span style="color: #8b2252;"> * SIGILL Illegal Instruction &#19981;&#21512;&#27861;&#25351;&#20196;</span>
+<span style="color: #8b2252;"> * SIGINT Interrupt &#20013;&#26029;</span>
+<span style="color: #8b2252;"> * SIGSEGV Segmentation Violation &#27573;&#38169;&#35823;</span>
+<span style="color: #8b2252;"> * SIGTERM Terminate &#20013;&#27490;</span>
+<span style="color: #8b2252;"> * SIGPIPE Broken pipe &#31649;&#36947;&#38169;&#35823;</span>
+<span style="color: #8b2252;"> */</span>
 
-<pre class="src src-C"><span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * sig</span>
-<span style="color: #75715E;"> * SIGABRT Signal Abort &#20013;&#27490;</span>
-<span style="color: #75715E;"> * SIGFPE Floating-Point-Exception &#28014;&#28857;&#25968;&#24322;&#24120;</span>
-<span style="color: #75715E;"> * SIGILL Illegal Instruction &#19981;&#21512;&#27861;&#25351;&#20196;</span>
-<span style="color: #75715E;"> * SIGINT Interrupt &#20013;&#26029;</span>
-<span style="color: #75715E;"> * SIGSEGV Segmentation Violation &#27573;&#38169;&#35823;</span>
-<span style="color: #75715E;"> * SIGTERM Terminate &#20013;&#27490;</span>
-<span style="color: #75715E;"> * SIGPIPE Broken pipe &#31649;&#36947;&#38169;&#35823;</span>
-<span style="color: #75715E;"> */</span>
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * `SIGPIPE`: one process open a pipe or FIFO for reading before another wrote to it.</span>
+<span style="color: #8b2252;"> If the reading process never starts, or terminates unexpectly, writing to it raises SIGPIPE.</span>
+<span style="color: #8b2252;"> Or output to a socket that isn't connected.</span>
+<span style="color: #8b2252;"> */</span>
 
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * `SIGPIPE`: one process open a pipe or FIFO for reading before another wrote to it.</span>
-<span style="color: #75715E;"> If the reading process never starts, or terminates unexpectly, writing to it raises SIGPIPE.</span>
-<span style="color: #75715E;"> Or output to a socket that isn't connected.</span>
-<span style="color: #75715E;"> */</span>
-
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * func</span>
-<span style="color: #75715E;"> * SIG_DFL default</span>
-<span style="color: #75715E;"> * SIG_IGN Ignore</span>
-<span style="color: #75715E;"> * customize: void handler_function(int parameter)</span>
-<span style="color: #75715E;"> */</span>
-<span style="color: #66D9EF;">void</span> (*<span style="color: #A6E22E;">signal</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">sig</span>, <span style="color: #66D9EF;">void</span> (*<span style="color: #FD971F;">func</span>)(<span style="color: #66D9EF;">int</span>))) (<span style="color: #66D9EF;">int</span>);
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * func</span>
+<span style="color: #8b2252;"> * SIG_DFL default</span>
+<span style="color: #8b2252;"> * SIG_IGN Ignore</span>
+<span style="color: #8b2252;"> * customize: void handler_function(int parameter)</span>
+<span style="color: #8b2252;"> */</span>
+<span style="color: #228b22;">void</span> <span style="color: #707183;">(</span>*<span style="color: #0000ff;">signal</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sig</span>, <span style="color: #228b22;">void</span> <span style="color: #909183;">(</span>*<span style="color: #a0522d;">func</span><span style="color: #909183;">)(</span><span style="color: #228b22;">int</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">3</span> socket</h2>
+<div id="outline-container-org82bef2b" class="outline-2">
+<h2 id="org82bef2b"><span class="section-number-2">3</span> socket</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">3.1</span> API</h3>
+</div><div id="outline-container-orgc30573f" class="outline-3">
+<h3 id="orgc30573f"><span class="section-number-3">3.1</span> API</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <code>socket</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">domain: AF_INET(IPv4), AF_INET6(IPv6)</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">type: SOCK_STREAM, SOCK_DGRAM</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">protocol: end-to-end protocol. IPPROTO_TCP, IPPROTO_UDP</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">socket</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">domain</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">type</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">protocol</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">domain: AF_INET(IPv4), AF_INET6(IPv6)</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">type: SOCK_STREAM, SOCK_DGRAM</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">protocol: end-to-end protocol. IPPROTO_TCP, IPPROTO_UDP</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">socket</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">domain</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">type</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">protocol</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -409,10 +348,9 @@ signal
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">src: "192.168.1.1"</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">dst: *&#25968;&#23383;</span>
-inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">addressFamily</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">src</span>, <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">dst</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">src: "192.168.1.1"</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">dst: *&#25968;&#23383;</span>
+inet_pton<span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">addressFamily</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">src</span>, <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">dst</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -421,10 +359,9 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#25968;&#23383; =&gt; "192.168.1.1"</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">socklen_t: INET_ADDRSTRLEN IPv4&#21487;&#33021;&#26368;&#38271;&#30340;&#32467;&#26524;&#23383;&#31526;&#20018;&#65288;&#23383;&#33410;&#65289;</span>
-<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #A6E22E;">inet_ntop</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">addressFamily</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">src</span>, <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">dst</span>, <span style="color: #66D9EF;">socklen_t</span> <span style="color: #FD971F;">dstBytes</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#23383; =&gt; "192.168.1.1"</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">socklen_t: INET_ADDRSTRLEN IPv4&#21487;&#33021;&#26368;&#38271;&#30340;&#32467;&#26524;&#23383;&#31526;&#20018;&#65288;&#23383;&#33410;&#65289;</span>
+<span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #0000ff;">inet_ntop</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">addressFamily</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">src</span>, <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">dst</span>, <span style="color: #228b22;">socklen_t</span> <span style="color: #a0522d;">dstBytes</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -433,9 +370,8 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">convert hostshort from host byte order to network byte order.</span>
-<span style="color: #66D9EF;">uint16_t</span> <span style="color: #A6E22E;">htons</span>(<span style="color: #66D9EF;">unit16_t</span> <span style="color: #FD971F;">hostshort</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">convert hostshort from host byte order to network byte order.</span>
+<span style="color: #228b22;">uint16_t</span> <span style="color: #0000ff;">htons</span><span style="color: #707183;">(</span><span style="color: #228b22;">unit16_t</span> <span style="color: #a0522d;">hostshort</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -444,24 +380,22 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">foreignAddr: (struct sockaddr *)&amp;[sockaddr_in]</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">addressLength: sizeof(struct sockaddr_in);</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">connect</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">socket</span>, <span style="color: #F92672;">const</span> <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr</span> *<span style="color: #FD971F;">foreignAddress</span>, <span style="color: #66D9EF;">socklen_t</span> <span style="color: #FD971F;">addressLength</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">foreignAddr: (struct sockaddr *)&amp;[sockaddr_in]</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">addressLength: sizeof(struct sockaddr_in);</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">connect</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">socket</span>, <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr</span> *<span style="color: #a0522d;">foreignAddress</span>, <span style="color: #228b22;">socklen_t</span> <span style="color: #a0522d;">addressLength</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3"><span class="section-number-4">3.1.1</span> Server</h4>
+<div id="outline-container-org509f395" class="outline-4">
+<h4 id="org509f395"><span class="section-number-4">3.1.1</span> Server</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 <code>bind</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">bind</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">socket</span>, <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr</span> *<span style="color: #FD971F;">localAddress</span>, <span style="color: #66D9EF;">socklen_t</span> <span style="color: #FD971F;">addressSize</span>);
+<pre class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">bind</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">socket</span>, <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr</span> *<span style="color: #a0522d;">localAddress</span>, <span style="color: #228b22;">socklen_t</span> <span style="color: #a0522d;">addressSize</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -470,10 +404,9 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#21578;&#35785;TCP&#23454;&#29616;&#20801;&#35768;&#26469;&#33258;&#23458;&#25143;&#30340;&#36830;&#25509;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#35843;&#29992;&#20043;&#21069;&#65292;&#20219;&#20309;&#36830;&#25509;&#35831;&#27714;&#34987;&#26080;&#22768;&#25298;&#32477;</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">listen</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">socket</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">queueLimit</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#21578;&#35785;TCP&#23454;&#29616;&#20801;&#35768;&#26469;&#33258;&#23458;&#25143;&#30340;&#36830;&#25509;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35843;&#29992;&#20043;&#21069;&#65292;&#20219;&#20309;&#36830;&#25509;&#35831;&#27714;&#34987;&#26080;&#22768;&#25298;&#32477;</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">listen</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">socket</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">queueLimit</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -482,18 +415,17 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#20351;&#22871;&#25509;&#23383;&#38431;&#21015;&#20013;&#30340;&#19979;&#19968;&#26465;&#36830;&#25509;&#20986;&#38431;&#12290;&#33509;&#38431;&#21015;&#31354;&#65292;&#21017;&#38459;&#22622;&#12290;</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">accept</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">socket</span>, <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr</span> *<span style="color: #FD971F;">clientAddress</span>, <span style="color: #66D9EF;">socklen_t</span> *<span style="color: #FD971F;">addressLength</span>);
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#27491;&#30830;&#30340;&#20351;&#29992;&#26041;&#24335;&#65306;</span>
-<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr_storage</span> <span style="color: #FD971F;">address</span>;
-<span style="color: #66D9EF;">socklen_t</span> <span style="color: #FD971F;">addrLength</span> = <span style="color: #F92672;">sizeof</span>(address);
-<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">clntSock</span> = accept(sock, &amp;address, &amp;addressLength);
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#20854;&#20013;&#32467;&#26500;&#20307;&#23450;&#20041;&#22914;&#19979;</span>
-<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr_storage</span> {
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#22871;&#25509;&#23383;&#38431;&#21015;&#20013;&#30340;&#19979;&#19968;&#26465;&#36830;&#25509;&#20986;&#38431;&#12290;&#33509;&#38431;&#21015;&#31354;&#65292;&#21017;&#38459;&#22622;&#12290;</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">accept</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">socket</span>, <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr</span> *<span style="color: #a0522d;">clientAddress</span>, <span style="color: #228b22;">socklen_t</span> *<span style="color: #a0522d;">addressLength</span><span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#27491;&#30830;&#30340;&#20351;&#29992;&#26041;&#24335;&#65306;</span>
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr_storage</span> <span style="color: #a0522d;">address</span>;
+<span style="color: #228b22;">socklen_t</span> <span style="color: #a0522d;">addrLength</span> = <span style="color: #a020f0;">sizeof</span><span style="color: #707183;">(</span>address<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">clntSock</span> = accept<span style="color: #707183;">(</span>sock, &amp;address, &amp;addressLength<span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20854;&#20013;&#32467;&#26500;&#20307;&#23450;&#20041;&#22914;&#19979;</span>
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr_storage</span> <span style="color: #707183;">{</span>
   sa_familiy_t
-  ... <span style="color: #75715E;">// </span><span style="color: #75715E;">Padding and fields to get correct length and allignment</span>
-}; <span style="color: #75715E;">// </span><span style="color: #75715E;">&#36890;&#29992;&#22320;&#22336;&#23384;&#20648;&#22120;</span>
+  ... <span style="color: #b22222;">// </span><span style="color: #b22222;">Padding and fields to get correct length and allignment</span>
+<span style="color: #707183;">}</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36890;&#29992;&#22320;&#22336;&#23384;&#20648;&#22120;</span>
 </pre>
 </div>
 
@@ -502,11 +434,10 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#40664;&#35748;&#38459;&#22622;&#21040;&#21457;&#36865;&#20102;&#25152;&#26377;&#30340;&#25968;&#25454;&#20026;&#27490;&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#36820;&#22238;&#65306;&#21457;&#36865;&#30340;&#23383;&#33410;&#25968;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">flags&#65306;&#25913;&#21464;&#40664;&#35748;&#34892;&#20026;&#12290;&#40664;&#35748;&#20026;0.</span>
-<span style="color: #66D9EF;">ssize_t</span> <span style="color: #A6E22E;">send</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">socket</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">msg</span>, <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">msgLength</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">flags</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#40664;&#35748;&#38459;&#22622;&#21040;&#21457;&#36865;&#20102;&#25152;&#26377;&#30340;&#25968;&#25454;&#20026;&#27490;&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#65306;&#21457;&#36865;&#30340;&#23383;&#33410;&#25968;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">flags&#65306;&#25913;&#21464;&#40664;&#35748;&#34892;&#20026;&#12290;&#40664;&#35748;&#20026;0.</span>
+<span style="color: #228b22;">ssize_t</span> <span style="color: #0000ff;">send</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">socket</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">msg</span>, <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">msgLength</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">flags</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -515,128 +446,125 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#40664;&#35748;&#38459;&#22622;&#21040;&#33267;&#23569;&#20256;&#36755;&#20102;&#19968;&#20123;&#23383;&#33410;&#20026;&#27490;&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#36820;&#22238;&#65306;&#25509;&#21463;&#30340;&#23383;&#33410;&#25968;</span>
-<span style="color: #66D9EF;">ssize_t</span> <span style="color: #A6E22E;">recv</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">socket</span>, <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">rcvBuffer</span>, <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">bufferLength</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">flags</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#40664;&#35748;&#38459;&#22622;&#21040;&#33267;&#23569;&#20256;&#36755;&#20102;&#19968;&#20123;&#23383;&#33410;&#20026;&#27490;&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#65306;&#25509;&#21463;&#30340;&#23383;&#33410;&#25968;</span>
+<span style="color: #228b22;">ssize_t</span> <span style="color: #0000ff;">recv</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">socket</span>, <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">rcvBuffer</span>, <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">bufferLength</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">flags</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.2</span> Code Snippets</h3>
+<div id="outline-container-org58480a7" class="outline-3">
+<h3 id="org58480a7"><span class="section-number-3">3.2</span> Code Snippets</h3>
 <div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5"><span class="section-number-4">3.2.1</span> TCP client</h4>
+</div><div id="outline-container-org5aaac47" class="outline-4">
+<h4 id="org5aaac47"><span class="section-number-4">3.2.1</span> TCP client</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdlib.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #8b2252;">string.h</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">for memset</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;sys/socket.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;sys/types.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #8b2252;">netinet/in.h</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">for IPPROTO_TCP</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #8b2252;">unistd.h</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">for close. use `man close`</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;arpa/inet.h&gt;</span>
 
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdlib.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;string.h&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">for memset</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;sys/socket.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;sys/types.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;netinet/in.h&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">for IPPROTO_TCP</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;unistd.h&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">for close. use `man close`</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;arpa/inet.h&gt;</span>
+<span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">BUFFER_SIZE</span> 30
 
-<span style="color: #F92672;">#define</span> <span style="color: #FD971F;">BUFFER_SIZE</span> 30
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
 
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>() {
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21019;&#24314;socket</span>
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sock</span> = socket<span style="color: #7388d6;">(</span>AF_INET, SOCK_STREAM, IPPROTO_TCP<span style="color: #7388d6;">)</span>;
 
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#21019;&#24314;socket</span>
-  <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">sock</span> = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#26500;&#36896;servAddr</span>
-  <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">servIP</span> = <span style="color: #E6DB74;">"127.0.0.1"</span>;
-  <span style="color: #66D9EF;">in_port_t</span> <span style="color: #FD971F;">servPort</span> = 8080;
-  <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr_in</span> <span style="color: #FD971F;">servAddr</span>;
-  memset(&amp;servAddr, 0, <span style="color: #F92672;">sizeof</span>(servAddr));
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26500;&#36896;servAddr</span>
+  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">servIP</span> = <span style="color: #8b2252;">"127.0.0.1"</span>;
+  <span style="color: #228b22;">in_port_t</span> <span style="color: #a0522d;">servPort</span> = 8080;
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr_in</span> <span style="color: #a0522d;">servAddr</span>;
+  memset<span style="color: #7388d6;">(</span>&amp;servAddr, 0, <span style="color: #a020f0;">sizeof</span><span style="color: #909183;">(</span>servAddr<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
   servAddr.sin_family = AF_INET;
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">IP&#22320;&#22336;&#26684;&#24335;&#36716;&#25442;</span>
-  inet_pton(AF_INET, servIP, &amp;servAddr.sin_addr.s_addr);
-  servAddr.sin_port = htons(servPort);
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">IP&#22320;&#22336;&#26684;&#24335;&#36716;&#25442;</span>
+  inet_pton<span style="color: #7388d6;">(</span>AF_INET, servIP, &amp;servAddr.sin_addr.s_addr<span style="color: #7388d6;">)</span>;
+  servAddr.sin_port = htons<span style="color: #7388d6;">(</span>servPort<span style="color: #7388d6;">)</span>;
 
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#24314;&#31435;&#36830;&#25509;</span>
-  connect(sock, (<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr</span> *)&amp;servAddr, <span style="color: #F92672;">sizeof</span>(servAddr));
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24314;&#31435;&#36830;&#25509;</span>
+  connect<span style="color: #7388d6;">(</span>sock, <span style="color: #909183;">(</span><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr</span> *<span style="color: #909183;">)</span>&amp;servAddr, <span style="color: #a020f0;">sizeof</span><span style="color: #909183;">(</span>servAddr<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
 
-  <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">str</span>[] = <span style="color: #E6DB74;">"Hello"</span>;
-  <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">size</span> = strlen(str);
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#21457;&#36865;&#25968;&#25454;</span>
-  send(sock, str, size, 0);
+  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">str</span><span style="color: #7388d6;">[]</span> = <span style="color: #8b2252;">"Hello"</span>;
+  <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">size</span> = strlen<span style="color: #7388d6;">(</span>str<span style="color: #7388d6;">)</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21457;&#36865;&#25968;&#25454;</span>
+  send<span style="color: #7388d6;">(</span>sock, str, size, 0<span style="color: #7388d6;">)</span>;
 
-  <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">buffer</span>[BUFFER_SIZE];
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#25509;&#25910;&#36820;&#22238;&#30340;&#25968;&#25454;&#65292;&#25918;&#21040;buffer&#37324;</span>
-  recv(sock, buffer, BUFFER_SIZE-1, 0);
+  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">buffer</span><span style="color: #7388d6;">[</span>BUFFER_SIZE<span style="color: #7388d6;">]</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25509;&#25910;&#36820;&#22238;&#30340;&#25968;&#25454;&#65292;&#25918;&#21040;buffer&#37324;</span>
+  recv<span style="color: #7388d6;">(</span>sock, buffer, BUFFER_SIZE-1, 0<span style="color: #7388d6;">)</span>;
 
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#20851;&#38381;socket</span>
-  close(sock);
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20851;&#38381;socket</span>
+  close<span style="color: #7388d6;">(</span>sock<span style="color: #7388d6;">)</span>;
 
-}
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><span class="section-number-4">3.2.2</span> TCP server</h4>
+<div id="outline-container-org2e57d69" class="outline-4">
+<h4 id="org2e57d69"><span class="section-number-4">3.2.2</span> TCP server</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdlib.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #8b2252;">string.h</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">for memset</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;sys/socket.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;sys/types.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #8b2252;">netinet/in.h</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">for IPPROTO_TCP</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #8b2252;">unistd.h</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">for close. use `man close`</span>
 
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdlib.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;string.h&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">for memset</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;sys/socket.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;sys/types.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;netinet/in.h&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">for IPPROTO_TCP</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;unistd.h&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">for close. use `man close`</span>
+<span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">BUFSIZE</span> 30
 
-<span style="color: #F92672;">#define</span> <span style="color: #FD971F;">BUFSIZE</span> 30
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">handle</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">clntSock</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">buffer</span><span style="color: #7388d6;">[</span>BUFSIZE<span style="color: #7388d6;">]</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174;client&#31471;socket&#25509;&#25910;&#25968;&#25454;&#65292;&#23384;&#20837;buffer&#65292;&#36820;&#22238;&#25509;&#21463;&#38271;&#24230;&#12290;&#19968;&#27425;&#21482;&#25910;BUFSIZE&#20010;&#23383;&#33410;&#12290;</span>
+  <span style="color: #228b22;">ssize_t</span> <span style="color: #a0522d;">numBytesRcvd</span> = recv<span style="color: #7388d6;">(</span>clntSock, buffer, BUFSIZE, 0<span style="color: #7388d6;">)</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24490;&#29615;&#25509;&#25910;&#30452;&#21040;&#25910;&#23436;&#20026;&#27490;&#12290;</span>
+  <span style="color: #a020f0;">while</span><span style="color: #7388d6;">(</span>numBytesRcvd&gt;0<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#25509;&#25910;&#21040;&#30340;buffer&#65292;send&#21040;client&#31471;buffer</span>
+    send<span style="color: #909183;">(</span>clntSock, buffer, numBytesRcvd, 0<span style="color: #909183;">)</span>;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25509;&#30528;&#25509;&#25910;&#27809;&#25910;&#23436;&#30340;&#12290;</span>
+    numBytesRcvd = recv<span style="color: #909183;">(</span>clntSock, buffer, BUFSIZE, 0<span style="color: #909183;">)</span>;
+  <span style="color: #7388d6;">}</span>
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20851;&#38381;socket</span>
+  close<span style="color: #7388d6;">(</span>clntSock<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
 
-<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">handle</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">clntSock</span>) {
-  <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">buffer</span>[BUFSIZE];
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#20174;client&#31471;socket&#25509;&#25910;&#25968;&#25454;&#65292;&#23384;&#20837;buffer&#65292;&#36820;&#22238;&#25509;&#21463;&#38271;&#24230;&#12290;&#19968;&#27425;&#21482;&#25910;BUFSIZE&#20010;&#23383;&#33410;&#12290;</span>
-  <span style="color: #66D9EF;">ssize_t</span> <span style="color: #FD971F;">numBytesRcvd</span> = recv(clntSock, buffer, BUFSIZE, 0);
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#24490;&#29615;&#25509;&#25910;&#30452;&#21040;&#25910;&#23436;&#20026;&#27490;&#12290;</span>
-  <span style="color: #F92672;">while</span>(numBytesRcvd&gt;0) {
-    <span style="color: #75715E;">// </span><span style="color: #75715E;">&#23558;&#25509;&#25910;&#21040;&#30340;buffer&#65292;send&#21040;client&#31471;buffer</span>
-    send(clntSock, buffer, numBytesRcvd, 0);
-    <span style="color: #75715E;">// </span><span style="color: #75715E;">&#25509;&#30528;&#25509;&#25910;&#27809;&#25910;&#23436;&#30340;&#12290;</span>
-    numBytesRcvd = recv(clntSock, buffer, BUFSIZE, 0);
-  }
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#20851;&#38381;socket</span>
-  close(clntSock);
-}
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">(){</span>
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21019;&#24314;socket</span>
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">servSock</span> = socket<span style="color: #7388d6;">(</span>AF_INET, SOCK_STREAM, IPPROTO_TCP<span style="color: #7388d6;">)</span>;
 
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>(){
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#21019;&#24314;socket</span>
-  <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">servSock</span> = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#26500;&#36896;servAddr</span>
-  <span style="color: #66D9EF;">in_port_t</span> <span style="color: #FD971F;">servPort</span> = 8080;
-  <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr_in</span> <span style="color: #FD971F;">servAddr</span>;
-  memset(&amp;servAddr, 0, <span style="color: #F92672;">sizeof</span>(servAddr));
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26500;&#36896;servAddr</span>
+  <span style="color: #228b22;">in_port_t</span> <span style="color: #a0522d;">servPort</span> = 8080;
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr_in</span> <span style="color: #a0522d;">servAddr</span>;
+  memset<span style="color: #7388d6;">(</span>&amp;servAddr, 0, <span style="color: #a020f0;">sizeof</span><span style="color: #909183;">(</span>servAddr<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
   servAddr.sin_family = AF_INET;
-  servAddr.sin_addr.s_addr = htonl(INADDR_ANY); <span style="color: #75715E;">// </span><span style="color: #75715E;">any incoming interface</span>
-  servAddr.sin_port = htons(servPort);
+  servAddr.sin_addr.s_addr = htonl<span style="color: #7388d6;">(</span>INADDR_ANY<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">any incoming interface</span>
+  servAddr.sin_port = htons<span style="color: #7388d6;">(</span>servPort<span style="color: #7388d6;">)</span>;
 
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">socket&#32465;&#23450;&#21040;servAddr</span>
-  bind(servSock, (<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr</span> *)&amp;servAddr, <span style="color: #F92672;">sizeof</span>(servAddr));
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">socket&#32465;&#23450;&#21040;servAddr</span>
+  bind<span style="color: #7388d6;">(</span>servSock, <span style="color: #909183;">(</span><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr</span> *<span style="color: #909183;">)</span>&amp;servAddr, <span style="color: #a020f0;">sizeof</span><span style="color: #909183;">(</span>servAddr<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
 
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#30417;&#21548;socket</span>
-  listen(servSock, 5);
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#30417;&#21548;socket</span>
+  listen<span style="color: #7388d6;">(</span>servSock, 5<span style="color: #7388d6;">)</span>;
 
-  <span style="color: #F92672;">for</span>(;;) {
-    <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr_in</span> <span style="color: #FD971F;">clntAddr</span>;
-    <span style="color: #66D9EF;">socklen_t</span> <span style="color: #FD971F;">clntAddrLen</span> = <span style="color: #F92672;">sizeof</span>(clntAddr);
-    <span style="color: #75715E;">// </span><span style="color: #75715E;">&#25509;&#21463;socket&#26469;&#30340;&#35831;&#27714;&#65292;&#25226;&#26469;&#30340;socket&#23384;&#20837;clntSock</span>
-    <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">clntSock</span> = accept(servSock, (<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">sockaddr</span> *)&amp;clntAddr, &amp;clntAddrLen);
-    <span style="color: #75715E;">// </span><span style="color: #75715E;">&#22788;&#29702;&#20043;</span>
-    handle(clntSock);
-  }
-}
+  <span style="color: #a020f0;">for</span><span style="color: #7388d6;">(</span>;;<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr_in</span> <span style="color: #a0522d;">clntAddr</span>;
+    <span style="color: #228b22;">socklen_t</span> <span style="color: #a0522d;">clntAddrLen</span> = <span style="color: #a020f0;">sizeof</span><span style="color: #909183;">(</span>clntAddr<span style="color: #909183;">)</span>;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25509;&#21463;socket&#26469;&#30340;&#35831;&#27714;&#65292;&#25226;&#26469;&#30340;socket&#23384;&#20837;clntSock</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">clntSock</span> = accept<span style="color: #909183;">(</span>servSock, <span style="color: #709870;">(</span><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sockaddr</span> *<span style="color: #709870;">)</span>&amp;clntAddr, &amp;clntAddrLen<span style="color: #909183;">)</span>;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22788;&#29702;&#20043;</span>
+    handle<span style="color: #909183;">(</span>clntSock<span style="color: #909183;">)</span>;
+  <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -644,19 +572,18 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">4</span> stdio</h2>
+<div id="outline-container-org7f1b6d0" class="outline-2">
+<h2 id="org7f1b6d0"><span class="section-number-2">4</span> stdio</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">4.1</span> stdio.h</h3>
+</div><div id="outline-container-org6fd72ef" class="outline-3">
+<h3 id="org6fd72ef"><span class="section-number-3">4.1</span> stdio.h</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <code>perror</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">perror</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>);
+<pre class="src src-C"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">perror</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -665,8 +592,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">fflush</span>(<span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">stream</span>);
+<pre class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">fflush</span><span style="color: #707183;">(</span><span style="color: #228b22;">FILE</span> *<span style="color: #a0522d;">stream</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -675,8 +601,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">FILE</span> *<span style="color: #A6E22E;">fopen</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">filename</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">mode</span>);
+<pre class="src src-C"><span style="color: #228b22;">FILE</span> *<span style="color: #0000ff;">fopen</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">filename</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">mode</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -685,8 +610,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">fclose</span>(<span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">stream</span>);
+<pre class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">fclose</span><span style="color: #707183;">(</span><span style="color: #228b22;">FILE</span> *<span style="color: #a0522d;">stream</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -695,8 +619,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">FILE</span> *<span style="color: #A6E22E;">freopen</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">filename</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">mode</span>, <span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">stream</span>);
+<pre class="src src-C"><span style="color: #228b22;">FILE</span> *<span style="color: #0000ff;">freopen</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">filename</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">mode</span>, <span style="color: #228b22;">FILE</span> *<span style="color: #a0522d;">stream</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -705,8 +628,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">fprintf</span>(<span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">stream</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">format</span>, ...);
+<pre class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">fprintf</span><span style="color: #707183;">(</span><span style="color: #228b22;">FILE</span> *<span style="color: #a0522d;">stream</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">format</span>, ...<span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -715,46 +637,43 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">fscanf</span>(<span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">stream</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">format</span>, ...);
+<pre class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">fscanf</span><span style="color: #707183;">(</span><span style="color: #228b22;">FILE</span> *<span style="color: #a0522d;">stream</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">format</span>, ...<span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.2</span> examples</h3>
+<div id="outline-container-org981c351" class="outline-3">
+<h3 id="org981c351"><span class="section-number-3">4.2</span> examples</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
 
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
-
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>() {
-  <span style="color: #66D9EF;">FILE</span>* <span style="color: #FD971F;">p</span> = fopen(<span style="color: #E6DB74;">"a.txt"</span>, <span style="color: #E6DB74;">"w"</span>);
-  fprintf(p, <span style="color: #E6DB74;">"hello"</span>);
-  fclose(p);
-}
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+  <span style="color: #228b22;">FILE</span>* <span style="color: #a0522d;">p</span> = fopen<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"a.txt"</span>, <span style="color: #8b2252;">"w"</span><span style="color: #7388d6;">)</span>;
+  fprintf<span style="color: #7388d6;">(</span>p, <span style="color: #8b2252;">"hello"</span><span style="color: #7388d6;">)</span>;
+  fclose<span style="color: #7388d6;">(</span>p<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">5</span> stdlib</h2>
+<div id="outline-container-orge092685" class="outline-2">
+<h2 id="orge092685"><span class="section-number-2">5</span> stdlib</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">5.1</span> stdlib.h</h3>
+</div><div id="outline-container-orgaf3d87c" class="outline-3">
+<h3 id="orgaf3d87c"><span class="section-number-3">5.1</span> stdlib.h</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 <code>malloc</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">Allocates a block of size bytes of memory. Not initialized.</span>
-<span style="color: #66D9EF;">void</span> *<span style="color: #A6E22E;">malloc</span>(<span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">size</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">Allocates a block of size bytes of memory. Not initialized.</span>
+<span style="color: #228b22;">void</span> *<span style="color: #0000ff;">malloc</span><span style="color: #707183;">(</span><span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">size</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -763,8 +682,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">free</span>(<span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">ptr</span>);
+<pre class="src src-C"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">free</span><span style="color: #707183;">(</span><span style="color: #228b22;">void</span> *<span style="color: #a0522d;">ptr</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -773,9 +691,8 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#20026;&#19968;&#20010;num&#20010;&#20803;&#32032;&#30340;&#25968;&#32452;&#20998;&#37197;&#20869;&#23384;&#12290;&#27599;&#19968;&#20010;&#26377;size&#23383;&#33410;&#65292;&#21021;&#22987;&#21270;&#20026;0&#12290;</span>
-<span style="color: #66D9EF;">void</span> *<span style="color: #A6E22E;">calloc</span>(<span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">num</span>, <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">size</span>)
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20026;&#19968;&#20010;num&#20010;&#20803;&#32032;&#30340;&#25968;&#32452;&#20998;&#37197;&#20869;&#23384;&#12290;&#27599;&#19968;&#20010;&#26377;size&#23383;&#33410;&#65292;&#21021;&#22987;&#21270;&#20026;0&#12290;</span>
+<span style="color: #228b22;">void</span> *<span style="color: #0000ff;">calloc</span><span style="color: #707183;">(</span><span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">num</span>, <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">size</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -784,13 +701,12 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#23558;ptr&#25351;&#21521;&#30340;block&#30340;&#22823;&#23567;&#25913;&#20026;size&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#21487;&#33021;&#20250;&#23558;&#36825;&#20010;block&#31227;&#21160;&#21040;&#19968;&#20010;&#26032;&#30340;&#22320;&#22336;&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">block&#30340;&#20869;&#23481;&#20250;&#20445;&#30041;&#26032;&#30340;&#22823;&#23567;&#21644;&#26087;&#30340;&#22823;&#23567;&#20013;&#36739;&#23567;&#32773;&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#22914;&#26524;&#26032;&#30340;&#22823;&#23567;&#26356;&#22823;&#65292;&#37027;&#20040;&#22810;&#20986;&#26469;&#30340;&#26159;&#26410;&#23450;&#20041;&#30340;&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#22914;&#26524;ptr==NULL&#65292;&#31561;&#20215;&#20110;malloc</span>
-<span style="color: #66D9EF;">void</span> *<span style="color: #A6E22E;">realloc</span>(<span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">ptr</span>, <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">size</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;ptr&#25351;&#21521;&#30340;block&#30340;&#22823;&#23567;&#25913;&#20026;size&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#33021;&#20250;&#23558;&#36825;&#20010;block&#31227;&#21160;&#21040;&#19968;&#20010;&#26032;&#30340;&#22320;&#22336;&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">block&#30340;&#20869;&#23481;&#20250;&#20445;&#30041;&#26032;&#30340;&#22823;&#23567;&#21644;&#26087;&#30340;&#22823;&#23567;&#20013;&#36739;&#23567;&#32773;&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#26032;&#30340;&#22823;&#23567;&#26356;&#22823;&#65292;&#37027;&#20040;&#22810;&#20986;&#26469;&#30340;&#26159;&#26410;&#23450;&#20041;&#30340;&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;ptr==NULL&#65292;&#31561;&#20215;&#20110;malloc</span>
+<span style="color: #228b22;">void</span> *<span style="color: #0000ff;">realloc</span><span style="color: #707183;">(</span><span style="color: #228b22;">void</span> *<span style="color: #a0522d;">ptr</span>, <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">size</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -799,8 +715,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">atoi</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>);
+<pre class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">atoi</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -809,8 +724,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">double</span> <span style="color: #A6E22E;">atof</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>);
+<pre class="src src-C"><span style="color: #228b22;">double</span> <span style="color: #0000ff;">atof</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -819,8 +733,7 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">long</span> <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">atol</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>);
+<pre class="src src-C"><span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">atol</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -829,9 +742,8 @@ inet_pton(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;"
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">base&#26159;&#36827;&#21046;</span>
-<span style="color: #66D9EF;">long</span> <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">strtol</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>, <span style="color: #66D9EF;">char</span> **<span style="color: #FD971F;">endptr</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">base</span>)
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">base&#26159;&#36827;&#21046;</span>
+<span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">strtol</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">char</span> **<span style="color: #a0522d;">endptr</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -840,14 +752,13 @@ Example:
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">str</span>[] = <span style="color: #E6DB74;">"2001 60cf2d -1100110010 0x6fff"</span>;
-<span style="color: #66D9EF;">long</span> <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">a</span>,<span style="color: #FD971F;">b</span>,<span style="color: #FD971F;">c</span>,<span style="color: #FD971F;">d</span>;
-<span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">sp</span>;
-a = strtol(str, &amp;sp, 10);
-b = strtol(sp, &amp;sp, 16);
-c = strtol(sp, &amp;sp, 2);
-d = strtol(sp, <span style="color: #AE81FF;">NULL</span>, 0);
+<pre class="src src-C"><span style="color: #228b22;">char</span> <span style="color: #a0522d;">str</span><span style="color: #707183;">[]</span> = <span style="color: #8b2252;">"2001 60cf2d -1100110010 0x6fff"</span>;
+<span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>,<span style="color: #a0522d;">b</span>,<span style="color: #a0522d;">c</span>,<span style="color: #a0522d;">d</span>;
+<span style="color: #228b22;">char</span> *<span style="color: #a0522d;">sp</span>;
+a = strtol<span style="color: #707183;">(</span>str, &amp;sp, 10<span style="color: #707183;">)</span>;
+b = strtol<span style="color: #707183;">(</span>sp, &amp;sp, 16<span style="color: #707183;">)</span>;
+c = strtol<span style="color: #707183;">(</span>sp, &amp;sp, 2<span style="color: #707183;">)</span>;
+d = strtol<span style="color: #707183;">(</span>sp, <span style="color: #008b8b;">NULL</span>, 0<span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -856,8 +767,7 @@ d = strtol(sp, <span style="color: #AE81FF;">NULL</span>, 0);
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">unsigned</span> <span style="color: #66D9EF;">long</span> <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">strtoul</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>, <span style="color: #66D9EF;">char</span> **<span style="color: #FD971F;">endptr</span>, <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">base</span>);
+<pre class="src src-C"><span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">strtoul</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">char</span> **<span style="color: #a0522d;">endptr</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -866,8 +776,7 @@ d = strtol(sp, <span style="color: #AE81FF;">NULL</span>, 0);
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">double</span> <span style="color: #A6E22E;">strtod</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>, <span style="color: #66D9EF;">char</span> **<span style="color: #FD971F;">endptr</span>);
+<pre class="src src-C"><span style="color: #228b22;">double</span> <span style="color: #0000ff;">strtod</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">char</span> **<span style="color: #a0522d;">endptr</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -877,64 +786,62 @@ d = strtol(sp, <span style="color: #AE81FF;">NULL</span>, 0);
 
 
 <div class="org-src-container">
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">Format: %[flags][width][.precision][length]specifier</span>
 
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">Format: %[flags][width][.precision][length]specifier</span>
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * specifier</span>
+<span style="color: #8b2252;"> * d/i &#26377;&#31526;&#21495;&#21313;&#36827;&#21046;&#25972;&#25968;</span>
+<span style="color: #8b2252;"> * u &#26080;&#31526;&#21495;&#21313;&#36827;&#21046;&#25972;&#25968;</span>
+<span style="color: #8b2252;"> * o &#26080;&#31526;&#21495;&#20843;&#36827;&#21046;</span>
+<span style="color: #8b2252;"> * x &#26080;&#31526;&#21495;&#21313;&#20845;&#36827;&#21046;&#25972;&#25968;</span>
+<span style="color: #8b2252;"> * X &#21516;&#19978;&#65292;&#20294;&#26159;X&#22823;&#20889;</span>
+<span style="color: #8b2252;"> * f/F &#28014;&#28857;&#25968; &#23567;&#20889;/&#22823;&#20889;</span>
+<span style="color: #8b2252;"> * e/E &#31185;&#23398;&#35745;&#25968;&#27861; &#23567;&#20889;/&#22823;&#20889;</span>
+<span style="color: #8b2252;"> * g/G use the shortest representation: (</span><span style="color: #008b8b;">%e</span><span style="color: #8b2252;"> or </span><span style="color: #008b8b;">%f</span><span style="color: #8b2252;"> / </span><span style="color: #008b8b;">%E</span><span style="color: #8b2252;"> or </span><span style="color: #008b8b;">%F</span><span style="color: #8b2252;">)</span>
+<span style="color: #8b2252;"> * p pointer address</span>
+<span style="color: #8b2252;"> */</span>
 
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * specifier</span>
-<span style="color: #75715E;"> * d/i &#26377;&#31526;&#21495;&#21313;&#36827;&#21046;&#25972;&#25968;</span>
-<span style="color: #75715E;"> * u &#26080;&#31526;&#21495;&#21313;&#36827;&#21046;&#25972;&#25968;</span>
-<span style="color: #75715E;"> * o &#26080;&#31526;&#21495;&#20843;&#36827;&#21046;</span>
-<span style="color: #75715E;"> * x &#26080;&#31526;&#21495;&#21313;&#20845;&#36827;&#21046;&#25972;&#25968;</span>
-<span style="color: #75715E;"> * X &#21516;&#19978;&#65292;&#20294;&#26159;X&#22823;&#20889;</span>
-<span style="color: #75715E;"> * f/F &#28014;&#28857;&#25968; &#23567;&#20889;/&#22823;&#20889;</span>
-<span style="color: #75715E;"> * e/E &#31185;&#23398;&#35745;&#25968;&#27861; &#23567;&#20889;/&#22823;&#20889;</span>
-<span style="color: #75715E;"> * g/G use the shortest representation: (</span><span style="color: #AE81FF;">%e</span><span style="color: #75715E;"> or </span><span style="color: #AE81FF;">%f</span><span style="color: #75715E;"> / </span><span style="color: #AE81FF;">%E</span><span style="color: #75715E;"> or </span><span style="color: #AE81FF;">%F</span><span style="color: #75715E;">)</span>
-<span style="color: #75715E;"> * p pointer address</span>
-<span style="color: #75715E;"> */</span>
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * Flags</span>
+<span style="color: #8b2252;"> * - &#24038;&#23545;&#40784;</span>
+<span style="color: #8b2252;"> * + &#24378;&#21046;&#26174;&#31034;+-&#21495;</span>
+<span style="color: #8b2252;"> * (space) &#22914;&#26524;&#27809;&#26377;&#31526;&#21495;&#20301;&#21487;&#20889;&#65292;&#21152;&#31354;&#26684;</span>
+<span style="color: #8b2252;"> * # (oxX)&#20250;&#25171;&#20986;(0,0x,0X), (aef)&#20250;&#25171;&#20986;&#23567;&#25968;&#28857;</span>
+<span style="color: #8b2252;"> */</span>
 
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * Flags</span>
-<span style="color: #75715E;"> * - &#24038;&#23545;&#40784;</span>
-<span style="color: #75715E;"> * + &#24378;&#21046;&#26174;&#31034;+-&#21495;</span>
-<span style="color: #75715E;"> * (space) &#22914;&#26524;&#27809;&#26377;&#31526;&#21495;&#20301;&#21487;&#20889;&#65292;&#21152;&#31354;&#26684;</span>
-<span style="color: #75715E;"> * # (oxX)&#20250;&#25171;&#20986;(0,0x,0X), (aef)&#20250;&#25171;&#20986;&#23567;&#25968;&#28857;</span>
-<span style="color: #75715E;"> */</span>
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * width</span>
+<span style="color: #8b2252;"> * (number) number&#36739;&#22823;&#23558;&#26174;&#31034;&#30340;&#20301;&#25968;&#34917;&#31354;&#26684;&#12290;number&#23567;&#21017;&#26080;&#24433;&#21709;</span>
+<span style="color: #8b2252;"> * * &#22312;...&#20013;&#32473;&#20986;</span>
+<span style="color: #8b2252;"> */</span>
 
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * width</span>
-<span style="color: #75715E;"> * (number) number&#36739;&#22823;&#23558;&#26174;&#31034;&#30340;&#20301;&#25968;&#34917;&#31354;&#26684;&#12290;number&#23567;&#21017;&#26080;&#24433;&#21709;</span>
-<span style="color: #75715E;"> * * &#22312;...&#20013;&#32473;&#20986;</span>
-<span style="color: #75715E;"> */</span>
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * .precision</span>
+<span style="color: #8b2252;"> * (number) (ef)&#20445;&#30041;&#20301;&#25968;&#12290;s&#25171;&#21360;&#20010;&#25968;</span>
+<span style="color: #8b2252;"> * (.*) ...&#20013;&#32473;&#20986;</span>
+<span style="color: #8b2252;"> */</span>
 
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * .precision</span>
-<span style="color: #75715E;"> * (number) (ef)&#20445;&#30041;&#20301;&#25968;&#12290;s&#25171;&#21360;&#20010;&#25968;</span>
-<span style="color: #75715E;"> * (.*) ...&#20013;&#32473;&#20986;</span>
-<span style="color: #75715E;"> */</span>
+<span style="color: #8b2252;">/**</span>
+<span style="color: #8b2252;"> * length</span>
+<span style="color: #8b2252;"> * l long</span>
+<span style="color: #8b2252;"> * h short</span>
+<span style="color: #8b2252;"> * U long long</span>
+<span style="color: #8b2252;"> * z size_t</span>
+<span style="color: #8b2252;"> */</span>
 
-<span style="color: #75715E;">/**</span>
-<span style="color: #75715E;"> * length</span>
-<span style="color: #75715E;"> * l long</span>
-<span style="color: #75715E;"> * h short</span>
-<span style="color: #75715E;"> * U long long</span>
-<span style="color: #75715E;"> * z size_t</span>
-<span style="color: #75715E;"> */</span>
-
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">printf</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">format</span>, ...);
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">printf</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">format</span>, ...<span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">5.2</span> realpath</h3>
+<div id="outline-container-orgb06f062" class="outline-3">
+<h3 id="orgb06f062"><span class="section-number-3">5.2</span> realpath</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;limits.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdlib.h&gt;</span>
-<span style="color: #66D9EF;">char</span> *<span style="color: #A6E22E;">realpath</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">path</span>, <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">resolved_path</span>);
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;limits.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdlib.h&gt;</span>
+<span style="color: #228b22;">char</span> *<span style="color: #0000ff;">realpath</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">path</span>, <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">resolved_path</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -954,22 +861,21 @@ But, it does not check if the file actually exists or not!
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">5.3</span> sys/time.h</h3>
+<div id="outline-container-orgd9c1f2e" class="outline-3">
+<h3 id="orgd9c1f2e"><span class="section-number-3">5.3</span> sys/time.h</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 <code>gettimeofday</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">tzp = NULL</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#36820;&#22238;&#20174;1970.1.1 00:00 UTC &#21040;&#29616;&#22312;&#30340;&#31186;&#25968;</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">gettimeofday</span>(<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">timeval</span> *<span style="color: #FD971F;">tp</span>, <span style="color: #66D9EF;">void</span> *<span style="color: #FD971F;">tzp</span>);
-<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">timeval</span> {
-  <span style="color: #66D9EF;">__time_t</span> <span style="color: #FD971F;">tv_sec</span>;
-  <span style="color: #66D9EF;">__suseconds_t</span> <span style="color: #FD971F;">tv_usec</span>;
-}
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">tzp = NULL</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#20174;1970.1.1 00:00 UTC &#21040;&#29616;&#22312;&#30340;&#31186;&#25968;</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">gettimeofday</span><span style="color: #707183;">(</span><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timeval</span> *<span style="color: #a0522d;">tp</span>, <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">tzp</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timeval</span> <span style="color: #707183;">{</span>
+  <span style="color: #228b22;">__time_t</span> <span style="color: #a0522d;">tv_sec</span>;
+  <span style="color: #228b22;">__suseconds_t</span> <span style="color: #a0522d;">tv_usec</span>;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -977,20 +883,19 @@ But, it does not check if the file actually exists or not!
 </div>
 
 
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16"><span class="section-number-2">6</span> strings.h</h2>
+<div id="outline-container-orgb6f7d7f" class="outline-2">
+<h2 id="orgb6f7d7f"><span class="section-number-2">6</span> strings.h</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <code>strcasecmp</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#24573;&#30053;&#22823;&#23567;&#20889;&#12290;&#27604;&#36739;&#25152;&#26377;&#23383;&#33410;&#12290;</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">&#36820;&#22238;&#65306;s1&gt;s2: &gt;0</span>
-<span style="color: #75715E;">//      </span><span style="color: #75715E;">s1=s2: =0</span>
-<span style="color: #75715E;">//      </span><span style="color: #75715E;">s1&lt;s2: &lt;0</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">strcasecmp</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">s1</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">s2</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#24573;&#30053;&#22823;&#23567;&#20889;&#12290;&#27604;&#36739;&#25152;&#26377;&#23383;&#33410;&#12290;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#65306;s1&gt;s2: &gt;0</span>
+<span style="color: #b22222;">//      </span><span style="color: #b22222;">s1=s2: =0</span>
+<span style="color: #b22222;">//      </span><span style="color: #b22222;">s1&lt;s2: &lt;0</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">strcasecmp</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">s1</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">s2</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -999,9 +904,8 @@ But, it does not check if the file actually exists or not!
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">&#27604;&#36739;&#21069;n&#20010;&#23383;&#33410;</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">strncasecmp</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">s1</span>, <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">s2</span>, <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">n</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#27604;&#36739;&#21069;n&#20010;&#23383;&#33410;</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">strncasecmp</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">s1</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">s2</span>, <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">n</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -1010,36 +914,34 @@ But, it does not check if the file actually exists or not!
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">// </span><span style="color: #75715E;">ssize_t: signed int(POSIX)</span>
-<span style="color: #75715E;">// </span><span style="color: #75715E;">size_t: unsigned int</span>
-<span style="color: #66D9EF;">size_t</span> <span style="color: #A6E22E;">strlen</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">str</span>);
+<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">ssize_t: signed int(POSIX)</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">size_t: unsigned int</span>
+<span style="color: #228b22;">size_t</span> <span style="color: #0000ff;">strlen</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18"><span class="section-number-2">7</span> unistd</h2>
+<div id="outline-container-org6dae4d1" class="outline-2">
+<h2 id="org6dae4d1"><span class="section-number-2">7</span> unistd</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <code>getopt</code>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #75715E;">/*</span>
-<span style="color: #75715E;"> * optstring:</span>
-<span style="color: #75715E;"> *   &#21333;&#20010;&#23383;&#31526; =&gt; &#36873;&#39033;</span>
-<span style="color: #75715E;"> *   &#21333;&#23383;&#31526;: =&gt; &#36873;&#39033;&#21518;&#39035;&#36319;&#21442;&#25968;,&#19988;&#21487;&#38548;&#31354;&#26684;&#21487;&#19981;&#38548;</span>
-<span style="color: #75715E;"> *   &#21333;&#23383;&#31526;:: =&gt; &#36873;&#39033;&#21518;&#39035;&#36319;&#21442;&#25968;,&#24517;&#39035;&#32039;&#36319;,&#26080;&#31354;&#26684;</span>
-<span style="color: #75715E;"> *</span>
-<span style="color: #75715E;"> * &#20840;&#23616;&#21464;&#37327;</span>
-<span style="color: #75715E;"> *   char *optarg =&gt; &#25351;&#21521;&#36873;&#39033;&#21442;&#25968;&#30340;&#25351;&#38024;</span>
-<span style="color: #75715E;"> *   int optind =&gt; &#20877;&#27425;&#35843;&#29992;&#26102;,&#20174;&#27492;&#22788;&#24320;&#22987;&#20998;&#26512;</span>
-<span style="color: #75715E;"> *   int optopt =&gt; &#26368;&#21518;&#19968;&#20010;&#24050;&#30693;&#36873;&#39033;</span>
-<span style="color: #75715E;"> </span><span style="color: #75715E;">*/</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">getopt</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">argc</span>, <span style="color: #66D9EF;">char</span>* <span style="color: #F92672;">const</span> <span style="color: #FD971F;">argv</span>[], <span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">optstring</span>);
+<pre class="src src-C"><span style="color: #b22222;">/*</span>
+<span style="color: #b22222;"> * optstring:</span>
+<span style="color: #b22222;"> *   &#21333;&#20010;&#23383;&#31526; =&gt; &#36873;&#39033;</span>
+<span style="color: #b22222;"> *   &#21333;&#23383;&#31526;: =&gt; &#36873;&#39033;&#21518;&#39035;&#36319;&#21442;&#25968;,&#19988;&#21487;&#38548;&#31354;&#26684;&#21487;&#19981;&#38548;</span>
+<span style="color: #b22222;"> *   &#21333;&#23383;&#31526;:: =&gt; &#36873;&#39033;&#21518;&#39035;&#36319;&#21442;&#25968;,&#24517;&#39035;&#32039;&#36319;,&#26080;&#31354;&#26684;</span>
+<span style="color: #b22222;"> *</span>
+<span style="color: #b22222;"> * &#20840;&#23616;&#21464;&#37327;</span>
+<span style="color: #b22222;"> *   char *optarg =&gt; &#25351;&#21521;&#36873;&#39033;&#21442;&#25968;&#30340;&#25351;&#38024;</span>
+<span style="color: #b22222;"> *   int optind =&gt; &#20877;&#27425;&#35843;&#29992;&#26102;,&#20174;&#27492;&#22788;&#24320;&#22987;&#20998;&#26512;</span>
+<span style="color: #b22222;"> *   int optopt =&gt; &#26368;&#21518;&#19968;&#20010;&#24050;&#30693;&#36873;&#39033;</span>
+<span style="color: #b22222;"> </span><span style="color: #b22222;">*/</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">getopt</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">argc</span>, <span style="color: #228b22;">char</span>* <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">argv</span><span style="color: #7388d6;">[]</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">optstring</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -1048,37 +950,36 @@ example
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;unistd.h&gt;</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">bflag</span>, <span style="color: #FD971F;">ch</span>, <span style="color: #FD971F;">fd</span>;
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;unistd.h&gt;</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">bflag</span>, <span style="color: #a0522d;">ch</span>, <span style="color: #a0522d;">fd</span>;
 
 bflag = 0;
-<span style="color: #F92672;">while</span> ((ch = getopt(argc, argv, <span style="color: #E6DB74;">"bf:"</span>)) != -1) {
-  <span style="color: #F92672;">switch</span> (ch) {
-  <span style="color: #F92672;">case</span> <span style="color: #E6DB74;">'b'</span>:
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>ch = getopt<span style="color: #909183;">(</span>argc, argv, <span style="color: #8b2252;">"bf:"</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> != -1<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  <span style="color: #a020f0;">switch</span> <span style="color: #7388d6;">(</span>ch<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+  <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'b'</span>:
     bflag = 1;
-    <span style="color: #F92672;">break</span>;
-  <span style="color: #F92672;">case</span> <span style="color: #E6DB74;">'f'</span>:
-    <span style="color: #F92672;">if</span> ((fd = open(optarg, O_RDONLY, 0)) &lt; 0) {
-      (<span style="color: #66D9EF;">void</span>)fprintf(stderr,
-                    <span style="color: #E6DB74;">"myname: %s: %s\n"</span>, optarg, strerror(errno));
-      exit(1);
-    }
-    <span style="color: #F92672;">break</span>;
-  <span style="color: #F92672;">case</span> <span style="color: #E6DB74;">'?'</span>:
-  <span style="color: #F92672;">default</span>:
-    usage();
-  }
- }
-<span style="color: #75715E;">// </span><span style="color: #75715E;">updates argc and argv to point to the rest of the arguments (- options skipped).</span>
+    <span style="color: #a020f0;">break</span>;
+  <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'f'</span>:
+    <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span><span style="color: #709870;">(</span>fd = open<span style="color: #907373;">(</span>optarg, O_RDONLY, 0<span style="color: #907373;">)</span><span style="color: #709870;">)</span> &lt; 0<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+      <span style="color: #709870;">(</span><span style="color: #228b22;">void</span><span style="color: #709870;">)</span>fprintf<span style="color: #709870;">(</span>stderr,
+                    <span style="color: #8b2252;">"myname: %s: %s\n"</span>, optarg, strerror<span style="color: #907373;">(</span>errno<span style="color: #907373;">)</span><span style="color: #709870;">)</span>;
+      exit<span style="color: #709870;">(</span>1<span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+    <span style="color: #a020f0;">break</span>;
+  <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'?'</span>:
+  <span style="color: #a020f0;">default</span>:
+    usage<span style="color: #909183;">()</span>;
+  <span style="color: #7388d6;">}</span>
+ <span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">updates argc and argv to point to the rest of the arguments (- options skipped).</span>
 argc -= optind;
 argv += optind;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">7.1</span> readlink</h3>
+<div id="outline-container-org7e326c6" class="outline-3">
+<h3 id="org7e326c6"><span class="section-number-3">7.1</span> readlink</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 Follow symbolic link of <code>path</code>, get result into <code>buf</code>.
@@ -1093,8 +994,7 @@ But <code>realpath</code> can also do this, so do NOT use this.
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #66D9EF;">ssize_t</span> <span style="color: #A6E22E;">readlink</span>(<span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #F92672;">restrict</span> <span style="color: #FD971F;">path</span>, <span style="color: #66D9EF;">char</span> *<span style="color: #F92672;">restrict</span> <span style="color: #FD971F;">buf</span>, <span style="color: #66D9EF;">size_t</span> <span style="color: #FD971F;">bufsize</span>);
+<pre class="src src-C"><span style="color: #228b22;">ssize_t</span> <span style="color: #0000ff;">readlink</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a020f0;">restrict</span> <span style="color: #a0522d;">path</span>, <span style="color: #228b22;">char</span> *<span style="color: #a020f0;">restrict</span> <span style="color: #a0522d;">buf</span>, <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">bufsize</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -1102,10 +1002,9 @@ But <code>realpath</code> can also do this, so do NOT use this.
 Usage
 </p>
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">if</span> ((len = readlink(<span style="color: #E6DB74;">"/modules/pass1"</span>, buf, <span style="color: #F92672;">sizeof</span>(buf)-1)) != -1) {
-  buf[len] = <span style="color: #E6DB74;">'\0'</span>;
-}
+<pre class="src src-C"><span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>len = readlink<span style="color: #909183;">(</span><span style="color: #8b2252;">"/modules/pass1"</span>, buf, <span style="color: #a020f0;">sizeof</span><span style="color: #709870;">(</span>buf<span style="color: #709870;">)</span>-1<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> != -1<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  buf<span style="color: #7388d6;">[</span>len<span style="color: #7388d6;">]</span> = <span style="color: #8b2252;">'\0'</span>;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -1114,7 +1013,7 @@ Usage
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-06 Thu 12:13</p>
+<p class="date">Created: 2016-11-08 Tue 13:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

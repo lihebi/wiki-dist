@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-06 Thu 12:13 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:55 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Autoconf</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,163 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -303,26 +236,26 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline7">1. References</a>
+<li><a href="#org6043ecf">1. References</a>
 <ul>
-<li><a href="#orgheadline1">1.1. A tutorial</a></li>
-<li><a href="#orgheadline2">1.2. automake</a></li>
-<li><a href="#orgheadline3">1.3. autoconf</a></li>
-<li><a href="#orgheadline4">1.4. gnulib</a></li>
-<li><a href="#orgheadline5">1.5. libtool</a></li>
-<li><a href="#orgheadline6">1.6. Other reference discovered by this reading</a></li>
+<li><a href="#org72babdf">1.1. A tutorial</a></li>
+<li><a href="#org4471f8b">1.2. automake</a></li>
+<li><a href="#org387c10e">1.3. autoconf</a></li>
+<li><a href="#org044b8b5">1.4. gnulib</a></li>
+<li><a href="#org5b400a2">1.5. libtool</a></li>
+<li><a href="#org50e2984">1.6. Other reference discovered by this reading</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">2. Introduction</a></li>
-<li><a href="#orgheadline9">3. Some random staff</a></li>
-<li><a href="#orgheadline11">4. interaction</a>
+<li><a href="#orgfe7e1d8">2. Introduction</a></li>
+<li><a href="#org49a24e2">3. Some random staff</a></li>
+<li><a href="#org625d2ce">4. interaction</a>
 <ul>
-<li><a href="#orgheadline10">4.1. configuration name</a></li>
+<li><a href="#org9a5fe7e">4.1. configuration name</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">5. A typical workflow</a>
+<li><a href="#orgb623e92">5. A typical workflow</a>
 <ul>
-<li><a href="#orgheadline12">5.1. bootstrap</a></li>
+<li><a href="#orgd5780a2">5.1. bootstrap</a></li>
 </ul>
 </li>
 </ul>
@@ -338,11 +271,11 @@ TODOs:
 <li>autoreconf</li>
 </ul>
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">1</span> References</h2>
+<div id="outline-container-org6043ecf" class="outline-2">
+<h2 id="org6043ecf"><span class="section-number-2">1</span> References</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> A tutorial</h3>
+</div><div id="outline-container-org72babdf" class="outline-3">
+<h3 id="org72babdf"><span class="section-number-3">1.1</span> A tutorial</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <a href="https://www.sourceware.org/autobook/download.html">https://www.sourceware.org/autobook/download.html</a>
@@ -358,32 +291,32 @@ This book is a tutorial. Those I didn't study carefully in this book:
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> automake</h3>
+<div id="outline-container-org4471f8b" class="outline-3">
+<h3 id="org4471f8b"><span class="section-number-3">1.2</span> automake</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <a href="https://www.gnu.org/software/automake/manual/">https://www.gnu.org/software/automake/manual/</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> autoconf</h3>
+<div id="outline-container-org387c10e" class="outline-3">
+<h3 id="org387c10e"><span class="section-number-3">1.3</span> autoconf</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 <a href="https://www.gnu.org/software/autoconf/manual/">https://www.gnu.org/software/autoconf/manual/</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">1.4</span> gnulib</h3>
+<div id="outline-container-org044b8b5" class="outline-3">
+<h3 id="org044b8b5"><span class="section-number-3">1.4</span> gnulib</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 <a href="https://www.gnu.org/software/gnulib/manual/">https://www.gnu.org/software/gnulib/manual/</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">1.5</span> libtool</h3>
+<div id="outline-container-org5b400a2" class="outline-3">
+<h3 id="org5b400a2"><span class="section-number-3">1.5</span> libtool</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 <a href="https://www.gnu.org/software/libtool/manual/">https://www.gnu.org/software/libtool/manual/</a>
@@ -391,8 +324,8 @@ This book is a tutorial. Those I didn't study carefully in this book:
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">1.6</span> Other reference discovered by this reading</h3>
+<div id="outline-container-org50e2984" class="outline-3">
+<h3 id="org50e2984"><span class="section-number-3">1.6</span> Other reference discovered by this reading</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 <a href="https://www.gnu.org/prep/standards/">https://www.gnu.org/prep/standards/</a>
@@ -401,8 +334,8 @@ This book is a tutorial. Those I didn't study carefully in this book:
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgfe7e1d8" class="outline-2">
+<h2 id="orgfe7e1d8"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This article talks about the GNU build system:
@@ -415,8 +348,8 @@ This article talks about the GNU build system:
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">3</span> Some random staff</h2>
+<div id="outline-container-org49a24e2" class="outline-2">
+<h2 id="org49a24e2"><span class="section-number-2">3</span> Some random staff</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Autoconf is a tool for producing shell scripts that automatically configure software source code packages to adapt to many kinds of Posix-like systems.
@@ -425,8 +358,8 @@ The configuration scripts produced by Autoconf are independent of Autoconf when 
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">4</span> interaction</h2>
+<div id="outline-container-org625d2ce" class="outline-2">
+<h2 id="org625d2ce"><span class="section-number-2">4</span> interaction</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 There're two files provided by developer: <code>Makefile.am</code> and <code>configure.in</code>.
@@ -445,8 +378,8 @@ There're two files provided by developer: <code>Makefile.am</code> and <code>con
 </ol>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.1</span> configuration name</h3>
+<div id="outline-container-org9a5fe7e" class="outline-3">
+<h3 id="org9a5fe7e"><span class="section-number-3">4.1</span> configuration name</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 config.guess can determines the configuration name for the system it is run on, e.g. 
@@ -464,18 +397,17 @@ All configuration names used to have three parts, and in some documentation they
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">5</span> A typical workflow</h2>
+<div id="outline-container-orgb623e92" class="outline-2">
+<h2 id="orgb623e92"><span class="section-number-2">5</span> A typical workflow</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Makefile.am
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-makefile"><span style="color: #75715E;">## </span><span style="color: #75715E;">Makefile.am -- Process this file with automake to produce Makefile.in</span>
-<span style="color: #FD971F;">bin_PROGRAMS</span> = foo
-<span style="color: #FD971F;">foo_SOURCES</span> = a.c
+<pre class="src src-makefile"><span style="color: #b22222;">## </span><span style="color: #b22222;">Makefile.am -- Process this file with automake to produce Makefile.in</span>
+<span style="color: #a0522d;">bin_PROGRAMS</span> = foo
+<span style="color: #a0522d;">foo_SOURCES</span> = a.c
 </pre>
 </div>
 
@@ -483,21 +415,20 @@ Makefile.am
 configure.ac
 </p>
 <div class="org-src-container">
+<pre class="src src-autoconf"><span style="color: #b22222;">dnl </span><span style="color: #b22222;">Process this file with autoconf to produce a configure script.</span>
 
-<pre class="src src-autoconf"><span style="color: #75715E;">dnl </span><span style="color: #75715E;">Process this file with autoconf to produce a configure script.</span>
+<span style="color: #a020f0;">AC_PREREQ</span><span style="color: #707183;">(</span>2.59<span style="color: #707183;">)</span>
 
-<span style="color: #F92672;">AC_PREREQ</span>(2.59)
+<span style="color: #a020f0;">AC_INIT</span><span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>foo<span style="color: #7388d6;">]</span>, <span style="color: #7388d6;">[</span>2.0<span style="color: #7388d6;">]</span>, <span style="color: #7388d6;">[</span>gary@gnu.org<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
 
-<span style="color: #F92672;">AC_INIT</span>([foo], [2.0], [gary@gnu.org])
+<span style="color: #a020f0;">AM_INIT_AUTOMAKE</span><span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1.9 foreign<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
 
-<span style="color: #F92672;">AM_INIT_AUTOMAKE</span>([1.9 foreign])
+<span style="color: #a020f0;">AC_PROG_CC</span>
+<span style="color: #a020f0;">AM_PROG_LEX</span>
+<span style="color: #a020f0;">AC_PROG_YACC</span>
 
-<span style="color: #F92672;">AC_PROG_CC</span>
-<span style="color: #F92672;">AM_PROG_LEX</span>
-<span style="color: #F92672;">AC_PROG_YACC</span>
-
-<span style="color: #F92672;">AC_CONFIG_FILES</span>([Makefile])
-<span style="color: #F92672;">AC_OUTPUT</span>
+<span style="color: #a020f0;">AC_CONFIG_FILES</span><span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>Makefile<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #a020f0;">AC_OUTPUT</span>
 </pre>
 </div>
 
@@ -505,12 +436,11 @@ configure.ac
 a.c
 </p>
 <div class="org-src-container">
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
 
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
-
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>() {
-  printf(<span style="color: #E6DB74;">"Hello Automake\n"</span>);
-}
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+  printf<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"Hello Automake\n"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 
@@ -526,8 +456,8 @@ make all # generate a.o, foo
 </pre>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">5.1</span> bootstrap</h3>
+<div id="outline-container-orgd5780a2" class="outline-3">
+<h3 id="orgd5780a2"><span class="section-number-3">5.1</span> bootstrap</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 From the empty project, how to reach a configure &amp;&amp; make &amp;&amp; make install ready status?
@@ -537,11 +467,10 @@ From the empty project, how to reach a configure &amp;&amp; make &amp;&amp; make
 Create a <code>bootstrap</code> shell script:
 </p>
 <div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">! /bin/</span><span style="color: #a020f0;">sh</span>
 
-<pre class="src src-shell"><span style="color: #75715E;">#</span><span style="color: #75715E;">! /bin/</span><span style="color: #F92672;">sh</span>
-
-aclocal <span style="color: #E6DB74; font-weight: bold;">\</span>
-&amp;&amp; automake --gnu --add-missing <span style="color: #E6DB74; font-weight: bold;">\</span>
+aclocal <span style="color: #8b2252;">\</span>
+&amp;&amp; automake --gnu --add-missing <span style="color: #8b2252;">\</span>
 &amp;&amp; autoconf
 </pre>
 </div>
@@ -555,7 +484,7 @@ The autoreconf does the same thing. Try it.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-06 Thu 12:13</p>
+<p class="date">Created: 2016-11-08 Tue 13:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

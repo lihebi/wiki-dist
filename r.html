@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-26 Wed 00:26 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:53 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>R</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,31 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -171,39 +236,39 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Tmp</a></li>
-<li><a href="#orgheadline5">2. Setting up</a>
+<li><a href="#orgb1cd56e">1. Tmp</a></li>
+<li><a href="#orgea9b52d">2. Setting up</a>
 <ul>
-<li><a href="#orgheadline2">2.1. Packages</a></li>
-<li><a href="#orgheadline3">2.2. Emacs ESS</a></li>
-<li><a href="#orgheadline4">2.3. Interactive command</a></li>
+<li><a href="#orgd7d899f">2.1. Packages</a></li>
+<li><a href="#org24cdac9">2.2. Emacs ESS</a></li>
+<li><a href="#org55e0685">2.3. Interactive command</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">3. Objects</a>
+<li><a href="#orgffc7b77">3. Objects</a>
 <ul>
-<li><a href="#orgheadline6">3.1. Vector</a></li>
-<li><a href="#orgheadline7">3.2. Indexing</a></li>
-<li><a href="#orgheadline8">3.3. data example</a></li>
+<li><a href="#orgd6da373">3.1. Vector</a></li>
+<li><a href="#orgbbabf28">3.2. Indexing</a></li>
+<li><a href="#org33f7776">3.3. data example</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">4. Operators</a></li>
-<li><a href="#orgheadline13">5. Control Structure</a>
+<li><a href="#orgc38ac9d">4. Operators</a></li>
+<li><a href="#org51af740">5. Control Structure</a>
 <ul>
-<li><a href="#orgheadline11">5.1. Conditional</a></li>
-<li><a href="#orgheadline12">5.2. Loop</a></li>
+<li><a href="#org226a817">5.1. Conditional</a></li>
+<li><a href="#org43559f4">5.2. Loop</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">6. Evaluation rules</a></li>
-<li><a href="#orgheadline15">7. Function</a></li>
-<li><a href="#orgheadline16">8. Quote</a></li>
-<li><a href="#orgheadline17">9. Debugging</a></li>
-<li><a href="#orgheadline18">10. Data IO</a></li>
-<li><a href="#orgheadline19">11. Models</a></li>
-<li><a href="#orgheadline23">12. Packages</a>
+<li><a href="#org3348594">6. Evaluation rules</a></li>
+<li><a href="#orge243c09">7. Function</a></li>
+<li><a href="#org9cda295">8. Quote</a></li>
+<li><a href="#orge72c9c4">9. Debugging</a></li>
+<li><a href="#orge0142a7">10. Data IO</a></li>
+<li><a href="#orgf4eca44">11. Models</a></li>
+<li><a href="#org331f497">12. Packages</a>
 <ul>
-<li><a href="#orgheadline20">12.1. ggplot2</a></li>
-<li><a href="#orgheadline21">12.2. plot(x, y, &#x2026;)</a></li>
-<li><a href="#orgheadline22">12.3. dplyr</a></li>
+<li><a href="#org71cf8ab">12.1. ggplot2</a></li>
+<li><a href="#org9e7a1d2">12.2. plot(x, y, &#x2026;)</a></li>
+<li><a href="#orgb014aed">12.3. dplyr</a></li>
 </ul>
 </li>
 </ul>
@@ -211,8 +276,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Tmp</h2>
+<div id="outline-container-orgb1cd56e" class="outline-2">
+<h2 id="orgb1cd56e"><span class="section-number-2">1</span> Tmp</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt><code>str</code></dt><dd>show the structure of arbitrary type</dd>
@@ -233,11 +298,11 @@ You cannot use a vector as index.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">2</span> Setting up</h2>
+<div id="outline-container-orgea9b52d" class="outline-2">
+<h2 id="orgea9b52d"><span class="section-number-2">2</span> Setting up</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Packages</h3>
+</div><div id="outline-container-orgd7d899f" class="outline-3">
+<h3 id="orgd7d899f"><span class="section-number-3">2.1</span> Packages</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>library()</code> see the list of installed packages.
@@ -248,8 +313,8 @@ You cannot use a vector as index.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Emacs ESS</h3>
+<div id="outline-container-org24cdac9" class="outline-3">
+<h3 id="org24cdac9"><span class="section-number-3">2.2</span> Emacs ESS</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 To start ESS session, run command <code>S</code>.
@@ -296,8 +361,8 @@ To export some summary data:
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.3</span> Interactive command</h3>
+<div id="outline-container-org55e0685" class="outline-3">
+<h3 id="org55e0685"><span class="section-number-3">2.3</span> Interactive command</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <code>setwd("/absolute/path")</code> set the working directory.
@@ -327,8 +392,8 @@ Objects:
 </div>
 
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">3</span> Objects</h2>
+<div id="outline-container-orgffc7b77" class="outline-2">
+<h2 id="orgffc7b77"><span class="section-number-2">3</span> Objects</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Objects have mode and length.
@@ -356,8 +421,8 @@ A <i>data frame</i> is a list with class "data.frame".
 </p>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">3.1</span> Vector</h3>
+<div id="outline-container-orgd6da373" class="outline-3">
+<h3 id="orgd6da373"><span class="section-number-3">3.1</span> Vector</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Create a vector by <code>c</code>: <code>c(10.4, 5.6, 3.1)</code>.
@@ -383,8 +448,8 @@ Repeating can be done by <code>rep</code>:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.2</span> Indexing</h3>
+<div id="outline-container-orgbbabf28" class="outline-3">
+<h3 id="orgbbabf28"><span class="section-number-3">3.2</span> Indexing</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Inside <code>[]</code>, it can be a number or character, or a vector of them.
@@ -408,12 +473,11 @@ The empty index <code>[]</code> will returns the entire vector with <i>irrelevan
 The only retained ones are the <code>names</code>, <code>dim</code> and <code>dimnames</code> attributes.
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">fruit <span style="color: #AE81FF;">&lt;-</span> c(5, 10, 1, 20)
-names(fruit) <span style="color: #AE81FF;">&lt;-</span> c(<span style="color: #E6DB74;">"orange"</span>, <span style="color: #E6DB74;">"banana"</span>, <span style="color: #E6DB74;">"apple"</span>, <span style="color: #E6DB74;">"peach"</span>)
-lunch <span style="color: #AE81FF;">&lt;-</span> fruit[c(<span style="color: #E6DB74;">"apple"</span>,<span style="color: #E6DB74;">"orange"</span>)]
-<span style="color: #75715E;"># </span><span style="color: #75715E;">matrix</span>
-dim(z) <span style="color: #AE81FF;">&lt;-</span> c(3,5,100)~
+<pre class="src src-R">fruit <span style="color: #008b8b;">&lt;-</span> c(5, 10, 1, 20)
+names(fruit) <span style="color: #008b8b;">&lt;-</span> c(<span style="color: #8b2252;">"orange"</span>, <span style="color: #8b2252;">"banana"</span>, <span style="color: #8b2252;">"apple"</span>, <span style="color: #8b2252;">"peach"</span>)
+lunch <span style="color: #008b8b;">&lt;-</span> fruit[c(<span style="color: #8b2252;">"apple"</span>,<span style="color: #8b2252;">"orange"</span>)]
+<span style="color: #b22222;"># </span><span style="color: #b22222;">matrix</span>
+dim(z) <span style="color: #008b8b;">&lt;-</span> c(3,5,100)~
 z[2,,]
 z[,,]
 </pre>
@@ -421,54 +485,53 @@ z[,,]
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.3</span> data example</h3>
+<div id="outline-container-org33f7776" class="outline-3">
+<h3 id="org33f7776"><span class="section-number-3">3.3</span> data example</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
-
-<pre class="src src-R"><span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: Command line arguments)</span>
-args = commandArgs(trailingOnly=<span style="color: #66D9EF;">TRUE</span>)
+<pre class="src src-R"><span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: Command line arguments)</span>
+args = commandArgs(trailingOnly=<span style="color: #228b22;">TRUE</span>)
 csvfile = args[1]
-csv = read.csv(csvfile, header=<span style="color: #66D9EF;">TRUE</span>)
+csv = read.csv(csvfile, header=<span style="color: #228b22;">TRUE</span>)
 
-total_test <span style="color: #AE81FF;">&lt;-</span> dim(csv)[[1]]
+total_test <span style="color: #008b8b;">&lt;-</span> dim(csv)[[1]]
 sub = subset(csv, reach_code&gt;=5)
-total_reach_poi <span style="color: #AE81FF;">&lt;-</span> dim(sub)[[1]]
+total_reach_poi <span style="color: #008b8b;">&lt;-</span> dim(sub)[[1]]
 sub = subset(csv, reach_code==5 &amp; status_code == 1)
-total_fail_poi <span style="color: #AE81FF;">&lt;-</span> dim(sub)[[1]]
+total_fail_poi <span style="color: #008b8b;">&lt;-</span> dim(sub)[[1]]
 
-sub <span style="color: #AE81FF;">&lt;-</span> sub[1:(length(csv)-2)]
-<span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: callin ga function)</span>
+sub <span style="color: #008b8b;">&lt;-</span> sub[1:(length(csv)-2)]
+<span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: callin ga function)</span>
 funcs = TransferFunction(sub);
 
-<span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: define a function)</span>
-<span style="color: #A6E22E;">Constant</span> <span style="color: #AE81FF;">&lt;-</span> <span style="color: #F92672;">function</span>(data) {
-    <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: return value as a vector)</span>
-    ret <span style="color: #AE81FF;">&lt;-</span> c()
-    i <span style="color: #AE81FF;">&lt;-</span> 1
-    <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: a for loop using the vector as range)</span>
-    <span style="color: #F92672;">for</span> (i <span style="color: #F92672;">in</span> c(1:length(data))) {
+<span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: define a function)</span>
+<span style="color: #0000ff;">Constant</span> <span style="color: #008b8b;">&lt;-</span> <span style="color: #a020f0;">function</span>(data) {
+    <span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: return value as a vector)</span>
+    ret <span style="color: #008b8b;">&lt;-</span> c()
+    i <span style="color: #008b8b;">&lt;-</span> 1
+    <span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: a for loop using the vector as range)</span>
+    <span style="color: #a020f0;">for</span> (i <span style="color: #a020f0;">in</span> c(1:length(data))) {
         col = data[i];
-        <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: Get the name of a column)</span>
+        <span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: Get the name of a column)</span>
         name = names(col);
-        <span style="color: #F92672;">if</span> (substr(name, 1, 6) == <span style="color: #E6DB74;">"output"</span>) {
-            <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: remove of NA)</span>
+        <span style="color: #a020f0;">if</span> (substr(name, 1, 6) == <span style="color: #8b2252;">"output"</span>) {
+            <span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: remove of NA)</span>
             newcol = col[!is.na(col)];
-            <span style="color: #F92672;">if</span> (length(newcol) &gt; 2) {
-                value <span style="color: #AE81FF;">&lt;-</span> newcol[1]
-                <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: check the value of the vector is all the same)</span>
-                <span style="color: #F92672;">if</span> (length(newcol[newcol != value]) == 0) {
-                    <span style="color: #75715E;">## </span><span style="color: #ff0000;">(HEBI: pushing a new value to the return vector)</span>
-                    ret <span style="color: #AE81FF;">&lt;-</span> c(ret, paste(<span style="color: #E6DB74;">"name = "</span>,  value))}}}}
-    <span style="color: #F92672;">return</span>(ret)}
+            <span style="color: #a020f0;">if</span> (length(newcol) &gt; 2) {
+                value <span style="color: #008b8b;">&lt;-</span> newcol[1]
+                <span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: check the value of the vector is all the same)</span>
+                <span style="color: #a020f0;">if</span> (length(newcol[newcol != value]) == 0) {
+                    <span style="color: #b22222;">## </span><span style="color: #ff0000;">(HEBI: pushing a new value to the return vector)</span>
+                    ret <span style="color: #008b8b;">&lt;-</span> c(ret, paste(<span style="color: #8b2252;">"name = "</span>,  value))}}}}
+    <span style="color: #a020f0;">return</span>(ret)}
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10"><span class="section-number-2">4</span> Operators</h2>
+<div id="outline-container-orgc38ac9d" class="outline-2">
+<h2 id="orgc38ac9d"><span class="section-number-2">4</span> Operators</h2>
 <div class="outline-text-2" id="text-4">
 <dl class="org-dl">
 <dt>arithmetic</dt><dd><code>+-*/</code>, <code>^</code> for exp, <code>%%</code> for modulus</dd>
@@ -496,15 +559,15 @@ and concatenates them one by one into character strings.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">5</span> Control Structure</h2>
+<div id="outline-container-org51af740" class="outline-2">
+<h2 id="org51af740"><span class="section-number-2">5</span> Control Structure</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The compound statements are the same as C, can be a single statement without the braces.
 </p>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">5.1</span> Conditional</h3>
+<div id="outline-container-org226a817" class="outline-3">
+<h3 id="org226a817"><span class="section-number-3">5.1</span> Conditional</h3>
 <div class="outline-text-3" id="text-5-1">
 <dl class="org-dl">
 <dt>if</dt><dd><code>if (STMT) STMT else if (STMT) STMT else STMT</code></dd>
@@ -519,8 +582,8 @@ The compound statements are the same as C, can be a single statement without the
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">5.2</span> Loop</h3>
+<div id="outline-container-org43559f4" class="outline-3">
+<h3 id="org43559f4"><span class="section-number-3">5.2</span> Loop</h3>
 <div class="outline-text-3" id="text-5-2">
 <dl class="org-dl">
 <dt><code>for</code></dt><dd><code>for (NAME in VECTOR) STMT</code></dd>
@@ -532,8 +595,8 @@ The compound statements are the same as C, can be a single statement without the
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14"><span class="section-number-2">6</span> Evaluation rules</h2>
+<div id="outline-container-org3348594" class="outline-2">
+<h2 id="org3348594"><span class="section-number-2">6</span> Evaluation rules</h2>
 <div class="outline-text-2" id="text-6">
 <dl class="org-dl">
 <dt>recycling rules</dt><dd>the shortest list is recycled to the length of longest.</dd>
@@ -542,8 +605,8 @@ The compound statements are the same as C, can be a single statement without the
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">7</span> Function</h2>
+<div id="outline-container-orge243c09" class="outline-2">
+<h2 id="orge243c09"><span class="section-number-2">7</span> Function</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <code>function (ARGLIST) BODY</code>
@@ -569,8 +632,8 @@ Partial matching result must be unique, but the exact matched ones are excluded 
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16"><span class="section-number-2">8</span> Quote</h2>
+<div id="outline-container-org9cda295" class="outline-2">
+<h2 id="org9cda295"><span class="section-number-2">8</span> Quote</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 The quote will wrap the expression into an object without evaluating it.
@@ -580,8 +643,8 @@ The <code>eval</code> is used to evaluate it.
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">9</span> Debugging</h2>
+<div id="outline-container-orge72c9c4" class="outline-2">
+<h2 id="orge72c9c4"><span class="section-number-2">9</span> Debugging</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 To enter the debugger, a call to <code>browser</code> function suffices.
@@ -594,8 +657,8 @@ Every time the function is invoked, the return value will be printed as trace.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18"><span class="section-number-2">10</span> Data IO</h2>
+<div id="outline-container-orge0142a7" class="outline-2">
+<h2 id="orge0142a7"><span class="section-number-2">10</span> Data IO</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li><code>write</code></li>
@@ -612,8 +675,8 @@ Every time the function is invoked, the return value will be printed as trace.
 </div>
 
 
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19"><span class="section-number-2">11</span> Models</h2>
+<div id="outline-container-orgf4eca44" class="outline-2">
+<h2 id="orgf4eca44"><span class="section-number-2">11</span> Models</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Linear model.
@@ -641,39 +704,37 @@ The models can be updated, if the formula only changes a little bit.
 In the following example, the <code>.</code> means the corresponding part of the original formula.
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">fs <span style="color: #AE81FF;">&lt;-</span> lm(y~x1 + x2, data=mydata)
-fs <span style="color: #AE81FF;">&lt;-</span> update(fs, . ~ . + x3)
-fs <span style="color: #AE81FF;">&lt;-</span> update(fs, sqrt(.) ~ .)
+<pre class="src src-R">fs <span style="color: #008b8b;">&lt;-</span> lm(y~x1 + x2, data=mydata)
+fs <span style="color: #008b8b;">&lt;-</span> update(fs, . ~ . + x3)
+fs <span style="color: #008b8b;">&lt;-</span> update(fs, sqrt(.) ~ .)
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23"><span class="section-number-2">12</span> Packages</h2>
+<div id="outline-container-org331f497" class="outline-2">
+<h2 id="org331f497"><span class="section-number-2">12</span> Packages</h2>
 <div class="outline-text-2" id="text-12">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">12.1</span> ggplot2</h3>
+</div><div id="outline-container-org71cf8ab" class="outline-3">
+<h3 id="org71cf8ab"><span class="section-number-3">12.1</span> ggplot2</h3>
 <div class="outline-text-3" id="text-12-1">
 <div class="org-src-container">
-
-<pre class="src src-R">qplot(totbill, tip, geom=<span style="color: #E6DB74;">"point"</span>, data=tips) <span style="color: #75715E;"># </span><span style="color: #75715E;">scatter plot</span>
-qplot(totbill, tip, geom=<span style="color: #E6DB74;">"point"</span>, data=tips) + geom_smooth(method=<span style="color: #E6DB74;">"lm"</span>) <span style="color: #75715E;"># </span><span style="color: #75715E;">with linear relationship line</span>
-qplot(tip, geom=<span style="color: #E6DB74;">"histogram"</span>, data=tip) <span style="color: #75715E;"># </span><span style="color: #75715E;">histogram</span>
-qplot(tip, geom=<span style="color: #E6DB74;">"histogram"</span>, binwidth=1, data=tips) <span style="color: #75715E;"># </span><span style="color: #75715E;">with custom binwidth</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">box plots</span>
-qplot(sex, tipperc, geom=<span style="color: #E6DB74;">"boxplot"</span>, data=tips)
-qplot(smoker, tipperc, geom=<span style="color: #E6DB74;">"boxplot"</span>, data=tips)
-qplot(sex:smoker, tipperc, geom=<span style="color: #E6DB74;">"boxplot"</span>, data=tips) <span style="color: #75715E;"># </span><span style="color: #75715E;">combine! plot the two sets of graph in two one graph</span>
-qplot(totbill, tip, geom=<span style="color: #E6DB74;">"point"</span>, colour=day, data=tips) <span style="color: #75715E;"># </span><span style="color: #75715E;">scatter plot with colors, in regard to "day" column</span>
+<pre class="src src-R">qplot(totbill, tip, geom=<span style="color: #8b2252;">"point"</span>, data=tips) <span style="color: #b22222;"># </span><span style="color: #b22222;">scatter plot</span>
+qplot(totbill, tip, geom=<span style="color: #8b2252;">"point"</span>, data=tips) + geom_smooth(method=<span style="color: #8b2252;">"lm"</span>) <span style="color: #b22222;"># </span><span style="color: #b22222;">with linear relationship line</span>
+qplot(tip, geom=<span style="color: #8b2252;">"histogram"</span>, data=tip) <span style="color: #b22222;"># </span><span style="color: #b22222;">histogram</span>
+qplot(tip, geom=<span style="color: #8b2252;">"histogram"</span>, binwidth=1, data=tips) <span style="color: #b22222;"># </span><span style="color: #b22222;">with custom binwidth</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">box plots</span>
+qplot(sex, tipperc, geom=<span style="color: #8b2252;">"boxplot"</span>, data=tips)
+qplot(smoker, tipperc, geom=<span style="color: #8b2252;">"boxplot"</span>, data=tips)
+qplot(sex:smoker, tipperc, geom=<span style="color: #8b2252;">"boxplot"</span>, data=tips) <span style="color: #b22222;"># </span><span style="color: #b22222;">combine! plot the two sets of graph in two one graph</span>
+qplot(totbill, tip, geom=<span style="color: #8b2252;">"point"</span>, colour=day, data=tips) <span style="color: #b22222;"># </span><span style="color: #b22222;">scatter plot with colors, in regard to "day" column</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">12.2</span> plot(x, y, &#x2026;)</h3>
+<div id="outline-container-org9e7a1d2" class="outline-3">
+<h3 id="org9e7a1d2"><span class="section-number-3">12.2</span> plot(x, y, &#x2026;)</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 Possible <code>...</code> arguments:
@@ -693,8 +754,8 @@ Possible <code>...</code> arguments:
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22"><span class="section-number-3">12.3</span> dplyr</h3>
+<div id="outline-container-orgb014aed" class="outline-3">
+<h3 id="orgb014aed"><span class="section-number-3">12.3</span> dplyr</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 A Grammar of Data Manipulation
@@ -707,7 +768,7 @@ A Grammar of Data Manipulation
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-26 Wed 00:26</p>
+<p class="date">Created: 2016-11-08 Tue 13:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

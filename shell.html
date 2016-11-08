@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-22 Sat 18:29 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:53 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,35 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -175,48 +236,48 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">1. Concepts</a>
+<li><a href="#org3c1cbfe">1. Concepts</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Command Interaction</a></li>
-<li><a href="#orgheadline2">1.2. redirection</a></li>
+<li><a href="#org426a67f">1.1. Command Interaction</a></li>
+<li><a href="#orgfed2121">1.2. redirection</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">2. expansion</a>
+<li><a href="#orge8f83ae">2. expansion</a>
 <ul>
-<li><a href="#orgheadline5">2.1. parameter and variable expansion</a>
+<li><a href="#orgf40c6c9">2.1. parameter and variable expansion</a>
 <ul>
-<li><a href="#orgheadline4">2.1.1. special parameters</a></li>
+<li><a href="#org02d9fab">2.1.1. special parameters</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline7">3. IO</a></li>
-<li><a href="#orgheadline12">4. Control Flow</a>
+<li><a href="#org9dbf6d0">3. IO</a></li>
+<li><a href="#org97d0091">4. Control Flow</a>
 <ul>
-<li><a href="#orgheadline9">4.1. Condition commands</a>
+<li><a href="#org6ac9078">4.1. Condition commands</a>
 <ul>
-<li><a href="#orgheadline8">4.1.1. bash conditional expression</a></li>
+<li><a href="#orgf560c83">4.1.1. bash conditional expression</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">4.2. Conditional</a></li>
-<li><a href="#orgheadline11">4.3. loop</a></li>
+<li><a href="#org056527b">4.2. Conditional</a></li>
+<li><a href="#orgd278817">4.3. loop</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">5. function</a></li>
-<li><a href="#orgheadline15">6. Tips</a>
+<li><a href="#org17adf31">5. function</a></li>
+<li><a href="#org57e889e">6. Tips</a>
 <ul>
-<li><a href="#orgheadline14">6.1. Check whether a command exists</a></li>
+<li><a href="#org6ea8708">6.1. Check whether a command exists</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">1</span> Concepts</h2>
+<div id="outline-container-org3c1cbfe" class="outline-2">
+<h2 id="org3c1cbfe"><span class="section-number-2">1</span> Concepts</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Command Interaction</h3>
+</div><div id="outline-container-org426a67f" class="outline-3">
+<h3 id="org426a67f"><span class="section-number-3">1.1</span> Command Interaction</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The first type of interaction is pipeline.
@@ -246,8 +307,8 @@ while <code>{}</code> will not create sub-shell. The last command in the body MU
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> redirection</h3>
+<div id="outline-container-orgfed2121" class="outline-3">
+<h3 id="orgfed2121"><span class="section-number-3">1.2</span> redirection</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li><code>ls &gt; dirlist 2&gt;&amp;1</code></li>
@@ -281,8 +342,8 @@ And the expansion of word will be used as the input.
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> expansion</h2>
+<div id="outline-container-orge8f83ae" class="outline-2">
+<h2 id="orge8f83ae"><span class="section-number-2">2</span> expansion</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 There are seven kinds of expansions, in order of expansion order.
@@ -304,8 +365,8 @@ If 'IFS' is unset, or its value is exactly <code>&lt;space&gt;&lt;tab&gt;&lt;new
 </dl>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.1</span> parameter and variable expansion</h3>
+<div id="outline-container-orgf40c6c9" class="outline-3">
+<h3 id="orgf40c6c9"><span class="section-number-3">2.1</span> parameter and variable expansion</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><code>${var:-word}</code>: if var is unset or null, the value is expansion of word</li>
@@ -363,8 +424,8 @@ match of pattern will change case
 <li><code>${str,,pattern}</code>: all match, upper to lower</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4"><span class="section-number-4">2.1.1</span> special parameters</h4>
+<div id="outline-container-org02d9fab" class="outline-4">
+<h4 id="org02d9fab"><span class="section-number-4">2.1.1</span> special parameters</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li><code>$*</code>: "$1c$2c$3c&#x2026;", c is the first character of $IFS (defaults to space)</li>
@@ -382,17 +443,16 @@ match of pattern will change case
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">3</span> IO</h2>
+<div id="outline-container-org9dbf6d0" class="outline-2">
+<h2 id="org9dbf6d0"><span class="section-number-2">3</span> IO</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The loop can accept the redirection, thus can be used to read a file:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">while </span><span style="color: #F92672;">read</span> -r line; <span style="color: #F92672;">do</span>
-    <span style="color: #75715E;"># </span><span style="color: #75715E;">some job</span>
-<span style="color: #F92672;">done</span> &lt; papers.txt
+<pre class="src src-shell"><span style="color: #a020f0;">while </span><span style="color: #483d8b;">read</span> -r line; <span style="color: #a020f0;">do</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">some job</span>
+<span style="color: #a020f0;">done</span> &lt; papers.txt
 </pre>
 </div>
 
@@ -400,8 +460,7 @@ The loop can accept the redirection, thus can be used to read a file:
 The ordinary reading from command line:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">read</span> -p <span style="color: #E6DB74;">"please input: "</span> a b c
+<pre class="src src-shell"><span style="color: #483d8b;">read</span> -p <span style="color: #8b2252;">"please input: "</span> a b c
 </pre>
 </div>
 
@@ -411,11 +470,11 @@ When using <code>echo</code>, use <code>-e</code> option can print out control c
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">4</span> Control Flow</h2>
+<div id="outline-container-org97d0091" class="outline-2">
+<h2 id="org97d0091"><span class="section-number-2">4</span> Control Flow</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">4.1</span> Condition commands</h3>
+</div><div id="outline-container-org6ac9078" class="outline-3">
+<h3 id="org6ac9078"><span class="section-number-3">4.1</span> Condition commands</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <code>[</code>  and <code>]</code> are used to evaluate a conditional expression.
@@ -469,8 +528,8 @@ The expression can be used with some operators:
 </dl>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8"><span class="section-number-4">4.1.1</span> bash conditional expression</h4>
+<div id="outline-container-orgf560c83" class="outline-4">
+<h4 id="orgf560c83"><span class="section-number-4">4.1.1</span> bash conditional expression</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -566,8 +625,8 @@ The expression can be used with some operators:
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.2</span> Conditional</h3>
+<div id="outline-container-org056527b" class="outline-3">
+<h3 id="org056527b"><span class="section-number-3">4.2</span> Conditional</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 The <code>if</code> clause signature is <code>if ; then ; elif ; then ; else ; fi</code>.
@@ -607,8 +666,8 @@ Each case must be terminated by <code>;;</code>, <code>;&amp;</code> or <code>;;
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">4.3</span> loop</h3>
+<div id="outline-container-orgd278817" class="outline-3">
+<h3 id="orgd278817"><span class="section-number-3">4.3</span> loop</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 As for other languages, <code>break</code> and <code>continue</code> can be used.
@@ -625,8 +684,8 @@ As for other languages, <code>break</code> and <code>continue</code> can be used
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">5</span> function</h2>
+<div id="outline-container-org17adf31" class="outline-2">
+<h2 id="org17adf31"><span class="section-number-2">5</span> function</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The function has two methods to declare, use the name and a pair of parenthesis, and the function keyword with optional parenthesis.
@@ -653,16 +712,16 @@ Echo the result and assign the result to a variable may be a choice, but I found
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">6</span> Tips</h2>
+<div id="outline-container-org57e889e" class="outline-2">
+<h2 id="org57e889e"><span class="section-number-2">6</span> Tips</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>source</code> will be in effect in current shell session, but not the sub-shells</li>
 <li><code>export</code> declare global variable, and will be in effect in sub-shells</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">6.1</span> Check whether a command exists</h3>
+<div id="outline-container-org6ea8708" class="outline-3">
+<h3 id="org6ea8708"><span class="section-number-3">6.1</span> Check whether a command exists</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 Do not use <code>which</code>, it is expensive, and the return value is not well defined.
@@ -670,11 +729,10 @@ Use <code>hash</code> for commands and <code>type</code> when considering built-
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">type</span> foo &gt;/dev/null 2&gt;&amp;1 || 
-    { <span style="color: #F92672;">echo</span> &gt;&amp;2 <span style="color: #E6DB74;">"I require foo but it's not installed.  Aborting."</span>; <span style="color: #F92672;">exit</span> 1; }
-<span style="color: #F92672;">hash</span> foo 2&gt;/dev/null ||
-    { <span style="color: #F92672;">echo</span> &gt;&amp;2 <span style="color: #E6DB74;">"I require foo but it's not installed.  Aborting."</span>; <span style="color: #F92672;">exit</span> 1; }
+<pre class="src src-shell"><span style="color: #483d8b;">type</span> foo &gt;/dev/null 2&gt;&amp;1 || 
+    <span style="color: #707183;">{</span> <span style="color: #483d8b;">echo</span> &gt;&amp;2 <span style="color: #8b2252;">"I require foo but it's not installed.  Aborting."</span>; <span style="color: #a020f0;">exit</span> 1; <span style="color: #707183;">}</span>
+<span style="color: #483d8b;">hash</span> foo 2&gt;/dev/null ||
+    <span style="color: #707183;">{</span> <span style="color: #483d8b;">echo</span> &gt;&amp;2 <span style="color: #8b2252;">"I require foo but it's not installed.  Aborting."</span>; <span style="color: #a020f0;">exit</span> 1; <span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -693,7 +751,7 @@ Use <code>hash</code> for commands and <code>type</code> when considering built-
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-22 Sat 18:29</p>
+<p class="date">Created: 2016-11-08 Tue 13:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

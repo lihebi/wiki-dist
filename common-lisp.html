@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-27 Thu 23:42 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Common Lisp</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,119 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -259,77 +236,76 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline6">1. Installation</a>
+<li><a href="#orgd726ba7">1. Installation</a>
 <ul>
-<li><a href="#orgheadline1">1.1. quicklisp</a></li>
-<li><a href="#orgheadline2">1.2. packages</a></li>
-<li><a href="#orgheadline3">1.3. org babel</a></li>
-<li><a href="#orgheadline5">1.4. Slime</a>
+<li><a href="#org44b1054">1.1. quicklisp</a></li>
+<li><a href="#orgc97dbc6">1.2. packages</a></li>
+<li><a href="#orgb925260">1.3. org babel</a></li>
+<li><a href="#orge195cb4">1.4. Slime</a>
 <ul>
-<li><a href="#orgheadline4">1.4.1. Commands</a></li>
+<li><a href="#orge07aaf7">1.4.1. Commands</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline17">2. Reference</a>
+<li><a href="#org98d71d4">2. Reference</a>
 <ul>
-<li><a href="#orgheadline7">2.1. Truth, falsehood, equality</a></li>
-<li><a href="#orgheadline8">2.2. Function</a></li>
-<li><a href="#orgheadline9">2.3. Variable</a></li>
-<li><a href="#orgheadline12">2.4. Control Structure</a>
+<li><a href="#orgd1e7ca8">2.1. Truth, falsehood, equality</a></li>
+<li><a href="#orgad31a9a">2.2. Function</a></li>
+<li><a href="#org7ce006b">2.3. Variable</a></li>
+<li><a href="#org3491299">2.4. Control Structure</a>
 <ul>
-<li><a href="#orgheadline10">2.4.1. Conditional</a></li>
-<li><a href="#orgheadline11">2.4.2. Looping</a></li>
+<li><a href="#orgcf9d0af">2.4.1. Conditional</a></li>
+<li><a href="#org29fdfc8">2.4.2. Looping</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">2.5. Types</a>
+<li><a href="#orgc2bb6f5">2.5. Types</a>
 <ul>
-<li><a href="#orgheadline13">2.5.1. numbers</a></li>
-<li><a href="#orgheadline14">2.5.2. characters</a></li>
+<li><a href="#org86b36eb">2.5.1. numbers</a></li>
+<li><a href="#org1679913">2.5.2. characters</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline16">2.6. Destructive</a></li>
+<li><a href="#orgbf9f659">2.6. Destructive</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">3. Style Guide</a></li>
-<li><a href="#orgheadline21">4. Practical Common Lisp</a>
+<li><a href="#org6b3da4e">3. Style Guide</a></li>
+<li><a href="#orgd92cd0d">4. Practical Common Lisp</a>
 <ul>
-<li><a href="#orgheadline19">4.1. CD database</a></li>
-<li><a href="#orgheadline20">4.2. Unit Test Framework</a></li>
+<li><a href="#org164e417">4.1. CD database</a></li>
+<li><a href="#orgd68f020">4.2. Unit Test Framework</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-orgd726ba7" class="outline-2">
+<h2 id="orgd726ba7"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> quicklisp</h3>
+</div><div id="outline-container-org44b1054" class="outline-3">
+<h3 id="org44b1054"><span class="section-number-3">1.1</span> quicklisp</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">sbcl --load /path/to/quicklisp.lisp</span>
+<span style="color: #707183;">(</span>load <span style="color: #8b2252;">"/path/to/quicklisp.lisp"</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span>quicklisp-quickstart:install<span style="color: #707183;">)</span>
 
-<pre class="src src-lisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">sbcl --load /path/to/quicklisp.lisp</span>
-<span style="color: #AE81FF;">(</span>load <span style="color: #E6DB74;">"/path/to/quicklisp.lisp"</span><span style="color: #AE81FF;">)</span>
-<span style="color: #AE81FF;">(</span>quicklisp-quickstart:install<span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">setting up</span>
+<span style="color: #707183;">(</span>load <span style="color: #8b2252;">"~/quicklisp/setup.lisp"</span><span style="color: #707183;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">load quicklisp when you start lisp</span>
+<span style="color: #707183;">(</span>ql:add-to-init-file<span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">setting up</span>
-<span style="color: #AE81FF;">(</span>load <span style="color: #E6DB74;">"~/quicklisp/setup.lisp"</span><span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">load quicklisp when you start lisp</span>
-<span style="color: #AE81FF;">(</span>ql:add-to-init-file<span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">install/remove a software</span>
+<span style="color: #707183;">(</span>ql:quickload <span style="color: #8b2252;">"clx-truetype"</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span>ql:uninstall <span style="color: #8b2252;">"clx-truetype"</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">install/remove a software</span>
-<span style="color: #AE81FF;">(</span>ql:quickload <span style="color: #E6DB74;">"clx-truetype"</span><span style="color: #AE81FF;">)</span>
-<span style="color: #AE81FF;">(</span>ql:uninstall <span style="color: #E6DB74;">"clx-truetype"</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">query installed packages</span>
+<span style="color: #707183;">(</span>ql:system-apropos <span style="color: #8b2252;">"substring"</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">query installed packages</span>
-<span style="color: #AE81FF;">(</span>ql:system-apropos <span style="color: #E6DB74;">"substring"</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">updating all packages</span>
-<span style="color: #AE81FF;">(</span>ql:update-all-dists<span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #ff0000; background-color: #000000; font-weight: bold; font-style: italic;">update</span><span style="color: #75715E;"> quicklisp itself</span>
-<span style="color: #AE81FF;">(</span>ql:update-client<span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">updating all packages</span>
+<span style="color: #707183;">(</span>ql:update-all-dists<span style="color: #707183;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #000000; font-weight: bold;">update</span><span style="color: #b22222;"> quicklisp itself</span>
+<span style="color: #707183;">(</span>ql:update-client<span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -343,8 +319,8 @@ A list of packages used:
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> packages</h3>
+<div id="outline-container-orgc97dbc6" class="outline-3">
+<h3 id="orgc97dbc6"><span class="section-number-3">1.2</span> packages</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li><code>cl-quicklisp</code></li>
@@ -354,23 +330,22 @@ A list of packages used:
 
 
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> org babel</h3>
+<div id="outline-container-orgb925260" class="outline-3">
+<h3 id="orgb925260"><span class="section-number-3">1.3</span> org babel</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 first, start <code>M-x slime</code>, then you can evaluate this:
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-lisp" id="orgsrcblock1"><span style="color: #AE81FF;">(</span>princ message<span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp" id="orgb380ac2"><span style="color: #707183;">(</span>princ message<span style="color: #707183;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">1.4</span> Slime</h3>
+<div id="outline-container-orge195cb4" class="outline-3">
+<h3 id="orge195cb4"><span class="section-number-3">1.4</span> Slime</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>slime (emacs IDE)</li>
@@ -407,8 +382,8 @@ The staff added into <code>.sbclrc</code>:
 </pre>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4"><span class="section-number-4">1.4.1</span> Commands</h4>
+<div id="outline-container-orge07aaf7" class="outline-4">
+<h4 id="orge07aaf7"><span class="section-number-4">1.4.1</span> Commands</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -452,16 +427,16 @@ In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <c
 </div>
 
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">2</span> Reference</h2>
+<div id="outline-container-org98d71d4" class="outline-2">
+<h2 id="org98d71d4"><span class="section-number-2">2</span> Reference</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Common Lisp the language: <a href="http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html">http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html</a>
 </p>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">2.1</span> Truth, falsehood, equality</h3>
+<div id="outline-container-orgd1e7ca8" class="outline-3">
+<h3 id="orgd1e7ca8"><span class="section-number-3">2.1</span> Truth, falsehood, equality</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><code>nil</code> is false, everything else is true</li>
@@ -477,16 +452,15 @@ But <code>EQL</code> has less trouble to understand .. so use <code>EQL</code> w
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">2.2</span> Function</h3>
+<div id="outline-container-orgad31a9a" class="outline-3">
+<h3 id="orgad31a9a"><span class="section-number-3">2.2</span> Function</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">name</span> <span style="color: #66D9EF;">(</span>a b
-             <span style="color: #66D9EF;">&amp;optional</span> op1 <span style="color: #A6E22E;">(</span>op2 def-value<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>op3 def-value op3-supplied-p<span style="color: #A6E22E;">)</span>
-             <span style="color: #66D9EF;">&amp;rest</span> rests
-             <span style="color: #66D9EF;">&amp;key</span> k1 <span style="color: #A6E22E;">(</span>k2 def-value k2-supplied-p<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span><span style="color: #E6DB74;">(</span><span style="color: #F92672;">:kkkkk3</span> k3<span style="color: #E6DB74;">)</span> def-value k3-supplied-p<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span>body-forms<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">name</span> <span style="color: #7388d6;">(</span>a b
+             <span style="color: #228b22;">&amp;optional</span> op1 <span style="color: #909183;">(</span>op2 def-value<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>op3 def-value op3-supplied-p<span style="color: #909183;">)</span>
+             <span style="color: #228b22;">&amp;rest</span> rests
+             <span style="color: #228b22;">&amp;key</span> k1 <span style="color: #909183;">(</span>k2 def-value k2-supplied-p<span style="color: #909183;">)</span> <span style="color: #909183;">(</span><span style="color: #709870;">(</span><span style="color: #483d8b;">:kkkkk3</span> k3<span style="color: #709870;">)</span> def-value k3-supplied-p<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span>body-forms<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -523,8 +497,8 @@ The list can be looser, e.g. some arguments, as long as the last one is a list.<
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">2.3</span> Variable</h3>
+<div id="outline-container-org7ce006b" class="outline-3">
+<h3 id="org7ce006b"><span class="section-number-3">2.3</span> Variable</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The symbol is a reference of the object.
@@ -615,11 +589,11 @@ Other <i>modify macros</i>:
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">2.4</span> Control Structure</h3>
+<div id="outline-container-org3491299" class="outline-3">
+<h3 id="org3491299"><span class="section-number-3">2.4</span> Control Structure</h3>
 <div class="outline-text-3" id="text-2-4">
-</div><div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10"><span class="section-number-4">2.4.1</span> Conditional</h4>
+</div><div id="outline-container-orgcf9d0af" class="outline-4">
+<h4 id="orgcf9d0af"><span class="section-number-4">2.4.1</span> Conditional</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <ul class="org-ul">
 <li><code>(if condition then-form [else-form])</code></li>
@@ -633,8 +607,8 @@ To have a default, put a <code>t</code> as the last condition.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11"><span class="section-number-4">2.4.2</span> Looping</h4>
+<div id="outline-container-org29fdfc8" class="outline-4">
+<h4 id="org29fdfc8"><span class="section-number-4">2.4.2</span> Looping</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li><code>(dolist (var list-form) body-form*)</code></li>
@@ -648,11 +622,11 @@ To have a default, put a <code>t</code> as the last condition.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15"><span class="section-number-3">2.5</span> Types</h3>
+<div id="outline-container-orgc2bb6f5" class="outline-3">
+<h3 id="orgc2bb6f5"><span class="section-number-3">2.5</span> Types</h3>
 <div class="outline-text-3" id="text-2-5">
-</div><div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13"><span class="section-number-4">2.5.1</span> numbers</h4>
+</div><div id="outline-container-org86b36eb" class="outline-4">
+<h4 id="org86b36eb"><span class="section-number-4">2.5.1</span> numbers</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li><code>#b010101</code></li>
@@ -695,8 +669,8 @@ predicates
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14"><span class="section-number-4">2.5.2</span> characters</h4>
+<div id="outline-container-org1679913" class="outline-4">
+<h4 id="org1679913"><span class="section-number-4">2.5.2</span> characters</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -751,8 +725,8 @@ predicates
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">2.6</span> Destructive</h3>
+<div id="outline-container-orgbf9f659" class="outline-3">
+<h3 id="orgbf9f659"><span class="section-number-3">2.6</span> Destructive</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 There are two types of destructive functions:
@@ -768,18 +742,16 @@ The recycling operations are typically those with <code>n</code> as prefix.
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">upto</span> <span style="color: #66D9EF;">(</span>max<span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">let</span> <span style="color: #A6E22E;">(</span><span style="color: #E6DB74;">(</span>result nil<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span><span style="color: #F92672;">dotimes</span> <span style="color: #E6DB74;">(</span>i max<span style="color: #E6DB74;">)</span>
-      <span style="color: #E6DB74;">(</span>push i result<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span>nreverse result<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">upto</span> <span style="color: #7388d6;">(</span>max<span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">let</span> <span style="color: #909183;">(</span><span style="color: #709870;">(</span>result nil<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span><span style="color: #a020f0;">dotimes</span> <span style="color: #709870;">(</span>i max<span style="color: #709870;">)</span>
+      <span style="color: #709870;">(</span>push i result<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>nreverse result<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span>setf foo <span style="color: #66D9EF;">(</span>delete nil foo<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span>setf foo <span style="color: #7388d6;">(</span>delete nil foo<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -788,20 +760,19 @@ The recycling operations are typically those with <code>n</code> as prefix.
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defparameter</span> <span style="color: #FD971F;">*list*</span> <span style="color: #66D9EF;">(</span>list 4 3 2 1<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #AE81FF;">(</span>sort *list* #'&lt;<span style="color: #AE81FF;">)</span> <span style="color: #75715E;">;; </span><span style="color: #75715E;">(1 2 3 4)</span>
-*list* <span style="color: #75715E;">;; </span><span style="color: #75715E;">(4)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">so shoud use:</span>
-<span style="color: #AE81FF;">(</span>setf *list* <span style="color: #66D9EF;">(</span>sort *list* #'&lt;<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span><span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">*list*</span> <span style="color: #7388d6;">(</span>list 4 3 2 1<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span>sort *list* #'&lt;<span style="color: #707183;">)</span> <span style="color: #b22222;">;; </span><span style="color: #b22222;">(1 2 3 4)</span>
+*list* <span style="color: #b22222;">;; </span><span style="color: #b22222;">(4)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">so shoud use:</span>
+<span style="color: #707183;">(</span>setf *list* <span style="color: #7388d6;">(</span>sort *list* #'&lt;<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18"><span class="section-number-2">3</span> Style Guide</h2>
+<div id="outline-container-org6b3da4e" class="outline-2">
+<h2 id="org6b3da4e"><span class="section-number-2">3</span> Style Guide</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Reference: <a href="http://people.ace.ed.ac.uk/staff/medward2/class/moz/cm/doc/contrib/lispstyle.html">http://people.ace.ed.ac.uk/staff/medward2/class/moz/cm/doc/contrib/lispstyle.html</a>
@@ -822,30 +793,27 @@ Use the collect clause in loop, or push elements onto a list and then nreverse t
 Bad:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">let</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">(</span>result <span style="color: #E6DB74;">()</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">dolist</span> <span style="color: #A6E22E;">(</span>x list<span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span>setf result <span style="color: #E6DB74;">(</span>append result <span style="color: #FD971F;">(</span>list x<span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  result<span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span><span style="color: #a020f0;">let</span> <span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>result <span style="color: #709870;">()</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">dolist</span> <span style="color: #909183;">(</span>x list<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>setf result <span style="color: #709870;">(</span>append result <span style="color: #907373;">(</span>list x<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  result<span style="color: #707183;">)</span>
 </pre>
 </div>
 <p>
 Better:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">let</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">(</span>result <span style="color: #E6DB74;">()</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">dolist</span> <span style="color: #A6E22E;">(</span>x list<span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span>push x result<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span>nreverse result<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span><span style="color: #a020f0;">let</span> <span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>result <span style="color: #709870;">()</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">dolist</span> <span style="color: #909183;">(</span>x list<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>push x result<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span>nreverse result<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 <p>
 Best:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">loop</span> for x in list collect x<span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #707183;">(</span><span style="color: #a020f0;">loop</span> for x in list collect x<span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -857,280 +825,277 @@ Lisp programmers often use the functions and and or to implement simple conditio
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">use</span>
-<span style="color: #AE81FF;">(</span>and x <span style="color: #66D9EF;">(</span>setf y t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">instead of</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">when</span> x
-  <span style="color: #66D9EF;">(</span>setf y t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">use</span>
-<span style="color: #AE81FF;">(</span>or x <span style="color: #66D9EF;">(</span>setf y t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">instead of</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">unless</span> x
-  <span style="color: #66D9EF;">(</span>setf y t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
+<span style="color: #707183;">(</span>and x <span style="color: #7388d6;">(</span>setf y t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">when</span> x
+  <span style="color: #7388d6;">(</span>setf y t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
+<span style="color: #707183;">(</span>or x <span style="color: #7388d6;">(</span>setf y t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">unless</span> x
+  <span style="color: #7388d6;">(</span>setf y t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline21" class="outline-2">
-<h2 id="orgheadline21"><span class="section-number-2">4</span> Practical Common Lisp</h2>
+<div id="outline-container-orgd92cd0d" class="outline-2">
+<h2 id="orgd92cd0d"><span class="section-number-2">4</span> Practical Common Lisp</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="http://www.gigamonkeys.com/book/">http://www.gigamonkeys.com/book/</a>
 </p>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19"><span class="section-number-3">4.1</span> CD database</h3>
+<div id="outline-container-org164e417" class="outline-3">
+<h3 id="org164e417"><span class="section-number-3">4.1</span> CD database</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hello world, testing environment)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">hello-world</span> <span style="color: #7388d6;">()</span>
+  <span style="color: #7388d6;">(</span>format t <span style="color: #8b2252;">"Hello, world!"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<pre class="src src-lisp"><span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: hello world, testing environment)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">hello-world</span> <span style="color: #66D9EF;">()</span>
-  <span style="color: #66D9EF;">(</span>format t <span style="color: #E6DB74;">"Hello, world!"</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this function makes the cd</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-cd</span> <span style="color: #7388d6;">(</span>title artist rating ripped<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the list created is a property list. The :key is the key, and followed by the value)</span>
+  <span style="color: #7388d6;">(</span>list <span style="color: #483d8b;">:title</span> title <span style="color: #483d8b;">:artist</span> artist <span style="color: #483d8b;">:rating</span> rating <span style="color: #483d8b;">:ripped</span> ripped<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">this function makes the cd</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">make-cd</span> <span style="color: #66D9EF;">(</span>title artist rating ripped<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: the list created is a property list. The :key is the key, and followed by the value)</span>
-  <span style="color: #66D9EF;">(</span>list <span style="color: #F92672;">:title</span> title <span style="color: #F92672;">:artist</span> artist <span style="color: #F92672;">:rating</span> rating <span style="color: #F92672;">:ripped</span> ripped<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">make a cd record</span>
+<span style="color: #707183;">(</span>make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t<span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">make a cd record</span>
-<span style="color: #AE81FF;">(</span>make-cd <span style="color: #E6DB74;">"Roses"</span> <span style="color: #E6DB74;">"Kathy Mattea"</span> 7 t<span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the *xx* is the convention for a global variable)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*db*</span> nil<span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: the *xx* is the convention for a global variable)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defvar</span> <span style="color: #FD971F;">*db*</span> nil<span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: The push will push the cd onto the global *db*)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">add-record</span> <span style="color: #66D9EF;">(</span>cd<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">(</span>push cd *db*<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: The push will push the cd onto the global *db*)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-record</span> <span style="color: #7388d6;">(</span>cd<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">(</span>push cd *db*<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">add some records to the database</span>
-<span style="color: #AE81FF;">(</span>add-record <span style="color: #66D9EF;">(</span>make-cd <span style="color: #E6DB74;">"Roses"</span> <span style="color: #E6DB74;">"Kathy Mattea"</span> 7 t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #AE81FF;">(</span>add-record <span style="color: #66D9EF;">(</span>make-cd <span style="color: #E6DB74;">"Fly"</span> <span style="color: #E6DB74;">"Dixie Chicks"</span> 8 t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-<span style="color: #AE81FF;">(</span>add-record <span style="color: #66D9EF;">(</span>make-cd <span style="color: #E6DB74;">"Home"</span> <span style="color: #E6DB74;">"Dixie Chicks"</span> 9 t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">add some records to the database</span>
+<span style="color: #707183;">(</span>add-record <span style="color: #7388d6;">(</span>make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span>add-record <span style="color: #7388d6;">(</span>make-cd <span style="color: #8b2252;">"Fly"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 8 t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span>add-record <span style="color: #7388d6;">(</span>make-cd <span style="color: #8b2252;">"Home"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 9 t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
 
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">dump-db</span> <span style="color: #66D9EF;">()</span>
-  <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: dolist)</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">dolist</span> <span style="color: #A6E22E;">(</span>cd *db*<span style="color: #A6E22E;">)</span>
-    <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: format)</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">the first is the output stream, with t as standard output</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">It will work for both keyword and value</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">~t is for tabulating. ~10t means emit enough spaces to move to the tenth column</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">~{ and ~} will make format: 1. require the next argument to be a list 2. consume the elements of the list for each ~a inside them</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">~% emit a new line</span>
-    <span style="color: #A6E22E;">(</span>format t <span style="color: #E6DB74;">"~{~a:~10t~a~%~}~%"</span> cd<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db</span> <span style="color: #7388d6;">()</span>
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: dolist)</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">dolist</span> <span style="color: #909183;">(</span>cd *db*<span style="color: #909183;">)</span>
+    <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: format)</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">the first is the output stream, with t as standard output</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">It will work for both keyword and value</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~t is for tabulating. ~10t means emit enough spaces to move to the tenth column</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~{ and ~} will make format: 1. require the next argument to be a list 2. consume the elements of the list for each ~a inside them</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~% emit a new line</span>
+    <span style="color: #909183;">(</span>format t <span style="color: #8b2252;">"~{~a:~10t~a~%~}~%"</span> cd<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: note: the above function can use format to iterate the whole *db* list)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">dump-db-2</span> <span style="color: #66D9EF;">()</span>
-  <span style="color: #66D9EF;">(</span>format t <span style="color: #E6DB74;">"~{~{~a:~10t~a~%~}~%~}"</span> *db*<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">prompt-read</span> <span style="color: #66D9EF;">(</span>prompt<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">the *query-io* is a global variable that contains the input stream connected to the terminal</span>
-  <span style="color: #66D9EF;">(</span>format *query-io* <span style="color: #E6DB74;">"~a: "</span> prompt<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: flush)</span>
-  <span style="color: #66D9EF;">(</span>force-output *query-io*<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">read-line will read the string without the trailing newline</span>
-  <span style="color: #66D9EF;">(</span>read-line *query-io*<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">prompt-for-cd</span> <span style="color: #66D9EF;">()</span>
-  <span style="color: #66D9EF;">(</span>make-cd
-   <span style="color: #75715E;">;; </span><span style="color: #75715E;">read a string</span>
-   <span style="color: #A6E22E;">(</span>prompt-read <span style="color: #E6DB74;">"Title"</span><span style="color: #A6E22E;">)</span>
-   <span style="color: #A6E22E;">(</span>prompt-read <span style="color: #E6DB74;">"Artist"</span><span style="color: #A6E22E;">)</span>
-   <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: parse the string to int)</span>
-   <span style="color: #75715E;">;; </span><span style="color: #75715E;">if nil, the parse-integer will emit error. :junk-allowed t will make it silent</span>
-   <span style="color: #75715E;">;; </span><span style="color: #75715E;">the surrounding "or" will make a default value of 0 instead of nil</span>
-   <span style="color: #A6E22E;">(</span>or <span style="color: #E6DB74;">(</span>parse-integer <span style="color: #FD971F;">(</span>prompt-read <span style="color: #E6DB74;">"Rating"</span><span style="color: #FD971F;">)</span> <span style="color: #F92672;">:junk-allowed</span> t<span style="color: #E6DB74;">)</span> 0<span style="color: #A6E22E;">)</span>
-   <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: y-or-n-p)</span><span style="color: #75715E;"> is a builtin function. It is very robust, in the sense that it will reopen the prompt if answer is not yY or nN.</span>
-   <span style="color: #A6E22E;">(</span>y-or-n-p <span style="color: #E6DB74;">"Ripped [y/n]: "</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">add-cds</span> <span style="color: #66D9EF;">()</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">loop</span> <span style="color: #A6E22E;">(</span>add-record <span style="color: #E6DB74;">(</span>prompt-for-cd<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span>
-     <span style="color: #75715E;">;; </span><span style="color: #75715E;">this loop will end if the another query is answered as n</span>
-     <span style="color: #A6E22E;">(</span><span style="color: #F92672;">if</span> <span style="color: #E6DB74;">(</span>not <span style="color: #FD971F;">(</span>y-or-n-p <span style="color: #E6DB74;">"Another? [y/n]: "</span><span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span> <span style="color: #E6DB74;">(</span><span style="color: #F92672;">return</span><span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">save-db</span> <span style="color: #66D9EF;">(</span>filename<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: open the file and store the stream)</span><span style="color: #75715E;"> as variable "out"</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">filename is the filename string</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">direction defaults to :input, so if want output, need to specify</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">if-exists, overwrite it</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">with-open-file</span> <span style="color: #A6E22E;">(</span>out filename
-                       <span style="color: #F92672;">:direction</span> <span style="color: #F92672;">:output</span>
-                       <span style="color: #F92672;">:if-exists</span> <span style="color: #F92672;">:supersede</span><span style="color: #A6E22E;">)</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">this is used to ensures that certain variables that affect the behavior of print are set to their standard values.</span>
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">be sure to use the same macro when reading the data back</span>
-    <span style="color: #A6E22E;">(</span><span style="color: #F92672;">with-standard-io-syntax</span>
-      <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: directly print the *db* to the stream)</span>
-      <span style="color: #75715E;">;; </span><span style="color: #75715E;">lisp will print the object out in the form that it can be read back</span>
-      <span style="color: #E6DB74;">(</span>print *db* out<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #ff0000; background-color: #000000; font-weight: bold; font-style: italic;">now</span><span style="color: #75715E;"> you can save it</span>
-<span style="color: #AE81FF;">(</span>save-db <span style="color: #E6DB74;">"~/my-cds.db"</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">load the db back</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">load-db</span> <span style="color: #66D9EF;">(</span>filename<span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">with-open-file</span> <span style="color: #A6E22E;">(</span>in filename<span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span><span style="color: #F92672;">with-standard-io-syntax</span>
-      <span style="color: #75715E;">;; </span><span style="color: #75715E;">use read to </span><span style="color: #ff0000;">(HEBI: read everything from the stream in)</span>
-      <span style="color: #75715E;">;; </span><span style="color: #75715E;">use </span><span style="color: #ff0000;">(HEBI: setf)</span><span style="color: #75715E;"> to set result of the read to the *db* variable</span>
-      <span style="color: #E6DB74;">(</span>setf *db* <span style="color: #FD971F;">(</span>read in<span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">query</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">select-by-artist</span> <span style="color: #66D9EF;">(</span>artist<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">make a copy of *db* by removing if not the predicate, and return that copy</span>
-  <span style="color: #66D9EF;">(</span>remove-if-not
-   <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: getf can get the value of a plist by the key)</span>
-   <span style="color: #75715E;">;; </span><span style="color: #75715E;">#' is the quote for function</span>
-   #'<span style="color: #A6E22E;">(</span><span style="color: #F92672;">lambda</span> <span style="color: #E6DB74;">(</span>cd<span style="color: #E6DB74;">)</span> <span style="color: #E6DB74;">(</span>equal <span style="color: #FD971F;">(</span>getf cd <span style="color: #F92672;">:artist</span><span style="color: #FD971F;">)</span> artist<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span>
-   *db*<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">select</span> <span style="color: #66D9EF;">(</span>selector-fn<span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span>remove-if-not selector-fn *db*<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">artist-selector</span> <span style="color: #66D9EF;">(</span>artist<span style="color: #66D9EF;">)</span>
-  #'<span style="color: #66D9EF;">(</span><span style="color: #F92672;">lambda</span> <span style="color: #A6E22E;">(</span>cd<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>equal <span style="color: #E6DB74;">(</span>getf cd <span style="color: #F92672;">:artist</span><span style="color: #E6DB74;">)</span> artist<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">use this by:</span>
-<span style="color: #AE81FF;">(</span>select <span style="color: #66D9EF;">(</span>artist-selector <span style="color: #E6DB74;">"Dixie Chicks"</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: note: the above function can use format to iterate the whole *db* list)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db-2</span> <span style="color: #7388d6;">()</span>
+  <span style="color: #7388d6;">(</span>format t <span style="color: #8b2252;">"~{~{~a:~10t~a~%~}~%~}"</span> *db*<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">keyword argument, can be called by (func :key value)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">default value using (var default)</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">(var default var-p) var-p is used to check whether the argument is supplied or not</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">where</span> <span style="color: #66D9EF;">(</span><span style="color: #66D9EF;">&amp;key</span> title artist rating <span style="color: #A6E22E;">(</span>ripped nil ripped-p<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  #'<span style="color: #66D9EF;">(</span><span style="color: #F92672;">lambda</span> <span style="color: #A6E22E;">(</span>cd<span style="color: #A6E22E;">)</span>
-      <span style="color: #A6E22E;">(</span>and
-       <span style="color: #E6DB74;">(</span><span style="color: #F92672;">if</span> title    <span style="color: #FD971F;">(</span>equal <span style="color: #F92672;">(</span>getf cd <span style="color: #F92672;">:title</span><span style="color: #F92672;">)</span>  title<span style="color: #FD971F;">)</span>  t<span style="color: #E6DB74;">)</span>
-       <span style="color: #E6DB74;">(</span><span style="color: #F92672;">if</span> artist   <span style="color: #FD971F;">(</span>equal <span style="color: #F92672;">(</span>getf cd <span style="color: #F92672;">:artist</span><span style="color: #F92672;">)</span> artist<span style="color: #FD971F;">)</span> t<span style="color: #E6DB74;">)</span>
-       <span style="color: #E6DB74;">(</span><span style="color: #F92672;">if</span> rating   <span style="color: #FD971F;">(</span>equal <span style="color: #F92672;">(</span>getf cd <span style="color: #F92672;">:rating</span><span style="color: #F92672;">)</span> rating<span style="color: #FD971F;">)</span> t<span style="color: #E6DB74;">)</span>
-       <span style="color: #E6DB74;">(</span><span style="color: #F92672;">if</span> ripped-p <span style="color: #FD971F;">(</span>equal <span style="color: #F92672;">(</span>getf cd <span style="color: #F92672;">:ripped</span><span style="color: #F92672;">)</span> ripped<span style="color: #FD971F;">)</span> t<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-read</span> <span style="color: #7388d6;">(</span>prompt<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">the *query-io* is a global variable that contains the input stream connected to the terminal</span>
+  <span style="color: #7388d6;">(</span>format *query-io* <span style="color: #8b2252;">"~a: "</span> prompt<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: flush)</span>
+  <span style="color: #7388d6;">(</span>force-output *query-io*<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">read-line will read the string without the trailing newline</span>
+  <span style="color: #7388d6;">(</span>read-line *query-io*<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">use by:</span>
-<span style="color: #AE81FF;">(</span>select <span style="color: #66D9EF;">(</span>where <span style="color: #F92672;">:rating</span> 10 <span style="color: #F92672;">:ripped</span> nil<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-for-cd</span> <span style="color: #7388d6;">()</span>
+  <span style="color: #7388d6;">(</span>make-cd
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">read a string</span>
+   <span style="color: #909183;">(</span>prompt-read <span style="color: #8b2252;">"Title"</span><span style="color: #909183;">)</span>
+   <span style="color: #909183;">(</span>prompt-read <span style="color: #8b2252;">"Artist"</span><span style="color: #909183;">)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: parse the string to int)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">if nil, the parse-integer will emit error. :junk-allowed t will make it silent</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">the surrounding "or" will make a default value of 0 instead of nil</span>
+   <span style="color: #909183;">(</span>or <span style="color: #709870;">(</span>parse-integer <span style="color: #907373;">(</span>prompt-read <span style="color: #8b2252;">"Rating"</span><span style="color: #907373;">)</span> <span style="color: #483d8b;">:junk-allowed</span> t<span style="color: #709870;">)</span> 0<span style="color: #909183;">)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: y-or-n-p)</span><span style="color: #b22222;"> is a builtin function. It is very robust, in the sense that it will reopen the prompt if answer is not yY or nN.</span>
+   <span style="color: #909183;">(</span>y-or-n-p <span style="color: #8b2252;">"Ripped [y/n]: "</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">update</span> <span style="color: #66D9EF;">(</span>selector-fn <span style="color: #66D9EF;">&amp;key</span> title artist rating <span style="color: #A6E22E;">(</span>ripped nil ripped-p<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span>setf *db*
-        <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: mapcar)</span><span style="color: #75715E;"> apply the function to each element of the list, and return the list of results</span>
-        <span style="color: #A6E22E;">(</span>mapcar
-         #'<span style="color: #E6DB74;">(</span><span style="color: #F92672;">lambda</span> <span style="color: #FD971F;">(</span>row<span style="color: #FD971F;">)</span>
-             <span style="color: #FD971F;">(</span><span style="color: #F92672;">when</span> <span style="color: #F92672;">(</span>funcall selector-fn row<span style="color: #F92672;">)</span>
-               <span style="color: #75715E;">;; </span><span style="color: #75715E;">this (setf (getf) xx) staff is magic. setf has nothing to do with getf</span>
-               <span style="color: #F92672;">(</span><span style="color: #F92672;">if</span> title    <span style="color: #AE81FF;">(</span>setf <span style="color: #66D9EF;">(</span>getf row <span style="color: #F92672;">:title</span><span style="color: #66D9EF;">)</span> title<span style="color: #AE81FF;">)</span><span style="color: #F92672;">)</span>
-               <span style="color: #F92672;">(</span><span style="color: #F92672;">if</span> artist   <span style="color: #AE81FF;">(</span>setf <span style="color: #66D9EF;">(</span>getf row <span style="color: #F92672;">:artist</span><span style="color: #66D9EF;">)</span> artist<span style="color: #AE81FF;">)</span><span style="color: #F92672;">)</span>
-               <span style="color: #F92672;">(</span><span style="color: #F92672;">if</span> rating   <span style="color: #AE81FF;">(</span>setf <span style="color: #66D9EF;">(</span>getf row <span style="color: #F92672;">:rating</span><span style="color: #66D9EF;">)</span> rating<span style="color: #AE81FF;">)</span><span style="color: #F92672;">)</span>
-               <span style="color: #F92672;">(</span><span style="color: #F92672;">if</span> ripped-p <span style="color: #AE81FF;">(</span>setf <span style="color: #66D9EF;">(</span>getf row <span style="color: #F92672;">:ripped</span><span style="color: #66D9EF;">)</span> ripped<span style="color: #AE81FF;">)</span><span style="color: #F92672;">)</span><span style="color: #FD971F;">)</span>
-             row<span style="color: #E6DB74;">)</span> *db*<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-cds</span> <span style="color: #7388d6;">()</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">loop</span> <span style="color: #909183;">(</span>add-record <span style="color: #709870;">(</span>prompt-for-cd<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">this loop will end if the another query is answered as n</span>
+     <span style="color: #909183;">(</span><span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>not <span style="color: #907373;">(</span>y-or-n-p <span style="color: #8b2252;">"Another? [y/n]: "</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span> <span style="color: #709870;">(</span><span style="color: #a020f0;">return</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">this can be called:</span>
-<span style="color: #AE81FF;">(</span>update <span style="color: #66D9EF;">(</span>where <span style="color: #F92672;">:artist</span> <span style="color: #E6DB74;">"Dixie Chicks"</span><span style="color: #66D9EF;">)</span> <span style="color: #F92672;">:rating</span> 11<span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">save-db</span> <span style="color: #7388d6;">(</span>filename<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: open the file and store the stream)</span><span style="color: #b22222;"> as variable "out"</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">filename is the filename string</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">direction defaults to :input, so if want output, need to specify</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">if-exists, overwrite it</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">with-open-file</span> <span style="color: #909183;">(</span>out filename
+                       <span style="color: #483d8b;">:direction</span> <span style="color: #483d8b;">:output</span>
+                       <span style="color: #483d8b;">:if-exists</span> <span style="color: #483d8b;">:supersede</span><span style="color: #909183;">)</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">this is used to ensures that certain variables that affect the behavior of print are set to their standard values.</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">be sure to use the same macro when reading the data back</span>
+    <span style="color: #909183;">(</span><span style="color: #a020f0;">with-standard-io-syntax</span>
+      <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: directly print the *db* to the stream)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">lisp will print the object out in the form that it can be read back</span>
+      <span style="color: #709870;">(</span>print *db* out<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">delete-rows</span> <span style="color: #66D9EF;">(</span>selector-fn<span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span>setf *db* <span style="color: #A6E22E;">(</span>remove-if selector-fn *db*<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #000000; font-weight: bold;">now</span><span style="color: #b22222;"> you can save it</span>
+<span style="color: #707183;">(</span>save-db <span style="color: #8b2252;">"~/my-cds.db"</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">OK, refactoring time</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">Problems for where:</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">the if ... checking inside "and" is almosts the same, that's duplicate code</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">for the querys that do not have other fields, we don't want to check those fields, to avoid overhead</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">load the db back</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">load-db</span> <span style="color: #7388d6;">(</span>filename<span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">with-open-file</span> <span style="color: #909183;">(</span>in filename<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span><span style="color: #a020f0;">with-standard-io-syntax</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">use read to </span><span style="color: #ff0000;">(HEBI: read everything from the stream in)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">use </span><span style="color: #ff0000;">(HEBI: setf)</span><span style="color: #b22222;"> to set result of the read to the *db* variable</span>
+      <span style="color: #709870;">(</span>setf *db* <span style="color: #907373;">(</span>read in<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">The solution is the MACRO, the code generator of lisp</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">query</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select-by-artist</span> <span style="color: #7388d6;">(</span>artist<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">make a copy of *db* by removing if not the predicate, and return that copy</span>
+  <span style="color: #7388d6;">(</span>remove-if-not
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: getf can get the value of a plist by the key)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">#' is the quote for function</span>
+   #'<span style="color: #909183;">(</span><span style="color: #a020f0;">lambda</span> <span style="color: #709870;">(</span>cd<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>equal <span style="color: #907373;">(</span>getf cd <span style="color: #483d8b;">:artist</span><span style="color: #907373;">)</span> artist<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+   *db*<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;;; </span><span style="color: #ff0000;">(HEBI: Macros, all kinds of quoting)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">make-comparison-expr</span> <span style="color: #66D9EF;">(</span>field value<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">' will leave the expression unevaluated.</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">` will do the same thing, and it can do one more: can evaluate part of it</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">, before a subexpression will evalute that</span>
-  `<span style="color: #66D9EF;">(</span>equal <span style="color: #A6E22E;">(</span>getf cd ,field<span style="color: #A6E22E;">)</span> ,value<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select</span> <span style="color: #7388d6;">(</span>selector-fn<span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span>remove-if-not selector-fn *db*<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">make-comparisons-list</span> <span style="color: #66D9EF;">(</span>fields<span style="color: #66D9EF;">)</span>
-  <span style="color: #66D9EF;">(</span><span style="color: #F92672;">loop</span> while fields
-     <span style="color: #75715E;">;; </span><span style="color: #75715E;">using loop facility, make comparison expr for all the fields</span>
-     <span style="color: #75715E;">;; </span><span style="color: #75715E;">pop will pop the first of the list</span>
-     collecting <span style="color: #A6E22E;">(</span>make-comparison-expr <span style="color: #E6DB74;">(</span>pop fields<span style="color: #E6DB74;">)</span> <span style="color: #E6DB74;">(</span>pop fields<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">artist-selector</span> <span style="color: #7388d6;">(</span>artist<span style="color: #7388d6;">)</span>
+  #'<span style="color: #7388d6;">(</span><span style="color: #a020f0;">lambda</span> <span style="color: #909183;">(</span>cd<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>equal <span style="color: #709870;">(</span>getf cd <span style="color: #483d8b;">:artist</span><span style="color: #709870;">)</span> artist<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">wrap comparison expr into and clause</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defmacro</span> <span style="color: #A6E22E;">where</span> <span style="color: #66D9EF;">(</span><span style="color: #66D9EF;">&amp;rest</span> clauses<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">,@() will evaluate the subexpression, and splice the resulting list into the surrounding list</span>
-  `#'<span style="color: #66D9EF;">(</span><span style="color: #F92672;">lambda</span> <span style="color: #A6E22E;">(</span>cd<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">(</span>and ,@<span style="color: #E6DB74;">(</span>make-comparisons-list clauses<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">use this by:</span>
+<span style="color: #707183;">(</span>select <span style="color: #7388d6;">(</span>artist-selector <span style="color: #8b2252;">"Dixie Chicks"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">this can check what this macro expanded to</span>
-<span style="color: #AE81FF;">(</span>macroexpand-1 '<span style="color: #66D9EF;">(</span>where <span style="color: #F92672;">:title</span> <span style="color: #E6DB74;">"Give Us a Break"</span> <span style="color: #F92672;">:ripped</span> t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">Final test:</span>
-<span style="color: #AE81FF;">(</span>select <span style="color: #66D9EF;">(</span>where <span style="color: #F92672;">:title</span> <span style="color: #E6DB74;">"Give Us a Break"</span> <span style="color: #F92672;">:ripped</span> t<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">keyword argument, can be called by (func :key value)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">default value using (var default)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">(var default var-p) var-p is used to check whether the argument is supplied or not</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">where</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">&amp;key</span> title artist rating <span style="color: #909183;">(</span>ripped nil ripped-p<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  #'<span style="color: #7388d6;">(</span><span style="color: #a020f0;">lambda</span> <span style="color: #909183;">(</span>cd<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>and
+       <span style="color: #709870;">(</span><span style="color: #a020f0;">if</span> title    <span style="color: #907373;">(</span>equal <span style="color: #6276ba;">(</span>getf cd <span style="color: #483d8b;">:title</span><span style="color: #6276ba;">)</span>  title<span style="color: #907373;">)</span>  t<span style="color: #709870;">)</span>
+       <span style="color: #709870;">(</span><span style="color: #a020f0;">if</span> artist   <span style="color: #907373;">(</span>equal <span style="color: #6276ba;">(</span>getf cd <span style="color: #483d8b;">:artist</span><span style="color: #6276ba;">)</span> artist<span style="color: #907373;">)</span> t<span style="color: #709870;">)</span>
+       <span style="color: #709870;">(</span><span style="color: #a020f0;">if</span> rating   <span style="color: #907373;">(</span>equal <span style="color: #6276ba;">(</span>getf cd <span style="color: #483d8b;">:rating</span><span style="color: #6276ba;">)</span> rating<span style="color: #907373;">)</span> t<span style="color: #709870;">)</span>
+       <span style="color: #709870;">(</span><span style="color: #a020f0;">if</span> ripped-p <span style="color: #907373;">(</span>equal <span style="color: #6276ba;">(</span>getf cd <span style="color: #483d8b;">:ripped</span><span style="color: #6276ba;">)</span> ripped<span style="color: #907373;">)</span> t<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">use by:</span>
+<span style="color: #707183;">(</span>select <span style="color: #7388d6;">(</span>where <span style="color: #483d8b;">:rating</span> 10 <span style="color: #483d8b;">:ripped</span> nil<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">update</span> <span style="color: #7388d6;">(</span>selector-fn <span style="color: #228b22;">&amp;key</span> title artist rating <span style="color: #909183;">(</span>ripped nil ripped-p<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span>setf *db*
+        <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: mapcar)</span><span style="color: #b22222;"> apply the function to each element of the list, and return the list of results</span>
+        <span style="color: #909183;">(</span>mapcar
+         #'<span style="color: #709870;">(</span><span style="color: #a020f0;">lambda</span> <span style="color: #907373;">(</span>row<span style="color: #907373;">)</span>
+             <span style="color: #907373;">(</span><span style="color: #a020f0;">when</span> <span style="color: #6276ba;">(</span>funcall selector-fn row<span style="color: #6276ba;">)</span>
+               <span style="color: #b22222;">;; </span><span style="color: #b22222;">this (setf (getf) xx) staff is magic. setf has nothing to do with getf</span>
+               <span style="color: #6276ba;">(</span><span style="color: #a020f0;">if</span> title    <span style="color: #858580;">(</span>setf <span style="color: #80a880;">(</span>getf row <span style="color: #483d8b;">:title</span><span style="color: #80a880;">)</span> title<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span>
+               <span style="color: #6276ba;">(</span><span style="color: #a020f0;">if</span> artist   <span style="color: #858580;">(</span>setf <span style="color: #80a880;">(</span>getf row <span style="color: #483d8b;">:artist</span><span style="color: #80a880;">)</span> artist<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span>
+               <span style="color: #6276ba;">(</span><span style="color: #a020f0;">if</span> rating   <span style="color: #858580;">(</span>setf <span style="color: #80a880;">(</span>getf row <span style="color: #483d8b;">:rating</span><span style="color: #80a880;">)</span> rating<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span>
+               <span style="color: #6276ba;">(</span><span style="color: #a020f0;">if</span> ripped-p <span style="color: #858580;">(</span>setf <span style="color: #80a880;">(</span>getf row <span style="color: #483d8b;">:ripped</span><span style="color: #80a880;">)</span> ripped<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>
+             row<span style="color: #709870;">)</span> *db*<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this can be called:</span>
+<span style="color: #707183;">(</span>update <span style="color: #7388d6;">(</span>where <span style="color: #483d8b;">:artist</span> <span style="color: #8b2252;">"Dixie Chicks"</span><span style="color: #7388d6;">)</span> <span style="color: #483d8b;">:rating</span> 11<span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">delete-rows</span> <span style="color: #7388d6;">(</span>selector-fn<span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span>setf *db* <span style="color: #909183;">(</span>remove-if selector-fn *db*<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">OK, refactoring time</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Problems for where:</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">the if ... checking inside "and" is almosts the same, that's duplicate code</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">for the querys that do not have other fields, we don't want to check those fields, to avoid overhead</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">The solution is the MACRO, the code generator of lisp</span>
+
+<span style="color: #b22222;">;;; </span><span style="color: #ff0000;">(HEBI: Macros, all kinds of quoting)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparison-expr</span> <span style="color: #7388d6;">(</span>field value<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">' will leave the expression unevaluated.</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">` will do the same thing, and it can do one more: can evaluate part of it</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">, before a subexpression will evalute that</span>
+  `<span style="color: #7388d6;">(</span>equal <span style="color: #909183;">(</span>getf cd ,field<span style="color: #909183;">)</span> ,value<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparisons-list</span> <span style="color: #7388d6;">(</span>fields<span style="color: #7388d6;">)</span>
+  <span style="color: #7388d6;">(</span><span style="color: #a020f0;">loop</span> while fields
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">using loop facility, make comparison expr for all the fields</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">pop will pop the first of the list</span>
+     collecting <span style="color: #909183;">(</span>make-comparison-expr <span style="color: #709870;">(</span>pop fields<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>pop fields<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">wrap comparison expr into and clause</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">where</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">&amp;rest</span> clauses<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">,@() will evaluate the subexpression, and splice the resulting list into the surrounding list</span>
+  `#'<span style="color: #7388d6;">(</span><span style="color: #a020f0;">lambda</span> <span style="color: #909183;">(</span>cd<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>and ,@<span style="color: #709870;">(</span>make-comparisons-list clauses<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this can check what this macro expanded to</span>
+<span style="color: #707183;">(</span>macroexpand-1 '<span style="color: #7388d6;">(</span>where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Final test:</span>
+<span style="color: #707183;">(</span>select <span style="color: #7388d6;">(</span>where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">4.2</span> Unit Test Framework</h3>
+<div id="outline-container-orgd68f020" class="outline-3">
+<h3 id="orgd68f020"><span class="section-number-3">4.2</span> Unit Test Framework</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">the design goal of a unit test framework:</span>
 
-<pre class="src src-lisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">the design goal of a unit test framework:</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">- easy to add new test</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">- easy to run tests</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">- easy to track down test failures</span>
-
-
-<span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: report test name)</span>
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defmacro</span> <span style="color: #A6E22E;">deftest</span> <span style="color: #66D9EF;">(</span>name parameters <span style="color: #66D9EF;">&amp;body</span> body<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">"Define a test function. Within a test function we can call</span>
-<span style="color: #75715E;">   other test functions or use 'check' to run individual test</span>
-<span style="color: #75715E;">   cases."</span>
-  `<span style="color: #66D9EF;">(</span><span style="color: #F92672;">defun</span> ,name ,parameters
-     <span style="color: #75715E;">;; </span><span style="color: #ff0000;">(HEBI: hierarchy test name report)</span>
-    <span style="color: #A6E22E;">(</span><span style="color: #F92672;">let</span> <span style="color: #E6DB74;">(</span><span style="color: #FD971F;">(</span>*test-name* <span style="color: #F92672;">(</span>append *test-name* <span style="color: #AE81FF;">(</span>list ',name<span style="color: #AE81FF;">)</span><span style="color: #F92672;">)</span><span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span>
-      ,@body<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to add new test</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to run tests</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to track down test failures</span>
 
 
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defmacro</span> <span style="color: #A6E22E;">with-gensyms</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">(</span><span style="color: #66D9EF;">&amp;rest</span> names<span style="color: #A6E22E;">)</span> <span style="color: #66D9EF;">&amp;body</span> body<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">gensym generate a unique symbol name that the reader has never seen</span>
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">the reason to use such unique name is to avoid leaking of information</span>
-  `<span style="color: #66D9EF;">(</span><span style="color: #F92672;">let</span> ,<span style="color: #A6E22E;">(</span><span style="color: #F92672;">loop</span> for n in names collect `<span style="color: #E6DB74;">(</span>,n <span style="color: #FD971F;">(</span>gensym<span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span>
-     ,@body<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defvar</span> <span style="color: #FD971F;">*test-name*</span> nil<span style="color: #AE81FF;">)</span>
-
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defmacro</span> <span style="color: #A6E22E;">combine-results</span> <span style="color: #66D9EF;">(</span><span style="color: #66D9EF;">&amp;body</span> forms<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">"Combine the results (as booleans) of evaluating 'forms' in order."</span>
-  <span style="color: #66D9EF;">(</span>with-gensyms <span style="color: #A6E22E;">(</span>result<span style="color: #A6E22E;">)</span>
-    `<span style="color: #A6E22E;">(</span><span style="color: #F92672;">let</span> <span style="color: #E6DB74;">(</span><span style="color: #FD971F;">(</span>,result t<span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span>
-      ,@<span style="color: #E6DB74;">(</span><span style="color: #F92672;">loop</span> for f in forms collect `<span style="color: #FD971F;">(</span><span style="color: #F92672;">unless</span> ,f <span style="color: #F92672;">(</span>setf ,result nil<span style="color: #F92672;">)</span><span style="color: #FD971F;">)</span><span style="color: #E6DB74;">)</span>
-      ,result<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
-
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">this will generate</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">(let ((result t))</span>
-<span style="color: #75715E;">;;   </span><span style="color: #75715E;">(unless (foo) (setf result nil))</span>
-<span style="color: #75715E;">;;   </span><span style="color: #75715E;">(unless (bar) (setf result nil))</span>
-<span style="color: #75715E;">;;   </span><span style="color: #75715E;">(unless (baz) (setf result nil))</span>
-<span style="color: #75715E;">;;   </span><span style="color: #75715E;">result)</span>
-
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">report-result</span> <span style="color: #66D9EF;">(</span>result form<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">"Report the results of a single test case. Called by 'check'."</span>
-  <span style="color: #66D9EF;">(</span>format t <span style="color: #E6DB74;">"~:[FAIL~;pass~] ... ~a: ~a~%"</span> result *test-name* form<span style="color: #66D9EF;">)</span>
-  result<span style="color: #AE81FF;">)</span>
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: report test name)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">deftest</span> <span style="color: #7388d6;">(</span>name parameters <span style="color: #228b22;">&amp;body</span> body<span style="color: #7388d6;">)</span>
+  <span style="color: #8b2252;">"Define a test function. Within a test function we can call</span>
+<span style="color: #8b2252;">   other test functions or use 'check' to run individual test</span>
+<span style="color: #8b2252;">   cases."</span>
+  `<span style="color: #7388d6;">(</span><span style="color: #a020f0;">defun</span> ,name ,parameters
+     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hierarchy test name report)</span>
+    <span style="color: #909183;">(</span><span style="color: #a020f0;">let</span> <span style="color: #709870;">(</span><span style="color: #907373;">(</span>*test-name* <span style="color: #6276ba;">(</span>append *test-name* <span style="color: #858580;">(</span>list ',name<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+      ,@body<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
 
-<span style="color: #AE81FF;">(</span><span style="color: #F92672;">defmacro</span> <span style="color: #A6E22E;">check</span> <span style="color: #66D9EF;">(</span><span style="color: #66D9EF;">&amp;body</span> forms<span style="color: #66D9EF;">)</span>
-  <span style="color: #75715E;">"Run each expression in 'forms' as a test case."</span>
-  `<span style="color: #66D9EF;">(</span>combine-results
-    ,@<span style="color: #A6E22E;">(</span><span style="color: #F92672;">loop</span> for f in forms collect `<span style="color: #E6DB74;">(</span>report-result ,f ',f<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">with-gensyms</span> <span style="color: #7388d6;">(</span><span style="color: #909183;">(</span><span style="color: #228b22;">&amp;rest</span> names<span style="color: #909183;">)</span> <span style="color: #228b22;">&amp;body</span> body<span style="color: #7388d6;">)</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">gensym generate a unique symbol name that the reader has never seen</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">the reason to use such unique name is to avoid leaking of information</span>
+  `<span style="color: #7388d6;">(</span><span style="color: #a020f0;">let</span> ,<span style="color: #909183;">(</span><span style="color: #a020f0;">loop</span> for n in names collect `<span style="color: #709870;">(</span>,n <span style="color: #907373;">(</span>gensym<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+     ,@body<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*test-name*</span> nil<span style="color: #707183;">)</span>
 
 
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">usage example:</span>
-<span style="color: #AE81FF;">(</span>deftest test-+ <span style="color: #66D9EF;">()</span>
-  <span style="color: #66D9EF;">(</span>check
-    <span style="color: #A6E22E;">(</span>= <span style="color: #E6DB74;">(</span>+ 1 2<span style="color: #E6DB74;">)</span> 3<span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span>= <span style="color: #E6DB74;">(</span>+ 1 2 3<span style="color: #E6DB74;">)</span> 6<span style="color: #A6E22E;">)</span>
-    <span style="color: #A6E22E;">(</span>= <span style="color: #E6DB74;">(</span>+ -1 -3<span style="color: #E6DB74;">)</span> -4<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">combine-results</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">&amp;body</span> forms<span style="color: #7388d6;">)</span>
+  <span style="color: #8b2252;">"Combine the results (as booleans) of evaluating 'forms' in order."</span>
+  <span style="color: #7388d6;">(</span>with-gensyms <span style="color: #909183;">(</span>result<span style="color: #909183;">)</span>
+    `<span style="color: #909183;">(</span><span style="color: #a020f0;">let</span> <span style="color: #709870;">(</span><span style="color: #907373;">(</span>,result t<span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+      ,@<span style="color: #709870;">(</span><span style="color: #a020f0;">loop</span> for f in forms collect `<span style="color: #907373;">(</span><span style="color: #a020f0;">unless</span> ,f <span style="color: #6276ba;">(</span>setf ,result nil<span style="color: #6276ba;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+      ,result<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this will generate</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">(let ((result t))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (foo) (setf result nil))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (bar) (setf result nil))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (baz) (setf result nil))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">result)</span>
+
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">report-result</span> <span style="color: #7388d6;">(</span>result form<span style="color: #7388d6;">)</span>
+  <span style="color: #8b2252;">"Report the results of a single test case. Called by 'check'."</span>
+  <span style="color: #7388d6;">(</span>format t <span style="color: #8b2252;">"~:[FAIL~;pass~] ... ~a: ~a~%"</span> result *test-name* form<span style="color: #7388d6;">)</span>
+  result<span style="color: #707183;">)</span>
+
+
+<span style="color: #707183;">(</span><span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">check</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">&amp;body</span> forms<span style="color: #7388d6;">)</span>
+  <span style="color: #8b2252;">"Run each expression in 'forms' as a test case."</span>
+  `<span style="color: #7388d6;">(</span>combine-results
+    ,@<span style="color: #909183;">(</span><span style="color: #a020f0;">loop</span> for f in forms collect `<span style="color: #709870;">(</span>report-result ,f ',f<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">usage example:</span>
+<span style="color: #707183;">(</span>deftest test-+ <span style="color: #7388d6;">()</span>
+  <span style="color: #7388d6;">(</span>check
+    <span style="color: #909183;">(</span>= <span style="color: #709870;">(</span>+ 1 2<span style="color: #709870;">)</span> 3<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>= <span style="color: #709870;">(</span>+ 1 2 3<span style="color: #709870;">)</span> 6<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>= <span style="color: #709870;">(</span>+ -1 -3<span style="color: #709870;">)</span> -4<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 </div>
@@ -1139,7 +1104,7 @@ Lisp programmers often use the functions and and or to implement simple conditio
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-27 Thu 23:42</p>
+<p class="date">Created: 2016-11-08 Tue 13:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

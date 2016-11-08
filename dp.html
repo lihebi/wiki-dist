@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-06 Thu 12:12 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dynamic Programming</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,129 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -269,28 +236,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">1. One dimension</a>
+<li><a href="#org2584b52">1. One dimension</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Define sub-problems</a></li>
-<li><a href="#orgheadline2">1.2. Recurrence formula</a></li>
+<li><a href="#orgd574b55">1.1. Define sub-problems</a></li>
+<li><a href="#orga3521ec">1.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">2. Two Dimensions</a>
+<li><a href="#org8e40a3d">2. Two Dimensions</a>
 <ul>
-<li><a href="#orgheadline4">2.1. Define sub-problems</a></li>
-<li><a href="#orgheadline5">2.2. Recurrence formula</a></li>
+<li><a href="#org7626ac3">2.1. Define sub-problems</a></li>
+<li><a href="#org99e9663">2.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">3. Interval DP</a>
+<li><a href="#orge44ab6f">3. Interval DP</a>
 <ul>
-<li><a href="#orgheadline7">3.1. Define sub-problem</a></li>
-<li><a href="#orgheadline8">3.2. Recurrence formula</a></li>
+<li><a href="#org995733c">3.1. Define sub-problem</a></li>
+<li><a href="#org0e7237f">3.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">4. Tree DP</a>
+<li><a href="#org2e08ac4">4. Tree DP</a>
 <ul>
-<li><a href="#orgheadline10">4.1. Define</a></li>
-<li><a href="#orgheadline11">4.2. Recurrence</a></li>
+<li><a href="#org8d9d220">4.1. Define</a></li>
+<li><a href="#orgcef84cf">4.2. Recurrence</a></li>
 </ul>
 </li>
 </ul>
@@ -300,16 +267,16 @@ for the JavaScript code in this tag.
 Solve problem by breaking down into simpler sub-problems.
 </p>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">1</span> One dimension</h2>
+<div id="outline-container-org2584b52" class="outline-2">
+<h2 id="org2584b52"><span class="section-number-2">1</span> One dimension</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given n, find the number of different ways to write n as the sum of 1,3,4
 </p>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Define sub-problems</h3>
+<div id="outline-container-orgd574b55" class="outline-3">
+<h3 id="orgd574b55"><span class="section-number-3">1.1</span> Define sub-problems</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
@@ -317,8 +284,8 @@ D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Recurrence formula</h3>
+<div id="outline-container-orga3521ec" class="outline-3">
+<h3 id="orga3521ec"><span class="section-number-3">1.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
@@ -327,16 +294,16 @@ D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">2</span> Two Dimensions</h2>
+<div id="outline-container-org8e40a3d" class="outline-2">
+<h2 id="org8e40a3d"><span class="section-number-2">2</span> Two Dimensions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Given two string x and y, find the length of longest common sub-sequence.
 </p>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">2.1</span> Define sub-problems</h3>
+<div id="outline-container-org7626ac3" class="outline-3">
+<h3 id="org7626ac3"><span class="section-number-3">2.1</span> Define sub-problems</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
@@ -344,8 +311,8 @@ D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.2</span> Recurrence formula</h3>
+<div id="outline-container-org99e9663" class="outline-3">
+<h3 id="org99e9663"><span class="section-number-3">2.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 D<sub>ij</sub> =
@@ -358,8 +325,8 @@ D<sub>ij</sub> =
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9"><span class="section-number-2">3</span> Interval DP</h2>
+<div id="outline-container-orge44ab6f" class="outline-2">
+<h2 id="orge44ab6f"><span class="section-number-2">3</span> Interval DP</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Given a string x=x<sub>1..n</sub>,
@@ -367,8 +334,8 @@ find the minimum number of characters that need to be inserted to make it a pali
 </p>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Define sub-problem</h3>
+<div id="outline-container-org995733c" class="outline-3">
+<h3 id="org995733c"><span class="section-number-3">3.1</span> Define sub-problem</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 D<sub>i,j</sub> be the minimum number of characters.
@@ -376,8 +343,8 @@ D<sub>i,j</sub> be the minimum number of characters.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Recurrence formula</h3>
+<div id="outline-container-org0e7237f" class="outline-3">
+<h3 id="org0e7237f"><span class="section-number-3">3.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 say y<sub>1..k</sub> is the palindrome for x<sub>i..j</sub>,
@@ -395,16 +362,16 @@ D<sub>ij</sub> =
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">4</span> Tree DP</h2>
+<div id="outline-container-org2e08ac4" class="outline-2">
+<h2 id="org2e08ac4"><span class="section-number-2">4</span> Tree DP</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Given a tree, color nodes black as many as possible without coloring two adjacent nodes.
 </p>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">4.1</span> Define</h3>
+<div id="outline-container-org8d9d220" class="outline-3">
+<h3 id="org8d9d220"><span class="section-number-3">4.1</span> Define</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>B(r) as the maximum nodes if the (root) node r is colored black.</li>
@@ -413,8 +380,8 @@ Given a tree, color nodes black as many as possible without coloring two adjacen
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">4.2</span> Recurrence</h3>
+<div id="outline-container-orgcef84cf" class="outline-3">
+<h3 id="orgcef84cf"><span class="section-number-3">4.2</span> Recurrence</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>B(v) = 1 + &sum;<sub>children</sub> W(c)</li>
@@ -426,7 +393,7 @@ Given a tree, color nodes black as many as possible without coloring two adjacen
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-06 Thu 12:12</p>
+<p class="date">Created: 2016-11-08 Tue 13:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

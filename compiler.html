@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-22 Sat 18:29 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,59 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -199,54 +236,54 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Linker</a></li>
-<li><a href="#orgheadline2">2. AddressSanitizer</a></li>
-<li><a href="#orgheadline15">3. C Preprocessor (CPP)</a>
+<li><a href="#org81493be">1. Linker</a></li>
+<li><a href="#org10c1a2d">2. AddressSanitizer</a></li>
+<li><a href="#org045c072">3. C Preprocessor (CPP)</a>
 <ul>
-<li><a href="#orgheadline5">3.1. The processing</a>
+<li><a href="#orged4da1d">3.1. The processing</a>
 <ul>
-<li><a href="#orgheadline3">3.1.1. Compiler option to separate them</a></li>
-<li><a href="#orgheadline4">3.1.2. self-referential macro</a></li>
+<li><a href="#orgfdd6635">3.1.1. Compiler option to separate them</a></li>
+<li><a href="#org99ffae2">3.1.2. self-referential macro</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">3.2. Predefined macros</a>
+<li><a href="#orgd54c05f">3.2. Predefined macros</a>
 <ul>
-<li><a href="#orgheadline6">3.2.1. Standard (in language specification)</a></li>
-<li><a href="#orgheadline7">3.2.2. Common GNU C extension</a></li>
-<li><a href="#orgheadline10">3.2.3. system specific</a>
+<li><a href="#org2fcba33">3.2.1. Standard (in language specification)</a></li>
+<li><a href="#org697dbe3">3.2.2. Common GNU C extension</a></li>
+<li><a href="#org901542c">3.2.3. system specific</a>
 <ul>
-<li><a href="#orgheadline8">3.2.3.1. MAC</a></li>
-<li><a href="#orgheadline9">3.2.3.2. Ubuntu</a></li>
+<li><a href="#org8c4e1fb">3.2.3.1. MAC</a></li>
+<li><a href="#orgff23cb5">3.2.3.2. Ubuntu</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline12">3.3. Stringification</a></li>
-<li><a href="#orgheadline13">3.4. token-pasting</a></li>
-<li><a href="#orgheadline14">3.5. Line Markers</a></li>
+<li><a href="#org6412003">3.3. Stringification</a></li>
+<li><a href="#org6fe6380">3.4. token-pasting</a></li>
+<li><a href="#orgd0b22fd">3.5. Line Markers</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">4. Special Notations</a>
+<li><a href="#org5baaa46">4. Special Notations</a>
 <ul>
-<li><a href="#orgheadline16">4.1. Line Control</a></li>
+<li><a href="#org921439a">4.1. Line Control</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">5. GCC options</a></li>
-<li><a href="#orgheadline19">6. Misc</a></li>
+<li><a href="#orgc21551c">5. GCC options</a></li>
+<li><a href="#orgd5ceac9">6. Misc</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Linker</h2>
+<div id="outline-container-org81493be" class="outline-2">
+<h2 id="org81493be"><span class="section-number-2">1</span> Linker</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt><code>ldd</code></dt><dd>show the dynamic library used by an executable</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> AddressSanitizer</h2>
+<div id="outline-container-org10c1a2d" class="outline-2">
+<h2 id="org10c1a2d"><span class="section-number-2">2</span> AddressSanitizer</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>wiki: <a href="https://github.com/google/sanitizers/wiki">https://github.com/google/sanitizers/wiki</a></li>
@@ -261,16 +298,15 @@ cc -fsanitize=address a.c
 </pre>
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;stdlib.h&gt;</span>
-<span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;string.h&gt;</span>
-<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>() {
-  <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">buf</span>[10];
-  <span style="color: #75715E;">// </span><span style="color: #75715E;">strcpy(buf, "hhhhhiiiiiooooo");</span>
-  <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">hbuf</span> = (<span style="color: #66D9EF;">char</span>*)malloc(10*<span style="color: #F92672;">sizeof</span>(<span style="color: #66D9EF;">char</span>));
-  strcpy(hbuf, <span style="color: #E6DB74;">"hhhhhddddd"</span>);
-}
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdlib.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;string.h&gt;</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">buf</span><span style="color: #7388d6;">[</span>10<span style="color: #7388d6;">]</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">strcpy(buf, "hhhhhiiiiiooooo");</span>
+  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">hbuf</span> = <span style="color: #7388d6;">(</span><span style="color: #228b22;">char</span>*<span style="color: #7388d6;">)</span>malloc<span style="color: #7388d6;">(</span>10*<span style="color: #a020f0;">sizeof</span><span style="color: #909183;">(</span><span style="color: #228b22;">char</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
+  strcpy<span style="color: #7388d6;">(</span>hbuf, <span style="color: #8b2252;">"hhhhhddddd"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 
@@ -289,15 +325,15 @@ ASAN_OPTIONS=halt_on_error=1 ./a.out
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15"><span class="section-number-2">3</span> C Preprocessor (CPP)</h2>
+<div id="outline-container-org045c072" class="outline-2">
+<h2 id="org045c072"><span class="section-number-2">3</span> C Preprocessor (CPP)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The CPP Manual : <a href="https://gcc.gnu.org/onlinedocs/cpp/">https://gcc.gnu.org/onlinedocs/cpp/</a>
 </p>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">3.1</span> The processing</h3>
+<div id="outline-container-orged4da1d" class="outline-3">
+<h3 id="orged4da1d"><span class="section-number-3">3.1</span> The processing</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The following textural transformation is done before everything:
@@ -344,8 +380,8 @@ all arguments to a macro are completely macro-expanded before they are substitut
 </p>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3"><span class="section-number-4">3.1.1</span> Compiler option to separate them</h4>
+<div id="outline-container-orgfdd6635" class="outline-4">
+<h4 id="orgfdd6635"><span class="section-number-4">3.1.1</span> Compiler option to separate them</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Generally the compiler will do preprocessing, compilation, assembling, and linking in order.
@@ -358,8 +394,8 @@ cc -E a.c # only do preprocessing, output to stdout &gt; a.i
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4"><span class="section-number-4">3.1.2</span> self-referential macro</h4>
+<div id="outline-container-org99ffae2" class="outline-4">
+<h4 id="org99ffae2"><span class="section-number-4">3.1.2</span> self-referential macro</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 A self-referential macro is one whose name appears in its definition
@@ -378,11 +414,11 @@ In most cases, it is a bad idea to take advantage of this feature.
 
 
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">3.2</span> Predefined macros</h3>
+<div id="outline-container-orgd54c05f" class="outline-3">
+<h3 id="orgd54c05f"><span class="section-number-3">3.2</span> Predefined macros</h3>
 <div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><span class="section-number-4">3.2.1</span> Standard (in language specification)</h4>
+</div><div id="outline-container-org2fcba33" class="outline-4">
+<h4 id="org2fcba33"><span class="section-number-4">3.2.1</span> Standard (in language specification)</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <dl class="org-dl">
 <dt><code>__FILE__</code></dt><dd>expands to the name of the current input file, in the form of a C string constant
@@ -394,11 +430,10 @@ This is the path by which the preprocessor opened the file, not the short name.<
 One typical use of these two macros are in log message.
 </p>
 <div class="org-src-container">
-
-<pre class="src src-C">fprintf (stderr, <span style="color: #E6DB74;">"Internal error: "</span>
-         <span style="color: #E6DB74;">"negative string length "</span>
-         <span style="color: #E6DB74;">"%d at %s, line %d."</span>,
-         length, __FILE__, __LINE__);
+<pre class="src src-C">fprintf <span style="color: #707183;">(</span>stderr, <span style="color: #8b2252;">"Internal error: "</span>
+         <span style="color: #8b2252;">"negative string length "</span>
+         <span style="color: #8b2252;">"%d at %s, line %d."</span>,
+         length, __FILE__, __LINE__<span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -429,8 +464,8 @@ If the day of the month is less than 10, it is padded with a space on the left.<
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7"><span class="section-number-4">3.2.2</span> Common GNU C extension</h4>
+<div id="outline-container-org697dbe3" class="outline-4">
+<h4 id="org697dbe3"><span class="section-number-4">3.2.2</span> Common GNU C extension</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 I only list some interesting ones. For the full list see the page in <a href="https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html">gcc manual</a>.
@@ -443,23 +478,22 @@ I only list some interesting ones. For the full list see the page in <a href="ht
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10"><span class="section-number-4">3.2.3</span> system specific</h4>
+<div id="outline-container-org901542c" class="outline-4">
+<h4 id="org901542c"><span class="section-number-4">3.2.3</span> system specific</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 To find the macros that are defined in current system:
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell">cpp -dM - <span style="color: #75715E;"># </span><span style="color: #75715E;">use standard input</span>
-C-d <span style="color: #75715E;"># </span><span style="color: #75715E;">EOF, see result</span>
+<pre class="src src-shell">cpp -dM - <span style="color: #b22222;"># </span><span style="color: #b22222;">use standard input</span>
+C-d <span style="color: #b22222;"># </span><span style="color: #b22222;">EOF, see result</span>
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-5">
-<h5 id="orgheadline8"><span class="section-number-5">3.2.3.1</span> MAC</h5>
+<div id="outline-container-org8c4e1fb" class="outline-5">
+<h5 id="org8c4e1fb"><span class="section-number-5">3.2.3.1</span> MAC</h5>
 <div class="outline-text-5" id="text-3-2-3-1">
 <pre class="example">
 #define OBJC_NEW_PROPERTIES 1
@@ -479,8 +513,8 @@ C-d <span style="color: #75715E;"># </span><span style="color: #75715E;">EOF, se
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-5">
-<h5 id="orgheadline9"><span class="section-number-5">3.2.3.2</span> Ubuntu</h5>
+<div id="outline-container-orgff23cb5" class="outline-5">
+<h5 id="orgff23cb5"><span class="section-number-5">3.2.3.2</span> Ubuntu</h5>
 <div class="outline-text-5" id="text-3-2-3-2">
 <pre class="example">
 #define __unix__ 1
@@ -495,8 +529,8 @@ C-d <span style="color: #75715E;"># </span><span style="color: #75715E;">EOF, se
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12"><span class="section-number-3">3.3</span> Stringification</h3>
+<div id="outline-container-org6412003" class="outline-3">
+<h3 id="org6412003"><span class="section-number-3">3.3</span> Stringification</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Stringification.html">https://gcc.gnu.org/onlinedocs/cpp/Stringification.html</a>
@@ -521,8 +555,8 @@ in order to get a valid C string constant with the proper contents.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13"><span class="section-number-3">3.4</span> token-pasting</h3>
+<div id="outline-container-org6fe6380" class="outline-3">
+<h3 id="org6fe6380"><span class="section-number-3">3.4</span> token-pasting</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html">https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html</a>
@@ -545,18 +579,17 @@ CPP will give warning.
 
 
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">command</span>
-{
-  <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">name</span>;
-  <span style="color: #66D9EF;">void</span> (*<span style="color: #A6E22E;">function</span>) (<span style="color: #66D9EF;">void</span>);
-};
-<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">command</span> <span style="color: #FD971F;">commands</span>[] =
-  {
-    { <span style="color: #E6DB74;">"quit"</span>, quit_command },
-    { <span style="color: #E6DB74;">"help"</span>, help_command },
+<pre class="src src-C"><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">command</span>
+<span style="color: #707183;">{</span>
+  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">name</span>;
+  <span style="color: #228b22;">void</span> <span style="color: #7388d6;">(</span>*<span style="color: #0000ff;">function</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">void</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">command</span> <span style="color: #a0522d;">commands</span><span style="color: #707183;">[]</span> =
+  <span style="color: #707183;">{</span>
+    <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"quit"</span>, quit_command <span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"help"</span>, help_command <span style="color: #7388d6;">}</span>,
     ...
-  };
+  <span style="color: #707183;">}</span>;
 </pre>
 </div>
 
@@ -564,14 +597,13 @@ CPP will give warning.
 can be wrote as:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">#define</span> <span style="color: #A6E22E;">COMMAND</span>(<span style="color: #FD971F;">NAME</span>)  { #NAME, NAME ## _command }
-<span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">command</span> <span style="color: #FD971F;">commands</span>[] =
-  {
-    COMMAND (quit),
-    COMMAND (help),
+<pre class="src src-C"><span style="color: #483d8b;">#define</span> <span style="color: #0000ff;">COMMAND</span><span style="color: #707183;">(</span><span style="color: #a0522d;">NAME</span><span style="color: #707183;">)</span>  <span style="color: #707183;">{</span> #NAME, NAME ## _command <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">command</span> <span style="color: #a0522d;">commands</span><span style="color: #707183;">[]</span> =
+  <span style="color: #707183;">{</span>
+    COMMAND <span style="color: #7388d6;">(</span>quit<span style="color: #7388d6;">)</span>,
+    COMMAND <span style="color: #7388d6;">(</span>help<span style="color: #7388d6;">)</span>,
     ...
-  };
+  <span style="color: #707183;">}</span>;
 </pre>
 </div>
 
@@ -579,9 +611,8 @@ can be wrote as:
 Another example:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #F92672;">#define</span> <span style="color: #A6E22E;">paster</span>( <span style="color: #FD971F;">n</span> ) printf_s( <span style="color: #E6DB74;">"token"</span> #n <span style="color: #E6DB74;">" = %d"</span>, token##n )
-<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">token9</span> = 9;
+<pre class="src src-C"><span style="color: #483d8b;">#define</span> <span style="color: #0000ff;">paster</span><span style="color: #707183;">(</span> <span style="color: #a0522d;">n</span> <span style="color: #707183;">)</span> printf_s<span style="color: #707183;">(</span> <span style="color: #8b2252;">"token"</span> #n <span style="color: #8b2252;">" = %d"</span>, token##n <span style="color: #707183;">)</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">token9</span> = 9;
 </pre>
 </div>
 
@@ -589,17 +620,16 @@ Another example:
 becomes
 </p>
 <div class="org-src-container">
-
-<pre class="src src-C">printf_s( <span style="color: #E6DB74;">"token"</span> <span style="color: #E6DB74;">"9"</span> <span style="color: #E6DB74;">" = %d"</span>, token9 );
-<span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt;</span>
-printf_s( <span style="color: #E6DB74;">"token9 = %d"</span>, token9 );
+<pre class="src src-C">printf_s<span style="color: #707183;">(</span> <span style="color: #8b2252;">"token"</span> <span style="color: #8b2252;">"9"</span> <span style="color: #8b2252;">" = %d"</span>, token9 <span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">=&gt;</span>
+printf_s<span style="color: #707183;">(</span> <span style="color: #8b2252;">"token9 = %d"</span>, token9 <span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14"><span class="section-number-3">3.5</span> Line Markers</h3>
+<div id="outline-container-orgd0b22fd" class="outline-3">
+<h3 id="orgd0b22fd"><span class="section-number-3">3.5</span> Line Markers</h3>
 <div class="outline-text-3" id="text-3-5">
 <pre class="example">
 # linenum filename flags
@@ -630,11 +660,11 @@ except that trailing flags are permitted.
 </div>
 
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">4</span> Special Notations</h2>
+<div id="outline-container-org5baaa46" class="outline-2">
+<h2 id="org5baaa46"><span class="section-number-2">4</span> Special Notations</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">4.1</span> Line Control</h3>
+</div><div id="outline-container-org921439a" class="outline-3">
+<h3 id="org921439a"><span class="section-number-3">4.1</span> Line Control</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 It can have three formats:
@@ -653,8 +683,8 @@ The only things that changed are <code>__FILE__</code> and <code>__LINE__</code>
 </div>
 
 
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18"><span class="section-number-2">5</span> GCC options</h2>
+<div id="outline-container-orgc21551c" class="outline-2">
+<h2 id="orgc21551c"><span class="section-number-2">5</span> GCC options</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><code>-include</code> include file before parsing</li>
@@ -664,8 +694,8 @@ right before looking for <code>.h</code> file in each directory.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19"><span class="section-number-2">6</span> Misc</h2>
+<div id="outline-container-orgd5ceac9" class="outline-2">
+<h2 id="orgd5ceac9"><span class="section-number-2">6</span> Misc</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>nm a.o</code> list symbols from object files</li>
@@ -675,7 +705,7 @@ right before looking for <code>.h</code> file in each directory.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-22 Sat 18:29</p>
+<p class="date">Created: 2016-11-08 Tue 13:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

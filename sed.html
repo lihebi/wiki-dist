@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-10-06 Thu 12:12 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-08 Tue 13:53 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sed</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Hebi Li" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,15 +176,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <style>
 a:visited {color: red;}
 </style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
-<style type="text/css">
- pre.src {background-color: #272822; color: #F8F8F2;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -155,30 +236,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">1. Introduction</a>
+<li><a href="#org77f6dcf">1. Introduction</a>
 <ul>
-<li><a href="#orgheadline1">1.1. About the regular expression version</a></li>
+<li><a href="#org9627513">1.1. About the regular expression version</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">2. usage</a></li>
-<li><a href="#orgheadline4">3. concepts</a></li>
-<li><a href="#orgheadline5">4. workflow</a></li>
-<li><a href="#orgheadline6">5. cmd args</a></li>
-<li><a href="#orgheadline7">6. range</a></li>
-<li><a href="#orgheadline11">7. commands</a>
+<li><a href="#org8123669">2. usage</a></li>
+<li><a href="#orgf21706b">3. concepts</a></li>
+<li><a href="#org328cee5">4. workflow</a></li>
+<li><a href="#org0fadb41">5. cmd args</a></li>
+<li><a href="#org4f29c60">6. range</a></li>
+<li><a href="#orgbc33c38">7. commands</a>
 <ul>
-<li><a href="#orgheadline8">7.1. edit</a></li>
-<li><a href="#orgheadline9">7.2. output</a></li>
-<li><a href="#orgheadline10">7.3. flow control</a></li>
+<li><a href="#orgf8f8330">7.1. edit</a></li>
+<li><a href="#orga7b6305">7.2. output</a></li>
+<li><a href="#org0e70912">7.3. flow control</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">8. examples</a></li>
+<li><a href="#orgc21f15b">8. examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org77f6dcf" class="outline-2">
+<h2 id="org77f6dcf"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The sed version on Mac OS and GNU Linux are different.
@@ -193,21 +274,20 @@ This will make a <code>gsed</code> command available.
 To write a cross platform script, use
 </p>
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"OSTYPE: "</span> $<span style="color: #FD971F;">OSTYPE</span>
-<span style="color: #FD971F;">SED</span>=sed
-<span style="color: #F92672;">if</span> [[ <span style="color: #E6DB74;">"$OSTYPE"</span> == <span style="color: #E6DB74;">"linux-gnu"</span> ]]; <span style="color: #F92672;">then</span>
-    <span style="color: #FD971F;">SED</span>=sed
-<span style="color: #F92672;">elif</span> [[ <span style="color: #E6DB74;">"$OSTYPE"</span> == <span style="color: #E6DB74;">"darwin"</span>* ]]; <span style="color: #F92672;">then</span>
-    <span style="color: #FD971F;">SED</span>=gsed
-<span style="color: #F92672;">fi</span>
-$<span style="color: #FD971F;">SED</span> -E -e <span style="color: #E6DB74;">"460,$ s/REG[0-9]{1,2}//g"</span> compress42.c.orig &gt; compress42.bugsig.c
+<pre class="src src-shell"><span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"OSTYPE: "</span> $<span style="color: #a0522d;">OSTYPE</span>
+<span style="color: #a0522d;">SED</span>=sed
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">[</span><span style="color: #7388d6;">[</span> <span style="color: #8b2252;">"$OSTYPE"</span> == <span style="color: #8b2252;">"linux-gnu"</span> <span style="color: #7388d6;">]</span><span style="color: #707183;">]</span>; <span style="color: #a020f0;">then</span>
+    <span style="color: #a0522d;">SED</span>=sed
+<span style="color: #a020f0;">elif</span> <span style="color: #707183;">[</span><span style="color: #7388d6;">[</span> <span style="color: #8b2252;">"$OSTYPE"</span> == <span style="color: #8b2252;">"darwin"</span>* <span style="color: #7388d6;">]</span><span style="color: #707183;">]</span>; <span style="color: #a020f0;">then</span>
+    <span style="color: #a0522d;">SED</span>=gsed
+<span style="color: #a020f0;">fi</span>
+$<span style="color: #a0522d;">SED</span> -E -e <span style="color: #8b2252;">"460,$ s/REG[0-9]{1,2}//g"</span> compress42.c.orig &gt; compress42.bugsig.c
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> About the regular expression version</h3>
+<div id="outline-container-org9627513" class="outline-3">
+<h3 id="org9627513"><span class="section-number-3">1.1</span> About the regular expression version</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <code>-E</code> will enable extra features, such as:
@@ -227,24 +307,23 @@ There's no <code>\d</code>, so use <code>[0-9]</code> instead. The man page says
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">2</span> usage</h2>
+<div id="outline-container-org8123669" class="outline-2">
+<h2 id="org8123669"><span class="section-number-2">2</span> usage</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 in shell script
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #75715E;">#</span><span style="color: #75715E;">!/bin/</span><span style="color: #F92672;">sed</span><span style="color: #75715E;"> -f</span>
-<span style="color: #75715E;">#</span><span style="color: #75715E;">!/bin/sed -nf</span>
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sed</span><span style="color: #b22222;"> -f</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/sed -nf</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">3</span> concepts</h2>
+<div id="outline-container-orgf21706b" class="outline-2">
+<h2 id="orgf21706b"><span class="section-number-2">3</span> concepts</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>input</li>
@@ -255,8 +334,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">4</span> workflow</h2>
+<div id="outline-container-org328cee5" class="outline-2">
+<h2 id="org328cee5"><span class="section-number-2">4</span> workflow</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>copy a line from input(exclude the tailing newline) into pattern buffer</li>
@@ -266,8 +345,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">5</span> cmd args</h2>
+<div id="outline-container-org0fadb41" class="outline-2">
+<h2 id="org0fadb41"><span class="section-number-2">5</span> cmd args</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>-n: by default each line of input is echoed to the standard output after all of the commands have been applied to it. The -n option suppresses this behavior</li>
@@ -277,8 +356,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">6</span> range</h2>
+<div id="outline-container-org4f29c60" class="outline-2">
+<h2 id="org4f29c60"><span class="section-number-2">6</span> range</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 sed will only apply command for the lines in the specified range.
@@ -286,20 +365,19 @@ If the command is preceded with <code>!</code>, that means the command works on 
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell">sed <span style="color: #E6DB74;">'1,100 s/A/a/'</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">by line number</span>
-sed <span style="color: #E6DB74;">'101,$ s/A/a/'</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">$ is last line</span>
-sed <span style="color: #E6DB74;">'/start/,/stop/ s/#.*//'</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">by pattern</span>
+<pre class="src src-shell">sed <span style="color: #8b2252;">'1,100 s/A/a/'</span> <span style="color: #b22222;"># </span><span style="color: #b22222;">by line number</span>
+sed <span style="color: #8b2252;">'101,$ s/A/a/'</span> <span style="color: #b22222;"># </span><span style="color: #b22222;">$ is last line</span>
+sed <span style="color: #8b2252;">'/start/,/stop/ s/#.*//'</span> <span style="color: #b22222;"># </span><span style="color: #b22222;">by pattern</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11"><span class="section-number-2">7</span> commands</h2>
+<div id="outline-container-orgbc33c38" class="outline-2">
+<h2 id="orgbc33c38"><span class="section-number-2">7</span> commands</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">7.1</span> edit</h3>
+</div><div id="outline-container-orgf8f8330" class="outline-3">
+<h3 id="orgf8f8330"><span class="section-number-3">7.1</span> edit</h3>
 <div class="outline-text-3" id="text-7-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -363,8 +441,8 @@ sed <span style="color: #E6DB74;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">7.2</span> output</h3>
+<div id="outline-container-orga7b6305" class="outline-3">
+<h3 id="orga7b6305"><span class="section-number-3">7.2</span> output</h3>
 <div class="outline-text-3" id="text-7-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -428,8 +506,8 @@ sed <span style="color: #E6DB74;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">7.3</span> flow control</h3>
+<div id="outline-container-org0e70912" class="outline-3">
+<h3 id="org0e70912"><span class="section-number-3">7.3</span> flow control</h3>
 <div class="outline-text-3" id="text-7-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -482,21 +560,20 @@ sed <span style="color: #E6DB74;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">8</span> examples</h2>
+<div id="outline-container-orgc21f15b" class="outline-2">
+<h2 id="orgc21f15b"><span class="section-number-2">8</span> examples</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 print
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E;">add line numbers first,</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">then use grep,</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">then just print the number</span>
-cat -n file | grep <span style="color: #E6DB74;">'PATTERN'</span> | awk <span style="color: #E6DB74;">'{print $1}'</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">the equilvalence</span>
-sed -n <span style="color: #E6DB74;">'/PATTERN/ ='</span> file
+<pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">add line numbers first,</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">then use grep,</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">then just print the number</span>
+cat -n file | grep <span style="color: #8b2252;">'PATTERN'</span> | awk <span style="color: #8b2252;">'{print $1}'</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">the equilvalence</span>
+sed -n <span style="color: #8b2252;">'/PATTERN/ ='</span> file
 </pre>
 </div>
 
@@ -505,19 +582,18 @@ substitute
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell">s/pattern/&amp;/ <span style="color: #75715E;"># </span><span style="color: #75715E;">'&amp;' stands for the total match</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">in extend mode(-E), can use \1 \2</span>
-<span style="color: #A6E22E;">s/</span>(a)b/\1/
-s//string/ <span style="color: #75715E;"># </span><span style="color: #75715E;">use the last run-time used pattern</span>
-s/xxx/xxx/g <span style="color: #75715E;"># </span><span style="color: #75715E;">substitute globally: all</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">there will not be recursion. sed will not examine the generated string</span>
-s/loop/loop loop/g <span style="color: #75715E;"># </span><span style="color: #75715E;">will NOT run forever</span>
-s/xxx/xxx/2 <span style="color: #75715E;"># </span><span style="color: #75715E;">only substitute the second match</span>
-s/xxx/xxx/g2 <span style="color: #75715E;"># </span><span style="color: #75715E;">substitute 2,3,4,...</span>
-s/xxx/xxx/p <span style="color: #75715E;"># </span><span style="color: #75715E;">will print out even if -n is used</span>
-s/xxx/xxx/I p <span style="color: #75715E;"># </span><span style="color: #75715E;">ignore case; command can be used together</span>
-s/a/A/2pw /tmp/file <span style="color: #75715E;"># </span><span style="color: #75715E;">combine more</span>
+<pre class="src src-shell">s/pattern/&amp;/ <span style="color: #b22222;"># </span><span style="color: #b22222;">'&amp;' stands for the total match</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">in extend mode(-E), can use \1 \2</span>
+<span style="color: #0000ff;">s/</span><span style="color: #707183;">(</span>a<span style="color: #707183;">)</span>b/\1/
+s//string/ <span style="color: #b22222;"># </span><span style="color: #b22222;">use the last run-time used pattern</span>
+s/xxx/xxx/g <span style="color: #b22222;"># </span><span style="color: #b22222;">substitute globally: all</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">there will not be recursion. sed will not examine the generated string</span>
+s/loop/loop loop/g <span style="color: #b22222;"># </span><span style="color: #b22222;">will NOT run forever</span>
+s/xxx/xxx/2 <span style="color: #b22222;"># </span><span style="color: #b22222;">only substitute the second match</span>
+s/xxx/xxx/g2 <span style="color: #b22222;"># </span><span style="color: #b22222;">substitute 2,3,4,...</span>
+s/xxx/xxx/p <span style="color: #b22222;"># </span><span style="color: #b22222;">will print out even if -n is used</span>
+s/xxx/xxx/I p <span style="color: #b22222;"># </span><span style="color: #b22222;">ignore case; command can be used together</span>
+s/a/A/2pw /tmp/file <span style="color: #b22222;"># </span><span style="color: #b22222;">combine more</span>
 </pre>
 </div>
 
@@ -526,14 +602,13 @@ delete
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #75715E;"># </span><span style="color: #75715E;">-i: make change to the original file</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">/d: delete the line if match</span>
-sed -i <span style="color: #E6DB74;">'/@slice/d'</span> $<span style="color: #FD971F;">ClassName</span>.java
-sed -i <span style="color: #E6DB74;">'g/@slice/d'</span> xx.java <span style="color: #75715E;"># </span><span style="color: #75715E;">remove all</span>
-sed <span style="color: #E6DB74;">'/^$/d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">remove all empty lines</span>
-sed <span style="color: #E6DB74;">'11,$ d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">only output first 10 lines</span>
-sed <span style="color: #E6DB74;">'1,/^$/ d'</span> <span style="color: #75715E;"># </span><span style="color: #75715E;">delete everything up to the first blank line.</span>
+<pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">-i: make change to the original file</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">/d: delete the line if match</span>
+sed -i <span style="color: #8b2252;">'/@slice/d'</span> $<span style="color: #a0522d;">ClassName</span>.java
+sed -i <span style="color: #8b2252;">'g/@slice/d'</span> xx.java <span style="color: #b22222;"># </span><span style="color: #b22222;">remove all</span>
+sed <span style="color: #8b2252;">'/^$/d'</span> <span style="color: #b22222;"># </span><span style="color: #b22222;">remove all empty lines</span>
+sed <span style="color: #8b2252;">'11,$ d'</span> <span style="color: #b22222;"># </span><span style="color: #b22222;">only output first 10 lines</span>
+sed <span style="color: #8b2252;">'1,/^$/ d'</span> <span style="color: #b22222;"># </span><span style="color: #b22222;">delete everything up to the first blank line.</span>
 </pre>
 </div>
 </div>
@@ -541,7 +616,7 @@ sed <span style="color: #E6DB74;">'1,/^$/ d'</span> <span style="color: #75715E;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-10-06 Thu 12:12</p>
+<p class="date">Created: 2016-11-08 Tue 13:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
