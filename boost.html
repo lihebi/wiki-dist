@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-08 Tue 13:55 -->
+<!-- 2017-02-16 Thu 12:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Boost</title>
@@ -236,59 +236,59 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org628857a">1. Filesystem</a></li>
-<li><a href="#org0b2cae2">2. boost.any</a>
+<li><a href="#orgc53e71a">1. Filesystem</a></li>
+<li><a href="#orga536172">2. boost.any</a>
 <ul>
-<li><a href="#orgfdf75d7">2.1. Usage</a></li>
-<li><a href="#orgc09c28e">2.2. Convert into boost::any</a></li>
-<li><a href="#org082eebc">2.3. Checking of type</a>
+<li><a href="#orgc103281">2.1. Usage</a></li>
+<li><a href="#org5cd5b62">2.2. Convert into boost::any</a></li>
+<li><a href="#org8c9e265">2.3. Checking of type</a>
 <ul>
-<li><a href="#org45ca236">2.3.1. <code>boost::any::type()</code></a></li>
-<li><a href="#orgbc513b8">2.3.2. <code>boost::any_cast()</code></a></li>
+<li><a href="#org925d5ea">2.3.1. <code>boost::any::type()</code></a></li>
+<li><a href="#org14f4761">2.3.2. <code>boost::any_cast()</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org088dbb7">3. program options</a>
+<li><a href="#org45944c0">3. program options</a>
 <ul>
-<li><a href="#org1d548b6">3.1. Usage</a></li>
-<li><a href="#orga6652b6">3.2. construct arguments</a></li>
-<li><a href="#orgb864815">3.3. help message</a></li>
-<li><a href="#org528eb03">3.4. Do the parsing</a></li>
-<li><a href="#org1d9b450">3.5. Retrieve from vm</a></li>
+<li><a href="#orgaf1ce68">3.1. Usage</a></li>
+<li><a href="#org948f590">3.2. construct arguments</a></li>
+<li><a href="#org8f550d0">3.3. help message</a></li>
+<li><a href="#org3d7e245">3.4. Do the parsing</a></li>
+<li><a href="#orgd0baaa0">3.5. Retrieve from vm</a></li>
 </ul>
 </li>
-<li><a href="#org212068d">4. filesystem</a>
+<li><a href="#orgb1c0865">4. filesystem</a>
 <ul>
-<li><a href="#org8aee26c">4.1. Usage</a></li>
-<li><a href="#org2af00fe">4.2. Path</a>
+<li><a href="#orgd9db92a">4.1. Usage</a></li>
+<li><a href="#org8257497">4.2. Path</a>
 <ul>
-<li><a href="#org181c779">4.2.1. modification</a></li>
-<li><a href="#org4aa3a27">4.2.2. Decomposite</a></li>
-<li><a href="#orgd6ca553">4.2.3. Query</a></li>
+<li><a href="#org93ee03f">4.2.1. modification</a></li>
+<li><a href="#orgf6a11c9">4.2.2. Decomposite</a></li>
+<li><a href="#org66a86a2">4.2.3. Query</a></li>
 </ul>
 </li>
-<li><a href="#orgc3a5a3b">4.3. path utilities</a>
+<li><a href="#org6dfe29e">4.3. path utilities</a>
 <ul>
-<li><a href="#org4699e8d">4.3.1. File operations</a></li>
-<li><a href="#org03a86fd">4.3.2. predicates</a>
+<li><a href="#orgcb7edd5">4.3.1. File operations</a></li>
+<li><a href="#orgbc68116">4.3.2. predicates</a>
 <ul>
-<li><a href="#org81de871">4.3.2.1. Linux is file or dir</a></li>
+<li><a href="#orgeb67942">4.3.2.1. Linux is file or dir</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6d1896f">4.4. Temp Directory</a></li>
-<li><a href="#org1d9087e">4.5. Iterators</a></li>
+<li><a href="#org686a462">4.4. Temp Directory</a></li>
+<li><a href="#org605de1f">4.5. Iterators</a></li>
 </ul>
 </li>
-<li><a href="#orgd45526a">5. Timer</a></li>
+<li><a href="#orgd78e775">5. Timer</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org628857a" class="outline-2">
-<h2 id="org628857a"><span class="section-number-2">1</span> Filesystem</h2>
+<div id="outline-container-orgc53e71a" class="outline-2">
+<h2 id="orgc53e71a"><span class="section-number-2">1</span> Filesystem</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Compilation flag: <code>-lboost_filesystem -lboost_system</code>
@@ -298,21 +298,21 @@ Compilation flag: <code>-lboost_filesystem -lboost_system</code>
 common usage:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/filesystem.hpp&gt;</span>
-<span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">fs</span> = <span style="color: #008b8b;">boost</span>::filesystem;
-<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #0000ff;">path</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"./main.cpp"</span><span style="color: #707183;">)</span>;
-<span style="color: #b22222;">// </span><span style="color: #b22222;">absolute path, basically just add the prefix, but retain the ".." and "//"</span>
-<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a0522d;">abs_path</span> = <span style="color: #008b8b;">fs</span>::absolute<span style="color: #707183;">(</span>path<span style="color: #707183;">)</span>;
-<span style="color: #b22222;">// </span><span style="color: #b22222;">absolute, follow symbol link, and remove dot and extra slashes. Will throw exception if file does not exist</span>
-<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a0522d;">con_path</span> = <span style="color: #008b8b;">fs</span>::canonical<span style="color: #707183;">(</span>path<span style="color: #707183;">)</span>;
-<span style="color: #008b8b;">fs</span>::exists<span style="color: #707183;">(</span>path<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">if path exists or not</span>
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/filesystem.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">namespace</span> <span style="color: #AE81FF;">fs</span> = <span style="color: #AE81FF;">boost</span>::filesystem;
+<span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #FD971F;">path</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"./main.cpp"</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #75715E;">// </span><span style="color: #75715E;">absolute path, basically just add the prefix, but retain the ".." and "//"</span>
+<span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #FD971F;">abs_path</span> = <span style="color: #AE81FF;">fs</span>::absolute<span style="color: #AE81FF;">(</span>path<span style="color: #AE81FF;">)</span>;
+<span style="color: #75715E;">// </span><span style="color: #75715E;">absolute, follow symbol link, and remove dot and extra slashes. Will throw exception if file does not exist</span>
+<span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #FD971F;">con_path</span> = <span style="color: #AE81FF;">fs</span>::canonical<span style="color: #AE81FF;">(</span>path<span style="color: #AE81FF;">)</span>;
+<span style="color: #AE81FF;">fs</span>::exists<span style="color: #AE81FF;">(</span>path<span style="color: #AE81FF;">)</span>; <span style="color: #75715E;">// </span><span style="color: #75715E;">if path exists or not</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0b2cae2" class="outline-2">
-<h2 id="org0b2cae2"><span class="section-number-2">2</span> boost.any</h2>
+<div id="outline-container-orga536172" class="outline-2">
+<h2 id="orga536172"><span class="section-number-2">2</span> boost.any</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This is a class for conversion.
@@ -325,50 +325,50 @@ It can
 </ul>
 </div>
 
-<div id="outline-container-orgfdf75d7" class="outline-3">
-<h3 id="orgfdf75d7"><span class="section-number-3">2.1</span> Usage</h3>
+<div id="outline-container-orgc103281" class="outline-3">
+<h3 id="orgc103281"><span class="section-number-3">2.1</span> Usage</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;list&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/any.hpp&gt;</span>
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">list</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/any.hpp</span><span style="color: #AE81FF;">&gt;</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc09c28e" class="outline-3">
-<h3 id="orgc09c28e"><span class="section-number-3">2.2</span> Convert into boost::any</h3>
+<div id="outline-container-org5cd5b62" class="outline-3">
+<h3 id="org5cd5b62"><span class="section-number-3">2.2</span> Convert into boost::any</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Converting any type to boost::any is as simple as assignment:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">list</span><span style="color: #707183;">&lt;</span><span style="color: #008b8b;">boost</span>::any<span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">values</span>;
-<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
-<span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">any</span> <span style="color: #a0522d;">to_append</span> = i;
-values.push_back<span style="color: #707183;">(</span>to_append<span style="color: #707183;">)</span>;
-<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>;
-values.push_back<span style="color: #707183;">(</span>s<span style="color: #707183;">)</span>;
-<span style="color: #228b22;">char</span> *<span style="color: #a0522d;">cp</span>;
-values.push_back<span style="color: #707183;">(</span>cp<span style="color: #707183;">)</span>;
-<span style="color: #b22222;">// </span><span style="color: #b22222;">append nothing</span>
-values.push_back<span style="color: #707183;">(</span><span style="color: #008b8b;">boost</span>::<span style="color: #a0522d;">any</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+<pre class="src src-C++"><span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">list</span><span style="color: #AE81FF;">&lt;</span><span style="color: #AE81FF;">boost</span>::any<span style="color: #AE81FF;">&gt;</span> <span style="color: #FD971F;">values</span>;
+<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">i</span>;
+<span style="color: #AE81FF;">boost</span>::<span style="color: #66D9EF;">any</span> <span style="color: #FD971F;">to_append</span> = i;
+values.push_back<span style="color: #AE81FF;">(</span>to_append<span style="color: #AE81FF;">)</span>;
+<span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">s</span>;
+values.push_back<span style="color: #AE81FF;">(</span>s<span style="color: #AE81FF;">)</span>;
+<span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">cp</span>;
+values.push_back<span style="color: #AE81FF;">(</span>cp<span style="color: #AE81FF;">)</span>;
+<span style="color: #75715E;">// </span><span style="color: #75715E;">append nothing</span>
+values.push_back<span style="color: #AE81FF;">(</span><span style="color: #AE81FF;">boost</span>::<span style="color: #A6E22E;">any</span><span style="color: #66D9EF;">()</span><span style="color: #AE81FF;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org082eebc" class="outline-3">
-<h3 id="org082eebc"><span class="section-number-3">2.3</span> Checking of type</h3>
+<div id="outline-container-org8c9e265" class="outline-3">
+<h3 id="org8c9e265"><span class="section-number-3">2.3</span> Checking of type</h3>
 <div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-org45ca236" class="outline-4">
-<h4 id="org45ca236"><span class="section-number-4">2.3.1</span> <code>boost::any::type()</code></h4>
+</div><div id="outline-container-org925d5ea" class="outline-4">
+<h4 id="org925d5ea"><span class="section-number-4">2.3.1</span> <code>boost::any::type()</code></h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 first, the <code>boost::any</code> class has a method called <code>type()</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">type_info</span> &amp; <span style="color: #0000ff;">type</span><span style="color: #707183;">()</span> <span style="color: #a020f0;">const</span>;
+<pre class="src src-C++"><span style="color: #F92672;">const</span> <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">type_info</span> &amp; <span style="color: #A6E22E;">type</span><span style="color: #AE81FF;">()</span> <span style="color: #F92672;">const</span>;
 </pre>
 </div>
 
@@ -376,14 +376,14 @@ first, the <code>boost::any</code> class has a method called <code>type()</code>
 If the instance is empty, it returns <code>typeid(void)</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">any.type<span style="color: #707183;">()</span> == <span style="color: #a020f0;">typeid</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span><span style="color: #707183;">)</span>;
+<pre class="src src-C++">any.type<span style="color: #AE81FF;">()</span> == <span style="color: #F92672;">typeid</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">int</span><span style="color: #AE81FF;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbc513b8" class="outline-4">
-<h4 id="orgbc513b8"><span class="section-number-4">2.3.2</span> <code>boost::any_cast()</code></h4>
+<div id="outline-container-org14f4761" class="outline-4">
+<h4 id="org14f4761"><span class="section-number-4">2.3.2</span> <code>boost::any_cast()</code></h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 <code>any_cast</code> can be used to check if the value is of some type.
@@ -396,8 +396,8 @@ When accepting a pointer, it will not throw exception, but return a pointer of N
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">template</span><span style="color: #707183;">&lt;</span><span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span><span style="color: #707183;">&gt;</span> <span style="color: #228b22;">T</span> <span style="color: #0000ff;">any_cast</span><span style="color: #707183;">(</span><span style="color: #228b22;">any</span> &amp; <span style="color: #a0522d;">operand</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">template</span><span style="color: #707183;">&lt;</span><span style="color: #a020f0;">typename</span> <span style="color: #228b22;">ValueType</span><span style="color: #707183;">&gt;</span> <span style="color: #228b22;">ValueType</span> * <span style="color: #0000ff;">any_cast</span><span style="color: #707183;">(</span><span style="color: #228b22;">any</span> * <span style="color: #a0522d;">operand</span><span style="color: #707183;">)</span>;
+<pre class="src src-C++"><span style="color: #F92672;">template</span><span style="color: #AE81FF;">&lt;</span><span style="color: #F92672;">typename</span> <span style="color: #66D9EF;">T</span><span style="color: #AE81FF;">&gt;</span> <span style="color: #66D9EF;">T</span> <span style="color: #A6E22E;">any_cast</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">any</span> &amp; <span style="color: #FD971F;">operand</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">template</span><span style="color: #AE81FF;">&lt;</span><span style="color: #F92672;">typename</span> <span style="color: #66D9EF;">ValueType</span><span style="color: #AE81FF;">&gt;</span> <span style="color: #66D9EF;">ValueType</span> * <span style="color: #A6E22E;">any_cast</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">any</span> * <span style="color: #FD971F;">operand</span><span style="color: #AE81FF;">)</span>;
 </pre>
 </div>
 
@@ -406,18 +406,18 @@ An example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #0000ff;">is_char_ptr</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">any</span> &amp; <span style="color: #a0522d;">operand</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">try</span> <span style="color: #7388d6;">{</span>
-    <span style="color: #228b22;">any_cast</span><span style="color: #909183;">&lt;</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #909183;">&gt;(</span><span style="color: #a0522d;">operand</span><span style="color: #909183;">)</span>;
-    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
-  <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">catch</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">bad_any_cast</span> &amp;<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
-    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-  <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+<pre class="src src-C++"><span style="color: #66D9EF;">bool</span> <span style="color: #A6E22E;">is_char_ptr</span><span style="color: #AE81FF;">(</span><span style="color: #F92672;">const</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #66D9EF;">any</span> &amp; <span style="color: #FD971F;">operand</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">try</span> <span style="color: #66D9EF;">{</span>
+    any_cast<span style="color: #A6E22E;">&lt;</span><span style="color: #F92672;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #A6E22E;">&gt;(</span>operand<span style="color: #A6E22E;">)</span>;
+    <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">true</span>;
+  <span style="color: #66D9EF;">}</span> <span style="color: #F92672;">catch</span><span style="color: #66D9EF;">(</span><span style="color: #F92672;">const</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #66D9EF;">bad_any_cast</span> &amp;<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">{</span>
+    <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">false</span>;
+  <span style="color: #66D9EF;">}</span>
+<span style="color: #AE81FF;">}</span>
 
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">is_string</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">any</span> &amp; <span style="color: #a0522d;">operand</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">return</span> <span style="color: #228b22;">any_cast</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">std</span>::string<span style="color: #7388d6;">&gt;(</span>&amp;operand<span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<span style="color: #66D9EF;">bool</span> <span style="color: #A6E22E;">is_string</span><span style="color: #AE81FF;">(</span><span style="color: #F92672;">const</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #66D9EF;">any</span> &amp; <span style="color: #FD971F;">operand</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">return</span> any_cast<span style="color: #66D9EF;">&lt;</span><span style="color: #AE81FF;">std</span>::string<span style="color: #66D9EF;">&gt;(</span>&amp;operand<span style="color: #66D9EF;">)</span>;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
@@ -425,19 +425,19 @@ An example:
 </div>
 </div>
 
-<div id="outline-container-org088dbb7" class="outline-2">
-<h2 id="org088dbb7"><span class="section-number-2">3</span> program options</h2>
+<div id="outline-container-org45944c0" class="outline-2">
+<h2 id="org45944c0"><span class="section-number-2">3</span> program options</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org1d548b6" class="outline-3">
-<h3 id="org1d548b6"><span class="section-number-3">3.1</span> Usage</h3>
+</div><div id="outline-container-orgaf1ce68" class="outline-3">
+<h3 id="orgaf1ce68"><span class="section-number-3">3.1</span> Usage</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options.hpp&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options/options_description.hpp&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options/variables_map.hpp&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options/parsers.hpp&gt;</span>
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/program_options.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/program_options/options_description.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/program_options/variables_map.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/program_options/parsers.hpp</span><span style="color: #AE81FF;">&gt;</span>
 
-<span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">po</span> = <span style="color: #008b8b;">boost</span>::program_options;
+<span style="color: #F92672;">namespace</span> <span style="color: #AE81FF;">po</span> = <span style="color: #AE81FF;">boost</span>::program_options;
 </pre>
 </div>
 
@@ -447,8 +447,8 @@ compile use <code>-lboost_program_options</code> flag.
 </div>
 </div>
 
-<div id="outline-container-orga6652b6" class="outline-3">
-<h3 id="orga6652b6"><span class="section-number-3">3.2</span> construct arguments</h3>
+<div id="outline-container-org948f590" class="outline-3">
+<h3 id="org948f590"><span class="section-number-3">3.2</span> construct arguments</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Create some options.
@@ -466,12 +466,12 @@ But if you use <code>default_value()</code>, po will throw exception if you prov
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #0000ff;">options</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Arguments"</span><span style="color: #707183;">)</span>;
-options.add_options<span style="color: #707183;">()</span>
-  <span style="color: #707183;">(</span><span style="color: #8b2252;">"help,h"</span>, <span style="color: #8b2252;">"produce help message"</span><span style="color: #707183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">--help, -h</span>
-  <span style="color: #707183;">(</span><span style="color: #8b2252;">"config,f"</span>, <span style="color: #008b8b;">po</span>::<span style="color: #228b22;">value</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">std</span>::string<span style="color: #7388d6;">&gt;()</span>, <span style="color: #8b2252;">"config file"</span><span style="color: #707183;">)</span>
-  <span style="color: #707183;">(</span><span style="color: #8b2252;">"optimization"</span>, <span style="color: #228b22;">value</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;()</span>-&gt;default_value<span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span>, <span style="color: #8b2252;">"optimization level"</span><span style="color: #707183;">)</span>
-  <span style="color: #707183;">(</span><span style="color: #8b2252;">"print,p"</span>, <span style="color: #008b8b;">po</span>::<span style="color: #228b22;">value</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">std</span>::string<span style="color: #7388d6;">&gt;()</span>-&gt;implicit_value<span style="color: #7388d6;">(</span><span style="color: #8b2252;">""</span><span style="color: #7388d6;">)</span>, <span style="color: #8b2252;">"what to be print"</span><span style="color: #707183;">)</span>
+<pre class="src src-C++"><span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">options_description</span> <span style="color: #FD971F;">options</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"Arguments"</span><span style="color: #AE81FF;">)</span>;
+options.add_options<span style="color: #AE81FF;">()</span>
+  <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"help,h"</span>, <span style="color: #E6DB74;">"produce help message"</span><span style="color: #AE81FF;">)</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">--help, -h</span>
+  <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"config,f"</span>, <span style="color: #AE81FF;">po</span>::value<span style="color: #66D9EF;">&lt;</span><span style="color: #AE81FF;">std</span>::string<span style="color: #66D9EF;">&gt;()</span>, <span style="color: #E6DB74;">"config file"</span><span style="color: #AE81FF;">)</span>
+  <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"optimization"</span>, value<span style="color: #66D9EF;">&lt;</span><span style="color: #66D9EF;">int</span><span style="color: #66D9EF;">&gt;()</span>-&gt;default_value<span style="color: #66D9EF;">(</span>10<span style="color: #66D9EF;">)</span>, <span style="color: #E6DB74;">"optimization level"</span><span style="color: #AE81FF;">)</span>
+  <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"print,p"</span>, <span style="color: #AE81FF;">po</span>::value<span style="color: #66D9EF;">&lt;</span><span style="color: #AE81FF;">std</span>::string<span style="color: #66D9EF;">&gt;()</span>-&gt;implicit_value<span style="color: #66D9EF;">(</span><span style="color: #E6DB74;">""</span><span style="color: #66D9EF;">)</span>, <span style="color: #E6DB74;">"what to be print"</span><span style="color: #AE81FF;">)</span>
 ;
 </pre>
 </div>
@@ -481,13 +481,13 @@ The options can spread into multiple descriptions.
 This is helpful for create options that you don't want to show in help message.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #0000ff;">another_options</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Utils"</span><span style="color: #707183;">)</span>;
-another_options.add_options<span style="color: #707183;">()</span>
-  <span style="color: #707183;">(</span><span style="color: #8b2252;">"create-tagfile"</span>, <span style="color: #8b2252;">"create tag file"</span><span style="color: #707183;">)</span>
+<pre class="src src-C++"><span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">options_description</span> <span style="color: #FD971F;">another_options</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"Utils"</span><span style="color: #AE81FF;">)</span>;
+another_options.add_options<span style="color: #AE81FF;">()</span>
+  <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"create-tagfile"</span>, <span style="color: #E6DB74;">"create tag file"</span><span style="color: #AE81FF;">)</span>
 ;
-<span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #0000ff;">hidden</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hidden options"</span><span style="color: #707183;">)</span>;
-hidden.add_options<span style="color: #707183;">()</span>
-  <span style="color: #707183;">(</span><span style="color: #8b2252;">"folder"</span>, <span style="color: #8b2252;">"project folder"</span><span style="color: #707183;">)</span>
+<span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">options_description</span> <span style="color: #FD971F;">hidden</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"Hidden options"</span><span style="color: #AE81FF;">)</span>;
+hidden.add_options<span style="color: #AE81FF;">()</span>
+  <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"folder"</span>, <span style="color: #E6DB74;">"project folder"</span><span style="color: #AE81FF;">)</span>
   ;
 </pre>
 </div>
@@ -496,76 +496,76 @@ hidden.add_options<span style="color: #707183;">()</span>
 positional argument is those that don't require dash.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">positional_options_description</span> <span style="color: #a0522d;">positional</span>;
-positional.add<span style="color: #707183;">(</span><span style="color: #8b2252;">"folder"</span>, 1<span style="color: #707183;">)</span>;
+<pre class="src src-C++"><span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">positional_options_description</span> <span style="color: #FD971F;">positional</span>;
+positional.add<span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"folder"</span>, 1<span style="color: #AE81FF;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb864815" class="outline-3">
-<h3 id="orgb864815"><span class="section-number-3">3.3</span> help message</h3>
+<div id="outline-container-org8f550d0" class="outline-3">
+<h3 id="org8f550d0"><span class="section-number-3">3.3</span> help message</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Organize and print out help message:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">help_options</span>;
+<pre class="src src-C++"><span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">options_description</span> <span style="color: #FD971F;">help_options</span>;
 help_options
-  .add<span style="color: #707183;">(</span>options<span style="color: #707183;">)</span>
-  .add<span style="color: #707183;">(</span>another_options<span style="color: #707183;">)</span>
+  .add<span style="color: #AE81FF;">(</span>options<span style="color: #AE81FF;">)</span>
+  .add<span style="color: #AE81FF;">(</span>another_options<span style="color: #AE81FF;">)</span>
 ;
-<span style="color: #008b8b;">std</span>::cout&lt;&lt; m_help_options &lt;&lt; <span style="color: #008b8b;">std</span>::endl;
+<span style="color: #AE81FF;">std</span>::cout&lt;&lt; m_help_options &lt;&lt; <span style="color: #AE81FF;">std</span>::endl;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org528eb03" class="outline-3">
-<h3 id="org528eb03"><span class="section-number-3">3.4</span> Do the parsing</h3>
+<div id="outline-container-org3d7e245" class="outline-3">
+<h3 id="org3d7e245"><span class="section-number-3">3.4</span> Do the parsing</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Put all descriptions together and do the parsing:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">cmdline_options</span>;
+<pre class="src src-C++"><span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">options_description</span> <span style="color: #FD971F;">cmdline_options</span>;
 cmdline_options
-  .add<span style="color: #707183;">(</span>options<span style="color: #707183;">)</span>
-  .add<span style="color: #707183;">(</span>another_options<span style="color: #707183;">)</span>
-  .add<span style="color: #707183;">(</span>hidden<span style="color: #707183;">)</span>
+  .add<span style="color: #AE81FF;">(</span>options<span style="color: #AE81FF;">)</span>
+  .add<span style="color: #AE81FF;">(</span>another_options<span style="color: #AE81FF;">)</span>
+  .add<span style="color: #AE81FF;">(</span>hidden<span style="color: #AE81FF;">)</span>
 ;
-<span style="color: #008b8b;">po</span>::<span style="color: #228b22;">variables_map</span> <span style="color: #a0522d;">vm</span>;
-<span style="color: #008b8b;">po</span>::store<span style="color: #707183;">(</span><span style="color: #008b8b;">po</span>::command_line_parser<span style="color: #7388d6;">(</span>argc, argv<span style="color: #7388d6;">)</span>
-          .options<span style="color: #7388d6;">(</span>m_cmdline_options<span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">add cmdline options</span>
-          .positional<span style="color: #7388d6;">(</span>positional<span style="color: #7388d6;">)</span>     <span style="color: #b22222;">// </span><span style="color: #b22222;">add positional options</span>
-          .run<span style="color: #7388d6;">()</span>,                     <span style="color: #b22222;">// </span><span style="color: #b22222;">run the parser</span>
+<span style="color: #AE81FF;">po</span>::<span style="color: #66D9EF;">variables_map</span> <span style="color: #FD971F;">vm</span>;
+<span style="color: #AE81FF;">po</span>::store<span style="color: #AE81FF;">(</span><span style="color: #AE81FF;">po</span>::command_line_parser<span style="color: #66D9EF;">(</span>argc, argv<span style="color: #66D9EF;">)</span>
+          .options<span style="color: #66D9EF;">(</span>m_cmdline_options<span style="color: #66D9EF;">)</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">add cmdline options</span>
+          .positional<span style="color: #66D9EF;">(</span>positional<span style="color: #66D9EF;">)</span>     <span style="color: #75715E;">// </span><span style="color: #75715E;">add positional options</span>
+          .run<span style="color: #66D9EF;">()</span>,                     <span style="color: #75715E;">// </span><span style="color: #75715E;">run the parser</span>
           vm
-          <span style="color: #707183;">)</span>;
-<span style="color: #008b8b;">po</span>::notify<span style="color: #707183;">(</span>vm<span style="color: #707183;">)</span>;
+          <span style="color: #AE81FF;">)</span>;
+<span style="color: #AE81FF;">po</span>::notify<span style="color: #AE81FF;">(</span>vm<span style="color: #AE81FF;">)</span>;
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">also from a config file.</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">the value stored first is prefered, so the command line options automatically overwrite config file.</span>
-<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">ifstream</span> <span style="color: #0000ff;">ifs</span><span style="color: #707183;">(</span>config_file.c_str<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>ifs<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #008b8b;">po</span>::store<span style="color: #7388d6;">(</span><span style="color: #008b8b;">po</span>::parse_config_file<span style="color: #909183;">(</span>ifs, config_file_options<span style="color: #909183;">)</span>, vm<span style="color: #7388d6;">)</span>;
-  notify<span style="color: #7388d6;">(</span>vm<span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<span style="color: #75715E;">// </span><span style="color: #75715E;">also from a config file.</span>
+<span style="color: #75715E;">// </span><span style="color: #75715E;">the value stored first is prefered, so the command line options automatically overwrite config file.</span>
+<span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">ifstream</span> <span style="color: #A6E22E;">ifs</span><span style="color: #AE81FF;">(</span>config_file.c_str<span style="color: #66D9EF;">()</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">if</span> <span style="color: #AE81FF;">(</span>ifs<span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #AE81FF;">po</span>::store<span style="color: #66D9EF;">(</span><span style="color: #AE81FF;">po</span>::parse_config_file<span style="color: #A6E22E;">(</span>ifs, config_file_options<span style="color: #A6E22E;">)</span>, vm<span style="color: #66D9EF;">)</span>;
+  notify<span style="color: #66D9EF;">(</span>vm<span style="color: #66D9EF;">)</span>;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1d9b450" class="outline-3">
-<h3 id="org1d9b450"><span class="section-number-3">3.5</span> Retrieve from vm</h3>
+<div id="outline-container-orgd0baaa0" class="outline-3">
+<h3 id="orgd0baaa0"><span class="section-number-3">3.5</span> Retrieve from vm</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Now the <code>vm</code> is ready to get data. It is extended from <code>std::map</code>. The value of the map is <code>variable_value</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">template</span><span style="color: #707183;">&lt;</span><span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span><span style="color: #707183;">&gt;</span> <span style="color: #228b22;">T</span> &amp; <span style="color: #0000ff;">as</span><span style="color: #707183;">()</span>;
-<span style="color: #008b8b;">boost</span>::any &amp; value<span style="color: #707183;">()</span>;
+<pre class="src src-C++"><span style="color: #F92672;">template</span><span style="color: #AE81FF;">&lt;</span><span style="color: #F92672;">typename</span> <span style="color: #66D9EF;">T</span><span style="color: #AE81FF;">&gt;</span> <span style="color: #66D9EF;">T</span> &amp; <span style="color: #A6E22E;">as</span><span style="color: #AE81FF;">()</span>;
+<span style="color: #AE81FF;">boost</span>::any &amp; value<span style="color: #AE81FF;">()</span>;
 </pre>
 </div>
 
@@ -573,9 +573,9 @@ Now the <code>vm</code> is ready to get data. It is extended from <code>std::map
 example:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">vm.count<span style="color: #707183;">(</span>key<span style="color: #707183;">)</span>;
-vm<span style="color: #707183;">[</span>key<span style="color: #707183;">]</span>.<span style="color: #228b22;">as</span><span style="color: #707183;">&lt;</span><span style="color: #008b8b;">std</span>::string<span style="color: #707183;">&gt;()</span>;
-vm<span style="color: #707183;">[</span>key<span style="color: #707183;">]</span>.value<span style="color: #707183;">()</span>;
+<pre class="src src-C++">vm.count<span style="color: #AE81FF;">(</span>key<span style="color: #AE81FF;">)</span>;
+vm<span style="color: #AE81FF;">[</span>key<span style="color: #AE81FF;">]</span>.as<span style="color: #AE81FF;">&lt;</span><span style="color: #AE81FF;">std</span>::string<span style="color: #AE81FF;">&gt;()</span>;
+vm<span style="color: #AE81FF;">[</span>key<span style="color: #AE81FF;">]</span>.value<span style="color: #AE81FF;">()</span>;
 </pre>
 </div>
 </div>
@@ -583,16 +583,16 @@ vm<span style="color: #707183;">[</span>key<span style="color: #707183;">]</span
 </div>
 
 
-<div id="outline-container-org212068d" class="outline-2">
-<h2 id="org212068d"><span class="section-number-2">4</span> filesystem</h2>
+<div id="outline-container-orgb1c0865" class="outline-2">
+<h2 id="orgb1c0865"><span class="section-number-2">4</span> filesystem</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org8aee26c" class="outline-3">
-<h3 id="org8aee26c"><span class="section-number-3">4.1</span> Usage</h3>
+</div><div id="outline-container-orgd9db92a" class="outline-3">
+<h3 id="orgd9db92a"><span class="section-number-3">4.1</span> Usage</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/filesystem.hpp&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/foreach.hpp&gt;</span>
-<span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">fs</span> = <span style="color: #008b8b;">boost</span>::filesystem;
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/filesystem.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/foreach.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">namespace</span> <span style="color: #AE81FF;">fs</span> = <span style="color: #AE81FF;">boost</span>::filesystem;
 </pre>
 </div>
 
@@ -602,31 +602,31 @@ Compile use <code>-lboost_system -lboost_filesystem</code> flag.
 </div>
 </div>
 
-<div id="outline-container-org2af00fe" class="outline-3">
-<h3 id="org2af00fe"><span class="section-number-3">4.2</span> Path</h3>
+<div id="outline-container-org8257497" class="outline-3">
+<h3 id="org8257497"><span class="section-number-3">4.2</span> Path</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 These are the methods of class <code>path</code>.
 Basic construct and retrieve string:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #0000ff;">p</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/path"</span><span style="color: #707183;">)</span>;
-p.string<span style="color: #707183;">()</span>;
-p.clear<span style="color: #707183;">()</span>;
+<pre class="src src-C++"><span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #FD971F;">p</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">"/path"</span><span style="color: #AE81FF;">)</span>;
+p.string<span style="color: #AE81FF;">()</span>;
+p.clear<span style="color: #AE81FF;">()</span>;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org181c779" class="outline-4">
-<h4 id="org181c779"><span class="section-number-4">4.2.1</span> modification</h4>
+<div id="outline-container-org93ee03f" class="outline-4">
+<h4 id="org93ee03f"><span class="section-number-4">4.2.1</span> modification</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 append will concatenate paths by separator, but will not add if duplicate.
 concatenation simply concatenate.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">path&amp; <span style="color: #a020f0;">operator</span>/=<span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">path</span>&amp; <span style="color: #a0522d;">p</span><span style="color: #707183;">)</span>;
-<span style="color: #228b22;">path</span>&amp; <span style="color: #a020f0;">operator</span><span style="color: #0000ff;">+=</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">path</span>&amp; <span style="color: #a0522d;">x</span><span style="color: #707183;">)</span>;
+<pre class="src src-C++">path&amp; <span style="color: #F92672;">operator</span>/=<span style="color: #AE81FF;">(</span><span style="color: #F92672;">const</span> <span style="color: #66D9EF;">path</span>&amp; <span style="color: #FD971F;">p</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #66D9EF;">path</span>&amp; <span style="color: #F92672;">operator</span><span style="color: #A6E22E;">+=</span><span style="color: #AE81FF;">(</span><span style="color: #F92672;">const</span> <span style="color: #66D9EF;">path</span>&amp; <span style="color: #FD971F;">x</span><span style="color: #AE81FF;">)</span>;
 </pre>
 </div>
 
@@ -640,8 +640,8 @@ concatenation simply concatenate.
 </div>
 </div>
 
-<div id="outline-container-org4aa3a27" class="outline-4">
-<h4 id="org4aa3a27"><span class="section-number-4">4.2.2</span> Decomposite</h4>
+<div id="outline-container-orgf6a11c9" class="outline-4">
+<h4 id="orgf6a11c9"><span class="section-number-4">4.2.2</span> Decomposite</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 All of these returns a <code>path</code>.
@@ -669,8 +669,8 @@ All of these returns a <code>path</code>.
 </div>
 </div>
 
-<div id="outline-container-orgd6ca553" class="outline-4">
-<h4 id="orgd6ca553"><span class="section-number-4">4.2.3</span> Query</h4>
+<div id="outline-container-org66a86a2" class="outline-4">
+<h4 id="org66a86a2"><span class="section-number-4">4.2.3</span> Query</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li><code>empty</code></li>
@@ -681,8 +681,8 @@ All of these returns a <code>path</code>.
 </div>
 </div>
 
-<div id="outline-container-orgc3a5a3b" class="outline-3">
-<h3 id="orgc3a5a3b"><span class="section-number-3">4.3</span> path utilities</h3>
+<div id="outline-container-org6dfe29e" class="outline-3">
+<h3 id="org6dfe29e"><span class="section-number-3">4.3</span> path utilities</h3>
 <div class="outline-text-3" id="text-4-3">
 <dl class="org-dl">
 <dt><code>absolute</code></dt><dd>if relative, return current path / p</dd>
@@ -694,8 +694,8 @@ no symbol link, no dots, no extra slashes.</dd>
 </dl>
 </div>
 
-<div id="outline-container-org4699e8d" class="outline-4">
-<h4 id="org4699e8d"><span class="section-number-4">4.3.1</span> File operations</h4>
+<div id="outline-container-orgcb7edd5" class="outline-4">
+<h4 id="orgcb7edd5"><span class="section-number-4">4.3.1</span> File operations</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 copy
@@ -727,8 +727,8 @@ modify
 </div>
 </div>
 
-<div id="outline-container-org03a86fd" class="outline-4">
-<h4 id="org03a86fd"><span class="section-number-4">4.3.2</span> predicates</h4>
+<div id="outline-container-orgbc68116" class="outline-4">
+<h4 id="orgbc68116"><span class="section-number-4">4.3.2</span> predicates</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <dl class="org-dl">
 <dt><code>is_directory(path &amp;p)</code></dt><dd></dd>
@@ -742,20 +742,20 @@ modify
 </dl>
 </div>
 
-<div id="outline-container-org81de871" class="outline-5">
-<h5 id="org81de871"><span class="section-number-5">4.3.2.1</span> Linux is file or dir</h5>
+<div id="outline-container-orgeb67942" class="outline-5">
+<h5 id="orgeb67942"><span class="section-number-5">4.3.2.1</span> Linux is file or dir</h5>
 <div class="outline-text-5" id="text-4-3-2-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #008b8b;">utils</span>::<span style="color: #0000ff;">is_file</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">file</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">stat</span> <span style="color: #a0522d;">sb</span>;
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">stat</span><span style="color: #909183;">(</span>file.c_str<span style="color: #709870;">()</span>, &amp;sb<span style="color: #909183;">)</span> == 0 &amp;&amp; S_ISREG<span style="color: #909183;">(</span>sb.st_mode<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
-  <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-<span style="color: #707183;">}</span>
-<span style="color: #228b22;">bool</span> <span style="color: #008b8b;">utils</span>::<span style="color: #0000ff;">is_dir</span><span style="color: #707183;">(</span><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">file</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">stat</span> <span style="color: #a0522d;">sb</span>;
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">stat</span><span style="color: #909183;">(</span>file.c_str<span style="color: #709870;">()</span>, &amp;sb<span style="color: #909183;">)</span> == 0 &amp;&amp; S_ISDIR<span style="color: #909183;">(</span>sb.st_mode<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
-  <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-<span style="color: #707183;">}</span>
+<pre class="src src-C++"><span style="color: #66D9EF;">bool</span> <span style="color: #AE81FF;">utils</span>::<span style="color: #A6E22E;">is_file</span><span style="color: #AE81FF;">(</span><span style="color: #F92672;">const</span> <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> &amp;<span style="color: #FD971F;">file</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">stat</span> <span style="color: #FD971F;">sb</span>;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">stat</span><span style="color: #A6E22E;">(</span>file.c_str<span style="color: #E6DB74;">()</span>, &amp;sb<span style="color: #A6E22E;">)</span> == 0 &amp;&amp; S_ISREG<span style="color: #A6E22E;">(</span>sb.st_mode<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span> <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">true</span>;
+  <span style="color: #F92672;">else</span> <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">false</span>;
+<span style="color: #AE81FF;">}</span>
+<span style="color: #66D9EF;">bool</span> <span style="color: #AE81FF;">utils</span>::<span style="color: #A6E22E;">is_dir</span><span style="color: #AE81FF;">(</span><span style="color: #F92672;">const</span> <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> &amp;<span style="color: #FD971F;">file</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">struct</span> <span style="color: #66D9EF;">stat</span> <span style="color: #FD971F;">sb</span>;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span><span style="color: #A6E22E;">stat</span><span style="color: #A6E22E;">(</span>file.c_str<span style="color: #E6DB74;">()</span>, &amp;sb<span style="color: #A6E22E;">)</span> == 0 &amp;&amp; S_ISDIR<span style="color: #A6E22E;">(</span>sb.st_mode<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span> <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">true</span>;
+  <span style="color: #F92672;">else</span> <span style="color: #F92672;">return</span> <span style="color: #AE81FF;">false</span>;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
@@ -764,8 +764,8 @@ modify
 </div>
 
 
-<div id="outline-container-org6d1896f" class="outline-3">
-<h3 id="org6d1896f"><span class="section-number-3">4.4</span> Temp Directory</h3>
+<div id="outline-container-org686a462" class="outline-3">
+<h3 id="org686a462"><span class="section-number-3">4.4</span> Temp Directory</h3>
 <div class="outline-text-3" id="text-4-4">
 <dl class="org-dl">
 <dt><code>temp_directory_path()</code></dt><dd>return a temp directory name suited for creation.
@@ -774,45 +774,45 @@ Will throw exception if the one being returned exists, so feel free to use.</dd>
 </dl>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b22222;">/**</span>
-<span style="color: #b22222;"> * create tmp dir, return it.</span>
-<span style="color: #b22222;"> * @input s /tmp/helium-XXXXXX (must have 6 X at the end.)</span>
-<span style="color: #b22222;"> */</span>
-<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #008b8b;">utils</span>::<span style="color: #0000ff;">create_tmp_dir</span><span style="color: #707183;">(</span><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #b22222;">// </span><span style="color: #b22222;">char tmp_dir[] = "/tmp/helium-test-temp.XXXXXX";</span>
-  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">sub</span> = s.substr<span style="color: #7388d6;">(</span>s.find_last_not_of<span style="color: #909183;">(</span><span style="color: #8b2252;">'X'</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>sub.size<span style="color: #909183;">()</span> !=7<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">""</span>;
-  sub = sub.substr<span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
-  assert<span style="color: #7388d6;">(</span>sub.size<span style="color: #909183;">()</span> == 6 &amp;&amp; <span style="color: #8b2252;">"tmp dir url format error!"</span><span style="color: #7388d6;">)</span>;
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>sub.find_first_not_of<span style="color: #909183;">(</span><span style="color: #8b2252;">'X'</span><span style="color: #909183;">)</span> != <span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">string</span>::npos<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">""</span>;
-  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">tmp_dir</span><span style="color: #7388d6;">[</span>s.size<span style="color: #909183;">()</span>+1<span style="color: #7388d6;">]</span>;
-  strcpy<span style="color: #7388d6;">(</span>tmp_dir, s.c_str<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+<pre class="src src-C++"><span style="color: #75715E;">/**</span>
+<span style="color: #75715E;"> * create tmp dir, return it.</span>
+<span style="color: #75715E;"> * @input s /tmp/helium-XXXXXX (must have 6 X at the end.)</span>
+<span style="color: #75715E;"> */</span>
+<span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #AE81FF;">utils</span>::<span style="color: #A6E22E;">create_tmp_dir</span><span style="color: #AE81FF;">(</span><span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">s</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">char tmp_dir[] = "/tmp/helium-test-temp.XXXXXX";</span>
+  <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">sub</span> = s.substr<span style="color: #66D9EF;">(</span>s.find_last_not_of<span style="color: #A6E22E;">(</span><span style="color: #E6DB74;">'X'</span><span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span>;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>sub.size<span style="color: #A6E22E;">()</span> !=7<span style="color: #66D9EF;">)</span> <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">""</span>;
+  sub = sub.substr<span style="color: #66D9EF;">(</span>1<span style="color: #66D9EF;">)</span>;
+  assert<span style="color: #66D9EF;">(</span>sub.size<span style="color: #A6E22E;">()</span> == 6 &amp;&amp; <span style="color: #E6DB74;">"tmp dir url format error!"</span><span style="color: #66D9EF;">)</span>;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>sub.find_first_not_of<span style="color: #A6E22E;">(</span><span style="color: #E6DB74;">'X'</span><span style="color: #A6E22E;">)</span> != <span style="color: #AE81FF;">std</span>::<span style="color: #AE81FF;">string</span>::npos<span style="color: #66D9EF;">)</span> <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">""</span>;
+  <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">tmp_dir</span><span style="color: #66D9EF;">[</span>s.size<span style="color: #A6E22E;">()</span>+1<span style="color: #66D9EF;">]</span>;
+  strcpy<span style="color: #66D9EF;">(</span>tmp_dir, s.c_str<span style="color: #A6E22E;">()</span><span style="color: #66D9EF;">)</span>;
 
-  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">result</span> = mkdtemp<span style="color: #7388d6;">(</span>tmp_dir<span style="color: #7388d6;">)</span>;
+  <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">result</span> = mkdtemp<span style="color: #66D9EF;">(</span>tmp_dir<span style="color: #66D9EF;">)</span>;
 
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>result == <span style="color: #008b8b;">NULL</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">""</span>;
-  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">dir</span> = tmp_dir;
-  <span style="color: #a020f0;">return</span> dir;
-<span style="color: #707183;">}</span>
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>result == <span style="color: #AE81FF;">NULL</span><span style="color: #66D9EF;">)</span> <span style="color: #F92672;">return</span> <span style="color: #E6DB74;">""</span>;
+  <span style="color: #AE81FF;">std</span>::<span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">dir</span> = tmp_dir;
+  <span style="color: #F92672;">return</span> dir;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org1d9087e" class="outline-3">
-<h3 id="org1d9087e"><span class="section-number-3">4.5</span> Iterators</h3>
+<div id="outline-container-org605de1f" class="outline-3">
+<h3 id="org605de1f"><span class="section-number-3">4.5</span> Iterators</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>class directory<sub>iterator</sub></li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">fs</span>::is_directory<span style="color: #7388d6;">(</span>p<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #008b8b;">fs</span>::directory_entry &amp;e : <span style="color: #008b8b;">fs</span>::directory_iterator<span style="color: #909183;">(</span>p<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
-    e.path<span style="color: #909183;">()</span>;
-  <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+<pre class="src src-C++"><span style="color: #F92672;">if</span> <span style="color: #AE81FF;">(</span><span style="color: #AE81FF;">fs</span>::is_directory<span style="color: #66D9EF;">(</span>p<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">for</span> <span style="color: #66D9EF;">(</span><span style="color: #AE81FF;">fs</span>::directory_entry &amp;e : <span style="color: #AE81FF;">fs</span>::directory_iterator<span style="color: #A6E22E;">(</span>p<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">{</span>
+    e.path<span style="color: #A6E22E;">()</span>;
+  <span style="color: #66D9EF;">}</span>
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 
@@ -820,40 +820,40 @@ Will throw exception if the one being returned exists, so feel free to use.</dd>
 <li>class recursive<sub>directory</sub><sub>iterator</sub></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #0000ff;">project_folder</span><span style="color: #707183;">(</span>folder<span style="color: #707183;">)</span>;
-<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">recursive_directory_iterator</span> <span style="color: #0000ff;">it</span><span style="color: #707183;">(</span>folder<span style="color: #707183;">)</span>, <span style="color: #a0522d;">eod</span>;
-<span style="color: #0000ff;">BOOST_FOREACH</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a020f0;">const</span> &amp; <span style="color: #a0522d;">p</span>, <span style="color: #008b8b;">std</span>::<span style="color: #a0522d;">make_pair</span><span style="color: #7388d6;">(</span>it, eod<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>is_regular_file<span style="color: #909183;">(</span>p<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
-    vs.push_back<span style="color: #909183;">(</span>p.string<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
-  <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+<pre class="src src-C++"><span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #A6E22E;">project_folder</span><span style="color: #AE81FF;">(</span>folder<span style="color: #AE81FF;">)</span>;
+<span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">recursive_directory_iterator</span> <span style="color: #A6E22E;">it</span><span style="color: #AE81FF;">(</span>folder<span style="color: #AE81FF;">)</span>, <span style="color: #FD971F;">eod</span>;
+<span style="color: #A6E22E;">BOOST_FOREACH</span> <span style="color: #AE81FF;">(</span><span style="color: #AE81FF;">fs</span>::<span style="color: #66D9EF;">path</span> <span style="color: #F92672;">const</span> &amp; <span style="color: #FD971F;">p</span>, <span style="color: #AE81FF;">std</span>::<span style="color: #A6E22E;">make_pair</span><span style="color: #66D9EF;">(</span>it, eod<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>is_regular_file<span style="color: #A6E22E;">(</span>p<span style="color: #A6E22E;">)</span><span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">{</span>
+    vs.push_back<span style="color: #A6E22E;">(</span>p.string<span style="color: #E6DB74;">()</span><span style="color: #A6E22E;">)</span>;
+  <span style="color: #66D9EF;">}</span>
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd45526a" class="outline-2">
-<h2 id="orgd45526a"><span class="section-number-2">5</span> Timer</h2>
+<div id="outline-container-orgd78e775" class="outline-2">
+<h2 id="orgd78e775"><span class="section-number-2">5</span> Timer</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/timer/timer.hpp&gt;</span>
-<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">boost</span>::<span style="color: #008b8b;">timer</span>::<span style="color: #228b22;">cpu_timer</span>;
-<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">boost</span>::<span style="color: #008b8b;">timer</span>::<span style="color: #228b22;">cpu_times</span>;
-<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">boost</span>::<span style="color: #008b8b;">timer</span>::<span style="color: #228b22;">nanosecond_type</span>;
+<pre class="src src-C++"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">boost/timer/timer.hpp</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #F92672;">using</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #AE81FF;">timer</span>::<span style="color: #66D9EF;">cpu_timer</span>;
+<span style="color: #F92672;">using</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #AE81FF;">timer</span>::<span style="color: #66D9EF;">cpu_times</span>;
+<span style="color: #F92672;">using</span> <span style="color: #AE81FF;">boost</span>::<span style="color: #AE81FF;">timer</span>::<span style="color: #66D9EF;">nanosecond_type</span>;
 
-<span style="color: #228b22;">nanosecond_type</span> <span style="color: #a020f0;">const</span> <span style="color: #0000ff;">twenty_seconds</span><span style="color: #707183;">(</span>20 * 1000000000LL<span style="color: #707183;">)</span>;
-<span style="color: #228b22;">nanosecond_type</span> <span style="color: #0000ff;">last</span><span style="color: #707183;">(</span>0<span style="color: #707183;">)</span>;
-<span style="color: #228b22;">cpu_timer</span> <span style="color: #a0522d;">timer</span>;
-<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span>more_transactions<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  process_a_transaction<span style="color: #7388d6;">()</span>;
-  <span style="color: #228b22;">cpu_times</span> <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">elapsed_times</span><span style="color: #7388d6;">(</span>timer.elapsed<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
-  <span style="color: #228b22;">nanosecond_type</span> <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">elapsed</span><span style="color: #7388d6;">(</span>elapsed_times.system
-                                + elapsed_times.user<span style="color: #7388d6;">)</span>;
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>elapsed &gt;= twenty_seconds<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+<span style="color: #66D9EF;">nanosecond_type</span> <span style="color: #F92672;">const</span> <span style="color: #FD971F;">twenty_seconds</span><span style="color: #AE81FF;">(</span>20 * 1000000000LL<span style="color: #AE81FF;">)</span>;
+<span style="color: #66D9EF;">nanosecond_type</span> <span style="color: #FD971F;">last</span><span style="color: #AE81FF;">(</span>0<span style="color: #AE81FF;">)</span>;
+<span style="color: #66D9EF;">cpu_timer</span> <span style="color: #FD971F;">timer</span>;
+<span style="color: #F92672;">while</span> <span style="color: #AE81FF;">(</span>more_transactions<span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  process_a_transaction<span style="color: #66D9EF;">()</span>;
+  <span style="color: #66D9EF;">cpu_times</span> <span style="color: #F92672;">const</span> <span style="color: #A6E22E;">elapsed_times</span><span style="color: #66D9EF;">(</span>timer.elapsed<span style="color: #A6E22E;">()</span><span style="color: #66D9EF;">)</span>;
+  <span style="color: #66D9EF;">nanosecond_type</span> <span style="color: #F92672;">const</span> <span style="color: #A6E22E;">elapsed</span><span style="color: #66D9EF;">(</span>elapsed_times.system
+                                + elapsed_times.user<span style="color: #66D9EF;">)</span>;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>elapsed &gt;= twenty_seconds<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">{</span>
     last = elapsed;
-  <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+  <span style="color: #66D9EF;">}</span>
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
@@ -861,7 +861,7 @@ Will throw exception if the one being returned exists, so feel free to use.</dd>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-11-08 Tue 13:55</p>
+<p class="date">Created: 2017-02-16 Thu 12:02</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

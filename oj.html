@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-08 Tue 13:53 -->
+<!-- 2017-02-16 Thu 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Online Judge Excerpts</title>
@@ -236,14 +236,14 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7cf3c03">1. Binary Tree Postorder Traversal <i>Iteratively</i>:</a></li>
-<li><a href="#org3576aad">2. middle order traversal's two different implement:</a></li>
+<li><a href="#org20c39d4">1. Binary Tree Postorder Traversal <i>Iteratively</i>:</a></li>
+<li><a href="#org70731b0">2. middle order traversal's two different implement:</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7cf3c03" class="outline-2">
-<h2 id="org7cf3c03"><span class="section-number-2">1</span> Binary Tree Postorder Traversal <i>Iteratively</i>:</h2>
+<div id="outline-container-org20c39d4" class="outline-2">
+<h2 id="org20c39d4"><span class="section-number-2">1</span> Binary Tree Postorder Traversal <i>Iteratively</i>:</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-text">1.1 Create an empty stack
@@ -260,62 +260,62 @@ for the JavaScript code in this tag.
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">vector</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">postorderTraversal</span><span style="color: #707183;">(</span><span style="color: #228b22;">TreeNode</span>* <span style="color: #a0522d;">root</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #228b22;">vector</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">result</span>;
-  <span style="color: #228b22;">stack</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">TreeNode</span>*<span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">worklist</span>;
-  <span style="color: #228b22;">TreeNode</span> *<span style="color: #a0522d;">node</span> = root;
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>root==<span style="color: #008b8b;">NULL</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">return</span> result;
-  <span style="color: #a020f0;">do</span> <span style="color: #7388d6;">{</span>
-    <span style="color: #a020f0;">while</span> <span style="color: #909183;">(</span>node != <span style="color: #008b8b;">NULL</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
-      <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>node-&gt;right != <span style="color: #008b8b;">NULL</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
-        worklist.push<span style="color: #907373;">(</span>node-&gt;right<span style="color: #907373;">)</span>;
-      <span style="color: #709870;">}</span>
-      worklist.push<span style="color: #709870;">(</span>node<span style="color: #709870;">)</span>;
+<pre class="src src-C++"><span style="color: #66D9EF;">vector</span><span style="color: #AE81FF;">&lt;</span><span style="color: #66D9EF;">int</span><span style="color: #AE81FF;">&gt;</span> <span style="color: #A6E22E;">postorderTraversal</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">TreeNode</span>* <span style="color: #FD971F;">root</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #66D9EF;">vector</span><span style="color: #66D9EF;">&lt;</span><span style="color: #66D9EF;">int</span><span style="color: #66D9EF;">&gt;</span> <span style="color: #FD971F;">result</span>;
+  <span style="color: #66D9EF;">stack</span><span style="color: #66D9EF;">&lt;</span><span style="color: #66D9EF;">TreeNode</span>*<span style="color: #66D9EF;">&gt;</span> <span style="color: #FD971F;">worklist</span>;
+  <span style="color: #66D9EF;">TreeNode</span> *<span style="color: #FD971F;">node</span> = root;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>root==<span style="color: #AE81FF;">NULL</span><span style="color: #66D9EF;">)</span> <span style="color: #F92672;">return</span> result;
+  <span style="color: #F92672;">do</span> <span style="color: #66D9EF;">{</span>
+    <span style="color: #F92672;">while</span> <span style="color: #A6E22E;">(</span>node != <span style="color: #AE81FF;">NULL</span><span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">{</span>
+      <span style="color: #F92672;">if</span> <span style="color: #E6DB74;">(</span>node-&gt;right != <span style="color: #AE81FF;">NULL</span><span style="color: #E6DB74;">)</span> <span style="color: #E6DB74;">{</span>
+        worklist.push<span style="color: #FD971F;">(</span>node-&gt;right<span style="color: #FD971F;">)</span>;
+      <span style="color: #E6DB74;">}</span>
+      worklist.push<span style="color: #E6DB74;">(</span>node<span style="color: #E6DB74;">)</span>;
       node = node-&gt;left;
-    <span style="color: #909183;">}</span>
-    node = worklist.top<span style="color: #909183;">()</span>;
-    worklist.pop<span style="color: #909183;">()</span>;
-    <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>node-&gt;right != <span style="color: #008b8b;">NULL</span> &amp;&amp; !worklist.empty<span style="color: #709870;">()</span> &amp;&amp; worklist.top<span style="color: #709870;">()</span> == node-&gt;right<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
-      <span style="color: #b22222;">// </span><span style="color: #b22222;">the node has right child to process</span>
-      <span style="color: #228b22;">TreeNode</span> *<span style="color: #a0522d;">right</span> = node-&gt;right;
-      worklist.pop<span style="color: #709870;">()</span>;
-      worklist.push<span style="color: #709870;">(</span>node<span style="color: #709870;">)</span>;
+    <span style="color: #A6E22E;">}</span>
+    node = worklist.top<span style="color: #A6E22E;">()</span>;
+    worklist.pop<span style="color: #A6E22E;">()</span>;
+    <span style="color: #F92672;">if</span> <span style="color: #A6E22E;">(</span>node-&gt;right != <span style="color: #AE81FF;">NULL</span> &amp;&amp; <span style="color: #E6DB74; font-weight: bold;">!</span>worklist.empty<span style="color: #E6DB74;">()</span> &amp;&amp; worklist.top<span style="color: #E6DB74;">()</span> == node-&gt;right<span style="color: #A6E22E;">)</span> <span style="color: #A6E22E;">{</span>
+      <span style="color: #75715E;">// </span><span style="color: #75715E;">the node has right child to process</span>
+      <span style="color: #66D9EF;">TreeNode</span> *<span style="color: #FD971F;">right</span> = node-&gt;right;
+      worklist.pop<span style="color: #E6DB74;">()</span>;
+      worklist.push<span style="color: #E6DB74;">(</span>node<span style="color: #E6DB74;">)</span>;
       node = right;
-    <span style="color: #909183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #909183;">{</span>
-      result.push_back<span style="color: #709870;">(</span>node-&gt;val<span style="color: #709870;">)</span>;
-      node = <span style="color: #008b8b;">NULL</span>;
-    <span style="color: #909183;">}</span>
-  <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span>!worklist.empty<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
-  <span style="color: #a020f0;">return</span> result;
-<span style="color: #707183;">}</span>
+    <span style="color: #A6E22E;">}</span> <span style="color: #F92672;">else</span> <span style="color: #A6E22E;">{</span>
+      result.push_back<span style="color: #E6DB74;">(</span>node-&gt;val<span style="color: #E6DB74;">)</span>;
+      node = <span style="color: #AE81FF;">NULL</span>;
+    <span style="color: #A6E22E;">}</span>
+  <span style="color: #66D9EF;">}</span> <span style="color: #F92672;">while</span> <span style="color: #66D9EF;">(</span><span style="color: #E6DB74; font-weight: bold;">!</span>worklist.empty<span style="color: #A6E22E;">()</span><span style="color: #66D9EF;">)</span>;
+  <span style="color: #F92672;">return</span> result;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3576aad" class="outline-2">
-<h2 id="org3576aad"><span class="section-number-2">2</span> middle order traversal's two different implement:</h2>
+<div id="outline-container-org70731b0" class="outline-2">
+<h2 id="org70731b0"><span class="section-number-2">2</span> middle order traversal's two different implement:</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #0000ff;">bfs</span><span style="color: #707183;">(</span>node<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  bfs<span style="color: #7388d6;">(</span>node-&gt;left<span style="color: #7388d6;">)</span>;
-  visit<span style="color: #7388d6;">(</span>node<span style="color: #7388d6;">)</span>;
-  bfs<span style="color: #7388d6;">(</span>node-&gt;right<span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<pre class="src src-C"><span style="color: #A6E22E;">bfs</span><span style="color: #AE81FF;">(</span>node<span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  bfs<span style="color: #66D9EF;">(</span>node-&gt;left<span style="color: #66D9EF;">)</span>;
+  visit<span style="color: #66D9EF;">(</span>node<span style="color: #66D9EF;">)</span>;
+  bfs<span style="color: #66D9EF;">(</span>node-&gt;right<span style="color: #66D9EF;">)</span>;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #a020f0;">while</span><span style="color: #707183;">(</span>stack.size<span style="color: #7388d6;">()</span>&gt;0 || node != <span style="color: #008b8b;">NULL</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>node<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
-    stack.push<span style="color: #909183;">(</span>node<span style="color: #909183;">)</span>;
+<pre class="src src-C"><span style="color: #F92672;">while</span><span style="color: #AE81FF;">(</span>stack.size<span style="color: #66D9EF;">()</span>&gt;0 || node != <span style="color: #AE81FF;">NULL</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>node<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">{</span>
+    stack.push<span style="color: #A6E22E;">(</span>node<span style="color: #A6E22E;">)</span>;
     node = node-&gt;left;
-  <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #7388d6;">{</span>
-    node = stack.pop<span style="color: #909183;">()</span>;
-    visit<span style="color: #909183;">(</span>node<span style="color: #909183;">)</span>;
+  <span style="color: #66D9EF;">}</span> <span style="color: #F92672;">else</span> <span style="color: #66D9EF;">{</span>
+    node = stack.pop<span style="color: #A6E22E;">()</span>;
+    visit<span style="color: #A6E22E;">(</span>node<span style="color: #A6E22E;">)</span>;
     node = node-&gt;right;
-  <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+  <span style="color: #66D9EF;">}</span>
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
@@ -323,7 +323,7 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-11-08 Tue 13:53</p>
+<p class="date">Created: 2017-02-16 Thu 12:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-08 Tue 13:55 -->
+<!-- 2017-02-16 Thu 12:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assembly</title>
@@ -236,56 +236,56 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org20689fc">1. registers</a></li>
-<li><a href="#orgcfad70d">2. Memory and Address</a>
+<li><a href="#org2506c65">1. registers</a></li>
+<li><a href="#org9990082">2. Memory and Address</a>
 <ul>
-<li><a href="#orga036399">2.1. static data region</a></li>
-<li><a href="#org0ec3a6d">2.2. move operation and address calculate</a></li>
-<li><a href="#org7f1ad29">2.3. Size Guessing</a></li>
+<li><a href="#org0fce025">2.1. static data region</a></li>
+<li><a href="#org0e4144e">2.2. move operation and address calculate</a></li>
+<li><a href="#org9033a8f">2.3. Size Guessing</a></li>
 </ul>
 </li>
-<li><a href="#orgbc80df2">3. Instructions</a>
+<li><a href="#orgdfce549">3. Instructions</a>
 <ul>
-<li><a href="#org16da519">3.1. Data Movement</a>
+<li><a href="#org2036fb0">3.1. Data Movement</a>
 <ul>
-<li><a href="#org84ea249">3.1.1. Move</a></li>
-<li><a href="#org9011fe1">3.1.2. Push</a></li>
-<li><a href="#org2bdfb1d">3.1.3. Pop</a></li>
+<li><a href="#org08a0fc7">3.1.1. Move</a></li>
+<li><a href="#org8b17b30">3.1.2. Push</a></li>
+<li><a href="#orgbc48beb">3.1.3. Pop</a></li>
 </ul>
 </li>
-<li><a href="#orgf6c41b2">3.2. lea — Load effective address</a></li>
-<li><a href="#orgcfadc7a">3.3. Arithmetic and Logic</a>
+<li><a href="#org30de702">3.2. lea — Load effective address</a></li>
+<li><a href="#orgf36abe3">3.3. Arithmetic and Logic</a>
 <ul>
-<li><a href="#org6a85d48">3.3.1. Add</a></li>
-<li><a href="#org69b2f04">3.3.2. Sub</a></li>
-<li><a href="#org2fe52ba">3.3.3. inc, dec — Increment, Decrement</a></li>
-<li><a href="#orgdec0bca">3.3.4. imul — Integer Multiplication</a></li>
-<li><a href="#orgfe9d2ff">3.3.5. idiv — Integer Division</a></li>
-<li><a href="#orge995567">3.3.6. and, or, xor — Bitwise logical and, or and exclusive or</a></li>
-<li><a href="#org7b7c60f">3.3.7. not — Bitwise Logical Not</a></li>
-<li><a href="#orgeba0c4f">3.3.8. neg — Negate</a></li>
+<li><a href="#orga2f1495">3.3.1. Add</a></li>
+<li><a href="#orga7d097a">3.3.2. Sub</a></li>
+<li><a href="#org9bfdde7">3.3.3. inc, dec — Increment, Decrement</a></li>
+<li><a href="#org04a5927">3.3.4. imul — Integer Multiplication</a></li>
+<li><a href="#org8a87ff6">3.3.5. idiv — Integer Division</a></li>
+<li><a href="#orgb254add">3.3.6. and, or, xor — Bitwise logical and, or and exclusive or</a></li>
+<li><a href="#org7738659">3.3.7. not — Bitwise Logical Not</a></li>
+<li><a href="#org55f6c85">3.3.8. neg — Negate</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2069db4">4. <code>one's complement</code>: not. bitwise negate all bits.</a></li>
-<li><a href="#org6beab56">5. <code>two's complement</code>: 0-x. That is one's complement+1.</a>
+<li><a href="#org7bf34db">4. <code>one's complement</code>: not. bitwise negate all bits.</a></li>
+<li><a href="#org3378e99">5. <code>two's complement</code>: 0-x. That is one's complement+1.</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgc73e7d6">5.0.1. shl, shr — Shift Left, Shift Right</a></li>
+<li><a href="#org5946b61">5.0.1. shl, shr — Shift Left, Shift Right</a></li>
 </ul>
 </li>
-<li><a href="#orga11c869">5.1. Control Flow Instructions</a>
+<li><a href="#org038a16c">5.1. Control Flow Instructions</a>
 <ul>
-<li><a href="#org4e15763">5.1.1. Jump</a></li>
-<li><a href="#org305b7ed">5.1.2. jcondition — Conditional Jump</a></li>
-<li><a href="#org5e68e62">5.1.3. cmp</a></li>
-<li><a href="#org44b4c8a">5.1.4. call, ret — Subroutine call and return</a></li>
+<li><a href="#org28b9c92">5.1.1. Jump</a></li>
+<li><a href="#org19c70d8">5.1.2. jcondition — Conditional Jump</a></li>
+<li><a href="#org104a616">5.1.3. cmp</a></li>
+<li><a href="#org14cf49b">5.1.4. call, ret — Subroutine call and return</a></li>
 </ul>
 </li>
-<li><a href="#org1380a80">5.2. Caller Rules</a></li>
-<li><a href="#orgec0c543">5.3. Callee Rules</a></li>
+<li><a href="#org3e65705">5.2. Caller Rules</a></li>
+<li><a href="#org4b6140c">5.3. Callee Rules</a></li>
 </ul>
 </li>
 </ul>
@@ -295,8 +295,8 @@ for the JavaScript code in this tag.
 Reference: <a href="http://www.cs.virginia.edu/~evans/cs216/guides/x86.html">http://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a>
 </p>
 
-<div id="outline-container-org20689fc" class="outline-2">
-<h2 id="org20689fc"><span class="section-number-2">1</span> registers</h2>
+<div id="outline-container-org2506c65" class="outline-2">
+<h2 id="org2506c65"><span class="section-number-2">1</span> registers</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><code>EAX</code>: used to be called the accumulator since it was used by a number of arithmetic operations</li>
@@ -313,49 +313,49 @@ For the EAX, EBX, ECX, and EDX registers, subsections may be used. For example, 
 </div>
 </div>
 
-<div id="outline-container-orgcfad70d" class="outline-2">
-<h2 id="orgcfad70d"><span class="section-number-2">2</span> Memory and Address</h2>
+<div id="outline-container-org9990082" class="outline-2">
+<h2 id="org9990082"><span class="section-number-2">2</span> Memory and Address</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orga036399" class="outline-3">
-<h3 id="orga036399"><span class="section-number-3">2.1</span> static data region</h3>
+</div><div id="outline-container-org0fce025" class="outline-3">
+<h3 id="org0fce025"><span class="section-number-3">2.1</span> static data region</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 static data is global variables.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #a020f0;">.DATA</span>
-<span style="color: #0000ff;">var</span>     <span style="color: #a020f0;">DB</span> 64   <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare a byte, referred to as location var, containing the value 64.</span>
-<span style="color: #0000ff;">var2</span>    <span style="color: #a020f0;">DB</span> ?    <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare an uninitialized byte, referred to as location var2.</span>
-<span style="color: #0000ff;">DB</span> <span style="color: #a020f0;">10</span>   <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare a byte with no label, containing the value 10. Its location is var2 + 1.</span>
-<span style="color: #0000ff;">X</span>       <span style="color: #a020f0;">DW</span> ?    <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare a 2-byte uninitialized value, referred to as location X.</span>
-<span style="color: #0000ff;">Y</span>       <span style="color: #a020f0;">DD</span> 30000        <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare a 4-byte value, referred to as location Y, initialized to 30000.</span>
+<pre class="src src-asm"><span style="color: #F92672;">.DATA</span>
+<span style="color: #A6E22E;">var</span>     <span style="color: #F92672;">DB</span> 64   <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare a byte, referred to as location var, containing the value 64.</span>
+<span style="color: #A6E22E;">var2</span>    <span style="color: #F92672;">DB</span> ?    <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare an uninitialized byte, referred to as location var2.</span>
+<span style="color: #A6E22E;">DB</span> <span style="color: #F92672;">10</span>   <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare a byte with no label, containing the value 10. Its location is var2 + 1.</span>
+<span style="color: #A6E22E;">X</span>       <span style="color: #F92672;">DW</span> ?    <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare a 2-byte uninitialized value, referred to as location X.</span>
+<span style="color: #A6E22E;">Y</span>       <span style="color: #F92672;">DD</span> 30000        <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare a 4-byte value, referred to as location Y, initialized to 30000.</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">Z</span>       <span style="color: #a020f0;">DD</span> 1, 2, 3      <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare three 4-byte values, initialized to 1, 2, and 3. The value of location Z + 8 will be 3.</span>
-<span style="color: #0000ff;">bytes</span>   <span style="color: #a020f0;">DB</span> 10 DUP<span style="color: #707183;">(</span>?<span style="color: #707183;">)</span>    <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare 10 uninitialized bytes starting at location bytes.</span>
-<span style="color: #0000ff;">arr</span>     <span style="color: #a020f0;">DD</span> 100 DUP<span style="color: #707183;">(</span>0<span style="color: #707183;">)</span>           <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare 100 4-byte words starting at location arr, all initialized to 0</span>
-<span style="color: #0000ff;">str</span>     <span style="color: #a020f0;">DB</span> 'hello',0    <span style="color: #b22222;">; </span><span style="color: #b22222;">Declare 6 bytes starting at the address str, initialized to the ASCII character values for hello and the null (0) byte.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">Z</span>       <span style="color: #F92672;">DD</span> 1, 2, 3      <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare three 4-byte values, initialized to 1, 2, and 3. The value of location Z + 8 will be 3.</span>
+<span style="color: #A6E22E;">bytes</span>   <span style="color: #F92672;">DB</span> 10 DUP<span style="color: #AE81FF;">(</span>?<span style="color: #AE81FF;">)</span>    <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare 10 uninitialized bytes starting at location bytes.</span>
+<span style="color: #A6E22E;">arr</span>     <span style="color: #F92672;">DD</span> 100 DUP<span style="color: #AE81FF;">(</span>0<span style="color: #AE81FF;">)</span>           <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare 100 4-byte words starting at location arr, all initialized to 0</span>
+<span style="color: #A6E22E;">str</span>     <span style="color: #F92672;">DB</span> 'hello',0    <span style="color: #75715E;">; </span><span style="color: #75715E;">Declare 6 bytes starting at the address str, initialized to the ASCII character values for hello and the null (0) byte.</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0ec3a6d" class="outline-3">
-<h3 id="org0ec3a6d"><span class="section-number-3">2.2</span> move operation and address calculate</h3>
+<div id="outline-container-org0e4144e" class="outline-3">
+<h3 id="org0e4144e"><span class="section-number-3">2.2</span> move operation and address calculate</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 the following are valid
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>ebx<span style="color: #707183;">]</span>  <span style="color: #b22222;">; </span><span style="color: #b22222;">Move the 4 bytes in memory at the address contained in EBX into EAX</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span>, ebx  <span style="color: #b22222;">; </span><span style="color: #b22222;">Move the contents of EBX into the 4 bytes at memory address var. (Note, var is a 32-bit constant).</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>esi-4<span style="color: #707183;">]</span>        <span style="color: #b22222;">; </span><span style="color: #b22222;">Move 4 bytes at memory address ESI + (-4) into EAX</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #707183;">[</span>esi+eax<span style="color: #707183;">]</span>, cl       <span style="color: #b22222;">; </span><span style="color: #b22222;">Move the contents of CL into the byte at address ESI+EAX</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">edx</span>, <span style="color: #707183;">[</span>esi+4*ebx<span style="color: #707183;">]</span>            <span style="color: #b22222;">; </span><span style="color: #b22222;">Move the 4 bytes of data at address ESI+4*EBX into EDX</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>ebx<span style="color: #AE81FF;">]</span>  <span style="color: #75715E;">; </span><span style="color: #75715E;">Move the 4 bytes in memory at the address contained in EBX into EAX</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span>, ebx  <span style="color: #75715E;">; </span><span style="color: #75715E;">Move the contents of EBX into the 4 bytes at memory address var. (Note, var is a 32-bit constant).</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>esi-4<span style="color: #AE81FF;">]</span>        <span style="color: #75715E;">; </span><span style="color: #75715E;">Move 4 bytes at memory address ESI + (-4) into EAX</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #AE81FF;">[</span>esi+eax<span style="color: #AE81FF;">]</span>, cl       <span style="color: #75715E;">; </span><span style="color: #75715E;">Move the contents of CL into the byte at address ESI+EAX</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">edx</span>, <span style="color: #AE81FF;">[</span>esi+4*ebx<span style="color: #AE81FF;">]</span>            <span style="color: #75715E;">; </span><span style="color: #75715E;">Move the 4 bytes of data at address ESI+4*EBX into EDX</span>
 </pre>
 </div>
 
@@ -364,15 +364,15 @@ the following are INVALID
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>ebx-ecx<span style="color: #707183;">]</span>      <span style="color: #b22222;">; </span><span style="color: #b22222;">Can only add register values</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #707183;">[</span>eax+esi+edi<span style="color: #707183;">]</span>, ebx          <span style="color: #b22222;">; </span><span style="color: #b22222;">At most 2 registers in address computation</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>ebx-ecx<span style="color: #AE81FF;">]</span>      <span style="color: #75715E;">; </span><span style="color: #75715E;">Can only add register values</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #AE81FF;">[</span>eax+esi+edi<span style="color: #AE81FF;">]</span>, ebx          <span style="color: #75715E;">; </span><span style="color: #75715E;">At most 2 registers in address computation</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7f1ad29" class="outline-3">
-<h3 id="org7f1ad29"><span class="section-number-3">2.3</span> Size Guessing</h3>
+<div id="outline-container-org9033a8f" class="outline-3">
+<h3 id="org9033a8f"><span class="section-number-3">2.3</span> Size Guessing</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 In general, the intended size of the of the data item at a given memory address can be inferred from the assembly code instruction in which it is referenced.
@@ -387,17 +387,17 @@ However, <code>mov [ebx], 2</code>, we don't know to move <code>2</code> into 1,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">BYTE</span> PTR <span style="color: #707183;">[</span>ebx<span style="color: #707183;">]</span>, 2   <span style="color: #b22222;">; </span><span style="color: #b22222;">Move 2 into the single byte at the address stored in EBX.</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">WORD</span> PTR <span style="color: #707183;">[</span>ebx<span style="color: #707183;">]</span>, 2   <span style="color: #b22222;">; </span><span style="color: #b22222;">Move the 16-bit integer representation of 2 into the 2 bytes starting at the address in EBX.</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">DWORD</span> PTR <span style="color: #707183;">[</span>ebx<span style="color: #707183;">]</span>, 2          <span style="color: #b22222;">; </span><span style="color: #b22222;">Move the 32-bit integer representation of 2 into the 4 bytes starting at the address in EBX.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">BYTE</span> PTR <span style="color: #AE81FF;">[</span>ebx<span style="color: #AE81FF;">]</span>, 2   <span style="color: #75715E;">; </span><span style="color: #75715E;">Move 2 into the single byte at the address stored in EBX.</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">WORD</span> PTR <span style="color: #AE81FF;">[</span>ebx<span style="color: #AE81FF;">]</span>, 2   <span style="color: #75715E;">; </span><span style="color: #75715E;">Move the 16-bit integer representation of 2 into the 2 bytes starting at the address in EBX.</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">DWORD</span> PTR <span style="color: #AE81FF;">[</span>ebx<span style="color: #AE81FF;">]</span>, 2          <span style="color: #75715E;">; </span><span style="color: #75715E;">Move the 32-bit integer representation of 2 into the 4 bytes starting at the address in EBX.</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbc80df2" class="outline-2">
-<h2 id="orgbc80df2"><span class="section-number-2">3</span> Instructions</h2>
+<div id="outline-container-orgdfce549" class="outline-2">
+<h2 id="orgdfce549"><span class="section-number-2">3</span> Instructions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Notations:
@@ -416,11 +416,11 @@ Notations:
 </ul>
 </div>
 
-<div id="outline-container-org16da519" class="outline-3">
-<h3 id="org16da519"><span class="section-number-3">3.1</span> Data Movement</h3>
+<div id="outline-container-org2036fb0" class="outline-3">
+<h3 id="org2036fb0"><span class="section-number-3">3.1</span> Data Movement</h3>
 <div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-org84ea249" class="outline-4">
-<h4 id="org84ea249"><span class="section-number-4">3.1.1</span> Move</h4>
+</div><div id="outline-container-org08a0fc7" class="outline-4">
+<h4 id="org08a0fc7"><span class="section-number-4">3.1.1</span> Move</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Opcodes: 88, 89, 8A, 8B, 8C, 8E, &#x2026;
@@ -439,11 +439,11 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">mov</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">mov</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">mov</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">mov</span> &lt;reg&gt;,&lt;const&gt;
-<span style="color: #0000ff;">mov</span> &lt;mem&gt;,&lt;const&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">mov</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">mov</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">mov</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">mov</span> &lt;reg&gt;,&lt;const&gt;
+<span style="color: #A6E22E;">mov</span> &lt;mem&gt;,&lt;const&gt;
 </pre>
 </div>
 
@@ -452,15 +452,15 @@ example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">eax</span>, ebx <span style="color: #b22222;">;</span><span style="color: #b22222;">copy the value in ebx into eax</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">byte</span> ptr <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span>, 5 <span style="color: #b22222;">;</span><span style="color: #b22222;">store the value 5 into the byte at location var</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">eax</span>, ebx <span style="color: #75715E;">;</span><span style="color: #75715E;">copy the value in ebx into eax</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">byte</span> ptr <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span>, 5 <span style="color: #75715E;">;</span><span style="color: #75715E;">store the value 5 into the byte at location var</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9011fe1" class="outline-4">
-<h4 id="org9011fe1"><span class="section-number-4">3.1.2</span> Push</h4>
+<div id="outline-container-org8b17b30" class="outline-4">
+<h4 id="org8b17b30"><span class="section-number-4">3.1.2</span> Push</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Opcodes: FF, 89, 8A, 8B, 8C, 8E, &#x2026;
@@ -479,9 +479,9 @@ Syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">push</span> &lt;reg32&gt;
-<span style="color: #0000ff;">push</span> &lt;mem&gt;
-<span style="color: #0000ff;">push</span> &lt;con32&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">push</span> &lt;reg32&gt;
+<span style="color: #A6E22E;">push</span> &lt;mem&gt;
+<span style="color: #A6E22E;">push</span> &lt;con32&gt;
 </pre>
 </div>
 
@@ -490,15 +490,15 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">push</span> <span style="color: #a020f0;">eax</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">push eax on the stack</span>
-<span style="color: #0000ff;">push</span> <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">push the 4 bytes at address var onto the stack</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">push</span> <span style="color: #F92672;">eax</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">push eax on the stack</span>
+<span style="color: #A6E22E;">push</span> <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">push the 4 bytes at address var onto the stack</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2bdfb1d" class="outline-4">
-<h4 id="org2bdfb1d"><span class="section-number-4">3.1.3</span> Pop</h4>
+<div id="outline-container-orgbc48beb" class="outline-4">
+<h4 id="orgbc48beb"><span class="section-number-4">3.1.3</span> Pop</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 It first moves the 4 bytes located at memory location [SP] into the specified register or memory location, and then increments SP by 4.
@@ -509,8 +509,8 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">pop</span> &lt;reg32&gt;
-<span style="color: #0000ff;">pop</span> &lt;mem&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">pop</span> &lt;reg32&gt;
+<span style="color: #A6E22E;">pop</span> &lt;mem&gt;
 </pre>
 </div>
 
@@ -519,16 +519,16 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">pop</span> <span style="color: #a020f0;">edi</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">pop the top element of the stack into EDI.</span>
-<span style="color: #0000ff;">pop</span> <span style="color: #707183;">[</span>ebx<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">pop the top element of the stack into memory at the four bytes starting at location EBX.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">pop</span> <span style="color: #F92672;">edi</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">pop the top element of the stack into EDI.</span>
+<span style="color: #A6E22E;">pop</span> <span style="color: #AE81FF;">[</span>ebx<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">pop the top element of the stack into memory at the four bytes starting at location EBX.</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf6c41b2" class="outline-3">
-<h3 id="orgf6c41b2"><span class="section-number-3">3.2</span> lea — Load effective address</h3>
+<div id="outline-container-org30de702" class="outline-3">
+<h3 id="org30de702"><span class="section-number-3">3.2</span> lea — Load effective address</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 The lea instruction places the address specified by its second operand into the register specified by its first operand.
@@ -547,7 +547,7 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">lea</span> &lt;reg32&gt;,&lt;mem&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">lea</span> &lt;reg32&gt;,&lt;mem&gt;
 </pre>
 </div>
 
@@ -556,18 +556,18 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">lea</span> <span style="color: #a020f0;">edi</span>, <span style="color: #707183;">[</span>ebx+4*esi<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">the quantity EBX+4*ESI is placed in EDI.</span>
-<span style="color: #0000ff;">lea</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">the value in var is placed in EAX.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">lea</span> <span style="color: #F92672;">edi</span>, <span style="color: #AE81FF;">[</span>ebx+4*esi<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">the quantity EBX+4*ESI is placed in EDI.</span>
+<span style="color: #A6E22E;">lea</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">the value in var is placed in EAX.</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgcfadc7a" class="outline-3">
-<h3 id="orgcfadc7a"><span class="section-number-3">3.3</span> Arithmetic and Logic</h3>
+<div id="outline-container-orgf36abe3" class="outline-3">
+<h3 id="orgf36abe3"><span class="section-number-3">3.3</span> Arithmetic and Logic</h3>
 <div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-org6a85d48" class="outline-4">
-<h4 id="org6a85d48"><span class="section-number-4">3.3.1</span> Add</h4>
+</div><div id="outline-container-orga2f1495" class="outline-4">
+<h4 id="orga2f1495"><span class="section-number-4">3.3.1</span> Add</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 adds together its two operands, storing the result in its first operand
@@ -582,11 +582,11 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">add</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">add</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">add</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">add</span> &lt;reg&gt;,&lt;con&gt;
-<span style="color: #0000ff;">add</span> &lt;mem&gt;,&lt;con&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">add</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">add</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">add</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">add</span> &lt;reg&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">add</span> &lt;mem&gt;,&lt;con&gt;
 </pre>
 </div>
 
@@ -595,26 +595,26 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">add</span> <span style="color: #a020f0;">eax</span>, 10 <span style="color: #b22222;">;</span><span style="color: #b22222;">EAX &#8592; EAX + 10</span>
-<span style="color: #0000ff;">add</span> <span style="color: #a020f0;">BYTE</span> PTR <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span>, 10 <span style="color: #b22222;">;</span><span style="color: #b22222;">add 10 to the single byte stored at memory address var</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">add</span> <span style="color: #F92672;">eax</span>, 10 <span style="color: #75715E;">;</span><span style="color: #75715E;">EAX &#8592; EAX + 10</span>
+<span style="color: #A6E22E;">add</span> <span style="color: #F92672;">BYTE</span> PTR <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span>, 10 <span style="color: #75715E;">;</span><span style="color: #75715E;">add 10 to the single byte stored at memory address var</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org69b2f04" class="outline-4">
-<h4 id="org69b2f04"><span class="section-number-4">3.3.2</span> Sub</h4>
+<div id="outline-container-orga7d097a" class="outline-4">
+<h4 id="orga7d097a"><span class="section-number-4">3.3.2</span> Sub</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
 syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">sub</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">sub</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">sub</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">sub</span> &lt;reg&gt;,&lt;con&gt;
-<span style="color: #0000ff;">sub</span> &lt;mem&gt;,&lt;con&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">sub</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">sub</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">sub</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">sub</span> &lt;reg&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">sub</span> &lt;mem&gt;,&lt;con&gt;
 </pre>
 </div>
 
@@ -623,25 +623,25 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">sub</span> <span style="color: #a020f0;">al</span>, ah <span style="color: #b22222;">;</span><span style="color: #b22222;">AL &#8592; AL - AH</span>
-<span style="color: #0000ff;">sub</span> <span style="color: #a020f0;">eax</span>, 216 <span style="color: #b22222;">;</span><span style="color: #b22222;">subtract 216 from the value stored in EAX</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">sub</span> <span style="color: #F92672;">al</span>, ah <span style="color: #75715E;">;</span><span style="color: #75715E;">AL &#8592; AL - AH</span>
+<span style="color: #A6E22E;">sub</span> <span style="color: #F92672;">eax</span>, 216 <span style="color: #75715E;">;</span><span style="color: #75715E;">subtract 216 from the value stored in EAX</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2fe52ba" class="outline-4">
-<h4 id="org2fe52ba"><span class="section-number-4">3.3.3</span> inc, dec — Increment, Decrement</h4>
+<div id="outline-container-org9bfdde7" class="outline-4">
+<h4 id="org9bfdde7"><span class="section-number-4">3.3.3</span> inc, dec — Increment, Decrement</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">inc</span> &lt;reg&gt;
-<span style="color: #0000ff;">inc</span> &lt;mem&gt;
-<span style="color: #0000ff;">dec</span> &lt;reg&gt;
-<span style="color: #0000ff;">dec</span> &lt;mem&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">inc</span> &lt;reg&gt;
+<span style="color: #A6E22E;">inc</span> &lt;mem&gt;
+<span style="color: #A6E22E;">dec</span> &lt;reg&gt;
+<span style="color: #A6E22E;">dec</span> &lt;mem&gt;
 </pre>
 </div>
 
@@ -650,15 +650,15 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">dec</span> <span style="color: #a020f0;">eax</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">subtract one from the contents of EAX.</span>
-<span style="color: #0000ff;">inc</span> <span style="color: #a020f0;">DWORD</span> PTR <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">add one to the 32-bit integer stored at location var</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">dec</span> <span style="color: #F92672;">eax</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">subtract one from the contents of EAX.</span>
+<span style="color: #A6E22E;">inc</span> <span style="color: #F92672;">DWORD</span> PTR <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">add one to the 32-bit integer stored at location var</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgdec0bca" class="outline-4">
-<h4 id="orgdec0bca"><span class="section-number-4">3.3.4</span> imul — Integer Multiplication</h4>
+<div id="outline-container-org04a5927" class="outline-4">
+<h4 id="org04a5927"><span class="section-number-4">3.3.4</span> imul — Integer Multiplication</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <p>
 The two-operand form multiplies its two operands together and stores the result in the first operand. The result (i.e. first) operand must be a register.
@@ -673,10 +673,10 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">imul</span> &lt;reg32&gt;,&lt;reg32&gt;
-<span style="color: #0000ff;">imul</span> &lt;reg32&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">imul</span> &lt;reg32&gt;,&lt;reg32&gt;,&lt;con&gt;
-<span style="color: #0000ff;">imul</span> &lt;reg32&gt;,&lt;mem&gt;,&lt;con&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">imul</span> &lt;reg32&gt;,&lt;reg32&gt;
+<span style="color: #A6E22E;">imul</span> &lt;reg32&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">imul</span> &lt;reg32&gt;,&lt;reg32&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">imul</span> &lt;reg32&gt;,&lt;mem&gt;,&lt;con&gt;
 </pre>
 </div>
 
@@ -685,15 +685,15 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">imul</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">multiply the contents of EAX by the 32-bit contents of the memory location var. Store the result in EAX.</span>
-<span style="color: #0000ff;">imul</span> <span style="color: #a020f0;">esi</span>, edi, 25 <span style="color: #b22222;">;</span><span style="color: #b22222;">ESI &#8594; EDI * 25</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">imul</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">multiply the contents of EAX by the 32-bit contents of the memory location var. Store the result in EAX.</span>
+<span style="color: #A6E22E;">imul</span> <span style="color: #F92672;">esi</span>, edi, 25 <span style="color: #75715E;">;</span><span style="color: #75715E;">ESI &#8594; EDI * 25</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfe9d2ff" class="outline-4">
-<h4 id="orgfe9d2ff"><span class="section-number-4">3.3.5</span> idiv — Integer Division</h4>
+<div id="outline-container-org8a87ff6" class="outline-4">
+<h4 id="org8a87ff6"><span class="section-number-4">3.3.5</span> idiv — Integer Division</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <p>
 The idiv instruction divides the contents of the 64 bit integer EDX:EAX (constructed by viewing EDX as the most significant four bytes and EAX as the least significant four bytes) by the specified operand value. The quotient result of the division is stored into EAX, while the remainder is placed in EDX.
@@ -704,8 +704,8 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">idiv</span> &lt;reg32&gt;
-<span style="color: #0000ff;">idiv</span> &lt;mem&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">idiv</span> &lt;reg32&gt;
+<span style="color: #A6E22E;">idiv</span> &lt;mem&gt;
 </pre>
 </div>
 
@@ -714,36 +714,36 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">idiv</span> <span style="color: #a020f0;">ebx</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">divide the contents of EDX:EAX by the contents of EBX. Place the quotient in EAX and the remainder in EDX.</span>
-<span style="color: #0000ff;">idiv</span> <span style="color: #a020f0;">DWORD</span> PTR <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">divide the contents of EDX:EAS by the 32-bit value stored at memory location var. Place the quotient in EAX and the remainder in EDX.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">idiv</span> <span style="color: #F92672;">ebx</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">divide the contents of EDX:EAX by the contents of EBX. Place the quotient in EAX and the remainder in EDX.</span>
+<span style="color: #A6E22E;">idiv</span> <span style="color: #F92672;">DWORD</span> PTR <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">divide the contents of EDX:EAS by the 32-bit value stored at memory location var. Place the quotient in EAX and the remainder in EDX.</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orge995567" class="outline-4">
-<h4 id="orge995567"><span class="section-number-4">3.3.6</span> and, or, xor — Bitwise logical and, or and exclusive or</h4>
+<div id="outline-container-orgb254add" class="outline-4">
+<h4 id="orgb254add"><span class="section-number-4">3.3.6</span> and, or, xor — Bitwise logical and, or and exclusive or</h4>
 <div class="outline-text-4" id="text-3-3-6">
 <p>
 syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">and</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">and</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">and</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">and</span> &lt;reg&gt;,&lt;con&gt;
-<span style="color: #0000ff;">and</span> &lt;mem&gt;,&lt;con&gt;
-<span style="color: #0000ff;">or</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">or</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">or</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">or</span> &lt;reg&gt;,&lt;con&gt;
-<span style="color: #0000ff;">or</span> &lt;mem&gt;,&lt;con&gt;
-<span style="color: #0000ff;">xor</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">xor</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">xor</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">xor</span> &lt;reg&gt;,&lt;con&gt;
-<span style="color: #0000ff;">xor</span> &lt;mem&gt;,&lt;con&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">and</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">and</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">and</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">and</span> &lt;reg&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">and</span> &lt;mem&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">or</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">or</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">or</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">or</span> &lt;reg&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">or</span> &lt;mem&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">xor</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">xor</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">xor</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">xor</span> &lt;reg&gt;,&lt;con&gt;
+<span style="color: #A6E22E;">xor</span> &lt;mem&gt;,&lt;con&gt;
 </pre>
 </div>
 
@@ -752,15 +752,15 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">and</span> <span style="color: #a020f0;">eax</span>, 0fH <span style="color: #b22222;">;</span><span style="color: #b22222;">clear all but the last 4 bits of EAX.</span>
-<span style="color: #0000ff;">xor</span> <span style="color: #a020f0;">edx</span>, edx <span style="color: #b22222;">;</span><span style="color: #b22222;">set the contents of EDX to zero.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">and</span> <span style="color: #F92672;">eax</span>, 0fH <span style="color: #75715E;">;</span><span style="color: #75715E;">clear all but the last 4 bits of EAX.</span>
+<span style="color: #A6E22E;">xor</span> <span style="color: #F92672;">edx</span>, edx <span style="color: #75715E;">;</span><span style="color: #75715E;">set the contents of EDX to zero.</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7b7c60f" class="outline-4">
-<h4 id="org7b7c60f"><span class="section-number-4">3.3.7</span> not — Bitwise Logical Not</h4>
+<div id="outline-container-org7738659" class="outline-4">
+<h4 id="org7738659"><span class="section-number-4">3.3.7</span> not — Bitwise Logical Not</h4>
 <div class="outline-text-4" id="text-3-3-7">
 <p>
 Logically negates the operand contents (that is, flips all bit values in the operand).
@@ -771,8 +771,8 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">not</span> &lt;reg&gt;
-<span style="color: #0000ff;">not</span> &lt;mem&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">not</span> &lt;reg&gt;
+<span style="color: #A6E22E;">not</span> &lt;mem&gt;
 </pre>
 </div>
 
@@ -781,14 +781,14 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">not</span> <span style="color: #a020f0;">BYTE</span> PTR <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">;</span><span style="color: #b22222;">negate all bits in the byte at the memory location var</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">not</span> <span style="color: #F92672;">BYTE</span> PTR <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">;</span><span style="color: #75715E;">negate all bits in the byte at the memory location var</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgeba0c4f" class="outline-4">
-<h4 id="orgeba0c4f"><span class="section-number-4">3.3.8</span> neg — Negate</h4>
+<div id="outline-container-org55f6c85" class="outline-4">
+<h4 id="org55f6c85"><span class="section-number-4">3.3.8</span> neg — Negate</h4>
 <div class="outline-text-4" id="text-3-3-8">
 <p>
 Performs the two's complement negation of the operand contents.
@@ -798,19 +798,19 @@ Performs the two's complement negation of the operand contents.
 </div>
 </div>
 
-<div id="outline-container-org2069db4" class="outline-2">
-<h2 id="org2069db4"><span class="section-number-2">4</span> <code>one's complement</code>: not. bitwise negate all bits.</h2>
+<div id="outline-container-org7bf34db" class="outline-2">
+<h2 id="org7bf34db"><span class="section-number-2">4</span> <code>one's complement</code>: not. bitwise negate all bits.</h2>
 </div>
-<div id="outline-container-org6beab56" class="outline-2">
-<h2 id="org6beab56"><span class="section-number-2">5</span> <code>two's complement</code>: 0-x. That is one's complement+1.</h2>
+<div id="outline-container-org3378e99" class="outline-2">
+<h2 id="org3378e99"><span class="section-number-2">5</span> <code>two's complement</code>: 0-x. That is one's complement+1.</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">neg</span> &lt;reg&gt;
-<span style="color: #0000ff;">neg</span> &lt;mem&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">neg</span> &lt;reg&gt;
+<span style="color: #A6E22E;">neg</span> &lt;mem&gt;
 </pre>
 </div>
 
@@ -819,13 +819,13 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">neg</span> <span style="color: #a020f0;">eax</span> &#8212; EAX &#8594; - EAX
+<pre class="src src-asm"><span style="color: #A6E22E;">neg</span> <span style="color: #F92672;">eax</span> &#8212; EAX &#8594; - EAX
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgc73e7d6" class="outline-4">
-<h4 id="orgc73e7d6"><span class="section-number-4">5.0.1</span> shl, shr — Shift Left, Shift Right</h4>
+<div id="outline-container-org5946b61" class="outline-4">
+<h4 id="org5946b61"><span class="section-number-4">5.0.1</span> shl, shr — Shift Left, Shift Right</h4>
 <div class="outline-text-4" id="text-5-0-1">
 <p>
 shift the bits in their first operand's contents left and right, padding the resulting empty bit positions with zeros. The shifted operand can be shifted up to 31 places.
@@ -840,15 +840,15 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">shl</span> &lt;reg&gt;,&lt;con8&gt;
-<span style="color: #0000ff;">shl</span> &lt;mem&gt;,&lt;con8&gt;
-<span style="color: #0000ff;">shl</span> &lt;reg&gt;,&lt;cl&gt;
-<span style="color: #0000ff;">shl</span> &lt;mem&gt;,&lt;cl&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">shl</span> &lt;reg&gt;,&lt;con8&gt;
+<span style="color: #A6E22E;">shl</span> &lt;mem&gt;,&lt;con8&gt;
+<span style="color: #A6E22E;">shl</span> &lt;reg&gt;,&lt;cl&gt;
+<span style="color: #A6E22E;">shl</span> &lt;mem&gt;,&lt;cl&gt;
 
-<span style="color: #0000ff;">shr</span> &lt;reg&gt;,&lt;con8&gt;
-<span style="color: #0000ff;">shr</span> &lt;mem&gt;,&lt;con8&gt;
-<span style="color: #0000ff;">shr</span> &lt;reg&gt;,&lt;cl&gt;
-<span style="color: #0000ff;">shr</span> &lt;mem&gt;,&lt;cl&gt;
+<span style="color: #A6E22E;">shr</span> &lt;reg&gt;,&lt;con8&gt;
+<span style="color: #A6E22E;">shr</span> &lt;mem&gt;,&lt;con8&gt;
+<span style="color: #A6E22E;">shr</span> &lt;reg&gt;,&lt;cl&gt;
+<span style="color: #A6E22E;">shr</span> &lt;mem&gt;,&lt;cl&gt;
 </pre>
 </div>
 
@@ -857,15 +857,15 @@ examples:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">shl</span> <span style="color: #a020f0;">eax</span>, 1 <span style="color: #b22222;">;</span><span style="color: #b22222;">Multiply the value of EAX by 2 (if the most significant bit is 0)</span>
-<span style="color: #0000ff;">shr</span> <span style="color: #a020f0;">ebx</span>, cl <span style="color: #b22222;">;</span><span style="color: #b22222;">Store in EBX the floor of result of dividing the value of EBX by 2n wheren is the value in CL.</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">shl</span> <span style="color: #F92672;">eax</span>, 1 <span style="color: #75715E;">;</span><span style="color: #75715E;">Multiply the value of EAX by 2 (if the most significant bit is 0)</span>
+<span style="color: #A6E22E;">shr</span> <span style="color: #F92672;">ebx</span>, cl <span style="color: #75715E;">;</span><span style="color: #75715E;">Store in EBX the floor of result of dividing the value of EBX by 2n wheren is the value in CL.</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga11c869" class="outline-3">
-<h3 id="orga11c869"><span class="section-number-3">5.1</span> Control Flow Instructions</h3>
+<div id="outline-container-org038a16c" class="outline-3">
+<h3 id="org038a16c"><span class="section-number-3">5.1</span> Control Flow Instructions</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 notation:
@@ -876,44 +876,44 @@ notation:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm">       <span style="color: #a020f0;">mov</span> esi, <span style="color: #707183;">[</span>ebp+8<span style="color: #707183;">]</span>
-<span style="color: #0000ff;">begin</span>: <span style="color: #a020f0;">xor</span> ecx, ecx
-       <span style="color: #a020f0;">mov</span> eax, <span style="color: #707183;">[</span>esi<span style="color: #707183;">]</span>
+<pre class="src src-asm">       <span style="color: #F92672;">mov</span> esi, <span style="color: #AE81FF;">[</span>ebp+8<span style="color: #AE81FF;">]</span>
+<span style="color: #A6E22E;">begin</span>: <span style="color: #F92672;">xor</span> ecx, ecx
+       <span style="color: #F92672;">mov</span> eax, <span style="color: #AE81FF;">[</span>esi<span style="color: #AE81FF;">]</span>
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org4e15763" class="outline-4">
-<h4 id="org4e15763"><span class="section-number-4">5.1.1</span> Jump</h4>
+<div id="outline-container-org28b9c92" class="outline-4">
+<h4 id="org28b9c92"><span class="section-number-4">5.1.1</span> Jump</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">jmp</span> &lt;label&gt;
-<span style="color: #b22222;">; </span><span style="color: #b22222;">example</span>
-<span style="color: #0000ff;">jmp</span> <span style="color: #a020f0;">begin</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">jmp</span> &lt;label&gt;
+<span style="color: #75715E;">; </span><span style="color: #75715E;">example</span>
+<span style="color: #A6E22E;">jmp</span> <span style="color: #F92672;">begin</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org305b7ed" class="outline-4">
-<h4 id="org305b7ed"><span class="section-number-4">5.1.2</span> jcondition — Conditional Jump</h4>
+<div id="outline-container-org19c70d8" class="outline-4">
+<h4 id="org19c70d8"><span class="section-number-4">5.1.2</span> jcondition — Conditional Jump</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">je</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when equal<span style="color: #707183;">)</span>
-<span style="color: #0000ff;">jne</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when not equal<span style="color: #707183;">)</span>
-<span style="color: #0000ff;">jz</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when last result was zero<span style="color: #707183;">)</span>
-<span style="color: #0000ff;">jg</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when greater than<span style="color: #707183;">)</span>
-<span style="color: #0000ff;">jge</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when greater than or equal to<span style="color: #707183;">)</span>
-<span style="color: #0000ff;">jl</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when less than<span style="color: #707183;">)</span>
-<span style="color: #0000ff;">jle</span> &lt;label&gt; <span style="color: #707183;">(</span>jump when less than or equal to<span style="color: #707183;">)</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">je</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when equal<span style="color: #AE81FF;">)</span>
+<span style="color: #A6E22E;">jne</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when not equal<span style="color: #AE81FF;">)</span>
+<span style="color: #A6E22E;">jz</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when last result was zero<span style="color: #AE81FF;">)</span>
+<span style="color: #A6E22E;">jg</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when greater than<span style="color: #AE81FF;">)</span>
+<span style="color: #A6E22E;">jge</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when greater than or equal to<span style="color: #AE81FF;">)</span>
+<span style="color: #A6E22E;">jl</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when less than<span style="color: #AE81FF;">)</span>
+<span style="color: #A6E22E;">jle</span> &lt;label&gt; <span style="color: #AE81FF;">(</span>jump when less than or equal to<span style="color: #AE81FF;">)</span>
 </pre>
 </div>
 
@@ -922,15 +922,15 @@ example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">cmp</span> <span style="color: #a020f0;">eax</span>, ebx
-<span style="color: #0000ff;">jle</span> <span style="color: #a020f0;">done</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">cmp</span> <span style="color: #F92672;">eax</span>, ebx
+<span style="color: #A6E22E;">jle</span> <span style="color: #F92672;">done</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5e68e62" class="outline-4">
-<h4 id="org5e68e62"><span class="section-number-4">5.1.3</span> cmp</h4>
+<div id="outline-container-org104a616" class="outline-4">
+<h4 id="org104a616"><span class="section-number-4">5.1.3</span> cmp</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 This instruction is equivalent to the sub instruction, except the result of the subtraction is discarded instead of replacing the first operand.
@@ -941,10 +941,10 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">cmp</span> &lt;reg&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">cmp</span> &lt;reg&gt;,&lt;mem&gt;
-<span style="color: #0000ff;">cmp</span> &lt;mem&gt;,&lt;reg&gt;
-<span style="color: #0000ff;">cmp</span> &lt;reg&gt;,&lt;con&gt;
+<pre class="src src-asm"><span style="color: #A6E22E;">cmp</span> &lt;reg&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">cmp</span> &lt;reg&gt;,&lt;mem&gt;
+<span style="color: #A6E22E;">cmp</span> &lt;mem&gt;,&lt;reg&gt;
+<span style="color: #A6E22E;">cmp</span> &lt;reg&gt;,&lt;con&gt;
 </pre>
 </div>
 
@@ -953,15 +953,15 @@ example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">cmp</span> <span style="color: #a020f0;">DWORD</span> PTR <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span>, 10
-<span style="color: #0000ff;">jeq</span> <span style="color: #a020f0;">loop</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">cmp</span> <span style="color: #F92672;">DWORD</span> PTR <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span>, 10
+<span style="color: #A6E22E;">jeq</span> <span style="color: #F92672;">loop</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org44b4c8a" class="outline-4">
-<h4 id="org44b4c8a"><span class="section-number-4">5.1.4</span> call, ret — Subroutine call and return</h4>
+<div id="outline-container-org14cf49b" class="outline-4">
+<h4 id="org14cf49b"><span class="section-number-4">5.1.4</span> call, ret — Subroutine call and return</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <p>
 The call instruction first pushes the current code location onto the hardware supported stack in memory (see the push instruction for details), and then performs an unconditional jump to the code location indicated by the label operand. Unlike the simple jump instructions, the call instruction saves the location to return to when the subroutine completes.
@@ -976,15 +976,15 @@ syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">call</span> &lt;label&gt;
-<span style="color: #0000ff;">ret</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">call</span> &lt;label&gt;
+<span style="color: #A6E22E;">ret</span>
 </pre>
 </div>
 
 <p>
 Calling Convention
 </p>
-<hr  />
+<hr />
 
 
 <div class="figure">
@@ -999,8 +999,8 @@ Stack during Subroutine Call
 </div>
 </div>
 
-<div id="outline-container-org1380a80" class="outline-3">
-<h3 id="org1380a80"><span class="section-number-3">5.2</span> Caller Rules</h3>
+<div id="outline-container-org3e65705" class="outline-3">
+<h3 id="org3e65705"><span class="section-number-3">5.2</span> Caller Rules</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Before call:
@@ -1038,20 +1038,20 @@ example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">push</span> <span style="color: #707183;">[</span>var<span style="color: #707183;">]</span> <span style="color: #b22222;">; </span><span style="color: #b22222;">Push last parameter first</span>
-<span style="color: #0000ff;">push</span> <span style="color: #a020f0;">216</span>   <span style="color: #b22222;">; </span><span style="color: #b22222;">Push the second parameter</span>
-<span style="color: #0000ff;">push</span> <span style="color: #a020f0;">eax</span>   <span style="color: #b22222;">; </span><span style="color: #b22222;">Push first parameter last</span>
+<pre class="src src-asm"><span style="color: #A6E22E;">push</span> <span style="color: #AE81FF;">[</span>var<span style="color: #AE81FF;">]</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">Push last parameter first</span>
+<span style="color: #A6E22E;">push</span> <span style="color: #F92672;">216</span>   <span style="color: #75715E;">; </span><span style="color: #75715E;">Push the second parameter</span>
+<span style="color: #A6E22E;">push</span> <span style="color: #F92672;">eax</span>   <span style="color: #75715E;">; </span><span style="color: #75715E;">Push first parameter last</span>
 
-<span style="color: #0000ff;">call</span> _myFunc <span style="color: #b22222;">; </span><span style="color: #b22222;">Call the function (assume C naming)</span>
+<span style="color: #A6E22E;">call</span> _myFunc <span style="color: #75715E;">; </span><span style="color: #75715E;">Call the function (assume C naming)</span>
 
-<span style="color: #0000ff;">add</span> <span style="color: #a020f0;">esp</span>, 12
+<span style="color: #A6E22E;">add</span> <span style="color: #F92672;">esp</span>, 12
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgec0c543" class="outline-3">
-<h3 id="orgec0c543"><span class="section-number-3">5.3</span> Callee Rules</h3>
+<div id="outline-container-org4b6140c" class="outline-3">
+<h3 id="org4b6140c"><span class="section-number-3">5.3</span> Callee Rules</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Prologue:
@@ -1062,8 +1062,8 @@ Prologue:
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #0000ff;">push</span> <span style="color: #a020f0;">ebp</span>
-<span style="color: #0000ff;">mov</span>  <span style="color: #a020f0;">ebp</span>, esp
+<pre class="src src-asm"><span style="color: #A6E22E;">push</span> <span style="color: #F92672;">ebp</span>
+<span style="color: #A6E22E;">mov</span>  <span style="color: #F92672;">ebp</span>, esp
 </pre>
 </div>
 
@@ -1094,37 +1094,37 @@ example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span style="color: #a020f0;">.486</span>
-<span style="color: #a020f0;">.MODEL</span> FLAT
-<span style="color: #a020f0;">.CODE</span>
-<span style="color: #0000ff;">PUBLIC</span> _myFunc
-<span style="color: #0000ff;">_myFunc</span> <span style="color: #a020f0;">PROC</span>
-<span style="color: #b22222;">; </span><span style="color: #b22222;">Subroutine Prologue</span>
-<span style="color: #0000ff;">push</span> <span style="color: #a020f0;">ebp</span>     <span style="color: #b22222;">; </span><span style="color: #b22222;">Save the old base pointer value.</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">ebp</span>, esp <span style="color: #b22222;">; </span><span style="color: #b22222;">Set the new base pointer value.</span>
-<span style="color: #0000ff;">sub</span> <span style="color: #a020f0;">esp</span>, 4   <span style="color: #b22222;">; </span><span style="color: #b22222;">Make room for one 4-byte local variable.</span>
-<span style="color: #0000ff;">push</span> <span style="color: #a020f0;">edi</span>     <span style="color: #b22222;">; </span><span style="color: #b22222;">Save the values of registers that the function</span>
-<span style="color: #0000ff;">push</span> <span style="color: #a020f0;">esi</span>     <span style="color: #b22222;">; </span><span style="color: #b22222;">will modify. This function uses EDI and ESI.</span>
-<span style="color: #b22222;">; </span><span style="color: #b22222;">(no need to save EBX, EBP, or ESP)</span>
+<pre class="src src-asm"><span style="color: #F92672;">.486</span>
+<span style="color: #F92672;">.MODEL</span> FLAT
+<span style="color: #F92672;">.CODE</span>
+<span style="color: #A6E22E;">PUBLIC</span> _myFunc
+<span style="color: #A6E22E;">_myFunc</span> <span style="color: #F92672;">PROC</span>
+<span style="color: #75715E;">; </span><span style="color: #75715E;">Subroutine Prologue</span>
+<span style="color: #A6E22E;">push</span> <span style="color: #F92672;">ebp</span>     <span style="color: #75715E;">; </span><span style="color: #75715E;">Save the old base pointer value.</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">ebp</span>, esp <span style="color: #75715E;">; </span><span style="color: #75715E;">Set the new base pointer value.</span>
+<span style="color: #A6E22E;">sub</span> <span style="color: #F92672;">esp</span>, 4   <span style="color: #75715E;">; </span><span style="color: #75715E;">Make room for one 4-byte local variable.</span>
+<span style="color: #A6E22E;">push</span> <span style="color: #F92672;">edi</span>     <span style="color: #75715E;">; </span><span style="color: #75715E;">Save the values of registers that the function</span>
+<span style="color: #A6E22E;">push</span> <span style="color: #F92672;">esi</span>     <span style="color: #75715E;">; </span><span style="color: #75715E;">will modify. This function uses EDI and ESI.</span>
+<span style="color: #75715E;">; </span><span style="color: #75715E;">(no need to save EBX, EBP, or ESP)</span>
 
-<span style="color: #b22222;">; </span><span style="color: #b22222;">Subroutine Body</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>ebp+8<span style="color: #707183;">]</span>   <span style="color: #b22222;">; </span><span style="color: #b22222;">Move value of parameter 1 into EAX</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">esi</span>, <span style="color: #707183;">[</span>ebp+12<span style="color: #707183;">]</span>  <span style="color: #b22222;">; </span><span style="color: #b22222;">Move value of parameter 2 into ESI</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">edi</span>, <span style="color: #707183;">[</span>ebp+16<span style="color: #707183;">]</span>  <span style="color: #b22222;">; </span><span style="color: #b22222;">Move value of parameter 3 into EDI</span>
+<span style="color: #75715E;">; </span><span style="color: #75715E;">Subroutine Body</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>ebp+8<span style="color: #AE81FF;">]</span>   <span style="color: #75715E;">; </span><span style="color: #75715E;">Move value of parameter 1 into EAX</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">esi</span>, <span style="color: #AE81FF;">[</span>ebp+12<span style="color: #AE81FF;">]</span>  <span style="color: #75715E;">; </span><span style="color: #75715E;">Move value of parameter 2 into ESI</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">edi</span>, <span style="color: #AE81FF;">[</span>ebp+16<span style="color: #AE81FF;">]</span>  <span style="color: #75715E;">; </span><span style="color: #75715E;">Move value of parameter 3 into EDI</span>
 
-<span style="color: #0000ff;">mov</span> <span style="color: #707183;">[</span>ebp-4<span style="color: #707183;">]</span>, edi   <span style="color: #b22222;">; </span><span style="color: #b22222;">Move EDI into the local variable</span>
-<span style="color: #0000ff;">add</span> <span style="color: #707183;">[</span>ebp-4<span style="color: #707183;">]</span>, esi   <span style="color: #b22222;">; </span><span style="color: #b22222;">Add ESI into the local variable</span>
-<span style="color: #0000ff;">add</span> <span style="color: #a020f0;">eax</span>, <span style="color: #707183;">[</span>ebp-4<span style="color: #707183;">]</span>   <span style="color: #b22222;">; </span><span style="color: #b22222;">Add the contents of the local variable</span>
-<span style="color: #b22222;">; </span><span style="color: #b22222;">into EAX (final result)</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #AE81FF;">[</span>ebp-4<span style="color: #AE81FF;">]</span>, edi   <span style="color: #75715E;">; </span><span style="color: #75715E;">Move EDI into the local variable</span>
+<span style="color: #A6E22E;">add</span> <span style="color: #AE81FF;">[</span>ebp-4<span style="color: #AE81FF;">]</span>, esi   <span style="color: #75715E;">; </span><span style="color: #75715E;">Add ESI into the local variable</span>
+<span style="color: #A6E22E;">add</span> <span style="color: #F92672;">eax</span>, <span style="color: #AE81FF;">[</span>ebp-4<span style="color: #AE81FF;">]</span>   <span style="color: #75715E;">; </span><span style="color: #75715E;">Add the contents of the local variable</span>
+<span style="color: #75715E;">; </span><span style="color: #75715E;">into EAX (final result)</span>
 
-<span style="color: #b22222;">; </span><span style="color: #b22222;">Subroutine Epilogue</span>
-<span style="color: #0000ff;">pop</span> <span style="color: #a020f0;">esi</span>      <span style="color: #b22222;">; </span><span style="color: #b22222;">Recover register values</span>
-<span style="color: #0000ff;">pop</span>  <span style="color: #a020f0;">edi</span>
-<span style="color: #0000ff;">mov</span> <span style="color: #a020f0;">esp</span>, ebp <span style="color: #b22222;">; </span><span style="color: #b22222;">Deallocate local variables</span>
-<span style="color: #0000ff;">pop</span> <span style="color: #a020f0;">ebp</span> <span style="color: #b22222;">; </span><span style="color: #b22222;">Restore the caller's base pointer value</span>
-<span style="color: #0000ff;">ret</span>
-<span style="color: #0000ff;">_myFunc</span> <span style="color: #a020f0;">ENDP</span>
-<span style="color: #0000ff;">END</span>
+<span style="color: #75715E;">; </span><span style="color: #75715E;">Subroutine Epilogue</span>
+<span style="color: #A6E22E;">pop</span> <span style="color: #F92672;">esi</span>      <span style="color: #75715E;">; </span><span style="color: #75715E;">Recover register values</span>
+<span style="color: #A6E22E;">pop</span>  <span style="color: #F92672;">edi</span>
+<span style="color: #A6E22E;">mov</span> <span style="color: #F92672;">esp</span>, ebp <span style="color: #75715E;">; </span><span style="color: #75715E;">Deallocate local variables</span>
+<span style="color: #A6E22E;">pop</span> <span style="color: #F92672;">ebp</span> <span style="color: #75715E;">; </span><span style="color: #75715E;">Restore the caller's base pointer value</span>
+<span style="color: #A6E22E;">ret</span>
+<span style="color: #A6E22E;">_myFunc</span> <span style="color: #F92672;">ENDP</span>
+<span style="color: #A6E22E;">END</span>
 </pre>
 </div>
 
@@ -1139,7 +1139,7 @@ So <code>[ebp+8]</code>, <code>[ebp+12]</code>, <code>[ebp+16]</code> represent 
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-11-08 Tue 13:55</p>
+<p class="date">Created: 2017-02-16 Thu 12:02</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

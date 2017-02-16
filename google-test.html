@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-08 Tue 13:53 -->
+<!-- 2017-02-16 Thu 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>google test</title>
@@ -236,16 +236,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org58dfefc">1. setup</a></li>
-<li><a href="#orgfc6b864">2. assertion</a></li>
-<li><a href="#orgbaf8b61">3. fixture</a></li>
-<li><a href="#org0e996c2">4. Run A Subset of Tests</a></li>
+<li><a href="#orge2fded7">1. setup</a></li>
+<li><a href="#orgde09d40">2. assertion</a></li>
+<li><a href="#org1cb5e2b">3. fixture</a></li>
+<li><a href="#org78b6c87">4. Run A Subset of Tests</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org58dfefc" class="outline-2">
-<h2 id="org58dfefc"><span class="section-number-2">1</span> setup</h2>
+<div id="outline-container-orge2fded7" class="outline-2">
+<h2 id="orge2fded7"><span class="section-number-2">1</span> setup</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Download google test, make and make install.
@@ -257,9 +257,9 @@ Inside your program, just insert
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;gtest/gtest.h&gt;</span>
-<span style="color: #0000ff;">TEST</span><span style="color: #707183;">(</span>TestCaseName, TestName<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">gtest/gtest.h</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #A6E22E;">TEST</span><span style="color: #AE81FF;">(</span>TestCaseName, TestName<span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 
@@ -272,18 +272,18 @@ should supply a main function in ONE file:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;gtest/gtest.h&gt;</span>
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">argc</span>, <span style="color: #228b22;">char</span>** <span style="color: #a0522d;">argv</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  ::testing::InitGoogleTest<span style="color: #7388d6;">(</span>&amp;argc, argv<span style="color: #7388d6;">)</span>;
-  <span style="color: #a020f0;">return</span> RUN_ALL_TESTS<span style="color: #7388d6;">()</span>;
-<span style="color: #707183;">}</span>
+<pre class="src src-C"><span style="color: #F92672;">#include</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #E6DB74;">gtest/gtest.h</span><span style="color: #AE81FF;">&gt;</span>
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">argc</span>, <span style="color: #66D9EF;">char</span>** <span style="color: #FD971F;">argv</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  ::testing::InitGoogleTest<span style="color: #66D9EF;">(</span>&amp;argc, argv<span style="color: #66D9EF;">)</span>;
+  <span style="color: #F92672;">return</span> RUN_ALL_TESTS<span style="color: #66D9EF;">()</span>;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfc6b864" class="outline-2">
-<h2 id="orgfc6b864"><span class="section-number-2">2</span> assertion</h2>
+<div id="outline-container-orgde09d40" class="outline-2">
+<h2 id="orgde09d40"><span class="section-number-2">2</span> assertion</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>ASSERT_TRUE</code></li>
@@ -299,22 +299,22 @@ all the assertions can be changed into EXPECT<sub>XX</sub>.
 </div>
 
 
-<div id="outline-container-orgbaf8b61" class="outline-2">
-<h2 id="orgbaf8b61"><span class="section-number-2">3</span> fixture</h2>
+<div id="outline-container-org1cb5e2b" class="outline-2">
+<h2 id="org1cb5e2b"><span class="section-number-2">3</span> fixture</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Code to test:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">template</span> <span style="color: #707183;">&lt;</span><span style="color: #a020f0;">typename</span> <span style="color: #228b22;">E</span><span style="color: #707183;">&gt;</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">E is the element type.</span>
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Queue</span> <span style="color: #707183;">{</span>
- <span style="color: #a020f0;">public</span>:
-  <span style="color: #0000ff;">Queue</span><span style="color: #7388d6;">()</span>;
-  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Enqueue</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">const</span> <span style="color: #228b22;">E</span>&amp; <span style="color: #a0522d;">element</span><span style="color: #7388d6;">)</span>;
-  <span style="color: #228b22;">E</span>* <span style="color: #0000ff;">Dequeue</span><span style="color: #7388d6;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Returns NULL if the queue is empty.</span>
-  <span style="color: #228b22;">size_t</span> <span style="color: #0000ff;">size</span><span style="color: #7388d6;">()</span> <span style="color: #a020f0;">const</span>;
+<pre class="src src-C++"><span style="color: #F92672;">template</span> <span style="color: #AE81FF;">&lt;</span><span style="color: #F92672;">typename</span> <span style="color: #66D9EF;">E</span><span style="color: #AE81FF;">&gt;</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">E is the element type.</span>
+<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">Queue</span> <span style="color: #AE81FF;">{</span>
+ <span style="color: #F92672;">public</span>:
+  <span style="color: #A6E22E;">Queue</span><span style="color: #66D9EF;">()</span>;
+  <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">Enqueue</span><span style="color: #66D9EF;">(</span><span style="color: #F92672;">const</span> <span style="color: #66D9EF;">E</span>&amp; <span style="color: #FD971F;">element</span><span style="color: #66D9EF;">)</span>;
+  <span style="color: #66D9EF;">E</span>* <span style="color: #A6E22E;">Dequeue</span><span style="color: #66D9EF;">()</span>; <span style="color: #75715E;">// </span><span style="color: #75715E;">Returns NULL if the queue is empty.</span>
+  <span style="color: #66D9EF;">size_t</span> <span style="color: #A6E22E;">size</span><span style="color: #66D9EF;">()</span> <span style="color: #F92672;">const</span>;
   ...
-<span style="color: #707183;">}</span>;
+<span style="color: #AE81FF;">}</span>;
 </pre>
 </div>
 
@@ -323,20 +323,20 @@ testing code:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">QueueTest</span> : <span style="color: #a020f0;">public</span> ::<span style="color: #008b8b;">testing</span>::<span style="color: #228b22;">Test</span> <span style="color: #707183;">{</span>
- <span style="color: #a020f0;">protected</span>:
-  <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SetUp</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
-    q1_.Enqueue<span style="color: #909183;">(</span>1<span style="color: #909183;">)</span>;
-    q2_.Enqueue<span style="color: #909183;">(</span>2<span style="color: #909183;">)</span>;
-    q2_.Enqueue<span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>;
-  <span style="color: #7388d6;">}</span>
+<pre class="src src-C++"><span style="color: #F92672;">class</span> <span style="color: #66D9EF;">QueueTest</span> : <span style="color: #F92672;">public</span> ::<span style="color: #AE81FF;">testing</span>::<span style="color: #66D9EF;">Test</span> <span style="color: #AE81FF;">{</span>
+ <span style="color: #F92672;">protected</span>:
+  <span style="color: #F92672;">virtual</span> <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">SetUp</span><span style="color: #66D9EF;">()</span> <span style="color: #66D9EF;">{</span>
+    q1_.Enqueue<span style="color: #A6E22E;">(</span>1<span style="color: #A6E22E;">)</span>;
+    q2_.Enqueue<span style="color: #A6E22E;">(</span>2<span style="color: #A6E22E;">)</span>;
+    q2_.Enqueue<span style="color: #A6E22E;">(</span>3<span style="color: #A6E22E;">)</span>;
+  <span style="color: #66D9EF;">}</span>
 
-  <span style="color: #b22222;">// </span><span style="color: #b22222;">virtual void TearDown() {}</span>
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">virtual void TearDown() {}</span>
 
-  <span style="color: #228b22;">Queue</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">q0_</span>;
-  <span style="color: #228b22;">Queue</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">q1_</span>;
-  <span style="color: #228b22;">Queue</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">q2_</span>;
-<span style="color: #707183;">}</span>;
+  <span style="color: #66D9EF;">Queue</span><span style="color: #66D9EF;">&lt;</span><span style="color: #66D9EF;">int</span><span style="color: #66D9EF;">&gt;</span> <span style="color: #FD971F;">q0_</span>;
+  <span style="color: #66D9EF;">Queue</span><span style="color: #66D9EF;">&lt;</span><span style="color: #66D9EF;">int</span><span style="color: #66D9EF;">&gt;</span> <span style="color: #FD971F;">q1_</span>;
+  <span style="color: #66D9EF;">Queue</span><span style="color: #66D9EF;">&lt;</span><span style="color: #66D9EF;">int</span><span style="color: #66D9EF;">&gt;</span> <span style="color: #FD971F;">q2_</span>;
+<span style="color: #AE81FF;">}</span>;
 </pre>
 </div>
 
@@ -352,9 +352,9 @@ so it is not designed for object reuse, but for code reuse.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #0000ff;">TEST_F</span><span style="color: #707183;">(</span>QueueTest, IsEmptyInitially<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-  EXPECT_EQ<span style="color: #7388d6;">(</span>0, q0_.size<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<pre class="src src-C++"><span style="color: #A6E22E;">TEST_F</span><span style="color: #AE81FF;">(</span>QueueTest, IsEmptyInitially<span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  EXPECT_EQ<span style="color: #66D9EF;">(</span>0, q0_.size<span style="color: #A6E22E;">()</span><span style="color: #66D9EF;">)</span>;
+<span style="color: #AE81FF;">}</span>
 </pre>
 </div>
 
@@ -365,8 +365,8 @@ Note that q0_ is immediately available.
 </div>
 </div>
 
-<div id="outline-container-org0e996c2" class="outline-2">
-<h2 id="org0e996c2"><span class="section-number-2">4</span> Run A Subset of Tests</h2>
+<div id="outline-container-org78b6c87" class="outline-2">
+<h2 id="org78b6c87"><span class="section-number-2">4</span> Run A Subset of Tests</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The format of a filter is a ':'-separated list of wildcard patterns
@@ -384,14 +384,14 @@ In short, <code>&lt;pos1&gt;:&lt;pos2&gt;:&lt;pos3&gt;-&lt;neg1&gt;:&lt;neg2&gt;
 </p>
 <div class="org-src-container">
 <pre class="src src-shell">./foo_test --gtest_filter=*
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Runs everything in test case FooTest</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Runs everything in test case FooTest</span>
 ./foo_test --gtest_filter=FooTest.*
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Runs any test whose full name contains either "Null" or "Constructor"</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Runs any test whose full name contains either "Null" or "Constructor"</span>
 ./foo_test --gtest_filter=*Null*:*Constructor*
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Runs all non-death tests.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">- negativate the pattern</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Runs all non-death tests.</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">- negativate the pattern</span>
 ./foo_test --gtest_filter=-*DeathTest.*
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Runs everything in test case FooTest except FooTest.Bar</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Runs everything in test case FooTest except FooTest.Bar</span>
 ./foo_test --gtest_filter=FooTest.*-FooTest.Bar
 </pre>
 </div>
@@ -400,7 +400,7 @@ In short, <code>&lt;pos1&gt;:&lt;pos2&gt;:&lt;pos3&gt;-&lt;neg1&gt;:&lt;neg2&gt;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-11-08 Tue 13:53</p>
+<p class="date">Created: 2017-02-16 Thu 12:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

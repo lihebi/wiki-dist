@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-08 Tue 13:53 -->
+<!-- 2017-02-16 Thu 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
@@ -236,15 +236,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8867025">1. Emacs Babels</a></li>
-<li><a href="#orgc1da0a7">2. Basic Statements</a>
+<li><a href="#org48f9b69">1. Emacs Babels</a></li>
+<li><a href="#org60188f1">2. Basic Statements</a>
 <ul>
-<li><a href="#org33c5001">2.1. create &amp; insert &amp; delete</a></li>
-<li><a href="#orgc7c4e22">2.2. select</a></li>
-<li><a href="#orgb093f1e">2.3. Aliasing</a></li>
+<li><a href="#orgdf4dfb5">2.1. create &amp; insert &amp; delete</a></li>
+<li><a href="#orgb86a0a9">2.2. select</a></li>
+<li><a href="#orgb42a3ff">2.3. Aliasing</a></li>
 </ul>
 </li>
-<li><a href="#org0fbb34a">3. SQLite</a></li>
+<li><a href="#org695f738">3. SQLite</a></li>
 </ul>
 </div>
 </div>
@@ -252,8 +252,8 @@ for the JavaScript code in this tag.
 SQL is VERY sensitive with the terminating colon!
 </p>
 
-<div id="outline-container-org8867025" class="outline-2">
-<h2 id="org8867025"><span class="section-number-2">1</span> Emacs Babels</h2>
+<div id="outline-container-org48f9b69" class="outline-2">
+<h2 id="org48f9b69"><span class="section-number-2">1</span> Emacs Babels</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 There're two babels: <code>sqlite</code> and <code>sql</code>. The SQL babel works for a RDBMS like MySQL.
@@ -291,74 +291,74 @@ The following is an example.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sqlite" id="orgfaa43f1"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">greeting</span><span style="color: #707183;">(</span>one <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span>, two <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> greeting <span style="color: #a020f0;">values</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'Hello'</span>, <span style="color: #8b2252;">'world!'</span><span style="color: #707183;">)</span>;
+<pre class="src src-sqlite" id="org35345c3"><span style="color: #F92672;">create</span> <span style="color: #F92672;">table</span> <span style="color: #A6E22E;">greeting</span><span style="color: #AE81FF;">(</span>one <span style="color: #66D9EF;">varchar</span><span style="color: #66D9EF;">(</span>10<span style="color: #66D9EF;">)</span>, two <span style="color: #66D9EF;">varchar</span><span style="color: #66D9EF;">(</span>10<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">insert</span> <span style="color: #F92672;">into</span> greeting <span style="color: #F92672;">values</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">'Hello'</span>, <span style="color: #E6DB74;">'world!'</span><span style="color: #AE81FF;">)</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sqlite" id="orgffb260c"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> greeting;
+<pre class="src src-sqlite" id="org2de6941"><span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> greeting;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc1da0a7" class="outline-2">
-<h2 id="orgc1da0a7"><span class="section-number-2">2</span> Basic Statements</h2>
+<div id="outline-container-org60188f1" class="outline-2">
+<h2 id="org60188f1"><span class="section-number-2">2</span> Basic Statements</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org33c5001" class="outline-3">
-<h3 id="org33c5001"><span class="section-number-3">2.1</span> create &amp; insert &amp; delete</h3>
+</div><div id="outline-container-orgdf4dfb5" class="outline-3">
+<h3 id="orgdf4dfb5"><span class="section-number-3">2.1</span> create &amp; insert &amp; delete</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
-<pre class="src src-sqlite"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">greeting</span><span style="color: #707183;">(</span>one <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span>, two <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> greeting <span style="color: #a020f0;">values</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'Hello'</span>, <span style="color: #8b2252;">'world!'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> tablename <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>1, <span style="color: #8b2252;">'xxx'</span>, 34<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> tablename <span style="color: #707183;">(</span>col1, col3<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>1, 34<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">update</span> tablename <span style="color: #a020f0;">set</span> col1=3,col3=8 <span style="color: #a020f0;">where</span> col2=<span style="color: #8b2252;">'yyy'</span>;
-<span style="color: #a020f0;">delete</span> <span style="color: #a020f0;">from</span> tablename <span style="color: #a020f0;">where</span> col1=3;
-<span style="color: #a020f0;">delete</span> <span style="color: #a020f0;">from</span> tablename; <span style="color: #b22222;">-- same as:</span>
-<span style="color: #a020f0;">delete</span> * <span style="color: #a020f0;">from</span> tablename;
+<pre class="src src-sqlite"><span style="color: #F92672;">create</span> <span style="color: #F92672;">table</span> <span style="color: #A6E22E;">greeting</span><span style="color: #AE81FF;">(</span>one <span style="color: #66D9EF;">varchar</span><span style="color: #66D9EF;">(</span>10<span style="color: #66D9EF;">)</span>, two <span style="color: #66D9EF;">varchar</span><span style="color: #66D9EF;">(</span>10<span style="color: #66D9EF;">)</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">insert</span> <span style="color: #F92672;">into</span> greeting <span style="color: #F92672;">values</span><span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">'Hello'</span>, <span style="color: #E6DB74;">'world!'</span><span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">insert</span> <span style="color: #F92672;">into</span> tablename <span style="color: #F92672;">values</span> <span style="color: #AE81FF;">(</span>1, <span style="color: #E6DB74;">'xxx'</span>, 34<span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">insert</span> <span style="color: #F92672;">into</span> tablename <span style="color: #AE81FF;">(</span>col1, col3<span style="color: #AE81FF;">)</span> <span style="color: #F92672;">values</span> <span style="color: #AE81FF;">(</span>1, 34<span style="color: #AE81FF;">)</span>;
+<span style="color: #F92672;">update</span> tablename <span style="color: #F92672;">set</span> col1=3,col3=8 <span style="color: #F92672;">where</span> col2=<span style="color: #E6DB74;">'yyy'</span>;
+<span style="color: #F92672;">delete</span> <span style="color: #F92672;">from</span> tablename <span style="color: #F92672;">where</span> col1=3;
+<span style="color: #F92672;">delete</span> <span style="color: #F92672;">from</span> tablename; <span style="color: #75715E;">-- same as:</span>
+<span style="color: #F92672;">delete</span> * <span style="color: #F92672;">from</span> tablename;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7c4e22" class="outline-3">
-<h3 id="orgc7c4e22"><span class="section-number-3">2.2</span> select</h3>
+<div id="outline-container-orgb86a0a9" class="outline-3">
+<h3 id="orgb86a0a9"><span class="section-number-3">2.2</span> select</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-sqlite"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> tablename;
-<span style="color: #a020f0;">select</span> col1,col2 <span style="color: #a020f0;">from</span> tablename;
-<span style="color: #a020f0;">select</span> <span style="color: #a020f0;">distinct</span> col1,col2 <span style="color: #a020f0;">from</span> tablename;
-<span style="color: #b22222;">-- 'xxx' depends on the type of that column, e.g. for integer, 123</span>
-<span style="color: #b22222;">-- operators can be =, &lt;=, &lt;&gt;(not equal)</span>
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> tablename <span style="color: #a020f0;">where</span> col1=<span style="color: #8b2252;">'xxx'</span>;
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> tablename <span style="color: #a020f0;">where</span> col1=<span style="color: #8b2252;">'xxx'</span> <span style="color: #a020f0;">and</span> col2&lt;&gt;3 <span style="color: #a020f0;">or</span> col3=8;
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> tablename <span style="color: #a020f0;">order</span> <span style="color: #a020f0;">by</span> col1 <span style="color: #a020f0;">ASC</span>, col2 <span style="color: #a020f0;">DESC</span>, col3;
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> tablename <span style="color: #a020f0;">where</span> col1 <span style="color: #a020f0;">in</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'xxx'</span>, <span style="color: #8b2252;">'yyy'</span><span style="color: #707183;">)</span>;
+<pre class="src src-sqlite"><span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> tablename;
+<span style="color: #F92672;">select</span> col1,col2 <span style="color: #F92672;">from</span> tablename;
+<span style="color: #F92672;">select</span> <span style="color: #F92672;">distinct</span> col1,col2 <span style="color: #F92672;">from</span> tablename;
+<span style="color: #75715E;">-- 'xxx' depends on the type of that column, e.g. for integer, 123</span>
+<span style="color: #75715E;">-- operators can be =, &lt;=, &lt;&gt;(not equal)</span>
+<span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> tablename <span style="color: #F92672;">where</span> col1=<span style="color: #E6DB74;">'xxx'</span>;
+<span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> tablename <span style="color: #F92672;">where</span> col1=<span style="color: #E6DB74;">'xxx'</span> <span style="color: #F92672;">and</span> col2&lt;&gt;3 <span style="color: #F92672;">or</span> col3=8;
+<span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> tablename <span style="color: #F92672;">order</span> <span style="color: #F92672;">by</span> col1 <span style="color: #F92672;">ASC</span>, col2 <span style="color: #F92672;">DESC</span>, col3;
+<span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> tablename <span style="color: #F92672;">where</span> col1 <span style="color: #F92672;">in</span> <span style="color: #AE81FF;">(</span><span style="color: #E6DB74;">'xxx'</span>, <span style="color: #E6DB74;">'yyy'</span><span style="color: #AE81FF;">)</span>;
 
-<span style="color: #a020f0;">select</span> top 2 * <span style="color: #a020f0;">from</span> tablename;
-<span style="color: #a020f0;">select</span> top 50 percent * <span style="color: #a020f0;">from</span> tablename;
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> tablename <span style="color: #a020f0;">limit</span> 3;
+<span style="color: #F92672;">select</span> top 2 * <span style="color: #F92672;">from</span> tablename;
+<span style="color: #F92672;">select</span> top 50 percent * <span style="color: #F92672;">from</span> tablename;
+<span style="color: #F92672;">select</span> * <span style="color: #F92672;">from</span> tablename <span style="color: #F92672;">limit</span> 3;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb093f1e" class="outline-3">
-<h3 id="orgb093f1e"><span class="section-number-3">2.3</span> Aliasing</h3>
+<div id="outline-container-orgb42a3ff" class="outline-3">
+<h3 id="orgb42a3ff"><span class="section-number-3">2.3</span> Aliasing</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
-<pre class="src src-sqlite"><span style="color: #a020f0;">SELECT</span> o.OrderID, o.OrderDate, c.CustomerName
-<span style="color: #a020f0;">FROM</span> Customers <span style="color: #a020f0;">AS</span> c, Orders <span style="color: #a020f0;">AS</span> o
-<span style="color: #a020f0;">WHERE</span> c.CustomerName="Around the Horn" <span style="color: #a020f0;">AND</span> c.CustomerID=o.CustomerID;
+<pre class="src src-sqlite"><span style="color: #F92672;">SELECT</span> o.OrderID, o.OrderDate, c.CustomerName
+<span style="color: #F92672;">FROM</span> Customers <span style="color: #F92672;">AS</span> c, Orders <span style="color: #F92672;">AS</span> o
+<span style="color: #F92672;">WHERE</span> c.CustomerName="Around the Horn" <span style="color: #F92672;">AND</span> c.CustomerID=o.CustomerID;
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0fbb34a" class="outline-2">
-<h2 id="org0fbb34a"><span class="section-number-2">3</span> SQLite</h2>
+<div id="outline-container-org695f738" class="outline-2">
+<h2 id="org695f738"><span class="section-number-2">3</span> SQLite</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 This is a file-based database.
@@ -380,7 +380,7 @@ There's no statements like <code>show tables;</code> in MySQL.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2016-11-08 Tue 13:53</p>
+<p class="date">Created: 2017-02-16 Thu 12:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

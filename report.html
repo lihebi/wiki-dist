@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-16 Thu 12:01 -->
+<!-- 2017-02-16 Thu 12:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Chrome Extensions</title>
+<title>Assertion Experiment</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Hebi Li" />
 <style type="text/css">
@@ -231,18 +231,167 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Chrome Extensions</h1>
-<ul class="org-ul">
-<li><code>html5outliner</code>: give you a toc of the page. VERY NICE!</li>
-<li id="<code>markdown here</code>">render for email</li>
-<li><code>unblockyouku</code></li>
-<li><code>adblock</code></li>
-<li id="<code>sight</code> &amp; <code>syntaxtic</code>">syntax highlighter</li>
+<h1 class="title">Assertion Experiment</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org70110fd">1. Experiment Meta data</a></li>
+<li><a href="#orgc7a6094">2. Some discovered examples:</a>
+<ul>
+<li><a href="#orgccf7609">2.1. nsf&#x2013;termbox/termbox.c:594</a></li>
+<li><a href="#org7bf4a0b">2.2. samr7&#x2013;vanitygen/pattern.c:432</a></li>
+<li><a href="#org6683037">2.3. spdk&#x2013;spdk/conn.c:144</a></li>
+<li><a href="#orgb9fb19f">2.4. About the data</a></li>
 </ul>
+</li>
+<li><a href="#org294b310">3. <span class="todo TODO">TODO</span> Scope of analysis</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org70110fd" class="outline-2">
+<h2 id="org70110fd"><span class="section-number-2">1</span> Experiment Meta data</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Meta data for assertions in top 1000 github projects.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">item</th>
+<th scope="col" class="org-right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">assert</td>
+<td class="org-right">17066</td>
+</tr>
+
+<tr>
+<td class="org-left">length &lt; 60</td>
+<td class="org-right">264</td>
+</tr>
+
+<tr>
+<td class="org-left">length &lt; 80</td>
+<td class="org-right">2534</td>
+</tr>
+
+<tr>
+<td class="org-left">length &lt; 100</td>
+<td class="org-right">7062</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Currently testing on "length &lt; 60" ones, and assume the variable used
+is integer (for outputing)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7a6094" class="outline-2">
+<h2 id="orgc7a6094"><span class="section-number-2">2</span> Some discovered examples:</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Three queries are resolved successfully. All of them are proved safe assertions.
+</p>
+</div>
+
+<div id="outline-container-orgccf7609" class="outline-3">
+<h3 id="orgccf7609"><span class="section-number-3">2.1</span> nsf&#x2013;termbox/termbox.c:594</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">read_up_to</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">n</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  assert<span style="color: #66D9EF;">(</span>n&gt;0<span style="color: #66D9EF;">)</span>;
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">more code</span>
+<span style="color: #AE81FF;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #A6E22E;">foo</span><span style="color: #AE81FF;">()</span> <span style="color: #AE81FF;">{</span>
+  read_up_to<span style="color: #66D9EF;">(</span>64<span style="color: #66D9EF;">)</span>;
+<span style="color: #AE81FF;">}</span>
+</pre>
+</div>
+
+<p>
+and there're two call sites of it both by 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7bf4a0b" class="outline-3">
+<h3 id="org7bf4a0b"><span class="section-number-3">2.2</span> samr7&#x2013;vanitygen/pattern.c:432</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-C">p = snprintf<span style="color: #AE81FF;">(</span>&amp;linebuf<span style="color: #66D9EF;">[</span>p<span style="color: #66D9EF;">]</span>, rem, <span style="color: #E6DB74;">"[Prob %.1f%%]"</span>, <span style="color: #66D9EF;">prob</span>*100<span style="color: #AE81FF;">)</span>;
+assert<span style="color: #AE81FF;">(</span>p&gt;0<span style="color: #AE81FF;">)</span>;
+</pre>
+</div>
+
+<p>
+constant p=11
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6683037" class="outline-3">
+<h3 id="org6683037"><span class="section-number-3">2.3</span> spdk&#x2013;spdk/conn.c:144</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">foo</span><span style="color: #AE81FF;">()</span> <span style="color: #AE81FF;">{</span>
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>g_conn_idle_interval_in_tsc == -1<span style="color: #66D9EF;">)</span>
+    spdk_isc<span style="color: #66D9EF;">(</span>...<span style="color: #66D9EF;">)</span>
+      STAILQ_INIT<span style="color: #66D9EF;">(</span>&amp;g_idle_conn_list_head<span style="color: #66D9EF;">)</span>;
+  <span style="color: #F92672;">if</span> <span style="color: #66D9EF;">(</span>iit_idle_conns<span style="color: #A6E22E;">()</span> &lt; 0<span style="color: #66D9EF;">)</span> <span style="color: #66D9EF;">{</span>
+    <span style="color: #F92672;">return</span> -1;
+  <span style="color: #66D9EF;">}</span>
+<span style="color: #AE81FF;">}</span>
+
+<span style="color: #F92672;">static</span> <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">init_idle_conns</span><span style="color: #AE81FF;">(</span><span style="color: #66D9EF;">void</span><span style="color: #AE81FF;">)</span> <span style="color: #AE81FF;">{</span>
+  assert<span style="color: #66D9EF;">(</span>g_epoll_fd == 0<span style="color: #66D9EF;">)</span>;
+<span style="color: #AE81FF;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb9fb19f" class="outline-3">
+<h3 id="orgb9fb19f"><span class="section-number-3">2.4</span> About the data</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Whether this is what we expected, and also need to make more
+complicated ones working.
+what's the difficulty of extend to more complicated ones
+</p>
+
+<p>
+A list of assertions is attached. From there we might see which kind is easy to handle
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org294b310" class="outline-2">
+<h2 id="org294b310"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Scope of analysis</h2>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-16 Thu 12:01</p>
+<p class="date">Created: 2017-02-16 Thu 12:02</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
