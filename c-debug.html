@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-22 Wed 02:22 -->
+<!-- 2017-02-22 Wed 16:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C Debugging Techniques</title>
@@ -182,7 +182,480 @@
 <style>
 a:visited {color: red;}
 </style>
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -237,15 +710,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf60a14c">1. backtrace(3)</a></li>
-<li><a href="#org9ced525">2. -finstrument-funcitons</a></li>
-<li><a href="#org0b21e5f">3. Callgrind</a></li>
+<li><a href="#orgbf790ae">1. backtrace(3)</a></li>
+<li><a href="#org1d2eb1b">2. -finstrument-funcitons</a></li>
+<li><a href="#orgb6597ea">3. Callgrind</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf60a14c" class="outline-2">
-<h2 id="orgf60a14c"><span class="section-number-2">1</span> backtrace(3)</h2>
+<div id="outline-container-orgbf790ae" class="outline-2">
+<h2 id="orgbf790ae"><span class="section-number-2">1</span> backtrace(3)</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
@@ -303,8 +776,8 @@ continue
 </div>
 </div>
 
-<div id="outline-container-org9ced525" class="outline-2">
-<h2 id="org9ced525"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
+<div id="outline-container-org1d2eb1b" class="outline-2">
+<h2 id="org1d2eb1b"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 See gcc options.
@@ -403,8 +876,8 @@ addr2line -s -e a.out 0x4006c8 # filename:linum
 </div>
 </div>
 
-<div id="outline-container-org0b21e5f" class="outline-2">
-<h2 id="org0b21e5f"><span class="section-number-2">3</span> Callgrind</h2>
+<div id="outline-container-orgb6597ea" class="outline-2">
+<h2 id="orgb6597ea"><span class="section-number-2">3</span> Callgrind</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 valgrind --tool=callgrind ./a.out
@@ -419,7 +892,7 @@ The program must be running.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-22 Wed 02:22</p>
+<p class="date">Created: 2017-02-22 Wed 16:17</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

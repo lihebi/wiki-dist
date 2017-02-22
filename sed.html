@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-22 Wed 02:22 -->
+<!-- 2017-02-22 Wed 16:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sed</title>
@@ -182,7 +182,18 @@
 <style>
 a:visited {color: red;}
 </style>
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
+<style type="text/css">
+ pre.src {background-color: #01331c; color: #839496;}</style>
+<style type="text/css">
+ code {background-color: lightgrey;}</style>
+<style type="text/css">
+ pre[class*="src-"]:before {color: black;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -237,30 +248,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6149f13">1. Introduction</a>
+<li><a href="#orga5b1818">1. Introduction</a>
 <ul>
-<li><a href="#org745600b">1.1. About the regular expression version</a></li>
+<li><a href="#org60f4b78">1.1. About the regular expression version</a></li>
 </ul>
 </li>
-<li><a href="#org401e2c2">2. usage</a></li>
-<li><a href="#org7780d68">3. concepts</a></li>
-<li><a href="#org0324255">4. workflow</a></li>
-<li><a href="#org3590867">5. cmd args</a></li>
-<li><a href="#orge66dd71">6. range</a></li>
-<li><a href="#orgb3afadf">7. commands</a>
+<li><a href="#orga46d724">2. usage</a></li>
+<li><a href="#org1bc2d2d">3. concepts</a></li>
+<li><a href="#org291a813">4. workflow</a></li>
+<li><a href="#org365776a">5. cmd args</a></li>
+<li><a href="#org793cc53">6. range</a></li>
+<li><a href="#orgcb393af">7. commands</a>
 <ul>
-<li><a href="#orgc0b6f1f">7.1. edit</a></li>
-<li><a href="#org4351247">7.2. output</a></li>
-<li><a href="#org3cc8a07">7.3. flow control</a></li>
+<li><a href="#org3b78b40">7.1. edit</a></li>
+<li><a href="#orgaa3b2bf">7.2. output</a></li>
+<li><a href="#org102f181">7.3. flow control</a></li>
 </ul>
 </li>
-<li><a href="#org0e6852d">8. examples</a></li>
+<li><a href="#org7880a31">8. examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6149f13" class="outline-2">
-<h2 id="org6149f13"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orga5b1818" class="outline-2">
+<h2 id="orga5b1818"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The sed version on Mac OS and GNU Linux are different.
@@ -287,8 +298,8 @@ $<span style="color: #268bd2;">SED</span> -E -e <span style="color: #2aa198;">"4
 </div>
 </div>
 
-<div id="outline-container-org745600b" class="outline-3">
-<h3 id="org745600b"><span class="section-number-3">1.1</span> About the regular expression version</h3>
+<div id="outline-container-org60f4b78" class="outline-3">
+<h3 id="org60f4b78"><span class="section-number-3">1.1</span> About the regular expression version</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <code>-E</code> will enable extra features, such as:
@@ -308,8 +319,8 @@ There's no <code>\d</code>, so use <code>[0-9]</code> instead. The man page says
 </div>
 </div>
 
-<div id="outline-container-org401e2c2" class="outline-2">
-<h2 id="org401e2c2"><span class="section-number-2">2</span> usage</h2>
+<div id="outline-container-orga46d724" class="outline-2">
+<h2 id="orga46d724"><span class="section-number-2">2</span> usage</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 in shell script
@@ -323,8 +334,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-org7780d68" class="outline-2">
-<h2 id="org7780d68"><span class="section-number-2">3</span> concepts</h2>
+<div id="outline-container-org1bc2d2d" class="outline-2">
+<h2 id="org1bc2d2d"><span class="section-number-2">3</span> concepts</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>input</li>
@@ -335,8 +346,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-org0324255" class="outline-2">
-<h2 id="org0324255"><span class="section-number-2">4</span> workflow</h2>
+<div id="outline-container-org291a813" class="outline-2">
+<h2 id="org291a813"><span class="section-number-2">4</span> workflow</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>copy a line from input(exclude the tailing newline) into pattern buffer</li>
@@ -346,8 +357,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-org3590867" class="outline-2">
-<h2 id="org3590867"><span class="section-number-2">5</span> cmd args</h2>
+<div id="outline-container-org365776a" class="outline-2">
+<h2 id="org365776a"><span class="section-number-2">5</span> cmd args</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>-n: by default each line of input is echoed to the standard output after all of the commands have been applied to it. The -n option suppresses this behavior</li>
@@ -357,8 +368,8 @@ in shell script
 </div>
 </div>
 
-<div id="outline-container-orge66dd71" class="outline-2">
-<h2 id="orge66dd71"><span class="section-number-2">6</span> range</h2>
+<div id="outline-container-org793cc53" class="outline-2">
+<h2 id="org793cc53"><span class="section-number-2">6</span> range</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 sed will only apply command for the lines in the specified range.
@@ -374,11 +385,11 @@ sed <span style="color: #2aa198;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-orgb3afadf" class="outline-2">
-<h2 id="orgb3afadf"><span class="section-number-2">7</span> commands</h2>
+<div id="outline-container-orgcb393af" class="outline-2">
+<h2 id="orgcb393af"><span class="section-number-2">7</span> commands</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orgc0b6f1f" class="outline-3">
-<h3 id="orgc0b6f1f"><span class="section-number-3">7.1</span> edit</h3>
+</div><div id="outline-container-org3b78b40" class="outline-3">
+<h3 id="org3b78b40"><span class="section-number-3">7.1</span> edit</h3>
 <div class="outline-text-3" id="text-7-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -442,8 +453,8 @@ sed <span style="color: #2aa198;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-org4351247" class="outline-3">
-<h3 id="org4351247"><span class="section-number-3">7.2</span> output</h3>
+<div id="outline-container-orgaa3b2bf" class="outline-3">
+<h3 id="orgaa3b2bf"><span class="section-number-3">7.2</span> output</h3>
 <div class="outline-text-3" id="text-7-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -507,8 +518,8 @@ sed <span style="color: #2aa198;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-org3cc8a07" class="outline-3">
-<h3 id="org3cc8a07"><span class="section-number-3">7.3</span> flow control</h3>
+<div id="outline-container-org102f181" class="outline-3">
+<h3 id="org102f181"><span class="section-number-3">7.3</span> flow control</h3>
 <div class="outline-text-3" id="text-7-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -561,8 +572,8 @@ sed <span style="color: #2aa198;">'/start/,/stop/ s/#.*//'</span> <span style="c
 </div>
 </div>
 
-<div id="outline-container-org0e6852d" class="outline-2">
-<h2 id="org0e6852d"><span class="section-number-2">8</span> examples</h2>
+<div id="outline-container-org7880a31" class="outline-2">
+<h2 id="org7880a31"><span class="section-number-2">8</span> examples</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 print
@@ -617,7 +628,7 @@ sed <span style="color: #2aa198;">'1,/^$/ d'</span> <span style="color: #586e75;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-22 Wed 02:22</p>
+<p class="date">Created: 2017-02-22 Wed 16:12</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
