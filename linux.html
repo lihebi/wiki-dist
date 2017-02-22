@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-17 Fri 17:41 -->
+<!-- 2017-02-21 Tue 22:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux</title>
@@ -183,31 +183,19 @@
 a:visited {color: red;}
 </style>
 <style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #839496;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
 <style type="text/css">
  pre[class*="src-"]:before {color: black;}</style>
 <style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #839496;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
 <style type="text/css">
  pre[class*="src-"]:before {color: black;}</style>
 <style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre[class*="src-"]:before {color: black;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
-<style type="text/css">
- code {background-color: lightgrey;}</style>
-<style type="text/css">
- pre[class*="src-"]:before {color: black;}</style>
-<style type="text/css">
- pre.src {background-color: #01331c; color: #F8F8F2;}</style>
+ pre.src {background-color: #01331c; color: #839496;}</style>
 <style type="text/css">
  code {background-color: lightgrey;}</style>
 <style type="text/css">
@@ -299,6 +287,11 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgb1f0f02">12. Remove viewer</a></li>
+<li><a href="#org73e1a9a">13. File Management</a>
+<ul>
+<li><a href="#orgec0540e">13.1. Swap File</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -326,6 +319,7 @@ One of the situation I encountered is the <code>xsession-errors</code> file is m
 <dt><code>iostat</code></dt><dd>to monitor the IO usage. (from <code>sysstat</code> package)</dd>
 <dt><code>id</code></dt><dd>show the group information of current user</dd>
 <dt><code>dmesg</code></dt><dd>kernel log</dd>
+<dt><code>/proc/cpuinfo</code></dt><dd>the file describing CPU</dd>
 </dl>
 </div>
 </div>
@@ -678,10 +672,52 @@ the command to connect to the .vv file: <code>remove-viewer console.vv</code>.
 </p>
 </div>
 </div>
+
+
+<div id="outline-container-org73e1a9a" class="outline-2">
+<h2 id="org73e1a9a"><span class="section-number-2">13</span> File Management</h2>
+<div class="outline-text-2" id="text-13">
+</div><div id="outline-container-orgec0540e" class="outline-3">
+<h3 id="orgec0540e"><span class="section-number-3">13.1</span> Swap File</h3>
+<div class="outline-text-3" id="text-13-1">
+<p>
+A swap file can also be used as swap memory. When doing linking, the
+<code>ld</code> might fail because of lack of memory.
+</p>
+
+<p>
+Check the current swap:
+</p>
+<pre class="example">
+swapon -s
+</pre>
+
+<p>
+Create swap file:
+</p>
+<pre class="example">
+dd if=/dev/zero of=/path/to/extraswap bs=1M count=4096
+mkswap /path/to/extraswap
+</pre>
+
+<pre class="example">
+swapon /path/to/extraswap
+swapoff /path/to/extraswap
+</pre>
+
+<p>
+This will not be in effect after reboot. To automatically swap it on, in <code>/etc/fstab</code>
+</p>
+<pre class="example">
+/path/to/extraswap none swap sw 0 0
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-17 Fri 17:41</p>
+<p class="date">Created: 2017-02-21 Tue 22:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
