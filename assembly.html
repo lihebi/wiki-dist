@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-22 Wed 21:12 -->
+<!-- 2017-02-24 Fri 12:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assembly</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style>
+<style type="text/css">
 a:visited {color: red;}
 </style>
 <link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
@@ -237,56 +237,56 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2506c65">1. registers</a></li>
-<li><a href="#org9990082">2. Memory and Address</a>
+<li><a href="#org197d458">1. registers</a></li>
+<li><a href="#orgac0f6d6">2. Memory and Address</a>
 <ul>
-<li><a href="#org0fce025">2.1. static data region</a></li>
-<li><a href="#org0e4144e">2.2. move operation and address calculate</a></li>
-<li><a href="#org9033a8f">2.3. Size Guessing</a></li>
+<li><a href="#orgb272e27">2.1. static data region</a></li>
+<li><a href="#org07e9e5a">2.2. move operation and address calculate</a></li>
+<li><a href="#org871936f">2.3. Size Guessing</a></li>
 </ul>
 </li>
-<li><a href="#orgdfce549">3. Instructions</a>
+<li><a href="#orgcb7e7d5">3. Instructions</a>
 <ul>
-<li><a href="#org2036fb0">3.1. Data Movement</a>
+<li><a href="#org4860abf">3.1. Data Movement</a>
 <ul>
-<li><a href="#org08a0fc7">3.1.1. Move</a></li>
-<li><a href="#org8b17b30">3.1.2. Push</a></li>
-<li><a href="#orgbc48beb">3.1.3. Pop</a></li>
+<li><a href="#org5a08a5b">3.1.1. Move</a></li>
+<li><a href="#org7994244">3.1.2. Push</a></li>
+<li><a href="#org76d0e1a">3.1.3. Pop</a></li>
 </ul>
 </li>
-<li><a href="#org30de702">3.2. lea — Load effective address</a></li>
-<li><a href="#orgf36abe3">3.3. Arithmetic and Logic</a>
+<li><a href="#orgd569b27">3.2. lea — Load effective address</a></li>
+<li><a href="#org6fcb07c">3.3. Arithmetic and Logic</a>
 <ul>
-<li><a href="#orga2f1495">3.3.1. Add</a></li>
-<li><a href="#orga7d097a">3.3.2. Sub</a></li>
-<li><a href="#org9bfdde7">3.3.3. inc, dec — Increment, Decrement</a></li>
-<li><a href="#org04a5927">3.3.4. imul — Integer Multiplication</a></li>
-<li><a href="#org8a87ff6">3.3.5. idiv — Integer Division</a></li>
-<li><a href="#orgb254add">3.3.6. and, or, xor — Bitwise logical and, or and exclusive or</a></li>
-<li><a href="#org7738659">3.3.7. not — Bitwise Logical Not</a></li>
-<li><a href="#org55f6c85">3.3.8. neg — Negate</a></li>
+<li><a href="#org04c5e66">3.3.1. Add</a></li>
+<li><a href="#org065d924">3.3.2. Sub</a></li>
+<li><a href="#org546ee45">3.3.3. inc, dec — Increment, Decrement</a></li>
+<li><a href="#orgfcf1e73">3.3.4. imul — Integer Multiplication</a></li>
+<li><a href="#orga70ed1a">3.3.5. idiv — Integer Division</a></li>
+<li><a href="#org170bf2d">3.3.6. and, or, xor — Bitwise logical and, or and exclusive or</a></li>
+<li><a href="#orgfc8faa4">3.3.7. not — Bitwise Logical Not</a></li>
+<li><a href="#org2e63bf2">3.3.8. neg — Negate</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7bf34db">4. <code>one's complement</code>: not. bitwise negate all bits.</a></li>
-<li><a href="#org3378e99">5. <code>two's complement</code>: 0-x. That is one's complement+1.</a>
+<li><a href="#org9583016">4. <code>one's complement</code>: not. bitwise negate all bits.</a></li>
+<li><a href="#org0b50128">5. <code>two's complement</code>: 0-x. That is one's complement+1.</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org5946b61">5.0.1. shl, shr — Shift Left, Shift Right</a></li>
+<li><a href="#org5788e69">5.0.1. shl, shr — Shift Left, Shift Right</a></li>
 </ul>
 </li>
-<li><a href="#org038a16c">5.1. Control Flow Instructions</a>
+<li><a href="#org884614e">5.1. Control Flow Instructions</a>
 <ul>
-<li><a href="#org28b9c92">5.1.1. Jump</a></li>
-<li><a href="#org19c70d8">5.1.2. jcondition — Conditional Jump</a></li>
-<li><a href="#org104a616">5.1.3. cmp</a></li>
-<li><a href="#org14cf49b">5.1.4. call, ret — Subroutine call and return</a></li>
+<li><a href="#org665ff91">5.1.1. Jump</a></li>
+<li><a href="#orgc38e677">5.1.2. jcondition — Conditional Jump</a></li>
+<li><a href="#org53fb491">5.1.3. cmp</a></li>
+<li><a href="#org99e602c">5.1.4. call, ret — Subroutine call and return</a></li>
 </ul>
 </li>
-<li><a href="#org3e65705">5.2. Caller Rules</a></li>
-<li><a href="#org4b6140c">5.3. Callee Rules</a></li>
+<li><a href="#org4661478">5.2. Caller Rules</a></li>
+<li><a href="#org7cc9ac5">5.3. Callee Rules</a></li>
 </ul>
 </li>
 </ul>
@@ -296,8 +296,8 @@ for the JavaScript code in this tag.
 Reference: <a href="http://www.cs.virginia.edu/~evans/cs216/guides/x86.html">http://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a>
 </p>
 
-<div id="outline-container-org2506c65" class="outline-2">
-<h2 id="org2506c65"><span class="section-number-2">1</span> registers</h2>
+<div id="outline-container-org197d458" class="outline-2">
+<h2 id="org197d458"><span class="section-number-2">1</span> registers</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><code>EAX</code>: used to be called the accumulator since it was used by a number of arithmetic operations</li>
@@ -314,11 +314,11 @@ For the EAX, EBX, ECX, and EDX registers, subsections may be used. For example, 
 </div>
 </div>
 
-<div id="outline-container-org9990082" class="outline-2">
-<h2 id="org9990082"><span class="section-number-2">2</span> Memory and Address</h2>
+<div id="outline-container-orgac0f6d6" class="outline-2">
+<h2 id="orgac0f6d6"><span class="section-number-2">2</span> Memory and Address</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org0fce025" class="outline-3">
-<h3 id="org0fce025"><span class="section-number-3">2.1</span> static data region</h3>
+</div><div id="outline-container-orgb272e27" class="outline-3">
+<h3 id="orgb272e27"><span class="section-number-3">2.1</span> static data region</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 static data is global variables.
@@ -344,8 +344,8 @@ static data is global variables.
 </div>
 </div>
 
-<div id="outline-container-org0e4144e" class="outline-3">
-<h3 id="org0e4144e"><span class="section-number-3">2.2</span> move operation and address calculate</h3>
+<div id="outline-container-org07e9e5a" class="outline-3">
+<h3 id="org07e9e5a"><span class="section-number-3">2.2</span> move operation and address calculate</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 the following are valid
@@ -372,8 +372,8 @@ the following are INVALID
 </div>
 </div>
 
-<div id="outline-container-org9033a8f" class="outline-3">
-<h3 id="org9033a8f"><span class="section-number-3">2.3</span> Size Guessing</h3>
+<div id="outline-container-org871936f" class="outline-3">
+<h3 id="org871936f"><span class="section-number-3">2.3</span> Size Guessing</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 In general, the intended size of the of the data item at a given memory address can be inferred from the assembly code instruction in which it is referenced.
@@ -397,8 +397,8 @@ However, <code>mov [ebx], 2</code>, we don't know to move <code>2</code> into 1,
 </div>
 </div>
 
-<div id="outline-container-orgdfce549" class="outline-2">
-<h2 id="orgdfce549"><span class="section-number-2">3</span> Instructions</h2>
+<div id="outline-container-orgcb7e7d5" class="outline-2">
+<h2 id="orgcb7e7d5"><span class="section-number-2">3</span> Instructions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Notations:
@@ -417,11 +417,11 @@ Notations:
 </ul>
 </div>
 
-<div id="outline-container-org2036fb0" class="outline-3">
-<h3 id="org2036fb0"><span class="section-number-3">3.1</span> Data Movement</h3>
+<div id="outline-container-org4860abf" class="outline-3">
+<h3 id="org4860abf"><span class="section-number-3">3.1</span> Data Movement</h3>
 <div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-org08a0fc7" class="outline-4">
-<h4 id="org08a0fc7"><span class="section-number-4">3.1.1</span> Move</h4>
+</div><div id="outline-container-org5a08a5b" class="outline-4">
+<h4 id="org5a08a5b"><span class="section-number-4">3.1.1</span> Move</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Opcodes: 88, 89, 8A, 8B, 8C, 8E, &#x2026;
@@ -460,8 +460,8 @@ example:
 </div>
 </div>
 
-<div id="outline-container-org8b17b30" class="outline-4">
-<h4 id="org8b17b30"><span class="section-number-4">3.1.2</span> Push</h4>
+<div id="outline-container-org7994244" class="outline-4">
+<h4 id="org7994244"><span class="section-number-4">3.1.2</span> Push</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Opcodes: FF, 89, 8A, 8B, 8C, 8E, &#x2026;
@@ -498,8 +498,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-orgbc48beb" class="outline-4">
-<h4 id="orgbc48beb"><span class="section-number-4">3.1.3</span> Pop</h4>
+<div id="outline-container-org76d0e1a" class="outline-4">
+<h4 id="org76d0e1a"><span class="section-number-4">3.1.3</span> Pop</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 It first moves the 4 bytes located at memory location [SP] into the specified register or memory location, and then increments SP by 4.
@@ -528,8 +528,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org30de702" class="outline-3">
-<h3 id="org30de702"><span class="section-number-3">3.2</span> lea — Load effective address</h3>
+<div id="outline-container-orgd569b27" class="outline-3">
+<h3 id="orgd569b27"><span class="section-number-3">3.2</span> lea — Load effective address</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 The lea instruction places the address specified by its second operand into the register specified by its first operand.
@@ -564,11 +564,11 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-orgf36abe3" class="outline-3">
-<h3 id="orgf36abe3"><span class="section-number-3">3.3</span> Arithmetic and Logic</h3>
+<div id="outline-container-org6fcb07c" class="outline-3">
+<h3 id="org6fcb07c"><span class="section-number-3">3.3</span> Arithmetic and Logic</h3>
 <div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-orga2f1495" class="outline-4">
-<h4 id="orga2f1495"><span class="section-number-4">3.3.1</span> Add</h4>
+</div><div id="outline-container-org04c5e66" class="outline-4">
+<h4 id="org04c5e66"><span class="section-number-4">3.3.1</span> Add</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 adds together its two operands, storing the result in its first operand
@@ -603,8 +603,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-orga7d097a" class="outline-4">
-<h4 id="orga7d097a"><span class="section-number-4">3.3.2</span> Sub</h4>
+<div id="outline-container-org065d924" class="outline-4">
+<h4 id="org065d924"><span class="section-number-4">3.3.2</span> Sub</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
 syntax:
@@ -631,8 +631,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org9bfdde7" class="outline-4">
-<h4 id="org9bfdde7"><span class="section-number-4">3.3.3</span> inc, dec — Increment, Decrement</h4>
+<div id="outline-container-org546ee45" class="outline-4">
+<h4 id="org546ee45"><span class="section-number-4">3.3.3</span> inc, dec — Increment, Decrement</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 syntax:
@@ -658,8 +658,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org04a5927" class="outline-4">
-<h4 id="org04a5927"><span class="section-number-4">3.3.4</span> imul — Integer Multiplication</h4>
+<div id="outline-container-orgfcf1e73" class="outline-4">
+<h4 id="orgfcf1e73"><span class="section-number-4">3.3.4</span> imul — Integer Multiplication</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <p>
 The two-operand form multiplies its two operands together and stores the result in the first operand. The result (i.e. first) operand must be a register.
@@ -693,8 +693,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org8a87ff6" class="outline-4">
-<h4 id="org8a87ff6"><span class="section-number-4">3.3.5</span> idiv — Integer Division</h4>
+<div id="outline-container-orga70ed1a" class="outline-4">
+<h4 id="orga70ed1a"><span class="section-number-4">3.3.5</span> idiv — Integer Division</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <p>
 The idiv instruction divides the contents of the 64 bit integer EDX:EAX (constructed by viewing EDX as the most significant four bytes and EAX as the least significant four bytes) by the specified operand value. The quotient result of the division is stored into EAX, while the remainder is placed in EDX.
@@ -722,8 +722,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-orgb254add" class="outline-4">
-<h4 id="orgb254add"><span class="section-number-4">3.3.6</span> and, or, xor — Bitwise logical and, or and exclusive or</h4>
+<div id="outline-container-org170bf2d" class="outline-4">
+<h4 id="org170bf2d"><span class="section-number-4">3.3.6</span> and, or, xor — Bitwise logical and, or and exclusive or</h4>
 <div class="outline-text-4" id="text-3-3-6">
 <p>
 syntax:
@@ -760,8 +760,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org7738659" class="outline-4">
-<h4 id="org7738659"><span class="section-number-4">3.3.7</span> not — Bitwise Logical Not</h4>
+<div id="outline-container-orgfc8faa4" class="outline-4">
+<h4 id="orgfc8faa4"><span class="section-number-4">3.3.7</span> not — Bitwise Logical Not</h4>
 <div class="outline-text-4" id="text-3-3-7">
 <p>
 Logically negates the operand contents (that is, flips all bit values in the operand).
@@ -788,8 +788,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org55f6c85" class="outline-4">
-<h4 id="org55f6c85"><span class="section-number-4">3.3.8</span> neg — Negate</h4>
+<div id="outline-container-org2e63bf2" class="outline-4">
+<h4 id="org2e63bf2"><span class="section-number-4">3.3.8</span> neg — Negate</h4>
 <div class="outline-text-4" id="text-3-3-8">
 <p>
 Performs the two's complement negation of the operand contents.
@@ -799,11 +799,11 @@ Performs the two's complement negation of the operand contents.
 </div>
 </div>
 
-<div id="outline-container-org7bf34db" class="outline-2">
-<h2 id="org7bf34db"><span class="section-number-2">4</span> <code>one's complement</code>: not. bitwise negate all bits.</h2>
+<div id="outline-container-org9583016" class="outline-2">
+<h2 id="org9583016"><span class="section-number-2">4</span> <code>one's complement</code>: not. bitwise negate all bits.</h2>
 </div>
-<div id="outline-container-org3378e99" class="outline-2">
-<h2 id="org3378e99"><span class="section-number-2">5</span> <code>two's complement</code>: 0-x. That is one's complement+1.</h2>
+<div id="outline-container-org0b50128" class="outline-2">
+<h2 id="org0b50128"><span class="section-number-2">5</span> <code>two's complement</code>: 0-x. That is one's complement+1.</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 syntax:
@@ -825,8 +825,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org5946b61" class="outline-4">
-<h4 id="org5946b61"><span class="section-number-4">5.0.1</span> shl, shr — Shift Left, Shift Right</h4>
+<div id="outline-container-org5788e69" class="outline-4">
+<h4 id="org5788e69"><span class="section-number-4">5.0.1</span> shl, shr — Shift Left, Shift Right</h4>
 <div class="outline-text-4" id="text-5-0-1">
 <p>
 shift the bits in their first operand's contents left and right, padding the resulting empty bit positions with zeros. The shifted operand can be shifted up to 31 places.
@@ -865,8 +865,8 @@ examples:
 </div>
 </div>
 
-<div id="outline-container-org038a16c" class="outline-3">
-<h3 id="org038a16c"><span class="section-number-3">5.1</span> Control Flow Instructions</h3>
+<div id="outline-container-org884614e" class="outline-3">
+<h3 id="org884614e"><span class="section-number-3">5.1</span> Control Flow Instructions</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 notation:
@@ -884,8 +884,8 @@ notation:
 </div>
 </div>
 
-<div id="outline-container-org28b9c92" class="outline-4">
-<h4 id="org28b9c92"><span class="section-number-4">5.1.1</span> Jump</h4>
+<div id="outline-container-org665ff91" class="outline-4">
+<h4 id="org665ff91"><span class="section-number-4">5.1.1</span> Jump</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 syntax:
@@ -900,8 +900,8 @@ syntax:
 </div>
 </div>
 
-<div id="outline-container-org19c70d8" class="outline-4">
-<h4 id="org19c70d8"><span class="section-number-4">5.1.2</span> jcondition — Conditional Jump</h4>
+<div id="outline-container-orgc38e677" class="outline-4">
+<h4 id="orgc38e677"><span class="section-number-4">5.1.2</span> jcondition — Conditional Jump</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 syntax:
@@ -930,8 +930,8 @@ example:
 </div>
 </div>
 
-<div id="outline-container-org104a616" class="outline-4">
-<h4 id="org104a616"><span class="section-number-4">5.1.3</span> cmp</h4>
+<div id="outline-container-org53fb491" class="outline-4">
+<h4 id="org53fb491"><span class="section-number-4">5.1.3</span> cmp</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 This instruction is equivalent to the sub instruction, except the result of the subtraction is discarded instead of replacing the first operand.
@@ -961,8 +961,8 @@ example:
 </div>
 </div>
 
-<div id="outline-container-org14cf49b" class="outline-4">
-<h4 id="org14cf49b"><span class="section-number-4">5.1.4</span> call, ret — Subroutine call and return</h4>
+<div id="outline-container-org99e602c" class="outline-4">
+<h4 id="org99e602c"><span class="section-number-4">5.1.4</span> call, ret — Subroutine call and return</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <p>
 The call instruction first pushes the current code location onto the hardware supported stack in memory (see the push instruction for details), and then performs an unconditional jump to the code location indicated by the label operand. Unlike the simple jump instructions, the call instruction saves the location to return to when the subroutine completes.
@@ -1000,8 +1000,8 @@ Stack during Subroutine Call
 </div>
 </div>
 
-<div id="outline-container-org3e65705" class="outline-3">
-<h3 id="org3e65705"><span class="section-number-3">5.2</span> Caller Rules</h3>
+<div id="outline-container-org4661478" class="outline-3">
+<h3 id="org4661478"><span class="section-number-3">5.2</span> Caller Rules</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Before call:
@@ -1051,8 +1051,8 @@ example:
 </div>
 </div>
 
-<div id="outline-container-org4b6140c" class="outline-3">
-<h3 id="org4b6140c"><span class="section-number-3">5.3</span> Callee Rules</h3>
+<div id="outline-container-org7cc9ac5" class="outline-3">
+<h3 id="org7cc9ac5"><span class="section-number-3">5.3</span> Callee Rules</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Prologue:
@@ -1140,7 +1140,7 @@ So <code>[ebp+8]</code>, <code>[ebp+12]</code>, <code>[ebp+16]</code> represent 
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-22 Wed 21:12</p>
+<p class="date">Created: 2017-02-24 Fri 12:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

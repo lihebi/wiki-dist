@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-22 Wed 21:12 -->
+<!-- 2017-02-24 Fri 12:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dynamic Programming</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style>
+<style type="text/css">
 a:visited {color: red;}
 </style>
 <link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
@@ -237,28 +237,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8028eb3">1. One dimension</a>
+<li><a href="#org16e3834">1. One dimension</a>
 <ul>
-<li><a href="#org4e9f4cd">1.1. Define sub-problems</a></li>
-<li><a href="#orgd589ed4">1.2. Recurrence formula</a></li>
+<li><a href="#orgac1ca21">1.1. Define sub-problems</a></li>
+<li><a href="#org7e91ebe">1.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgff3be71">2. Two Dimensions</a>
+<li><a href="#orgb2584b4">2. Two Dimensions</a>
 <ul>
-<li><a href="#orgc176ad3">2.1. Define sub-problems</a></li>
-<li><a href="#orgc8c7cc8">2.2. Recurrence formula</a></li>
+<li><a href="#org5644ced">2.1. Define sub-problems</a></li>
+<li><a href="#orgd800d03">2.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgd7deaa6">3. Interval DP</a>
+<li><a href="#orga4ca59b">3. Interval DP</a>
 <ul>
-<li><a href="#org097cfb4">3.1. Define sub-problem</a></li>
-<li><a href="#org1be86f6">3.2. Recurrence formula</a></li>
+<li><a href="#org7c7c41b">3.1. Define sub-problem</a></li>
+<li><a href="#orgbf43f5e">3.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#org25f4b87">4. Tree DP</a>
+<li><a href="#org0ddc9e5">4. Tree DP</a>
 <ul>
-<li><a href="#orgf43d8b3">4.1. Define</a></li>
-<li><a href="#org9a2dbbd">4.2. Recurrence</a></li>
+<li><a href="#org27bd788">4.1. Define</a></li>
+<li><a href="#org1be93e1">4.2. Recurrence</a></li>
 </ul>
 </li>
 </ul>
@@ -268,16 +268,16 @@ for the JavaScript code in this tag.
 Solve problem by breaking down into simpler sub-problems.
 </p>
 
-<div id="outline-container-org8028eb3" class="outline-2">
-<h2 id="org8028eb3"><span class="section-number-2">1</span> One dimension</h2>
+<div id="outline-container-org16e3834" class="outline-2">
+<h2 id="org16e3834"><span class="section-number-2">1</span> One dimension</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given n, find the number of different ways to write n as the sum of 1,3,4
 </p>
 </div>
 
-<div id="outline-container-org4e9f4cd" class="outline-3">
-<h3 id="org4e9f4cd"><span class="section-number-3">1.1</span> Define sub-problems</h3>
+<div id="outline-container-orgac1ca21" class="outline-3">
+<h3 id="orgac1ca21"><span class="section-number-3">1.1</span> Define sub-problems</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
@@ -285,8 +285,8 @@ D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
 </div>
 </div>
 
-<div id="outline-container-orgd589ed4" class="outline-3">
-<h3 id="orgd589ed4"><span class="section-number-3">1.2</span> Recurrence formula</h3>
+<div id="outline-container-org7e91ebe" class="outline-3">
+<h3 id="org7e91ebe"><span class="section-number-3">1.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
@@ -295,16 +295,16 @@ D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
 </div>
 </div>
 
-<div id="outline-container-orgff3be71" class="outline-2">
-<h2 id="orgff3be71"><span class="section-number-2">2</span> Two Dimensions</h2>
+<div id="outline-container-orgb2584b4" class="outline-2">
+<h2 id="orgb2584b4"><span class="section-number-2">2</span> Two Dimensions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Given two string x and y, find the length of longest common sub-sequence.
 </p>
 </div>
 
-<div id="outline-container-orgc176ad3" class="outline-3">
-<h3 id="orgc176ad3"><span class="section-number-3">2.1</span> Define sub-problems</h3>
+<div id="outline-container-org5644ced" class="outline-3">
+<h3 id="org5644ced"><span class="section-number-3">2.1</span> Define sub-problems</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
@@ -312,8 +312,8 @@ D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
 </div>
 </div>
 
-<div id="outline-container-orgc8c7cc8" class="outline-3">
-<h3 id="orgc8c7cc8"><span class="section-number-3">2.2</span> Recurrence formula</h3>
+<div id="outline-container-orgd800d03" class="outline-3">
+<h3 id="orgd800d03"><span class="section-number-3">2.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 D<sub>ij</sub> =
@@ -326,8 +326,8 @@ D<sub>ij</sub> =
 </div>
 </div>
 
-<div id="outline-container-orgd7deaa6" class="outline-2">
-<h2 id="orgd7deaa6"><span class="section-number-2">3</span> Interval DP</h2>
+<div id="outline-container-orga4ca59b" class="outline-2">
+<h2 id="orga4ca59b"><span class="section-number-2">3</span> Interval DP</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Given a string x=x<sub>1..n</sub>,
@@ -335,8 +335,8 @@ find the minimum number of characters that need to be inserted to make it a pali
 </p>
 </div>
 
-<div id="outline-container-org097cfb4" class="outline-3">
-<h3 id="org097cfb4"><span class="section-number-3">3.1</span> Define sub-problem</h3>
+<div id="outline-container-org7c7c41b" class="outline-3">
+<h3 id="org7c7c41b"><span class="section-number-3">3.1</span> Define sub-problem</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 D<sub>i,j</sub> be the minimum number of characters.
@@ -344,8 +344,8 @@ D<sub>i,j</sub> be the minimum number of characters.
 </div>
 </div>
 
-<div id="outline-container-org1be86f6" class="outline-3">
-<h3 id="org1be86f6"><span class="section-number-3">3.2</span> Recurrence formula</h3>
+<div id="outline-container-orgbf43f5e" class="outline-3">
+<h3 id="orgbf43f5e"><span class="section-number-3">3.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 say y<sub>1..k</sub> is the palindrome for x<sub>i..j</sub>,
@@ -363,16 +363,16 @@ D<sub>ij</sub> =
 </div>
 </div>
 
-<div id="outline-container-org25f4b87" class="outline-2">
-<h2 id="org25f4b87"><span class="section-number-2">4</span> Tree DP</h2>
+<div id="outline-container-org0ddc9e5" class="outline-2">
+<h2 id="org0ddc9e5"><span class="section-number-2">4</span> Tree DP</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Given a tree, color nodes black as many as possible without coloring two adjacent nodes.
 </p>
 </div>
 
-<div id="outline-container-orgf43d8b3" class="outline-3">
-<h3 id="orgf43d8b3"><span class="section-number-3">4.1</span> Define</h3>
+<div id="outline-container-org27bd788" class="outline-3">
+<h3 id="org27bd788"><span class="section-number-3">4.1</span> Define</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>B(r) as the maximum nodes if the (root) node r is colored black.</li>
@@ -381,8 +381,8 @@ Given a tree, color nodes black as many as possible without coloring two adjacen
 </div>
 </div>
 
-<div id="outline-container-org9a2dbbd" class="outline-3">
-<h3 id="org9a2dbbd"><span class="section-number-3">4.2</span> Recurrence</h3>
+<div id="outline-container-org1be93e1" class="outline-3">
+<h3 id="org1be93e1"><span class="section-number-3">4.2</span> Recurrence</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>B(v) = 1 + &sum;<sub>children</sub> W(c)</li>
@@ -394,7 +394,7 @@ Given a tree, color nodes black as many as possible without coloring two adjacen
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-22 Wed 21:12</p>
+<p class="date">Created: 2017-02-24 Fri 12:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

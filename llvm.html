@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-22 Wed 21:12 -->
+<!-- 2017-02-24 Fri 12:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LLVM</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style>
+<style type="text/css">
 a:visited {color: red;}
 </style>
 <link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
@@ -237,27 +237,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf9a2a22">1. Build and install LLVM system</a></li>
-<li><a href="#org0366aeb">2. try the llvm toolchain</a></li>
-<li><a href="#org106922e">3. Use the framework</a>
+<li><a href="#org26aff6b">1. Build and install LLVM system</a></li>
+<li><a href="#org5d330c8">2. try the llvm toolchain</a></li>
+<li><a href="#orgcd3086d">3. Use the framework</a>
 <ul>
-<li><a href="#org57d92f3">3.1. Project setup</a></li>
-<li><a href="#orgcd8fc1b">3.2. Passes</a>
+<li><a href="#orgcc45ce1">3.1. Project setup</a></li>
+<li><a href="#orgdf26fcc">3.2. Passes</a>
 <ul>
-<li><a href="#org9fb2dc2">3.2.1. Various passes</a></li>
-<li><a href="#orga7dc109">3.2.2. register a pass</a></li>
-<li><a href="#org655add7">3.2.3. Pass Interaction</a></li>
+<li><a href="#orgf4cb997">3.2.1. Various passes</a></li>
+<li><a href="#org3dec69c">3.2.2. register a pass</a></li>
+<li><a href="#orgae8faa8">3.2.3. Pass Interaction</a></li>
 </ul>
 </li>
-<li><a href="#org2eb32cd">3.3. LLVM template</a></li>
-<li><a href="#org32d08fc">3.4. Values</a>
+<li><a href="#org00b138d">3.3. LLVM template</a></li>
+<li><a href="#org9b6107a">3.4. Values</a>
 <ul>
-<li><a href="#org6f2d5f5">3.4.1. Function</a></li>
-<li><a href="#org91eb117">3.4.2. BasicBlock</a></li>
+<li><a href="#org85571a3">3.4.1. Function</a></li>
+<li><a href="#org8a1f4a6">3.4.2. BasicBlock</a></li>
 </ul>
 </li>
-<li><a href="#org00f3acb">3.5. User</a></li>
-<li><a href="#org21f6ae1">3.6. CFG</a></li>
+<li><a href="#org79f251f">3.5. User</a></li>
+<li><a href="#org7e0ebda">3.6. CFG</a></li>
 </ul>
 </li>
 </ul>
@@ -276,8 +276,8 @@ Some useful manuals:
 <li>Pass: <a href="http://llvm.org/docs/WritingAnLLVMPass.html">http://llvm.org/docs/WritingAnLLVMPass.html</a></li>
 <li>Source Level Debugging: <a href="http://llvm.org/docs/SourceLevelDebugging.html">http://llvm.org/docs/SourceLevelDebugging.html</a></li>
 </ul>
-<div id="outline-container-orgf9a2a22" class="outline-2">
-<h2 id="orgf9a2a22"><span class="section-number-2">1</span> Build and install LLVM system</h2>
+<div id="outline-container-org26aff6b" class="outline-2">
+<h2 id="org26aff6b"><span class="section-number-2">1</span> Build and install LLVM system</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-shell">svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
@@ -322,8 +322,8 @@ cmake -G Ninja .. -DLLVM_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release
 </pre>
 </div>
 </div>
-<div id="outline-container-org0366aeb" class="outline-2">
-<h2 id="org0366aeb"><span class="section-number-2">2</span> try the llvm toolchain</h2>
+<div id="outline-container-org5d330c8" class="outline-2">
+<h2 id="org5d330c8"><span class="section-number-2">2</span> try the llvm toolchain</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>clang --help</code></li>
@@ -392,11 +392,11 @@ gcc hello.s -o hello.native
 </div>
 </div>
 
-<div id="outline-container-org106922e" class="outline-2">
-<h2 id="org106922e"><span class="section-number-2">3</span> Use the framework</h2>
+<div id="outline-container-orgcd3086d" class="outline-2">
+<h2 id="orgcd3086d"><span class="section-number-2">3</span> Use the framework</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org57d92f3" class="outline-3">
-<h3 id="org57d92f3"><span class="section-number-3">3.1</span> Project setup</h3>
+</div><div id="outline-container-orgcc45ce1" class="outline-3">
+<h3 id="orgcc45ce1"><span class="section-number-3">3.1</span> Project setup</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 project directory should look like this
@@ -484,11 +484,11 @@ It first load the library
 </div>
 </div>
 
-<div id="outline-container-orgcd8fc1b" class="outline-3">
-<h3 id="orgcd8fc1b"><span class="section-number-3">3.2</span> Passes</h3>
+<div id="outline-container-orgdf26fcc" class="outline-3">
+<h3 id="orgdf26fcc"><span class="section-number-3">3.2</span> Passes</h3>
 <div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-org9fb2dc2" class="outline-4">
-<h4 id="org9fb2dc2"><span class="section-number-4">3.2.1</span> Various passes</h4>
+</div><div id="outline-container-orgf4cb997" class="outline-4">
+<h4 id="orgf4cb997"><span class="section-number-4">3.2.1</span> Various passes</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 All these functions return false indicating they do not modify the code,
@@ -508,8 +508,8 @@ true otherwise.
 </div>
 </div>
 </div>
-<div id="outline-container-orga7dc109" class="outline-4">
-<h4 id="orga7dc109"><span class="section-number-4">3.2.2</span> register a pass</h4>
+<div id="outline-container-org3dec69c" class="outline-4">
+<h4 id="org3dec69c"><span class="section-number-4">3.2.2</span> register a pass</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 The four parameters:
@@ -531,8 +531,8 @@ for example true for dominator tree pass</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org655add7" class="outline-4">
-<h4 id="org655add7"><span class="section-number-4">3.2.3</span> Pass Interaction</h4>
+<div id="outline-container-orgae8faa8" class="outline-4">
+<h4 id="orgae8faa8"><span class="section-number-4">3.2.3</span> Pass Interaction</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 <code>MyPass::getAnalysisUsage</code> will set the required passes.
@@ -563,8 +563,8 @@ In this example, <code>getLoopInfo</code> is a method of <code>LoopInfoWrapperPa
 </div>
 </div>
 
-<div id="outline-container-org2eb32cd" class="outline-3">
-<h3 id="org2eb32cd"><span class="section-number-3">3.3</span> LLVM template</h3>
+<div id="outline-container-org00b138d" class="outline-3">
+<h3 id="org00b138d"><span class="section-number-3">3.3</span> LLVM template</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <code>isa</code>:
@@ -590,11 +590,11 @@ In this example, <code>getLoopInfo</code> is a method of <code>LoopInfoWrapperPa
 </div>
 </div>
 </div>
-<div id="outline-container-org32d08fc" class="outline-3">
-<h3 id="org32d08fc"><span class="section-number-3">3.4</span> Values</h3>
+<div id="outline-container-org9b6107a" class="outline-3">
+<h3 id="org9b6107a"><span class="section-number-3">3.4</span> Values</h3>
 <div class="outline-text-3" id="text-3-4">
-</div><div id="outline-container-org6f2d5f5" class="outline-4">
-<h4 id="org6f2d5f5"><span class="section-number-4">3.4.1</span> Function</h4>
+</div><div id="outline-container-org85571a3" class="outline-4">
+<h4 id="org85571a3"><span class="section-number-4">3.4.1</span> Function</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 Iterating basic blocks:
@@ -620,8 +620,8 @@ Iterating instructions directly:
 </div>
 
 
-<div id="outline-container-org91eb117" class="outline-4">
-<h4 id="org91eb117"><span class="section-number-4">3.4.2</span> BasicBlock</h4>
+<div id="outline-container-org8a1f4a6" class="outline-4">
+<h4 id="org8a1f4a6"><span class="section-number-4">3.4.2</span> BasicBlock</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #586e75;">// </span><span style="color: #586e75;">blk is a pointer to a BasicBlock instance</span>
@@ -634,8 +634,8 @@ Iterating instructions directly:
 </div>
 </div>
 
-<div id="outline-container-org00f3acb" class="outline-3">
-<h3 id="org00f3acb"><span class="section-number-3">3.5</span> User</h3>
+<div id="outline-container-org79f251f" class="outline-3">
+<h3 id="org79f251f"><span class="section-number-3">3.5</span> User</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Get users of a value:
@@ -662,8 +662,8 @@ Get used values of an instruction:
 </div>
 </div>
 
-<div id="outline-container-org21f6ae1" class="outline-3">
-<h3 id="org21f6ae1"><span class="section-number-3">3.6</span> CFG</h3>
+<div id="outline-container-org7e0ebda" class="outline-3">
+<h3 id="org7e0ebda"><span class="section-number-3">3.6</span> CFG</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 CFG consists of basic blocks.
@@ -684,7 +684,7 @@ CFG consists of basic blocks.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-22 Wed 21:12</p>
+<p class="date">Created: 2017-02-24 Fri 12:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
