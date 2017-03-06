@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-05 Sun 18:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode</title>
@@ -242,6 +242,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgcbc66b8">2.1. 1 [Easy] Two Sum</a></li>
 <li><a href="#org07ea3e2">2.2. 128 [Hard] Longest Consecutive Sequence</a></li>
+<li><a href="#org385a008">2.3. 448 [Easy] Find All Numbers Disappeared in an Array</a></li>
 </ul>
 </li>
 <li><a href="#org1ae244e">3. Some snippet</a></li>
@@ -369,10 +370,40 @@ Record only the border value.
 </div>
 </div>
 </div>
+
+<div id="outline-container-org385a008" class="outline-3">
+<h3 id="org385a008"><span class="section-number-3">2.3</span> 448 [Easy] Find All Numbers Disappeared in an Array</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">Solution</span>(<span style="color: #839496; font-weight: bold;">object</span>):
+<span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268bd2;">findDisappearedNumbers</span>(<span style="color: #859900; font-weight: bold;">self</span>, nums):
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #2aa198;">"""</span>
+<span style="color: #2aa198; background-color: #073642;"> </span><span style="color: #2aa198;">   </span><span style="color: #2aa198; background-color: #073642;"> </span><span style="color: #2aa198;">   :type nums: List[int]</span>
+<span style="color: #2aa198; background-color: #073642;"> </span><span style="color: #2aa198;">   </span><span style="color: #2aa198; background-color: #073642;"> </span><span style="color: #2aa198;">   :rtype: List[int]</span>
+<span style="color: #2aa198; background-color: #073642;"> </span><span style="color: #2aa198;">   </span><span style="color: #2aa198; background-color: #073642;"> </span><span style="color: #2aa198;">   """</span>
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">ret</span>=[]
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">i</span> = 0
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">while</span> i &lt; <span style="color: #839496; font-weight: bold;">len</span>(nums):
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #586e75;"># </span><span style="color: #586e75;">tmp = nums[i]</span>
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #586e75;"># </span><span style="color: #586e75;">print(nums)</span>
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">if</span> nums[i] &gt; 0:
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">pos</span>=nums[i]-1
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">if</span> nums[nums[i]-1] != 0:
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">nums</span>[i] = nums[pos]
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">nums</span>[pos] = 0
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">else</span>:
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">nums</span>[i] = -1
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">else</span>:
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #268bd2;">i</span>+=1
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">for</span> i <span style="color: #859900; font-weight: bold;">in</span> <span style="color: #839496; font-weight: bold;">range</span>(<span style="color: #839496; font-weight: bold;">len</span>(nums)):
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">if</span> nums[i] == -1:
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   ret.append(i+1)
+<span style="background-color: #073642;"> </span>   <span style="background-color: #073642;"> </span>   <span style="color: #859900; font-weight: bold;">return</span> ret
+</pre>
 </div>
-
-
-
+</div>
+</div>
+</div>
 
 <div id="outline-container-org1ae244e" class="outline-2">
 <h2 id="org1ae244e"><span class="section-number-2">3</span> Some snippet</h2>
@@ -1082,7 +1113,7 @@ neat solution:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-05 Sun 18:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
