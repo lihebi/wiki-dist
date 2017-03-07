@@ -6,7 +6,7 @@
 <!-- 2017-03-07 Tue 16:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hebi's Personal Wiki</title>
+<title>Gnus</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Hebi Li" />
 <style type="text/css">
@@ -232,101 +232,273 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Hebi's Personal Wiki</h1>
+<h1 class="title">Gnus</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org48d083c">1. OS</a></li>
-<li><a href="#org75b5efd">2. Coding</a></li>
-<li><a href="#orgcae0d90">3. Algorithm</a></li>
-<li><a href="#org80dd46e">4. Random Staff</a></li>
-<li><a href="#org85f8a98">5. Misc</a></li>
+<li><a href="#org3ec9f3a">1. Tutorial</a>
+<ul>
+<li><a href="#orgd7744b8">1.1. In Group Buffer:</a>
+<ul>
+<li><a href="#org8f69245">1.1.1. Finding the groups</a></li>
+<li><a href="#orge0cfd40">1.1.2. Management</a></li>
+<li><a href="#org34c6453">1.1.3. Topic</a></li>
+</ul>
+</li>
+<li><a href="#orgd4307e5">1.2. In Article (Summary) buffer</a>
+<ul>
+<li><a href="#orgc8e3096">1.2.1. Navigating</a></li>
+<li><a href="#org994aec8">1.2.2. Replying</a></li>
+<li><a href="#org44a7765">1.2.3. Management</a></li>
+<li><a href="#org39bfeae">1.2.4. Marking</a>
+<ul>
+<li><a href="#org37bad5e">1.2.4.1. Unread</a></li>
+<li><a href="#org4093802">1.2.4.2. Read</a></li>
+<li><a href="#org12005af">1.2.4.3. Operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf1ed5a1">1.3. In a message buffer</a></li>
+</ul>
+</li>
+<li><a href="#org81b5533">2. Gmail Setup</a></li>
 </ul>
 </div>
 </div>
 <p>
-This site records knowledge I would need to remember.
+Finally I decide to learn Gnus the hard way. I have to learn it, I
+need to read news.
 </p>
 
-<div id="outline-container-org48d083c" class="outline-2">
-<h2 id="org48d083c"><span class="section-number-2">1</span> OS</h2>
+<p>
+This is built in with emacs.
+To read archive messages:
+</p>
+
+<blockquote>
+<p>
+In emacs, &lt;DEL&gt; means backspace, &lt;delete&gt; means the delete key.
+</p>
+</blockquote>
+
+<div id="outline-container-org3ec9f3a" class="outline-2">
+<h2 id="org3ec9f3a"><span class="section-number-2">1</span> Tutorial</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-First, install the system by <a href="liveusb.html">Live USB</a>.
-Some popular distributions: <a href="linux.html">Linux</a>, <a href="debian.html">Debian</a>, <a href="centos.html">CentOS</a>
-The <a href="debian-setup.html">setup</a> of debian. File sharing by <a href="samba.html">samba</a>.
+Inside emacs, run <code>gnus</code> command. This brings the <code>*Group*</code> buffer.
 </p>
 
 <p>
-Some essential apps: , <a href="conkeror.html">conkeror</a>, <a href="stumpwm.html">StumpWM</a>, <a href="x11.html">X11</a>, <a href="tmux.html">Tmux</a>, <a href="make.html">make</a>, <a href="cmake.html">cmake</a>, <a href="autoconf.html">autoconf</a>.
+Some settings
 </p>
-
-<p>
-Reading news using <a href="gnus.html">Gnus</a>.
-</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #859900; font-weight: bold;">setq</span> gnus-default-nntp-server <span style="color: #2aa198;">"news.gmane.org"</span>)
+(<span style="color: #859900; font-weight: bold;">setq</span> gnus-select-method '(nntp <span style="color: #2aa198;">"news.gmane.org"</span>))
+(<span style="color: #859900; font-weight: bold;">setq</span> gnus-use-adaptive-scoring t)
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org75b5efd" class="outline-2">
-<h2 id="org75b5efd"><span class="section-number-2">2</span> Coding</h2>
+<div id="outline-container-orgd7744b8" class="outline-3">
+<h3 id="orgd7744b8"><span class="section-number-3">1.1</span> In Group Buffer:</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+
+<div id="outline-container-org8f69245" class="outline-4">
+<h4 id="org8f69245"><span class="section-number-4">1.1.1</span> Finding the groups</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<dl class="org-dl">
+<dt>A A</dt><dd>List all groups that are available from the server(s).</dd>
+<dt>u</dt><dd>toggle subscription of the group</dd>
+<dt>l</dt><dd>list only subscribed ones with unread articles</dd>
+<dt>L</dt><dd>show all subscribed groups</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orge0cfd40" class="outline-4">
+<h4 id="orge0cfd40"><span class="section-number-4">1.1.2</span> Management</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<dl class="org-dl">
+<dt>&lt;Ret&gt;</dt><dd>enter the group</dd>
+<dt>g</dt><dd>check for news</dd>
+<dt>q</dt><dd>quit</dd>
+<dt>c</dt><dd>catchup: mark all unread articles in the group under cursor as read</dd>
+<dt>C</dt><dd>catchup: mark all <del>unread</del> articles in the group under cursor as read</dd>
+<dt>m</dt><dd>create a new message</dd>
+<dt>a</dt><dd>create a new post</dd>
+<dt>^</dt><dd>enter server buffer</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org34c6453" class="outline-4">
+<h4 id="org34c6453"><span class="section-number-4">1.1.3</span> Topic</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<dl class="org-dl">
+<dt>t</dt><dd>toggle topic minor mode. Topic mode group subscriptions into categories.</dd>
+<dt>T n (gnus-topic-create-topic)</dt><dd>create a new topic</dd>
+<dt>T &lt;Del&gt; (gnus-topic-delete)</dt><dd>delete topic under cursor</dd>
+<dt>T m (gnus-topic-move-group)</dt><dd>move the group under cursor to a topic</dd>
+<dt>T h (gnus-topic-hide-topic)</dt><dd></dd>
+
+<dt>T s (gnus-topic-show-topic)</dt><dd></dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd4307e5" class="outline-3">
+<h3 id="orgd4307e5"><span class="section-number-3">1.2</span> In Article (Summary) buffer</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgc8e3096" class="outline-4">
+<h4 id="orgc8e3096"><span class="section-number-4">1.2.1</span> Navigating</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<dl class="org-dl">
+<dt>&lt;RET&gt;</dt><dd>view article under cursor</dd>
+<dt>n</dt><dd>next unread article</dd>
+<dt>p</dt><dd>previous unread article</dd>
+<dt>N</dt><dd>next article</dd>
+<dt>P</dt><dd>previous article</dd>
+<dt>&lt;SPC&gt;</dt><dd>scroll down, move to next unread article when at bottom</dd>
+<dt>&lt;DEL&gt;</dt><dd>scroll up, but will not move article</dd>
+<dt>^</dt><dd>fetch parent article</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org994aec8" class="outline-4">
+<h4 id="org994aec8"><span class="section-number-4">1.2.2</span> Replying</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<dl class="org-dl">
+<dt>F</dt><dd>follow-up to group and cite the article</dd>
+<dt>f</dt><dd>follow-up to group without citing the article</dd>
+<dt>R</dt><dd>reply by mail and cite the article</dd>
+<dt>r</dt><dd>reply by mail without cite the article</dd>
+<dt>m</dt><dd>new mail</dd>
+<dt>a</dt><dd>new post</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org44a7765" class="outline-4">
+<h4 id="org44a7765"><span class="section-number-4">1.2.3</span> Management</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<dl class="org-dl">
+<dt>c</dt><dd>catchup ALL in the buffer</dd>
+<dt>T T</dt><dd>toggle threading (flat style or thread style)</dd>
+<dt>t</dt><dd>toggle all headers (a lot of MIME information)</dd>
+<dt>TODO L</dt><dd>create low score</dd>
+<dt>TODO I</dt><dd>create high score</dd>
+<dt>!</dt><dd>mark as important</dd>
+<dt>?</dt><dd>mark as dormant</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org39bfeae" class="outline-4">
+<h4 id="org39bfeae"><span class="section-number-4">1.2.4</span> Marking</h4>
+<div class="outline-text-4" id="text-1-2-4">
+</div><div id="outline-container-org37bad5e" class="outline-5">
+<h5 id="org37bad5e"><span class="section-number-5">1.2.4.1</span> Unread</h5>
+<div class="outline-text-5" id="text-1-2-4-1">
+<dl class="org-dl">
+<dt>!</dt><dd>ticked. This means important, and will always show</dd>
+<dt>?</dt><dd>dormant. This will show up whenever there are follow-ups.</dd>
+<dt>space</dt><dd>unread at all</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org4093802" class="outline-5">
+<h5 id="org4093802"><span class="section-number-5">1.2.4.2</span> Read</h5>
+<div class="outline-text-5" id="text-1-2-4-2">
+<dl class="org-dl">
+<dt>r</dt><dd>marked as read by <code>d</code></dd>
+<dt>R</dt><dd>actually read</dd>
+<dt>O</dt><dd>old. Marked as read in previous sessions.</dd>
+<dt>Y</dt><dd>having a too level score (computed by emacs by rules, e.g. when
+you mark an article as read while didn't really read it, the
+related ones are marked like this)</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org12005af" class="outline-5">
+<h5 id="org12005af"><span class="section-number-5">1.2.4.3</span> Operation</h5>
+<div class="outline-text-5" id="text-1-2-4-3">
+<dl class="org-dl">
+<dt>!</dt><dd></dd>
+
+<dt>?</dt><dd></dd>
+
+<dt>d</dt><dd>mark as read</dd>
+<dt>/ o</dt><dd>gnus-summary-insert-old-articles, show all read articles</dd>
+<dt>M-u</dt><dd>gnus-summary-clear-mark-forward</dd>
+<dt>V R</dt><dd>gnus-summary-rescore</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf1ed5a1" class="outline-3">
+<h3 id="orgf1ed5a1"><span class="section-number-3">1.3</span> In a message buffer</h3>
+<div class="outline-text-3" id="text-1-3">
+<dl class="org-dl">
+<dt>C-c C-c</dt><dd>send</dd>
+<dt>C-c C-d</dt><dd>save as draft</dd>
+<dt>C-c C-k</dt><dd>kill</dd>
+<dt>C-c C-m f</dt><dd>attach file</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org81b5533" class="outline-2">
+<h2 id="org81b5533"><span class="section-number-2">2</span> Gmail Setup</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>Compilation: <a href="llvm.html">LLVM</a>, <a href="clang.html">Clang</a></li>
-<li>Be sure to be familiar with <a href="design-pattern.html">Design Pattern</a> before you code.</li>
-<li>Compiler techniques: <a href="compiler.html">compiler</a>, <a href="llvm.html">LLVM</a>, <a href="gdb.html">GDB</a>, <a href="gcov.html">gcov</a>.</li>
-<li>Scripting: <a href="awk.html">awk</a>, <a href="sed.html">sed</a>, <a href="r.html">R</a>, <a href="./shell.html">shell</a>, <a href="shell-utils.html">shell utilities</a>, <a href="js.html">js</a>, <a href="python.html">python</a>.</li>
-<li>Markup: <a href="regex.html">Regular Expression</a>, <a href="latex.html">latex</a> (<a href="tikz.html">tikz</a>), <a href="markdown.html">markdown</a>, <a href="org.html">Org Mode</a>, <a href="xpath.html">XPath</a>, <a href="dot.html">Graphviz/Dot</a>, <a href="uml.html">UML</a>, <a href="csv.html">CSV</a>.</li>
-<li>C family: <a href="c.html">C</a>, <a href="cpp.html">C++</a>,- <a href="stl.html">Standard Template Library(STL)</a>, <a href="c-lib.html">C standard library</a>, <a href="boost.html">Boost</a>, <a href="pugixml.html">Pugixml</a>, <a href="google-test.html">Google Test</a>, <a href="c-debug.html">C debugging techniques</a>, <a href="signal.html">Signal Handling</a>.</li>
-<li>Lisp: <a href="emacs.html">Emacs</a>, <a href="emacs-plugins.html">Emacs Plugins</a>, <a href="elisp.html">Emacs Lisp</a>, <a href="emacs-lisp.html">Emacs Part of Elisp</a>, <a href="common-lisp.html">Common Lisp</a>, <a href="clojure.html">Clojure</a></li>
-<li>Other languages: <a href="hungarian.html">Hungarian notation</a>, <a href="assembly.html">assembly</a>, <a href="sql.html">SQL</a>, <a href="git.html">Git</a>, <a href="java.html">Java</a>.</li>
-</ul>
-</div>
-</div>
+<p>
+Add the credential information to <code>~/.authinfo</code>
+</p>
 
-<div id="outline-container-orgcae0d90" class="outline-2">
-<h2 id="orgcae0d90"><span class="section-number-2">3</span> Algorithm</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>OJ: <a href="leetcode.html">Leetcode</a>, <a href="alg-string.html">String algorithms</a>, <a href="palindrome.html">Palindrome</a>, <a href="data-structure.html">data structure</a>, <a href="data-structure-old.html">old data structure page</a>, <a href="oj.html">algorithm in practice</a>.</li>
-<li>Computation Theory: <a href="math/511/np.html">NP</a>, <a href="math/511/np-problems.html">NP problems</a>, <a href="math/531/NPC.html">NPC</a>, <a href="math/511/approximation.html">Approximation</a>, <a href="math/511/lp.html">Linear Programming</a>, <a href="math/531/tm.html">Turing Machine</a>, <a href="math/531/decidability.html">Decidability</a>.</li>
-<li>AI: <a href="search-alg.html">Search algorithm</a>, <a href="name-alg.html">Name Algorithm</a>, <a href="machine-learning.html">Machine Learning</a>, <a href="ai.html">Artificial Intelligence</a></li>
-<li>Other: <a href="math-fund.html">Fundamental of math</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org80dd46e" class="outline-2">
-<h2 id="org80dd46e"><span class="section-number-2">4</span> Random Staff</h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><a href="program-analysis.html">Program Analysis</a></li>
-<li><a href="http://www.stroustrup.com/">Bjarne Stroustrup</a> invented C++!</li>
-<li>His close friend <a href="http://www.stepanovpapers.com/">Alexander A. Stepanov</a>, the author of STL.</li>
-<li><a href="https://github.com/isocpp/CppCoreGuidelines">CppCoreGuidelines</a></li>
-<li><a href="http://cppcon.org/">CppCon</a>.</li>
-<li><a href="http://www.aosabook.org/">these wonderful aosabook books</a>?</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org85f8a98" class="outline-2">
-<h2 id="org85f8a98"><span class="section-number-2">5</span> Misc</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li><a href="chrome.html">chrome extension</a></li>
-<li><a href="vpn.html">VPN</a></li>
-<li><a href="mac.html">Mac</a></li>
-<li>Windows has <a href="autohotkey.html">AutoHotKey</a></li>
-<li><a href="supercollider.html">SuperCollider</a> is a server and a language for music synthesizing.</li>
-<li><a href="overtone.html">Overtone</a> offers a <i>clojure</i> wrapper and emacs environment for the SuperCollider backend.</li>
-<li><a href="poem.html">Poems</a> I recite.</li>
-<li><a href="golf.html">Golf</a></li>
-<li><a href="guitar.html">Guitar</a></li>
-</ul>
+<pre class="example">
+machine imap.gmail.com login &lt;username&gt; password &lt;password&gt; port imaps
+machine smtp.gmail.com login &lt;username&gt; password &lt;password&gt; port 587
+</pre>
 
 <p>
-There's always a <a href="tmp.html">tmp</a> buffer, a <a href="backup.html">BackUp</a>, and an <a href="other.html">other</a> page.
+Add the following into <code>.gnus</code>
 </p>
+
+<pre class="example">
+(setq user-mail-address "lihebi.emacs@gmail.com"
+      user-full-name "Hebi Li")
+
+(setq gnus-select-method
+      '(nnimap "gmail"
+	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
+	       (nnimap-server-port "imaps")
+	       (nnimap-stream ssl)))
+
+(setq smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+
+
+;; send mail using gmail smtp, no require for installation of sendmail or something
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "lihebi.emacs@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t)
+</pre>
 </div>
 </div>
 </div>
