@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:27 -->
+<!-- 2017-03-07 Tue 11:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>X11</title>
@@ -259,6 +259,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org43fe298">8. Trouble shooting</a></li>
 <li><a href="#org33dac36">9. Nvidia Driver</a></li>
+<li><a href="#org1d55b11">10. Natural Scrolling</a></li>
 </ul>
 </div>
 </div>
@@ -554,10 +555,46 @@ But, I haven't been able to boot to login page using nvidia card&#x2026;
 </p>
 </div>
 </div>
+
+<div id="outline-container-org1d55b11" class="outline-2">
+<h2 id="org1d55b11"><span class="section-number-2">10</span> Natural Scrolling</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+The old solution is to swap the pointer button "4" and "5", by <code>xmodmap</code> or <code>xinput</code>:
+</p>
+
+<pre class="example">
+xmodmap -e "pointer = 1 2 3 4 5"
+xinput --set-button-map 10 1 2 3 5 4
+</pre>
+
+<p>
+The 10 is the id, to find it out, run xinput without argument.
+</p>
+
+<p>
+But this way is deprecated, as of chromium 49 and above, it does not work any more.
+So use the xinput way to <i>set the property</i>:
+</p>
+
+<pre class="example">
+xinput set-prop 10 "libinput Natural Scrolling Enabled" 1
+</pre>
+
+<p>
+I'm using logitech G900 and the property might be different. It works!
+</p>
+
+<p>
+Not sure if the xinput command should be run each time the system
+boots. That would be hard for specifying ID.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:27</p>
+<p class="date">Created: 2017-03-07 Tue 11:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
