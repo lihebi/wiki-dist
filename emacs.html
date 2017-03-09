@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-07 Tue 16:11 -->
+<!-- 2017-03-09 Thu 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs</title>
@@ -253,6 +253,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgbf91501">6.1. text transformation</a></li>
 <li><a href="#orgecea271">6.2. killing</a></li>
 <li><a href="#org171e84f">6.3. spell checking</a></li>
+<li><a href="#org1b167e2">6.4. Replace regexp for multiple files inside project</a></li>
 </ul>
 </li>
 <li><a href="#orgc93e8f6">7. Programming</a></li>
@@ -322,8 +323,8 @@ because the specific one has a higher priority.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(define-key org-mode-map (kbd <span style="color: #2aa198;">"C-j"</span>) (<span style="color: #859900; font-weight: bold;">lambda</span>()
-                                       (<span style="color: #859900; font-weight: bold;">interactive</span>)
+<pre class="src src-elisp">(define-key org-mode-map (kbd <span style="color: #2aa198;">"C-j"</span>) (<span style="color: #859900;">lambda</span>()
+                                       (<span style="color: #859900;">interactive</span>)
                                        (join-line -1)))
 </pre>
 </div>
@@ -430,6 +431,21 @@ When replace-string, use <code>C-q C-j</code> to represent newline.
 <p>
 Use <code>ispell</code>, and <code>flycheck</code> to check on-the-fly. Check emacs manual for detail.
 </p>
+</div>
+</div>
+
+<div id="outline-container-org1b167e2" class="outline-3">
+<h3 id="org1b167e2"><span class="section-number-3">6.4</span> Replace regexp for multiple files inside project</h3>
+<div class="outline-text-3" id="text-6-4">
+<ol class="org-ol">
+<li><code>find-name-dired</code>, select the root directory, and provide a pattern for files</li>
+<li>press <code>t</code> to toggle mark all files</li>
+<li>press Q for query and replace in files, and provide regexp and replacement</li>
+<li>proceed each of the match by: <code>SPC</code> to confirm, and <code>n</code> to skip to next.</li>
+<li>Finally all files are not saved. To save that, <code>C-x s</code> will prompt
+all file and wait for your confirm by <code>y</code>. To avoid hitting <code>y</code> many
+times, use <code>C-x s !</code>.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -624,10 +640,10 @@ issue the following commands (using <code>gnu-c-manual</code> as an example):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #586e75;"># </span><span style="color: #586e75;">download the gnu-c-manual code</span>
+<pre class="src src-shell"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">download the gnu-c-manual code</span>
 make gnu-c-manual.info
 mv gnu-c-manual.info /usr/local/share/info
-<span style="color: #839496; font-weight: bold;">cd</span> /usr/local/share/info
+<span style="color: #859900;">cd</span> /usr/local/share/info
 sudo install-info --info-file=gnu-c-manual.info --info-dir=.
 </pre>
 </div>
@@ -755,7 +771,7 @@ C++ IDE and some tutorials: <a href="http://tuhdo.github.io/">http://tuhdo.githu
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-07 Tue 16:11</p>
+<p class="date">Created: 2017-03-09 Thu 13:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
