@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-10 Fri 13:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler</title>
@@ -229,6 +229,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -237,476 +259,659 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5bf2103">1. Linker</a></li>
-<li><a href="#org8746fa1">2. AddressSanitizer</a></li>
-<li><a href="#org39346dd">3. C Preprocessor (CPP)</a>
+<li><a href="#org817784d">1. Parser</a>
 <ul>
-<li><a href="#orgd470489">3.1. The processing</a>
+<li><a href="#orga626b69">1.1. AST</a></li>
+<li><a href="#org4de639c">1.2. <span class="todo TODO">TODO</span> Write/Fix the grammar</a>
 <ul>
-<li><a href="#org8b867f3">3.1.1. Compiler option to separate them</a></li>
-<li><a href="#orge7e7503">3.1.2. self-referential macro</a></li>
+<li><a href="#orgd31de8a">1.2.1. <span class="todo TODO">TODO</span> Ambiguity</a></li>
+<li><a href="#org21dfbcb">1.2.2. Left Recursion</a></li>
+<li><a href="#org04acae6">1.2.3. Left Factoring</a></li>
 </ul>
 </li>
-<li><a href="#orge153ce0">3.2. Predefined macros</a>
+<li><a href="#org79f359a">1.3. Top Down Parsing</a>
 <ul>
-<li><a href="#orgc8bbab2">3.2.1. Standard (in language specification)</a></li>
-<li><a href="#org7874981">3.2.2. Common GNU C extension</a></li>
-<li><a href="#orge3a912c">3.2.3. system specific</a>
+<li><a href="#orge0522d8">1.3.1. <span class="todo TODO">TODO</span> LL(1)</a></li>
+<li><a href="#org139854d">1.3.2. Recursive Decent Parser v.s. LR Parser generator</a></li>
+</ul>
+</li>
+<li><a href="#org59b146f">1.4. Bottom Up Parsing</a>
 <ul>
-<li><a href="#org605f7ad">3.2.3.1. MAC</a></li>
-<li><a href="#org2f03761">3.2.3.2. Ubuntu</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgb3bdc33">3.3. Stringification</a></li>
-<li><a href="#org4706b92">3.4. token-pasting</a></li>
-<li><a href="#org25648ca">3.5. Line Markers</a></li>
-</ul>
-</li>
-<li><a href="#org0f507ee">4. Special Notations</a>
+<li><a href="#orgec43ea4">1.4.1. shift-reduce parsing</a></li>
+<li><a href="#org59f3378">1.4.2. LR(k) Parsing</a>
 <ul>
-<li><a href="#orgd4c875e">4.1. Line Control</a></li>
+<li><a href="#orgefd9435">1.4.2.1. Simple LR Parsing (SLR)</a></li>
+<li><a href="#org4041027">1.4.2.2. LR(1)</a></li>
 </ul>
 </li>
-<li><a href="#orgd756ac0">5. GCC options</a></li>
-<li><a href="#orge960b94">6. Misc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgcd6f495">2. Syntax Directed Translation</a></li>
+<li><a href="#orgd26c3ca">3. FIRST and FOLLOW</a></li>
+<li><a href="#orgf0242e1">4. Error Recovery</a></li>
+<li><a href="#org4f11dd0">5. Tools</a>
+<ul>
+<li><a href="#orga162f3a">5.1. Elsa and Elkhound</a></li>
+<li><a href="#org6cd9ea4">5.2. Semantic Design Inc</a></li>
+<li><a href="#org118ed2a">5.3. Parser generator</a></li>
+</ul>
+</li>
 </ul>
 </div>
+</div>
+<p>
+This file describe the general concept of a compiler. I'm going to
+relearn it in the hard way.
+</p>
+
+
+<div id="outline-container-org817784d" class="outline-2">
+<h2 id="org817784d"><span class="section-number-2">1</span> Parser</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Three category of parsers:
+</p>
+<dl class="org-dl">
+<dt>universal</dt><dd>Cocke–Younger–Kasami algorithm (CYK) and the Earley
+parser. They can parse any grammar, but slow.</dd>
+<dt>bottom up</dt><dd>build parse tree from bottom to top</dd>
+<dt>top down</dt><dd>build parse tree from top to bottom</dd>
+</dl>
+
+<p>
+There are many different methods of each top-down and bottom-up
+parsers. The most efficient top-down and bottom-up methods work only
+for subclasses of grammars. Some important subclasses is LL and LR
+grammar.
+</p>
+
+<dl class="org-dl">
+<dt>LL grammar</dt><dd>often used by hand-implemented parser</dd>
+<dt>LR grammar</dt><dd>accept more grammars, but usually construct by tools</dd>
+</dl>
+
+<p>
+Some terms:
+</p>
+<dl class="org-dl">
+<dt>parse tree</dt><dd>a graphical representation of a derivation that
+filters out the order in which productions are applied
+to replace non-terminals.</dd>
+</dl>
+
+<p>
+Of course, regular expression is a subset of context free grammar.
+</p>
+
+<p>
+About how to divide lexer rules and parser rules: use regular
+expression.
+</p>
+<ul class="org-ul">
+<li>Regular expression is most useful for describing structure of
+constructs, such as ID and keywords.</li>
+<li>Grammar is most useful for describing nested structures such as
+parentheses, begin-end, if-then-else.</li>
+</ul>
 </div>
 
-<div id="outline-container-org5bf2103" class="outline-2">
-<h2 id="org5bf2103"><span class="section-number-2">1</span> Linker</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orga626b69" class="outline-3">
+<h3 id="orga626b69"><span class="section-number-3">1.1</span> AST</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>In Syntax Tree, interior nodes represent programming constructs.</li>
+<li>In parse tree, interior nodes represent non-terminals</li>
+<li>many non-terminals of a grammar represent programming constructs,
+but others are helpers of one sort of another, such as term, factors.</li>
+<li>In syntax tree, these helpers typically are not needed and hence dropped.</li>
+</ul>
+
+<p>
+To conclude:
+</p>
 <dl class="org-dl">
-<dt><code>ldd</code></dt><dd>show the dynamic library used by an executable</dd>
+<dt>concrete syntax tree</dt><dd>the parse tree</dd>
+<dt>concrete syntax</dt><dd>the underlying grammar of a parse tree</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org8746fa1" class="outline-2">
-<h2 id="org8746fa1"><span class="section-number-2">2</span> AddressSanitizer</h2>
-<div class="outline-text-2" id="text-2">
+
+<div id="outline-container-org4de639c" class="outline-3">
+<h3 id="org4de639c"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Write/Fix the grammar</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgd31de8a" class="outline-4">
+<h4 id="orgd31de8a"><span class="section-number-4">1.2.1</span> <span class="todo TODO">TODO</span> Ambiguity</h4>
+</div>
+<div id="outline-container-org21dfbcb" class="outline-4">
+<h4 id="org21dfbcb"><span class="section-number-4">1.2.2</span> Left Recursion</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Top down parser cannot handle left recursion.
+</p>
+
+<p>
+The grammar
+</p>
+<pre class="example">
+A ::= A alpha | beta
+</pre>
+
+<p>
+Can be rewritten as:
+</p>
+<pre class="example">
+A ::= beta R
+R ::= alpha | epsilon
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org04acae6" class="outline-4">
+<h4 id="org04acae6"><span class="section-number-4">1.2.3</span> Left Factoring</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+a technique to rewrite production rule to achieve the effect that we
+wait until enough input has been seen to make decision. It makes
+grammar more suitable for predictive or top-down parsing.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org79f359a" class="outline-3">
+<h3 id="org79f359a"><span class="section-number-3">1.3</span> Top Down Parsing</h3>
+<div class="outline-text-3" id="text-1-3">
+<dl class="org-dl">
+<dt>Recusrive descent parsing</dt><dd><ul class="org-ul">
+<li>general form of top-down parsing</li>
+<li>may require backtracking</li>
+</ul></dd>
+<dt>Predictive parsing</dt><dd><ul class="org-ul">
+<li>a special case of recursive-descent parsing</li>
+<li>do not require backtracking</li>
+<li>By look ahead fixed number (usually 1) of tokens</li>
+</ul></dd>
+<dt>LL(k)</dt><dd>A class of grammar, for which we can construct a predictive
+parser by looking k symbols ahead.</dd>
+</dl>
+
+<p>
+The general recursive descent parsing problem is:
+</p>
+
+<pre class="example">
+void A() {
+  choose an A-production
+  for (i = 1 to k) {
+    if (xi is nonterminal) call X();
+    else if (xi = input symbol) advance_to_next_symbol();
+    else error();
+  }
+}
+</pre>
+
+<p>
+This is non-deterministic since it begins with choose a production. To
+augment backtracking to the algorithm, we need:
+</p>
 <ul class="org-ul">
-<li>wiki: <a href="https://github.com/google/sanitizers/wiki">https://github.com/google/sanitizers/wiki</a></li>
-<li>flags: <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerFlags">https://github.com/google/sanitizers/wiki/AddressSanitizerFlags</a></li>
+<li>try different productions</li>
+<li>at error, return to the line of choose production</li>
+<li>we need a local variable to store where is the input symbol when
+choosing production.</li>
 </ul>
 
 <p>
-To use it:
+Left recursive grammar can cause a recursive-descent parser (even the
+one with backtracking) into an infinite-loop. Because it try to expand
+A without consuming any input.
+</p>
+</div>
+
+<div id="outline-container-orge0522d8" class="outline-4">
+<h4 id="orge0522d8"><span class="section-number-4">1.3.1</span> <span class="todo TODO">TODO</span> LL(1)</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+What's the LL?
+</p>
+<dl class="org-dl">
+<dt>L</dt><dd>Scanning input from Left to right</dd>
+<dt>L</dt><dd>producing Leftmost derivation</dd>
+<dt>1</dt><dd>lookahead 1 symbol</dd>
+</dl>
+
+<p>
+It is rich enough to cover most programming constructs. However,
+left-recursive and ambiguous can not.
+</p>
+
+<p>
+The parser will construct a predictive parsing table.  To solve LL(1),
+we use <i>non-recursive predictive parsing</i>.  Do not need recursive call
+(really??), because it constructs a parsing table. It is table-driven.
+</p>
+
+<ul class="org-ul">
+<li>algorithm 1: construct predictive parsing table</li>
+<li>algorithm 2: table driven predictive parsing</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org139854d" class="outline-4">
+<h4 id="org139854d"><span class="section-number-4">1.3.2</span> Recursive Decent Parser v.s. LR Parser generator</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Well, In a word, this is actually important. See what the clang guys say <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<blockquote>
+<p>
+Clang is the "C Language Family Front-end", which means we intend to
+support the most popular members of the C family. We are convinced
+that the right parsing technology for this class of languages is a
+hand-built recursive-descent parser. Because it is plain C++ code,
+recursive descent makes it very easy for new developers to understand
+the code, it easily supports ad-hoc rules and other strange hacks
+required by C/C++, and makes it straight-forward to implement
+excellent diagnostics and error recovery.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org59b146f" class="outline-3">
+<h3 id="org59b146f"><span class="section-number-3">1.4</span> Bottom Up Parsing</h3>
+<div class="outline-text-3" id="text-1-4">
+<dl class="org-dl">
+<dt>shift-reduce parsing</dt><dd>a general style of bottom-up parsing</dd>
+<dt>LR grammar</dt><dd>the largest class of grammars for which shift-reduce
+parsers can be built</dd>
+</dl>
+
+<p>
+The bottom up parsing can think as reducing a string to the start
+symbol. At each reduction step, a substring is replaced by a
+non-terminal. Thus the key decisions are:
+</p>
+<ul class="org-ul">
+<li>when to reduce</li>
+<li>what production to apply</li>
+</ul>
+</div>
+
+<div id="outline-container-orgec43ea4" class="outline-4">
+<h4 id="orgec43ea4"><span class="section-number-4">1.4.1</span> shift-reduce parsing</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+Think about a stack holding current string, and the input holding the rest input tokens.
+</p>
+<dl class="org-dl">
+<dt>shift</dt><dd>move from input to stack</dd>
+<dt>reduce</dt><dd>replace a substring at the top of the stack</dd>
+</dl>
+
+<p>
+The conflict here:
+</p>
+<dl class="org-dl">
+<dt>shift/reduce conflict</dt><dd>don't know to shift or reduce.</dd>
+<dt>reduce/reduce conflict</dt><dd>don't know which production rule to use</dd>
+</dl>
+
+<p>
+Grammar that contains these conflicts are non-LR grammar.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org59f3378" class="outline-4">
+<h4 id="org59f3378"><span class="section-number-4">1.4.2</span> LR(k) Parsing</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<dl class="org-dl">
+<dt>L</dt><dd>left to right scanning</dd>
+<dt>R</dt><dd>producing rightmost derivation</dd>
+<dt>k</dt><dd>number of lookahead (when omitted, assume 1)</dd>
+</dl>
+
+<p>
+LR parsers are table driven, like the non-recursive LL parsers.
+</p>
+<dl class="org-dl">
+<dt>LR Grammar</dt><dd>a grammar for which we can construct a LR parser for it.</dd>
+</dl>
+
+<p>
+Over LL parsing, it is better because:
+</p>
+<ul class="org-ul">
+<li>LR parsers can be constructed to recognize virtually all programming
+language constructs for which context-free grammars can be written.</li>
+<li>the most general non-backtracking shift-reduce parsing, and can be
+implemented as efficient as others</li>
+<li>can detect syntactic error as soon as it is possible to do so on a
+left-to-right scan of input</li>
+<li>LR grammar is super set of LL grammar</li>
+</ul>
+
+<p>
+The drawback: hard to construct by hand.
+</p>
+</div>
+
+<div id="outline-container-orgefd9435" class="outline-5">
+<h5 id="orgefd9435"><span class="section-number-5">1.4.2.1</span> Simple LR Parsing (SLR)</h5>
+<div class="outline-text-5" id="text-1-4-2-1">
+<dl class="org-dl">
+<dt>LR(0) Item</dt><dd>each production rule will be written in a dot format:
+put one dot somewhere in the rule. This will result in
+many items.</dd>
+<dt>Set of LR(0) Items</dt><dd>a set of the items</dd>
+<dt>Canonical LR(0) collection</dt><dd>a collection of <i>sets</i> of LR(0) Items,
+that is typically used (others are useless).</dd>
+</dl>
+
+<p>
+To construct Canonical LR(0) collection, introduce the CLOSURE and
+GOTO functions:
+</p>
+<dl class="org-dl">
+<dt>CLOSURE(I)</dt><dd>where I is a set of items, if \(A \rightarrow \alpha
+                \cdot B \beta\) is in CLOSURE(I), and \(B \rightarrow
+                \gamma\), \(B \rightarrow \cdot \gamma\) is in the set.</dd>
+<dt>GOTO(I,X)</dt><dd>where I is a set of items, X is a grammar
+symbol. Produce a closure, if \(A \rightarrow \alpha
+               \cdot X \beta\), \(A \rightarrow \alpha X \cdot \beta\) is
+in GOTO(T,X).</dd>
+</dl>
+
+<p>
+Now the algorithm to construct canonical LR(0) items
 </p>
 <pre class="example">
-cc -fsanitize=address a.c
+void items(G') {
+  C=CLOSURE({S-&gt;.S'});
+  repeat until no new {
+    for (each set I in C) {
+      for (each grammar symbol X) {
+        add GOTO(I,X) to C}}}}
 </pre>
 
-<div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdlib.h&gt;</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;string.h&gt;</span>
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span>() {
-  <span style="color: #b58900;">char</span> <span style="color: #268bd2;">buf</span>[10];
-  <span style="color: #586e75;">// </span><span style="color: #586e75;">strcpy(buf, "hhhhhiiiiiooooo");</span>
-  <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">hbuf</span> = (<span style="color: #b58900;">char</span>*)malloc(10*<span style="color: #859900; font-weight: bold;">sizeof</span>(<span style="color: #b58900;">char</span>));
-  strcpy(hbuf, <span style="color: #2aa198;">"hhhhhddddd"</span>);
+<p>
+Now we can define LR(0) Automata:
+</p>
+<dl class="org-dl">
+<dt>state</dt><dd>the canonical LR(0) collection</dd>
+<dt>transition</dt><dd>GOTO function</dd>
+</dl>
+
+<p>
+Set up for parsing: Now we have the components:
+</p>
+<dl class="org-dl">
+<dt>input</dt><dd>the remaining input</dd>
+<dt>stack</dt><dd>the stack holds the states. Note that each state
+corresponding to exactly one symbol (yes, but why??). So we
+can always convert to the symbols from states.</dd>
+<dt>parsing table</dt><dd>contains two parts: ACTION and GOTO
+<dl class="org-dl">
+<dt>ACTION(i,a)</dt><dd>state i, next terminal a. The result is
+<dl class="org-dl">
+<dt>shift j</dt><dd>shift the terminal and go to state j</dd>
+<dt>reduce \(A \rightarrow \beta\)</dt><dd>reduce &beta; (on the top of stack)
+to A</dd>
+<dt>accept</dt><dd></dd>
+
+<dt>error</dt><dd></dd>
+</dl></dd>
+<dt>GOTO(i, A)=j</dt><dd>map state i and non-terminal A to state j</dd>
+</dl></dd>
+</dl>
+
+<p>
+Parsing algorithm:
+</p>
+<dl class="org-dl">
+<dt>action = shift s</dt><dd>do it</dd>
+<dt>action = reduce \(A \rightarrow \beta\)</dt><dd>do the reduction by popping
+out \(|\beta|\) states, and then push state GOTO(stack.top, A).</dd>
+</dl>
+
+<p>
+The algorithm can be written as:
+</p>
+
+<pre class="example">
+while (true) {
+  s = stack.top;
+  a = next input;
+  if (ACTION(s,a) = shift t) {
+    stack.push(t)
+    advance(a)
+  } else if (ACTION(s,a) = reduce A to beta) {
+    stack.pop(len(beta));
+    t = stack.top
+    stack.push(GOTO(t,A))
+    output production A-&gt;beta
+  } else if (ACTION=accept | error) {}
 }
 </pre>
-</div>
 
 <p>
-Note the heap buffer overflow, it will not crash by normal compilation.
-However, it will crash and print out report after using address sanitizer.
+Algorithm for construct SLR parsing table:
 </p>
-
-<p>
-On mac, the default behavior is just hang, does not finish.
-To make it terminates the program:
-</p>
-<pre class="example">
-ASAN_OPTIONS=halt_on_error=1 ./a.out
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org39346dd" class="outline-2">
-<h2 id="org39346dd"><span class="section-number-2">3</span> C Preprocessor (CPP)</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-The CPP Manual : <a href="https://gcc.gnu.org/onlinedocs/cpp/">https://gcc.gnu.org/onlinedocs/cpp/</a>
-</p>
-</div>
-<div id="outline-container-orgd470489" class="outline-3">
-<h3 id="orgd470489"><span class="section-number-3">3.1</span> The processing</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-The following textural transformation is done before everything:
-</p>
-
 <ol class="org-ol">
-<li>The input file is read into memory and broken into lines.</li>
-<li>Continued lines (line ends with a backslash and newline) are merged into one long line.
-There's NO way to prevent a backslash at the end of a line from being interpreted as a backslash-newline.</li>
-<li>All comments are replaced with single spaces.
-Block comments (<code>/* */</code>) does not nest.
-Line comments (<code>//</code>) can nest because it doesn't matter.
-It is safe to put line comments inside block comments, or vice versa.</li>
+<li>get canonical LR(0) collection</li>
+<li>ACTION(i,a) = 
+<dl class="org-dl">
+<dt>shift j</dt><dd>if \(A \rightarrow \alpha \cdot a \beta\) is in I<sub>i</sub>, and
+GOTO(I<sub>i,a</sub>)=I<sub>j</sub></dd>
+<dt>reduce A to &alpha;</dt><dd>if \(A \rightarrow \alpha \cdot\) in I<sub>i</sub> and a
+in FOLLOW(A).</dd>
+<dt>accept</dt><dd>if \(S' \rightarrow S \cdot\) is in I<sub>i</sub> and a = $</dd>
+</dl></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4041027" class="outline-5">
+<h5 id="org4041027"><span class="section-number-5">1.4.2.2</span> LR(1)</h5>
+<div class="outline-text-5" id="text-1-4-2-2">
+<p>
+So we now allow lookahead. By this we can handle more grammars than
+LR(0). There're two methods:
+</p>
+<dl class="org-dl">
+<dt>canonical-LR (LR)</dt><dd>construct based on LR(1) items, a much larger
+set than LR(0) items. The parsing table is much bigger, so not
+good in practice.</dd>
+<dt>lookahead-LR (LALR)</dt><dd>based on LR(0) (??? should be LR(1) here?)
+sets of items, but has many fewer states than LR(1) items. The
+parsing table is no bigger than SLR tables. The modern choice.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgcd6f495" class="outline-2">
+<h2 id="orgcd6f495"><span class="section-number-2">2</span> Syntax Directed Translation</h2>
+<div class="outline-text-2" id="text-2">
+<dl class="org-dl">
+<dt>Syntax Directed Definition (SDD)</dt><dd>a context-free grammar together
+with attributes and rules. Attributes are associated with grammar
+symbols, and rules are associated with productions.
+<dl class="org-dl">
+<dt>synthesized attribute</dt><dd>for a non-terminal A at a parse tree node
+N is defined by a semantic rule associated with the production
+at N. This includes N and its children.</dd>
+<dt>inherited attribute</dt><dd>for a non-terminal B at a parse tree node N
+is defined by a semantic rule associated with the production at
+the parent of N. This includes N's parent, N, and N's siblings.</dd>
+<dt>S-attributed</dt><dd>an SDD is S-attributed if every attribute is
+synthesized. We can evaluate it in any bottom-up
+fashion, e.g. a post order traversal.</dd>
+<dt>L-attributed</dt><dd>an SDD is L-attributed if each attribute is either
+synthesized or, inherited but only depends on the
+value of the parent and the symbols to the left of
+it on its siblings. This rule says the evaluation
+should go from left to right, but not right to
+left.</dd>
+</dl></dd>
+<dt>Syntax Directed Translation Scheme (SDT)</dt><dd>a context free grammar
+with program fragment embedded within production bodies. (This is
+the typical grammar file for a parser generator like ANTLR!)</dd>
+</dl>
+
+<p>
+Any SDT can be implemented by
+</p>
+<ol class="org-ol">
+<li>build the parse tree</li>
+<li>perform the actions in a left-to-right depth-first order, that is
+during a pre-order traversal.</li>
 </ol>
 
 <p>
-After these steps, the tokenization is performed.
-Then the true "preprocessing" is performed.
+Typically SDT's are implemented during parsing, without building a
+parse tree. We focus on two important classes of SDD:
 </p>
-
-<p>
-Preprocessing directives are lines in your program that start with <code>#</code>.
-Whitespace is allowed before and after the <code>#</code>.
-The ‘#’ is followed by an identifier, the directive name.
-The ‘#’ which begins a directive cannot come from a macro expansion.
-Also, the directive name is not macro expanded.
-</p>
-
-<p>
-The primary directives do:
-</p>
-<ul class="org-ul">
-<li>Inclusion of header files.</li>
-<li>Macro expansion.</li>
-<li>Conditional compilation.</li>
-<li>Line control.</li>
-<li>Diagnostics.</li>
-</ul>
-
-<p>
-Macro has two kinds, <i>object like</i> (e.g. <code>BUFFER</code>) and <i>function like</i> (i.e. takes parameters).
-For function-like macros,
-all arguments to a macro are completely macro-expanded before they are substituted into the macro body.
-</p>
-</div>
-
-<div id="outline-container-org8b867f3" class="outline-4">
-<h4 id="org8b867f3"><span class="section-number-4">3.1.1</span> Compiler option to separate them</h4>
-<div class="outline-text-4" id="text-3-1-1">
-<p>
-Generally the compiler will do preprocessing, compilation, assembling, and linking in order.
-</p>
-<pre class="example">
-cc -c a.c # do not do link ==&gt; a.o
-cc -S a.c # do not do assembling =&gt; a.s
-cc -E a.c # only do preprocessing, output to stdout &gt; a.i
-</pre>
+<ol class="org-ol">
+<li>grammar is LR-parsable and SDD is S-attributed, using Postfix
+Translation Scheme.  This scheme essentially do a bottom-up parsing
+and evaluate the attributes in place (right at ends of
+productions).</li>
+<li>grammar is LL-parsable and SDD is L-attributed. The L-attributed
+SDD is more general, but we must assume the grammar is
+LL-parsable. Otherwise it is "impossible to perform translation in
+connection with either an LL or an LR parser". The solution is to
+evaluate in a pre-order traversal of the tree.</li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-orge7e7503" class="outline-4">
-<h4 id="orge7e7503"><span class="section-number-4">3.1.2</span> self-referential macro</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<div id="outline-container-orgd26c3ca" class="outline-2">
+<h2 id="orgd26c3ca"><span class="section-number-2">3</span> FIRST and FOLLOW</h2>
+<div class="outline-text-2" id="text-3">
 <p>
-A self-referential macro is one whose name appears in its definition
-</p>
-
-<p>
-The self-references that do not expand in the first scan are marked so that they will not expand in the second scan either.
-e.g. <code>#define foo (4 + foo)</code>.
-In most cases, it is a bad idea to take advantage of this feature.
-</p>
-</div>
-</div>
-</div>
-
-
-
-
-
-<div id="outline-container-orge153ce0" class="outline-3">
-<h3 id="orge153ce0"><span class="section-number-3">3.2</span> Predefined macros</h3>
-<div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-orgc8bbab2" class="outline-4">
-<h4 id="orgc8bbab2"><span class="section-number-4">3.2.1</span> Standard (in language specification)</h4>
-<div class="outline-text-4" id="text-3-2-1">
-<dl class="org-dl">
-<dt><code>__FILE__</code></dt><dd>expands to the name of the current input file, in the form of a C string constant
-This is the path by which the preprocessor opened the file, not the short name.</dd>
-<dt><code>__LINE__</code></dt><dd>expands to the current input line number</dd>
-</dl>
-
-<p>
-One typical use of these two macros are in log message.
-</p>
-<div class="org-src-container">
-<pre class="src src-C">fprintf (stderr, <span style="color: #2aa198;">"Internal error: "</span>
-         <span style="color: #2aa198;">"negative string length "</span>
-         <span style="color: #2aa198;">"%d at %s, line %d."</span>,
-         length, __FILE__, __LINE__);
-</pre>
-</div>
-
-<p>
-An ‘#include’ directive changes the expansions of <span class="underline"><span class="underline">FILE</span></span> and <span class="underline"><span class="underline">LINE</span></span> to correspond to the included file.
-Revert back when coming back.
-A ‘#line’ directive changes <span class="underline"><span class="underline">LINE</span></span>, and may change <span class="underline"><span class="underline">FILE</span></span> as well.
-</p>
-
-<p>
-Note, for debugging purpose, it is nice to have the current function name.
-However, the preprocessor does not know about what the function name is.
-There does exist a <code>__func__</code> and <code>__FUNCTION__</code>, but they're not macros.
-They are strings.
+The construction of <i>both</i> top-down and bottom-up parsers needs these
+two functions.
 </p>
 
 <dl class="org-dl">
-<dt><code>__DATE__</code></dt><dd>expand to string constant, describing the date on which the preprocessor is being run.
-The string constant contains eleven characters and looks like "Feb 12 1996".
-If the day of the month is less than 10, it is padded with a space on the left.</dd>
-<dt><code>__TIME__</code></dt><dd>The string constant contains eight characters and looks like "23:59:01".</dd>
-<dt><code>__STDC__</code></dt><dd>most of the time equal to 1. I think just assume this.</dd>
-<dt><code>__STDC_VERSION__</code></dt><dd>something like <code>199409L</code></dd>
-<dt><code>__STDC_HOSTED__</code></dt><dd>should also be assumed to be 1</dd>
-<dt><code>__cplusplus</code></dt><dd>defined when c++ compiler is used.</dd>
-<dt><code>__OBJC__</code></dt><dd>defined when OBJ-C compiler is used.</dd>
-<dt><code>__ASSEMBLER__</code></dt><dd>defined when running on assembly.</dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-org7874981" class="outline-4">
-<h4 id="org7874981"><span class="section-number-4">3.2.2</span> Common GNU C extension</h4>
-<div class="outline-text-4" id="text-3-2-2">
-<p>
-I only list some interesting ones. For the full list see the page in <a href="https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html">gcc manual</a>.
-</p>
-<dl class="org-dl">
-<dt><code>__COUNTER__</code></dt><dd>expands to sequential integral values starting from 0.</dd>
-<dt><code>__GNUC__</code></dt><dd>int, major version</dd>
-<dt><code>__GNUC_MINOR__</code></dt><dd>int, minor version</dd>
+<dt>FIRST(\(\alpha\))</dt><dd>\(\alpha\) is a string of grammar symbols. The set
+of terminals that \(\alpha\) can begin with. E.g <code>A::=cB</code>, <code>FIRST(A)=c</code></dd>
+<dt>FOLLOW(A)</dt><dd>non-terminal A, to be the set of terminals that can
+appear immediately to the right of A.</dd>
 </dl>
 </div>
 </div>
 
-<div id="outline-container-orge3a912c" class="outline-4">
-<h4 id="orge3a912c"><span class="section-number-4">3.2.3</span> system specific</h4>
-<div class="outline-text-4" id="text-3-2-3">
-<p>
-To find the macros that are defined in current system:
-</p>
 
-<div class="org-src-container">
-<pre class="src src-shell">cpp -dM - <span style="color: #586e75;"># </span><span style="color: #586e75;">use standard input</span>
-C-d <span style="color: #586e75;"># </span><span style="color: #586e75;">EOF, see result</span>
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org605f7ad" class="outline-5">
-<h5 id="org605f7ad"><span class="section-number-5">3.2.3.1</span> MAC</h5>
-<div class="outline-text-5" id="text-3-2-3-1">
-<pre class="example">
-#define OBJC_NEW_PROPERTIES 1
-#define _LP64 1
-#define __APPLE_CC__ 6000
-#define __APPLE__ 1
-#define __LP64__ 1
-#define __MACH__ 1
-#define __MMX__ 1
-#define __clang__ 1
-#define __clang_major__ 7
-#define __clang_minor__ 3
-#define __llvm__ 1
-#define __x86_64 1
-#define __x86_64__ 1
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org2f03761" class="outline-5">
-<h5 id="org2f03761"><span class="section-number-5">3.2.3.2</span> Ubuntu</h5>
-<div class="outline-text-5" id="text-3-2-3-2">
-<pre class="example">
-#define __unix__ 1
-#define __linux 1
-#define __unix 1
-#define __linux__ 1
-#define unix 1
-#define __x86_64__ 1
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgb3bdc33" class="outline-3">
-<h3 id="orgb3bdc33"><span class="section-number-3">3.3</span> Stringification</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-<a href="https://gcc.gnu.org/onlinedocs/cpp/Stringification.html">https://gcc.gnu.org/onlinedocs/cpp/Stringification.html</a>
-</p>
-
-<p>
-Parameters are not replaced inside string constants.
-</p>
-
-<p>
-When a macro parameter is used with a leading ‘#’,
-the preprocessor replaces it with the literal text of the actual argument, converted to a string constant.
-Unlike normal parameter replacement, the argument is not macro-expanded first.
-This is called stringification.
-</p>
-
-<p>
-Stringification in C involves more than putting double-quote characters around the fragment.
-The preprocessor backslash-escapes the quotes surrounding embedded string constants,
-and all backslashes within string and character constants,
-in order to get a valid C string constant with the proper contents. 
-</p>
-</div>
-</div>
-<div id="outline-container-org4706b92" class="outline-3">
-<h3 id="org4706b92"><span class="section-number-3">3.4</span> token-pasting</h3>
-<div class="outline-text-3" id="text-3-4">
-<p>
-<a href="https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html">https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html</a>
-</p>
-
-<p>
-<code>token pasting</code> or <code>token concatenation</code>
-</p>
-
-<p>
-When a macro is expanded,
-the two tokens on either side of each <code>##</code> operator are combined into a single token,
-which then replaces the <code>##</code> and the two original tokens in the macro expansion. 
-</p>
-
-<p>
-Two tokens that don't together form a valid token cannot be pasted together.
-CPP will give warning.
-</p>
-
-
-<div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900; font-weight: bold;">struct</span> <span style="color: #b58900;">command</span>
-{
-  <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">name</span>;
-  <span style="color: #b58900;">void</span> (*<span style="color: #268bd2;">function</span>) (<span style="color: #b58900;">void</span>);
-};
-<span style="color: #859900; font-weight: bold;">struct</span> <span style="color: #b58900;">command</span> <span style="color: #268bd2;">commands</span>[] =
-  {
-    { <span style="color: #2aa198;">"quit"</span>, quit_command },
-    { <span style="color: #2aa198;">"help"</span>, help_command },
-    ...
-  };
-</pre>
-</div>
-
-<p>
-can be wrote as:
-</p>
-<div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#define</span> <span style="color: #268bd2;">COMMAND</span>(<span style="color: #268bd2;">NAME</span>)  { #NAME, NAME ## _command }
-<span style="color: #859900; font-weight: bold;">struct</span> <span style="color: #b58900;">command</span> <span style="color: #268bd2;">commands</span>[] =
-  {
-    COMMAND (quit),
-    COMMAND (help),
-    ...
-  };
-</pre>
-</div>
-
-<p>
-Another example:
-</p>
-<div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#define</span> <span style="color: #268bd2;">paster</span>( <span style="color: #268bd2;">n</span> ) printf_s( <span style="color: #2aa198;">"token"</span> #n <span style="color: #2aa198;">" = %d"</span>, token##n )
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">token9</span> = 9;
-</pre>
-</div>
-
-<p>
-becomes
-</p>
-<div class="org-src-container">
-<pre class="src src-C">printf_s( <span style="color: #2aa198;">"token"</span> <span style="color: #2aa198;">"9"</span> <span style="color: #2aa198;">" = %d"</span>, token9 );
-<span style="color: #586e75;">// </span><span style="color: #586e75;">=&gt;</span>
-printf_s( <span style="color: #2aa198;">"token9 = %d"</span>, token9 );
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org25648ca" class="outline-3">
-<h3 id="org25648ca"><span class="section-number-3">3.5</span> Line Markers</h3>
-<div class="outline-text-3" id="text-3-5">
-<pre class="example">
-# linenum filename flags
-</pre>
-
-<p>
-They mean that the following line originated in file filename at line linenum.
-</p>
-
-<p>
-After the file name comes zero or more flags, which are ‘1’, ‘2’, ‘3’, or ‘4’.
-If there are multiple flags, spaces separate them, and must be in ascending order.
-</p>
-
-<dl class="org-dl">
-<dt><code>1</code></dt><dd>This indicates the start of a new file.</dd>
-<dt><code>2</code></dt><dd>This indicates returning to a file (after having included another file).</dd>
-<dt><code>3</code></dt><dd>This indicates that the following text comes from a system header file, so certain warnings should be suppressed.</dd>
-<dt><code>4</code></dt><dd>This indicates that the following text should be treated as being wrapped in an implicit extern "C" block.</dd>
-</dl>
-
-<p>
-They are treated like the corresponding <code>#line</code> directive,
-except that trailing flags are permitted.
-</p>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org0f507ee" class="outline-2">
-<h2 id="org0f507ee"><span class="section-number-2">4</span> Special Notations</h2>
+<div id="outline-container-orgf0242e1" class="outline-2">
+<h2 id="orgf0242e1"><span class="section-number-2">4</span> Error Recovery</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgd4c875e" class="outline-3">
-<h3 id="orgd4c875e"><span class="section-number-3">4.1</span> Line Control</h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-It can have three formats:
-</p>
 <dl class="org-dl">
-<dt><code>#line linum</code></dt><dd>a non-negative integer</dd>
-<dt><code>#line linum filename</code></dt><dd>a string constant</dd>
-<dt><code>#line anything else</code></dt><dd>This is just a dummy, anything else must be a macro, and expands to the above two format.</dd>
+<dt>panic-mode</dt><dd>discard input symbols until <i>synchronizing tokens</i> are
+found. This is typically delimiters, such as semicolon
+or braces.</dd>
+<dt>phrase-level</dt><dd>perform local correction, such as remove extra
+semicolon, replace coma with semicolon. This is not
+good.</dd>
+<dt>error-production</dt><dd>use common errors</dd>
+<dt>global-correction</dt><dd>there are some algorithms to choose a minimal
+sequence of changes to obtain a globally least cost
+correction. (What are they??) [Dragon P196]</dd>
 </dl>
+</div>
+</div>
+
+
+
+<div id="outline-container-org4f11dd0" class="outline-2">
+<h2 id="org4f11dd0"><span class="section-number-2">5</span> Tools</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orga162f3a" class="outline-3">
+<h3 id="orga162f3a"><span class="section-number-3">5.1</span> Elsa and Elkhound</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li><a href="http://www.scottmcpeak.com/elkhound/">http://www.scottmcpeak.com/elkhound/</a></li>
+</ul>
 
 <p>
-The only things that changed are <code>__FILE__</code> and <code>__LINE__</code>.
+Elkhound is an ancient parser generator, and Elsa is the C++ parser built upon it.
+It is clean docs, maybe clean code, worth to check out.
+</p>
+
+<p>
+It implements the Generalized LR (GLR) parsing, which works with any context-free grammars.
+LR parsers (like bison) requires the grammar to be LALR(1).
+</p>
+
+<ul class="org-ul">
+<li>GLR: <a href="https://en.wikipedia.org/wiki/GLR_parser">https://en.wikipedia.org/wiki/GLR_parser</a></li>
+</ul>
+
+
+<p>
+Parsing with arbitrary context-free grammars has two key advantages:
+(1) unbounded lookahead, and (2) support for ambiguous grammars. Both
+of them are achieved by allowing multiple potential parses to coexist
+for as long as necessary.
+</p>
+
+<p>
+The downside, since it is more general, is slower performance.
 </p>
 </div>
 </div>
-</div>
 
-
-<div id="outline-container-orgd756ac0" class="outline-2">
-<h2 id="orgd756ac0"><span class="section-number-2">5</span> GCC options</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org6cd9ea4" class="outline-3">
+<h3 id="org6cd9ea4"><span class="section-number-3">5.2</span> Semantic Design Inc</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+A Commercial Parser Front end:
+</p>
 <ul class="org-ul">
-<li><code>-include</code> include file before parsing</li>
-<li><code>-include-pch</code> include precompiled header file (often names as <code>header.h.gch</code>)
-Note that generally the include directive will look for the <code>.h.gch</code> version
-right before looking for <code>.h</code> file in each directory.</li>
+<li><a href="http://www.semanticdesigns.com/Products/FrontEnds/CppFrontEnd.html">http://www.semanticdesigns.com/Products/FrontEnds/CppFrontEnd.html</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge960b94" class="outline-2">
-<h2 id="orge960b94"><span class="section-number-2">6</span> Misc</h2>
-<div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li><code>nm a.o</code> list symbols from object files</li>
-</ul>
+
+<div id="outline-container-org118ed2a" class="outline-3">
+<h3 id="org118ed2a"><span class="section-number-3">5.3</span> Parser generator</h3>
+<div class="outline-text-3" id="text-5-3">
+<dl class="org-dl">
+<dt>yacc &amp; lex</dt><dd>generate LALR</dd>
+<dt>bison &amp; flex</dt><dd>open source for yacc, so also LALR</dd>
+<dt>antlr</dt><dd>top down parser generator, generates recursive-descent parser</dd>
+</dl>
 </div>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://clang.llvm.org/features.html">http://clang.llvm.org/features.html</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-10 Fri 13:14</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
