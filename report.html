@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-21 Tue 07:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assertion Experiment</title>
@@ -237,22 +237,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge9ef343">1. Experiment Meta data</a></li>
-<li><a href="#orgebcea20">2. Some discovered examples:</a>
+<li><a href="#org8d712da">1. Experiment Meta data</a></li>
+<li><a href="#orgbcccff5">2. Some discovered examples:</a>
 <ul>
-<li><a href="#org6a51f9a">2.1. nsf&#x2013;termbox/termbox.c:594</a></li>
-<li><a href="#orgf62b1a5">2.2. samr7&#x2013;vanitygen/pattern.c:432</a></li>
-<li><a href="#org96265bd">2.3. spdk&#x2013;spdk/conn.c:144</a></li>
-<li><a href="#org3032828">2.4. About the data</a></li>
+<li><a href="#org49131ca">2.1. nsf&#x2013;termbox/termbox.c:594</a></li>
+<li><a href="#org3dc0f7a">2.2. samr7&#x2013;vanitygen/pattern.c:432</a></li>
+<li><a href="#org0b5b1af">2.3. spdk&#x2013;spdk/conn.c:144</a></li>
+<li><a href="#orgfb6466e">2.4. About the data</a></li>
 </ul>
 </li>
-<li><a href="#org18b72b0">3. <span class="todo TODO">TODO</span> Scope of analysis</a></li>
+<li><a href="#org2af5c86">3. <span class="todo TODO">TODO</span> Scope of analysis</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge9ef343" class="outline-2">
-<h2 id="orge9ef343"><span class="section-number-2">1</span> Experiment Meta data</h2>
+<div id="outline-container-org8d712da" class="outline-2">
+<h2 id="org8d712da"><span class="section-number-2">1</span> Experiment Meta data</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Meta data for assertions in top 1000 github projects.
@@ -302,21 +302,21 @@ is integer (for outputing)
 </div>
 </div>
 
-<div id="outline-container-orgebcea20" class="outline-2">
-<h2 id="orgebcea20"><span class="section-number-2">2</span> Some discovered examples:</h2>
+<div id="outline-container-orgbcccff5" class="outline-2">
+<h2 id="orgbcccff5"><span class="section-number-2">2</span> Some discovered examples:</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Three queries are resolved successfully. All of them are proved safe assertions.
 </p>
 </div>
 
-<div id="outline-container-org6a51f9a" class="outline-3">
-<h3 id="org6a51f9a"><span class="section-number-3">2.1</span> nsf&#x2013;termbox/termbox.c:594</h3>
+<div id="outline-container-org49131ca" class="outline-3">
+<h3 id="org49131ca"><span class="section-number-3">2.1</span> nsf&#x2013;termbox/termbox.c:594</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">read_up_to</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">n</span>) {
   assert(n&gt;0);
-  <span style="color: #586e75;">// </span><span style="color: #586e75;">more code</span>
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">more code</span>
 }
 </pre>
 </div>
@@ -334,8 +334,8 @@ and there're two call sites of it both by
 </div>
 </div>
 
-<div id="outline-container-orgf62b1a5" class="outline-3">
-<h3 id="orgf62b1a5"><span class="section-number-3">2.2</span> samr7&#x2013;vanitygen/pattern.c:432</h3>
+<div id="outline-container-org3dc0f7a" class="outline-3">
+<h3 id="org3dc0f7a"><span class="section-number-3">2.2</span> samr7&#x2013;vanitygen/pattern.c:432</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-C">p = snprintf(&amp;linebuf[p], rem, <span style="color: #2aa198;">"[Prob %.1f%%]"</span>, <span style="color: #b58900;">prob</span>*100);
@@ -349,20 +349,20 @@ constant p=11
 </div>
 </div>
 
-<div id="outline-container-org96265bd" class="outline-3">
-<h3 id="org96265bd"><span class="section-number-3">2.3</span> spdk&#x2013;spdk/conn.c:144</h3>
+<div id="outline-container-org0b5b1af" class="outline-3">
+<h3 id="org0b5b1af"><span class="section-number-3">2.3</span> spdk&#x2013;spdk/conn.c:144</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">foo</span>() {
-  <span style="color: #859900; font-weight: bold;">if</span> (g_conn_idle_interval_in_tsc == -1)
+  <span style="color: #859900;">if</span> (g_conn_idle_interval_in_tsc == -1)
     spdk_isc(...)
       STAILQ_INIT(&amp;g_idle_conn_list_head);
-  <span style="color: #859900; font-weight: bold;">if</span> (iit_idle_conns() &lt; 0) {
-    <span style="color: #859900; font-weight: bold;">return</span> -1;
+  <span style="color: #859900;">if</span> (iit_idle_conns() &lt; 0) {
+    <span style="color: #859900;">return</span> -1;
   }
 }
 
-<span style="color: #859900; font-weight: bold;">static</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">init_idle_conns</span>(<span style="color: #b58900;">void</span>) {
+<span style="color: #859900;">static</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">init_idle_conns</span>(<span style="color: #b58900;">void</span>) {
   assert(g_epoll_fd == 0);
 }
 </pre>
@@ -370,8 +370,8 @@ constant p=11
 </div>
 </div>
 
-<div id="outline-container-org3032828" class="outline-3">
-<h3 id="org3032828"><span class="section-number-3">2.4</span> About the data</h3>
+<div id="outline-container-orgfb6466e" class="outline-3">
+<h3 id="orgfb6466e"><span class="section-number-3">2.4</span> About the data</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Whether this is what we expected, and also need to make more
@@ -386,13 +386,13 @@ A list of assertions is attached. From there we might see which kind is easy to 
 </div>
 </div>
 
-<div id="outline-container-org18b72b0" class="outline-2">
-<h2 id="org18b72b0"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Scope of analysis</h2>
+<div id="outline-container-org2af5c86" class="outline-2">
+<h2 id="org2af5c86"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Scope of analysis</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-21 Tue 07:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

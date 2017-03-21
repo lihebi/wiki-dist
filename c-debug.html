@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-21 Tue 07:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C Debugging Techniques</title>
@@ -237,21 +237,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf60a14c">1. backtrace(3)</a></li>
-<li><a href="#org9ced525">2. -finstrument-funcitons</a></li>
-<li><a href="#org0b21e5f">3. Callgrind</a></li>
+<li><a href="#org45261a1">1. backtrace(3)</a></li>
+<li><a href="#org1e89ff9">2. -finstrument-funcitons</a></li>
+<li><a href="#org4fcc6ca">3. Callgrind</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf60a14c" class="outline-2">
-<h2 id="orgf60a14c"><span class="section-number-2">1</span> backtrace(3)</h2>
+<div id="outline-container-org45261a1" class="outline-2">
+<h2 id="org45261a1"><span class="section-number-2">1</span> backtrace(3)</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;execinfo.h&gt;</span>
+<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;execinfo.h&gt;</span>
 
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdlib.h&gt;</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdlib.h&gt;</span>
 
 <span style="color: #b58900;">void</span> <span style="color: #268bd2;">handler</span>(<span style="color: #b58900;">char</span> *<span style="color: #268bd2;">caller</span>) {
   <span style="color: #b58900;">void</span> *<span style="color: #268bd2;">array</span>[10];
@@ -303,8 +303,8 @@ continue
 </div>
 </div>
 
-<div id="outline-container-org9ced525" class="outline-2">
-<h2 id="org9ced525"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
+<div id="outline-container-org1e89ff9" class="outline-2">
+<h2 id="org1e89ff9"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 See gcc options.
@@ -324,34 +324,34 @@ Generate instrumentation calls for entry and exit to functions. Just after funct
 trace.c:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;time.h&gt;</span>
+<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;time.h&gt;</span>
 
-<span style="color: #859900; font-weight: bold;">static</span> <span style="color: #b58900;">FILE</span> *<span style="color: #268bd2;">fp_trace</span>;
+<span style="color: #859900;">static</span> <span style="color: #b58900;">FILE</span> *<span style="color: #268bd2;">fp_trace</span>;
 
-<span style="color: #b58900;">void</span> <span style="color: #859900; font-weight: bold;">__attribute__</span> ((constructor))
+<span style="color: #b58900;">void</span> <span style="color: #859900;">__attribute__</span> ((constructor))
 <span style="color: #268bd2;">trace_begin</span> (<span style="color: #b58900;">void</span>)
 {
   fp_trace = fopen(<span style="color: #2aa198;">"trace.out"</span>, <span style="color: #2aa198;">"w"</span>);
 }
 
-<span style="color: #b58900;">void</span> <span style="color: #859900; font-weight: bold;">__attribute__</span> ((destructor))
+<span style="color: #b58900;">void</span> <span style="color: #859900;">__attribute__</span> ((destructor))
 <span style="color: #268bd2;">trace_end</span> (<span style="color: #b58900;">void</span>)
 {
-  <span style="color: #859900; font-weight: bold;">if</span> (fp_trace != <span style="color: #268bd2; font-weight: bold;">NULL</span>) {
+  <span style="color: #859900;">if</span> (fp_trace != <span style="color: #2aa198;">NULL</span>) {
     fclose(fp_trace);
   }
 }
 
 <span style="color: #b58900;">void</span> <span style="color: #268bd2;">__cyg_profile_func_enter</span> (<span style="color: #b58900;">void</span> *<span style="color: #268bd2;">func</span>, <span style="color: #b58900;">void</span> *<span style="color: #268bd2;">caller</span>) {
-  <span style="color: #859900; font-weight: bold;">if</span> (fp_trace != <span style="color: #268bd2; font-weight: bold;">NULL</span>) {
-    fprintf(fp_trace, <span style="color: #2aa198;">"e %p %p %lu\n"</span>, func, caller, time(<span style="color: #268bd2; font-weight: bold;">NULL</span>));
+  <span style="color: #859900;">if</span> (fp_trace != <span style="color: #2aa198;">NULL</span>) {
+    fprintf(fp_trace, <span style="color: #2aa198;">"e %p %p %lu\n"</span>, func, caller, time(<span style="color: #2aa198;">NULL</span>));
   }
 }
 
 <span style="color: #b58900;">void</span> <span style="color: #268bd2;">__cyg_profile_func_exit</span>(<span style="color: #b58900;">void</span> *<span style="color: #268bd2;">func</span>, <span style="color: #b58900;">void</span> *<span style="color: #268bd2;">caller</span>) {
-  <span style="color: #859900; font-weight: bold;">if</span> (fp_trace != <span style="color: #268bd2; font-weight: bold;">NULL</span>) {
-    fprintf(fp_trace, <span style="color: #2aa198;">"x %p %p %lu\n"</span>, func, caller, time(<span style="color: #268bd2; font-weight: bold;">NULL</span>));
+  <span style="color: #859900;">if</span> (fp_trace != <span style="color: #2aa198;">NULL</span>) {
+    fprintf(fp_trace, <span style="color: #2aa198;">"x %p %p %lu\n"</span>, func, caller, time(<span style="color: #2aa198;">NULL</span>));
   }
 }
 </pre>
@@ -361,8 +361,8 @@ trace.c:
 a.c:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;string.h&gt;</span>
+<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;string.h&gt;</span>
 <span style="color: #b58900;">void</span> <span style="color: #268bd2;">foo</span>() {
   printf(<span style="color: #2aa198;">"foo\n"</span>);
 }
@@ -403,8 +403,8 @@ addr2line -s -e a.out 0x4006c8 # filename:linum
 </div>
 </div>
 
-<div id="outline-container-org0b21e5f" class="outline-2">
-<h2 id="org0b21e5f"><span class="section-number-2">3</span> Callgrind</h2>
+<div id="outline-container-org4fcc6ca" class="outline-2">
+<h2 id="org4fcc6ca"><span class="section-number-2">3</span> Callgrind</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 valgrind --tool=callgrind ./a.out
@@ -419,7 +419,7 @@ The program must be running.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-21 Tue 07:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

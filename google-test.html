@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:27 -->
+<!-- 2017-03-21 Tue 07:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>google test</title>
@@ -237,16 +237,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9464011">1. setup</a></li>
-<li><a href="#org099810b">2. assertion</a></li>
-<li><a href="#org571c853">3. fixture</a></li>
-<li><a href="#org1361a8a">4. Run A Subset of Tests</a></li>
+<li><a href="#org4e43506">1. setup</a></li>
+<li><a href="#org3cceb6b">2. assertion</a></li>
+<li><a href="#orgf0b87c1">3. fixture</a></li>
+<li><a href="#orga0309f2">4. Run A Subset of Tests</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9464011" class="outline-2">
-<h2 id="org9464011"><span class="section-number-2">1</span> setup</h2>
+<div id="outline-container-org4e43506" class="outline-2">
+<h2 id="org4e43506"><span class="section-number-2">1</span> setup</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Download google test, make and make install.
@@ -258,7 +258,7 @@ Inside your program, just insert
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;gtest/gtest.h&gt;</span>
+<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;gtest/gtest.h&gt;</span>
 <span style="color: #268bd2;">TEST</span>(TestCaseName, TestName) {
 }
 </pre>
@@ -273,18 +273,18 @@ should supply a main function in ONE file:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">&lt;gtest/gtest.h&gt;</span>
+<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;gtest/gtest.h&gt;</span>
 <span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">argc</span>, <span style="color: #b58900;">char</span>** <span style="color: #268bd2;">argv</span>) {
   ::testing::InitGoogleTest(&amp;argc, argv);
-  <span style="color: #859900; font-weight: bold;">return</span> RUN_ALL_TESTS();
+  <span style="color: #859900;">return</span> RUN_ALL_TESTS();
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org099810b" class="outline-2">
-<h2 id="org099810b"><span class="section-number-2">2</span> assertion</h2>
+<div id="outline-container-org3cceb6b" class="outline-2">
+<h2 id="org3cceb6b"><span class="section-number-2">2</span> assertion</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>ASSERT_TRUE</code></li>
@@ -300,20 +300,20 @@ all the assertions can be changed into EXPECT<sub>XX</sub>.
 </div>
 
 
-<div id="outline-container-org571c853" class="outline-2">
-<h2 id="org571c853"><span class="section-number-2">3</span> fixture</h2>
+<div id="outline-container-orgf0b87c1" class="outline-2">
+<h2 id="orgf0b87c1"><span class="section-number-2">3</span> fixture</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Code to test:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900; font-weight: bold;">template</span> &lt;<span style="color: #859900; font-weight: bold;">typename</span> <span style="color: #b58900;">E</span>&gt; <span style="color: #586e75;">// </span><span style="color: #586e75;">E is the element type.</span>
-<span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">Queue</span> {
- <span style="color: #859900; font-weight: bold;">public</span>:
+<pre class="src src-C++"><span style="color: #859900;">template</span> &lt;<span style="color: #859900;">typename</span> <span style="color: #b58900;">E</span>&gt; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">E is the element type.</span>
+<span style="color: #859900;">class</span> <span style="color: #b58900;">Queue</span> {
+ <span style="color: #859900;">public</span>:
   <span style="color: #268bd2;">Queue</span>();
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">Enqueue</span>(<span style="color: #859900; font-weight: bold;">const</span> <span style="color: #b58900;">E</span>&amp; <span style="color: #268bd2;">element</span>);
-  <span style="color: #b58900;">E</span>* <span style="color: #268bd2;">Dequeue</span>(); <span style="color: #586e75;">// </span><span style="color: #586e75;">Returns NULL if the queue is empty.</span>
-  <span style="color: #b58900;">size_t</span> <span style="color: #268bd2;">size</span>() <span style="color: #859900; font-weight: bold;">const</span>;
+  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">Enqueue</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">E</span>&amp; <span style="color: #268bd2;">element</span>);
+  <span style="color: #b58900;">E</span>* <span style="color: #268bd2;">Dequeue</span>(); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Returns NULL if the queue is empty.</span>
+  <span style="color: #b58900;">size_t</span> <span style="color: #268bd2;">size</span>() <span style="color: #859900;">const</span>;
   ...
 };
 </pre>
@@ -324,15 +324,15 @@ testing code:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">QueueTest</span> : <span style="color: #859900; font-weight: bold;">public</span> ::<span style="color: #268bd2; font-weight: bold;">testing</span>::<span style="color: #b58900;">Test</span> {
- <span style="color: #859900; font-weight: bold;">protected</span>:
-  <span style="color: #859900; font-weight: bold;">virtual</span> <span style="color: #b58900;">void</span> <span style="color: #268bd2;">SetUp</span>() {
+<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">QueueTest</span> : <span style="color: #859900;">public</span> ::<span style="color: #2aa198;">testing</span>::<span style="color: #b58900;">Test</span> {
+ <span style="color: #859900;">protected</span>:
+  <span style="color: #859900;">virtual</span> <span style="color: #b58900;">void</span> <span style="color: #268bd2;">SetUp</span>() {
     q1_.Enqueue(1);
     q2_.Enqueue(2);
     q2_.Enqueue(3);
   }
 
-  <span style="color: #586e75;">// </span><span style="color: #586e75;">virtual void TearDown() {}</span>
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">virtual void TearDown() {}</span>
 
   <span style="color: #b58900;">Queue</span>&lt;<span style="color: #b58900;">int</span>&gt; <span style="color: #268bd2;">q0_</span>;
   <span style="color: #b58900;">Queue</span>&lt;<span style="color: #b58900;">int</span>&gt; <span style="color: #268bd2;">q1_</span>;
@@ -366,8 +366,8 @@ Note that q0_ is immediately available.
 </div>
 </div>
 
-<div id="outline-container-org1361a8a" class="outline-2">
-<h2 id="org1361a8a"><span class="section-number-2">4</span> Run A Subset of Tests</h2>
+<div id="outline-container-orga0309f2" class="outline-2">
+<h2 id="orga0309f2"><span class="section-number-2">4</span> Run A Subset of Tests</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The format of a filter is a ':'-separated list of wildcard patterns
@@ -385,14 +385,14 @@ In short, <code>&lt;pos1&gt;:&lt;pos2&gt;:&lt;pos3&gt;-&lt;neg1&gt;:&lt;neg2&gt;
 </p>
 <div class="org-src-container">
 <pre class="src src-shell">./foo_test --gtest_filter=*
-<span style="color: #586e75;"># </span><span style="color: #586e75;">Runs everything in test case FooTest</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">Runs everything in test case FooTest</span>
 ./foo_test --gtest_filter=FooTest.*
-<span style="color: #586e75;"># </span><span style="color: #586e75;">Runs any test whose full name contains either "Null" or "Constructor"</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">Runs any test whose full name contains either "Null" or "Constructor"</span>
 ./foo_test --gtest_filter=*Null*:*Constructor*
-<span style="color: #586e75;"># </span><span style="color: #586e75;">Runs all non-death tests.</span>
-<span style="color: #586e75;"># </span><span style="color: #586e75;">- negativate the pattern</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">Runs all non-death tests.</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">- negativate the pattern</span>
 ./foo_test --gtest_filter=-*DeathTest.*
-<span style="color: #586e75;"># </span><span style="color: #586e75;">Runs everything in test case FooTest except FooTest.Bar</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">Runs everything in test case FooTest except FooTest.Bar</span>
 ./foo_test --gtest_filter=FooTest.*-FooTest.Bar
 </pre>
 </div>
@@ -401,7 +401,7 @@ In short, <code>&lt;pos1&gt;:&lt;pos2&gt;:&lt;pos3&gt;-&lt;neg1&gt;:&lt;neg2&gt;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:27</p>
+<p class="date">Created: 2017-03-21 Tue 07:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-21 Tue 07:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>String Algorithm</title>
@@ -259,32 +259,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org74b1b0b">1. Knuth–Morris–Pratt(KMP)</a>
+<li><a href="#orgfe01f05">1. Knuth–Morris–Pratt(KMP)</a>
 <ul>
-<li><a href="#org04ccba0">1.1. 214. Shortest Palindrome</a>
+<li><a href="#org76232f7">1.1. 214. Shortest Palindrome</a>
 <ul>
-<li><a href="#org6adbfb2">1.1.1. KMP</a></li>
-<li><a href="#org6206d7e">1.1.2. brute force</a></li>
+<li><a href="#orgb979d3d">1.1.1. KMP</a></li>
+<li><a href="#org89c994d">1.1.2. brute force</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8de45a3">2. Boyer Moore</a>
+<li><a href="#orga880283">2. Boyer Moore</a>
 <ul>
-<li><a href="#orgffa1f87">2.1. Bad Character Rule</a></li>
-<li><a href="#org4cb655a">2.2. Good Suffix Rule</a></li>
-<li><a href="#orga5fa5ac">2.3. Galil Rule</a></li>
+<li><a href="#org60f1bae">2.1. Bad Character Rule</a></li>
+<li><a href="#org245ddb7">2.2. Good Suffix Rule</a></li>
+<li><a href="#org808233f">2.3. Galil Rule</a></li>
 </ul>
 </li>
-<li><a href="#orge82222d">3. Rabin-Karp Algorithm</a>
+<li><a href="#orgd4c453b">3. Rabin-Karp Algorithm</a>
 <ul>
-<li><a href="#org3e20957">3.1. Rolling Hash</a>
+<li><a href="#orgfa5828a">3.1. Rolling Hash</a>
 <ul>
-<li><a href="#org8588fbf">3.1.1. Rabin-Karp rolling hash</a></li>
-<li><a href="#orgb89db74">3.1.2. Cyclic Polynomial (Buzhash)</a></li>
+<li><a href="#org950db7d">3.1.1. Rabin-Karp rolling hash</a></li>
+<li><a href="#org8083ac4">3.1.2. Cyclic Polynomial (Buzhash)</a></li>
 </ul>
 </li>
-<li><a href="#org645a294">3.2. Tabulation hashing</a></li>
+<li><a href="#orgdf04930">3.2. Tabulation hashing</a></li>
 </ul>
 </li>
 </ul>
@@ -292,8 +292,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org74b1b0b" class="outline-2">
-<h2 id="org74b1b0b"><span class="section-number-2">1</span> Knuth–Morris–Pratt(KMP)</h2>
+<div id="outline-container-orgfe01f05" class="outline-2">
+<h2 id="orgfe01f05"><span class="section-number-2">1</span> Knuth–Morris–Pratt(KMP)</h2>
 <div class="outline-text-2" id="text-1">
 <blockquote>
 <p>
@@ -315,29 +315,29 @@ The algorithm to build the table:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp-interaction">(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">build-table</span> (pattern)
-  (<span style="color: #859900; font-weight: bold;">cl-loop</span> with pos = 2
+<pre class="src src-lisp-interaction">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">build-table</span> (pattern)
+  (<span style="color: #859900;">cl-loop</span> with pos = 2
            with match = 0
            with size = (length pattern)
            with ret = (make-vector size 0)
            initially do
-           <span style="color: #586e75;">;; </span><span style="color: #586e75;">here I assume size is at least 2</span>
-           (<span style="color: #859900; font-weight: bold;">assert</span> (&gt; size 1))
+           <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">here I assume size is at least 2</span>
+           (<span style="color: #859900;">assert</span> (&gt; size 1))
            (aset ret 0 -1)
            (aset ret 1 0)
            while (&lt; pos size) do
-           (<span style="color: #859900; font-weight: bold;">if</span> (equal (elt pattern (- pos 1)) (elt pattern match))
-               (<span style="color: #859900; font-weight: bold;">progn</span>
+           (<span style="color: #859900;">if</span> (equal (elt pattern (- pos 1)) (elt pattern match))
+               (<span style="color: #859900;">progn</span>
                  (aset ret pos (+ 1 match))
-                 (<span style="color: #859900; font-weight: bold;">incf</span> match)
-                 (<span style="color: #859900; font-weight: bold;">incf</span> pos))
-             (<span style="color: #859900; font-weight: bold;">if</span> (&gt; match 0)
-                 (<span style="color: #859900; font-weight: bold;">setq</span> match (elt ret match))
+                 (<span style="color: #859900;">incf</span> match)
+                 (<span style="color: #859900;">incf</span> pos))
+             (<span style="color: #859900;">if</span> (&gt; match 0)
+                 (<span style="color: #859900;">setq</span> match (elt ret match))
                (aset ret pos 0)
-               (<span style="color: #859900; font-weight: bold;">incf</span> pos)))
+               (<span style="color: #859900;">incf</span> pos)))
            finally return ret))
 
-(<span style="color: #859900; font-weight: bold;">ert-deftest</span> <span style="color: #268bd2;">build-table-test</span>()
+(<span style="color: #859900;">ert-deftest</span> <span style="color: #268bd2;">build-table-test</span>()
   (should (equal (build-table <span style="color: #2aa198;">"AABAAAC"</span>) [-1 0 1 0 1 2 2]))
   (should (equal (build-table <span style="color: #2aa198;">"ABCABCD"</span>) [-1 0 0 0 1 2 3])))
 
@@ -346,8 +346,8 @@ The algorithm to build the table:
 </div>
 </div>
 
-<div id="outline-container-org04ccba0" class="outline-3">
-<h3 id="org04ccba0"><span class="section-number-3">1.1</span> 214. Shortest Palindrome</h3>
+<div id="outline-container-org76232f7" class="outline-3">
+<h3 id="org76232f7"><span class="section-number-3">1.1</span> 214. Shortest Palindrome</h3>
 <div class="outline-text-3" id="text-1-1">
 <blockquote>
 <p>
@@ -356,8 +356,8 @@ Given a string S, you are allowed to convert it to a palindrome by adding charac
 </blockquote>
 </div>
 
-<div id="outline-container-org6adbfb2" class="outline-4">
-<h4 id="org6adbfb2"><span class="section-number-4">1.1.1</span> KMP</h4>
+<div id="outline-container-orgb979d3d" class="outline-4">
+<h4 id="orgb979d3d"><span class="section-number-4">1.1.1</span> KMP</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 It is easy to convert the problem to find the longest Palindrome at the beginning of s.
@@ -368,70 +368,70 @@ What we need is to find the largest number inside KMP table.
 </div>
 </div>
 
-<div id="outline-container-org6206d7e" class="outline-4">
-<h4 id="org6206d7e"><span class="section-number-4">1.1.2</span> brute force</h4>
+<div id="outline-container-org89c994d" class="outline-4">
+<h4 id="org89c994d"><span class="section-number-4">1.1.2</span> brute force</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 I have a brute-force that "just" pass the tests.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">Solution</span> {
-<span style="color: #859900; font-weight: bold;">public</span>:
+<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">Solution</span> {
+<span style="color: #859900;">public</span>:
   <span style="color: #b58900;">string</span> <span style="color: #268bd2;">shortestPalindrome</span>(<span style="color: #b58900;">string</span> <span style="color: #268bd2;">s</span>) {
-    <span style="color: #859900; font-weight: bold;">if</span> (s.size() == 0) <span style="color: #859900; font-weight: bold;">return</span> s;
-    <span style="color: #859900; font-weight: bold;">if</span> (s.size() == 1) <span style="color: #859900; font-weight: bold;">return</span> s;
-    <span style="color: #859900; font-weight: bold;">for</span> (<span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>=(s.size()-1)/2;i&gt;0;i--) {
-      <span style="color: #859900; font-weight: bold;">if</span> (check(s, i, <span style="color: #268bd2; font-weight: bold;">false</span>)) {
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">std::cout &lt;&lt; "success on " &lt;&lt; i &lt;&lt; " false"  &lt;&lt; "\n";</span>
+    <span style="color: #859900;">if</span> (s.size() == 0) <span style="color: #859900;">return</span> s;
+    <span style="color: #859900;">if</span> (s.size() == 1) <span style="color: #859900;">return</span> s;
+    <span style="color: #859900;">for</span> (<span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>=(s.size()-1)/2;i&gt;0;i--) {
+      <span style="color: #859900;">if</span> (check(s, i, <span style="color: #2aa198;">false</span>)) {
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">std::cout &lt;&lt; "success on " &lt;&lt; i &lt;&lt; " false"  &lt;&lt; "\n";</span>
         <span style="color: #b58900;">string</span> <span style="color: #268bd2;">sub</span> = s.substr(<span style="color: #b58900;">i</span>*2+2);
-        <span style="color: #268bd2; font-weight: bold;">std</span>::reverse(sub.begin(), sub.end());
-        <span style="color: #859900; font-weight: bold;">return</span> sub + s;
-      } <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> (check(s, <span style="color: #b58900;">i</span>, <span style="color: #268bd2; font-weight: bold;">true</span>)) {
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">std::cout &lt;&lt; "success on " &lt;&lt; i &lt;&lt; " true"  &lt;&lt; "\n";</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">THREE</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">1 2 3 4 5 6</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">- - -|- - -</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">6/2=3</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">1 2 3 4 5</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">- - | - -</span>
-        <span style="color: #586e75;">// </span><span style="color: #586e75;">i*2+1 - end</span>
+        <span style="color: #2aa198;">std</span>::reverse(sub.begin(), sub.end());
+        <span style="color: #859900;">return</span> sub + s;
+      } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (check(s, <span style="color: #b58900;">i</span>, <span style="color: #2aa198;">true</span>)) {
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">std::cout &lt;&lt; "success on " &lt;&lt; i &lt;&lt; " true"  &lt;&lt; "\n";</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">THREE</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">1 2 3 4 5 6</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">- - -|- - -</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">6/2=3</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">1 2 3 4 5</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">- - | - -</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">i*2+1 - end</span>
         <span style="color: #b58900;">string</span> <span style="color: #268bd2;">sub</span> = s.substr(<span style="color: #b58900;">i</span>*2+1);
-        <span style="color: #268bd2; font-weight: bold;">std</span>::reverse(sub.begin(), sub.end());
-        <span style="color: #859900; font-weight: bold;">return</span> sub + s;
+        <span style="color: #2aa198;">std</span>::reverse(sub.begin(), sub.end());
+        <span style="color: #859900;">return</span> sub + s;
       }
     }
     <span style="color: #b58900;">string</span> <span style="color: #268bd2;">sub</span>;
-    <span style="color: #859900; font-weight: bold;">if</span> (check(s, 0, <span style="color: #268bd2; font-weight: bold;">false</span>)) {
+    <span style="color: #859900;">if</span> (check(s, 0, <span style="color: #2aa198;">false</span>)) {
       sub = s.substr(2);
-    } <span style="color: #859900; font-weight: bold;">else</span> {
+    } <span style="color: #859900;">else</span> {
       sub = s.substr(1);
     }
-    <span style="color: #268bd2; font-weight: bold;">std</span>::reverse(sub.begin(), sub.end());
-    <span style="color: #859900; font-weight: bold;">return</span> sub + s;
+    <span style="color: #2aa198;">std</span>::reverse(sub.begin(), sub.end());
+    <span style="color: #859900;">return</span> sub + s;
   }
-  <span style="color: #586e75;">/**</span>
-<span style="color: #586e75;">   * on: pivot on idx or not</span>
-<span style="color: #586e75;">   */</span>
+  <span style="color: #93a1a1; font-style: italic;">/**</span>
+<span style="color: #93a1a1; font-style: italic;">   * on: pivot on idx or not</span>
+<span style="color: #93a1a1; font-style: italic;">   */</span>
   <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">check</span>(<span style="color: #b58900;">string</span> &amp;<span style="color: #268bd2;">s</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">idx</span>, <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">on</span>) {
-    <span style="color: #586e75;">// </span><span style="color: #586e75;">std::cout &lt;&lt; idx  &lt;&lt; "\n";</span>
-    <span style="color: #859900; font-weight: bold;">if</span> (idx &lt;0 || idx &gt;= (<span style="color: #b58900;">int</span>)s.size()) <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #268bd2; font-weight: bold;">false</span>;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">std::cout &lt;&lt; idx  &lt;&lt; "\n";</span>
+    <span style="color: #859900;">if</span> (idx &lt;0 || idx &gt;= (<span style="color: #b58900;">int</span>)s.size()) <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
     <span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>=0,<span style="color: #268bd2;">j</span>=0;
-    <span style="color: #859900; font-weight: bold;">if</span> (on) {
+    <span style="color: #859900;">if</span> (on) {
       i=idx-1;
       j=idx+1;
-    } <span style="color: #859900; font-weight: bold;">else</span> {
+    } <span style="color: #859900;">else</span> {
       i = idx;
       j = idx+1;
     }
     <span style="color: #b58900;">int</span> <span style="color: #268bd2;">size</span> = s.size();
-    <span style="color: #859900; font-weight: bold;">while</span> (i &gt;= 0) {
-      <span style="color: #859900; font-weight: bold;">if</span> (j &gt;= size) <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #268bd2; font-weight: bold;">false</span>;
-      <span style="color: #859900; font-weight: bold;">if</span> (s[i] != s[j]) <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #268bd2; font-weight: bold;">false</span>;
+    <span style="color: #859900;">while</span> (i &gt;= 0) {
+      <span style="color: #859900;">if</span> (j &gt;= size) <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+      <span style="color: #859900;">if</span> (s[i] != s[j]) <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
       i--;
       j++;
     }
-    <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #268bd2; font-weight: bold;">true</span>;
+    <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
   }
 };
 </pre>
@@ -441,8 +441,8 @@ I have a brute-force that "just" pass the tests.
 </div>
 </div>
 
-<div id="outline-container-org8de45a3" class="outline-2">
-<h2 id="org8de45a3"><span class="section-number-2">2</span> Boyer Moore</h2>
+<div id="outline-container-orga880283" class="outline-2">
+<h2 id="orga880283"><span class="section-number-2">2</span> Boyer Moore</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 It is a string match algorithm.
@@ -458,8 +458,8 @@ In the following examples, the lower case denote the matched or unmatched part f
 They are upper case when considering matching.
 </p>
 </div>
-<div id="outline-container-orgffa1f87" class="outline-3">
-<h3 id="orgffa1f87"><span class="section-number-3">2.1</span> Bad Character Rule</h3>
+<div id="outline-container-org60f1bae" class="outline-3">
+<h3 id="org60f1bae"><span class="section-number-3">2.1</span> Bad Character Rule</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Match from last. In the below example, the suffix <code>MAN</code> matches, but <code>N</code> does not match. Shift the pattern so that the first N (counted from last) go to the <code>N</code> place.
@@ -481,8 +481,8 @@ find to left a `n`, then shift it to the position.
 </div>
 </div>
 
-<div id="outline-container-org4cb655a" class="outline-3">
-<h3 id="org4cb655a"><span class="section-number-3">2.2</span> Good Suffix Rule</h3>
+<div id="outline-container-org245ddb7" class="outline-3">
+<h3 id="org245ddb7"><span class="section-number-3">2.2</span> Good Suffix Rule</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Similar to the bad rule, find the matched, in this case <code>NAM</code>.
@@ -505,8 +505,8 @@ and shift it to the position.
 </div>
 </div>
 
-<div id="outline-container-orga5fa5ac" class="outline-3">
-<h3 id="orga5fa5ac"><span class="section-number-3">2.3</span> Galil Rule</h3>
+<div id="outline-container-org808233f" class="outline-3">
+<h3 id="org808233f"><span class="section-number-3">2.3</span> Galil Rule</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 As opposed to shifting, the Galil rule deals with speeding up the actual comparisons done at each alignment by skipping sections that are known to match.
@@ -523,8 +523,8 @@ the Galil rule is required for proving linear-time execution in the worst case.
 </div>
 </div>
 
-<div id="outline-container-orge82222d" class="outline-2">
-<h2 id="orge82222d"><span class="section-number-2">3</span> Rabin-Karp Algorithm</h2>
+<div id="outline-container-orgd4c453b" class="outline-2">
+<h2 id="orgd4c453b"><span class="section-number-2">3</span> Rabin-Karp Algorithm</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 It is a string searching algorithm.
@@ -536,14 +536,14 @@ The Naive Solution for string search:
 
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">func</span>(<span style="color: #b58900;">char</span> <span style="color: #268bd2;">s</span>[], <span style="color: #b58900;">int</span> <span style="color: #268bd2;">n</span>, <span style="color: #b58900;">char</span> <span style="color: #268bd2;">pattern</span>[], <span style="color: #b58900;">int</span> <span style="color: #268bd2;">m</span>) {
-  <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">ps</span>,*<span style="color: #268bd2;">pp</span>; <span style="color: #586e75;">//</span><span style="color: #586e75;">*</span>
+  <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">ps</span>,*<span style="color: #268bd2;">pp</span>; <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">*</span>
   ps=s;
   pp=pattern;
-  <span style="color: #859900; font-weight: bold;">for</span> (i=0;i&lt;n-m+1;) {
-    <span style="color: #859900; font-weight: bold;">if</span> (*pp==<span style="color: #2aa198;">'\0'</span>) <span style="color: #859900; font-weight: bold;">return</span> i; <span style="color: #586e75;">//</span><span style="color: #586e75;">*</span>
-    <span style="color: #859900; font-weight: bold;">if</span> (*ps == *pp) { <span style="color: #586e75;">//</span><span style="color: #586e75;">*</span>
+  <span style="color: #859900;">for</span> (i=0;i&lt;n-m+1;) {
+    <span style="color: #859900;">if</span> (*pp==<span style="color: #2aa198;">'\0'</span>) <span style="color: #859900;">return</span> i; <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">*</span>
+    <span style="color: #859900;">if</span> (*ps == *pp) { <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">*</span>
       ps++;pp++;
-    } <span style="color: #859900; font-weight: bold;">else</span> {
+    } <span style="color: #859900;">else</span> {
       i++;
       ps=s+i;
       pp=pattern;
@@ -599,15 +599,15 @@ K patterns, in a large string s, find any one of the K patterns.
 </p>
 </div>
 
-<div id="outline-container-org3e20957" class="outline-3">
-<h3 id="org3e20957"><span class="section-number-3">3.1</span> Rolling Hash</h3>
+<div id="outline-container-orgfa5828a" class="outline-3">
+<h3 id="orgfa5828a"><span class="section-number-3">3.1</span> Rolling Hash</h3>
 <div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-org8588fbf" class="outline-4">
-<h4 id="org8588fbf"><span class="section-number-4">3.1.1</span> Rabin-Karp rolling hash</h4>
+</div><div id="outline-container-org950db7d" class="outline-4">
+<h4 id="org950db7d"><span class="section-number-4">3.1.1</span> Rabin-Karp rolling hash</h4>
 </div>
 
-<div id="outline-container-orgb89db74" class="outline-4">
-<h4 id="orgb89db74"><span class="section-number-4">3.1.2</span> Cyclic Polynomial (Buzhash)</h4>
+<div id="outline-container-org8083ac4" class="outline-4">
+<h4 id="org8083ac4"><span class="section-number-4">3.1.2</span> Cyclic Polynomial (Buzhash)</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 <code>s(a)</code> means shift a left.
@@ -632,8 +632,8 @@ H = s(H) \oplus s^k(h(c_1)) \oplus h(c_{k+1})
 </div>
 </div>
 
-<div id="outline-container-org645a294" class="outline-3">
-<h3 id="org645a294"><span class="section-number-3">3.2</span> Tabulation hashing</h3>
+<div id="outline-container-orgdf04930" class="outline-3">
+<h3 id="orgdf04930"><span class="section-number-3">3.2</span> Tabulation hashing</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 input key is <code>p</code> bits, output is <code>q</code> bits.
@@ -655,7 +655,7 @@ so that it fits into the computer's cache memory.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-21 Tue 07:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

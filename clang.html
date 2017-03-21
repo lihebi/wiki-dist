@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-21 Tue 07:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clang</title>
@@ -237,28 +237,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga8f0f61">1. Invoking</a></li>
-<li><a href="#orgfd3b329">2. LibTooling</a>
+<li><a href="#orgc5323c8">1. Invoking</a></li>
+<li><a href="#org2838d8a">2. LibTooling</a>
 <ul>
-<li><a href="#orga3f4169">2.1. Project Setup</a>
+<li><a href="#orgcc38a75">2.1. Project Setup</a>
 <ul>
-<li><a href="#orgfb36522">2.1.1. Main File</a></li>
-<li><a href="#org91aad22">2.1.2. Sub-directory files</a></li>
+<li><a href="#org451a69b">2.1.1. Main File</a></li>
+<li><a href="#org0475fd4">2.1.2. Sub-directory files</a></li>
 </ul>
 </li>
-<li><a href="#org5a1f77e">2.2. Header files</a></li>
-<li><a href="#org3df33ca">2.3. Entry Point</a></li>
-<li><a href="#orgdb93018">2.4. Location</a></li>
-<li><a href="#org16c2cf6">2.5. APIs</a></li>
+<li><a href="#orgd13a303">2.2. Header files</a></li>
+<li><a href="#orgf76390f">2.3. Entry Point</a></li>
+<li><a href="#org168d759">2.4. Location</a></li>
+<li><a href="#org73f134c">2.5. APIs</a></li>
 </ul>
 </li>
-<li><a href="#org67d996a">3. Reference</a></li>
+<li><a href="#org9d08c78">3. Reference</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga8f0f61" class="outline-2">
-<h2 id="orga8f0f61"><span class="section-number-2">1</span> Invoking</h2>
+<div id="outline-container-orgc5323c8" class="outline-2">
+<h2 id="orgc5323c8"><span class="section-number-2">1</span> Invoking</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt><code>-ast-dump</code></dt><dd>dump ast</dd>
@@ -277,14 +277,14 @@ clang-check a.cc -ast-dump -ast-dump-filter=StdStringA --
 
 
 
-<div id="outline-container-orgfd3b329" class="outline-2">
-<h2 id="orgfd3b329"><span class="section-number-2">2</span> LibTooling</h2>
+<div id="outline-container-org2838d8a" class="outline-2">
+<h2 id="org2838d8a"><span class="section-number-2">2</span> LibTooling</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orga3f4169" class="outline-3">
-<h3 id="orga3f4169"><span class="section-number-3">2.1</span> Project Setup</h3>
+</div><div id="outline-container-orgcc38a75" class="outline-3">
+<h3 id="orgcc38a75"><span class="section-number-3">2.1</span> Project Setup</h3>
 <div class="outline-text-3" id="text-2-1">
-</div><div id="outline-container-orgfb36522" class="outline-4">
-<h4 id="orgfb36522"><span class="section-number-4">2.1.1</span> Main File</h4>
+</div><div id="outline-container-org451a69b" class="outline-4">
+<h4 id="org451a69b"><span class="section-number-4">2.1.1</span> Main File</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 First of all, get the <code>CMakeLists.txt</code> setup:
@@ -352,7 +352,7 @@ Clang library setup
 Trouble shooting setup
 </p>
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #586e75;"># Otherwise error: undefined reference to typeinfo for xxx</span>
+<pre class="src src-cmake"><span style="color: #93a1a1; font-style: italic;"># Otherwise error: undefined reference to typeinfo for xxx</span>
 <span style="color: #268bd2;">add_compile_options</span>(-fno-rtti)
 </pre>
 </div>
@@ -378,8 +378,8 @@ Add sub-directories
 </div>
 </div>
 
-<div id="outline-container-org91aad22" class="outline-4">
-<h4 id="org91aad22"><span class="section-number-4">2.1.2</span> Sub-directory files</h4>
+<div id="outline-container-org0475fd4" class="outline-4">
+<h4 id="org0475fd4"><span class="section-number-4">2.1.2</span> Sub-directory files</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>src/CMakeLists.txt</code> to add libraries, executables
@@ -414,29 +414,29 @@ command can be in <code>src</code> level list if no test source files.
 </div>
 </div>
 
-<div id="outline-container-org5a1f77e" class="outline-3">
-<h3 id="org5a1f77e"><span class="section-number-3">2.2</span> Header files</h3>
+<div id="outline-container-orgd13a303" class="outline-3">
+<h3 id="orgd13a303"><span class="section-number-3">2.2</span> Header files</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Some representative header files:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/AST/ASTConsumer.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/AST/RecursiveASTVisitor.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/Frontend/CompilerInstance.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/Frontend/FrontendAction.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/Tooling/Tooling.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/Frontend/FrontendActions.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"llvm/Support/CommandLine.h"</span>
-<span style="color: #268bd2;">#include</span> <span style="color: #2aa198;">"clang/Tooling/CommonOptionsParser.h"</span>
+<pre class="src src-cpp"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/AST/ASTConsumer.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/AST/RecursiveASTVisitor.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/Frontend/CompilerInstance.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/Frontend/FrontendAction.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/Tooling/Tooling.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/Frontend/FrontendActions.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"llvm/Support/CommandLine.h"</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"clang/Tooling/CommonOptionsParser.h"</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3df33ca" class="outline-3">
-<h3 id="org3df33ca"><span class="section-number-3">2.3</span> Entry Point</h3>
+<div id="outline-container-orgf76390f" class="outline-3">
+<h3 id="orgf76390f"><span class="section-number-3">2.3</span> Entry Point</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The entry point is creating the <code>tooling::ClangTool</code> class.  Just pass
@@ -445,7 +445,7 @@ tool will not trying to find compilation database.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">argc</span>, <span style="color: #859900; font-weight: bold;">const</span> <span style="color: #b58900;">char</span> **<span style="color: #268bd2;">argv</span>) {
+<pre class="src src-cpp"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">argc</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> **<span style="color: #268bd2;">argv</span>) {
   <span style="color: #b58900;">CommonOptionsParser</span> <span style="color: #268bd2;">OptionsParser</span>(argc, argv, MyToolCategory);
   <span style="color: #b58900;">ClangTool</span> <span style="color: #268bd2;">Tool</span>(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
   Tool.run(newFrontendActionFactory&lt;MyAction&gt;().get());
@@ -460,12 +460,12 @@ action derives from <code>ASTFrontendAction</code>, and override the
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">MyAction</span> : <span style="color: #859900; font-weight: bold;">public</span> <span style="color: #268bd2; font-weight: bold;">clang</span>::<span style="color: #b58900;">ASTFrontendAction</span> {
-<span style="color: #859900; font-weight: bold;">public</span>:
-  <span style="color: #859900; font-weight: bold;">virtual</span> <span style="color: #268bd2; font-weight: bold;">std</span>::<span style="color: #b58900;">unique_ptr</span>&lt;<span style="color: #268bd2; font-weight: bold;">clang</span>::ASTConsumer&gt;
-  <span style="color: #268bd2;">CreateASTConsumer</span>(<span style="color: #268bd2; font-weight: bold;">clang</span>::<span style="color: #b58900;">CompilerInstance</span> &amp;<span style="color: #268bd2;">Compiler</span>, <span style="color: #268bd2; font-weight: bold;">llvm</span>::<span style="color: #b58900;">StringRef</span> <span style="color: #268bd2;">InFile</span>) {
-    <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #268bd2; font-weight: bold;">std</span>::unique_ptr&lt;<span style="color: #268bd2; font-weight: bold;">clang</span>::ASTConsumer&gt;
-      (<span style="color: #859900; font-weight: bold;">new</span> <span style="color: #b58900;">MyConsumer</span>(&amp;Compiler.getASTContext()));
+<pre class="src src-cpp"><span style="color: #859900;">class</span> <span style="color: #b58900;">MyAction</span> : <span style="color: #859900;">public</span> <span style="color: #2aa198;">clang</span>::<span style="color: #b58900;">ASTFrontendAction</span> {
+<span style="color: #859900;">public</span>:
+  <span style="color: #859900;">virtual</span> <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">unique_ptr</span>&lt;<span style="color: #2aa198;">clang</span>::ASTConsumer&gt;
+  <span style="color: #268bd2;">CreateASTConsumer</span>(<span style="color: #2aa198;">clang</span>::<span style="color: #b58900;">CompilerInstance</span> &amp;<span style="color: #268bd2;">Compiler</span>, <span style="color: #2aa198;">llvm</span>::<span style="color: #b58900;">StringRef</span> <span style="color: #268bd2;">InFile</span>) {
+    <span style="color: #859900;">return</span> <span style="color: #2aa198;">std</span>::unique_ptr&lt;<span style="color: #2aa198;">clang</span>::ASTConsumer&gt;
+      (<span style="color: #859900;">new</span> <span style="color: #b58900;">MyConsumer</span>(&amp;Compiler.getASTContext()));
   }
 };
 </pre>
@@ -486,14 +486,14 @@ traversal. Calling a method to change to post-order.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">MyConsumer</span> : <span style="color: #859900; font-weight: bold;">public</span> <span style="color: #268bd2; font-weight: bold;">clang</span>::<span style="color: #b58900;">ASTConsumer</span> {
-<span style="color: #859900; font-weight: bold;">public</span>:
-  <span style="color: #859900; font-weight: bold;">explicit</span> <span style="color: #268bd2;">MyConsumer</span>(<span style="color: #b58900;">ASTContext</span> *<span style="color: #268bd2;">Context</span>)
+<pre class="src src-cpp"><span style="color: #859900;">class</span> <span style="color: #b58900;">MyConsumer</span> : <span style="color: #859900;">public</span> <span style="color: #2aa198;">clang</span>::<span style="color: #b58900;">ASTConsumer</span> {
+<span style="color: #859900;">public</span>:
+  <span style="color: #859900;">explicit</span> <span style="color: #268bd2;">MyConsumer</span>(<span style="color: #b58900;">ASTContext</span> *<span style="color: #268bd2;">Context</span>)
     : Visitor(Context) {}
-  <span style="color: #859900; font-weight: bold;">virtual</span> <span style="color: #b58900;">void</span> <span style="color: #268bd2;">HandleTranslationUnit</span>(<span style="color: #268bd2; font-weight: bold;">clang</span>::<span style="color: #b58900;">ASTContext</span> &amp;<span style="color: #268bd2;">Context</span>) {
+  <span style="color: #859900;">virtual</span> <span style="color: #b58900;">void</span> <span style="color: #268bd2;">HandleTranslationUnit</span>(<span style="color: #2aa198;">clang</span>::<span style="color: #b58900;">ASTContext</span> &amp;<span style="color: #268bd2;">Context</span>) {
     Visitor.TraverseDecl(Context.getTranslationUnitDecl());
   }
-<span style="color: #859900; font-weight: bold;">private</span>:
+<span style="color: #859900;">private</span>:
   <span style="color: #b58900;">MyVisitor</span> <span style="color: #268bd2;">Visitor</span>;
 };
 </pre>
@@ -505,14 +505,14 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900; font-weight: bold;">class</span> <span style="color: #b58900;">TokenVisitor</span>
-  : <span style="color: #859900; font-weight: bold;">public</span> <span style="color: #b58900;">RecursiveASTVisitor</span>&lt;<span style="color: #b58900;">TokenVisitor</span>&gt; {
-<span style="color: #859900; font-weight: bold;">public</span>:
-  <span style="color: #859900; font-weight: bold;">explicit</span> <span style="color: #268bd2;">TokenVisitor</span>(<span style="color: #b58900;">ASTContext</span> *<span style="color: #268bd2;">Context</span>)
+<pre class="src src-cpp"><span style="color: #859900;">class</span> <span style="color: #b58900;">TokenVisitor</span>
+  : <span style="color: #859900;">public</span> <span style="color: #b58900;">RecursiveASTVisitor</span>&lt;<span style="color: #b58900;">TokenVisitor</span>&gt; {
+<span style="color: #859900;">public</span>:
+  <span style="color: #859900;">explicit</span> <span style="color: #268bd2;">TokenVisitor</span>(<span style="color: #b58900;">ASTContext</span> *<span style="color: #268bd2;">Context</span>)
     : Context(Context) {}
   <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">VisitCXXRecordDecl</span>(<span style="color: #b58900;">CXXRecordDecl</span> *<span style="color: #268bd2;">Declaration</span>) {}
   <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">VisitFunctionDecl</span>(<span style="color: #b58900;">FunctionDecl</span> *<span style="color: #268bd2;">func_decl</span>) {}
-<span style="color: #859900; font-weight: bold;">private</span>:
+<span style="color: #859900;">private</span>:
   <span style="color: #b58900;">ASTContext</span> *<span style="color: #268bd2;">Context</span>;
 };
 </pre>
@@ -521,8 +521,8 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </div>
 
 
-<div id="outline-container-orgdb93018" class="outline-3">
-<h3 id="orgdb93018"><span class="section-number-3">2.4</span> Location</h3>
+<div id="outline-container-org168d759" class="outline-3">
+<h3 id="org168d759"><span class="section-number-3">2.4</span> Location</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>Decl::getLocStart -&gt; <code>SourceLocation</code> loc</li>
@@ -532,8 +532,8 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </div>
 </div>
 
-<div id="outline-container-org16c2cf6" class="outline-3">
-<h3 id="org16c2cf6"><span class="section-number-3">2.5</span> APIs</h3>
+<div id="outline-container-org73f134c" class="outline-3">
+<h3 id="org73f134c"><span class="section-number-3">2.5</span> APIs</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 <code>Decl</code>
@@ -542,7 +542,7 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #b58900;">SourceLocation</span> <span style="color: #268bd2;">getLocStart</span> ();
 <span style="color: #b58900;">SourceLocation</span> <span style="color: #268bd2;">getLocEnd</span> ();
-<span style="color: #859900; font-weight: bold;">virtual</span> <span style="color: #b58900;">SourceRange</span> <span style="color: #268bd2;">getSourceRange</span> ();
+<span style="color: #859900;">virtual</span> <span style="color: #b58900;">SourceRange</span> <span style="color: #268bd2;">getSourceRange</span> ();
 </pre>
 </div>
 
@@ -551,7 +551,7 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">FullSourceLoc</span> <span style="color: #268bd2;">getFullLoc</span> (<span style="color: #b58900;">SourceLocation</span> <span style="color: #268bd2;">Loc</span>) <span style="color: #859900; font-weight: bold;">const</span>
+<pre class="src src-cpp"><span style="color: #b58900;">FullSourceLoc</span> <span style="color: #268bd2;">getFullLoc</span> (<span style="color: #b58900;">SourceLocation</span> <span style="color: #268bd2;">Loc</span>) <span style="color: #859900;">const</span>
 <span style="color: #b58900;">SourceManager</span>&amp; <span style="color: #268bd2;">getSourceManager</span> ()
 </pre>
 </div>
@@ -561,9 +561,9 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">unsigned</span> <span style="color: #268bd2;">getSpellingLineNumber</span> (<span style="color: #b58900;">bool</span> *<span style="color: #268bd2;">Invalid</span>=<span style="color: #268bd2; font-weight: bold;">nullptr</span>) <span style="color: #859900; font-weight: bold;">const</span>
-<span style="color: #b58900;">unsigned</span> <span style="color: #268bd2;">getSpellingColumnNumber</span> (<span style="color: #b58900;">bool</span> *<span style="color: #268bd2;">Invalid</span>=<span style="color: #268bd2; font-weight: bold;">nullptr</span>) <span style="color: #859900; font-weight: bold;">const</span>
-<span style="color: #b58900;">FileID</span>  <span style="color: #268bd2;">getFileID</span> () <span style="color: #859900; font-weight: bold;">const</span>
+<pre class="src src-cpp"><span style="color: #b58900;">unsigned</span> <span style="color: #268bd2;">getSpellingLineNumber</span> (<span style="color: #b58900;">bool</span> *<span style="color: #268bd2;">Invalid</span>=<span style="color: #2aa198;">nullptr</span>) <span style="color: #859900;">const</span>
+<span style="color: #b58900;">unsigned</span> <span style="color: #268bd2;">getSpellingColumnNumber</span> (<span style="color: #b58900;">bool</span> *<span style="color: #268bd2;">Invalid</span>=<span style="color: #2aa198;">nullptr</span>) <span style="color: #859900;">const</span>
+<span style="color: #b58900;">FileID</span>  <span style="color: #268bd2;">getFileID</span> () <span style="color: #859900;">const</span>
 </pre>
 </div>
 
@@ -572,17 +572,17 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">FileManager&amp; getFileManager () <span style="color: #859900; font-weight: bold;">const</span>;
-<span style="color: #b58900;">FileID</span> <span style="color: #268bd2;">getMainFileID</span> () <span style="color: #859900; font-weight: bold;">const</span>; <span style="color: #586e75;">// </span><span style="color: #586e75;">this file being processed</span>
-<span style="color: #859900; font-weight: bold;">const</span> <span style="color: #b58900;">FileEntry</span> *<span style="color: #268bd2;">getFileEntryForID</span> (<span style="color: #b58900;">FileID</span> <span style="color: #268bd2;">FID</span>) <span style="color: #859900; font-weight: bold;">const</span>;
+<pre class="src src-cpp">FileManager&amp; getFileManager () <span style="color: #859900;">const</span>;
+<span style="color: #b58900;">FileID</span> <span style="color: #268bd2;">getMainFileID</span> () <span style="color: #859900;">const</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">this file being processed</span>
+<span style="color: #859900;">const</span> <span style="color: #b58900;">FileEntry</span> *<span style="color: #268bd2;">getFileEntryForID</span> (<span style="color: #b58900;">FileID</span> <span style="color: #268bd2;">FID</span>) <span style="color: #859900;">const</span>;
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org67d996a" class="outline-2">
-<h2 id="org67d996a"><span class="section-number-2">3</span> Reference</h2>
+<div id="outline-container-org9d08c78" class="outline-2">
+<h2 id="org9d08c78"><span class="section-number-2">3</span> Reference</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>A article as tutorial:
@@ -594,7 +594,7 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-21 Tue 07:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

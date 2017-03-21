@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-24 Fri 12:28 -->
+<!-- 2017-03-21 Tue 07:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell Utilities</title>
@@ -237,39 +237,39 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd6c10a0">1. Mathematics</a>
+<li><a href="#org33b0231">1. Mathematics</a>
 <ul>
-<li><a href="#orge3298bc">1.1. random number generation</a></li>
+<li><a href="#org2829561">1.1. random number generation</a></li>
 </ul>
 </li>
-<li><a href="#org5deb57c">2. Text Editing</a>
+<li><a href="#orga112cab">2. Text Editing</a>
 <ul>
-<li><a href="#org7551be0">2.1. Patch System</a></li>
-<li><a href="#org722e1fe">2.2. grep</a></li>
-<li><a href="#orgd5470fe">2.3. tr: translate characters</a></li>
-<li><a href="#orge9ad325">2.4. uniq: report or filter out repeated lines in a file</a></li>
-<li><a href="#org4fae7aa">2.5. Other</a></li>
+<li><a href="#org036b049">2.1. Patch System</a></li>
+<li><a href="#org1b4fd9c">2.2. grep</a></li>
+<li><a href="#org7b7c050">2.3. tr: translate characters</a></li>
+<li><a href="#org44511ec">2.4. uniq: report or filter out repeated lines in a file</a></li>
+<li><a href="#orgacd2701">2.5. Other</a></li>
 </ul>
 </li>
-<li><a href="#orgf0dc09e">3. System Management</a>
+<li><a href="#org6002b54">3. System Management</a>
 <ul>
-<li><a href="#orgfa585bd">3.1. man</a></li>
-<li><a href="#org92712e6">3.2. sort</a></li>
-<li><a href="#org7f53523">3.3. xargs</a></li>
-<li><a href="#org82945f1">3.4. Find</a></li>
-<li><a href="#org199e3c3">3.5. Filesystem related</a></li>
-<li><a href="#org19ae795">3.6. Other</a></li>
+<li><a href="#orgc7053e4">3.1. man</a></li>
+<li><a href="#org491b6d4">3.2. sort</a></li>
+<li><a href="#orgaf67b93">3.3. xargs</a></li>
+<li><a href="#orgdcf17db">3.4. Find</a></li>
+<li><a href="#org7e0227a">3.5. Filesystem related</a></li>
+<li><a href="#org25c0374">3.6. Other</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd6c10a0" class="outline-2">
-<h2 id="orgd6c10a0"><span class="section-number-2">1</span> Mathematics</h2>
+<div id="outline-container-org33b0231" class="outline-2">
+<h2 id="org33b0231"><span class="section-number-2">1</span> Mathematics</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orge3298bc" class="outline-3">
-<h3 id="orge3298bc"><span class="section-number-3">1.1</span> random number generation</h3>
+</div><div id="outline-container-org2829561" class="outline-3">
+<h3 id="org2829561"><span class="section-number-3">1.1</span> random number generation</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-shell">shuf -i 1-100 -n 1
@@ -282,11 +282,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5deb57c" class="outline-2">
-<h2 id="org5deb57c"><span class="section-number-2">2</span> Text Editing</h2>
+<div id="outline-container-orga112cab" class="outline-2">
+<h2 id="orga112cab"><span class="section-number-2">2</span> Text Editing</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org7551be0" class="outline-3">
-<h3 id="org7551be0"><span class="section-number-3">2.1</span> Patch System</h3>
+</div><div id="outline-container-org036b049" class="outline-3">
+<h3 id="org036b049"><span class="section-number-3">2.1</span> Patch System</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Create a patch (notice the order: old then new):
@@ -322,21 +322,21 @@ This works as if you swapped the old and new file when creating the patch.
 </div>
 </div>
 
-<div id="outline-container-org722e1fe" class="outline-3">
-<h3 id="org722e1fe"><span class="section-number-3">2.2</span> grep</h3>
+<div id="outline-container-org1b4fd9c" class="outline-3">
+<h3 id="org1b4fd9c"><span class="section-number-3">2.2</span> grep</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #586e75;"># </span><span style="color: #586e75;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
-<span style="color: #586e75;"># </span><span style="color: #586e75;">-n: &#26174;&#31034;&#34892;&#21495;</span>
-<span style="color: #586e75;"># </span><span style="color: #586e75;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
-<span style="color: #586e75;"># </span><span style="color: #586e75;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
+<pre class="src src-shell"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-n: &#26174;&#31034;&#34892;&#21495;</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
 grep &lt;pattern&gt; &lt;file&gt;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd5470fe" class="outline-3">
-<h3 id="orgd5470fe"><span class="section-number-3">2.3</span> tr: translate characters</h3>
+<div id="outline-container-org7b7c050" class="outline-3">
+<h3 id="org7b7c050"><span class="section-number-3">2.3</span> tr: translate characters</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 tr &lt;string1&gt; &lt;string2&gt;
@@ -368,8 +368,8 @@ any characters will represent itself if not:
 </div>
 </div>
 
-<div id="outline-container-orge9ad325" class="outline-3">
-<h3 id="orge9ad325"><span class="section-number-3">2.4</span> uniq: report or filter out repeated lines in a file</h3>
+<div id="outline-container-org44511ec" class="outline-3">
+<h3 id="org44511ec"><span class="section-number-3">2.4</span> uniq: report or filter out repeated lines in a file</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Repeated lines in the input will not be detected if they are not adjacent,
@@ -384,8 +384,8 @@ so it may be necessary to sort the files first.
 </div>
 </div>
 
-<div id="outline-container-org4fae7aa" class="outline-3">
-<h3 id="org4fae7aa"><span class="section-number-3">2.5</span> Other</h3>
+<div id="outline-container-orgacd2701" class="outline-3">
+<h3 id="orgacd2701"><span class="section-number-3">2.5</span> Other</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li><code>cat</code>: <code>-n</code> output with line number</li>
@@ -401,11 +401,11 @@ so it may be necessary to sort the files first.
 </div>
 </div>
 
-<div id="outline-container-orgf0dc09e" class="outline-2">
-<h2 id="orgf0dc09e"><span class="section-number-2">3</span> System Management</h2>
+<div id="outline-container-org6002b54" class="outline-2">
+<h2 id="org6002b54"><span class="section-number-2">3</span> System Management</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgfa585bd" class="outline-3">
-<h3 id="orgfa585bd"><span class="section-number-3">3.1</span> man</h3>
+</div><div id="outline-container-orgc7053e4" class="outline-3">
+<h3 id="orgc7053e4"><span class="section-number-3">3.1</span> man</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <code>man [num] &lt;item&gt;</code>
@@ -417,8 +417,8 @@ so it may be necessary to sort the files first.
 </div>
 </div>
 
-<div id="outline-container-org92712e6" class="outline-3">
-<h3 id="org92712e6"><span class="section-number-3">3.2</span> sort</h3>
+<div id="outline-container-org491b6d4" class="outline-3">
+<h3 id="org491b6d4"><span class="section-number-3">3.2</span> sort</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>-n</code>: compare according to string numerical value</li>
@@ -427,23 +427,23 @@ so it may be necessary to sort the files first.
 </div>
 </div>
 
-<div id="outline-container-org7f53523" class="outline-3">
-<h3 id="org7f53523"><span class="section-number-3">3.3</span> xargs</h3>
+<div id="outline-container-orgaf67b93" class="outline-3">
+<h3 id="orgaf67b93"><span class="section-number-3">3.3</span> xargs</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 相当于~~，并把输出放 <i>结尾</i>
 </p>
 <div class="org-src-container">
 <pre class="src src-shell">find /etc -name <span style="color: #2aa198;">'*.conf'</span> | xargs ls -l
-<span style="color: #586e75;"># </span><span style="color: #586e75;">the same as:</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">the same as:</span>
 ls -l ~find ...~
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org82945f1" class="outline-3">
-<h3 id="org82945f1"><span class="section-number-3">3.4</span> Find</h3>
+<div id="outline-container-orgdcf17db" class="outline-3">
+<h3 id="orgdcf17db"><span class="section-number-3">3.4</span> Find</h3>
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-shell">find . -type f -name *.flac -exec mv {} ../out/ <span style="color: #2aa198;">\;</span>
@@ -459,14 +459,14 @@ Copy file based on find, and take care of quotes and spaces:
 </div>
 </div>
 
-<div id="outline-container-org199e3c3" class="outline-3">
-<h3 id="org199e3c3"><span class="section-number-3">3.5</span> Filesystem related</h3>
+<div id="outline-container-org7e0227a" class="outline-3">
+<h3 id="org7e0227a"><span class="section-number-3">3.5</span> Filesystem related</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 from relative path to absolute path
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">realpath -f /relative/path <span style="color: #586e75;"># </span><span style="color: #586e75;">this will follow symbolic link</span>
+<pre class="src src-shell">realpath -f /relative/path <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">this will follow symbolic link</span>
 </pre>
 </div>
 
@@ -485,8 +485,8 @@ from relative path to absolute path
 
 
 
-<div id="outline-container-org19ae795" class="outline-3">
-<h3 id="org19ae795"><span class="section-number-3">3.6</span> Other</h3>
+<div id="outline-container-org25c0374" class="outline-3">
+<h3 id="org25c0374"><span class="section-number-3">3.6</span> Other</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li><code>time &lt;command&gt;</code>: # the total user and system time consumed by the shell and its children</li>
@@ -512,7 +512,7 @@ from relative path to absolute path
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-02-24 Fri 12:28</p>
+<p class="date">Created: 2017-03-21 Tue 07:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
