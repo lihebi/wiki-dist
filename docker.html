@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-21 Tue 07:05 -->
+<!-- 2017-03-21 Tue 19:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -233,6 +233,15 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Docker</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb73dd7d">1. General operations</a></li>
+<li><a href="#orgd62fe79">2. Remove sudo</a></li>
+</ul>
+</div>
+</div>
 <p>
 Install <code>docker</code> package and start the service by
 </p>
@@ -252,10 +261,46 @@ mkdir jessie-chroot
 # tar cpf - . | docker import - debian
 # docker run -t -i --rm debian /bin/bash
 </pre>
+
+<p>
+Re-launch a stopped container can be done by <code>docker start
+&lt;container&gt;</code> and will be detached by default if it is run by that.
+</p>
+
+<p>
+You can assign a name to the container so that you can better remember
+and reference it.
+</p>
+
+<div id="outline-container-orgb73dd7d" class="outline-2">
+<h2 id="orgb73dd7d"><span class="section-number-2">1</span> General operations</h2>
+<div class="outline-text-2" id="text-1">
+<pre class="example">
+# run container in daemon mode, must have -t
+docker run -d -t debian /bin/bash
+# run command non-interactively and get output
+docker exec &lt;ID&gt; echo "hello"
+# attach and enter th 
+docker exec -it &lt;ID&gt; /bin/bash
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd62fe79" class="outline-2">
+<h2 id="orgd62fe79"><span class="section-number-2">2</span> Remove sudo</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+sudo groupadd docker
+sudo gpasswd -a ${USER} docker
+sudo service docker restart
+newgrp docker
+</pre>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-21 Tue 07:05</p>
+<p class="date">Created: 2017-03-21 Tue 19:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
