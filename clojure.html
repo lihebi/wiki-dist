@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-21 Tue 07:05 -->
+<!-- 2017-03-26 Sun 01:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure</title>
@@ -233,6 +233,36 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Clojure</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org32a926f">1. A first try</a>
+<ul>
+<li><a href="#org3d82099">1.1. Setup</a></li>
+<li><a href="#org0c9bad0">1.2. Type</a></li>
+<li><a href="#orga1e6b1b">1.3. Function</a></li>
+<li><a href="#orgbd70c9f">1.4. Macro</a></li>
+<li><a href="#org2394fcc">1.5. State</a>
+<ul>
+<li><a href="#org7a310fd">1.5.1. delay</a></li>
+<li><a href="#org914eb2c">1.5.2. Future</a>
+<ul>
+<li><a href="#org53d8dff">1.5.2.1. Atom</a></li>
+<li><a href="#orgb96263e">1.5.2.2. Ref</a></li>
+</ul>
+</li>
+<li><a href="#orgf0d5758">1.5.3. Promise</a></li>
+</ul>
+</li>
+<li><a href="#orgf593c4c">1.6. <span class="todo TODO">TODO</span> Logistics</a></li>
+<li><a href="#org9e4cf1a">1.7. <span class="todo TODO">TODO</span> Modeling</a></li>
+<li><a href="#org8ec9814">1.8. <span class="todo TODO">TODO</span> Debugging</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <p>
 Some interesting projects:
 </p>
@@ -242,10 +272,309 @@ Some interesting projects:
 <li><a href="https://github.com/liquidz/misaki">https://github.com/liquidz/misaki</a></li>
 <li><a href="http://nakkaya.com/">http://nakkaya.com/</a></li>
 </ul>
+
+
+<div id="outline-container-org32a926f" class="outline-2">
+<h2 id="org32a926f"><span class="section-number-2">1</span> A first try</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org3d82099" class="outline-3">
+<h3 id="org3d82099"><span class="section-number-3">1.1</span> Setup</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+First, install clojure and lein2.
+</p>
+
+<p>
+To start a new project:
+</p>
+<pre class="example">
+lein new myproj
+cd myproj
+lein repl
+</pre>
+
+
+<p>
+This will install dependencies and enter repl.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org0c9bad0" class="outline-3">
+<h3 id="org0c9bad0"><span class="section-number-3">1.2</span> Type</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Since clojure sits on top of JVM, the type seems to be the same, and
+you can get the type of something by the function <code>type</code>.
+</p>
+
+<pre class="example">
+user=&gt; (type 3)
+;; java.lang.Long
+user=&gt; (type :cat)
+clojure.lang.Keyword
+</pre>
+
+<p>
+A list of types
+</p>
+<dl class="org-dl">
+<dt>java.lang.Long</dt><dd>(type 3)</dd>
+<dt>clojure.lang.BigInt</dt><dd>(type 5N)</dd>
+<dt>java.lang.Integer</dt><dd>(type (int 0))</dd>
+<dt>java.lang.Short</dt><dd>(type (short 0))</dd>
+<dt>java.lang.Byte</dt><dd>(type (byte 0))</dd>
+<dt>java.lang.Double</dt><dd>(type 1.23)</dd>
+<dt>java.lang.Float</dt><dd>(type (float 1.23))</dd>
+<dt>java.lang.String</dt><dd>(type "cat")</dd>
+<dt>clojure.lang.Symbol</dt><dd>(class 'str)</dd>
+<dt>clojure.lang.Keyword</dt><dd>(type :cat)</dd>
+<dt>clojure.lang.PersistentList</dt><dd>(type '(1 2 3))</dd>
+<dt>clojure.lang.PersistentVector</dt><dd>(type [1 2 3])</dd>
+<dt>clojure.lang.PersistentHashSet</dt><dd>#{:a :b :c}</dd>
+<dt>clojure.lang.PersistentArrayMap</dt><dd>{:name "mittens" :weight 9 :color "black"}</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orga1e6b1b" class="outline-3">
+<h3 id="orga1e6b1b"><span class="section-number-3">1.3</span> Function</h3>
+<div class="outline-text-3" id="text-1-3">
+<dl class="org-dl">
+<dt>let</dt><dd></dd>
+
+<dt>fn</dt><dd>lambda function</dd>
+<dt>def</dt><dd>symbol</dd>
+<dt>defn</dt><dd>define a named function</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgbd70c9f" class="outline-3">
+<h3 id="orgbd70c9f"><span class="section-number-3">1.4</span> Macro</h3>
+<div class="outline-text-3" id="text-1-4">
+<dl class="org-dl">
+<dt>defmacro</dt><dd></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org2394fcc" class="outline-3">
+<h3 id="org2394fcc"><span class="section-number-3">1.5</span> State</h3>
+<div class="outline-text-3" id="text-1-5">
+</div><div id="outline-container-org7a310fd" class="outline-4">
+<h4 id="org7a310fd"><span class="section-number-4">1.5.1</span> delay</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+Basically this is an abstraction of function: define a function will
+not evaluate function body. So delay works similar: the call to delay
+returns an Delay Object, which can be called on by <code>deref</code> to evaluate
+the body.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">later</span> (<span style="color: #859900;">fn</span> [] (prn <span style="color: #2aa198;">"Adding"</span>) (+ 1 2)))
+(later) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; print output</span>
+
+(<span style="color: #859900;">def</span> <span style="color: #268bd2;">later</span> (delay (prn <span style="color: #2aa198;">"Adding"</span>) (+ 1 2)))
+(deref later) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; print output</span>
+</pre>
+</div>
+
+<p>
+The difference between a delay and a function:
+</p>
+<ul class="org-ul">
+<li>function evaluate every time it is called</li>
+<li>delays only evaluate their expressions once. They remember their
+value, after the first evaluation, and return it for every
+successive deref.</li>
+</ul>
+
+<p>
+The delay opeartor: <code>@later</code> is equivalent to <code>(deref later)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org914eb2c" class="outline-4">
+<h4 id="org914eb2c"><span class="section-number-4">1.5.2</span> Future</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+This is for parallel.
+</p>
+
+<blockquote>
+<p>
+I don’t need the result of evaluating these expressions yet, but I’d
+like it later. Could you start working on it in the meantime?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (future (prn <span style="color: #2aa198;">"hi"</span>) (+ 1 2)))
+(deref x) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; 3</span>
+</pre>
+</div>
+
+<p>
+The body of future is executed in a <b>new thread</b> in parallel! Deref it
+will get the value of the <b>last</b> expression.  Like delays, the
+expressions are only evaluated once.
+</p>
+</div>
+
+<div id="outline-container-org53d8dff" class="outline-5">
+<h5 id="org53d8dff"><span class="section-number-5">1.5.2.1</span> Atom</h5>
+<div class="outline-text-5" id="text-1-5-2-1">
+<p>
+The parallel program brings thread-safe problem: modify something at
+the same time in different threads. Clojure has a <code>atom</code> function to
+protect a data and ensure its thread-safety.
+</p>
+
+<p>
+Use <code>reset!</code> to set value of atom, and use <code>swap!</code> to update.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> #{})
+(<span style="color: #859900;">dotimes</span> [i 10] (future (<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> (conj xs i))))
+user=&gt; xs <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; #{1 4 5 7}</span>
+
+(<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> (atom #{}))
+(<span style="color: #859900;">dotimes</span> [i 10] (future (swap! xs conj i)))
+user=&gt; @xs <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; #{0 1 2 3 4 5 6 7 8 9}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb96263e" class="outline-5">
+<h5 id="orgb96263e"><span class="section-number-5">1.5.2.2</span> Ref</h5>
+<div class="outline-text-5" id="text-1-5-2-2">
+<p>
+Atom is linearizable, but not serializable: it does not guarantee
+orders. Ref is serializable.
+</p>
+
+<p>
+Use <code>ref-set</code> to set value of a ref, and use <code>alter</code> to update. They
+must be in a <code>dosync</code> block, and the block order is guaranteed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (ref 0))
+user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">y</span> (ref 0))
+user=&gt; (<span style="color: #859900;">dosync</span>
+         (ref-set x 1)
+         (ref-set y 2))
+2
+user=&gt; [@x @y]
+[1 2]
+
+user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (ref 1))
+user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">y</span> (ref 2))
+user=&gt; (<span style="color: #859900;">dosync</span>
+         (alter x + 2)
+         (alter y inc))
+3
+user=&gt; [@x @y]
+[3 3]
+</pre>
+</div>
+
+<p>
+If some of the refs do not need order, you can boost the program by
+release that, using <code>commute</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (<span style="color: #859900;">dosync</span>
+         (commute x + 2)
+         (commute y inc))
+</pre>
+</div>
+
+<p>
+Finally, you can use <code>ensure</code> to update one ref using another,
+guaranteeing order.
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (<span style="color: #859900;">dosync</span>
+         (alter x + (ensure y)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf0d5758" class="outline-4">
+<h4 id="orgf0d5758"><span class="section-number-4">1.5.3</span> Promise</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<blockquote>
+<p>
+Delays defer evaluation, and futures parallelize it. What if we wanted
+to defer something we dont even have yet? To hand someone an empty box
+and, later, before they open it, sneak in and replacing its contents
+with an actual gift?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">box</span> (promise))
+(deref box) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">empty</span>
+(deliver box <span style="color: #2aa198;">:live-scorpiojns!</span>)
+(deref box) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; live-scorpiojns!</span>
+(deliver box <span style="color: #2aa198;">:puppy</span>) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; nil</span>
+(deref box) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; live-scorpiojns!</span>
+</pre>
+</div>
+
+<p>
+Some highlights:
+</p>
+<ul class="org-ul">
+<li>box contains nothing initially</li>
+<li>can be delivered</li>
+<li>cannot be re-delivered</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf593c4c" class="outline-3">
+<h3 id="orgf593c4c"><span class="section-number-3">1.6</span> <span class="todo TODO">TODO</span> Logistics</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+<a href="https://aphyr.com/posts/311-clojure-from-the-ground-up-logistics">https://aphyr.com/posts/311-clojure-from-the-ground-up-logistics</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9e4cf1a" class="outline-3">
+<h3 id="org9e4cf1a"><span class="section-number-3">1.7</span> <span class="todo TODO">TODO</span> Modeling</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+<a href="https://aphyr.com/posts/312-clojure-from-the-ground-up-modeling">https://aphyr.com/posts/312-clojure-from-the-ground-up-modeling</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8ec9814" class="outline-3">
+<h3 id="org8ec9814"><span class="section-number-3">1.8</span> <span class="todo TODO">TODO</span> Debugging</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+<a href="https://aphyr.com/posts/319-clojure-from-the-ground-up-debugging">https://aphyr.com/posts/319-clojure-from-the-ground-up-debugging</a>
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-21 Tue 07:05</p>
+<p class="date">Created: 2017-03-26 Sun 01:47</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
