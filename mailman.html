@@ -6,7 +6,7 @@
 <!-- 2017-03-26 Sun 00:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Docker</title>
+<title>Mailman</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Hebi Li" />
 <style type="text/css">
@@ -232,136 +232,82 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Docker</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgb73dd7d">1. General operations</a></li>
-<li><a href="#orgd62fe79">2. Remove sudo</a></li>
-<li><a href="#org125f5f3">3. Dockerfile</a></li>
-<li><a href="#org18e51d5">4. <span class="todo TODO">TODO</span> Docker hub</a></li>
-</ul>
-</div>
-</div>
+<h1 class="title">Mailman</h1>
 <p>
-Install <code>docker</code> package and start the service by
-</p>
-<pre class="example">
-systemctl start docker
-systemctl enable docker
-</pre>
-
-<p>
-We can build Debian image easily on Arch:
+This article records the process of setting up a mailman server.
 </p>
 
 <pre class="example">
-mkdir jessie-chroot
-# debootstrap jessie ./jessie-chroot http://http.debian.net/debian/
-# cd jessie-chroot
-# tar cpf - . | docker import - debian
-# docker run -t -i --rm debian /bin/bash
+FROM debian:jessie
+RUN apt-get -y update
+RUN apt-get install -y wget emacs
+RUN apt-get install -y mailman apache2 postfix
+RUN cp /etc/mailman/apache.conf /etc/apache2/sites-available/mailman.conf
 </pre>
 
-<p>
-Re-launch a stopped container can be done by <code>docker start
-&lt;container&gt;</code> and will be detached by default if it is run by that.
-</p>
 
 <p>
-You can assign a name to the container so that you can better remember
-and reference it.
-</p>
-
-<div id="outline-container-orgb73dd7d" class="outline-2">
-<h2 id="orgb73dd7d"><span class="section-number-2">1</span> General operations</h2>
-<div class="outline-text-2" id="text-1">
-<dl class="org-dl">
-<dt>docker images</dt><dd>list images</dd>
-<dt>docker images &lt;name&gt;</dt><dd>list images whose name is "name" (can have different) tags</dd>
-<dt>docker run [option] &lt;image&gt; /bin/bash</dt><dd>run a <b>fresh</b> container based on the image.
-<dl class="org-dl">
-<dt>-i</dt><dd>interactive</dd>
-<dt>-d</dt><dd>detach (opposite to -i)</dd>
-<dt>-t</dt><dd>assign a tty. Even when using -d, you need this.</dd>
-<dt>-p &lt;port&gt;</dt><dd>export the port &lt;port&gt; of the container. The host
-port will be randomly assigned. Running <code>docker ps</code>
-will show the port binding information.  If the port
-is not set when running a container, you have to
-commit it, and run it again to assign a port or
-another port.</dd>
-</dl></dd>
-<dt>docker exec &lt;ID&gt; echo "hello"</dt><dd>run some command with arguments on the already run container &lt;ID&gt;
-<ul class="org-ul">
-<li>ID can be the UUID or container name</li>
-<li>you can use -it as well, e.g. docker exec -it &lt;ID&gt; /bin/bash</li>
-</ul></dd>
-<dt>docker start &lt;ID&gt;</dt><dd>start an already stopped container</dd>
-<dt>docker diff &lt;ID&gt;</dt><dd>show the difference made from the base image</dd>
-<dt>docker commit &lt;ID&gt; lihebi/my-container</dt><dd>create a new image based on the container &lt;ID&gt;</dd>
-<dt>docker login</dt><dd>login so that you can push</dd>
-<dt>docker push lihebi/my-container</dt><dd>push to docker hub</dd>
-<dt>docker pull lihebi/my-container</dt><dd>pull from the internet</dd>
-</dl>
-
-<p>
-Alternatively, you can write a Dockerfile to specify how to build a image.
+edit <code>/etc/apache2/sites-available/mailman.conf</code> and add:
 </p>
 
 <pre class="example">
-FROM ubuntu 15.04
-RUN ech o"hello" &gt; /tmp/newfile
+&lt;VirtualHost *:80&gt;
+ServerName lists.example.com
+DocumentRoot /var/www/lists
+ErrorLog /var/log/apache2/lists-error.log
+CustomLog /var/log/apache2/lists-access.log combined
+
+&lt;Directory /var/lib/mailman/archives/&gt;
+    Options FollowSymLinks
+    AllowOverride None
+&lt;/Directory&gt;
+
+Alias /pipermail/ /var/lib/mailman/archives/public/
+Alias /images/mailman/ /usr/share/images/mailman/
+ScriptAlias /admin /usr/lib/cgi-bin/mailman/admin
+ScriptAlias /admindb /usr/lib/cgi-bin/mailman/admindb
+ScriptAlias /confirm /usr/lib/cgi-bin/mailman/confirm
+ScriptAlias /create /usr/lib/cgi-bin/mailman/create
+ScriptAlias /edithtml /usr/lib/cgi-bin/mailman/edithtml
+ScriptAlias /listinfo /usr/lib/cgi-bin/mailman/listinfo
+ScriptAlias /options /usr/lib/cgi-bin/mailman/options
+ScriptAlias /private /usr/lib/cgi-bin/mailman/private
+ScriptAlias /rmlist /usr/lib/cgi-bin/mailman/rmlist
+ScriptAlias /roster /usr/lib/cgi-bin/mailman/roster
+ScriptAlias /subscribe /usr/lib/cgi-bin/mailman/subscribe
+ScriptAlias /mailman/ /usr/lib/cgi-bin/mailman/
+ScriptAlias / /usr/lib/cgi-bin/mailman/listinfo
+&lt;/VirtualHost&gt;
 </pre>
 
 <p>
-In the folder containing Dockerfile, run to build the image:
+Then run commands:
 </p>
 <pre class="example">
-docker build -t my-ubuntu .
+mkdir /var/www/lists
+a2ensite mailman.conf
+/etc/init.d/apache2 restart
 </pre>
 
-<dl class="org-dl">
-<dt>docker history &lt;image&gt;</dt><dd>show which layers are used to create &lt;image&gt;</dd>
-</dl>
-</div>
-</div>
-
-
-<div id="outline-container-orgd62fe79" class="outline-2">
-<h2 id="orgd62fe79"><span class="section-number-2">2</span> Remove sudo</h2>
-<div class="outline-text-2" id="text-2">
-<pre class="example">
-sudo groupadd docker
-sudo gpasswd -a ${USER} docker
-sudo service docker restart
-newgrp docker
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org125f5f3" class="outline-2">
-<h2 id="org125f5f3"><span class="section-number-2">3</span> Dockerfile</h2>
-<div class="outline-text-2" id="text-3">
 <p>
-I'm trying a docker file for srcml container. 
+Now I can see the apache page on 80 port.
+The following things are not successful.
 </p>
-<pre class="example">
-FROM debian
-RUN apt-get -y update &amp; apt-get install -y libarchive-dev libcurl4-openssl-dev
-RUN wget http://131.123.42.38/lmcrs/beta/srcML-Ubuntu14.04-64.deb srcml.deb
-RUN dpkg -i srcml.deb
-</pre>
-</div>
-</div>
-<div id="outline-container-org18e51d5" class="outline-2">
-<h2 id="org18e51d5"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Docker hub</h2>
-<div class="outline-text-2" id="text-4">
+
 <p>
-When pushing and pulling, what exactly happens?
+I was following a tutorial here:
+<a href="https://www.howtoforge.com/how-to-install-and-configure-mailman-with-postfix-on-debian-squeeze">https://www.howtoforge.com/how-to-install-and-configure-mailman-with-postfix-on-debian-squeeze</a>
 </p>
-</div>
-</div>
+
+<p>
+Modify <code>/etc/mailman/mm_cfg.py</code>:
+</p>
+
+<pre class="example">
+DEFAULT_URL_PATTERN = 'http://%s/'
+DEFAULT_EMAIL_HOST = 'lists.example.com'
+DEFAULT_URL_HOST = 'lists.example.com'
+</pre>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
