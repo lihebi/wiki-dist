@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-21 Tue 07:04 -->
+<!-- 2017-03-27 Mon 13:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
@@ -182,7 +182,6 @@
 <style type="text/css">
 a:visited {color: red;}
 </style>
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -245,7 +244,11 @@ for the JavaScript code in this tag.
 <li><a href="#org1b8503e">2.3. Aliasing</a></li>
 </ul>
 </li>
-<li><a href="#org63d44f0">3. SQLite</a></li>
+<li><a href="#org63d44f0">3. SQLite</a>
+<ul>
+<li><a href="#org27cee81">3.1. C interface</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -292,13 +295,13 @@ The following is an example.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sqlite" id="org38a73b4"><span style="color: #859900;">create</span> <span style="color: #859900;">table</span> <span style="color: #268bd2;">greeting</span>(one <span style="color: #b58900;">varchar</span>(10), two <span style="color: #b58900;">varchar</span>(10));
+<pre class="src src-sqlite" id="org515712d"><span style="color: #859900;">create</span> <span style="color: #859900;">table</span> <span style="color: #268bd2;">greeting</span>(one <span style="color: #b58900;">varchar</span>(10), two <span style="color: #b58900;">varchar</span>(10));
 <span style="color: #859900;">insert</span> <span style="color: #859900;">into</span> greeting <span style="color: #859900;">values</span>(<span style="color: #2aa198;">'Hello'</span>, <span style="color: #2aa198;">'world!'</span>);
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sqlite" id="org5fddffc"><span style="color: #859900;">select</span> * <span style="color: #859900;">from</span> greeting;
+<pre class="src src-sqlite" id="org08b60be"><span style="color: #859900;">select</span> * <span style="color: #859900;">from</span> greeting;
 </pre>
 </div>
 </div>
@@ -377,11 +380,72 @@ There's no statements like <code>show tables;</code> in MySQL.</li>
 <li><code>.schema ?TABLE?</code>: similar to <code>describe tablename;</code></li>
 </ul>
 </div>
+
+
+
+<div id="outline-container-org27cee81" class="outline-3">
+<h3 id="org27cee81"><span class="section-number-3">3.1</span> C interface</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>#include &lt;sqlite3.h&gt;</li>
+</ul>
+
+<p>
+Execute a command
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #b58900;">sqlite3</span> *<span style="color: #268bd2;">db</span> = <span style="color: #2aa198;">nullptr</span>;
+db = sqlite3_open(<span style="color: #2aa198;">"/path/to/index.db"</span>, &amp;db)
+<span style="color: #b58900;">char</span> *<span style="color: #268bd2;">cmd</span> = <span style="color: #2aa198;">"insert into mytable values (1, 3, 'hello');"</span>;
+<span style="color: #b58900;">char</span> *<span style="color: #268bd2;">errmsg</span> = <span style="color: #2aa198;">nullptr</span>;
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">rc</span> = sqlite3_exec(db, cmd, <span style="color: #2aa198;">nullptr</span>, <span style="color: #2aa198;">nullptr</span>, &amp;errmsg);
+<span style="color: #859900;">if</span> (rc != SQLITE_OK) {
+  fprintf(stderr, <span style="color: #2aa198;">"SQL error: %s\n"</span>, errmsg);
+  sqlite3_free(errmsg);
+}
+</pre>
+</div>
+
+<p>
+Query
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #b58900;">sqlite3</span> *<span style="color: #268bd2;">db</span> = <span style="color: #2aa198;">nullptr</span>;
+db = sqlite3_open(<span style="color: #2aa198;">"/path/to/index.db"</span>, &amp;db)
+<span style="color: #b58900;">char</span> *<span style="color: #268bd2;">cmd</span> = <span style="color: #2aa198;">"select * from mytable;"</span>;
+<span style="color: #b58900;">sqlite3_stmt</span> *<span style="color: #268bd2;">stmt</span> = <span style="color: #2aa198;">nullptr</span>;
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">rc</span>;
+rc = sqlite3_prepare_v2(db, cmd, -1, &amp;stmt, <span style="color: #2aa198;">nullptr</span>);
+assert(rc == SQLITE_OK);
+<span style="color: #859900;">while</span> (<span style="color: #2aa198;">true</span>) {
+  rc = sqlite3_step(stmt);
+  <span style="color: #859900;">if</span> (rc == SQLITE_ROW) {
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">data row</span>
+    <span style="color: #b58900;">int</span> <span style="color: #268bd2;">column_count</span> = sqlite3_column_count(stmt);
+    <span style="color: #859900;">for</span> (<span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>=0;i&lt;column_count;i++) {
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">get data as int</span>
+      <span style="color: #b58900;">int</span> <span style="color: #268bd2;">data</span> = sqlite3_column_int(stmt, i);
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">get data as string</span>
+      <span style="color: #859900;">const</span> <span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">s</span> = sqlite3_column_text(stmt, i);
+    }
+  } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (rc == SQLITE_DONE) {
+    <span style="color: #859900;">break</span>;
+  } <span style="color: #859900;">else</span> {
+    assert(<span style="color: #2aa198;">false</span>);
+  }
+}
+sqlite3_finalize(stmt);
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-21 Tue 07:04</p>
+<p class="date">Created: 2017-03-27 Mon 13:38</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

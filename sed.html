@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-21 Tue 07:04 -->
+<!-- 2017-03-27 Mon 13:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sed</title>
@@ -182,7 +182,6 @@
 <style type="text/css">
 a:visited {color: red;}
 </style>
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet"></link>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -229,6 +228,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -237,333 +258,259 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgaffd041">1. Introduction</a>
+<li><a href="#org7276485">1. Invoke</a></li>
+<li><a href="#org5001f27">2. workflow</a>
 <ul>
-<li><a href="#org3595552">1.1. About the regular expression version</a></li>
+<li><a href="#org29a511e">2.1. Command</a></li>
+<li><a href="#org7edffd8">2.2. ADDR</a></li>
+<li><a href="#org85cfd06">2.3. Regular expression</a>
+<ul>
+<li><a href="#org7d8accd">2.3.1. Basic and Extended RE</a></li>
+<li><a href="#org1410d02">2.3.2. Common</a></li>
 </ul>
 </li>
-<li><a href="#org90e3bb8">2. usage</a></li>
-<li><a href="#org873945b">3. concepts</a></li>
-<li><a href="#org5001f27">4. workflow</a></li>
-<li><a href="#orgeb64251">5. cmd args</a></li>
-<li><a href="#orgbe8502b">6. range</a></li>
-<li><a href="#orgc15e5d7">7. commands</a>
-<ul>
-<li><a href="#orgf251f5d">7.1. edit</a></li>
-<li><a href="#org9607686">7.2. output</a></li>
-<li><a href="#orga8709dc">7.3. flow control</a></li>
 </ul>
 </li>
-<li><a href="#org8a110b5">8. examples</a></li>
+<li><a href="#org8a110b5">3. examples</a></li>
+<li><a href="#org97a2f6e">4. Trouble Shooting</a>
+<ul>
+<li><a href="#org64498d6">4.1. GNU sed on Mac</a></li>
+<li><a href="#org3595552">4.2. About the regular expression version</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgaffd041" class="outline-2">
-<h2 id="orgaffd041"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org7276485" class="outline-2">
+<h2 id="org7276485"><span class="section-number-2">1</span> Invoke</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-The sed version on Mac OS and GNU Linux are different.
-So, use gnu! On Mac, install
-</p>
-<pre class="example">
-brew install gnu-sed
-</pre>
-
-<p>
-This will make a <code>gsed</code> command available.
-To write a cross platform script, use
-</p>
-<div class="org-src-container">
-<pre class="src src-shell"><span style="color: #859900;">echo</span> <span style="color: #2aa198;">"OSTYPE: "</span> $<span style="color: #268bd2;">OSTYPE</span>
-<span style="color: #268bd2;">SED</span>=sed
-<span style="color: #859900;">if</span> [[ <span style="color: #2aa198;">"$OSTYPE"</span> == <span style="color: #2aa198;">"linux-gnu"</span> ]]; <span style="color: #859900;">then</span>
-    <span style="color: #268bd2;">SED</span>=sed
-<span style="color: #859900;">elif</span> [[ <span style="color: #2aa198;">"$OSTYPE"</span> == <span style="color: #2aa198;">"darwin"</span>* ]]; <span style="color: #859900;">then</span>
-    <span style="color: #268bd2;">SED</span>=gsed
-<span style="color: #859900;">fi</span>
-$<span style="color: #268bd2;">SED</span> -E -e <span style="color: #2aa198;">"460,$ s/REG[0-9]{1,2}//g"</span> compress42.c.orig &gt; compress42.bugsig.c
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org3595552" class="outline-3">
-<h3 id="org3595552"><span class="section-number-3">1.1</span> About the regular expression version</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-<code>-E</code> will enable extra features, such as:
-</p>
 <ul class="org-ul">
-<li>a{1,2}</li>
-</ul>
-
-<p>
-See <code>re_format(7)</code> for details.
-</p>
-
-<p>
-There's no <code>\d</code>, so use <code>[0-9]</code> instead. The man page says <code>[:digit:]</code> can be used, but it seems not working.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org90e3bb8" class="outline-2">
-<h2 id="org90e3bb8"><span class="section-number-2">2</span> usage</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-in shell script
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell"><span style="color: #93a1a1; font-style: italic;">#</span><span style="color: #93a1a1; font-style: italic;">!/bin/</span><span style="color: #859900;">sed</span><span style="color: #93a1a1; font-style: italic;"> -f</span>
-<span style="color: #93a1a1; font-style: italic;">#</span><span style="color: #93a1a1; font-style: italic;">!/bin/sed -nf</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org873945b" class="outline-2">
-<h2 id="org873945b"><span class="section-number-2">3</span> concepts</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>input</li>
-<li>output</li>
-<li>pattern space</li>
-<li>hold space: This is a spare pattern space, used to remember the data in pattern buffer</li>
+<li>In shell script, use shebang <code>#!/bin/sed -f</code> or <code>#!/bin/sed -nf</code>.</li>
+<li>In command line, <code>sed [OPTION] [INPUT]</code>
+<dl class="org-dl">
+<dt>INPUT</dt><dd>if not exists, or is <code>-</code>, use <code>stdin</code>. If multiple,
+concatenate them first, then apply to the whole</dd>
+<dt>-n</dt><dd>by default each line of input is echoed to the standard output
+after all of the commands have been applied to it. The -n option
+suppresses this behavior</dd>
+<dt>-e</dt><dd>expressions in string. can have multiple: sed -e 'xxx' -e 'xxx' -e 'xxx' file.txt</dd>
+<dt>-f</dt><dd>script file</dd>
+<dt>-E</dt><dd>extended expression</dd>
+<dt>-i</dt><dd>modify in place</dd>
+</dl></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-org5001f27" class="outline-2">
-<h2 id="org5001f27"><span class="section-number-2">4</span> workflow</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org5001f27"><span class="section-number-2">2</span> workflow</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Sed has
+</p>
+<dl class="org-dl">
+<dt>input/output buffer</dt><dd></dd>
+
+<dt>pattern space</dt><dd></dd>
+
+<dt>hold space</dt><dd>This is a spare pattern space, used to remember the
+data in pattern buffer
+
 <ul class="org-ul">
 <li>copy a line from input(exclude the tailing newline) into pattern buffer</li>
 <li>apply command(s) to it</li>
 <li>output</li>
-</ul>
-</div>
-</div>
+</ul></dd>
+</dl>
 
-<div id="outline-container-orgeb64251" class="outline-2">
-<h2 id="orgeb64251"><span class="section-number-2">5</span> cmd args</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li>-n: by default each line of input is echoed to the standard output after all of the commands have been applied to it. The -n option suppresses this behavior</li>
-<li>-e: sed -e 'xxx' -e 'xxx' -e 'xxx'</li>
-<li>-f: script file</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgbe8502b" class="outline-2">
-<h2 id="orgbe8502b"><span class="section-number-2">6</span> range</h2>
-<div class="outline-text-2" id="text-6">
 <p>
-sed will only apply command for the lines in the specified range.
-If the command is preceded with <code>!</code>, that means the command works on lines not in the range.
+The commands is of form <code>[addr]X[options]</code>
 </p>
+<dl class="org-dl">
+<dt>options</dt><dd>specific for different commands</dd>
+<dt>X</dt><dd>single-letter comand</dd>
+<dt>[addr]</dt><dd>X will only be applied to the matched lines by addr</dd>
+</dl>
 
-<div class="org-src-container">
-<pre class="src src-shell">sed <span style="color: #2aa198;">'1,100 s/A/a/'</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">by line number</span>
-sed <span style="color: #2aa198;">'101,$ s/A/a/'</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">$ is last line</span>
-sed <span style="color: #2aa198;">'/start/,/stop/ s/#.*//'</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">by pattern</span>
-</pre>
+<p>
+Commands can be separated by semi-colon or newline.
+</p>
 </div>
+
+<div id="outline-container-org29a511e" class="outline-3">
+<h3 id="org29a511e"><span class="section-number-3">2.1</span> Command</h3>
+<div class="outline-text-3" id="text-2-1">
+<dl class="org-dl">
+<dt>a TEXT</dt><dd>append TEXT after a line. It actually even after the
+newline, starting a new line.</dd>
+<dt>i TEXT</dt><dd>insert TEXT before a line, starting a new line.</dd>
+<dt>b LABEL</dt><dd>branch unconditionally to LABEL</dd>
+<dt>c TEXT</dt><dd>change line to TEXT</dd>
+<dt>d</dt><dd>delete</dd>
+<dt>p</dt><dd>print pattern buffer</dd>
+<dt>=</dt><dd>print line number</dd>
+<dt>s/REGEXP/REPLACEMENT/FLAGS</dt><dd>if REGEXP is matched, the matched
+part is replaced by REPLACEMENT
+<dl class="org-dl">
+<dt>REPLACEMENT</dt><dd><dl class="org-dl">
+<dt>\1-\9</dt><dd>refers to the capture group</dd>
+<dt>&amp;</dt><dd>refers to whole match</dd>
+</dl></dd>
+<dt>flag</dt><dd><dl class="org-dl">
+<dt>g</dt><dd>replace all matches</dd>
+<dt>[N]</dt><dd>only replace N-th match</dd>
+<dt>p</dt><dd>if substitution was made, print the new pattern space</dd>
+<dt>w FILE</dt><dd>if substitution was made, write the result to FILE</dd>
+<dt>I</dt><dd>case insensitive</dd>
+</dl></dd>
+</dl></dd>
+<dt>#</dt><dd>begin a line comment</dd>
+<dt>q [EXIT-CODE]</dt><dd>quit with code</dd>
+<dt>{ COMMANDS }</dt><dd>commands should be separated by <code>;</code>, this allows
+share address.</dd>
+</dl>
+
+<p>
+Other commands
+</p>
+<dl class="org-dl">
+<dt>l</dt><dd>look</dd>
+<dt>n</dt><dd>next</dd>
+<dt>r</dt><dd>read</dd>
+<dt>w</dt><dd>write</dd>
+<dt>q</dt><dd>quit</dd>
+<dt>b</dt><dd>branch</dd>
+<dt>t</dt><dd>test</dd>
+<dt>:label</dt><dd>label</dd>
+</dl>
 </div>
 </div>
 
-<div id="outline-container-orgc15e5d7" class="outline-2">
-<h2 id="orgc15e5d7"><span class="section-number-2">7</span> commands</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orgf251f5d" class="outline-3">
-<h3 id="orgf251f5d"><span class="section-number-3">7.1</span> edit</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-org7edffd8" class="outline-3">
+<h3 id="org7edffd8"><span class="section-number-3">2.2</span> ADDR</h3>
+<div class="outline-text-3" id="text-2-2">
+<dl class="org-dl">
+<dt>LINE</dt><dd>single line number
+<dl class="org-dl">
+<dt>NUMBER</dt><dd>line start from 1</dd>
+<dt>$</dt><dd>last line</dd>
+<dt>FIRST~STEP</dt><dd>matches every STEP-th line starting with line FIRST</dd>
+</dl></dd>
+<dt>(no term)</dt><dd>regular expression
+<dl class="org-dl">
+<dt><i>REGEXP</i></dt><dd></dd>
+
+<dt>/REGEXP/I</dt><dd>case insensitive</dd>
+</dl></dd>
+<dt>(no term)</dt><dd>range
+<ul class="org-ul">
+<li>LINE,LINE</li>
+<li id="LINE,REGEXP">starting from LINE; REGEXP will check the
+<i>following</i> line, i.e. range span at least two
+lines. LINE can be 0, in which case REGEXP is
+trying to matching start from beginning.</li>
+<li id="ADDR,+N">ADDR adn N lines following it.</li>
+<li>ADDR and the lines following until next line whose line number
+is multiple of N (this line is considered matched)</li>
+<li>append <code>!</code> to range will inverse it.</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org85cfd06" class="outline-3">
+<h3 id="org85cfd06"><span class="section-number-3">2.3</span> Regular expression</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-org7d8accd" class="outline-4">
+<h4 id="org7d8accd"><span class="section-number-4">2.3.1</span> Basic and Extended RE</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
 <col  class="org-left" />
-</colgroup>
 
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
 <col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">shortcut</th>
-<th scope="col" class="org-left">name</th>
-<th scope="col" class="org-left">description</th>
+<th scope="col" class="org-left">Basic</th>
+<th scope="col" class="org-left">Extended</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">a</td>
-<td class="org-left">add</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">\+</td>
+<td class="org-left">+</td>
 </tr>
 
 <tr>
-<td class="org-left">i</td>
-<td class="org-left">insert</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">\?</td>
+<td class="org-left">?</td>
 </tr>
 
 <tr>
-<td class="org-left">c</td>
-<td class="org-left">change</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">\{I,J\}</td>
+<td class="org-left">{I,J}</td>
 </tr>
 
 <tr>
-<td class="org-left">d</td>
-<td class="org-left">delete</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">\(capture\)</td>
+<td class="org-left">(capture)</td>
 </tr>
 
 <tr>
-<td class="org-left">s</td>
-<td class="org-left">substitute</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">\&lt;alter&gt;</td>
+<td class="org-left">&lt;alter&gt;</td>
 </tr>
 </tbody>
 </table>
+
+<p>
+alter is actually the vertical line.
+</p>
 </div>
 </div>
 
-<div id="outline-container-org9607686" class="outline-3">
-<h3 id="org9607686"><span class="section-number-3">7.2</span> output</h3>
-<div class="outline-text-3" id="text-7-2">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org1410d02" class="outline-4">
+<h4 id="org1410d02"><span class="section-number-4">2.3.2</span> Common</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Bracket Expressions (can be used in both basic and extended RE)
+Put inside <code>[[]]</code> the following
+</p>
+<ul class="org-ul">
+<li>:space:</li>
+<li>:digit:</li>
+<li>:alnum:</li>
+<li>:alpha:</li>
+<li>:lower:</li>
+<li>:upper:</li>
+</ul>
 
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">shortcut</th>
-<th scope="col" class="org-left">name</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">=</td>
-<td class="org-left">print</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">l</td>
-<td class="org-left">look</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">p</td>
-<td class="org-left">print</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">n</td>
-<td class="org-left">next</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">r</td>
-<td class="org-left">read</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">w</td>
-<td class="org-left">write</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-orga8709dc" class="outline-3">
-<h3 id="orga8709dc"><span class="section-number-3">7.3</span> flow control</h3>
-<div class="outline-text-3" id="text-7-3">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">shortcut</th>
-<th scope="col" class="org-left">name</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">q</td>
-<td class="org-left">quit</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">b</td>
-<td class="org-left">branch</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">t</td>
-<td class="org-left">test</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">:label</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
+<p>
+Extension
+</p>
+<ul class="org-ul">
+<li>\w</li>
+<li>\W</li>
+<li>\b</li>
+<li>\B</li>
+<li>\s</li>
+<li>&sect;</li>
+<li>\&lt;</li>
+<li>\&gt;</li>
+</ul>
 </div>
 </div>
 </div>
+</div>
+
 
 <div id="outline-container-org8a110b5" class="outline-2">
-<h2 id="org8a110b5"><span class="section-number-2">8</span> examples</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org8a110b5"><span class="section-number-2">3</span> examples</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 print
 </p>
@@ -614,10 +561,63 @@ sed <span style="color: #2aa198;">'1,/^$/ d'</span> <span style="color: #93a1a1;
 </div>
 </div>
 </div>
+
+<div id="outline-container-org97a2f6e" class="outline-2">
+<h2 id="org97a2f6e"><span class="section-number-2">4</span> Trouble Shooting</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-org64498d6" class="outline-3">
+<h3 id="org64498d6"><span class="section-number-3">4.1</span> GNU sed on Mac</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The sed version on Mac OS and GNU Linux are different.
+So, use gnu! On Mac, install
+</p>
+<pre class="example">
+brew install gnu-sed
+</pre>
+
+<p>
+This will make a <code>gsed</code> command available.
+To write a cross platform script, use
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #859900;">echo</span> <span style="color: #2aa198;">"OSTYPE: "</span> $<span style="color: #268bd2;">OSTYPE</span>
+<span style="color: #268bd2;">SED</span>=sed
+<span style="color: #859900;">if</span> [[ <span style="color: #2aa198;">"$OSTYPE"</span> == <span style="color: #2aa198;">"linux-gnu"</span> ]]; <span style="color: #859900;">then</span>
+    <span style="color: #268bd2;">SED</span>=sed
+<span style="color: #859900;">elif</span> [[ <span style="color: #2aa198;">"$OSTYPE"</span> == <span style="color: #2aa198;">"darwin"</span>* ]]; <span style="color: #859900;">then</span>
+    <span style="color: #268bd2;">SED</span>=gsed
+<span style="color: #859900;">fi</span>
+$<span style="color: #268bd2;">SED</span> -E -e <span style="color: #2aa198;">"460,$ s/REG[0-9]{1,2}//g"</span> compress42.c.orig &gt; compress42.bugsig.c
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3595552" class="outline-3">
+<h3 id="org3595552"><span class="section-number-3">4.2</span> About the regular expression version</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>-E</code> will enable extra features, such as:
+</p>
+<ul class="org-ul">
+<li>a{1,2}</li>
+</ul>
+
+<p>
+See <code>re_format(7)</code> for details.
+</p>
+
+<p>
+There's no <code>\d</code>, so use <code>[0-9]</code> instead. The man page says <code>[:digit:]</code> can be used, but it seems not working.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-21 Tue 07:04</p>
+<p class="date">Created: 2017-03-27 Mon 13:38</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
