@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-27 Mon 13:38 -->
+<!-- 2017-03-27 Mon 14:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sed</title>
@@ -179,9 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style type="text/css">
-a:visited {color: red;}
-</style>
+<style type="text/css"> a:visited {color: red;} </style><style type="text/css"> code {color: red;} </style><link rel="stylesheet" type="text/css" href="assets/hebi.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -259,23 +257,23 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org7276485">1. Invoke</a></li>
-<li><a href="#org5001f27">2. workflow</a>
+<li><a href="#org0be4f3e">2. How Sed Works</a></li>
+<li><a href="#org08e1eb2">3. Commands</a></li>
+<li><a href="#org8dd2e60">4. Address</a>
 <ul>
-<li><a href="#org29a511e">2.1. Command</a></li>
-<li><a href="#org7edffd8">2.2. ADDR</a></li>
-<li><a href="#org85cfd06">2.3. Regular expression</a>
+<li><a href="#org85cfd06">4.1. Regular expression</a>
 <ul>
-<li><a href="#org7d8accd">2.3.1. Basic and Extended RE</a></li>
-<li><a href="#org1410d02">2.3.2. Common</a></li>
+<li><a href="#org7d8accd">4.1.1. Basic and Extended RE</a></li>
+<li><a href="#org1410d02">4.1.2. Common</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8a110b5">3. examples</a></li>
-<li><a href="#org97a2f6e">4. Trouble Shooting</a>
+<li><a href="#org8a110b5">5. examples</a></li>
+<li><a href="#org97a2f6e">6. Trouble Shooting</a>
 <ul>
-<li><a href="#org64498d6">4.1. GNU sed on Mac</a></li>
-<li><a href="#org3595552">4.2. About the regular expression version</a></li>
+<li><a href="#org64498d6">6.1. GNU sed on Mac</a></li>
+<li><a href="#org3595552">6.2. About the regular expression version</a></li>
 </ul>
 </li>
 </ul>
@@ -303,27 +301,38 @@ suppresses this behavior</dd>
 </div>
 </div>
 
-<div id="outline-container-org5001f27" class="outline-2">
-<h2 id="org5001f27"><span class="section-number-2">2</span> workflow</h2>
+<div id="outline-container-org0be4f3e" class="outline-2">
+<h2 id="org0be4f3e"><span class="section-number-2">2</span> How Sed Works</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Sed has
+<code>sed</code> maintains two data buffers: <i>pattern space</i> and <i>hold space</i>,
+both of them initially empty.  It copies a line from input, remove
+trailing newline, and put into pattern space. Commands matched by
+address are processed. After the last command, the pattern space is
+printed out (unless -n is used), and pattern space is deleted (unless
+special commands like 'D' are used). Next cycle begins and process the
+next line.
+</p>
+
+<p>
+The hold space, on the other hand, holds data between cycles.
 </p>
 <dl class="org-dl">
-<dt>input/output buffer</dt><dd></dd>
-
-<dt>pattern space</dt><dd></dd>
-
-<dt>hold space</dt><dd>This is a spare pattern space, used to remember the
-data in pattern buffer
-
-<ul class="org-ul">
-<li>copy a line from input(exclude the tailing newline) into pattern buffer</li>
-<li>apply command(s) to it</li>
-<li>output</li>
-</ul></dd>
+<dt>h</dt><dd>hold. replace hold space with pattern space</dd>
+<dt>H</dt><dd>Hold. append line from pattern space to hold space, with a newline before it</dd>
+<dt>g</dt><dd>Replace the contents of the pattern space with the contents of
+the hold space.</dd>
+<dt>G</dt><dd>Append line from hold space to pattern space, with a newline before it</dd>
+<dt>x</dt><dd>Exchange the contents of the hold and pattern spaces.</dd>
 </dl>
+</div>
+</div>
 
+
+
+<div id="outline-container-org08e1eb2" class="outline-2">
+<h2 id="org08e1eb2"><span class="section-number-2">3</span> Commands</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 The commands is of form <code>[addr]X[options]</code>
 </p>
@@ -336,95 +345,93 @@ The commands is of form <code>[addr]X[options]</code>
 <p>
 Commands can be separated by semi-colon or newline.
 </p>
-</div>
-
-<div id="outline-container-org29a511e" class="outline-3">
-<h3 id="org29a511e"><span class="section-number-3">2.1</span> Command</h3>
-<div class="outline-text-3" id="text-2-1">
-<dl class="org-dl">
-<dt>a TEXT</dt><dd>append TEXT after a line. It actually even after the
-newline, starting a new line.</dd>
-<dt>i TEXT</dt><dd>insert TEXT before a line, starting a new line.</dd>
-<dt>b LABEL</dt><dd>branch unconditionally to LABEL</dd>
-<dt>c TEXT</dt><dd>change line to TEXT</dd>
-<dt>d</dt><dd>delete</dd>
-<dt>p</dt><dd>print pattern buffer</dd>
-<dt>=</dt><dd>print line number</dd>
-<dt>s/REGEXP/REPLACEMENT/FLAGS</dt><dd>if REGEXP is matched, the matched
-part is replaced by REPLACEMENT
-<dl class="org-dl">
-<dt>REPLACEMENT</dt><dd><dl class="org-dl">
-<dt>\1-\9</dt><dd>refers to the capture group</dd>
-<dt>&amp;</dt><dd>refers to whole match</dd>
-</dl></dd>
-<dt>flag</dt><dd><dl class="org-dl">
-<dt>g</dt><dd>replace all matches</dd>
-<dt>[N]</dt><dd>only replace N-th match</dd>
-<dt>p</dt><dd>if substitution was made, print the new pattern space</dd>
-<dt>w FILE</dt><dd>if substitution was made, write the result to FILE</dd>
-<dt>I</dt><dd>case insensitive</dd>
-</dl></dd>
-</dl></dd>
-<dt>#</dt><dd>begin a line comment</dd>
-<dt>q [EXIT-CODE]</dt><dd>quit with code</dd>
-<dt>{ COMMANDS }</dt><dd>commands should be separated by <code>;</code>, this allows
-share address.</dd>
-</dl>
-
-<p>
-Other commands
-</p>
-<dl class="org-dl">
-<dt>l</dt><dd>look</dd>
-<dt>n</dt><dd>next</dd>
-<dt>r</dt><dd>read</dd>
-<dt>w</dt><dd>write</dd>
-<dt>q</dt><dd>quit</dd>
-<dt>b</dt><dd>branch</dd>
-<dt>t</dt><dd>test</dd>
-<dt>:label</dt><dd>label</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org7edffd8" class="outline-3">
-<h3 id="org7edffd8"><span class="section-number-3">2.2</span> ADDR</h3>
-<div class="outline-text-3" id="text-2-2">
-<dl class="org-dl">
-<dt>LINE</dt><dd>single line number
-<dl class="org-dl">
-<dt>NUMBER</dt><dd>line start from 1</dd>
-<dt>$</dt><dd>last line</dd>
-<dt>FIRST~STEP</dt><dd>matches every STEP-th line starting with line FIRST</dd>
-</dl></dd>
-<dt>(no term)</dt><dd>regular expression
-<dl class="org-dl">
-<dt><i>REGEXP</i></dt><dd></dd>
-
-<dt>/REGEXP/I</dt><dd>case insensitive</dd>
-</dl></dd>
-<dt>(no term)</dt><dd>range
 <ul class="org-ul">
-<li>LINE,LINE</li>
-<li id="LINE,REGEXP">starting from LINE; REGEXP will check the
+<li>Most commonly used command:
+<ul class="org-ul">
+<li>d: delete</li>
+<li>D: Delete. delete line from pattern space until the first newline, and restart the cycle</li>
+<li>p: print pattern buffer</li>
+<li>P: print line from pattern space until first newline</li>
+<li>=: print line number</li>
+<li>n: (next) print pattern space, then replace with next line</li>
+<li>N: append line from input file to pattern space</li>
+<li>s/REGEXP/REPLACEMENT/FLAGS: if REGEXP is matched, the matched
+part is replaced by REPLACEMENT
+<ul class="org-ul">
+<li>REPLACEMENT:
+<ul class="org-ul">
+<li>\1-\9: refers to the capture group</li>
+<li>&amp;: refers to whole match</li>
+</ul></li>
+<li>flag:
+<ul class="org-ul">
+<li>g: replace all matches</li>
+<li>[N]: only replace N-th match</li>
+<li>p: if substitution was made, print the new pattern space</li>
+<li>w FILE: if substitution was made, write the result to FILE</li>
+<li>I: case insensitive</li>
+</ul></li>
+</ul></li>
+</ul></li>
+
+<li>Not so common:
+<ul class="org-ul">
+<li><code>a TEXT</code>: append TEXT after a line. It actually even after the
+newline, starting a new line.</li>
+<li><code>i TEXT</code>: insert TEXT before a line, starting a new line.</li>
+<li><code>b LABEL</code>: branch unconditionally to LABEL</li>
+<li><code>c TEXT</code>: change line to TEXT</li>
+<li><code>l</code>: Print the pattern space in an unambiguous form. Print newline as '\n'.</li>
+<li><code>#</code>: begin a line comment</li>
+<li><code>q [EXIT-CODE]</code>: quit with code</li>
+<li><code>{ COMMANDS }</code>: commands should be separated by <code>;</code>, this allows
+share address.</li>
+<li><code>r</code>: read a file</li>
+<li><code>w</code>: write</li>
+<li><code>b</code>: branch</li>
+<li><code>t</code>: test</li>
+<li><code>:label</code>: label</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8dd2e60" class="outline-2">
+<h2 id="org8dd2e60"><span class="section-number-2">4</span> Address</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>LINE: single line number
+<ul class="org-ul">
+<li>NUMBER: line start from 1</li>
+<li><code>$</code>: last line</li>
+<li>FIRST~STEP: matches every STEP-th line starting with line FIRST</li>
+</ul></li>
+<li>regular expression:
+<ul class="org-ul">
+<li><code>/REGEXP/</code>:</li>
+<li><code>/REGEXP/I</code>: case insensitive</li>
+</ul></li>
+<li>range:
+<ul class="org-ul">
+<li><code>LINE,LINE</code>:</li>
+<li><code>LINE,REGEXP</code>: starting from LINE; REGEXP will check the
 <i>following</i> line, i.e. range span at least two
 lines. LINE can be 0, in which case REGEXP is
 trying to matching start from beginning.</li>
-<li id="ADDR,+N">ADDR adn N lines following it.</li>
-<li>ADDR and the lines following until next line whose line number
+<li><code>ADDR,+N</code>: ADDR adn N lines following it.</li>
+<li><code>ADDR,-N</code> and the lines following until next line whose line number
 is multiple of N (this line is considered matched)</li>
 <li>append <code>!</code> to range will inverse it.</li>
-</ul></dd>
-</dl>
-</div>
+</ul></li>
+</ul>
 </div>
 
 <div id="outline-container-org85cfd06" class="outline-3">
-<h3 id="org85cfd06"><span class="section-number-3">2.3</span> Regular expression</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="org85cfd06"><span class="section-number-3">4.1</span> Regular expression</h3>
+<div class="outline-text-3" id="text-4-1">
 </div><div id="outline-container-org7d8accd" class="outline-4">
-<h4 id="org7d8accd"><span class="section-number-4">2.3.1</span> Basic and Extended RE</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<h4 id="org7d8accd"><span class="section-number-4">4.1.1</span> Basic and Extended RE</h4>
+<div class="outline-text-4" id="text-4-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -474,8 +481,8 @@ alter is actually the vertical line.
 </div>
 
 <div id="outline-container-org1410d02" class="outline-4">
-<h4 id="org1410d02"><span class="section-number-4">2.3.2</span> Common</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<h4 id="org1410d02"><span class="section-number-4">4.1.2</span> Common</h4>
+<div class="outline-text-4" id="text-4-1-2">
 <p>
 Bracket Expressions (can be used in both basic and extended RE)
 Put inside <code>[[]]</code> the following
@@ -509,8 +516,8 @@ Extension
 
 
 <div id="outline-container-org8a110b5" class="outline-2">
-<h2 id="org8a110b5"><span class="section-number-2">3</span> examples</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org8a110b5"><span class="section-number-2">5</span> examples</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 print
 </p>
@@ -563,11 +570,11 @@ sed <span style="color: #2aa198;">'1,/^$/ d'</span> <span style="color: #93a1a1;
 </div>
 
 <div id="outline-container-org97a2f6e" class="outline-2">
-<h2 id="org97a2f6e"><span class="section-number-2">4</span> Trouble Shooting</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org97a2f6e"><span class="section-number-2">6</span> Trouble Shooting</h2>
+<div class="outline-text-2" id="text-6">
 </div><div id="outline-container-org64498d6" class="outline-3">
-<h3 id="org64498d6"><span class="section-number-3">4.1</span> GNU sed on Mac</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org64498d6"><span class="section-number-3">6.1</span> GNU sed on Mac</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 The sed version on Mac OS and GNU Linux are different.
 So, use gnu! On Mac, install
@@ -595,8 +602,8 @@ $<span style="color: #268bd2;">SED</span> -E -e <span style="color: #2aa198;">"4
 </div>
 
 <div id="outline-container-org3595552" class="outline-3">
-<h3 id="org3595552"><span class="section-number-3">4.2</span> About the regular expression version</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org3595552"><span class="section-number-3">6.2</span> About the regular expression version</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 <code>-E</code> will enable extra features, such as:
 </p>
@@ -617,7 +624,7 @@ There's no <code>\d</code>, so use <code>[0-9]</code> instead. The man page says
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-27 Mon 13:38</p>
+<p class="date">Created: 2017-03-27 Mon 14:40</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

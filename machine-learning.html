@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-27 Mon 13:38 -->
+<!-- 2017-03-27 Mon 14:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Machine Learning</title>
@@ -179,9 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style type="text/css">
-a:visited {color: red;}
-</style>
+<style type="text/css"> a:visited {color: red;} </style><style type="text/css"> code {color: red;} </style><link rel="stylesheet" type="text/css" href="assets/hebi.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -263,7 +261,7 @@ for the JavaScript code in this tag.
 <li><a href="#org98eb209">1.1. General Concepts</a></li>
 <li><a href="#orge43b218">1.2. Different models</a></li>
 <li><a href="#orge335952">1.3. The purpose of estimate \(f\)</a></li>
-<li><a href="#org3bb05e4">1.4. Classification</a></li>
+<li><a href="#org68ce566">1.4. Classification</a></li>
 <li><a href="#orgfae456d">1.5. Model Accuracy</a>
 <ul>
 <li><a href="#org63dcc22">1.5.1. The bias-variance trade-off</a></li>
@@ -293,40 +291,40 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgecad8cc">2.3.2. non-linearity of the response-predictor relationships</a>
 <ul>
-<li><a href="#orgfa59cde">2.3.2.1. Detection</a></li>
-<li><a href="#org9f98592">2.3.2.2. Solution</a></li>
+<li><a href="#org132da0c">2.3.2.1. Detection</a></li>
+<li><a href="#org5d5bfc9">2.3.2.2. Solution</a></li>
 </ul>
 </li>
 <li><a href="#orga82eb79">2.3.3. correlation of error terms</a>
 <ul>
-<li><a href="#org269f5c3">2.3.3.1. Consequence</a></li>
-<li><a href="#org1d1e115">2.3.3.2. Detection</a></li>
+<li><a href="#org42ddc3f">2.3.3.1. Consequence</a></li>
+<li><a href="#orgc073465">2.3.3.2. Detection</a></li>
 </ul>
 </li>
 <li><a href="#orga7f8bc1">2.3.4. non-constant variance of error terms</a>
 <ul>
-<li><a href="#org0d60788">2.3.4.1. Consequence</a></li>
-<li><a href="#org2b795b5">2.3.4.2. Detection</a></li>
-<li><a href="#orga0d91f2">2.3.4.3. Solution</a></li>
+<li><a href="#org7b7becc">2.3.4.1. Consequence</a></li>
+<li><a href="#org27df225">2.3.4.2. Detection</a></li>
+<li><a href="#orgf4e719b">2.3.4.3. Solution</a></li>
 </ul>
 </li>
 <li><a href="#org0930392">2.3.5. Outliers</a>
 <ul>
-<li><a href="#org119b388">2.3.5.1. Consequence</a></li>
-<li><a href="#orga7c0f08">2.3.5.2. Detection</a></li>
-<li><a href="#org5d5bfc9">2.3.5.3. Solution</a></li>
+<li><a href="#org2380d19">2.3.5.1. Consequence</a></li>
+<li><a href="#org7023694">2.3.5.2. Detection</a></li>
+<li><a href="#orgcd88442">2.3.5.3. Solution</a></li>
 </ul>
 </li>
 <li><a href="#org62aae34">2.3.6. High-leverage points</a>
 <ul>
-<li><a href="#org20bab23">2.3.6.1. Consequence</a></li>
-<li><a href="#org73714c5">2.3.6.2. Detection</a></li>
+<li><a href="#org9d1eb07">2.3.6.1. Consequence</a></li>
+<li><a href="#orgf2f3621">2.3.6.2. Detection</a></li>
 </ul>
 </li>
 <li><a href="#org0f4e3fc">2.3.7. collinearity</a>
 <ul>
-<li><a href="#org42ddc3f">2.3.7.1. Consequence</a></li>
-<li><a href="#org132da0c">2.3.7.2. Detection</a></li>
+<li><a href="#org6c35eb3">2.3.7.1. Consequence</a></li>
+<li><a href="#orgadc7fb9">2.3.7.2. Detection</a></li>
 </ul>
 </li>
 </ul>
@@ -334,7 +332,7 @@ for the JavaScript code in this tag.
 <li><a href="#orge9f4600">2.4. KNN regression</a></li>
 </ul>
 </li>
-<li><a href="#org68ce566">3. Classification</a>
+<li><a href="#org007fce9">3. Classification</a>
 <ul>
 <li><a href="#orgf7f4c2a">3.1. logistic regression</a>
 <ul>
@@ -423,11 +421,11 @@ for the JavaScript code in this tag.
 <li><a href="#org3827f73">7.3. boosting</a></li>
 </ul>
 </li>
-<li><a href="#org1ec2360">8. Support Vector Machine</a>
+<li><a href="#org399a6b2">8. Support Vector Machine</a>
 <ul>
 <li><a href="#org7bbc3e3">8.1. Maximal Margin Classifier</a></li>
 <li><a href="#orgc656737">8.2. Support Vector Classifier</a></li>
-<li><a href="#org5195411">8.3. Support Vector Machine</a></li>
+<li><a href="#org1ec2360">8.3. Support Vector Machine</a></li>
 <li><a href="#org75454eb">8.4. SVMs with More than two classes</a>
 <ul>
 <li><a href="#org6647d8a">8.4.1. one-versus-one classification</a></li>
@@ -502,8 +500,8 @@ But it will be imprecise if the model choose-d is very different from the true m
 </div>
 
 
-<div id="outline-container-org3bb05e4" class="outline-3">
-<h3 id="org3bb05e4"><span class="section-number-3">1.4</span> Classification</h3>
+<div id="outline-container-org68ce566" class="outline-3">
+<h3 id="org68ce566"><span class="section-number-3">1.4</span> Classification</h3>
 <div class="outline-text-3" id="text-1-4">
 <dl class="org-dl">
 <dt>Bayes Classifier</dt><dd>assign each observation to the most likely class, given its predictor values.</dd>
@@ -779,8 +777,8 @@ Every vertical line crossing the confidence interval (95%) is suspicious.
 <div id="outline-container-orgecad8cc" class="outline-4">
 <h4 id="orgecad8cc"><span class="section-number-4">2.3.2</span> non-linearity of the response-predictor relationships</h4>
 <div class="outline-text-4" id="text-2-3-2">
-</div><div id="outline-container-orgfa59cde" class="outline-5">
-<h5 id="orgfa59cde"><span class="section-number-5">2.3.2.1</span> Detection</h5>
+</div><div id="outline-container-org132da0c" class="outline-5">
+<h5 id="org132da0c"><span class="section-number-5">2.3.2.1</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-2-1">
 <p>
 plot the <i>residual plots</i>.
@@ -791,8 +789,8 @@ If it is "U shape", then it indicates non-linear
 </p>
 </div>
 </div>
-<div id="outline-container-org9f98592" class="outline-5">
-<h5 id="org9f98592"><span class="section-number-5">2.3.2.2</span> Solution</h5>
+<div id="outline-container-org5d5bfc9" class="outline-5">
+<h5 id="org5d5bfc9"><span class="section-number-5">2.3.2.2</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-2-2">
 <p>
 try some non-linear transformations of the predictors, such as \(log X\), \(\sqrt{X}\), \(X^2\).
@@ -807,8 +805,8 @@ try some non-linear transformations of the predictors, such as \(log X\), \(\sqr
 The error terms \(\epsilon_i\) should be uncorrelated.
 </p>
 </div>
-<div id="outline-container-org269f5c3" class="outline-5">
-<h5 id="org269f5c3"><span class="section-number-5">2.3.3.1</span> Consequence</h5>
+<div id="outline-container-org42ddc3f" class="outline-5">
+<h5 id="org42ddc3f"><span class="section-number-5">2.3.3.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-3-1">
 <p>
 Confidence and prediction intervals will be narrower.
@@ -816,8 +814,8 @@ p-values associated with the model will be lower.
 </p>
 </div>
 </div>
-<div id="outline-container-org1d1e115" class="outline-5">
-<h5 id="org1d1e115"><span class="section-number-5">2.3.3.2</span> Detection</h5>
+<div id="outline-container-orgc073465" class="outline-5">
+<h5 id="orgc073465"><span class="section-number-5">2.3.3.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-3-2">
 <p>
 Plot the residuals.
@@ -835,16 +833,16 @@ i.e. adjacent residuals may have similar values.
 The linear regression model assumes the error terms have a constant variance, i.e. \(Var(\epsilon_i) = \sigma^2\).
 </p>
 </div>
-<div id="outline-container-org0d60788" class="outline-5">
-<h5 id="org0d60788"><span class="section-number-5">2.3.4.1</span> Consequence</h5>
+<div id="outline-container-org7b7becc" class="outline-5">
+<h5 id="org7b7becc"><span class="section-number-5">2.3.4.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-4-1">
 <p>
 Standard errors, confidence interval, hypothesis test.
 </p>
 </div>
 </div>
-<div id="outline-container-org2b795b5" class="outline-5">
-<h5 id="org2b795b5"><span class="section-number-5">2.3.4.2</span> Detection</h5>
+<div id="outline-container-org27df225" class="outline-5">
+<h5 id="org27df225"><span class="section-number-5">2.3.4.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-4-2">
 <p>
 E.g. the residuals increase with the value of response.
@@ -852,8 +850,8 @@ To confirm it is constant, we can use <i>Breusch-Pagan test</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-orga0d91f2" class="outline-5">
-<h5 id="orga0d91f2"><span class="section-number-5">2.3.4.3</span> Solution</h5>
+<div id="outline-container-orgf4e719b" class="outline-5">
+<h5 id="orgf4e719b"><span class="section-number-5">2.3.4.3</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-4-3">
 <p>
 Transform response Y to concave function such as \(log Y\) or \(\sqrt{Y}\).
@@ -869,8 +867,8 @@ Transform response Y to concave function such as \(log Y\) or \(\sqrt{Y}\).
 An outlier is a point for which y<sub>i</sub> is far from the value predicted by the model.
 </p>
 </div>
-<div id="outline-container-org119b388" class="outline-5">
-<h5 id="org119b388"><span class="section-number-5">2.3.5.1</span> Consequence</h5>
+<div id="outline-container-org2380d19" class="outline-5">
+<h5 id="org2380d19"><span class="section-number-5">2.3.5.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-5-1">
 <p>
 An outlier does not have much effect on the least squares fit.
@@ -878,8 +876,8 @@ But it can cause RSE and R<sup>2</sup> to decrease.
 </p>
 </div>
 </div>
-<div id="outline-container-orga7c0f08" class="outline-5">
-<h5 id="orga7c0f08"><span class="section-number-5">2.3.5.2</span> Detection</h5>
+<div id="outline-container-org7023694" class="outline-5">
+<h5 id="org7023694"><span class="section-number-5">2.3.5.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-5-2">
 <p>
 Residual plots can be used.
@@ -889,8 +887,8 @@ If the value exceeds 3, it is possibly an outlier.
 </p>
 </div>
 </div>
-<div id="outline-container-org5d5bfc9" class="outline-5">
-<h5 id="org5d5bfc9"><span class="section-number-5">2.3.5.3</span> Solution</h5>
+<div id="outline-container-orgcd88442" class="outline-5">
+<h5 id="orgcd88442"><span class="section-number-5">2.3.5.3</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-5-3">
 <ul class="org-ul">
 <li>remove the observation</li>
@@ -907,16 +905,16 @@ If the value exceeds 3, it is possibly an outlier.
 observations with an unusual value for \(x_i\).
 </p>
 </div>
-<div id="outline-container-org20bab23" class="outline-5">
-<h5 id="org20bab23"><span class="section-number-5">2.3.6.1</span> Consequence</h5>
+<div id="outline-container-org9d1eb07" class="outline-5">
+<h5 id="org9d1eb07"><span class="section-number-5">2.3.6.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-6-1">
 <p>
 Impact on least squares line.
 </p>
 </div>
 </div>
-<div id="outline-container-org73714c5" class="outline-5">
-<h5 id="org73714c5"><span class="section-number-5">2.3.6.2</span> Detection</h5>
+<div id="outline-container-orgf2f3621" class="outline-5">
+<h5 id="orgf2f3621"><span class="section-number-5">2.3.6.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-6-2">
 <p>
 compute <i>leverage statistic</i>.
@@ -942,8 +940,8 @@ If it greatly exceeds \((p+1)/n\), it is a high leverage point.
 Two or more predictor variables are closely related to one another.
 </p>
 </div>
-<div id="outline-container-org42ddc3f" class="outline-5">
-<h5 id="org42ddc3f"><span class="section-number-5">2.3.7.1</span> Consequence</h5>
+<div id="outline-container-org6c35eb3" class="outline-5">
+<h5 id="org6c35eb3"><span class="section-number-5">2.3.7.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-7-1">
 <ul class="org-ul">
 <li>Difficult to separate out the individual effects of collinear variables on the response.</li>
@@ -954,8 +952,8 @@ Two or more predictor variables are closely related to one another.
 </div>
 </div>
 
-<div id="outline-container-org132da0c" class="outline-5">
-<h5 id="org132da0c"><span class="section-number-5">2.3.7.2</span> Detection</h5>
+<div id="outline-container-orgadc7fb9" class="outline-5">
+<h5 id="orgadc7fb9"><span class="section-number-5">2.3.7.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-7-2">
 <ul class="org-ul">
 <li>look at correlation matrix, to see if correlated</li>
@@ -987,8 +985,8 @@ A VIF value that exceeds 5 or 10 indicates a problematic  amount of collinearity
 </div>
 
 
-<div id="outline-container-org68ce566" class="outline-2">
-<h2 id="org68ce566"><span class="section-number-2">3</span> Classification</h2>
+<div id="outline-container-org007fce9" class="outline-2">
+<h2 id="org007fce9"><span class="section-number-2">3</span> Classification</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-orgf7f4c2a" class="outline-3">
 <h3 id="orgf7f4c2a"><span class="section-number-3">3.1</span> logistic regression</h3>
@@ -1589,8 +1587,8 @@ Each tree is fit on a modified version of the original data set.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org1ec2360" class="outline-2">
-<h2 id="org1ec2360"><span class="section-number-2">8</span> Support Vector Machine</h2>
+<div id="outline-container-org399a6b2" class="outline-2">
+<h2 id="org399a6b2"><span class="section-number-2">8</span> Support Vector Machine</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 the best “out of the box” classifiers.
@@ -1687,8 +1685,8 @@ Some observations:
 </div>
 
 
-<div id="outline-container-org5195411" class="outline-3">
-<h3 id="org5195411"><span class="section-number-3">8.3</span> Support Vector Machine</h3>
+<div id="outline-container-org1ec2360" class="outline-3">
+<h3 id="org1ec2360"><span class="section-number-3">8.3</span> Support Vector Machine</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 enlarging the feature space in a specific way, using kernels.
@@ -1824,7 +1822,7 @@ The four most commonly used types of linkage:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-27 Mon 13:38</p>
+<p class="date">Created: 2017-03-27 Mon 14:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

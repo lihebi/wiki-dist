@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-27 Mon 13:38 -->
+<!-- 2017-03-28 Tue 15:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>awk</title>
@@ -179,9 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style type="text/css">
-a:visited {color: red;}
-</style>
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -236,61 +234,73 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc6a9e38">1. usage</a>
+<li><a href="#org3d82e18">1. Introduction</a>
 <ul>
 <li><a href="#org3687a91">1.1. Important Variables</a></li>
 </ul>
 </li>
 <li><a href="#org211adce">2. patterns</a></li>
-<li><a href="#org096e613">3. actions</a></li>
-<li><a href="#org07d1362">4. variable</a></li>
-<li><a href="#org52b8565">5. examples</a></li>
+<li><a href="#orgd75951e">3. Actions</a>
+<ul>
+<li><a href="#org7783028">3.1. Control Structure</a></li>
+<li><a href="#org70e2cbd">3.2. String Functions</a></li>
+</ul>
+</li>
+<li><a href="#org7aac5d8">4. Examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc6a9e38" class="outline-2">
-<h2 id="orgc6a9e38"><span class="section-number-2">1</span> usage</h2>
+<div id="outline-container-org3d82e18" class="outline-2">
+<h2 id="org3d82e18"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-in shell:
+Use shebang <code>#! /bin/awk -f</code> for script file. In terminal, Invoke by
+<code>awk 'PROGRAM' INPUT-FILE1 INPUT-FILE2 ...</code>. MUST USE single
+quote. Run a script by <code>awk -f script.awk INPUT-FILES</code>.
 </p>
 
 <p>
-MUST USE single quote.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">awk <span style="color: #2aa198;">'pattern {action}'</span>
-awk <span style="color: #2aa198;">'pattern {action}'</span> input.txt
-awk -f script.awk input.txt
-</pre>
-</div>
-
-<p>
-<code>pattern {action}</code>
+The "program" contains a list of statements. Each of form <code>pattern
+{action}</code>.  A missing { action } means print the line; a missing
+pattern always matches.  Pattern-action statements are separated by
+newlines or semicolons.
 </p>
 
 <p>
-A missing { action } means print the line;
-a missing pattern always matches.
-Pattern-action statements are separated by newlines or semicolons.
+Invoking options:
 </p>
+<dl class="org-dl">
+<dt><code>-F FS</code></dt><dd>set FS</dd>
+<dt><code>-v VAR=VAL</code></dt><dd>set variable before the program begins</dd>
+</dl>
 </div>
 
 <div id="outline-container-org3687a91" class="outline-3">
 <h3 id="org3687a91"><span class="section-number-3">1.1</span> Important Variables</h3>
 <div class="outline-text-3" id="text-1-1">
 <dl class="org-dl">
-<dt><code>FS (Field Separator)</code></dt><dd>regular expression used to separate fields; also settable by option -Ffs.</dd>
 <dt><code>NF</code></dt><dd>number of fields in the current record</dd>
-<dt><code>NR</code></dt><dd>ordinal number of the current record</dd>
-<dt><code>FNR</code></dt><dd>ordinal number of the current record in the current file</dd>
+<dt><code>NR</code></dt><dd>line number of current record</dd>
+<dt><code>FNR</code></dt><dd>line number of current record in the current file</dd>
 <dt><code>FILENAME</code></dt><dd>the name of the current input file</dd>
+<dt><code>FS (Field Separator)</code></dt><dd>regular expression used to separate fields; also settable by option -Ffs.</dd>
 <dt><code>RS</code></dt><dd>input record separator (default newline)</dd>
 <dt><code>OFS</code></dt><dd>output field separator (default blank)</dd>
 <dt><code>ORS</code></dt><dd>output record separator (default newline)</dd>
 </dl>
+
+<p>
+AWK first read record using RS as separator from input. For each
+record, awk use FS to split it into fields.
+</p>
+
+
+<p>
+awk is line-based, and the content of lines are splited into fields
+<code>$1</code>, <code>$2</code>, &#x2026; by the separator <code>FS</code>.  <code>$0</code> refers to the entire
+line. Function parameters are local, all other variables are global.
+</p>
 </div>
 </div>
 </div>
@@ -300,49 +310,91 @@ Pattern-action statements are separated by newlines or semicolons.
 <h2 id="org211adce"><span class="section-number-2">2</span> patterns</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Patterns are arbitrary Boolean combinations (with <code>!</code> <code>||</code> <code>&amp;&amp;</code>)
-of regular expressions and relational expressions.
+Patterns are arbitrary Boolean combinations (with <code>!</code> <code>||</code> <code>&amp;&amp;</code>) of
+regular expressions and relational expressions.
 </p>
 
 <p>
-A pattern may consist of two patterns separated by a comma;
-in this case, the action is performed for all lines from an occurrence of the first pattern though an occurrence of the second.
+A pattern may consist of two patterns separated by a comma; in this
+case, the action is performed for all lines from an occurrence of the
+first pattern though an occurrence of the second.
 </p>
 
 <p>
-special patterns: <code>BEGIN</code>, <code>END</code>.
-Cannot combine with other patterns.
+special patterns: <code>BEGIN</code>, <code>END</code>.  Cannot combine with other patterns.
+</p>
+
+<p>
+Also, we can match part of the input by using regular expression
+comparison operators (<code>~</code> and <code>!~</code>). <code>EXP ~ /REGEXP/</code> returns true if
+match. This can be used in patterns, as well as as conditions for if,
+while, for, do statements.
+</p>
+
+<p>
+Case sensitivity is controled by <code>IGNORECASE</code> variable. You can set
+when invoking awk, or set the variable in the awk program. Another way
+to ignore case is to call <code>tolower</code> or <code>toupper</code> function before
+comparison.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org096e613" class="outline-2">
-<h2 id="org096e613"><span class="section-number-2">3</span> actions</h2>
+<div id="outline-container-orgd75951e" class="outline-2">
+<h2 id="orgd75951e"><span class="section-number-2">3</span> Actions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-An action is a sequence of statements.
-Statements are terminated by semicolons, newlines or right braces
+An action is a sequence of statements.  Statements are terminated by
+semicolons, newlines or right braces.
 </p>
+
+<p>
+Reference of user-defined variable do not use $. E.g. <code>myvar=$2</code> will
+assign $2 to myvar! Refer the var directly: no need to use a $ as
+shell variables.
+</p>
+</div>
+
+<div id="outline-container-org7783028" class="outline-3">
+<h3 id="org7783028"><span class="section-number-3">3.1</span> Control Structure</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li><code>if (condition) then-body [else else-body]</code></li>
+<li><code>while (condition) body</code></li>
+<li><code>do body while (condition)</code></li>
+<li><code>for (init;cond;inc) body</code></li>
+<li>switch(expr) {case val: body default: body}</li>
+<li>break</li>
+<li>continue</li>
+<li>next: stop current record immediately and go on to next</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-org07d1362" class="outline-2">
-<h2 id="org07d1362"><span class="section-number-2">4</span> variable</h2>
+<div id="outline-container-org70e2cbd" class="outline-3">
+<h3 id="org70e2cbd"><span class="section-number-3">3.2</span> String Functions</h3>
+<div class="outline-text-3" id="text-3-2">
+<dl class="org-dl">
+<dt><code>sub(ere, repl[, in])</code></dt><dd>substitute the first match of ere inside
+in (or $0) by repl. Return number of substitution. <code>&amp;</code> can be
+used in repl.</dd>
+<dt><code>gsub(ere, repl[, in])</code></dt><dd>sub for all matches</dd>
+<dt>index(s,t)</dt><dd>index t inside s, 0 if not occur.</dd>
+<dt>length([s])</dt><dd>return length for s (or $0)</dd>
+<dt>match(s, ere)</dt><dd>return position of match of ere in s</dd>
+<dt>split(s, a[, fs])</dt><dd>split s into array a</dd>
+<dt>sprintf(fmt, expr, expr, &#x2026;)</dt><dd>printf with format string</dd>
+<dt>substr(s, m[, n])</dt><dd>return substring from m with length at most n</dd>
+<dt>tolower(s)</dt><dd>return lowercase</dd>
+<dt>toupper(s)</dt><dd>uppercase</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7aac5d8" class="outline-2">
+<h2 id="org7aac5d8"><span class="section-number-2">4</span> Examples</h2>
 <div class="outline-text-2" id="text-4">
-<p>
-awk is line-based, and the content of lines are splited into fields <code>$1</code>, <code>$2</code>, &#x2026; by the separator <code>FS</code>.
-<code>$0</code> refers to the entire line.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org52b8565" class="outline-2">
-<h2 id="org52b8565"><span class="section-number-2">5</span> examples</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-An example is better than a thousand of words.
-</p>
-
 <div class="org-src-container">
 <pre class="src src-shell">awk <span style="color: #2aa198;">'NR==10 {print}'</span> input.txt <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">output 10th line, or empty is less than 10 lines</span>
 </pre>
@@ -352,7 +404,7 @@ An example is better than a thousand of words.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-27 Mon 13:38</p>
+<p class="date">Created: 2017-03-28 Tue 15:00</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
