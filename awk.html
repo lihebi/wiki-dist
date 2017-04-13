@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-28 Tue 15:00 -->
+<!-- 2017-04-10 Mon 20:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>awk</title>
@@ -234,26 +234,52 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3d82e18">1. Introduction</a>
+<li><a href="#orgb40c835">1. tmp</a></li>
+<li><a href="#org3d82e18">2. Introduction</a>
 <ul>
-<li><a href="#org3687a91">1.1. Important Variables</a></li>
+<li><a href="#org3687a91">2.1. Important Variables</a></li>
 </ul>
 </li>
-<li><a href="#org211adce">2. patterns</a></li>
-<li><a href="#orgd75951e">3. Actions</a>
+<li><a href="#org211adce">3. patterns</a></li>
+<li><a href="#orgd75951e">4. Actions</a>
 <ul>
-<li><a href="#org7783028">3.1. Control Structure</a></li>
-<li><a href="#org70e2cbd">3.2. String Functions</a></li>
+<li><a href="#org7783028">4.1. Control Structure</a></li>
+<li><a href="#org70e2cbd">4.2. String Functions</a></li>
 </ul>
 </li>
-<li><a href="#org7aac5d8">4. Examples</a></li>
+<li><a href="#org7aac5d8">5. Examples</a></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-orgb40c835" class="outline-2">
+<h2 id="orgb40c835"><span class="section-number-2">1</span> tmp</h2>
+<div class="outline-text-2" id="text-1">
+<pre class="example">
+match($0, /#include &lt;(.*)&gt;/, a) {print a[1]}
+</pre>
+<ul class="org-ul">
+<li>sum line of numbers</li>
+</ul>
+<pre class="example">
+awk '{s+=$1} END {print s}' mydatafile
+</pre>
+
+
+
+<p>
+The quote for command must be single quote! not double.
+That is because the double quote will do shell substitution.
+</p>
+
+<pre class="example">
+awk '{print $0}'
+</pre>
 </div>
 </div>
 
 <div id="outline-container-org3d82e18" class="outline-2">
-<h2 id="org3d82e18"><span class="section-number-2">1</span> Introduction</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org3d82e18"><span class="section-number-2">2</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 Use shebang <code>#! /bin/awk -f</code> for script file. In terminal, Invoke by
 <code>awk 'PROGRAM' INPUT-FILE1 INPUT-FILE2 ...</code>. MUST USE single
@@ -277,8 +303,8 @@ Invoking options:
 </div>
 
 <div id="outline-container-org3687a91" class="outline-3">
-<h3 id="org3687a91"><span class="section-number-3">1.1</span> Important Variables</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org3687a91"><span class="section-number-3">2.1</span> Important Variables</h3>
+<div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt><code>NF</code></dt><dd>number of fields in the current record</dd>
 <dt><code>NR</code></dt><dd>line number of current record</dd>
@@ -307,8 +333,8 @@ line. Function parameters are local, all other variables are global.
 
 
 <div id="outline-container-org211adce" class="outline-2">
-<h2 id="org211adce"><span class="section-number-2">2</span> patterns</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org211adce"><span class="section-number-2">3</span> patterns</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Patterns are arbitrary Boolean combinations (with <code>!</code> <code>||</code> <code>&amp;&amp;</code>) of
 regular expressions and relational expressions.
@@ -341,8 +367,8 @@ comparison.
 </div>
 
 <div id="outline-container-orgd75951e" class="outline-2">
-<h2 id="orgd75951e"><span class="section-number-2">3</span> Actions</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgd75951e"><span class="section-number-2">4</span> Actions</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 An action is a sequence of statements.  Statements are terminated by
 semicolons, newlines or right braces.
@@ -356,8 +382,8 @@ shell variables.
 </div>
 
 <div id="outline-container-org7783028" class="outline-3">
-<h3 id="org7783028"><span class="section-number-3">3.1</span> Control Structure</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org7783028"><span class="section-number-3">4.1</span> Control Structure</h3>
+<div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><code>if (condition) then-body [else else-body]</code></li>
 <li><code>while (condition) body</code></li>
@@ -372,8 +398,8 @@ shell variables.
 </div>
 
 <div id="outline-container-org70e2cbd" class="outline-3">
-<h3 id="org70e2cbd"><span class="section-number-3">3.2</span> String Functions</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org70e2cbd"><span class="section-number-3">4.2</span> String Functions</h3>
+<div class="outline-text-3" id="text-4-2">
 <dl class="org-dl">
 <dt><code>sub(ere, repl[, in])</code></dt><dd>substitute the first match of ere inside
 in (or $0) by repl. Return number of substitution. <code>&amp;</code> can be
@@ -393,10 +419,10 @@ used in repl.</dd>
 </div>
 
 <div id="outline-container-org7aac5d8" class="outline-2">
-<h2 id="org7aac5d8"><span class="section-number-2">4</span> Examples</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org7aac5d8"><span class="section-number-2">5</span> Examples</h2>
+<div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-shell">awk <span style="color: #2aa198;">'NR==10 {print}'</span> input.txt <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">output 10th line, or empty is less than 10 lines</span>
+<pre class="src src-shell">awk <span style="color: #2aa198;">'NR==10 {print}'</span> input.txt <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">output 10th line, or empty is less than 10 lines</span>
 </pre>
 </div>
 </div>
@@ -404,7 +430,7 @@ used in repl.</dd>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-28 Tue 15:00</p>
+<p class="date">Created: 2017-04-10 Mon 20:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

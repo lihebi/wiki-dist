@@ -6,7 +6,7 @@
 <!-- 2017-04-10 Mon 20:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CMake</title>
+<title>Cpp Libraries</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Hebi Li" />
 <style type="text/css">
@@ -226,318 +226,213 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">CMake</h1>
+<h1 class="title">Cpp Libraries</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org145fd06">1. Tmp</a></li>
-<li><a href="#orgff98c5e">2. Language</a>
+<li><a href="#orgfe0b4c8">1. RapidJson</a>
 <ul>
-<li><a href="#org65982f8">2.1. Organization</a></li>
-<li><a href="#orgeb8a768">2.2. Option</a></li>
-<li><a href="#orgad6ca3e">2.3. Syntax</a></li>
-<li><a href="#org0b4a67e">2.4. Variable</a></li>
-<li><a href="#orgbdfecc7">2.5. Comments</a></li>
-<li><a href="#org90be88d">2.6. Control Structure</a>
+<li><a href="#org1e69d88">1.1. Parse Document</a></li>
+<li><a href="#orgc67234f">1.2. Create Document</a></li>
+<li><a href="#org3f8f0db">1.3. Access Document</a></li>
+<li><a href="#org873d0b7">1.4. Create Value &amp; Save Document</a></li>
+<li><a href="#orgd9648e7">1.5. Save</a></li>
+<li><a href="#org20e2ebf">1.6. Reference</a>
 <ul>
-<li><a href="#org81a2f4f">2.6.1. Conditional</a></li>
-<li><a href="#orgf96304d">2.6.2. Loop</a></li>
+<li><a href="#orgf65c62a">1.6.1. GenericDocument : public GenericValue</a></li>
+<li><a href="#orga6ddcbc">1.6.2. GenericValue</a>
+<ul>
+<li><a href="#org8f3bbd0">1.6.2.1. Predicate</a></li>
+<li><a href="#org4a9e826">1.6.2.2. Object</a></li>
+<li><a href="#org341d691">1.6.2.3. Array</a></li>
+<li><a href="#org99133d6">1.6.2.4. Other</a></li>
 </ul>
 </li>
-<li><a href="#org74e3dfd">2.7. Command Definition</a></li>
 </ul>
 </li>
-<li><a href="#org80e1204">3. Trouble Shooting</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org145fd06" class="outline-2">
-<h2 id="org145fd06"><span class="section-number-2">1</span> Tmp</h2>
+
+<div id="outline-container-orgfe0b4c8" class="outline-2">
+<h2 id="orgfe0b4c8"><span class="section-number-2">1</span> RapidJson</h2>
 <div class="outline-text-2" id="text-1">
-<pre class="example">
-set(CMAKE_CXX_STANDARD 11)
-</pre>
-</div>
-</div>
-
-<div id="outline-container-orgff98c5e" class="outline-2">
-<h2 id="orgff98c5e"><span class="section-number-2">2</span> Language</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org65982f8" class="outline-3">
-<h3 id="org65982f8"><span class="section-number-3">2.1</span> Organization</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-The entry point is <code>CMakeLists.txt</code>. It can add other directories by
-<code>add_subdirectory()</code> command, and that directory should also contains a
-<code>CMakeLists.txt</code>. Use <code>include()</code> command can include a <code>&lt;module&gt;.cmake</code>
-file.
-</p>
-</div>
-</div>
-
-
-<div id="outline-container-orgeb8a768" class="outline-3">
-<h3 id="orgeb8a768"><span class="section-number-3">2.2</span> Option</h3>
-<div class="outline-text-3" id="text-2-2">
-<dl class="org-dl">
-<dt><code>CMAKE_EXPORT_COMPILE_COMMANDS=ON</code></dt><dd>export <code>compile_commands.json</code></dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgad6ca3e" class="outline-3">
-<h3 id="orgad6ca3e"><span class="section-number-3">2.3</span> Syntax</h3>
-<div class="outline-text-3" id="text-2-3">
-<p>
-The <code>CMakeLists.txt</code> file contains commands separated by white spaces.
-Command is an identifier with paren-enclosed arguments separated by
-white spaces. The paren-enclosing can be nested.
-</p>
-
-<p>
-Arguments can be
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-center" />
-
-<col  class="org-center" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">type</th>
-<th scope="col" class="org-center">escape sequence</th>
-<th scope="col" class="org-center">variable reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>bracket_argument</code></td>
-<td class="org-center">\(\times\)</td>
-<td class="org-center">\(\times\)</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>quoted_argument</code></td>
-<td class="org-center">\(\checkmark\)</td>
-<td class="org-center">\(\checkmark\)</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>unquoted_argument</code></td>
-<td class="org-center">\(\checkmark\)</td>
-<td class="org-center">\(\checkmark\)</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-The length of = can be 0 or more.
-</p>
-<pre class="example">
-bracket_argument ::=  bracket_open bracket_content bracket_close
-bracket_open     ::=  '[' '='{len} '['
-bracket_content  ::=  &lt;any text not containing a bracket_close
-                       of the same {len} as the bracket_open&gt;
-bracket_close    ::=  ']' '='{len} ']'
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;rapidjson/istreamwrapper.h&gt;</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;rapidjson/document.h&gt;</span>
+<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;rapidjson/prettywriter.h&gt;</span>
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-org0b4a67e" class="outline-3">
-<h3 id="org0b4a67e"><span class="section-number-3">2.4</span> Variable</h3>
-<div class="outline-text-3" id="text-2-4">
-<p>
-Variable syntax is <code>${VAR}</code> or <code>$ENV{VAR}</code>. The reference can be nested
-and evaluate the inner first: <code>${outer_${inner_variable}_variable}</code>.
-</p>
+<div id="outline-container-org1e69d88" class="outline-3">
+<h3 id="org1e69d88"><span class="section-number-3">1.1</span> Parse Document</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #859900;">const</span> <span style="color: #b58900;">char</span>* <span style="color: #268bd2;">json</span> = <span style="color: #2aa198;">"{\"project\":\"rapidjson\",\"stars\":10}"</span>;
+<span style="color: #b58900;">Document</span> <span style="color: #268bd2;">d</span>;
+d.Parse(json);
 
+<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Document</span> <span style="color: #268bd2;">document</span>;
+<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">ifstream</span> <span style="color: #268bd2;">ifs</span>(p.string());
+<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">IStreamWrapper</span> <span style="color: #268bd2;">isw</span>(ifs);
+document.ParseStream(isw);
+assert(document.IsArray());
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc67234f" class="outline-3">
+<h3 id="orgc67234f"><span class="section-number-3">1.2</span> Create Document</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Document</span> <span style="color: #268bd2;">doc</span>;
+doc.SetObject();
+doc.SetArray();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3f8f0db" class="outline-3">
+<h3 id="org3f8f0db"><span class="section-number-3">1.3</span> Access Document</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #859900;">for</span> (<span style="color: #2aa198;">rapidjson</span>::Value &amp;field : v[<span style="color: #2aa198;">"fields"</span>].GetArray()) {
+  Fields.push_back(field.GetString());
+ }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org873d0b7" class="outline-3">
+<h3 id="org873d0b7"><span class="section-number-3">1.4</span> Create Value &amp; Save Document</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">rapidjson::kObjectType</span>
+<span style="color: #b58900;">Value</span> <span style="color: #268bd2;">array</span>(kArrayType);
+<span style="color: #2aa198;">Document</span>::<span style="color: #b58900;">AllocatorType</span> &amp;<span style="color: #268bd2;">allocator</span> = document.GetAllocator();
+array.PushBack(<span style="color: #2aa198;">"hello"</span>, allocator).PushBack(<span style="color: #2aa198;">"world"</span>, allocator);
+
+document.AddMember(<span style="color: #2aa198;">"array"</span>, array, allocator);
+
+document.AddMember(<span style="color: #2aa198;">"Name"</span>, <span style="color: #2aa198;">"XYZ"</span>, allocator);
+document.AddMember(<span style="color: #2aa198;">"Name"</span>, <span style="color: #2aa198;">"5"</span>, allocator);
+document.AddMember(<span style="color: #2aa198;">"Name"</span>, 5, allocator);
+
+<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Value</span> <span style="color: #268bd2;">str</span>;
+<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #268bd2;">Name</span> = <span style="color: #2aa198;">"hello"</span>;
+str.SetString(Name.c_str(), allocator);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd9648e7" class="outline-3">
+<h3 id="orgd9648e7"><span class="section-number-3">1.5</span> Save</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">StringBuffer</span> <span style="color: #268bd2;">sb</span>;
+<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">PrettyWriter</span>&lt;<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">StringBuffer</span>&gt; <span style="color: #268bd2;">writer</span>(sb);
+<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Writer</span>&lt;<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">StringBuffer</span>&gt; <span style="color: #268bd2;">writer</span>(sb);
+v.Accept(writer);
+os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org20e2ebf" class="outline-3">
+<h3 id="org20e2ebf"><span class="section-number-3">1.6</span> Reference</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-orgf65c62a" class="outline-4">
+<h4 id="orgf65c62a"><span class="section-number-4">1.6.1</span> GenericDocument : public GenericValue</h4>
+<div class="outline-text-4" id="text-1-6-1">
 <ul class="org-ul">
-<li>set()</li>
-<li>unset()</li>
-</ul>
-
-<p>
-Inside set and unset, the variable don't need <code>$</code>. Two or more values are
-connected into <b>list</b> (separated by <code>;</code>). Zero values is implicit unset.
-</p>
-<pre class="example">
-set(&lt;variable&gt; &lt;value&gt;... [PARENT_SCOPE])
-set(&lt;variable&gt; &lt;value&gt;... CACHE &lt;type&gt; &lt;docstring&gt; [FORCE])
-set(ENV{&lt;variable&gt;} &lt;value&gt;...)
-</pre>
-
-<p>
-Variables have dynamic scope.
-</p>
-<dl class="org-dl">
-<dt>function scope</dt><dd>created by <code>function</code> command. Not visible outside function.</dd>
-<dt>directory scope</dt><dd>the <code>CMakeLists.txt</code></dd>
-<dt>persistent scope</dt><dd>the "cache" variable is available across multiple
-runs within a project build tree</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgbdfecc7" class="outline-3">
-<h3 id="orgbdfecc7"><span class="section-number-3">2.5</span> Comments</h3>
-<div class="outline-text-3" id="text-2-5">
-<p>
-a leading <code>#</code> is a line comment. A <code>#</code> followed <b>immediately</b> by bracket
-argument, i.e. <code>#[=[xxx]=]</code>, can be multiple line or inline comments.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org90be88d" class="outline-3">
-<h3 id="org90be88d"><span class="section-number-3">2.6</span> Control Structure</h3>
-<div class="outline-text-3" id="text-2-6">
-</div><div id="outline-container-org81a2f4f" class="outline-4">
-<h4 id="org81a2f4f"><span class="section-number-4">2.6.1</span> Conditional</h4>
-<div class="outline-text-4" id="text-2-6-1">
-<ul class="org-ul">
-<li>if()</li>
-<li>elseif()</li>
-<li>else()</li>
-<li>endif()</li>
-</ul>
-
-<pre class="example">
-if(expression)
-  COMMAND1(ARGS ...)
-elseif(expression2)
-  COMMAND1(ARGS ...)
-  COMMAND2(ARGS ...)
-else()
-  COMMAND1(ARGS ...)
-endif()
-</pre>
-
-<p>
-The expression can be:
-</p>
-<ul class="org-ul">
-<li>constant: 0 OFF, NO FALSE, N are false</li>
-<li>variable: true if defined and not false constant</li>
-<li>NOT, AND, OR</li>
-<li>EXISTS path-to-file-or-dir</li>
-<li>&#x2026;</li>
+<li>Allocator GetAllocator()</li>
+<li>ParseStream</li>
+<li>Parse</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf96304d" class="outline-4">
-<h4 id="orgf96304d"><span class="section-number-4">2.6.2</span> Loop</h4>
-<div class="outline-text-4" id="text-2-6-2">
+<div id="outline-container-orga6ddcbc" class="outline-4">
+<h4 id="orga6ddcbc"><span class="section-number-4">1.6.2</span> GenericValue</h4>
+<div class="outline-text-4" id="text-1-6-2">
+</div><div id="outline-container-org8f3bbd0" class="outline-5">
+<h5 id="org8f3bbd0"><span class="section-number-5">1.6.2.1</span> Predicate</h5>
+<div class="outline-text-5" id="text-1-6-2-1">
 <ul class="org-ul">
-<li>foreach()</li>
-<li>endforeach()</li>
-</ul>
-
-<pre class="example">
-foreach(loop_var arg1 arg2 ...)
-  COMMAND1(ARGS ...)
-  COMMAND2(ARGS ...)
-  ...
-endforeach(loop_var)
-
-foreach(loop_var RANGE total)
-foreach(loop_var RANGE start stop [step])
-</pre>
-
-<ul class="org-ul">
-<li>while()</li>
-<li>endwhile()</li>
-</ul>
-
-<pre class="example">
-while(condition)
-  COMMAND1(ARGS ...)
-  COMMAND2(ARGS ...)
-  ...
-endwhile(condition)
-</pre>
-
-<ul class="org-ul">
-<li>break()</li>
-<li>continue()</li>
+<li>IsNull</li>
+<li>IsBool</li>
+<li>IsObject</li>
+<li>IsArray</li>
+<li>IsNumber</li>
+<li>IsInt</li>
+<li>IsString</li>
 </ul>
 </div>
 </div>
+
+<div id="outline-container-org4a9e826" class="outline-5">
+<h5 id="org4a9e826"><span class="section-number-5">1.6.2.2</span> Object</h5>
+<div class="outline-text-5" id="text-1-6-2-2">
+<ul class="org-ul">
+<li>SetObject()</li>
+<li>GetObject</li>
+<li>operator[]</li>
+<li>MemberBegin</li>
+<li>MemberEnd</li>
+<li>HasMember</li>
+<li>FindMember</li>
+<li>AddMember(name, value, allocator)</li>
+<li>RemoveMember</li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-org74e3dfd" class="outline-3">
-<h3 id="org74e3dfd"><span class="section-number-3">2.7</span> Command Definition</h3>
-<div class="outline-text-3" id="text-2-7">
+<div id="outline-container-org341d691" class="outline-5">
+<h5 id="org341d691"><span class="section-number-5">1.6.2.3</span> Array</h5>
+<div class="outline-text-5" id="text-1-6-2-3">
 <ul class="org-ul">
-<li>macro()</li>
-<li>endmacro()</li>
-<li>function()</li>
-<li>endfunction()</li>
+<li>SetArray</li>
+<li>GetArray</li>
+<li>Size</li>
+<li>Empty()</li>
+<li>Clear</li>
+<li>operator[](index)</li>
+<li>Begin</li>
+<li>End</li>
+<li>PushBack</li>
+<li>PopBack</li>
+<li>Erase</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org99133d6" class="outline-5">
+<h5 id="org99133d6"><span class="section-number-5">1.6.2.4</span> Other</h5>
+<div class="outline-text-5" id="text-1-6-2-4">
+<ul class="org-ul">
+<li>SetBool()</li>
+<li>GetBool</li>
+<li>GetInt</li>
+<li>SetInt</li>
+<li>GetString</li>
+<li>SetString</li>
 </ul>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org80e1204" class="outline-2">
-<h2 id="org80e1204"><span class="section-number-2">3</span> Trouble Shooting</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-When using <code>find_package(PythonInterp 2.7 REQUIRED)</code>, it keeps find the 3.6 version.
-To solve that, invoke cmake like this:
-</p>
-
-<pre class="example">
-cmake -DPYTHON_EXECUTABLE=/usr/bin/python2 ..
-</pre>
-
-
-<p>
-To change the boost version, change the enviroment variable:
-</p>
-<pre class="example">
-export BOOST_ROOT=/path/to/alternative/boost
-</pre>
-
-<p>
-To build the boost:
-</p>
-<pre class="example">
-./bootstrap.sh --without-libraries=atomic,chrono,context,coroutine,exception,graph,graph_parallel,iostreams,locale,log,math,mpi,python,random,serialization,signals,test,timer,wave
-./b2 --prefix=/path/to/custom/location link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install
-</pre>
 </div>
 </div>
 </div>

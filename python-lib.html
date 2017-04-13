@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-04-13 Thu 12:21 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python Libraries</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Python Libraries</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org54fa146">1. Built-in exceptions</a></li>
+<li><a href="#org8790f64">2. Built-in</a></li>
+<li><a href="#orgad26a6d">3. File System</a>
+<ul>
+<li><a href="#org1023063">3.1. os.path</a></li>
+<li><a href="#orgecfae44">3.2. <span class="todo TODO">TODO</span> pathlib</a></li>
+<li><a href="#org67c363a">3.3. <span class="todo TODO">TODO</span> tempfile</a></li>
+</ul>
+</li>
+<li><a href="#org466ae23">4. os</a></li>
+<li><a href="#org2a8a1b9">5. io</a>
+<ul>
+<li><a href="#org34803ba">5.1. IOBase</a></li>
+<li><a href="#org0600187">5.2. RawIOBase : IOBase (should not use directly)</a></li>
+<li><a href="#orgb629c96">5.3. BufferedIOBase</a></li>
+<li><a href="#org87ca42b">5.4. FileIO : RawIOBase</a></li>
+<li><a href="#org143af37">5.5. BytesIO : BufferedIOBase</a></li>
+<li><a href="#org4c7e02d">5.6. BufferedReader(raw)</a></li>
+<li><a href="#orgf17707d">5.7. BufferedWriter(raw)</a></li>
+<li><a href="#orgfe377dc">5.8. TextIOBase : IOBase</a></li>
+<li><a href="#orgb223f41">5.9. TextIOWrapper(buffer) : TextIOBase</a></li>
+<li><a href="#org39ca6c7">5.10. StringIO</a></li>
+</ul>
+</li>
+<li><a href="#org9a3713e">6. time</a></li>
+<li><a href="#org7881924">7. <span class="todo TODO">TODO</span> argparse</a></li>
+<li><a href="#org3ba83eb">8. Concurrent</a>
+<ul>
+<li><a href="#org00672f6">8.1. <span class="todo TODO">TODO</span> threading</a></li>
+<li><a href="#orgbb28577">8.2. Thread Sync</a>
+<ul>
+<li><a href="#org986077d">8.2.1. Using with statement</a></li>
+</ul>
+</li>
+<li><a href="#org91617e0">8.3. multiprocessing</a></li>
+<li><a href="#orgfd238c9">8.4. <span class="todo TODO">TODO</span> Process (subprocess module)</a></li>
+</ul>
+</li>
+<li><a href="#orgf96a44c">9. <span class="todo TODO">TODO</span> Internet</a></li>
+<li><a href="#orgea04fef">10. Json</a>
+<ul>
+<li><a href="#org5f7f5bc">10.1. Reference</a></li>
+</ul>
+</li>
+<li><a href="#orgdaf4f2b">11. urllib</a></li>
+</ul>
+</div>
+</div>
+<p>
+This contains both standard library and third party library
+</p>
+
+
+<div id="outline-container-org54fa146" class="outline-2">
+<h2 id="org54fa146"><span class="section-number-2">1</span> Built-in exceptions</h2>
+<div class="outline-text-2" id="text-1">
+<pre class="example">
+BaseException
+ +-- SystemExit
+ +-- KeyboardInterrupt
+ +-- GeneratorExit
+ +-- Exception
+      +-- StopIteration
+      +-- StandardError
+      |    +-- BufferError
+      |    +-- ArithmeticError
+      |    |    +-- FloatingPointError
+      |    |    +-- OverflowError
+      |    |    +-- ZeroDivisionError
+      |    +-- AssertionError
+      |    +-- AttributeError
+      |    +-- EnvironmentError
+      |    |    +-- IOError
+      |    |    +-- OSError
+      |    |         +-- WindowsError (Windows)
+      |    |         +-- VMSError (VMS)
+      |    +-- EOFError
+      |    +-- ImportError
+      |    +-- LookupError
+      |    |    +-- IndexError
+      |    |    +-- KeyError
+      |    +-- MemoryError
+      |    +-- NameError
+      |    |    +-- UnboundLocalError
+      |    +-- ReferenceError
+      |    +-- RuntimeError
+      |    |    +-- NotImplementedError
+      |    +-- SyntaxError
+      |    |    +-- IndentationError
+      |    |         +-- TabError
+      |    +-- SystemError
+      |    +-- TypeError
+      |    +-- ValueError
+      |         +-- UnicodeError
+      |              +-- UnicodeDecodeError
+      |              +-- UnicodeEncodeError
+      |              +-- UnicodeTranslateError
+      +-- Warning
+           +-- DeprecationWarning
+           +-- PendingDeprecationWarning
+           +-- RuntimeWarning
+           +-- SyntaxWarning
+           +-- UserWarning
+           +-- FutureWarning
+	   +-- ImportWarning
+	   +-- UnicodeWarning
+	   +-- BytesWarning
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8790f64" class="outline-2">
+<h2 id="org8790f64"><span class="section-number-2">2</span> Built-in</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+These functions are always available.
+</p>
+
+<p>
+Numbers:
+</p>
+<ul class="org-ul">
+<li>abs(x): absolute value</li>
+<li>divmod(a,b): a pair (a // b, a % b)</li>
+<li>max(arg1, arg2, *args)</li>
+<li>min(arg1, arg2, *args)</li>
+<li>pow(x,y): x<sup>y</sup></li>
+<li>round(x, ndigits=0)</li>
+<li>sum(iterable)</li>
+</ul>
+
+<p>
+Convertion
+</p>
+<ul class="org-ul">
+<li>int(x)</li>
+<li>float(x)</li>
+<li>long(x)</li>
+<li>chr(x): ASCII to char</li>
+<li>ord(c): char to ASCII</li>
+<li>bool(x): convert x to bool</li>
+<li>hex(x): convert integer to lowercase hex string prefix with '0x'</li>
+<li>oct(x): integer to octal string</li>
+<li>bin(x): an integer to binary string</li>
+</ul>
+
+<p>
+Boolean:
+</p>
+<ul class="org-ul">
+<li>all(iterable): true if all items are true. empty =&gt; True</li>
+<li>any(iterable): true if any item is true. empty =&gt; False</li>
+<li>cmp(x,y)
+<ul class="org-ul">
+<li>x&lt;y =&gt; negative</li>
+<li>x=y =&gt; 0</li>
+<li>x&gt;y =&gt; positive</li>
+</ul></li>
+</ul>
+
+<p>
+Symbol Table
+</p>
+<ul class="org-ul">
+<li>locals()</li>
+<li>globals()</li>
+<li>dir()</li>
+</ul>
+
+<p>
+Creation
+</p>
+<ul class="org-ul">
+<li>dict</li>
+<li>list</li>
+<li>set</li>
+<li>tuple</li>
+</ul>
+
+<p>
+Other
+</p>
+<ul class="org-ul">
+<li>len(s): length</li>
+<li>next(iterator)</li>
+<li>print(*objects, sep='', end='\n', file=sys.stdout)</li>
+<li>range(stop): [0,stop)</li>
+<li>range(start, stop, step=1)</li>
+<li>sorted(iterable, cmp, key, reverse=False)</li>
+<li>type(obj): get the type of obj</li>
+<li>open(name, mode): return an object of file type.
+<ul class="org-ul">
+<li>r,w,a,b; + for read and write</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgad26a6d" class="outline-2">
+<h2 id="orgad26a6d"><span class="section-number-2">3</span> File System</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org1023063" class="outline-3">
+<h3 id="org1023063"><span class="section-number-3">3.1</span> os.path</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+If parameter is not listed, it means a single path.
+</p>
+
+<ul class="org-ul">
+<li><code>split</code>: return a pair (head, tail). tail is the last component,
+without slash. If path ends with slash, tail is empty
+<ul class="org-ul">
+<li><code>basename</code>: the tail of the split output</li>
+<li><code>dirname</code>: head of split output</li>
+</ul></li>
+<li><code>normpath</code>: collapse redundant separators and up level references</li>
+<li><code>abspath</code>: from relative to absolute
+path. normpath(join(os.getcwd(), path))</li>
+<li><code>commonprefix(list)</code>: return the longest path prefix</li>
+<li><code>exists</code></li>
+<li><code>expanduser</code>: replace the initial component of ~ by the users directory.</li>
+<li><code>getsize</code>: in bytes</li>
+<li><code>isabs</code>: predicate for absolute</li>
+<li><code>isfile</code>:</li>
+<li><code>isdir</code></li>
+<li><code>islink</code></li>
+<li><code>join(path, *paths)</code>: join intelligently</li>
+<li><code>realpath</code>: canonical path by following symbolic links</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgecfae44" class="outline-3">
+<h3 id="orgecfae44"><span class="section-number-3">3.2</span> <span class="todo TODO">TODO</span> pathlib</h3>
+</div>
+<div id="outline-container-org67c363a" class="outline-3">
+<h3 id="org67c363a"><span class="section-number-3">3.3</span> <span class="todo TODO">TODO</span> tempfile</h3>
+</div>
+</div>
+
+<div id="outline-container-org466ae23" class="outline-2">
+<h2 id="org466ae23"><span class="section-number-2">4</span> os</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Env
+</p>
+<ul class="org-ul">
+<li>os.environ['HOME']</li>
+<li>os.getenv(name)</li>
+<li>os.putenv(name, value)</li>
+<li>os.unsetenv(name)</li>
+</ul>
+
+<p>
+Filesystem
+</p>
+<ul class="org-ul">
+<li>os.getcwd(): current working directory</li>
+<li>os.chdir(path): change cwd</li>
+<li>os.mkdir(path)</li>
+<li>os.makedirs(path)</li>
+<li>os.remove(path)</li>
+<li>os.removedirs(path)</li>
+<li>os.rename(src, dst)</li>
+<li>os.renames(old, new)</li>
+<li>os.rmdir(path): only work if dir is empty</li>
+<li>os.tempnam(): a reasonable absolute name for creating temporary file
+<ul class="org-ul">
+<li>seems to be vulnerable</li>
+</ul></li>
+<li>os.walk(top, topdown=True): for each directory including top itself,
+it yields 3-tuple (dirpath, dirnames, filenames)</li>
+</ul>
+
+<p>
+popen family is deprecated. Use subprocess.
+</p>
+
+<p>
+Process
+</p>
+<ul class="org-ul">
+<li>os.abort()</li>
+<li>os.execl(path, arg0, arg1, &#x2026;)</li>
+<li>os.execle(path, arg0, arg1, &#x2026;, env)</li>
+<li>os.execlp(file, arg0, arg1, &#x2026;)</li>
+<li>os.execlpe(file, arg0, arg1, &#x2026;, env)</li>
+<li>os.execv(path, args)</li>
+<li>os.execve(path, args, env)</li>
+<li>os.execvp(file, args)</li>
+<li>os.execvpe(file, args, env)</li>
+<li>os.folk</li>
+<li>os.wait()</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>os.system(cmd): run cmd, return exit code</li>
+<li>os.times(): 5-tuple
+<ul class="org-ul">
+<li>user time</li>
+<li>system time</li>
+<li>childrens user time</li>
+<li>childrens system time</li>
+<li>elapsed real time</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2a8a1b9" class="outline-2">
+<h2 id="org2a8a1b9"><span class="section-number-2">5</span> io</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>f = open('file.txt')</li>
+<li>f = io.StringIO("some string"): in memory text stream</li>
+<li>f = open('file', 'rb')</li>
+<li>f = io.BytesIO(b"some binary data \x00\x01")</li>
+<li>support <i>with statement</i>: <code>with open('file.txt') as file:</code></li>
+</ul>
+</div>
+<div id="outline-container-org34803ba" class="outline-3">
+<h3 id="org34803ba"><span class="section-number-3">5.1</span> IOBase</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Methods:
+</p>
+<ul class="org-ul">
+<li>close()</li>
+<li>flush()</li>
+<li>readline(): return one line</li>
+<li>readlines(): return a list of lines</li>
+<li>seek(offset=0)
+<ul class="org-ul">
+<li>0 start</li>
+<li>1 current</li>
+<li>2 end</li>
+</ul></li>
+<li>tell(): current position</li>
+<li>writelines(lines): write a list of lines</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0600187" class="outline-3">
+<h3 id="org0600187"><span class="section-number-3">5.2</span> RawIOBase : IOBase (should not use directly)</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>read()</li>
+<li>readall()</li>
+<li>readinto(b)</li>
+<li>write(b)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb629c96" class="outline-3">
+<h3 id="orgb629c96"><span class="section-number-3">5.3</span> BufferedIOBase</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>read(): read all</li>
+<li>write(b)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org87ca42b" class="outline-3">
+<h3 id="org87ca42b"><span class="section-number-3">5.4</span> FileIO : RawIOBase</h3>
+</div>
+<div id="outline-container-org143af37" class="outline-3">
+<h3 id="org143af37"><span class="section-number-3">5.5</span> BytesIO : BufferedIOBase</h3>
+</div>
+<div id="outline-container-org4c7e02d" class="outline-3">
+<h3 id="org4c7e02d"><span class="section-number-3">5.6</span> BufferedReader(raw)</h3>
+<div class="outline-text-3" id="text-5-6">
+<ul class="org-ul">
+<li>peek()</li>
+<li>read()</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf17707d" class="outline-3">
+<h3 id="orgf17707d"><span class="section-number-3">5.7</span> BufferedWriter(raw)</h3>
+<div class="outline-text-3" id="text-5-7">
+<ul class="org-ul">
+<li>flush()</li>
+<li>write()</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe377dc" class="outline-3">
+<h3 id="orgfe377dc"><span class="section-number-3">5.8</span> TextIOBase : IOBase</h3>
+<div class="outline-text-3" id="text-5-8">
+<ul class="org-ul">
+<li>read()</li>
+<li>readline(size=1)</li>
+<li>seek(offset=0)</li>
+<li>tell()</li>
+<li>write(s): finally the string!</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb223f41" class="outline-3">
+<h3 id="orgb223f41"><span class="section-number-3">5.9</span> TextIOWrapper(buffer) : TextIOBase</h3>
+</div>
+<div id="outline-container-org39ca6c7" class="outline-3">
+<h3 id="org39ca6c7"><span class="section-number-3">5.10</span> StringIO</h3>
+<div class="outline-text-3" id="text-5-10">
+<ul class="org-ul">
+<li>getvalue()</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9a3713e" class="outline-2">
+<h2 id="org9a3713e"><span class="section-number-2">6</span> time</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>time.sleep(secs)</li>
+<li>time.time(): time in seconds since epoch</li>
+
+<li>strptime(string[, format]): parse a string into time object
+<ul class="org-ul">
+<li>format default: "%a %b %d %H:%M:%S %Y"</li>
+<li>time.strptime("30 Nov 00", "%d %b %y")</li>
+</ul></li>
+<li>strftime(format[, t]): convert from time object to string
+<ul class="org-ul">
+<li>%a/A: abbr/full weekday name</li>
+<li>%b/B: abbr/full month name</li>
+<li>%Y: year</li>
+<li>%m: month [01,12]</li>
+<li>%d: day of the month [01,31]</li>
+<li>%H: 24-hour [00,23]</li>
+<li>%I: 12-hour [01,12]</li>
+<li>%p: AM or PM</li>
+<li>%M: Minute [00,59]</li>
+<li>%S: second [00,61]</li>
+</ul></li>
+<li>gmtime(): in seconds, from epoch</li>
+<li>localtime(): convert gmtime() to local</li>
+<li>clock(): processor time as floating number in seconds</li>
+</ul>
+
+<p>
+class time.struct<sub>time</sub>: returned by gmtime(), localtime() and strptime()
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7881924" class="outline-2">
+<h2 id="org7881924"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> argparse</h2>
+</div>
+
+<div id="outline-container-org3ba83eb" class="outline-2">
+<h2 id="org3ba83eb"><span class="section-number-2">8</span> Concurrent</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-org00672f6" class="outline-3">
+<h3 id="org00672f6"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> threading</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+The package name is <code>threading</code>, the object is <code>Thread</code>.
+</p>
+
+<p>
+Functions
+</p>
+<ul class="org-ul">
+<li>threading.active<sub>count</sub>(): number of Thread object</li>
+<li>threading.current<sub>thread</sub>(): current Thread object</li>
+<li>threading.enumerate(): return a list of all Thread objects</li>
+<li>threading.meain(): the main Thread object</li>
+<li>threading.local(): the instance of local storage. Different for
+different threads. Typical usage: <code>mydata = threading.local()</code></li>
+</ul>
+
+<p>
+Two ways to specify what to run:
+</p>
+<ul class="org-ul">
+<li>pass a callable object to the <code>target</code> argument when constructing Thread</li>
+<li>define a subclass of Thread and override the <code>run</code> method.</li>
+</ul>
+
+<p>
+Methods:
+</p>
+<ul class="org-ul">
+<li><code>start</code>: start the thread. It will call <code>run</code> method in a separate
+thread. The thread terminate when <code>run</code> terminate</li>
+<li><code>join(timeout=None)</code>: the calling thread will block until this thread terminate
+<ul class="org-ul">
+<li>timeout should be float in seconds</li>
+</ul></li>
+<li><code>is_alive</code>: test whether the thread terminate</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbb28577" class="outline-3">
+<h3 id="orgbb28577"><span class="section-number-3">8.2</span> Thread Sync</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+class threading.Lock
+</p>
+<ul class="org-ul">
+<li>acquire()</li>
+<li>release()</li>
+</ul>
+
+<p>
+class threading.RLock
+</p>
+<ul class="org-ul">
+<li>this is recursive lock. The same thread can acquire the lock
+multiple times. They will be nested and only when the last release
+is called, the lock can be acquired by another thead</li>
+<li>acquire()</li>
+<li>release()</li>
+</ul>
+
+
+<p>
+class threading.Condition(lock=None)
+</p>
+<ul class="org-ul">
+<li>the lock must be a Lock or RLock. If none, a RLock is created</li>
+<li>acquire()</li>
+<li>release()</li>
+<li>wait(timeout=None): wait until notified
+<ul class="org-ul">
+<li>release underlying lock</li>
+<li>block until notify</li>
+<li>re-acquire the lock and return</li>
+<li>typical usage: <code>while not item_is_available(): cv.wait()</code></li>
+<li>often use <code>with</code> statement: =with cv: cv.wait<sub>for</sub>(pred); get();</li>
+</ul></li>
+<li>wait<sub>for</sub>(predicate, timeout=None)
+<ul class="org-ul">
+<li>this is same as <code>while not predicate(): cv.wait()</code>, thus more
+convenient than <code>wait</code></li>
+</ul></li>
+<li>notify(n=1): notify one thread</li>
+<li>notify<sub>all</sub>(): notify all threads waiting on this condition</li>
+</ul>
+
+<p>
+class threading.Semaphore: this class manage resources with limited capacity.
+</p>
+<ul class="org-ul">
+<li>acquire(): decrease capacity</li>
+<li>release(): increase capacity</li>
+</ul>
+
+<p>
+class threading.Event
+</p>
+<ul class="org-ul">
+<li>is<sub>set</sub>():</li>
+<li>set(): set flag to true</li>
+<li>clear(): set flag to false</li>
+<li>wait(timeout=None): block until internal flag is true</li>
+</ul>
+
+<p>
+class threading.Timer(interval, function) : Thread
+</p>
+<ul class="org-ul">
+<li>interval is float in seconds, function is callable. use <code>start</code>
+method to start the thread, and the function will be called after
+the delay.</li>
+<li>cancel(): stop the timer and cancel the execution. Only work if the
+the timer is still waiting.</li>
+</ul>
+
+<p>
+class threading.Barrier(parties, action=None, timeout=None)
+</p>
+<ul class="org-ul">
+<li>parties is integer. Every thread calling wait will block, until
+<i>parties</i> number of such call is called. Then all players unblock
+and do things simultaneously.</li>
+<li>wait(timeout=None)</li>
+<li>reset(): reset the barrier. The thread waiting for it will receive <code>BrokenBarrierError</code></li>
+<li>abort(): all current and <i>future</i> wait call for it will get <code>BrokenBarrierError</code></li>
+<li>parties: number of parties</li>
+<li>n<sub>waiting</sub>: number of current waiting</li>
+<li>broken: True or False</li>
+</ul>
+</div>
+
+<div id="outline-container-org986077d" class="outline-4">
+<h4 id="org986077d"><span class="section-number-4">8.2.1</span> Using with statement</h4>
+<div class="outline-text-4" id="text-8-2-1">
+<p>
+Lock, RLock, Condition, Semaphore can be used.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">with</span> somelock:
+<span style="color: #93a1a1; background-color: #eee8d5;"> </span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">do somthing</span>
+</pre>
+</div>
+
+<p>
+is equivalent to:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">somelock.acquire()
+<span style="color: #859900;">try</span>:
+<span style="color: #93a1a1; background-color: #eee8d5;"> </span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">do something</span>
+<span style="color: #859900;">finally</span>:
+<span style="color: #93a1a1; background-color: #eee8d5;"> </span> somelock.release()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91617e0" class="outline-3">
+<h3 id="org91617e0"><span class="section-number-3">8.3</span> multiprocessing</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+This provide multiprocessing.Process class, having similar API with
+Thread.  It seems to use fork but don't have explicit exec on the
+document?? Wired and seems just do something thread can do (except the
+sharing of memory of course).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfd238c9" class="outline-3">
+<h3 id="orgfd238c9"><span class="section-number-3">8.4</span> <span class="todo TODO">TODO</span> Process (subprocess module)</h3>
+<div class="outline-text-3" id="text-8-4">
+<ul class="org-ul">
+<li>subprocess.run(args, *, stdin=None, input=None, stdout=None,
+stderr=None, shell=False, timeout=None, check=False)
+<ul class="org-ul">
+<li>run the command and wait for it to complete. Return a
+<code>CompleteProcess</code> instance.</li>
+<li>if check is True, raise CalledProcessError exception if return
+code non-zero. This replace the check<sub>call</sub> and check<sub>output</sub>.</li>
+</ul></li>
+</ul>
+
+<p>
+class subprocess.CompletedProcess
+</p>
+<ul class="org-ul">
+<li>args</li>
+<li>returncode</li>
+<li>stdout: captured if PIPE is passed to stdout</li>
+<li>stderr: captured if PIPE is passed to stderr</li>
+<li>check<sub>returncode</sub>(): if returncode is non-zero, raise CalledProcessError</li>
+</ul>
+
+<p>
+Variables:
+</p>
+<ul class="org-ul">
+<li>subprocess.DEVNULL</li>
+<li>subprocess.PIPE</li>
+<li>subprocess.STDOUT: this is only used in the place of stderr to redirect it to stdout</li>
+</ul>
+
+<p>
+class subprocess.CalledProcessError
+</p>
+<ul class="org-ul">
+<li>returncode</li>
+<li>cmd</li>
+<li>output: same as stdout</li>
+<li>stdout</li>
+<li>stderr</li>
+</ul>
+
+<p>
+The followings are from 2.7, now only use run.
+</p>
+<ul class="org-ul">
+<li>subprocess.call(args, *, stdin=None, stdout=None, stderr=None, shell=False)
+<ul class="org-ul">
+<li>args: a list of argument, including arg0</li>
+<li>it can also be a string due to that *</li>
+<li>it will wait, then return returncode</li>
+<li>do not use stdout=PIPE, use communicate() instead TODO</li>
+<li>use shell=True is bad, but it can give me
+<ul class="org-ul">
+<li>shell pipes</li>
+<li>filename wildcard</li>
+<li>env variable expansion</li>
+<li>~ expansion</li>
+</ul></li>
+</ul></li>
+<li>check<sub>call</sub>(args, *, &#x2026;): same as call, except it will raise exception if return non-0</li>
+<li>check<sub>output</sub>(args, *, stdin=None, stderr=None, shell=False, universal<sub>newlines</sub>=False)
+<ul class="org-ul">
+<li>if return non-0, raise exception. Otherwise return the stdout</li>
+</ul></li>
+</ul>
+
+<p>
+Popen object
+</p>
+<ul class="org-ul">
+<li>Popen constructor
+<ul class="org-ul">
+<li>args, bufsize=0, executable=None,</li>
+<li>stdin=None, stdout=None, stderr=None,</li>
+<li>preexec<sub>fn</sub>=None, close<sub>fds</sub>=False,</li>
+<li>shell=False, cwd=None, env=None,</li>
+<li>universal<sub>newlines</sub>=False, startupinfo=None, creationflags=0</li>
+</ul></li>
+<li>Popen.poll(): check if child process has terminated. Set and return
+returncode.</li>
+<li>Popen.wait(): wait for process to terminate. Don't use PIPE with this.</li>
+<li>Popen.communicate(input=None): to use this, the corresponding stdin,
+stdout, stderr should be set to PIPE.
+<ul class="org-ul">
+<li>send data to stdin (string)</li>
+<li>read data from stdout and stderr (it returns a tuple (out, err))</li>
+<li>wait for termination</li>
+</ul></li>
+<li>Popen.sned<sub>signal</sub>(signal)</li>
+<li>Popen.terminate(): send SIGTERM</li>
+<li>Popen.kill(): send SIGKILL</li>
+<li>Popen.pid</li>
+<li>Popen.returncode
+<ul class="org-ul">
+<li>set by poll and wait (and indirectly by communicate)</li>
+<li>None indicate hasn't terminated</li>
+<li>-N means terminated by signal N</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf96a44c" class="outline-2">
+<h2 id="orgf96a44c"><span class="section-number-2">9</span> <span class="todo TODO">TODO</span> Internet</h2>
+</div>
+
+
+<div id="outline-container-orgea04fef" class="outline-2">
+<h2 id="orgea04fef"><span class="section-number-2">10</span> Json</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">import</span> json
+json.dumps({<span style="color: #2aa198;">"C"</span>: 0, <span style="color: #2aa198;">"D"</span>: 1})
+
+json.loads(<span style="color: #2aa198;">"a string of json"</span>)
+
+json.dump(obj, fp)
+json.load(fp)
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org5f7f5bc" class="outline-3">
+<h3 id="org5f7f5bc"><span class="section-number-3">10.1</span> Reference</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>json.dump(obj, fp, indent=None)
+<ul class="org-ul">
+<li>indent=2</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgdaf4f2b" class="outline-2">
+<h2 id="orgdaf4f2b"><span class="section-number-2">11</span> urllib</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #268bd2;">req</span> = request.Request(query)
+req.add_header(<span style="color: #2aa198;">"Authorization"</span>, <span style="color: #2aa198;">"token "</span> + token)
+<span style="color: #268bd2;">response</span> = request.urlopen(req)
+<span style="color: #268bd2;">s</span> = response.read().decode(<span style="color: #2aa198;">'utf8'</span>)
+<span style="color: #268bd2;">langj</span> = json.loads(s);
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">deprecated</span>
+urllib.request.urlretrieve(url[, filename])
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2017-04-13 Thu 12:21</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

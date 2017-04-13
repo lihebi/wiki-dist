@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-27 Mon 14:36 -->
+<!-- 2017-04-10 Mon 20:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style type="text/css"> a:visited {color: red;} </style><style type="text/css"> code {color: red;} </style><link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -238,6 +238,12 @@ for the JavaScript code in this tag.
 <li><a href="#orgd62fe79">2. Remove sudo</a></li>
 <li><a href="#org125f5f3">3. Dockerfile</a></li>
 <li><a href="#org18e51d5">4. <span class="todo TODO">TODO</span> Docker hub</a></li>
+<li><a href="#orgfd680e7">5. Trouble Shooting</a>
+<ul>
+<li><a href="#org6607646">5.1. I have to type double C-p to take effect</a></li>
+<li><a href="#orgfb55b9c">5.2. Docker exec tty is not a real tty</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -359,10 +365,64 @@ When pushing and pulling, what exactly happens?
 </p>
 </div>
 </div>
+
+
+<div id="outline-container-orgfd680e7" class="outline-2">
+<h2 id="orgfd680e7"><span class="section-number-2">5</span> Trouble Shooting</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-org6607646" class="outline-3">
+<h3 id="org6607646"><span class="section-number-3">5.1</span> I have to type double C-p to take effect</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<code>C-p C-q</code> is the default binding for detaching a container. This
+blocks C-p, I have to type it twice, must change.  In
+<code>~/.docker/config.json</code>, add:
+</p>
+
+<pre class="example">
+{
+"detachKeys": "ctrl-],ctrl-["
+}
+</pre>
+
+<p>
+Restart docker daemon to take effect. This can also be set by
+<code>--detach-keys</code> option.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgfb55b9c" class="outline-3">
+<h3 id="orgfb55b9c"><span class="section-number-3">5.2</span> Docker exec tty is not a real tty</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+I cannot connect to emacs server through emacsclient -t, and error
+message is terminal is not found. You can not open tmux also. But the
+problem does not appear when using docker run command.
+</p>
+
+<p>
+The solution is when starting a exec command, use script to run bash:
+</p>
+
+<pre class="example">
+docker exec -it my-container script -q -c "/bin/bash" /dev/null
+docker exec -it my-container env TERM=xterm script -q -c "/bin/bash" /dev/null
+</pre>
+
+<p>
+The TERM is not necessary here because in my case docker always set it
+to xterm. I actually change it to screen-256color in my bashrc file to
+get the correct colors.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-27 Mon 14:36</p>
+<p class="date">Created: 2017-04-10 Mon 20:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
