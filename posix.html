@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-27 Mon 14:36 -->
+<!-- 2017-04-16 Sun 17:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>POSIX</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style type="text/css"> a:visited {color: red;} </style><style type="text/css"> code {color: red;} </style><link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,20 +234,184 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga70f5f8">1. pThread</a>
+<li><a href="#org9e02616">1. Regular Expression</a>
 <ul>
-<li><a href="#orgcdc8cb5">1.1. Create threads</a></li>
-<li><a href="#org6116950">1.2. Join and Detach</a></li>
+<li><a href="#orga98509b">1.1. Definition</a></li>
+<li><a href="#org2d9b83c">1.2. Basic Regular Expressions (BRE)</a>
+<ul>
+<li><a href="#org09f6af4">1.2.1. Bracket Expression</a></li>
+<li><a href="#org96fb70f">1.2.2. Matching Multiple Characters</a></li>
+<li><a href="#org0c0c208">1.2.3. Precedence</a></li>
 </ul>
 </li>
-<li><a href="#org91d32b7">2. std::thread</a></li>
+<li><a href="#org950877d">1.3. Extended Regular Expressions (ERE)</a></li>
+</ul>
+</li>
+<li><a href="#orga70f5f8">2. pThread</a>
+<ul>
+<li><a href="#orgcdc8cb5">2.1. Create threads</a></li>
+<li><a href="#org6116950">2.2. Join and Detach</a></li>
+</ul>
+</li>
+<li><a href="#org91d32b7">3. std::thread</a></li>
+</ul>
+</div>
+</div>
+<p>
+<a href="http://pubs.opengroup.org/onlinepubs/9699919799/">http://pubs.opengroup.org/onlinepubs/9699919799/</a>
+</p>
+
+
+<p>
+This page is based on POSIX.1-2008 2016 Edition
+</p>
+
+
+
+<p>
+POSIX defines the operating system interface. The starndard contains volumes:
+</p>
+<ul class="org-ul">
+<li>Base Definition: convention, regular expression, headers</li>
+<li>System Interfaces: system calls</li>
+<li>Shell &amp; Utilities: shell command language and shell utilities</li>
+<li>Rationale</li>
+</ul>
+
+<p>
+I found most of them are not that interesting, except Base Definition
+section 9 regular expression. This definition is used by many shell
+utilities such as awk.
+</p>
+
+
+<div id="outline-container-org9e02616" class="outline-2">
+<h2 id="org9e02616"><span class="section-number-2">1</span> Regular Expression</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orga98509b" class="outline-3">
+<h3 id="orga98509b"><span class="section-number-3">1.1</span> Definition</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The search for a matching starts at the beginning of string, and stops
+when the <i>first</i> sequence matching is found. If the pattern can match
+several string at a start point, the <i>longest</i> such sequence is
+matched. In other word, <i>the longest of the leftmost matches</i>. 
+</p>
+
+<p>
+Similarly Each subpattern (capturing group?), from left to right,
+shall also match the longest possible string. E.g. when matching
+<code>\(.*\).*</code>, the <code>(\1)</code> is the whole string.
+</p>
+
+<p>
+The end of the string should be a NUL. Some utilities use &lt;newline&gt;.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2d9b83c" class="outline-3">
+<h3 id="org2d9b83c"><span class="section-number-3">1.2</span> Basic Regular Expressions (BRE)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Special characters
+</p>
+<ul class="org-ul">
+<li>&lt;period&gt;, &lt;left-square-bracket&gt;, &lt;baclslash&gt;
+<ul class="org-ul">
+<li>when NOT in Bracket Expression</li>
+<li>Match any character other than NUL</li>
+</ul></li>
+<li>&lt;asterisk&gt;
+<ul class="org-ul">
+<li>when NOT in Bracket Expression</li>
+<li>when NOT the first of entire BRE (after initial <code>^</code> if any)</li>
+<li>when NOT the first of subexpression (after initial <code>^</code> if any)</li>
+</ul></li>
+<li>circumflex&gt;
+<ul class="org-ul">
+<li>when used as the first of the entire BRE</li>
+<li>when used as the first in Bracket Expression</li>
+</ul></li>
+<li>&lt;dollar-sign&gt;
+<ul class="org-ul">
+<li>when used as the last of entire BRE</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org09f6af4" class="outline-4">
+<h4 id="org09f6af4"><span class="section-number-4">1.2.1</span> Bracket Expression</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+[^]&#x2026;[:alnum:]..1-8.-]
+</p>
+<ul class="org-ul">
+<li>the close bracket can be ordinary if it is the first (after intial
+<code>^</code> is any)</li>
+<li>hyphen(-) can be ordinary if it is first of last. Put it last if you
+want to use it with close bracket above</li>
+<li>hyphen is inclusive</li>
+<li><code>^</code> immediately after left bracket turns it into a non-matching
+list, a.k.a. matches any character except these.</li>
+<li>[:slnum:] is only valid inside bracket expression. It is called
+<i>character class expression</i>. All such expressions:
+<ul class="org-ul">
+<li>alnum, cntrl, lower, upper, space, alpha, digit</li>
+<li>print, blank, graph, punct, xdigit</li>
+</ul></li>
 </ul>
 </div>
 </div>
 
+<div id="outline-container-org96fb70f" class="outline-4">
+<h4 id="org96fb70f"><span class="section-number-4">1.2.2</span> Matching Multiple Characters</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li><code>*</code></li>
+<li><code>\(\)</code> is used. It can be arbitrarily nested.</li>
+<li><code>\N</code> is back reference. It shall match the same string as <i>was</i>
+matched by N-th sub-expression, it can be empty.</li>
+<li><code>\{m\}</code>, <code>\{m,\}</code>, <code>\{m,n\}</code>: inclusive</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0c0c208" class="outline-4">
+<h4 id="org0c0c208"><span class="section-number-4">1.2.3</span> Precedence</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+From high to low:
+</p>
+<ul class="org-ul">
+<li><code>[::]</code></li>
+<li>escape <code>\</code></li>
+<li>bracket expression</li>
+<li>subexpression/back reference</li>
+<li>multiple character (<code>*</code> and <code>\{m,n\}</code>) (<code>+?</code> for ERE)</li>
+<li>concatenation</li>
+<li>anchor</li>
+<li>(<code>|</code> for ERE)</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org950877d" class="outline-3">
+<h3 id="org950877d"><span class="section-number-3">1.3</span> Extended Regular Expressions (ERE)</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li><code>()</code> are special</li>
+<li><code>+?{</code> are special</li>
+<li><code>|</code> is special</li>
+</ul>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orga70f5f8" class="outline-2">
-<h2 id="orga70f5f8"><span class="section-number-2">1</span> pThread</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orga70f5f8"><span class="section-number-2">2</span> pThread</h2>
+<div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;pthread.h&gt;</span>
 pthread_create (thread, attr, start_routine, arg)
@@ -259,8 +423,8 @@ pthread_detach (threadid)
 </div>
 
 <div id="outline-container-orgcdc8cb5" class="outline-3">
-<h3 id="orgcdc8cb5"><span class="section-number-3">1.1</span> Create threads</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgcdc8cb5"><span class="section-number-3">2.1</span> Create threads</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 If main() finishes before the threads it has created, and exits with
 pthread<sub>exit</sub>(), the other threads will continue to execute. Otherwise,
@@ -299,8 +463,8 @@ they will be automatically terminated when main() finishes.
 </div>
 
 <div id="outline-container-org6116950" class="outline-3">
-<h3 id="org6116950"><span class="section-number-3">1.2</span> Join and Detach</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org6116950"><span class="section-number-3">2.2</span> Join and Detach</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span> () {
   <span style="color: #b58900;">int</span> <span style="color: #268bd2;">rc</span>;
@@ -349,12 +513,12 @@ they will be automatically terminated when main() finishes.
 </div>
 
 <div id="outline-container-org91d32b7" class="outline-2">
-<h2 id="org91d32b7"><span class="section-number-2">2</span> std::thread</h2>
+<h2 id="org91d32b7"><span class="section-number-2">3</span> std::thread</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-27 Mon 14:36</p>
+<p class="date">Created: 2017-04-16 Sun 17:18</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

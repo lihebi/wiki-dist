@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-10 Mon 20:56 -->
+<!-- 2017-04-16 Sun 17:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>awk</title>
@@ -235,19 +235,18 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgb40c835">1. tmp</a></li>
-<li><a href="#org3d82e18">2. Introduction</a>
-<ul>
-<li><a href="#org3687a91">2.1. Important Variables</a></li>
-</ul>
-</li>
+<li><a href="#org3d82e18">2. Introduction</a></li>
 <li><a href="#org211adce">3. patterns</a></li>
 <li><a href="#orgd75951e">4. Actions</a>
 <ul>
-<li><a href="#org7783028">4.1. Control Structure</a></li>
-<li><a href="#org70e2cbd">4.2. String Functions</a></li>
+<li><a href="#orgaf1437f">4.1. Variables</a></li>
+<li><a href="#org0b17411">4.2. Output</a></li>
+<li><a href="#org7783028">4.3. Control Structure</a></li>
+<li><a href="#org70e2cbd">4.4. String Functions</a></li>
 </ul>
 </li>
-<li><a href="#org7aac5d8">5. Examples</a></li>
+<li><a href="#org38dbe5c">5. User-defined Functions</a></li>
+<li><a href="#org7aac5d8">6. Examples</a></li>
 </ul>
 </div>
 </div>
@@ -294,27 +293,21 @@ newlines or semicolons.
 </p>
 
 <p>
+The program starts by evaluating the <i>all</i> BEGIN patterns in
+order. Each file is processed in turn by reading data until a record
+separator. This typically means one line at a time, for all the
+files. All patterns are examined against the line. If match, action is
+executed.
+</p>
+
+<p>
 Invoking options:
 </p>
 <dl class="org-dl">
 <dt><code>-F FS</code></dt><dd>set FS</dd>
 <dt><code>-v VAR=VAL</code></dt><dd>set variable before the program begins</dd>
 </dl>
-</div>
 
-<div id="outline-container-org3687a91" class="outline-3">
-<h3 id="org3687a91"><span class="section-number-3">2.1</span> Important Variables</h3>
-<div class="outline-text-3" id="text-2-1">
-<dl class="org-dl">
-<dt><code>NF</code></dt><dd>number of fields in the current record</dd>
-<dt><code>NR</code></dt><dd>line number of current record</dd>
-<dt><code>FNR</code></dt><dd>line number of current record in the current file</dd>
-<dt><code>FILENAME</code></dt><dd>the name of the current input file</dd>
-<dt><code>FS (Field Separator)</code></dt><dd>regular expression used to separate fields; also settable by option -Ffs.</dd>
-<dt><code>RS</code></dt><dd>input record separator (default newline)</dd>
-<dt><code>OFS</code></dt><dd>output field separator (default blank)</dd>
-<dt><code>ORS</code></dt><dd>output record separator (default newline)</dd>
-</dl>
 
 <p>
 AWK first read record using RS as separator from input. For each
@@ -329,7 +322,6 @@ line. Function parameters are local, all other variables are global.
 </p>
 </div>
 </div>
-</div>
 
 
 <div id="outline-container-org211adce" class="outline-2">
@@ -341,9 +333,10 @@ regular expressions and relational expressions.
 </p>
 
 <p>
-A pattern may consist of two patterns separated by a comma; in this
-case, the action is performed for all lines from an occurrence of the
-first pattern though an occurrence of the second.
+A pattern may consist of two patterns separated by a comma, it is
+called pattern range. In this case, the action is performed for all
+lines from an occurrence of the first pattern though an occurrence of
+the second, inclusive.
 </p>
 
 <p>
@@ -379,11 +372,68 @@ Reference of user-defined variable do not use $. E.g. <code>myvar=$2</code> will
 assign $2 to myvar! Refer the var directly: no need to use a $ as
 shell variables.
 </p>
+
+<p>
+Expressions are very similar to C. The added contents are:
+</p>
+<ul class="org-ul">
+<li>$N: field reference</li>
+<li>expr expr: string concatenation</li>
+<li>string [!]~ pattern: ERE match</li>
+<li>expr in array</li>
+<li>(index) in array</li>
+</ul>
 </div>
 
-<div id="outline-container-org7783028" class="outline-3">
-<h3 id="org7783028"><span class="section-number-3">4.1</span> Control Structure</h3>
+<div id="outline-container-orgaf1437f" class="outline-3">
+<h3 id="orgaf1437f"><span class="section-number-3">4.1</span> Variables</h3>
 <div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Except function parameters, all variables are
+<i>global</i>. Uninitialized value have both a numeric value of 0 and a
+string value of empty string.</li>
+<li>field variable can be referenced by $N or $expr where expr is
+numerical expression. They are assignable. Reference to non-exist
+fields is uninitialized value. NF is the number of fields. Assign to
+non-exist field increase NF.</li>
+</ul>
+
+<p>
+Important Variables
+</p>
+<dl class="org-dl">
+<dt><code>NF</code></dt><dd>number of fields in the current record</dd>
+<dt><code>NR</code></dt><dd>line number of current record</dd>
+<dt><code>FNR</code></dt><dd>line number of current record in the current file</dd>
+<dt><code>FILENAME</code></dt><dd>the name of the current input file</dd>
+<dt><code>FS (Field Separator)</code></dt><dd>regular expression used to separate fields; also settable by option -Ffs.</dd>
+<dt><code>RS</code></dt><dd>input record separator (default newline)</dd>
+<dt><code>OFS</code></dt><dd>output field separator (default blank)</dd>
+<dt><code>ORS</code></dt><dd>output record separator (default newline)</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org0b17411" class="outline-3">
+<h3 id="org0b17411"><span class="section-number-3">4.2</span> Output</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+print and printf write to standard output by default. Redirect is supported.
+</p>
+<ul class="org-ul">
+<li>&gt; expr : file</li>
+<li>&gt;&gt; expr : file</li>
+<li>| expr : command</li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org7783028" class="outline-3">
+<h3 id="org7783028"><span class="section-number-3">4.3</span> Control Structure</h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li><code>if (condition) then-body [else else-body]</code></li>
 <li><code>while (condition) body</code></li>
@@ -398,8 +448,8 @@ shell variables.
 </div>
 
 <div id="outline-container-org70e2cbd" class="outline-3">
-<h3 id="org70e2cbd"><span class="section-number-3">4.2</span> String Functions</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org70e2cbd"><span class="section-number-3">4.4</span> String Functions</h3>
+<div class="outline-text-3" id="text-4-4">
 <dl class="org-dl">
 <dt><code>sub(ere, repl[, in])</code></dt><dd>substitute the first match of ere inside
 in (or $0) by repl. Return number of substitution. <code>&amp;</code> can be
@@ -418,9 +468,18 @@ used in repl.</dd>
 </div>
 </div>
 
-<div id="outline-container-org7aac5d8" class="outline-2">
-<h2 id="org7aac5d8"><span class="section-number-2">5</span> Examples</h2>
+<div id="outline-container-org38dbe5c" class="outline-2">
+<h2 id="org38dbe5c"><span class="section-number-2">5</span> User-defined Functions</h2>
 <div class="outline-text-2" id="text-5">
+<pre class="example">
+function name([param, ...]) {statements}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7aac5d8" class="outline-2">
+<h2 id="org7aac5d8"><span class="section-number-2">6</span> Examples</h2>
+<div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-shell">awk <span style="color: #2aa198;">'NR==10 {print}'</span> input.txt <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">output 10th line, or empty is less than 10 lines</span>
 </pre>
@@ -430,7 +489,7 @@ used in repl.</dd>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-04-10 Mon 20:56</p>
+<p class="date">Created: 2017-04-16 Sun 17:43</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
