@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-27 Mon 14:36 -->
+<!-- 2017-04-24 Mon 17:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Common Lisp</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<style type="text/css"> a:visited {color: red;} </style><style type="text/css"> code {color: red;} </style><link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -226,6 +226,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -234,448 +256,423 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0846908">1. Installation</a>
+<li><a href="#orgc6c8788">1. Type</a>
 <ul>
-<li><a href="#org2a44dfe">1.1. quicklisp</a></li>
-<li><a href="#org70991e2">1.2. packages</a></li>
-<li><a href="#orgd541365">1.3. org babel</a></li>
-<li><a href="#orgab9a30c">1.4. Slime</a>
+<li><a href="#orgdd301f3">1.1. Numbers</a>
 <ul>
-<li><a href="#org5db54e4">1.4.1. Commands</a></li>
+<li><a href="#orgd5122aa">1.1.1. Predicates</a></li>
+<li><a href="#org7a16f9b">1.1.2. Comparison</a></li>
+<li><a href="#org4800fed">1.1.3. Arithmetic</a></li>
+<li><a href="#org82afa5c">1.1.4. Other</a></li>
+<li><a href="#org53e0480">1.1.5. Type Conversion</a></li>
+<li><a href="#org146128e">1.1.6. Logical Operations</a></li>
+<li><a href="#orgb5b1c18">1.1.7. Byte</a></li>
+<li><a href="#org3b36a30">1.1.8. Random Numbers</a></li>
+</ul>
+</li>
+<li><a href="#orgd947020">1.2. Character</a></li>
+<li><a href="#org4886f86">1.3. Boolean</a></li>
+<li><a href="#orga74e97d">1.4. Symbols</a>
+<ul>
+<li><a href="#org8623152">1.4.1. Property list</a></li>
+</ul>
+</li>
+<li><a href="#org90a53e5">1.5. Sequence</a>
+<ul>
+<li><a href="#org2ea1c88">1.5.1. Predicates</a></li>
+<li><a href="#org087ac8a">1.5.2. Simple Sequence Functions</a></li>
+<li><a href="#org9d22ee7">1.5.3. Mapping</a></li>
+<li><a href="#orge03ae0a">1.5.4. Modifying Seq</a></li>
+<li><a href="#org9f0050f">1.5.5. Searching</a></li>
+<li><a href="#orge32ee27">1.5.6. Sorting &amp; Merging</a></li>
+</ul>
+</li>
+<li><a href="#org7ceb832">1.6. List</a>
+<ul>
+<li><a href="#orgb689a7f">1.6.1. cons</a></li>
+<li><a href="#org36c6006">1.6.2. lists</a></li>
+<li><a href="#org6382094">1.6.3. alteration of list structure</a></li>
+<li><a href="#org8fa965e">1.6.4. substitution</a></li>
+<li><a href="#org1007581">1.6.5. Set</a></li>
+<li><a href="#org36cfe33">1.6.6. Association Lists</a></li>
+</ul>
+</li>
+<li><a href="#orgd27adc0">1.7. Hash Table</a></li>
+<li><a href="#orgcbef74d">1.8. Array</a>
+<ul>
+<li><a href="#orga6fbe31">1.8.1. Creation</a></li>
+<li><a href="#org3715ab6">1.8.2. Access</a></li>
+<li><a href="#orgafd29b7">1.8.3. Information</a></li>
+<li><a href="#org975e582">1.8.4. bit-array</a></li>
+<li><a href="#orgc0150d1">1.8.5. Fill</a></li>
+<li><a href="#org4b02b45">1.8.6. Change dimension</a></li>
+</ul>
+</li>
+<li><a href="#org71bbf53">1.9. String</a>
+<ul>
+<li><a href="#orga43b687">1.9.1. Access</a></li>
+<li><a href="#org818b03a">1.9.2. Comparision</a></li>
+<li><a href="#orgbfeb8be">1.9.3. String Construction and Manipulation</a></li>
+</ul>
+</li>
+<li><a href="#orgd454523">1.10. Structure</a>
+<ul>
+<li><a href="#orge705fd5">1.10.1. defstruct</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5b396ca">2. Reference</a>
+<li><a href="#orgda09557">2. Program Structure</a>
 <ul>
-<li><a href="#orgcb1606a">2.1. Truth, falsehood, equality</a></li>
-<li><a href="#orgd8495db">2.2. Function</a></li>
-<li><a href="#orgddf4bfd">2.3. Variable</a></li>
-<li><a href="#orgb22bc89">2.4. Control Structure</a>
+<li><a href="#orgdc599d9">2.1. Form</a></li>
+<li><a href="#orgff07431">2.2. Scope and Extent</a></li>
+<li><a href="#orgddf4bfd">2.3. Variable</a>
 <ul>
-<li><a href="#org95aa2fe">2.4.1. Conditional</a></li>
-<li><a href="#org168b3ba">2.4.2. Looping</a></li>
+<li><a href="#org8d831b2">2.3.1. Creation</a></li>
+<li><a href="#org6e7cbc1">2.3.2. Assignment</a></li>
+<li><a href="#org3277511">2.3.3. Destructive</a></li>
 </ul>
 </li>
-<li><a href="#orga658515">2.5. Types</a>
+<li><a href="#org1744076">2.4. Equality</a></li>
+<li><a href="#orgd8495db">2.5. Function</a>
 <ul>
-<li><a href="#orgb3b712f">2.5.1. numbers</a></li>
-<li><a href="#orgceaceef">2.5.2. characters</a></li>
+<li><a href="#org48fac59">2.5.1. Defun and Lambda Expression</a></li>
+<li><a href="#org87b3122">2.5.2. Multiple Values</a></li>
 </ul>
 </li>
-<li><a href="#org3277511">2.6. Destructive</a></li>
+<li><a href="#orgc495022">2.6. Macro</a>
+<ul>
+<li><a href="#orgcb63786">2.6.1. Definition</a></li>
+<li><a href="#org7bf638a">2.6.2. Macro Expansion</a></li>
 </ul>
 </li>
-<li><a href="#orga9bccc5">3. Style Guide</a></li>
-<li><a href="#orgd7bdc7d">4. Practical Common Lisp</a>
+<li><a href="#org55f702b">2.7. Exception</a>
 <ul>
-<li><a href="#org895c7ca">4.1. CD database</a></li>
-<li><a href="#orgcb07d4b">4.2. Unit Test Framework</a></li>
+<li><a href="#org2dcbb50">2.7.1. Error</a></li>
+<li><a href="#org6f4cec9">2.7.2. Condition</a>
+<ul>
+<li><a href="#orgeefcc5c">2.7.2.1. <span class="todo TODO">TODO</span> Concepts</a></li>
+<li><a href="#org98b2cf8">2.7.2.2. Signaling</a></li>
+<li><a href="#org7432c36">2.7.2.3. Handling Conditions</a></li>
+<li><a href="#org4ac7e11">2.7.2.4. Defining Conditions</a></li>
+<li><a href="#orgea2827c">2.7.2.5. Restart</a></li>
+<li><a href="#org9541fef">2.7.2.6. Debugging</a></li>
+<li><a href="#org77a40a3">2.7.2.7. Condition Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org101a44c">2.8. Evaluator</a></li>
+</ul>
+</li>
+<li><a href="#orgb22bc89">3. Control Structure</a>
+<ul>
+<li><a href="#org9e78f5d">3.1. Sequential</a></li>
+<li><a href="#org95aa2fe">3.2. Conditional</a></li>
+<li><a href="#org020efef">3.3. Iteration</a>
+<ul>
+<li><a href="#org08c0a15">3.3.1. Mapping</a></li>
+<li><a href="#orgca12ba0">3.3.2. Append to a list</a></li>
+</ul>
+</li>
+<li><a href="#org168ddb3">3.4. Loop Facility</a>
+<ul>
+<li><a href="#org64f68d3">3.4.1. Loop Clauses</a></li>
+<li><a href="#org2413aba">3.4.2. Loop Syntax</a></li>
+<li><a href="#org439246b">3.4.3. Iteration Control (for, as, repeat)</a></li>
+<li><a href="#orgdb47615">3.4.4. End Test Control (always, never, thereis, until, while)</a></li>
+<li><a href="#org9c74ac5">3.4.5. Value Accumulation</a></li>
+<li><a href="#orgab12550">3.4.6. Variable Initialization (with)</a></li>
+<li><a href="#orge996b65">3.4.7. Conditional Execution (if, when, unless)</a></li>
+<li><a href="#org261ed25">3.4.8. Unconditional Execution (do, return)</a></li>
+<li><a href="#org2062e71">3.4.9. Misc (named, initially, finally)</a></li>
+<li><a href="#org2da8367">3.4.10. Destructure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3995f39">4. System Interface</a>
+<ul>
+<li><a href="#org32a6ac5">4.1. Package</a>
+<ul>
+<li><a href="#orgbc25991">4.1.1. Modules</a></li>
+</ul>
+</li>
+<li><a href="#org6029601">4.2. Stream</a>
+<ul>
+<li><a href="#org4a3fca4">4.2.1. Create Stream</a></li>
+<li><a href="#org4070feb">4.2.2. Operation</a></li>
+</ul>
+</li>
+<li><a href="#org7da9fce">4.3. Input/Output</a>
+<ul>
+<li><a href="#org50f03a5">4.3.1. Input</a></li>
+<li><a href="#orgd14e576">4.3.2. Output</a>
+<ul>
+<li><a href="#orgc6017d9">4.3.2.1. Format</a></li>
+</ul>
+</li>
+<li><a href="#org3ec9222">4.3.3. Query</a></li>
+</ul>
+</li>
+<li><a href="#orge624253">4.4. File System</a>
+<ul>
+<li><a href="#orgb33804d">4.4.1. File Names</a></li>
+<li><a href="#org3496b77">4.4.2. Open and Close</a></li>
+<li><a href="#orgba73934">4.4.3. File Operation</a></li>
+<li><a href="#org085af01">4.4.4. Other</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1f4bf24">5. Common Lisp Object System</a>
+<ul>
+<li><a href="#org32c58b3">5.1. <span class="todo TODO">TODO</span> Concept</a></li>
+<li><a href="#org51a8084">5.2. Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgbc14dac">6. ASDF (Another System Definition Facility)</a>
+<ul>
+<li><a href="#org780b15d">6.1. Load ASDF</a></li>
+<li><a href="#orgfd9a714">6.2. Load System</a></li>
+<li><a href="#orgc7e597d">6.3. Build System</a></li>
+</ul>
+</li>
+<li><a href="#org3fe6248">7. Appendix</a>
+<ul>
+<li><a href="#org0846908">7.1. Installation</a>
+<ul>
+<li><a href="#orga04b9c4">7.1.1. quicklisp</a></li>
+<li><a href="#org70991e2">7.1.2. packages</a></li>
+<li><a href="#orgd541365">7.1.3. org babel</a></li>
+<li><a href="#orgab9a30c">7.1.4. Slime</a>
+<ul>
+<li><a href="#org5db54e4">7.1.4.1. Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd7bdc7d">7.2. Practical Common Lisp</a>
+<ul>
+<li><a href="#org895c7ca">7.2.1. CD database</a></li>
+<li><a href="#orgcb07d4b">7.2.2. Unit Test Framework</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
+<p>
+Common Lisp the language:
+<a href="http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html">http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html</a>
+</p>
 
-<div id="outline-container-org0846908" class="outline-2">
-<h2 id="org0846908"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-orgc6c8788" class="outline-2">
+<h2 id="orgc6c8788"><span class="section-number-2">1</span> Type</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org2a44dfe" class="outline-3">
-<h3 id="org2a44dfe"><span class="section-number-3">1.1</span> quicklisp</h3>
+<p>
+Common Lisp is strong typed, but the type is associated with objects,
+not variables.
+</p>
+
+<p>
+Type predicate
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(typep obj type)
+(subtypep type1 type2)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdd301f3" class="outline-3">
+<h3 id="orgdd301f3"><span class="section-number-3">1.1</span> Numbers</h3>
 <div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">sbcl --load /path/to/quicklisp.lisp</span>
-(load <span style="color: #2aa198;">"/path/to/quicklisp.lisp"</span>)
-(quicklisp-quickstart:install)
-
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">setting up</span>
-(load <span style="color: #2aa198;">"~/quicklisp/setup.lisp"</span>)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">load quicklisp when you start lisp</span>
-(ql:add-to-init-file)
-
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">install/remove a software</span>
-(ql:quickload <span style="color: #2aa198;">"clx-truetype"</span>)
-(ql:uninstall <span style="color: #2aa198;">"clx-truetype"</span>)
-
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">query installed packages</span>
-(ql:system-apropos <span style="color: #2aa198;">"substring"</span>)
-
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">updating all packages</span>
-(ql:update-all-dists)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">update</span><span style="color: #93a1a1; font-style: italic;"> quicklisp itself</span>
-(ql:update-client)
-</pre>
-</div>
-
-<dl class="org-dl">
-<dt>(ql:quickload "name")</dt><dd>load a system</dd>
-<dt>(ql:system-apropos "term")</dt><dd>search</dd>
-</dl>
-
-
-
 <p>
-A list of packages used:
+Representation:
 </p>
-<dl class="org-dl">
-<dt>clx-truetype</dt><dd>for stumpwm ttf-font</dd>
-<dt>zpng</dt><dd>for stumpwm screenshot</dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-org70991e2" class="outline-3">
-<h3 id="org70991e2"><span class="section-number-3">1.2</span> packages</h3>
-<div class="outline-text-3" id="text-1-2">
-<ul class="org-ul">
-<li><code>cl-quicklisp</code></li>
-</ul>
-</div>
-</div>
-
-
-
-<div id="outline-container-orgd541365" class="outline-3">
-<h3 id="orgd541365"><span class="section-number-3">1.3</span> org babel</h3>
-<div class="outline-text-3" id="text-1-3">
-<p>
-first, start <code>M-x slime</code>, then you can evaluate this:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-lisp" id="org604d215">(princ message)
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgab9a30c" class="outline-3">
-<h3 id="orgab9a30c"><span class="section-number-3">1.4</span> Slime</h3>
-<div class="outline-text-3" id="text-1-4">
-<ul class="org-ul">
-<li>slime (emacs IDE)</li>
-<li>sbcl ("lisp" executer)</li>
-<li>cl-quicklisp (package manager)</li>
-</ul>
-
-<p>
-In emacs: start slime
-</p>
-<pre class="example">
-CL-USER&gt; (load "/path/to/quicklisp.lisp")
-CL-USER&gt; ;; follow screen command to install
-CL-USER&gt; (load "~/quicklisp/setup.lisp") ;; load it
-
-CL-USER&gt; (ql:add-to-init-file) ;; add to sbcl's init file
-
-CL-USER&gt; (ql:quickload "clx-truetype") ;; download this package. Packages will be put into "~/quicklisp/xxx/dist"
-
-CL-USER&gt; (ql:update-all-dists) ;; update
-CL-USER&gt; (ql:update-client) ;; update quicklisp itself
-</pre>
-
-<p>
-The staff added into <code>.sbclrc</code>:
-</p>
-<pre class="example">
-;;; The following lines added by ql:add-to-init-file:
-#-quicklisp
-(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-(user-homedir-pathname))))
-(when (probe-file quicklisp-init)
-(load quicklisp-init)))
-</pre>
-</div>
-
-<div id="outline-container-org5db54e4" class="outline-4">
-<h4 id="org5db54e4"><span class="section-number-4">1.4.1</span> Commands</h4>
-<div class="outline-text-4" id="text-1-4-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">command</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">C-c C-d d</td>
-<td class="org-left">slime-describe-symbol</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-d f</td>
-<td class="org-left">slime-describe-function</td>
-</tr>
-
-<tr>
-<td class="org-left">M-TAB</td>
-<td class="org-left">slime-complete-symbol</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <code>defun</code> around cursor.
-<code>C-c C-z</code> will switch to the <code>slime</code> buffer.
-</p>
-</div>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org5b396ca" class="outline-2">
-<h2 id="org5b396ca"><span class="section-number-2">2</span> Reference</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Common Lisp the language: <a href="http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html">http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html</a>
-</p>
-</div>
-
-<div id="outline-container-orgcb1606a" class="outline-3">
-<h3 id="orgcb1606a"><span class="section-number-3">2.1</span> Truth, falsehood, equality</h3>
-<div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li><code>nil</code> is false, everything else is true</li>
-<li><code>nil</code> is both an atom and a list. <code>()</code> is exactly the same as <code>nil</code></li>
-
-<li><code>EQ</code> tests for object identity. Two objects are <code>EQ</code> if they're identical.
-It CANNOT compare numbers and characters, which gives undefined behavior.</li>
-<li><code>EQL</code> is similar to <code>EQ</code> except that it guarantees the same numeric or character value is equal. <code>(eql 1 1)</code> is <code>t</code>.</li>
-<li><code>EQ</code> is more efficient than <code>EQL</code> because it does not need to check whether it is numeric or character.
-But <code>EQL</code> has less trouble to understand .. so use <code>EQL</code> when possible.</li>
-<li><code>EQUAL</code> is looser than <code>EQL</code>. It consider strings equivalent if they contain the same characters.</li>
-<li><code>EQUALP</code> is even looser. For example, it consider two strings are equal case-insensitively. NEVER use this.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd8495db" class="outline-3">
-<h3 id="orgd8495db"><span class="section-number-3">2.2</span> Function</h3>
-<div class="outline-text-3" id="text-2-2">
-<div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">name</span> (a b
-             <span style="color: #b58900;">&amp;optional</span> op1 (op2 def-value) (op3 def-value op3-supplied-p)
-             <span style="color: #b58900;">&amp;rest</span> rests
-             <span style="color: #b58900;">&amp;key</span> k1 (k2 def-value k2-supplied-p) ((<span style="color: #859900;">:kkkkk3</span> k3) def-value k3-supplied-p))
-  (body-forms))
-</pre>
-</div>
-
-<p>
-First required arguments are consumed, then the optional arguments, then the rest, finally the keyword arguments.
-optional arguments can have default values (which defaults to nil), and a variable to indicate whether it is supplied.
-The rests is a list.
-keyword arguments are the same as optional arguments, except it must be supplied by keyword.
-It can be rebound to a simpler name to be used in the body.
-</p>
-
-<p>
-Never mix (optional, key).
-You can mix rest and key, but the behavior is, after matching all required and optional, everything are bound to rest.
-Then appropriate ones are ALSO bound to keyword arguments.
-</p>
-
-<p>
-The return value of function is typically the last expression.
-But you can explicit return from a function by using <code>RETURN-FROM SYMBOL body</code> special form.
-Symbol is the function name to return, and it is not evaluted.
-You must provide the function in order to return, which makes it not frequently used.
-</p>
-
-<p>
-The function object can be obtained by <code>'#</code>.
-One can apply the object in two ways:
-</p>
-<dl class="org-dl">
-<dt><code>FUNCALL</code></dt><dd>the first is the function object, the rests are arguments</dd>
-<dt><code>APPLY</code></dt><dd>the first is the function object, then a list of arguments.
-The list can be looser, e.g. some arguments, as long as the last one is a list.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgddf4bfd" class="outline-3">
-<h3 id="orgddf4bfd"><span class="section-number-3">2.3</span> Variable</h3>
-<div class="outline-text-3" id="text-2-3">
-<p>
-The symbol is a reference of the object.
-Assigning to the symbol will create another reference to another object.
-But, if the object is mutable, then assign to the reference will change the object.
-</p>
-
-<p>
-Function parameters are reference.
-So if the object is mutable, then assigning to the parameter will change the referenced object.
-</p>
-
-<p>
-Global variable can be defined by <code>defvar</code> and <code>defparameter</code>. Naming convention is put <code>*</code> surrounds it.
-</p>
-
-<pre class="example">
-defparameter *varname* init-value "Optional document string"
-defvar *varname* optional-init-value "optional document string"
-</pre>
-
-<p>
-The difference (Prefer <code>defvar</code>):
-</p>
-<ul class="org-ul">
-<li><code>defparameter</code> will always assign the initial value</li>
-<li><code>defvar</code> will do so only if the variable is not defined;
-<code>defvar</code> can also be used without initial value, the variable will be unbound.</li>
-</ul>
-
-<p>
-Although the global variable can be referred at any place, the binding is still quite lexical regarding to the binding form.
-E.g, the let binding can rebind the global variable, and everything before the return of let form sees this binding.
-After the return, the binding fall back to the previous binding.
-This is good because when you want to temporary change the <code>*standard-output*</code> to a file,
-you don't need to have to remember to change it back.
-</p>
-
-<p>
-This also means, assign to global variable only modify the specific binding, while the binding on the stack does not change.
-Lisp did this by looking up the name of variable: if it is declared by <code>defvar</code> or <code>defparameter</code>,
-it will creates dynamic binding.
-</p>
-
-<p>
-<code>defconstant +name+ init-value "optional document string"</code> is used to declare constant. Use <code>+</code> surrounds it.
-It is possible to redefine the constant using <code>defconstant</code> again, but the behavior is undefined.
-E.g. the code refer to it might need to be reevaluated to see the update.
-So, do NOT redefine a constant, otherwise it is not a constant, use <code>defparameter</code> instead.
-</p>
-
-<p>
-Assigning a value to a binding is:
-</p>
-<ol class="org-ol">
-<li>change the binding only, do not change other hidden bindings for this symbol</li>
-<li>do not change the value object the binding refers to</li>
-</ol>
-
-<p>
-The general assignment operator is <code>setf (place value)+</code>.
-When assigning a binding, it will call <code>setq</code> (but don't call <code>setq</code> directly!), and returns the newly assigned value.
-In the document, a <i>SEFTable</i> thing is suitable to be a <code>setf</code> <i>place</i>.
-</p>
-
-<p>
-To make the code more concise, some "f-family" are invented.
-</p>
-<dl class="org-dl">
-<dt><code>(incf x)</code></dt><dd><code>(setf x (+ x 1))</code></dd>
-<dt><code>(decf x)</code></dt><dd></dd>
-
-<dt><code>(incf x 10)</code></dt><dd></dd>
-</dl>
-
-<p>
-here <code>incf</code> and <code>decf</code> modifies the argument, so they are called <i>modify macros</i>.
-Other <i>modify macros</i>:
-</p>
-<ul class="org-ul">
-<li><code>push</code>, <code>pop</code>, <code>pushnew</code></li>
-<li><code>rotatef</code>, <code>shiftf</code>
-<ul class="org-ul">
-<li><code>(roratef a b)</code> is equal to <code>(let ((tmp a)) (setf a b b tmp) nil)</code></li>
-<li><code>(shiftf a b 10)</code> shifts all the values left, equals to <code>(let ((tmp a)) (setf a b b 10) tmp)</code></li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgb22bc89" class="outline-3">
-<h3 id="orgb22bc89"><span class="section-number-3">2.4</span> Control Structure</h3>
-<div class="outline-text-3" id="text-2-4">
-</div><div id="outline-container-org95aa2fe" class="outline-4">
-<h4 id="org95aa2fe"><span class="section-number-4">2.4.1</span> Conditional</h4>
-<div class="outline-text-4" id="text-2-4-1">
-<ul class="org-ul">
-<li><code>(if condition then-form [else-form])</code></li>
-<li><code>(progn forms*)</code></li>
-<li><code>(when cond forms*)</code></li>
-<li><code>(unless cond forms*)</code></li>
-<li><code>(cond (test-1 form*) (test-2 form*))</code>:
-The test predicates are evaluated one by one until one to <code>t</code>, then evaluate the body form, and return the last.
-To have a default, put a <code>t</code> as the last condition.</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org168b3ba" class="outline-4">
-<h4 id="org168b3ba"><span class="section-number-4">2.4.2</span> Looping</h4>
-<div class="outline-text-4" id="text-2-4-2">
-<ul class="org-ul">
-<li><code>(dolist (var list-form) body-form*)</code></li>
-<li><code>(dotimes (var count-form) body-form*)</code>: from 0 to the value of count-form-1, inclusively</li>
-<li><code>(do (var-def*) (end-test-form result-form*) statements*)</code> where the var-def is <code>(var init-form step-form)</code>
-<ul class="org-ul">
-<li>=(do ((i 0 (1+ i)))   ((&gt; i 4))     (print i))</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orga658515" class="outline-3">
-<h3 id="orga658515"><span class="section-number-3">2.5</span> Types</h3>
-<div class="outline-text-3" id="text-2-5">
-</div><div id="outline-container-orgb3b712f" class="outline-4">
-<h4 id="orgb3b712f"><span class="section-number-4">2.5.1</span> numbers</h4>
-<div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li><code>#b010101</code></li>
 <li><code>#xaf08</code></li>
 </ul>
+</div>
+<div id="outline-container-orgd5122aa" class="outline-4">
+<h4 id="orgd5122aa"><span class="section-number-4">1.1.1</span> Predicates</h4>
+<div class="outline-text-4" id="text-1-1-1">
 <p>
-rounding:
-</p>
-<dl class="org-dl">
-<dt><code>floor</code></dt><dd>toward negative infinity</dd>
-<dt><code>ceiling</code></dt><dd>toward positive infinity</dd>
-<dt><code>truncate</code></dt><dd>toward 0</dd>
-<dt><code>round</code></dt><dd>to nearest integer</dd>
-</dl>
-<p>
-modulus
-</p>
-<dl class="org-dl">
-<dt><code>mod</code></dt><dd>modular</dd>
-<dt><code>rem</code></dt><dd>remainder</dd>
-</dl>
-<p>
-min,max
+Group 1:
 </p>
 <ul class="org-ul">
-<li><code>min</code></li>
-<li><code>max</code></li>
+<li>numberp</li>
+<li>integerp</li>
+<li>rationalp</li>
+<li>floatp</li>
+<li>realp</li>
+<li>complexp</li>
 </ul>
+
 <p>
-predicates
+Group 2:
 </p>
 <ul class="org-ul">
-<li><code>zerop</code></li>
-<li><code>minusp</code></li>
-<li><code>plusp</code></li>
-<li><code>evenp</code></li>
-<li><code>oddp</code></li>
-<li><code>/=</code></li>
+<li>zerop</li>
+<li>plusp</li>
+<li>minusp</li>
+<li>oddp</li>
+<li>evenp</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgceaceef" class="outline-4">
-<h4 id="orgceaceef"><span class="section-number-4">2.5.2</span> characters</h4>
-<div class="outline-text-4" id="text-2-5-2">
+<div id="outline-container-org7a16f9b" class="outline-4">
+<h4 id="org7a16f9b"><span class="section-number-4">1.1.2</span> Comparison</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+These operators are functions, they takes multiple numbers.
+</p>
+<ul class="org-ul">
+<li>=</li>
+<li>/=: all numbers are different</li>
+<li>&lt;, &gt;, &lt;=, &gt;=: increasing, decreasing, etc</li>
+<li>max</li>
+<li>min</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4800fed" class="outline-4">
+<h4 id="org4800fed"><span class="section-number-4">1.1.3</span> Arithmetic</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>+, -, *, /</li>
+<li>1+, 1-: (1+ x) same as (+ x 1)</li>
+<li>incf place</li>
+<li>decf place</li>
+<li>conjugate</li>
+<li>gcd: greatest common divisor</li>
+<li>lcm: least common multiple</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org82afa5c" class="outline-4">
+<h4 id="org82afa5c"><span class="section-number-4">1.1.4</span> Other</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<ul class="org-ul">
+<li>exp</li>
+<li>expt</li>
+<li>log</li>
+<li>sqrt</li>
+<li>isqrt</li>
+<li>abs</li>
+<li>phase</li>
+<li>signum</li>
+<li>sin, cos, tan</li>
+<li>cis</li>
+<li>asin, acos, atan</li>
+<li>CONSTANT pi</li>
+<li>sinh, cosh, tanh, asinh, acosh, atanh</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org53e0480" class="outline-4">
+<h4 id="org53e0480"><span class="section-number-4">1.1.5</span> Type Conversion</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<ul class="org-ul">
+<li>float</li>
+<li>rational</li>
+<li>rationalize</li>
+<li>numerator</li>
+<li>denominator</li>
+<li>floor: toward negative infinity</li>
+<li>ceiling: toward positive infinity</li>
+<li>truncate: toward 0</li>
+<li>round: to nearest integer</li>
+<li>mod</li>
+<li>rem</li>
+<li>ffloor</li>
+<li>fceiling</li>
+<li>ftruncate</li>
+<li>fround</li>
+<li>decode-float</li>
+<li>scale-float</li>
+<li>float-radix</li>
+<li>float-sign</li>
+<li>float-digits</li>
+<li>float-precision</li>
+<li>integer-decode-float</li>
+<li>complex</li>
+<li>realpart</li>
+<li>imagpart</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org146128e" class="outline-4">
+<h4 id="org146128e"><span class="section-number-4">1.1.6</span> Logical Operations</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<ul class="org-ul">
+<li>logior</li>
+<li>logxor: exclusive or</li>
+<li>logand</li>
+<li>logeqv</li>
+<li>lognand</li>
+<li>lognor</li>
+<li>logandc1</li>
+<li>logandc2</li>
+<li>logorc1</li>
+<li>logorc2</li>
+<li>boole</li>
+<li>lognot</li>
+<li>logtest</li>
+<li>logbitp</li>
+<li>ash</li>
+<li>logcount</li>
+<li>integer-length</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb5b1c18" class="outline-4">
+<h4 id="orgb5b1c18"><span class="section-number-4">1.1.7</span> Byte</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<ul class="org-ul">
+<li>byte</li>
+<li>byte-size</li>
+<li>byte-position</li>
+<li>ldb</li>
+<li>ldb-test</li>
+<li>mask-field</li>
+<li>dpb</li>
+<li>deposit-field</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3b36a30" class="outline-4">
+<h4 id="org3b36a30"><span class="section-number-4">1.1.8</span> Random Numbers</h4>
+<div class="outline-text-4" id="text-1-1-8">
+<ul class="org-ul">
+<li>random</li>
+<li><code>*random-state*</code></li>
+<li>make-random-state</li>
+<li>random-state-p</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd947020" class="outline-3">
+<h3 id="orgd947020"><span class="section-number-3">1.2</span> Character</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+A character object can be notated by writing <code>#\c</code> where c is any
+standard character.
+</p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -727,11 +724,633 @@ predicates
 </table>
 </div>
 </div>
+
+<div id="outline-container-org4886f86" class="outline-3">
+<h3 id="org4886f86"><span class="section-number-3">1.3</span> Boolean</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li><code>nil</code> is false, everything else is true</li>
+<li><code>nil</code> is both an atom and a list. <code>()</code> is exactly the same as <code>nil</code></li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-org3277511" class="outline-3">
-<h3 id="org3277511"><span class="section-number-3">2.6</span> Destructive</h3>
-<div class="outline-text-3" id="text-2-6">
+<div id="outline-container-orga74e97d" class="outline-3">
+<h3 id="orga74e97d"><span class="section-number-3">1.4</span> Symbols</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+In addition to letters and numbers, the following characters can also
+be considered to be alphabet:
+</p>
+
+<pre class="example">
++ - * / @ $ % ^ &amp; _ = &lt; &gt; ~ .
+</pre>
+
+<p>
+But some conventions apply:
+</p>
+<ul class="org-ul">
+<li><code>+global-constant+</code></li>
+<li><code>*global-variable*</code></li>
+</ul>
+
+<p>
+The following characters are also alphabet, not used by common lisp
+standard, but reserved for some purpose:
+</p>
+<pre class="example">
+? ! [ ] { }
+</pre>
+
+<p>
+Finally, lisp is case-insensitive. The program will be converted to
+upper case when stored in computer.
+</p>
+</div>
+
+<div id="outline-container-org8623152" class="outline-4">
+<h4 id="org8623152"><span class="section-number-4">1.4.1</span> Property list</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+A symbol has such a list.
+</p>
+<ul class="org-ul">
+<li>get</li>
+<li>remprop</li>
+<li>symbol-plist</li>
+<li>getf</li>
+<li>remf</li>
+<li>get-properties</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90a53e5" class="outline-3">
+<h3 id="org90a53e5"><span class="section-number-3">1.5</span> Sequence</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Sequence contains both lists and vectors. Here are the common
+operations that shares between them because they operate on ordered
+sets of elements.
+</p>
+</div>
+
+<div id="outline-container-org2ea1c88" class="outline-4">
+<h4 id="org2ea1c88"><span class="section-number-4">1.5.1</span> Predicates</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
+<li>consp</li>
+<li>listp</li>
+<li>bit-vector-p</li>
+<li>vectorp</li>
+<li>simple-vector-p</li>
+<li>simple-bit-vector-p</li>
+<li>arrayp</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org087ac8a" class="outline-4">
+<h4 id="org087ac8a"><span class="section-number-4">1.5.2</span> Simple Sequence Functions</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<ul class="org-ul">
+<li>elt</li>
+<li>subseq</li>
+<li>copy-seq</li>
+<li>length</li>
+<li>reverse</li>
+<li>nreverse</li>
+<li>make-sequence</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9d22ee7" class="outline-4">
+<h4 id="org9d22ee7"><span class="section-number-4">1.5.3</span> Mapping</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<ul class="org-ul">
+<li>concatenate</li>
+<li>map</li>
+<li>map-into</li>
+<li>some</li>
+<li>every</li>
+<li>notany</li>
+<li>notevery</li>
+<li>reduce</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge03ae0a" class="outline-4">
+<h4 id="orge03ae0a"><span class="section-number-4">1.5.4</span> Modifying Seq</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<ul class="org-ul">
+<li>fill</li>
+<li>replace</li>
+<li>remove</li>
+<li>remove-if</li>
+<li>remove-if-not</li>
+<li>delete</li>
+<li>delete-if</li>
+<li>delete-if-not</li>
+<li>remove-duplicates</li>
+<li>delete-duplicates</li>
+<li>substitute</li>
+<li>substitute-if</li>
+<li>substitute-if-not</li>
+<li>nsubstitute</li>
+<li>nsubstitute-if</li>
+<li>nsubstitute-if-not</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9f0050f" class="outline-4">
+<h4 id="org9f0050f"><span class="section-number-4">1.5.5</span> Searching</h4>
+<div class="outline-text-4" id="text-1-5-5">
+<ul class="org-ul">
+<li>find</li>
+<li>find-if</li>
+<li>find-if-not</li>
+<li>position</li>
+<li>position-if</li>
+<li>position-if-not</li>
+<li>count</li>
+<li>count-if</li>
+<li>count-if-not</li>
+<li>mismatch</li>
+<li>search</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge32ee27" class="outline-4">
+<h4 id="orge32ee27"><span class="section-number-4">1.5.6</span> Sorting &amp; Merging</h4>
+<div class="outline-text-4" id="text-1-5-6">
+<ul class="org-ul">
+<li>sort</li>
+<li>stable-sort</li>
+<li>merge</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7ceb832" class="outline-3">
+<h3 id="org7ceb832"><span class="section-number-3">1.6</span> List</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-orgb689a7f" class="outline-4">
+<h4 id="orgb689a7f"><span class="section-number-4">1.6.1</span> cons</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<ul class="org-ul">
+<li>car</li>
+<li>cdr</li>
+<li>caar, &#x2026;, cdddr: all combinations, up to 4-level deep</li>
+<li>cons</li>
+<li>tree-equal</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org36c6006" class="outline-4">
+<h4 id="org36c6006"><span class="section-number-4">1.6.2</span> lists</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<ul class="org-ul">
+<li>endp: predicate to check the end of a list</li>
+<li>list-length</li>
+<li>nth</li>
+<li>first, second, &#x2026;, tenth</li>
+<li>rest</li>
+<li>nthcdr</li>
+<li>last</li>
+<li>list</li>
+<li>list*</li>
+<li>make-list</li>
+<li>append</li>
+<li>copy-list</li>
+<li>copy-alist</li>
+<li>copy-tree: copy only copies the outer-most level of a list. Use
+copy-tree to copy all levels of a list.</li>
+<li>revappend</li>
+<li>nconc</li>
+<li>nreconc</li>
+<li>push: <b>macro</b></li>
+<li>pushnew</li>
+<li>pop: <b>macro</b></li>
+<li>butlast</li>
+<li>nbutlast</li>
+<li>ldiff</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6382094" class="outline-4">
+<h4 id="org6382094"><span class="section-number-4">1.6.3</span> alteration of list structure</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<p>
+Change the car or cdr of an existing cons. It is destructive.
+</p>
+<ul class="org-ul">
+<li>rplaca</li>
+<li>rplacd</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8fa965e" class="outline-4">
+<h4 id="org8fa965e"><span class="section-number-4">1.6.4</span> substitution</h4>
+<div class="outline-text-4" id="text-1-6-4">
+<ul class="org-ul">
+<li>subst</li>
+<li>subst-if</li>
+<li>subst-if-not</li>
+<li>nsubst</li>
+<li>nsubst-if</li>
+<li>nsubst-if-not</li>
+<li>sublis</li>
+<li>nsublis</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1007581" class="outline-4">
+<h4 id="org1007581"><span class="section-number-4">1.6.5</span> Set</h4>
+<div class="outline-text-4" id="text-1-6-5">
+<ul class="org-ul">
+<li>member</li>
+<li>member-if</li>
+<li>member-if-not</li>
+<li>tailp</li>
+<li>adjoin</li>
+<li>union</li>
+<li>nunion</li>
+<li>intersection</li>
+<li>nintersection</li>
+<li>set-difference</li>
+<li>nset-difference</li>
+<li>set-exclusive-or</li>
+<li>nset-exclusive-or</li>
+<li>subsetp</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org36cfe33" class="outline-4">
+<h4 id="org36cfe33"><span class="section-number-4">1.6.6</span> Association Lists</h4>
+<div class="outline-text-4" id="text-1-6-6">
+<ul class="org-ul">
+<li>acons</li>
+<li>pairlis</li>
+<li>assoc</li>
+<li>assoc-if</li>
+<li>assoc-if-not</li>
+<li>rassoc</li>
+<li>rassoc-if</li>
+<li>rassoc-if-not</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd27adc0" class="outline-3">
+<h3 id="orgd27adc0"><span class="section-number-3">1.7</span> Hash Table</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+This is a map.
+</p>
+
+<ul class="org-ul">
+<li>make-hash-table</li>
+<li>hash-table-p</li>
+<li>gethash</li>
+<li>remhash: remove hash entry</li>
+<li>maphash</li>
+<li>clrhash</li>
+<li>hash-table-count</li>
+<li>with-hash-table-iterator</li>
+<li>hash-table-rehash-size</li>
+<li>hash-table-rehash-threshold</li>
+<li>hash-table-size</li>
+<li>hash-table-test</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcbef74d" class="outline-3">
+<h3 id="orgcbef74d"><span class="section-number-3">1.8</span> Array</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+Array can be general array, holding arbitrary object types; it can
+also be a specialized array that hold a given type. One dimentional
+arrays are called vectors. Vectors holding arbitrary objects are
+<i>general vectors</i>, while the ones holding type <code>string-char</code> are
+called <i>strings</i>, holding type <code>bit</code> are called <i>bit-vectors</i>.
+</p>
+</div>
+<div id="outline-container-orga6fbe31" class="outline-4">
+<h4 id="orga6fbe31"><span class="section-number-4">1.8.1</span> Creation</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<ul class="org-ul">
+<li>make-array</li>
+<li>array-rank-limit: <b>constant</b></li>
+<li>array-dimension-limit: <b>constant</b></li>
+<li>array-total-size-limit: <b>constant</b></li>
+<li>vector</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3715ab6" class="outline-4">
+<h4 id="org3715ab6"><span class="section-number-4">1.8.2</span> Access</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<ul class="org-ul">
+<li>aref</li>
+<li>svref</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgafd29b7" class="outline-4">
+<h4 id="orgafd29b7"><span class="section-number-4">1.8.3</span> Information</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<ul class="org-ul">
+<li>array-element-type</li>
+<li>array-rank</li>
+<li>array-dimension</li>
+<li>array-dimensions</li>
+<li>array-total-size</li>
+<li>array-in-bounds-p</li>
+<li>array-row-major-index</li>
+<li>row-major-aref</li>
+<li>adjustable-array-p</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org975e582" class="outline-4">
+<h4 id="org975e582"><span class="section-number-4">1.8.4</span> bit-array</h4>
+<div class="outline-text-4" id="text-1-8-4">
+<ul class="org-ul">
+<li>bit</li>
+<li>sbit</li>
+<li>bit-and</li>
+<li>bit-ior</li>
+<li>bit-xor</li>
+<li>bit-eqv</li>
+<li>bit-nand</li>
+<li>bit-nor</li>
+<li>bit-andc1</li>
+<li>bit-andc2</li>
+<li>bit-orc1</li>
+<li>bit-orc2</li>
+<li>bit-not</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc0150d1" class="outline-4">
+<h4 id="orgc0150d1"><span class="section-number-4">1.8.5</span> Fill</h4>
+<div class="outline-text-4" id="text-1-8-5">
+<p>
+The <i>fill pointer</i> is a non-negative integer no larger than the total
+number of elements in the vector (array-dimension). It is the number
+of filled-in elements in the vector.
+</p>
+<ul class="org-ul">
+<li>array-has-fill-pointer</li>
+<li>fill-pointer</li>
+<li>vector-push</li>
+<li>vector-push-extend</li>
+<li>vector-pop</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4b02b45" class="outline-4">
+<h4 id="org4b02b45"><span class="section-number-4">1.8.6</span> Change dimension</h4>
+<div class="outline-text-4" id="text-1-8-6">
+<ul class="org-ul">
+<li>adjust-array</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org71bbf53" class="outline-3">
+<h3 id="org71bbf53"><span class="section-number-3">1.9</span> String</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+A string is a specialized vector (one-dimensional array) whose
+elements are characters.
+</p>
+
+<p>
+Some predicates
+</p>
+<ul class="org-ul">
+<li>characterp</li>
+<li>stringp</li>
+<li>simple-string-p</li>
+</ul>
+</div>
+
+<div id="outline-container-orga43b687" class="outline-4">
+<h4 id="orga43b687"><span class="section-number-4">1.9.1</span> Access</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<ul class="org-ul">
+<li>char</li>
+<li>schar</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org818b03a" class="outline-4">
+<h4 id="org818b03a"><span class="section-number-4">1.9.2</span> Comparision</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<ul class="org-ul">
+<li>string=</li>
+<li>string-equal</li>
+<li>string&lt;</li>
+<li>string&gt;</li>
+<li>string&lt;=</li>
+<li>string&gt;=</li>
+<li>string/=</li>
+<li>string-lessp</li>
+<li>string-greaterp</li>
+<li>string-not-greaterp</li>
+<li>string-not-lessp</li>
+<li>string-not-equal</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbfeb8be" class="outline-4">
+<h4 id="orgbfeb8be"><span class="section-number-4">1.9.3</span> String Construction and Manipulation</h4>
+<div class="outline-text-4" id="text-1-9-3">
+<ul class="org-ul">
+<li>make-string</li>
+<li>string-trim</li>
+<li>string-left-trim</li>
+<li>string-right-trim</li>
+<li>string-upcase</li>
+<li>string-downcase</li>
+<li>string-capitalize</li>
+<li>nstring-upcase</li>
+<li>nstring-downcase</li>
+<li>nstring-capitalize</li>
+<li>string</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd454523" class="outline-3">
+<h3 id="orgd454523"><span class="section-number-3">1.10</span> Structure</h3>
+<div class="outline-text-3" id="text-1-10">
+</div><div id="outline-container-orge705fd5" class="outline-4">
+<h4 id="orge705fd5"><span class="section-number-4">1.10.1</span> defstruct</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<ul class="org-ul">
+<li>MACRO defstruct</li>
+<li class="off"><code>[&#xa0;]</code> automatically generated constructor function. <code>defstruct foo</code>
+will also define <code>make-foo</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgda09557" class="outline-2">
+<h2 id="orgda09557"><span class="section-number-2">2</span> Program Structure</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgdc599d9" class="outline-3">
+<h3 id="orgdc599d9"><span class="section-number-3">2.1</span> Form</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Forms are the building block of lisp program. There're three kinds of
+forms:
+</p>
+<ul class="org-ul">
+<li>self-evaluating forms: numbers, nil, :key</li>
+<li>symbols: variables</li>
+<li>lists
+<ul class="org-ul">
+<li>special forms</li>
+<li>macro calls</li>
+<li>function calls</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgff07431" class="outline-3">
+<h3 id="orgff07431"><span class="section-number-3">2.2</span> Scope and Extent</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Although the global variable can be referred at any place, the binding
+is still quite lexical regarding to the binding form.  E.g, the let
+binding can rebind the global variable, and everything before the
+return of let form sees this binding.  After the return, the binding
+fall back to the previous binding.  This is good because when you want
+to temporary change the <code>*standard-output*</code> to a file, you don't need
+to have to remember to change it back.
+</p>
+
+<p>
+This also means, assign to global variable only modify the specific
+binding, while the binding on the stack does not change.  Lisp did
+this by looking up the name of variable: if it is declared by <code>defvar</code>
+or <code>defparameter</code>, it will creates dynamic binding.
+</p>
+
+<p>
+The symbol is a reference of the object.  Assigning to the symbol will
+create another reference to another object.  But, if the object is
+mutable, then assign to the reference will change the object.
+Function parameters are reference.  So if the object is mutable, then
+assigning to the parameter will change the referenced object.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgddf4bfd" class="outline-3">
+<h3 id="orgddf4bfd"><span class="section-number-3">2.3</span> Variable</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-org8d831b2" class="outline-4">
+<h4 id="org8d831b2"><span class="section-number-4">2.3.1</span> Creation</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #859900;">defparameter</span> <span style="color: #268bd2;">*varname*</span> init-value <span style="color: #2aa198;">"Optional document string"</span>)
+(<span style="color: #859900;">defvar</span> <span style="color: #268bd2;">*varname*</span> optional-init-value <span style="color: #93a1a1; font-style: italic;">"optional document string"</span>)
+(<span style="color: #859900;">defconstant</span> <span style="color: #268bd2;">+name+</span> init-value <span style="color: #2aa198;">"optional document string"</span>)
+</pre>
+</div>
+
+<p>
+Global variable can be defined by <code>defvar</code> and <code>defparameter</code>. Naming
+convention is put <code>*</code> surrounds it.  The difference (Prefer <code>defvar</code>):
+</p>
+<ul class="org-ul">
+<li><code>defparameter</code> will always assign the initial value</li>
+<li><code>defvar</code> will do so only if the variable is not defined; <code>defvar</code>
+can also be used without initial value, the variable will be
+unbound.</li>
+</ul>
+
+<p>
+<code>defconstant</code> is used to declare constant. Use <code>+</code> surrounds it.  It
+is possible to redefine the constant using <code>defconstant</code> again, but
+the behavior is undefined.  E.g. the code refer to it might need to be
+reevaluated to see the update.  So, do NOT redefine a constant,
+otherwise it is not a constant, use <code>defparameter</code> instead.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6e7cbc1" class="outline-4">
+<h4 id="org6e7cbc1"><span class="section-number-4">2.3.2</span> Assignment</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Assigning a value to a binding is:
+</p>
+<ol class="org-ol">
+<li>change the binding only, do not change other hidden bindings for
+this symbol</li>
+<li>do not change the value object the binding refers to</li>
+</ol>
+
+<p>
+The general assignment operator is <code>setf (place value)+</code>.  When
+assigning a binding, it will call <code>setq</code> (but don't call <code>setq</code>
+directly!), and returns the newly assigned value.  In the document, a
+<i>SEFTable</i> thing is suitable to be a <code>setf</code> <i>place</i>.  Always use
+<code>setf</code> instead of <code>setq</code>.  This is more general. This includes
+<i>variables, array locations, list elements, hash table entries,
+structure fields, and object slots</i>.
+</p>
+
+<p>
+To make the code more concise, some "f-family" are invented.
+</p>
+<dl class="org-dl">
+<dt><code>(incf x)</code></dt><dd><code>(setf x (+ x 1))</code></dd>
+<dt><code>(decf x)</code></dt><dd></dd>
+
+<dt><code>(incf x 10)</code></dt><dd></dd>
+</dl>
+
+<p>
+here <code>incf</code> and <code>decf</code> modifies the argument, so they are called
+<i>modify macros</i>.  Other <i>modify macros</i>:
+</p>
+<ul class="org-ul">
+<li><code>push</code>, <code>pop</code>, <code>pushnew</code></li>
+<li><code>rotatef</code>, <code>shiftf</code>
+<ul class="org-ul">
+<li><code>(roratef a b)</code> is equal to <code>(let ((tmp a)) (setf a b b tmp) nil)</code></li>
+<li><code>(shiftf a b 10)</code> shifts all the values left, equals to <code>(let ((tmp a)) (setf a b b 10) tmp)</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3277511" class="outline-4">
+<h4 id="org3277511"><span class="section-number-4">2.3.3</span> Destructive</h4>
+<div class="outline-text-4" id="text-2-3-3">
 <p>
 There are two types of destructive functions:
 </p>
@@ -741,8 +1360,8 @@ There are two types of destructive functions:
 </ul>
 
 <p>
-The recycling operations are typically those with <code>n</code> as prefix.
-80 percent of the use cases are <code>PUSH/NREVERSE</code> and <code>SETF/DELETE</code>.
+The recycling operations are typically those with <code>n</code> as prefix.  80
+percent of the use cases are <code>PUSH/NREVERSE</code> and <code>SETF/DELETE</code>.
 </p>
 
 <div class="org-src-container">
@@ -760,7 +1379,8 @@ The recycling operations are typically those with <code>n</code> as prefix.
 </div>
 
 <p>
-<code>sort</code> is also destructive, so use it on a copy of the list. Be sure to assign it back to the variable.
+<code>sort</code> is also destructive, so use it on a copy of the list. Be sure
+to assign it back to the variable.
 </p>
 
 <div class="org-src-container">
@@ -775,23 +1395,425 @@ The recycling operations are typically those with <code>n</code> as prefix.
 </div>
 </div>
 
-<div id="outline-container-orga9bccc5" class="outline-2">
-<h2 id="orga9bccc5"><span class="section-number-2">3</span> Style Guide</h2>
-<div class="outline-text-2" id="text-3">
+
+<div id="outline-container-org1744076" class="outline-3">
+<h3 id="org1744076"><span class="section-number-3">2.4</span> Equality</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li><code>EQ</code> tests for object identity. Two objects are <code>EQ</code> if they're
+identical.  It CANNOT compare numbers and characters, which gives
+undefined behavior.</li>
+<li><code>EQL</code> is similar to <code>EQ</code> except that it guarantees the same numeric
+or character value is equal. <code>(eql 1 1)</code> is <code>t</code>.</li>
+<li><code>EQ</code> is more efficient than <code>EQL</code> because it does not need to check
+whether it is numeric or character.  But <code>EQL</code> has less trouble to
+understand .. so use <code>EQL</code> when possible.</li>
+<li><code>EQUAL</code> is looser than <code>EQL</code>. It consider strings equivalent if they
+contain the same characters.</li>
+<li><code>EQUALP</code> is even looser. For example, it consider two strings are
+equal case-insensitively. NEVER use this.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd8495db" class="outline-3">
+<h3 id="orgd8495db"><span class="section-number-3">2.5</span> Function</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-org48fac59" class="outline-4">
+<h4 id="org48fac59"><span class="section-number-4">2.5.1</span> Defun and Lambda Expression</h4>
+<div class="outline-text-4" id="text-2-5-1">
 <p>
-Reference: <a href="http://people.ace.ed.ac.uk/staff/medward2/class/moz/cm/doc/contrib/lispstyle.html">http://people.ace.ed.ac.uk/staff/medward2/class/moz/cm/doc/contrib/lispstyle.html</a>
+<code>defun</code> is a macro.
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">name</span> (a b
+             <span style="color: #b58900;">&amp;optional</span> op1 (op2 def-value) (op3 def-value op3-supplied-p)
+             <span style="color: #b58900;">&amp;rest</span> rests
+             <span style="color: #b58900;">&amp;key</span> k1 (k2 def-value k2-supplied-p) ((<span style="color: #859900;">:kkkkk3</span> k3) def-value k3-supplied-p))
+  (body-forms))
+</pre>
+</div>
+
+<p>
+lambda expression shares the same structures.
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #859900;">lambda</span>
+    (a b <span style="color: #b58900;">&amp;optional</span> op1 <span style="color: #b58900;">&amp;rest</span> rests <span style="color: #b58900;">&amp;key</span> k1)
+  (body))
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><i>Order of consumption</i>: First required arguments are consumed, then
+the optional arguments, then the rest, finally the keyword
+arguments.</li>
+<li><i>optional arguments</i>: can have default values (which defaults to
+nil), and a variable to indicate whether it is supplied.</li>
+<li><i>rests</i>: a list.</li>
+<li><i>keyword arguments</i>: are the same as optional arguments, except it
+must be supplied by keyword. It can be rebound to a simpler name to
+be used in the body.</li>
+<li><i>Mixture</i>: Never mix (optional, key).  You can mix rest and key, but the
+behavior is, after matching all required and optional, everything
+are bound to rest.  Then appropriate ones are ALSO bound to keyword
+arguments.</li>
+</ul>
+
+<p>
+The return value of function is typically the last expression.  But
+you can explicit return from a function by using <code>RETURN-FROM SYMBOL
+ body</code> special form.  Symbol is the function name to return, and it is
+not evaluted.  You must provide the function in order to return, which
+makes it not frequently used.  
+</p>
+
+<p>
+The function object can be obtained by <code>#'</code>.  One can apply the object
+in two ways:
+</p>
+<dl class="org-dl">
+<dt><code>FUNCALL</code></dt><dd>the first is the function object, the rests are
+arguments</dd>
+<dt><code>APPLY</code></dt><dd>the first is the function object, then a list of
+arguments.  The list can be looser, e.g. some arguments,
+as long as the last one is a list.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org87b3122" class="outline-4">
+<h4 id="org87b3122"><span class="section-number-4">2.5.2</span> Multiple Values</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+If return multiple values, use <code>values</code> instead of a list; if return
+no values, use <code>(values)</code>
 </p>
 
 <ul class="org-ul">
-<li>if return multiple values, use <code>values</code> instead of a list; if return no values, use <code>(values)</code></li>
-<li><code>+global-constant+</code></li>
-<li><code>*global-variable*</code></li>
-<li>use <code>setf</code> instead of <code>setq</code>.
-This is more general. This includes <i>variables, array locations, list elements, hash table entries, structure fields, and object slots</i>.</li>
-<li>Remember that append copies its arguments.
-Avoid using append inside a loop to add elements to the back of a list.
-Use the collect clause in loop, or push elements onto a list and then nreverse the list to return the original ordering.</li>
+<li>values</li>
+<li>multiple-values-limit</li>
+<li>values-list</li>
+<li>multiple-value-list</li>
+<li>multiple-value-call</li>
+<li>multiple-value-prog1</li>
+<li>multiple-value-bind</li>
+<li>multiple-value-setq</li>
+<li>nth-value</li>
 </ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc495022" class="outline-3">
+<h3 id="orgc495022"><span class="section-number-3">2.6</span> Macro</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-orgcb63786" class="outline-4">
+<h4 id="orgcb63786"><span class="section-number-4">2.6.1</span> Definition</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<pre class="example">
+defmacro name lambda-list [[ {declaration}* | doc-string ]] {form}*
+</pre>
+
+<p>
+lambda-list is parameter list.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7bf638a" class="outline-4">
+<h4 id="org7bf638a"><span class="section-number-4">2.6.2</span> Macro Expansion</h4>
+<div class="outline-text-4" id="text-2-6-2">
+<ul class="org-ul">
+<li>macroexpand</li>
+<li>macroexpand-1</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org55f702b" class="outline-3">
+<h3 id="org55f702b"><span class="section-number-3">2.7</span> Exception</h3>
+<div class="outline-text-3" id="text-2-7">
+</div><div id="outline-container-org2dcbb50" class="outline-4">
+<h4 id="org2dcbb50"><span class="section-number-4">2.7.1</span> Error</h4>
+<div class="outline-text-4" id="text-2-7-1">
+<ul class="org-ul">
+<li>error</li>
+<li>cerror</li>
+<li>warn</li>
+<li><code>*break-on-warnings*</code></li>
+<li>break</li>
+<li>check-type</li>
+<li>assert</li>
+<li>etypecase</li>
+<li>ctypecase</li>
+<li>ecase</li>
+<li>ccase</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6f4cec9" class="outline-4">
+<h4 id="org6f4cec9"><span class="section-number-4">2.7.2</span> Condition</h4>
+<div class="outline-text-4" id="text-2-7-2">
+</div><div id="outline-container-orgeefcc5c" class="outline-5">
+<h5 id="orgeefcc5c"><span class="section-number-5">2.7.2.1</span> <span class="todo TODO">TODO</span> Concepts</h5>
+</div>
+<div id="outline-container-org98b2cf8" class="outline-5">
+<h5 id="org98b2cf8"><span class="section-number-5">2.7.2.2</span> Signaling</h5>
+<div class="outline-text-5" id="text-2-7-2-2">
+<ul class="org-ul">
+<li>error</li>
+<li>warn</li>
+<li>cerror</li>
+<li>signal</li>
+<li><code>*break-on-signals*</code></li>
+</ul>
+
+<p>
+Assertions
+</p>
+<ul class="org-ul">
+<li>check-type</li>
+<li>assert</li>
+</ul>
+
+<p>
+Exhaustive Case Analysis
+</p>
+<ul class="org-ul">
+<li>etypecase</li>
+<li>ctypecase</li>
+<li>ecase</li>
+<li>ccase</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7432c36" class="outline-5">
+<h5 id="org7432c36"><span class="section-number-5">2.7.2.3</span> Handling Conditions</h5>
+<div class="outline-text-5" id="text-2-7-2-3">
+<ul class="org-ul">
+<li>hanlder-case</li>
+<li>ignore-errors</li>
+<li>handler-bind</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4ac7e11" class="outline-5">
+<h5 id="org4ac7e11"><span class="section-number-5">2.7.2.4</span> Defining Conditions</h5>
+<div class="outline-text-5" id="text-2-7-2-4">
+<ul class="org-ul">
+<li>define-condition</li>
+<li>make-condition</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgea2827c" class="outline-5">
+<h5 id="orgea2827c"><span class="section-number-5">2.7.2.5</span> Restart</h5>
+<div class="outline-text-5" id="text-2-7-2-5">
+<ul class="org-ul">
+<li>with-simple-restart</li>
+<li>restart-case</li>
+<li>restart-bind</li>
+<li>with-condition-restarts</li>
+<li>compute-restarts</li>
+<li>restart-name</li>
+<li>find-restart</li>
+<li>invoke-restart</li>
+<li>invoke-restart-interactively</li>
+</ul>
+
+<p>
+Restart functions
+</p>
+<ul class="org-ul">
+<li>abort</li>
+<li>continue</li>
+<li>muffle-warning</li>
+<li>store-value</li>
+<li>use-value</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9541fef" class="outline-5">
+<h5 id="org9541fef"><span class="section-number-5">2.7.2.6</span> Debugging</h5>
+<div class="outline-text-5" id="text-2-7-2-6">
+<ul class="org-ul">
+<li>break</li>
+<li>invoke-debugger</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org77a40a3" class="outline-5">
+<h5 id="org77a40a3"><span class="section-number-5">2.7.2.7</span> Condition Types</h5>
+<div class="outline-text-5" id="text-2-7-2-7">
+<ul class="org-ul">
+<li>TYPE restart</li>
+<li>TYPE condition</li>
+<li>TYPE warning</li>
+<li>TYPE serious-condition</li>
+<li>TYPE error</li>
+<li>TYPE simple-condition</li>
+<li>TYPE simple-warning</li>
+<li>TYPE simple-error
+<ul class="org-ul">
+<li>simple-condition-format-string</li>
+<li>simple-condition-format-arguments</li>
+</ul></li>
+<li>TYPE storage-condition</li>
+<li>TYPE type-error
+<ul class="org-ul">
+<li>type-error-datum</li>
+<li>type-error-expected-type</li>
+</ul></li>
+<li>TYPE simple-type-error</li>
+<li>TYPE program-error</li>
+<li>TYPE control-error</li>
+<li>TYPE package-error
+<ul class="org-ul">
+<li>package-error-package</li>
+</ul></li>
+<li>TYPE stream-error
+<ul class="org-ul">
+<li>stream-error-stream</li>
+</ul></li>
+<li>TYPE end-of-file</li>
+<li>TYPE file-error
+<ul class="org-ul">
+<li>file-error-pathname</li>
+</ul></li>
+<li>TYPE cell-error
+<ul class="org-ul">
+<li>cell-error-name</li>
+</ul></li>
+<li>TYPE unbound-variable</li>
+<li>TYPE undefined-function</li>
+<li>TYPE arithmetic-error
+<ul class="org-ul">
+<li>arithmetic-error-operation</li>
+<li>arithmetic-error-operands</li>
+</ul></li>
+<li>TYPE division-by-zero</li>
+<li>TYPE floating-point-overflow</li>
+<li>TYPE floating-point-underflow</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org101a44c" class="outline-3">
+<h3 id="org101a44c"><span class="section-number-3">2.8</span> Evaluator</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>eval form: evaluate form in the current dynamic environment and a null lexical environment</li>
+<li>evalhook</li>
+<li>applyhook</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb22bc89" class="outline-2">
+<h2 id="orgb22bc89"><span class="section-number-2">3</span> Control Structure</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org9e78f5d" class="outline-3">
+<h3 id="org9e78f5d"><span class="section-number-3">3.1</span> Sequential</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>progn</li>
+<li>prog1</li>
+<li>prog2</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org95aa2fe" class="outline-3">
+<h3 id="org95aa2fe"><span class="section-number-3">3.2</span> Conditional</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #859900;">if</span> condition then-form [else-form])
+(<span style="color: #859900;">progn</span> forms*)
+(<span style="color: #859900;">when</span> cond forms*)
+(<span style="color: #859900;">unless</span> cond forms*)
+(<span style="color: #859900;">cond</span> (test-1 form*) (test-2 form*))
+</pre>
+</div>
+
+<p>
+<code>cond</code> corresponds to switch statement in C. The test predicates are
+evaluated one by one until one to <code>t</code>, then evaluate the body form,
+and return the last.  To have a default, put a <code>t</code> as the last
+condition.
+</p>
+
+<p>
+Lisp programmers often use the functions and and or to implement
+simple conditional evaluation. For example,
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use</span>
+(and x (setf y t))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">instead of</span>
+(<span style="color: #859900;">when</span> x
+  (setf y t))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use</span>
+(or x (setf y t))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">instead of</span>
+(<span style="color: #859900;">unless</span> x
+  (setf y t))
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org020efef" class="outline-3">
+<h3 id="org020efef"><span class="section-number-3">3.3</span> Iteration</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #859900;">dolist</span> (var list-form) body-form*)
+(<span style="color: #859900;">dotimes</span> (var count-form) body-form*)
+(<span style="color: #859900;">do</span> (var-def*) (end-test-form result-form*) statements*)
+</pre>
+</div>
+
+<p>
+<code>dotimes</code> from 0 to the value of count-form-1, inclusively In <code>do</code>,
+the var-def is <code>(var init-form step-form)</code>. For example:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #859900;">do</span> ((i 0 (1+ i))) ((&gt; i 4)) (print i))
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org08c0a15" class="outline-4">
+<h4 id="org08c0a15"><span class="section-number-4">3.3.1</span> Mapping</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>mapcar</li>
+<li>maplist</li>
+<li>mapc</li>
+<li>mapl</li>
+<li>mapcan</li>
+<li>mapcon</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgca12ba0" class="outline-4">
+<h4 id="orgca12ba0"><span class="section-number-4">3.3.2</span> Append to a list</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+Remember that append copies its arguments.  Avoid using append
+inside a loop to add elements to the back of a list.  Use the
+collect clause in loop, or push elements onto a list and then
+nreverse the list to return the original ordering.
+</p>
 
 <p>
 Bad:
@@ -820,40 +1842,1056 @@ Best:
 <pre class="src src-lisp">(<span style="color: #859900;">loop</span> for x in list collect x)
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org168ddb3" class="outline-3">
+<h3 id="org168ddb3"><span class="section-number-3">3.4</span> Loop Facility</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<i>Loop keywords</i> are not true common lisp keywords. They are symbols
+recognized only by <i>Loop Facility</i>. If you do not use any loop
+keywords, the loop simply runs forever.
+</p>
+
+<p>
+loop is a macro, and expansion produces an implicit block named <code>nil</code>,
+and it accepts three basic part in its tagbody:
+</p>
+<ul class="org-ul">
+<li>loop prologue: execute before iteration begin</li>
+<li>loop body: execute during each iteration</li>
+<li>loop epilogue: execute after iteration termination</li>
+</ul>
+
+<p>
+All variables are initialized in the loop prologue.
+</p>
+</div>
+
+<div id="outline-container-org64f68d3" class="outline-4">
+<h4 id="org64f68d3"><span class="section-number-4">3.4.1</span> Loop Clauses</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+Inside the loop is the loop clauses.
+</p>
+
+<p>
+Variable initialization and stepping
+</p>
+<ul class="org-ul">
+<li>for</li>
+<li>as</li>
+<li>with</li>
+<li>repeat</li>
+</ul>
+
+<p>
+Value accumulation
+</p>
+<ul class="org-ul">
+<li>collect</li>
+<li>append</li>
+<li>nconc</li>
+<li>sum</li>
+<li>count</li>
+<li>minimize</li>
+<li>maximize</li>
+</ul>
+
+<p>
+Termination conditions
+</p>
+<ul class="org-ul">
+<li>loop-finish</li>
+<li>for</li>
+<li>as</li>
+<li>repeat</li>
+<li>while</li>
+<li>until</li>
+<li>always</li>
+<li>never</li>
+<li>thereis</li>
+</ul>
+
+<p>
+Unconditional execution
+</p>
+<ul class="org-ul">
+<li>do</li>
+<li>return</li>
+</ul>
+
+<p>
+Conditional execution
+</p>
+<ul class="org-ul">
+<li>if</li>
+<li>when</li>
+<li>unless</li>
+<li>else</li>
+<li>end</li>
+</ul>
+
+<p>
+Miscellaneous
+</p>
+<ul class="org-ul">
+<li>named</li>
+<li>initially</li>
+<li>finally</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2413aba" class="outline-4">
+<h4 id="org2413aba"><span class="section-number-4">3.4.2</span> Loop Syntax</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<pre class="example">
+loop ::= (loop [named name] {variables}* {main}*)
+variables ::= with | initial-final | for-as | repeat
+main ::= unconditional | accumulation | conditional | termination | initial-final
+initial-final ::= initially | finally
+</pre>
 
 <ul class="org-ul">
-<li>Remember that copy only copies the outer-most level of a list. Use copy-tree to copy all levels of a list.</li>
+<li>A loop must have at least one clause.</li>
+<li>loop prologue
+<ul class="org-ul">
+<li>automatic variable initializations prescribed by variable clauses</li>
+<li>initially</li>
+</ul></li>
+<li>loop epilogue
+<ul class="org-ul">
+<li>finally</li>
+<li>implicit return value from accumulation clause or an end-test clause</li>
+</ul></li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-org439246b" class="outline-4">
+<h4 id="org439246b"><span class="section-number-4">3.4.3</span> Iteration Control (for, as, repeat)</h4>
+<div class="outline-text-4" id="text-3-4-3">
 <p>
-Lisp programmers often use the functions and and or to implement simple conditional evaluation. For example,
+for and as are exctly the same.
+</p>
+
+<p>
+Multiple these control can be used. They will occur sequentially: they
+will not nest.
+</p>
+
+<pre class="example">
+for var
+  [{from | downfrom | upfrom} expr1]
+  [{to | downto | upto | below | above} expr2]
+  [by expr3]
+</pre>
+<ul class="org-ul">
+<li>from: default to 0 when increment</li>
+<li>by: the step, must be positive integer, default to 1</li>
+<li><del>downfrom, upfrom</del>, downto, upto: control the direction of increment
+or decrease.</li>
+<li>below, above: similar to upto, downto, but do not include the
+target.</li>
+</ul>
+
+<pre class="example">
+for var in expr1 [by step-fun]
+</pre>
+<ul class="org-ul">
+<li>it is meant to iterate the list. Bound to element in each iteration</li>
+<li>At the end of each iteration, the step-fun is executed on the list
+to produce a successor list. default to <code>cdr</code>.</li>
+</ul>
+
+<pre class="example">
+for var on expr1 [by step-fun]
+</pre>
+<ul class="org-ul">
+<li>same as in-by, but var is bound to the entire list each time</li>
+</ul>
+
+<pre class="example">
+for var = expr1 [then expr2]
+</pre>
+<ul class="org-ul">
+<li>var is set to expr1 on first iteration</li>
+<li>var is set to expr2 on second and subsequent iterations.
+If no expr2, expr1 is still used.</li>
+</ul>
+
+<pre class="example">
+for var across vector
+</pre>
+<ul class="org-ul">
+<li>bind to each element. The only difference is now using vector
+instead of a list.</li>
+</ul>
+
+<pre class="example">
+for var being
+  {each | the}
+  {hash-key | hash-keys | hash-value | hash-values}
+  {in | of}
+  hash-table
+  [using ({hash-value | hash-key} other-var)]
+</pre>
+<ul class="org-ul">
+<li>it seems that each and the is the same. Just to make it easy to read:
+<ul class="org-ul">
+<li>use each for hash-key and hash-value</li>
+<li>use the for hash-keys and hash-values</li>
+</ul></li>
+<li>in and of are also the same</li>
+<li>hash-key and hash-value controls whether to bind key or value to var</li>
+<li>using will bind the other part, i.e. value if hash-key and key if
+hash-value, to another variable for access</li>
+</ul>
+
+<pre class="example">
+for var being
+  {each | the}
+  {symbol | present-symbol | external-symbol | symbols | present-symbols | external-symbols}
+  {in | of}
+  package
+</pre>
+
+<p>
+In package.
+</p>
+
+<pre class="example">
+repeat expr
+</pre>
+
+<p>
+repeat the body (expr) times.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdb47615" class="outline-4">
+<h4 id="orgdb47615"><span class="section-number-4">3.4.4</span> End Test Control (always, never, thereis, until, while)</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<p>
+always, never, thereis change the return value, so
+</p>
+<ul class="org-ul">
+<li>it will skip finally clauses.</li>
+<li>NEVER use it with collect, etc.</li>
+</ul>
+
+<p>
+The clauses:
+</p>
+<ul class="org-ul">
+<li>while expr</li>
+<li>until expr: equal to while (not expr)</li>
+<li>always expr: terminate if expr evaluates to nil. Return nil if
+so. Otherwise return t.</li>
+<li>never expr: terminate if expr ever evalutes to non-nil. Return nil
+if so, otherwise return t</li>
+<li>thereis expr: Same as never, but it return that expr.</li>
+<li>loop-finish: terminate iteration and return any accumulated result</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9c74ac5" class="outline-4">
+<h4 id="org9c74ac5"><span class="section-number-4">3.4.5</span> Value Accumulation</h4>
+<div class="outline-text-4" id="text-3-4-5">
+<ul class="org-ul">
+<li>multiple accumulation can be used if they operate the same type,
+e.g. collect and append operate on list. The result will be
+combined, i.e. they operate on the same list.</li>
+<li>If into is not provided, all the operations operate on a default
+hidden variable.</li>
+<li>If into is provided, the variable is as-if initialized in <code>with</code>
+clause.
+<ul class="org-ul">
+<li>will not have a default value to return</li>
+<li>the variables are visible in finally clause</li>
+</ul></li>
+<li>Only one value can be returned, but you can return multiple objects
+using <code>values</code>.</li>
+</ul>
+
+<p>
+Clauses: all of them have <code>xxx expr [into var]</code> format
+</p>
+<ul class="org-ul">
+<li>collect expr [into var]</li>
+<li>collecting expr [into var]: same as collect</li>
+<li>append</li>
+<li>appending</li>
+<li>nconc</li>
+<li>nconcing</li>
+<li>count</li>
+<li>counting</li>
+<li>sum</li>
+<li>summing</li>
+<li>maximize</li>
+<li>maximizing</li>
+<li>minimize</li>
+<li>minimizing</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab12550" class="outline-4">
+<h4 id="orgab12550"><span class="section-number-4">3.4.6</span> Variable Initialization (with)</h4>
+<div class="outline-text-4" id="text-3-4-6">
+<pre class="example">
+with var [= expr] {and var [= expr]}*
+</pre>
+<ul class="org-ul">
+<li>if no =expr, it is initialized to appropriate default value</li>
+<li>by default with initialize variable sequentially</li>
+<li>using loop keyword <code>and</code> can make the initialization in parallel</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge996b65" class="outline-4">
+<h4 id="orge996b65"><span class="section-number-4">3.4.7</span> Conditional Execution (if, when, unless)</h4>
+<div class="outline-text-4" id="text-3-4-7">
+<p>
+They all have the same signature:
+</p>
+<pre class="example">
+if expr clause {and clause}*
+  [else clause {and clause}*]
+  [end]
+</pre>
+
+<ul class="org-ul">
+<li><code>if</code> and <code>when</code> are exactly the same. <code>unless</code> is equal to <code>if (not expr)</code>.</li>
+<li>in the case of nest, the else is paired with the closest preceding
+<code>when</code> or <code>if</code> that has no associated <code>else</code></li>
+<li>loop keyword <code>it</code> can be used to refer to the value of the test
+expr. This is a keyword, thus cannot be used as a variable name in
+loop.</li>
+<li><code>end</code> marks the end of the clause. If not specified, the next loop
+keyword marks the end. This is useful in compound clauses.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org261ed25" class="outline-4">
+<h4 id="org261ed25"><span class="section-number-4">3.4.8</span> Unconditional Execution (do, return)</h4>
+<div class="outline-text-4" id="text-3-4-8">
+<ul class="org-ul">
+<li>do {expr}*: execute sequentially</li>
+<li>doing {expr}*</li>
+<li>return expr: equivalent to <code>do {return expr}</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2062e71" class="outline-4">
+<h4 id="org2062e71"><span class="section-number-4">3.4.9</span> Misc (named, initially, finally)</h4>
+<div class="outline-text-4" id="text-3-4-9">
+<ul class="org-ul">
+<li>named: name a loop so that we can use return-from</li>
+<li>initially, finally: expressions to be evaluated before and after
+loop body. There can be multiple these clauses, all of them will be
+collected into one place inside <code>progn</code> in the order they present.</li>
+<li><code>return</code>, <code>always</code>, <code>never</code>, <code>thereis</code> can bypass finally</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2da8367" class="outline-4">
+<h4 id="org2da8367"><span class="section-number-4">3.4.10</span> Destructure</h4>
+<div class="outline-text-4" id="text-3-4-10">
+<p>
+bind result to a list of variables. This can be used in <code>for</code> and
+<code>with</code>.
+</p>
+<ul class="org-ul">
+<li>If variable list is shorter, the rest values are discarded</li>
+<li>If value list is shorter, the rest variables initialize to default
+value</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-org3995f39" class="outline-2">
+<h2 id="org3995f39"><span class="section-number-2">4</span> System Interface</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-org32a6ac5" class="outline-3">
+<h3 id="org32a6ac5"><span class="section-number-3">4.1</span> Package</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+This is used to solve name conflict.
+</p>
+
+<ul class="org-ul">
+<li><code>*package*</code></li>
+<li>make-package</li>
+<li>in-package</li>
+<li>find-package</li>
+<li>package-name</li>
+<li>package-nicknames</li>
+<li>rename-package</li>
+<li>package-use-list</li>
+<li>package-used-by-list</li>
+<li>package-shadowing-symbols</li>
+<li>list-all-packages</li>
+<li>delete-package</li>
+<li>intern</li>
+<li>find-symbol</li>
+<li>unintern</li>
+<li>export</li>
+<li>unexport</li>
+<li>import</li>
+<li>shadowing-import</li>
+<li>shadow</li>
+<li>use-package</li>
+<li>unuse-package</li>
+<li>defpackage</li>
+<li>find-all-symbols</li>
+<li>do-symbols</li>
+<li>do-external-symbols</li>
+<li>do-all-symbols</li>
+<li>with-package-iterator</li>
+</ul>
+</div>
+
+<div id="outline-container-orgbc25991" class="outline-4">
+<h4 id="orgbc25991"><span class="section-number-4">4.1.1</span> Modules</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+A module is a subsystem. It consists of one or more packages. It may
+be loaded from one or more files.
+</p>
+<ul class="org-ul">
+<li><code>*modules*</code></li>
+<li>provide</li>
+<li>require</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6029601" class="outline-3">
+<h3 id="org6029601"><span class="section-number-3">4.2</span> Stream</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Some global variables are used by many functions. Conventionally the
+suffix -input and -output means the input and output stream
+respectively, while -io represents streams with bidirectional stream.
+</p>
+<ul class="org-ul">
+<li><code>*standard-input*</code></li>
+<li><code>*standard-output*</code></li>
+<li><code>*error-output*</code></li>
+<li><code>*query-io*</code></li>
+<li><code>*debug-io*</code></li>
+<li><code>*terminal-io*</code></li>
+<li><code>*trace-output*</code></li>
+</ul>
+</div>
+<div id="outline-container-org4a3fca4" class="outline-4">
+<h4 id="org4a3fca4"><span class="section-number-4">4.2.1</span> Create Stream</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<ul class="org-ul">
+<li>make-synonym-stream</li>
+<li>make-broadcase-stream</li>
+<li>make-concatenated-stream</li>
+<li>make-two-way-stream</li>
+<li>make-echo-stream</li>
+<li>make-string-input-stream</li>
+<li>make-string-output-stream</li>
+<li>get-output-stream-string</li>
+<li>with-open-stream</li>
+<li>with-input-from-string</li>
+<li>with-output-to-string</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4070feb" class="outline-4">
+<h4 id="org4070feb"><span class="section-number-4">4.2.2</span> Operation</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<ul class="org-ul">
+<li>streamp</li>
+<li>open-stream-p</li>
+<li>input-stream-p</li>
+<li>output-stream-p</li>
+<li>stream-element-type</li>
+<li>close</li>
+<li>broadcase-stream-streams</li>
+<li>concatenated-stream-streams</li>
+<li>echo-stream-input-stream</li>
+<li>echo-stream-output-stream</li>
+<li>synonym-stream-symbol</li>
+<li>two-way-stream-input-stream</li>
+<li>two-way-stream-output-stream</li>
+<li>interactive-stream-p</li>
+<li>stream-external-format</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7da9fce" class="outline-3">
+<h3 id="org7da9fce"><span class="section-number-3">4.3</span> Input/Output</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+These input/output operations perform on streams.
+</p>
+</div>
+<div id="outline-container-org50f03a5" class="outline-4">
+<h4 id="org50f03a5"><span class="section-number-4">4.3.1</span> Input</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+Input stream defaults to <code>*standard-input*</code>.
+</p>
+<ul class="org-ul">
+<li>read</li>
+<li>read-preserving-whitespace</li>
+<li>read-delimited-list</li>
+<li>read-line</li>
+<li>read-char</li>
+<li>unread-char</li>
+<li>peek-char</li>
+<li>listen</li>
+<li>read-char-no-hang</li>
+<li>clear-input</li>
+<li>read-from-string</li>
+<li>parse-integer</li>
+<li>read-byte</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd14e576" class="outline-4">
+<h4 id="orgd14e576"><span class="section-number-4">4.3.2</span> Output</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<ul class="org-ul">
+<li>write</li>
+<li>prin1</li>
+<li>print</li>
+<li>pprint</li>
+<li>princ</li>
+<li>write-to-string</li>
+<li>prin1-to-string</li>
+<li>princ-to-string</li>
+<li>write-char</li>
+<li>write-string</li>
+<li>write-line</li>
+<li>terpri</li>
+<li>fresh-line</li>
+<li>finish-ouptut</li>
+<li>force-output</li>
+<li>clear-output</li>
+<li>print-unreadable-object</li>
+<li>write-byte</li>
+</ul>
+</div>
+<div id="outline-container-orgc6017d9" class="outline-5">
+<h5 id="orgc6017d9"><span class="section-number-5">4.3.2.1</span> Format</h5>
+<div class="outline-text-5" id="text-4-3-2-1">
+<pre class="example">
+format destination control-string &amp;rest arguments
+</pre>
+<p>
+Format output the control-string except that a tilde introduces a
+<i>directive</i>. Most directives use one or more elements of arguments. If
+no more arguments, signal an error. But it is ok is more arguments are
+provided and unprocessed.
+</p>
+
+<p>
+If the destination is nil, a string is created as the output and get
+returned. Otherwise format returns nil.
+</p>
+
+<p>
+A format directive is determined by one single character. It can take
+optional prefix. The prefix can be separated using : or @ or
+both. Parameters are separated by comma, and they can be ommited to
+take the default value. What kind of parameters are accepted is
+determined by the directive character.
+</p>
+<pre class="example">
+~[[first-param]{,[second-param]}*]
+ [:@]
+ &lt;char&gt;
+</pre>
+
+<p>
+Here are the list of all directive characters
+</p>
+<ul class="org-ul">
+<li>A: Ascii</li>
+<li>S: S-expression</li>
+<li>D: Decimal</li>
+<li>B: Binary</li>
+<li>O: octal</li>
+<li>X: hexadecimal</li>
+<li>R: Radix</li>
+<li>P: Plural</li>
+<li>C: Character</li>
+<li>F: fixed format floating point</li>
+<li>E: Exponential floating point</li>
+<li>G: general floating point</li>
+<li>$: dollars floating point</li>
+<li>%: #\Newline</li>
+<li>&amp;: refresh line. unless at the beginning of a line,output a line.</li>
+<li>|: page separator</li>
+<li>~: output a tilde</li>
+<li>&lt;newline&gt;: ignore the newline and any following whitespace</li>
+<li>T: tabulate</li>
+<li>*: ignore next argument</li>
+<li>?: indirection</li>
+<li>_: conditional newline</li>
+<li>W: wite</li>
+<li>I: indent</li>
+</ul>
+
+<p>
+There are several more complicated ones not recorded here, I believe
+I'll not easily use them.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org3ec9222" class="outline-4">
+<h4 id="org3ec9222"><span class="section-number-4">4.3.3</span> Query</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<ul class="org-ul">
+<li>y-or-n-p</li>
+<li>yes-or-no-p</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge624253" class="outline-3">
+<h3 id="orge624253"><span class="section-number-3">4.4</span> File System</h3>
+<div class="outline-text-3" id="text-4-4">
+</div><div id="outline-container-orgb33804d" class="outline-4">
+<h4 id="orgb33804d"><span class="section-number-4">4.4.1</span> File Names</h4>
+<div class="outline-text-4" id="text-4-4-1">
+<p>
+There's a type called <i>pathname</i>. It always has 6 components.
+</p>
+<ul class="org-ul">
+<li>host</li>
+<li>device</li>
+<li>directory</li>
+<li>name</li>
+<li>type</li>
+<li>version</li>
+</ul>
+
+<p>
+Extended Wildcards
+</p>
+<ul class="org-ul">
+<li>wild-pathname-p</li>
+<li>pathname-match-p</li>
+<li>translate-pathname</li>
+</ul>
+
+<p>
+Functions
+</p>
+<ul class="org-ul">
+<li>pathname</li>
+<li>truename</li>
+<li>parse-namestring</li>
+<li>merge-pathnames</li>
+<li>make-pathname</li>
+<li>pathnamep</li>
+<li>pathname-host</li>
+<li>pathname-device</li>
+<li>pathname-directory</li>
+<li>pathname-name</li>
+<li>pathname-type</li>
+<li>pathname-version</li>
+<li>namestring</li>
+<li>file-namestring</li>
+<li>directory-namestring</li>
+<li>host-namestring</li>
+<li>enough-namestring</li>
+<li>user-homedir-pathname</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3496b77" class="outline-4">
+<h4 id="org3496b77"><span class="section-number-4">4.4.2</span> Open and Close</h4>
+<div class="outline-text-4" id="text-4-4-2">
+<ul class="org-ul">
+<li>open</li>
+<li>MACRO with-open-file</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgba73934" class="outline-4">
+<h4 id="orgba73934"><span class="section-number-4">4.4.3</span> File Operation</h4>
+<div class="outline-text-4" id="text-4-4-3">
+<ul class="org-ul">
+<li>rename-file</li>
+<li>delete-file</li>
+<li>probe-file</li>
+<li>file-write-data</li>
+<li>file-author</li>
+<li>file-position</li>
+<li>file-length</li>
+<li>file-string-length</li>
+<li>directory: Examining directory.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org085af01" class="outline-4">
+<h4 id="org085af01"><span class="section-number-4">4.4.4</span> Other</h4>
+<div class="outline-text-4" id="text-4-4-4">
+<ul class="org-ul">
+<li>load: Load a common lisp file and evaluate the forms.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org1f4bf24" class="outline-2">
+<h2 id="org1f4bf24"><span class="section-number-2">5</span> Common Lisp Object System</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-org32c58b3" class="outline-3">
+<h3 id="org32c58b3"><span class="section-number-3">5.1</span> <span class="todo TODO">TODO</span> Concept</h3>
+</div>
+<div id="outline-container-org51a8084" class="outline-3">
+<h3 id="org51a8084"><span class="section-number-3">5.2</span> Functions</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>add-method</li>
+<li>call-method</li>
+<li>call-next-method</li>
+<li>change-class</li>
+<li>class-name</li>
+<li>class-of</li>
+<li>compute-applicable-methods</li>
+<li>defclass</li>
+<li>defgeneric</li>
+<li>define-method-combination</li>
+<li>defmethod</li>
+<li>documentation</li>
+<li>ensure-generic-function</li>
+<li>find-class</li>
+<li>find-method</li>
+<li>function-keywords</li>
+<li>generic-flet</li>
+<li>generic-function</li>
+<li>generic-labels</li>
+<li>initialize-instance</li>
+<li>invalid-method-error</li>
+<li>make-instance</li>
+<li>make-instances-obsolete</li>
+<li>method-combination-error</li>
+<li>method-qualifiers</li>
+<li>next-method-p</li>
+<li>no-applicable-method</li>
+<li>no-next-method</li>
+<li>print-object</li>
+<li>reinitialize-instance</li>
+<li>remove-method</li>
+<li>shared-initialize</li>
+<li>slot-boundp</li>
+<li>slot-exists-p</li>
+<li>slot-makunbound</li>
+<li>slot-missing</li>
+<li>slot-unbound</li>
+<li>slot-value</li>
+<li>update-instance-for-different-class</li>
+<li>update-instance-for-redefined-class</li>
+<li>with-accessors</li>
+<li>with-added-methods</li>
+<li>with-slots</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgbc14dac" class="outline-2">
+<h2 id="orgbc14dac"><span class="section-number-2">6</span> ASDF (Another System Definition Facility)</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<a href="https://common-lisp.net/project/asdf/asdf.html">https://common-lisp.net/project/asdf/asdf.html</a>
+</p>
+</div>
+<div id="outline-container-org780b15d" class="outline-3">
+<h3 id="org780b15d"><span class="section-number-3">6.1</span> Load ASDF</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+ASDF should come along with lisp implementations.
+</p>
+
+<ul class="org-ul">
+<li><code>(require "asdf")</code></li>
+<li><code>(asdf:asdf-version)</code> to check whether it is loaded, what's the version</li>
+</ul>
+
+<p>
+Alternatively, you can load the specific file by <code>(load "/path/to/asdf.lisp")</code>
+</p>
+
+<p>
+The default load path is 
+</p>
+<ul class="org-ul">
+<li><code>~/common-lisp/</code></li>
+<li><code>~/.local/share/common-lisp/source/</code></li>
+</ul>
+
+<p>
+However, quicklisp should already configured the load path.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfd9a714" class="outline-3">
+<h3 id="orgfd9a714"><span class="section-number-3">6.2</span> Load System</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li><code>(require "asdf")</code></li>
+<li>put package somewhere so that ASDF can find it
+<ul class="org-ul">
+<li><code>~/common-lisp/</code></li>
+<li><code>~/.local/share/common-lisp/source/</code></li>
+</ul></li>
+<li>load by <code>(asdf:load-system "my-system")</code></li>
+</ul>
+
+<p>
+Some functions:
+</p>
+<ul class="org-ul">
+<li>load-system</li>
+<li>compile-system</li>
+<li>test-system</li>
+<li>make</li>
+<li>require-system</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc7e597d" class="outline-3">
+<h3 id="orgc7e597d"><span class="section-number-3">6.3</span> Build System</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li><code>(require "asdf")</code></li>
+<li>put your code into a new directory called <code>my-system/</code> inside the findable path:
+<ul class="org-ul">
+<li><code>~/common-lisp/</code></li>
+<li><code>~/.local/share/common-lisp/source/</code></li>
+</ul></li>
+<li>In the directory, create a new file <code>my-system.asd</code> and specify dependencies</li>
+<li>load by <code>(asdf:load-system "my-system")</code></li>
+</ul>
+
+<p>
+The system is specified using <code>defsystem</code> syntax. An example
+(hello-lisp.asd):
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Usual Lisp comments are allowed </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">here</span>
+(defsystem <span style="color: #2aa198;">"hello-lisp"</span>
+    <span style="color: #859900;">:description</span> <span style="color: #2aa198;">"hello-lisp: a sample Lisp system."</span>
+    <span style="color: #859900;">:version</span> <span style="color: #2aa198;">"0.0.1"</span>
+    <span style="color: #859900;">:author</span> <span style="color: #2aa198;">"Joe User <a href="mailto:joe%40example.com">&lt;joe@example.com&gt;</a>"</span>
+    <span style="color: #859900;">:licence</span> <span style="color: #2aa198;">"Public Domain"</span>
+    <span style="color: #859900;">:depends-on</span> (<span style="color: #2aa198;">"optima.ppcre"</span> <span style="color: #2aa198;">"command-line-arguments"</span>)
+    <span style="color: #859900;">:components</span> ((<span style="color: #859900;">:file</span> <span style="color: #2aa198;">"packages"</span>)
+                 (<span style="color: #859900;">:file</span> <span style="color: #2aa198;">"macros"</span> <span style="color: #859900;">:depends-on</span> (<span style="color: #2aa198;">"packages"</span>))
+                 (<span style="color: #859900;">:file</span> <span style="color: #2aa198;">"hello"</span> <span style="color: #859900;">:depends-on</span> (<span style="color: #2aa198;">"macros"</span>))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3fe6248" class="outline-2">
+<h2 id="org3fe6248"><span class="section-number-2">7</span> Appendix</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-org0846908" class="outline-3">
+<h3 id="org0846908"><span class="section-number-3">7.1</span> Installation</h3>
+<div class="outline-text-3" id="text-7-1">
+</div><div id="outline-container-orga04b9c4" class="outline-4">
+<h4 id="orga04b9c4"><span class="section-number-4">7.1.1</span> quicklisp</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">sbcl --load /path/to/quicklisp.lisp</span>
+(load <span style="color: #2aa198;">"/path/to/quicklisp.lisp"</span>)
+(quicklisp-quickstart:install)
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">setting up</span>
+(load <span style="color: #2aa198;">"~/quicklisp/setup.lisp"</span>)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">load quicklisp when you start lisp</span>
+(ql:add-to-init-file)
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">install/remove a software</span>
+(ql:quickload <span style="color: #2aa198;">"clx-truetype"</span>)
+(ql:uninstall <span style="color: #2aa198;">"clx-truetype"</span>)
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">query installed packages</span>
+(ql:system-apropos <span style="color: #2aa198;">"substring"</span>)
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">updating all packages</span>
+(ql:update-all-dists)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">update</span><span style="color: #93a1a1; font-style: italic;"> quicklisp itself</span>
+(ql:update-client)
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt>(ql:quickload "name")</dt><dd>load a system</dd>
+<dt>(ql:system-apropos "term")</dt><dd>search</dd>
+</dl>
+
+
+
+<p>
+A list of packages used:
+</p>
+<dl class="org-dl">
+<dt>clx-truetype</dt><dd>for stumpwm ttf-font</dd>
+<dt>zpng</dt><dd>for stumpwm screenshot</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org70991e2" class="outline-4">
+<h4 id="org70991e2"><span class="section-number-4">7.1.2</span> packages</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<ul class="org-ul">
+<li><code>cl-quicklisp</code></li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd541365" class="outline-4">
+<h4 id="orgd541365"><span class="section-number-4">7.1.3</span> org babel</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<p>
+first, start <code>M-x slime</code>, then you can evaluate this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use</span>
-(and x (setf y t))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">instead of</span>
-(<span style="color: #859900;">when</span> x
-  (setf y t))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use</span>
-(or x (setf y t))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">instead of</span>
-(<span style="color: #859900;">unless</span> x
-  (setf y t))
+<pre class="src src-lisp" id="org604d215">(princ message)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd7bdc7d" class="outline-2">
-<h2 id="orgd7bdc7d"><span class="section-number-2">4</span> Practical Common Lisp</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgab9a30c" class="outline-4">
+<h4 id="orgab9a30c"><span class="section-number-4">7.1.4</span> Slime</h4>
+<div class="outline-text-4" id="text-7-1-4">
+<ul class="org-ul">
+<li>slime (emacs IDE)</li>
+<li>sbcl ("lisp" executer)</li>
+<li>cl-quicklisp (package manager)</li>
+</ul>
+
+<p>
+In emacs: start slime
+</p>
+<pre class="example">
+CL-USER&gt; (load "/path/to/quicklisp.lisp")
+CL-USER&gt; ;; follow screen command to install
+CL-USER&gt; (load "~/quicklisp/setup.lisp") ;; load it
+
+CL-USER&gt; (ql:add-to-init-file) ;; add to sbcl's init file
+
+CL-USER&gt; (ql:quickload "clx-truetype") ;; download this package. Packages will be put into "~/quicklisp/xxx/dist"
+
+CL-USER&gt; (ql:update-all-dists) ;; update
+CL-USER&gt; (ql:update-client) ;; update quicklisp itself
+</pre>
+
+<p>
+The staff added into <code>.sbclrc</code>:
+</p>
+<pre class="example">
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+(user-homedir-pathname))))
+(when (probe-file quicklisp-init)
+(load quicklisp-init)))
+</pre>
+</div>
+
+<div id="outline-container-org5db54e4" class="outline-5">
+<h5 id="org5db54e4"><span class="section-number-5">7.1.4.1</span> Commands</h5>
+<div class="outline-text-5" id="text-7-1-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">command</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-d d</td>
+<td class="org-left">slime-describe-symbol</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-d f</td>
+<td class="org-left">slime-describe-function</td>
+</tr>
+
+<tr>
+<td class="org-left">M-TAB</td>
+<td class="org-left">slime-complete-symbol</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <code>defun</code> around cursor.
+<code>C-c C-z</code> will switch to the <code>slime</code> buffer.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd7bdc7d" class="outline-3">
+<h3 id="orgd7bdc7d"><span class="section-number-3">7.2</span> Practical Common Lisp</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 <a href="http://www.gigamonkeys.com/book/">http://www.gigamonkeys.com/book/</a>
 </p>
 </div>
-<div id="outline-container-org895c7ca" class="outline-3">
-<h3 id="org895c7ca"><span class="section-number-3">4.1</span> CD database</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org895c7ca" class="outline-4">
+<h4 id="org895c7ca"><span class="section-number-4">7.2.1</span> CD database</h4>
+<div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: hello world, testing environment)</span>
 (<span style="color: #859900;">defun</span> <span style="color: #268bd2;">hello-world</span> ()
@@ -1037,9 +3075,9 @@ Lisp programmers often use the functions and and or to implement simple conditio
 </div>
 
 
-<div id="outline-container-orgcb07d4b" class="outline-3">
-<h3 id="orgcb07d4b"><span class="section-number-3">4.2</span> Unit Test Framework</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgcb07d4b" class="outline-4">
+<h4 id="orgcb07d4b"><span class="section-number-4">7.2.2</span> Unit Test Framework</h4>
+<div class="outline-text-4" id="text-7-2-2">
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the design goal of a unit test framework:</span>
 
@@ -1106,9 +3144,10 @@ Lisp programmers often use the functions and and or to implement simple conditio
 </div>
 </div>
 </div>
+</div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-03-27 Mon 14:36</p>
+<p class="date">Created: 2017-04-24 Mon 17:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
