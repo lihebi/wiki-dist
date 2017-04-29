@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-04-26 Wed 16:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Other Random Staff about clojure</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Other Random Staff about clojure</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdb450cf">1. A first try</a>
+<ul>
+<li><a href="#orga5e78fa">1.1. Setup</a></li>
+<li><a href="#org929bddc">1.2. Type</a></li>
+<li><a href="#orgdcbcf54">1.3. Function</a></li>
+<li><a href="#orgcf4347e">1.4. Macro</a></li>
+<li><a href="#org116d0de">1.5. State</a>
+<ul>
+<li><a href="#org45d3dac">1.5.1. delay</a></li>
+<li><a href="#orgb98e086">1.5.2. Future</a>
+<ul>
+<li><a href="#orgff437cf">1.5.2.1. Atom</a></li>
+<li><a href="#orgf340930">1.5.2.2. Ref</a></li>
+</ul>
+</li>
+<li><a href="#org00bfd15">1.5.3. Promise</a></li>
+</ul>
+</li>
+<li><a href="#org1522386">1.6. <span class="todo TODO">TODO</span> Logistics</a></li>
+<li><a href="#orgc59b856">1.7. <span class="todo TODO">TODO</span> Modeling</a></li>
+<li><a href="#org586a915">1.8. <span class="todo TODO">TODO</span> Debugging</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Some interesting projects:
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/ring-clojure/ring">https://github.com/ring-clojure/ring</a></li>
+<li><a href="http://liquidz.github.io/">http://liquidz.github.io/</a></li>
+<li><a href="https://github.com/liquidz/misaki">https://github.com/liquidz/misaki</a></li>
+<li><a href="http://nakkaya.com/">http://nakkaya.com/</a></li>
+</ul>
+
+
+<div id="outline-container-orgdb450cf" class="outline-2">
+<h2 id="orgdb450cf"><span class="section-number-2">1</span> A first try</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orga5e78fa" class="outline-3">
+<h3 id="orga5e78fa"><span class="section-number-3">1.1</span> Setup</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+First, install clojure and lein2.
+</p>
+
+<p>
+To start a new project:
+</p>
+<pre class="example">
+lein new myproj
+cd myproj
+lein repl
+</pre>
+
+
+<p>
+This will install dependencies and enter repl.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org929bddc" class="outline-3">
+<h3 id="org929bddc"><span class="section-number-3">1.2</span> Type</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Since clojure sits on top of JVM, the type seems to be the same, and
+you can get the type of something by the function <code>type</code>.
+</p>
+
+<pre class="example">
+user=&gt; (type 3)
+;; java.lang.Long
+user=&gt; (type :cat)
+clojure.lang.Keyword
+</pre>
+
+<p>
+A list of types
+</p>
+<dl class="org-dl">
+<dt>java.lang.Long</dt><dd>(type 3)</dd>
+<dt>clojure.lang.BigInt</dt><dd>(type 5N)</dd>
+<dt>java.lang.Integer</dt><dd>(type (int 0))</dd>
+<dt>java.lang.Short</dt><dd>(type (short 0))</dd>
+<dt>java.lang.Byte</dt><dd>(type (byte 0))</dd>
+<dt>java.lang.Double</dt><dd>(type 1.23)</dd>
+<dt>java.lang.Float</dt><dd>(type (float 1.23))</dd>
+<dt>java.lang.String</dt><dd>(type "cat")</dd>
+<dt>clojure.lang.Symbol</dt><dd>(class 'str)</dd>
+<dt>clojure.lang.Keyword</dt><dd>(type :cat)</dd>
+<dt>clojure.lang.PersistentList</dt><dd>(type '(1 2 3))</dd>
+<dt>clojure.lang.PersistentVector</dt><dd>(type [1 2 3])</dd>
+<dt>clojure.lang.PersistentHashSet</dt><dd>#{:a :b :c}</dd>
+<dt>clojure.lang.PersistentArrayMap</dt><dd>{:name "mittens" :weight 9 :color "black"}</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgdcbcf54" class="outline-3">
+<h3 id="orgdcbcf54"><span class="section-number-3">1.3</span> Function</h3>
+<div class="outline-text-3" id="text-1-3">
+<dl class="org-dl">
+<dt>let</dt><dd></dd>
+
+<dt>fn</dt><dd>lambda function</dd>
+<dt>def</dt><dd>symbol</dd>
+<dt>defn</dt><dd>define a named function</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgcf4347e" class="outline-3">
+<h3 id="orgcf4347e"><span class="section-number-3">1.4</span> Macro</h3>
+<div class="outline-text-3" id="text-1-4">
+<dl class="org-dl">
+<dt>defmacro</dt><dd></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org116d0de" class="outline-3">
+<h3 id="org116d0de"><span class="section-number-3">1.5</span> State</h3>
+<div class="outline-text-3" id="text-1-5">
+</div><div id="outline-container-org45d3dac" class="outline-4">
+<h4 id="org45d3dac"><span class="section-number-4">1.5.1</span> delay</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+Basically this is an abstraction of function: define a function will
+not evaluate function body. So delay works similar: the call to delay
+returns an Delay Object, which can be called on by <code>deref</code> to evaluate
+the body.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">later</span> (<span style="color: #859900;">fn</span> [] (prn <span style="color: #2aa198;">"Adding"</span>) (+ 1 2)))
+(later) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; print output</span>
+
+(<span style="color: #859900;">def</span> <span style="color: #268bd2;">later</span> (delay (prn <span style="color: #2aa198;">"Adding"</span>) (+ 1 2)))
+(deref later) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; print output</span>
+</pre>
+</div>
+
+<p>
+The difference between a delay and a function:
+</p>
+<ul class="org-ul">
+<li>function evaluate every time it is called</li>
+<li>delays only evaluate their expressions once. They remember their
+value, after the first evaluation, and return it for every
+successive deref.</li>
+</ul>
+
+<p>
+The delay opeartor: <code>@later</code> is equivalent to <code>(deref later)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb98e086" class="outline-4">
+<h4 id="orgb98e086"><span class="section-number-4">1.5.2</span> Future</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+This is for parallel.
+</p>
+
+<blockquote>
+<p>
+I don’t need the result of evaluating these expressions yet, but I’d
+like it later. Could you start working on it in the meantime?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (future (prn <span style="color: #2aa198;">"hi"</span>) (+ 1 2)))
+(deref x) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; 3</span>
+</pre>
+</div>
+
+<p>
+The body of future is executed in a <b>new thread</b> in parallel! Deref it
+will get the value of the <b>last</b> expression.  Like delays, the
+expressions are only evaluated once.
+</p>
+</div>
+
+<div id="outline-container-orgff437cf" class="outline-5">
+<h5 id="orgff437cf"><span class="section-number-5">1.5.2.1</span> Atom</h5>
+<div class="outline-text-5" id="text-1-5-2-1">
+<p>
+The parallel program brings thread-safe problem: modify something at
+the same time in different threads. Clojure has a <code>atom</code> function to
+protect a data and ensure its thread-safety.
+</p>
+
+<p>
+Use <code>reset!</code> to set value of atom, and use <code>swap!</code> to update.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> #{})
+(<span style="color: #859900;">dotimes</span> [i 10] (future (<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> (conj xs i))))
+user=&gt; xs <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; #{1 4 5 7}</span>
+
+(<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> (atom #{}))
+(<span style="color: #859900;">dotimes</span> [i 10] (future (swap! xs conj i)))
+user=&gt; @xs <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; #{0 1 2 3 4 5 6 7 8 9}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf340930" class="outline-5">
+<h5 id="orgf340930"><span class="section-number-5">1.5.2.2</span> Ref</h5>
+<div class="outline-text-5" id="text-1-5-2-2">
+<p>
+Atom is linearizable, but not serializable: it does not guarantee
+orders. Ref is serializable.
+</p>
+
+<p>
+Use <code>ref-set</code> to set value of a ref, and use <code>alter</code> to update. They
+must be in a <code>dosync</code> block, and the block order is guaranteed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (ref 0))
+user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">y</span> (ref 0))
+user=&gt; (<span style="color: #859900;">dosync</span>
+         (ref-set x 1)
+         (ref-set y 2))
+2
+user=&gt; [@x @y]
+[1 2]
+
+user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (ref 1))
+user=&gt; (<span style="color: #859900;">def</span> <span style="color: #268bd2;">y</span> (ref 2))
+user=&gt; (<span style="color: #859900;">dosync</span>
+         (alter x + 2)
+         (alter y inc))
+3
+user=&gt; [@x @y]
+[3 3]
+</pre>
+</div>
+
+<p>
+If some of the refs do not need order, you can boost the program by
+release that, using <code>commute</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (<span style="color: #859900;">dosync</span>
+         (commute x + 2)
+         (commute y inc))
+</pre>
+</div>
+
+<p>
+Finally, you can use <code>ensure</code> to update one ref using another,
+guaranteeing order.
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (<span style="color: #859900;">dosync</span>
+         (alter x + (ensure y)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org00bfd15" class="outline-4">
+<h4 id="org00bfd15"><span class="section-number-4">1.5.3</span> Promise</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<blockquote>
+<p>
+Delays defer evaluation, and futures parallelize it. What if we wanted
+to defer something we dont even have yet? To hand someone an empty box
+and, later, before they open it, sneak in and replacing its contents
+with an actual gift?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">box</span> (promise))
+(deref box) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">empty</span>
+(deliver box <span style="color: #2aa198;">:live-scorpiojns!</span>)
+(deref box) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; live-scorpiojns!</span>
+(deliver box <span style="color: #2aa198;">:puppy</span>) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; nil</span>
+(deref box) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; live-scorpiojns!</span>
+</pre>
+</div>
+
+<p>
+Some highlights:
+</p>
+<ul class="org-ul">
+<li>box contains nothing initially</li>
+<li>can be delivered</li>
+<li>cannot be re-delivered</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1522386" class="outline-3">
+<h3 id="org1522386"><span class="section-number-3">1.6</span> <span class="todo TODO">TODO</span> Logistics</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+<a href="https://aphyr.com/posts/311-clojure-from-the-ground-up-logistics">https://aphyr.com/posts/311-clojure-from-the-ground-up-logistics</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc59b856" class="outline-3">
+<h3 id="orgc59b856"><span class="section-number-3">1.7</span> <span class="todo TODO">TODO</span> Modeling</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+<a href="https://aphyr.com/posts/312-clojure-from-the-ground-up-modeling">https://aphyr.com/posts/312-clojure-from-the-ground-up-modeling</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org586a915" class="outline-3">
+<h3 id="org586a915"><span class="section-number-3">1.8</span> <span class="todo TODO">TODO</span> Debugging</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+<a href="https://aphyr.com/posts/319-clojure-from-the-ground-up-debugging">https://aphyr.com/posts/319-clojure-from-the-ground-up-debugging</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2017-04-26 Wed 16:34</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
