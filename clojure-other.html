@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-26 Wed 16:34 -->
+<!-- 2017-06-14 Wed 22:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Other Random Staff about clojure</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -372,10 +372,10 @@ the body.
 
 <div class="org-src-container">
 <pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">later</span> (<span style="color: #859900;">fn</span> [] (prn <span style="color: #2aa198;">"Adding"</span>) (+ 1 2)))
-(later) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; print output</span>
+(later) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; print output</span>
 
 (<span style="color: #859900;">def</span> <span style="color: #268bd2;">later</span> (delay (prn <span style="color: #2aa198;">"Adding"</span>) (+ 1 2)))
-(deref later) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; print output</span>
+(deref later) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; print output</span>
 </pre>
 </div>
 
@@ -410,7 +410,7 @@ like it later. Could you start working on it in the meantime?
 
 <div class="org-src-container">
 <pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">x</span> (future (prn <span style="color: #2aa198;">"hi"</span>) (+ 1 2)))
-(deref x) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; 3</span>
+(deref x) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; 3</span>
 </pre>
 </div>
 
@@ -437,11 +437,11 @@ Use <code>reset!</code> to set value of atom, and use <code>swap!</code> to upda
 <div class="org-src-container">
 <pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> #{})
 (<span style="color: #859900;">dotimes</span> [i 10] (future (<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> (conj xs i))))
-user=&gt; xs <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; #{1 4 5 7}</span>
+user=&gt; xs <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; #{1 4 5 7}</span>
 
 (<span style="color: #859900;">def</span> <span style="color: #268bd2;">xs</span> (atom #{}))
 (<span style="color: #859900;">dotimes</span> [i 10] (future (swap! xs conj i)))
-user=&gt; @xs <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; #{0 1 2 3 4 5 6 7 8 9}</span>
+user=&gt; @xs <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; #{0 1 2 3 4 5 6 7 8 9}</span>
 </pre>
 </div>
 </div>
@@ -520,11 +520,11 @@ with an actual gift?
 
 <div class="org-src-container">
 <pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #268bd2;">box</span> (promise))
-(deref box) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">empty</span>
+(deref box) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">empty</span>
 (deliver box <span style="color: #2aa198;">:live-scorpiojns!</span>)
-(deref box) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; live-scorpiojns!</span>
-(deliver box <span style="color: #2aa198;">:puppy</span>) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; nil</span>
-(deref box) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt; live-scorpiojns!</span>
+(deref box) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; live-scorpiojns!</span>
+(deliver box <span style="color: #2aa198;">:puppy</span>) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; nil</span>
+(deref box) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">=&gt; live-scorpiojns!</span>
 </pre>
 </div>
 
@@ -571,7 +571,7 @@ Some highlights:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-04-26 Wed 16:34</p>
+<p class="date">Created: 2017-06-14 Wed 22:42</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

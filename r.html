@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-13 Thu 22:54 -->
+<!-- 2017-06-14 Wed 22:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>R</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -236,7 +236,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org4ed54a3">1. Setting up</a>
 <ul>
-<li><a href="#org54ef40a">1.1. Packages</a></li>
+<li><a href="#org6b23f4a">1.1. Packages</a></li>
 <li><a href="#org3ab7b8e">1.2. Emacs ESS</a></li>
 <li><a href="#org40a6b39">1.3. Interactive command</a></li>
 <li><a href="#org9989adb">1.4. Commonly used functions</a></li>
@@ -285,7 +285,7 @@ for the JavaScript code in this tag.
 <li><a href="#orga1222ec">11.3. Device Driver</a></li>
 </ul>
 </li>
-<li><a href="#org65a7d39">12. Packages</a>
+<li><a href="#org5302411">12. Packages</a>
 <ul>
 <li><a href="#orgb734a8d">12.1. ggplot2</a></li>
 <li><a href="#org4ae66ef">12.2. plot(x, y, &#x2026;)</a></li>
@@ -299,8 +299,8 @@ for the JavaScript code in this tag.
 <div id="outline-container-org4ed54a3" class="outline-2">
 <h2 id="org4ed54a3"><span class="section-number-2">1</span> Setting up</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org54ef40a" class="outline-3">
-<h3 id="org54ef40a"><span class="section-number-3">1.1</span> Packages</h3>
+</div><div id="outline-container-org6b23f4a" class="outline-3">
+<h3 id="org6b23f4a"><span class="section-number-3">1.1</span> Packages</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <code>library()</code> see the list of installed packages.
@@ -515,7 +515,7 @@ The only retained ones are the <code>names</code>, <code>dim</code> and <code>di
 <pre class="src src-R">fruit <span style="color: #2aa198;">&lt;-</span> c(5, 10, 1, 20)
 names(fruit) <span style="color: #2aa198;">&lt;-</span> c(<span style="color: #2aa198;">"orange"</span>, <span style="color: #2aa198;">"banana"</span>, <span style="color: #2aa198;">"apple"</span>, <span style="color: #2aa198;">"peach"</span>)
 lunch <span style="color: #2aa198;">&lt;-</span> fruit[c(<span style="color: #2aa198;">"apple"</span>,<span style="color: #2aa198;">"orange"</span>)]
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">matrix</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">matrix</span>
 dim(z) <span style="color: #2aa198;">&lt;-</span> c(3,5,100)~
 z[2,,]
 z[,,]
@@ -557,7 +557,7 @@ You cannot use a vector as index.</li>
 <h3 id="org3a0f136"><span class="section-number-3">2.4</span> data example</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
-<pre class="src src-R"><span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: Command line arguments)</span>
+<pre class="src src-R"><span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: Command line arguments)</span>
 args = commandArgs(trailingOnly=<span style="color: #b58900;">TRUE</span>)
 csvfile = args[1]
 csv = read.csv(csvfile, header=<span style="color: #b58900;">TRUE</span>)
@@ -569,29 +569,30 @@ sub = subset(csv, reach_code==5 &amp; status_code == 1)
 total_fail_poi <span style="color: #2aa198;">&lt;-</span> dim(sub)[[1]]
 
 sub <span style="color: #2aa198;">&lt;-</span> sub[1:(length(csv)-2)]
-<span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: callin ga function)</span>
+<span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: callin ga function)</span>
 funcs = TransferFunction(sub);
 
-<span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: define a function)</span>
+<span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: define a function)</span>
 <span style="color: #268bd2;">Constant</span> <span style="color: #2aa198;">&lt;-</span> <span style="color: #859900;">function</span>(data) {
-    <span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: return value as a vector)</span>
+    <span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: return value as a vector)</span>
     ret <span style="color: #2aa198;">&lt;-</span> c()
     i <span style="color: #2aa198;">&lt;-</span> 1
-    <span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: a for loop using the vector as range)</span>
+    <span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: a for loop using the vector as range)</span>
     <span style="color: #859900;">for</span> (i <span style="color: #859900;">in</span> c(1:length(data))) {
         col = data[i];
-        <span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: Get the name of a column)</span>
+        <span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: Get the name of a column)</span>
         name = names(col);
         <span style="color: #859900;">if</span> (substr(name, 1, 6) == <span style="color: #2aa198;">"output"</span>) {
-            <span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: remove of NA)</span>
+            <span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: remove of NA)</span>
             newcol = col[!is.na(col)];
             <span style="color: #859900;">if</span> (length(newcol) &gt; 2) {
                 value <span style="color: #2aa198;">&lt;-</span> newcol[1]
-                <span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: check the value of the vector is all the same)</span>
+                <span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: check the value of the vector is all the same)</span>
                 <span style="color: #859900;">if</span> (length(newcol[newcol != value]) == 0) {
-                    <span style="color: #586e75; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: pushing a new value to the return vector)</span>
+                    <span style="color: #93a1a1; font-style: italic;">## </span><span style="color: #ff0000; font-style: italic;">(HEBI: pushing a new value to the return vector)</span>
                     ret <span style="color: #2aa198;">&lt;-</span> c(ret, paste(<span style="color: #2aa198;">"name = "</span>,  value))}}}}
     <span style="color: #859900;">return</span>(ret)}
+
 </pre>
 </div>
 </div>
@@ -621,8 +622,11 @@ Built-in functions:
 <li><code>var(x)</code>: <code>sum((x-mean(x))^2)/(length(x)-1)</code></li>
 <li><code>sort(x)</code>: increasing order</li>
 <li><code>order()</code> or <code>sort.list()</code></li>
-<li><code>paste()</code> function takes an arbitrary number of arguments
-and concatenates them one by one into character strings.</li>
+<li><code>paste(sep</code>" ")= function takes an arbitrary number of arguments
+and concatenates them one by one into character strings. The
+argument can be numeric.</li>
+<li><code>toString(8)</code>: convert integer to string</li>
+<li><code>round(x, digits=0)</code></li>
 </ul>
 </div>
 </div>
@@ -896,30 +900,30 @@ dev.control(displaylist = <span style="color: #2aa198;">"enable"</span>)
 plot(1:10)
 dev.copy(pdf, <span style="color: #2aa198;">"test2.pdf"</span>)
 dev.off()
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">should now have a valid test2.pdf</span>
-dev.off() <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">finished</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">should now have a valid test2.pdf</span>
+dev.off() <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">finished</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org65a7d39" class="outline-2">
-<h2 id="org65a7d39"><span class="section-number-2">12</span> Packages</h2>
+<div id="outline-container-org5302411" class="outline-2">
+<h2 id="org5302411"><span class="section-number-2">12</span> Packages</h2>
 <div class="outline-text-2" id="text-12">
 </div><div id="outline-container-orgb734a8d" class="outline-3">
 <h3 id="orgb734a8d"><span class="section-number-3">12.1</span> ggplot2</h3>
 <div class="outline-text-3" id="text-12-1">
 <div class="org-src-container">
-<pre class="src src-R">qplot(totbill, tip, geom=<span style="color: #2aa198;">"point"</span>, data=tips) <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">scatter plot</span>
-qplot(totbill, tip, geom=<span style="color: #2aa198;">"point"</span>, data=tips) + geom_smooth(method=<span style="color: #2aa198;">"lm"</span>) <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">with linear relationship line</span>
-qplot(tip, geom=<span style="color: #2aa198;">"histogram"</span>, data=tip) <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">histogram</span>
-qplot(tip, geom=<span style="color: #2aa198;">"histogram"</span>, binwidth=1, data=tips) <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">with custom binwidth</span>
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">box plots</span>
+<pre class="src src-R">qplot(totbill, tip, geom=<span style="color: #2aa198;">"point"</span>, data=tips) <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">scatter plot</span>
+qplot(totbill, tip, geom=<span style="color: #2aa198;">"point"</span>, data=tips) + geom_smooth(method=<span style="color: #2aa198;">"lm"</span>) <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">with linear relationship line</span>
+qplot(tip, geom=<span style="color: #2aa198;">"histogram"</span>, data=tip) <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">histogram</span>
+qplot(tip, geom=<span style="color: #2aa198;">"histogram"</span>, binwidth=1, data=tips) <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">with custom binwidth</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">box plots</span>
 qplot(sex, tipperc, geom=<span style="color: #2aa198;">"boxplot"</span>, data=tips)
 qplot(smoker, tipperc, geom=<span style="color: #2aa198;">"boxplot"</span>, data=tips)
-qplot(sex:smoker, tipperc, geom=<span style="color: #2aa198;">"boxplot"</span>, data=tips) <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">combine! plot the two sets of graph in two one graph</span>
-qplot(totbill, tip, geom=<span style="color: #2aa198;">"point"</span>, colour=day, data=tips) <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">scatter plot with colors, in regard to "day" column</span>
+qplot(sex:smoker, tipperc, geom=<span style="color: #2aa198;">"boxplot"</span>, data=tips) <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">combine! plot the two sets of graph in two one graph</span>
+qplot(totbill, tip, geom=<span style="color: #2aa198;">"point"</span>, colour=day, data=tips) <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">scatter plot with colors, in regard to "day" column</span>
 </pre>
 </div>
 </div>
@@ -959,7 +963,7 @@ A Grammar of Data Manipulation
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-04-13 Thu 22:54</p>
+<p class="date">Created: 2017-06-14 Wed 22:42</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-10 Mon 20:56 -->
+<!-- 2017-06-14 Wed 22:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell Utilities</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -251,7 +251,7 @@ for the JavaScript code in this tag.
 <li><a href="#org1b4fd9c">4.2. grep</a></li>
 <li><a href="#org7b7c050">4.3. tr: translate characters</a></li>
 <li><a href="#org44511ec">4.4. uniq: report or filter out repeated lines in a file</a></li>
-<li><a href="#orgaada403">4.5. Other</a></li>
+<li><a href="#org026b583">4.5. Other</a></li>
 </ul>
 </li>
 <li><a href="#org6002b54">5. System Management</a>
@@ -262,7 +262,8 @@ for the JavaScript code in this tag.
 <li><a href="#orgdcf17db">5.4. Find</a></li>
 <li><a href="#org7e0227a">5.5. Filesystem related</a></li>
 <li><a href="#org8b985c8">5.6. unzip</a></li>
-<li><a href="#org9301f0a">5.7. Other</a></li>
+<li><a href="#org313857d">5.7. tar</a></li>
+<li><a href="#orgbbf4c7e">5.8. Other</a></li>
 </ul>
 </li>
 </ul>
@@ -357,10 +358,10 @@ This works as if you swapped the old and new file when creating the patch.
 <h3 id="org1b4fd9c"><span class="section-number-3">4.2</span> grep</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">-n: &#26174;&#31034;&#34892;&#21495;</span>
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
+<pre class="src src-shell"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-n: &#26174;&#31034;&#34892;&#21495;</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
 grep &lt;pattern&gt; &lt;file&gt;
 </pre>
 </div>
@@ -408,15 +409,17 @@ so it may be necessary to sort the files first.
 </p>
 
 <ul class="org-ul">
-<li><code>uniq -c</code>: Precede each output line with the count of the number of times the line occurred in the input, followed by a single space.</li>
+<li><code>uniq -c</code>: Precede each output line with the count of the number of
+times the line occurred in the input, followed by a single
+space. You can then comtine this with <code>sort -n</code></li>
 <li><code>-u</code>: Only output lines that are not repeated in the input.</li>
 <li><code>-i</code>: Case insensitive comparison of lines.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgaada403" class="outline-3">
-<h3 id="orgaada403"><span class="section-number-3">4.5</span> Other</h3>
+<div id="outline-container-org026b583" class="outline-3">
+<h3 id="org026b583"><span class="section-number-3">4.5</span> Other</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li><code>cat</code>: <code>-n</code> output with line number</li>
@@ -466,7 +469,7 @@ so it may be necessary to sort the files first.
 </p>
 <div class="org-src-container">
 <pre class="src src-shell">find /etc -name <span style="color: #2aa198;">'*.conf'</span> | xargs ls -l
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">the same as:</span>
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">the same as:</span>
 ls -l ~find ...~
 </pre>
 </div>
@@ -497,7 +500,7 @@ Copy file based on find, and take care of quotes and spaces:
 from relative path to absolute path
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">realpath -f /relative/path <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">this will follow symbolic link</span>
+<pre class="src src-shell">realpath -f /relative/path <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">this will follow symbolic link</span>
 </pre>
 </div>
 
@@ -522,11 +525,23 @@ from relative path to absolute path
 </div>
 
 
-
-
-<div id="outline-container-org9301f0a" class="outline-3">
-<h3 id="org9301f0a"><span class="section-number-3">5.7</span> Other</h3>
+<div id="outline-container-org313857d" class="outline-3">
+<h3 id="org313857d"><span class="section-number-3">5.7</span> tar</h3>
 <div class="outline-text-3" id="text-5-7">
+<p>
+tar zcvf file.tar.gz &#x2013;exclude=a.out &#x2013;exclude=*.gmout folder
+</p>
+<ul class="org-ul">
+<li>exclude must come before folder</li>
+<li>exclude use shell pattern</li>
+<li>exclude can be specified multiple times</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbbf4c7e" class="outline-3">
+<h3 id="orgbbf4c7e"><span class="section-number-3">5.8</span> Other</h3>
+<div class="outline-text-3" id="text-5-8">
 <ul class="org-ul">
 <li><code>time &lt;command&gt;</code>: # the total user and system time consumed by the shell and its children</li>
 <li><code>column</code>: formats its input into multiple columns. <code>mount | column -t</code></li>
@@ -551,7 +566,7 @@ from relative path to absolute path
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-04-10 Mon 20:56</p>
+<p class="date">Created: 2017-06-14 Wed 22:42</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
