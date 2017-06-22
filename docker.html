@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-06-22 Thu 10:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -236,12 +236,17 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgb73dd7d">1. General operations</a></li>
 <li><a href="#orgd62fe79">2. Remove sudo</a></li>
-<li><a href="#org125f5f3">3. Dockerfile</a></li>
-<li><a href="#org18e51d5">4. <span class="todo TODO">TODO</span> Docker hub</a></li>
-<li><a href="#orgfd680e7">5. Trouble Shooting</a>
+<li><a href="#org125f5f3">3. Dockerfile</a>
 <ul>
-<li><a href="#org6607646">5.1. I have to type double C-p to take effect</a></li>
-<li><a href="#orgfb55b9c">5.2. Docker exec tty is not a real tty</a></li>
+<li><a href="#org74fc38a">3.1. Commands</a></li>
+</ul>
+</li>
+<li><a href="#org18e51d5">4. <span class="todo TODO">TODO</span> Docker hub</a></li>
+<li><a href="#org29ae041">5. Tricks</a></li>
+<li><a href="#orgfd680e7">6. Trouble Shooting</a>
+<ul>
+<li><a href="#org6607646">6.1. I have to type double C-p to take effect</a></li>
+<li><a href="#orgfb55b9c">6.2. Docker exec tty is not a real tty</a></li>
 </ul>
 </li>
 </ul>
@@ -294,6 +299,11 @@ will show the port binding information.  If the port
 is not set when running a container, you have to
 commit it, and run it again to assign a port or
 another port.</dd>
+<dt>-v /volumn</dt><dd>create a mount at /volumn</dd>
+<dt>-v /local/dir:/mnt</dt><dd>mount local dir to the /mnt in
+container. The default is read-write mode, if you want read
+only, do this: <code>-v /local/dir:/mnt:ro</code>. The local dir must be
+ABSOLUTE path.</dd>
 </dl></dd>
 <dt>docker exec &lt;ID&gt; echo "hello"</dt><dd>run some command with arguments on the already run container &lt;ID&gt;
 <ul class="org-ul">
@@ -356,7 +366,39 @@ RUN wget http://131.123.42.38/lmcrs/beta/srcML-Ubuntu14.04-64.deb srcml.deb
 RUN dpkg -i srcml.deb
 </pre>
 </div>
+
+<div id="outline-container-org74fc38a" class="outline-3">
+<h3 id="org74fc38a"><span class="section-number-3">3.1</span> Commands</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>FROM: a base image</li>
+<li>ADD: <code>ADD &lt;src&gt; .. &lt;dst&gt;</code> The difference from copy:
+<ul class="org-ul">
+<li>ADD allows src to be url</li>
+<li>ADD will decompress an archive</li>
+</ul></li>
+<li>COPY: <code>COPY &lt;src&gt; .. &lt;dst&gt;</code> all srcs on the local machine will be
+copied to dst in the image. The src can use wildcards. The src
+cannot be out of the current build directory, e.g. <code>..</code> is not
+valid.</li>
+<li>USER: <code>USER daemon</code> The USER instruction sets the user name or UID
+to use when running the image and for any RUN, CMD and ENTRYPOINT
+instructions that follow it in the Dockerfile.</li>
+<li>WORKDIR: The WORKDIR instruction sets the working directory for any
+RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in
+the Dockerfile
+<ul class="org-ul">
+<li>if it does not exist, it will be created</li>
+<li>it can be used multiple times, if it is relative, it is relative
+to the previous WORKDIR</li>
+</ul></li>
+</ul>
 </div>
+</div>
+</div>
+
+
+
 <div id="outline-container-org18e51d5" class="outline-2">
 <h2 id="org18e51d5"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Docker hub</h2>
 <div class="outline-text-2" id="text-4">
@@ -366,13 +408,36 @@ When pushing and pulling, what exactly happens?
 </div>
 </div>
 
+<div id="outline-container-org29ae041" class="outline-2">
+<h2 id="org29ae041"><span class="section-number-2">5</span> Tricks</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Stop all containers
+</p>
+<blockquote>
+<p>
+docker stop $(docker ps -a -q)
+</p>
+</blockquote>
+
+<p>
+Remove all containers (will not remove non-stopped ones, but give errors)
+</p>
+<blockquote>
+<p>
+docker rm $(docker ps -a -q)
+</p>
+</blockquote>
+</div>
+</div>
+
 
 <div id="outline-container-orgfd680e7" class="outline-2">
-<h2 id="orgfd680e7"><span class="section-number-2">5</span> Trouble Shooting</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgfd680e7"><span class="section-number-2">6</span> Trouble Shooting</h2>
+<div class="outline-text-2" id="text-6">
 </div><div id="outline-container-org6607646" class="outline-3">
-<h3 id="org6607646"><span class="section-number-3">5.1</span> I have to type double C-p to take effect</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="org6607646"><span class="section-number-3">6.1</span> I have to type double C-p to take effect</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 <code>C-p C-q</code> is the default binding for detaching a container. This
 blocks C-p, I have to type it twice, must change.  In
@@ -394,8 +459,8 @@ Restart docker daemon to take effect. This can also be set by
 
 
 <div id="outline-container-orgfb55b9c" class="outline-3">
-<h3 id="orgfb55b9c"><span class="section-number-3">5.2</span> Docker exec tty is not a real tty</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="orgfb55b9c"><span class="section-number-3">6.2</span> Docker exec tty is not a real tty</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 I cannot connect to emacs server through emacsclient -t, and error
 message is terminal is not found. You can not open tmux also. But the
@@ -422,7 +487,7 @@ get the correct colors.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-06-22 Thu 10:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
