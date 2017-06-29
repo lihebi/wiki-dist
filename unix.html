@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-06-29 Thu 17:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unix Programming</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Unix Programming</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgff23098">1. Low-level IO</a>
+<ul>
+<li><a href="#orga065e57">1.1. open</a></li>
+<li><a href="#orgd8f5ec3">1.2. close</a></li>
+<li><a href="#orgd12709a">1.3. read</a></li>
+<li><a href="#org1c6743d">1.4. write</a></li>
+<li><a href="#org636ea40">1.5. fdopen</a></li>
+<li><a href="#org3b1ec0d">1.6. fileno</a></li>
+<li><a href="#org63bf8c9">1.7. fd<sub>set</sub></a></li>
+<li><a href="#org663c218">1.8. select - synchronous I/O multiplexing</a></li>
+<li><a href="#org52c3fc5">1.9. sync</a></li>
+<li><a href="#org65406aa">1.10. dup</a></li>
+</ul>
+</li>
+<li><a href="#org7bfb89e">2. Date and Time</a>
+<ul>
+<li><a href="#org734bdc5">2.1. struct timeval</a></li>
+<li><a href="#orgbe2fce1">2.2. struct timespec</a></li>
+<li><a href="#org78e2491">2.3. difftime</a></li>
+<li><a href="#orgbc45e3e">2.4. time<sub>t</sub></a></li>
+<li><a href="#org1086d4e">2.5. alarm</a>
+<ul>
+<li><a href="#org32650f3">2.5.1. struct itimerval</a></li>
+<li><a href="#org8c09b11">2.5.2. setitimer</a></li>
+<li><a href="#org667f78e">2.5.3. getitimer(int which, struct itimerval *old)</a></li>
+<li><a href="#org3ffcfae">2.5.4. alarm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgaf4068a">3. Process</a>
+<ul>
+<li><a href="#orgf7a09a6">3.1. system</a></li>
+<li><a href="#orgbba23c8">3.2. getpid</a></li>
+<li><a href="#org03cd7c3">3.3. fork</a></li>
+<li><a href="#orgc97e8d6">3.4. exec</a></li>
+<li><a href="#org0874358">3.5. wait</a>
+<ul>
+<li><a href="#org2befbea">3.5.1. Status</a>
+<ul>
+<li><a href="#org56a6b91">3.5.1.1. <span class="todo TODO">TODO</span> What is the difference between terminate and stop?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2b8cc1f">4. Tmp</a>
+<ul>
+<li><a href="#orgfe77548">4.1. poll - input/output multiplexing</a></li>
+<li><a href="#orgdc68ba9">4.2. sigaction</a></li>
+<li><a href="#org8b8b080">4.3. execvp</a></li>
+<li><a href="#org3e3726b">4.4. pipe</a></li>
+<li><a href="#orge98474c">4.5. timeradd</a></li>
+<li><a href="#org0453134">4.6. kill</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+References
+</p>
+<ul class="org-ul">
+<li><a href="https://www.gnu.org/software/libc/manual/html_node/index.html">https://www.gnu.org/software/libc/manual/html_node/index.html</a></li>
+</ul>
+
+<div id="outline-container-orgff23098" class="outline-2">
+<h2 id="orgff23098"><span class="section-number-2">1</span> Low-level IO</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orga065e57" class="outline-3">
+<h3 id="orga065e57"><span class="section-number-3">1.1</span> open</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">open</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">flags</span>[, <span style="color: #b58900;">mode_t</span> <span style="color: #268bd2;">mode</span>])
+</pre>
+</div>
+
+<p>
+Create and return a file descriptor.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd8f5ec3" class="outline-3">
+<h3 id="orgd8f5ec3"><span class="section-number-3">1.2</span> close</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">close</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">filedes</span>)
+</pre>
+</div>
+<ul class="org-ul">
+<li>file descriptor is deallocated</li>
+<li>if all file descriptors associated with a pipe are closed, any
+unread data is discarded.</li>
+</ul>
+<p>
+Return
+</p>
+<ul class="org-ul">
+<li>0 on success, -1 on failure</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd12709a" class="outline-3">
+<h3 id="orgd12709a"><span class="section-number-3">1.3</span> read</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">ssize_t</span> <span style="color: #268bd2;">read</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">filedes</span>, <span style="color: #b58900;">void</span> *<span style="color: #268bd2;">buffer</span>, <span style="color: #b58900;">size_t</span> <span style="color: #268bd2;">size</span>)
+</pre>
+</div>
+<ul class="org-ul">
+<li>read <i>up to</i> size bytes, store result in buffer.</li>
+</ul>
+<p>
+Return
+</p>
+<ul class="org-ul">
+<li>number of bytes actually read.</li>
+<li>return 0 means EOF</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1c6743d" class="outline-3">
+<h3 id="org1c6743d"><span class="section-number-3">1.4</span> write</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">ssize_t</span> <span style="color: #268bd2;">write</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">filedes</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">void</span> *<span style="color: #268bd2;">buffer</span>, <span style="color: #b58900;">size_t</span> <span style="color: #268bd2;">size</span>)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>write up to size bytes from buffer to the file descriptor.</li>
+</ul>
+<p>
+Return
+</p>
+<ul class="org-ul">
+<li>number of bytes actually written</li>
+<li>-1 on failure</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org636ea40" class="outline-3">
+<h3 id="org636ea40"><span class="section-number-3">1.5</span> fdopen</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">FILE</span> *<span style="color: #268bd2;">fdopen</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">filedes</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">opentype</span>)
+</pre>
+</div>
+
+<p>
+from file descriptor, get the stream
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3b1ec0d" class="outline-3">
+<h3 id="org3b1ec0d"><span class="section-number-3">1.6</span> fileno</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">fileno</span>(<span style="color: #b58900;">FILE</span> *<span style="color: #268bd2;">stream</span>)
+</pre>
+</div>
+
+<p>
+from stream to file descriptor
+</p>
+</div>
+</div>
+
+<div id="outline-container-org63bf8c9" class="outline-3">
+<h3 id="org63bf8c9"><span class="section-number-3">1.7</span> fd<sub>set</sub></h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+This is a bit array.
+</p>
+<ul class="org-ul">
+<li>FD<sub>ZERO</sub>(&amp;fdset): initialise fdset to empty</li>
+<li>FD<sub>CLR</sub>(fd, &amp;fdset): remove fd from the set</li>
+<li>FD<sub>SET</sub>(fd, &amp;fdset): add fd to the set</li>
+<li>FD<sub>ISSET</sub>(fd, &amp;fdset): return non-0 if fd is in set</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org663c218" class="outline-3">
+<h3 id="org663c218"><span class="section-number-3">1.8</span> select - synchronous I/O multiplexing</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">select</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">nfds</span>, <span style="color: #b58900;">fd_set</span> *<span style="color: #268bd2;">readfds</span>, <span style="color: #b58900;">fd_set</span> *<span style="color: #268bd2;">writefds</span>, <span style="color: #b58900;">fd_set</span> *<span style="color: #268bd2;">errorfds</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">timeout</span>)
+</pre>
+</div>
+
+<p>
+Block until at least one fd is true for specific condition, unless timeout.
+</p>
+
+<p>
+Params
+</p>
+<ul class="org-ul">
+<li>nfds: the range of file descriptors to be tested. Should be the
+largest one in the sets + 1. But just pass <code>FD_SETSIZE</code>.</li>
+<li>readfds: watch for read. can be NULL.</li>
+<li>writefds: watch for write. can be NULL.</li>
+<li>errorfds: watch for error. can be NULL.</li>
+<li>timeout:
+<ul class="org-ul">
+<li>NULL: no timeout, block forever</li>
+<li>0: return immediately. Used for test file descriptors</li>
+</ul></li>
+</ul>
+<p>
+Return:
+</p>
+<ul class="org-ul">
+<li>if timeout, return 0</li>
+<li>the sets are modified. Those in sets are those ready</li>
+<li>return the number of ready file descriptors in all sets</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">fd</span>;
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">init fd</span>
+
+<span style="color: #b58900;">fd_set</span> <span style="color: #268bd2;">set</span>;
+FD_ZERO(&amp;set)
+FD_SET(fd, &amp;set);
+
+<span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> <span style="color: #268bd2;">timeout</span>;
+timeout.tv_sec = 1;
+timeout.tv_usec = 0;
+
+select(FD_SETSIZE, &amp;set, <span style="color: #2aa198;">NULL</span>, <span style="color: #2aa198;">NULL</span>, &amp;timeout);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52c3fc5" class="outline-3">
+<h3 id="org52c3fc5"><span class="section-number-3">1.9</span> sync</h3>
+<div class="outline-text-3" id="text-1-9">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">sync</span>(<span style="color: #b58900;">void</span>) <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">sync all dirty files</span>
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">fsync</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">filedes</span>) <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">sync only that file</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org65406aa" class="outline-3">
+<h3 id="org65406aa"><span class="section-number-3">1.10</span> dup</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+You can create a new descriptor to refer to the same file. They
+</p>
+<ul class="org-ul">
+<li>share file position</li>
+<li>share status flag</li>
+<li>seperate descriptor flags</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">dup</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">old</span>)
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">same as</span>
+fcntl(old, F_DUPFD, 0)
+</pre>
+</div>
+
+<p>
+Copy old to the first available descriptor number.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">dup2</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">old</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">new</span>)
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">same as</span>
+close(new)
+fcntl(old, F_DUPFD, new)
+</pre>
+</div>
+
+<p>
+If old is invalid, it does nothing (does not close <code>new</code>)!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7bfb89e" class="outline-2">
+<h2 id="org7bfb89e"><span class="section-number-2">2</span> Date and Time</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>calendar time: absolute time, e.g. 2017/6/29</li>
+<li>interval: between two calendar times</li>
+<li>elapsed time: length of interval</li>
+<li>amount of time: sum of elapsed times</li>
+<li>period: elapsed time between two events</li>
+<li>CPU time: like calendar time, but relative to process, i.e. when the
+process run on CPU</li>
+<li>Processor time: amount of time a CPU is in use.</li>
+</ul>
+</div>
+
+<div id="outline-container-org734bdc5" class="outline-3">
+<h3 id="org734bdc5"><span class="section-number-3">2.1</span> struct timeval</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>time<sub>t</sub> tv<sub>sec</sub>: seconds</li>
+<li>long int tv<sub>usec</sub>: micro seconds, must be less than 1 million</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbe2fce1" class="outline-3">
+<h3 id="orgbe2fce1"><span class="section-number-3">2.2</span> struct timespec</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>time<sub>t</sub> tv<sub>sec</sub></li>
+<li>long int tv<sub>nsec</sub>: nanoseconds. Must be less than 1 billion</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org78e2491" class="outline-3">
+<h3 id="org78e2491"><span class="section-number-3">2.3</span> difftime</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">double</span> <span style="color: #268bd2;">difftime</span> (<span style="color: #b58900;">time_t</span> <span style="color: #268bd2;">time1</span>, <span style="color: #b58900;">time_t</span> <span style="color: #268bd2;">time0</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc45e3e" class="outline-3">
+<h3 id="orgbc45e3e"><span class="section-number-3">2.4</span> time<sub>t</sub></h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+On GNU it is long int. It should be the seconds elapsed since 00:00:00
+Jan 1 1970, Coordinated Universal Time.
+</p>
+
+<p>
+get current calenddar time:
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">time_t</span> <span style="color: #268bd2;">time</span>(<span style="color: #b58900;">time_t</span> *<span style="color: #268bd2;">result</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1086d4e" class="outline-3">
+<h3 id="org1086d4e"><span class="section-number-3">2.5</span> alarm</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-org32650f3" class="outline-4">
+<h4 id="org32650f3"><span class="section-number-4">2.5.1</span> struct itimerval</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<ul class="org-ul">
+<li>struct timeval it<sub>interval</sub>: 0 to send alarm once, non-zero to send every interval</li>
+<li>struct timeval it<sub>value</sub>: time left to alarm. If 0, the alarm is disabled</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8c09b11" class="outline-4">
+<h4 id="org8c09b11"><span class="section-number-4">2.5.2</span> setitimer</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">setitimer</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">which</span>, <span style="color: #859900;">const</span> <span style="color: #859900;">struct</span> <span style="color: #b58900;">itimerval</span> *<span style="color: #268bd2;">new</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">itimerval</span> *<span style="color: #268bd2;">old</span>)
+</pre>
+</div>
+<ul class="org-ul">
+<li>which: ITIMER<sub>REAL</sub>, ITIMER<sub>VIRTUAL</sub>, ITIMER<sub>PROF</sub></li>
+<li>new: set to new</li>
+<li>old: if not NULL, fill with old value</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org667f78e" class="outline-4">
+<h4 id="org667f78e"><span class="section-number-4">2.5.3</span> getitimer(int which, struct itimerval *old)</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<p>
+get the timer
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ffcfae" class="outline-4">
+<h4 id="org3ffcfae"><span class="section-number-4">2.5.4</span> alarm</h4>
+<div class="outline-text-4" id="text-2-5-4">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">alarm</span>(<span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">seconds</span>)
+</pre>
+</div>
+<p>
+To cancel existing alarm, use alarm(0).
+Return:
+</p>
+<ul class="org-ul">
+<li>0: no previous alarm</li>
+<li>non-0: the remaining value of previous alarm</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">int</span>
+<span style="color: #268bd2;">alarm</span> (<span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">seconds</span>)
+{
+  <span style="color: #859900;">struct</span> <span style="color: #b58900;">itimerval</span> <span style="color: #268bd2;">old</span>, <span style="color: #268bd2;">new</span>;
+  new.it_interval.tv_usec = 0;
+  new.it_interval.tv_sec = 0;
+  new.it_value.tv_usec = 0;
+  new.it_value.tv_sec = (<span style="color: #b58900;">long</span> <span style="color: #b58900;">int</span>) seconds;
+  <span style="color: #859900;">if</span> (setitimer (ITIMER_REAL, &amp;new, &amp;old) &lt; 0)
+    <span style="color: #859900;">return</span> 0;
+  <span style="color: #859900;">else</span>
+    <span style="color: #859900;">return</span> old.it_value.tv_sec;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf4068a" class="outline-2">
+<h2 id="orgaf4068a"><span class="section-number-2">3</span> Process</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Three steps
+</p>
+<ul class="org-ul">
+<li>create child process</li>
+<li>run an executable</li>
+<li>coordinate the results with parent</li>
+</ul>
+</div>
+<div id="outline-container-orgf7a09a6" class="outline-3">
+<h3 id="orgf7a09a6"><span class="section-number-3">3.1</span> system</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">system</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">command</span>)
+</pre>
+</div>
+<ul class="org-ul">
+<li>use <code>sh</code> to execute, and search in $PATH</li>
+<li>return -1 on error</li>
+<li>return the status code for the child</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbba23c8" class="outline-3">
+<h3 id="orgbba23c8"><span class="section-number-3">3.2</span> getpid</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>pid<sub>t</sub> getpid(void): return PID of current process</li>
+<li>pid<sub>t</sub> getppid(void): PID of parent process</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org03cd7c3" class="outline-3">
+<h3 id="org03cd7c3"><span class="section-number-3">3.3</span> fork</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">pid_t</span> <span style="color: #268bd2;">fork</span>(<span style="color: #b58900;">void</span>)
+</pre>
+</div>
+
+<p>
+return
+</p>
+<ul class="org-ul">
+<li>0 in child</li>
+<li>child's PID in parent</li>
+<li>-1 on error</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc97e8d6" class="outline-3">
+<h3 id="orgc97e8d6"><span class="section-number-3">3.4</span> exec</h3>
+<div class="outline-text-3" id="text-3-4">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">execv</span> (<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #b58900;">char</span> *<span style="color: #859900;">const</span> <span style="color: #268bd2;">argv</span>[])
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">execl</span> (<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">arg0</span>, ...)
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">execve</span> (<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #b58900;">char</span> *<span style="color: #859900;">const</span> <span style="color: #268bd2;">argv</span>[], <span style="color: #b58900;">char</span> *<span style="color: #859900;">const</span> <span style="color: #268bd2;">env</span>[])
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">execle</span> (<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">arg0</span>, ..., <span style="color: #b58900;">char</span> *<span style="color: #859900;">const</span> <span style="color: #268bd2;">env</span>[])
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">execvp</span> (<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #b58900;">char</span> *<span style="color: #859900;">const</span> <span style="color: #268bd2;">argv</span>[])
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">execlp</span> (<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">filename</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">arg0</span>, ...)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>execv: the last of argv array must be NULL. All strings are null-terminated.</li>
+<li>execl: argv are seperated, the last one must be NULL</li>
+<li>execve: provide env</li>
+<li>execle</li>
+<li>execvp: find filename in $PATH</li>
+<li>execlp</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0874358" class="outline-3">
+<h3 id="org0874358"><span class="section-number-3">3.5</span> wait</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+This should be used in parent process.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">pid_t</span> <span style="color: #268bd2;">waitpid</span>(<span style="color: #b58900;">pid_t</span> <span style="color: #268bd2;">pid</span>, <span style="color: #b58900;">int</span> *<span style="color: #268bd2;">status_ptr</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">options</span>)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>pid:
+<ul class="org-ul">
+<li>positive: the pid for a child process</li>
+<li>-1 (WAIT<sub>ANY</sub>): any child process</li>
+<li>0 (WAIT<sub>MYPGRP</sub>): any child process that has the same <i>process group ID</i> as the parent</li>
+<li>-pgid (any other negative value): any child process having the
+<i>process group ID</i> as gpid</li>
+</ul></li>
+<li>options: OR of the following
+<ul class="org-ul">
+<li>WNOHANG: no hang: the parent process should not wait</li>
+<li>WUNTRACED: report stopped process as well as the terminated ones</li>
+</ul></li>
+<li>return: PID of the child process that is reporting</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">pid_t</span> <span style="color: #268bd2;">wait</span>(<span style="color: #b58900;">int</span> *<span style="color: #268bd2;">status_ptr</span>)
+</pre>
+</div>
+
+<p>
+<code>wait(&amp;status)</code> is same as <code>waitpid(-1, &amp;status, 0)</code>
+</p>
+</div>
+
+<div id="outline-container-org2befbea" class="outline-4">
+<h4 id="org2befbea"><span class="section-number-4">3.5.1</span> Status</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+The signature is <code>int NAME(int status)</code>.
+</p>
+<ul class="org-ul">
+<li>WIFEXITED: if exited: return non-0 if child terminated normally with exit</li>
+<li>WEXITSTATUS: exit status: if above true, this is the low-order 8
+bits of the exit code</li>
+<li>WIFSIGNALED: if signaled: non-0 if the process terminated because it
+receives a signal that was not handled</li>
+<li>WTERMSIG: term sig: if above true, return that signal number</li>
+<li>WCOREDUMP: core dump: non-0 if the child process terminated and
+produce a core dump</li>
+<li>WIFSTOPPED: if stopped: if the child process stopped</li>
+<li>WSTOPSIG: stop sig: if above true, return the signal number that
+cause the child to stop</li>
+</ul>
+</div>
+
+<div id="outline-container-org56a6b91" class="outline-5">
+<h5 id="org56a6b91"><span class="section-number-5">3.5.1.1</span> <span class="todo TODO">TODO</span> What is the difference between terminate and stop?</h5>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2b8cc1f" class="outline-2">
+<h2 id="org2b8cc1f"><span class="section-number-2">4</span> Tmp</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgfe77548" class="outline-3">
+<h3 id="orgfe77548"><span class="section-number-3">4.1</span> poll - input/output multiplexing</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">poll</span>(<span style="color: #859900;">struct</span> <span style="color: #b58900;">pollfd</span> <span style="color: #268bd2;">fds</span>[], <span style="color: #b58900;">nfds_t</span> <span style="color: #268bd2;">nfds</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">timeout</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdc68ba9" class="outline-3">
+<h3 id="orgdc68ba9"><span class="section-number-3">4.2</span> sigaction</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">handler must be void (*) (int)</span>
+<span style="color: #b58900;">void</span> <span style="color: #268bd2;">handle_signal</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">signal</span>) {
+  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">should be alarm</span>
+  <span style="color: #859900;">if</span> (signal != SIGALRM) {
+    std::cerr &lt;&lt; <span style="color: #2aa198;">"Wrong signal: "</span> &lt;&lt; signal &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
+  }
+}
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span>() {
+  <span style="color: #859900;">struct</span> <span style="color: #b58900;">sigaction</span> <span style="color: #268bd2;">sa</span>;
+  sa.sa_handler = &amp;handle_signal;
+  sigaction(<span style="color: #268bd2;">SIGALRM</span>, &amp;sa, <span style="color: #2aa198;">NULL</span>);
+  ualarm(timeout_usec, 0);
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8b8b080" class="outline-3">
+<h3 id="org8b8b080"><span class="section-number-3">4.3</span> execvp</h3>
+</div>
+<div id="outline-container-org3e3726b" class="outline-3">
+<h3 id="org3e3726b"><span class="section-number-3">4.4</span> pipe</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">pipe</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">filedes</span>[2])
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Create a pipie and puts the filedes[0] for reading, filedes[1] for writing</li>
+</ul>
+<p>
+Return:
+</p>
+<ul class="org-ul">
+<li>0 on success, -1 on failure</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge98474c" class="outline-3">
+<h3 id="orge98474c"><span class="section-number-3">4.5</span> timeradd</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">timeradd</span>(<span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">a</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">b</span>,
+              <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">res</span>);
+<span style="color: #b58900;">void</span> <span style="color: #268bd2;">timersub</span>(<span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">a</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">b</span>,
+              <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">res</span>);
+<span style="color: #b58900;">void</span> <span style="color: #268bd2;">timerclear</span>(<span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">tvp</span>);
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">timerisset</span>(<span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">tvp</span>);
+<span style="color: #b58900;">int</span> <span style="color: #268bd2;">timercmp</span>(<span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">a</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> *<span style="color: #268bd2;">b</span>, CMP);
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>timeradd: res = a+b</li>
+<li>timersub: res = a-b</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0453134" class="outline-3">
+<h3 id="org0453134"><span class="section-number-3">4.6</span> kill</h3>
+<div class="outline-text-3" id="text-4-6">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">kill</span>(<span style="color: #b58900;">pid_t</span> <span style="color: #268bd2;">pid</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">sig</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2017-06-29 Thu 17:34</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
