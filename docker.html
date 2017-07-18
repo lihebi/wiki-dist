@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-22 Thu 10:34 -->
+<!-- 2017-07-07 Fri 17:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -234,19 +234,42 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb73dd7d">1. General operations</a></li>
-<li><a href="#orgd62fe79">2. Remove sudo</a></li>
-<li><a href="#org125f5f3">3. Dockerfile</a>
+<li><a href="#org80d8a3d">1. Compose</a>
 <ul>
-<li><a href="#org74fc38a">3.1. Commands</a></li>
+<li><a href="#org92dc547">1.1. service</a></li>
+<li><a href="#org71e8606">1.2. <span class="todo TODO">TODO</span> volumes</a></li>
+<li><a href="#orge33ae42">1.3. <span class="todo TODO">TODO</span> network</a></li>
 </ul>
 </li>
-<li><a href="#org18e51d5">4. <span class="todo TODO">TODO</span> Docker hub</a></li>
-<li><a href="#org29ae041">5. Tricks</a></li>
-<li><a href="#orgfd680e7">6. Trouble Shooting</a>
+<li><a href="#orgdf9c41f">2. Network</a></li>
+<li><a href="#org82a1975">3. Volume</a>
 <ul>
-<li><a href="#org6607646">6.1. I have to type double C-p to take effect</a></li>
-<li><a href="#orgfb55b9c">6.2. Docker exec tty is not a real tty</a></li>
+<li><a href="#org4df5081">3.1. Create Volume</a></li>
+<li><a href="#org3a0cf24">3.2. Mount volume to a container</a></li>
+<li><a href="#orga5c3de0">3.3. Manipulate Volume</a>
+<ul>
+<li><a href="#org861cc9b">3.3.1. <span class="todo TODO">TODO</span> Will it be updated or not?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb73dd7d">4. General operations</a>
+<ul>
+<li><a href="#orgdf87daf">4.1. Docker stop</a></li>
+</ul>
+</li>
+<li><a href="#orgd62fe79">5. Remove sudo</a></li>
+<li><a href="#org125f5f3">6. Dockerfile</a>
+<ul>
+<li><a href="#org74fc38a">6.1. Commands</a></li>
+</ul>
+</li>
+<li><a href="#org18e51d5">7. <span class="todo TODO">TODO</span> Docker hub</a></li>
+<li><a href="#org29ae041">8. Tricks</a></li>
+<li><a href="#orgfd680e7">9. Trouble Shooting</a>
+<ul>
+<li><a href="#org6607646">9.1. I have to type double C-p to take effect</a></li>
+<li><a href="#orgfb55b9c">9.2. Docker exec tty is not a real tty</a></li>
 </ul>
 </li>
 </ul>
@@ -282,9 +305,180 @@ You can assign a name to the container so that you can better remember
 and reference it.
 </p>
 
-<div id="outline-container-orgb73dd7d" class="outline-2">
-<h2 id="orgb73dd7d"><span class="section-number-2">1</span> General operations</h2>
+<div id="outline-container-org80d8a3d" class="outline-2">
+<h2 id="org80d8a3d"><span class="section-number-2">1</span> Compose</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+It is installed seperately with docker.
+</p>
+
+<p>
+It must be run inside the folder containing <code>docker-compose.yml</code>
+</p>
+
+<p>
+Commands
+</p>
+<ul class="org-ul">
+<li>docker-compose up: up the service. It will not exit. Use C-c to exit
+and the <code>docker-compose down</code> command will be sent.
+<ul class="org-ul">
+<li>The second time you up the compose, it will not up, but update
+current. If all current are up to date, nothing will happen.</li>
+</ul></li>
+<li>docker-compose up -d: up the service and exit. You need to shutdown
+it maually</li>
+<li>docker-compose down: shutdown the services</li>
+</ul>
+
+<p>
+A sample compose file:
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #268bd2;">version</span>: <span style="color: #2aa198;">'2'</span>
+<span style="color: #268bd2;">services</span>:
+  <span style="color: #268bd2;">srcml-server-container</span>:
+    <span style="color: #268bd2;">image</span>: <span style="color: #2aa198;">"lihebi/srcml-server"</span>
+  <span style="color: #268bd2;">helium</span>:
+    <span style="color: #268bd2;">image</span>: <span style="color: #2aa198;">"lihebi/arch-helium"</span>
+    <span style="color: #268bd2;">tty</span>: <span style="color: #2aa198;">true</span>
+    <span style="color: #268bd2;">volumes</span>:
+      - data:/data
+  <span style="color: #268bd2;">benchmark-downloader</span>:
+    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">this is used to download benchmarks to the shared volume</span>
+    <span style="color: #268bd2;">image</span>: <span style="color: #2aa198;">"lihebi/benchmark-downloader"</span>
+    <span style="color: #268bd2;">tty</span>: <span style="color: #2aa198;">true</span>
+    <span style="color: #268bd2;">volumes</span>:
+      - data:/data
+<span style="color: #268bd2;">volumes</span>:
+  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">create a volume with default</span>
+  <span style="color: #268bd2;">data</span>:
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org92dc547" class="outline-3">
+<h3 id="org92dc547"><span class="section-number-3">1.1</span> service</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A service is a container. Setting tty to true to prevent it from
+stopping. That is the same effect when you pass <code>-t</code> to <code>docker run</code>.
+</p>
+
+<p>
+The containers can be seen by docker ps, with names prefixed and
+suffixed by <code>compose_XXX_1</code>
+</p>
+
+<p>
+Change to the container will not preserve after the compose down. The
+containers will be deleted. Next up will create new containers.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71e8606" class="outline-3">
+<h3 id="org71e8606"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> volumes</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Under any volume, if <code>external</code> option is set to <code>true</code>, docker
+compose will find it outside, and signal error if it does not exist.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge33ae42" class="outline-3">
+<h3 id="orge33ae42"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> network</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Once the compose is up, docker create a bridge network called
+<code>compose_default</code>. All services (containers) are attached to that.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdf9c41f" class="outline-2">
+<h2 id="orgdf9c41f"><span class="section-number-2">2</span> Network</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>docker network ls</li>
+<li>docker network inspect &lt;network-name&gt;</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org82a1975" class="outline-2">
+<h2 id="org82a1975"><span class="section-number-2">3</span> Volume</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A volume must be locally available if you create a <code>local</code> volume.
+</p>
+</div>
+<div id="outline-container-org4df5081" class="outline-3">
+<h3 id="org4df5081"><span class="section-number-3">3.1</span> Create Volume</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+You can create a volume like this:
+</p>
+<pre class="example">
+docker volume create hello
+</pre>
+
+<p>
+Volumes can also be created upon creating a container.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3a0cf24" class="outline-3">
+<h3 id="org3a0cf24"><span class="section-number-3">3.2</span> Mount volume to a container</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+You have to mount at the time you create the container. You cannot
+remount anything to it without commiting it to an image and create
+again. 
+</p>
+
+<pre class="example">
+docker run -v /mnt &lt;image&gt;
+docker run -v my-named-vol:/mnt &lt;image&gt;
+docker run -v /absolute/path/to/host/local/path:/mnt/in/container &lt;image&gt;
+</pre>
+
+<p>
+If only inner path is provided, the volume will still be created, but
+with a long named directory under <code>/var/lib/docker/volumes</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5c3de0" class="outline-3">
+<h3 id="orga5c3de0"><span class="section-number-3">3.3</span> Manipulate Volume</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The volumes will never be automatically deleted, even if the container is deleted.
+</p>
+</div>
+
+<div id="outline-container-org861cc9b" class="outline-4">
+<h4 id="org861cc9b"><span class="section-number-4">3.3.1</span> <span class="todo TODO">TODO</span> Will it be updated or not?</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<pre class="example">
+docker volume inspect &lt;volume-full-name&gt;
+docker volume ls
+docker volume prune # remove all unused volumes
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgb73dd7d" class="outline-2">
+<h2 id="orgb73dd7d"><span class="section-number-2">4</span> General operations</h2>
+<div class="outline-text-2" id="text-4">
 <dl class="org-dl">
 <dt>docker images</dt><dd>list images</dd>
 <dt>docker images &lt;name&gt;</dt><dd>list images whose name is "name" (can have different) tags</dd>
@@ -334,16 +528,64 @@ In the folder containing Dockerfile, run to build the image:
 docker build -t my-ubuntu .
 </pre>
 
+<p>
+use &#x2013;no-cache to avoid using cache
+</p>
+
 <dl class="org-dl">
 <dt>docker history &lt;image&gt;</dt><dd>show which layers are used to create &lt;image&gt;</dd>
 </dl>
 </div>
+
+<div id="outline-container-orgdf87daf" class="outline-3">
+<h3 id="orgdf87daf"><span class="section-number-3">4.1</span> Docker stop</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+docker stop will send SIGTERM to the app, then wait for it to stop. The default wait time is 10 seconds. You can change this by
+</p>
+<pre class="example">
+docker stop -t 1 &lt;container-ID&gt;
+</pre>
+<p>
+This will change the timeout to be 1 second.
+</p>
+
+<p>
+The reason for a container to resist stopping may be it ignores the
+SIGTERM request. Python did this, so for a python program, you should
+handle this signal yourself:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">import</span> sys
+<span style="color: #859900;">import</span> signal
+
+<span style="color: #859900;">def</span> <span style="color: #268bd2;">handler</span>(signum, frame):
+<span style="color: #586e75; background-color: #073642;"> </span>   sys.<span style="color: #2aa198;">exit</span>(1)
+
+<span style="color: #859900;">def</span> <span style="color: #268bd2;">main</span>():
+<span style="color: #586e75; background-color: #073642;"> </span>   signal.signal(signal.SIGTERM, hanlder)
+<span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">your app</span>
+</pre>
 </div>
 
 
+<p>
+Next thing is the entry point and commands. If you use shell form, it
+is started by sh -c, and shell will not pass the signal to the app
+either. So change it to json form.
+</p>
+
+<p>
+Finally, <code>docker stop</code> tries to terminate the app gracefully by
+sending SIGTERM, you can choose to force kill using <code>docker kill</code>
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orgd62fe79" class="outline-2">
-<h2 id="orgd62fe79"><span class="section-number-2">2</span> Remove sudo</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orgd62fe79"><span class="section-number-2">5</span> Remove sudo</h2>
+<div class="outline-text-2" id="text-5">
 <pre class="example">
 sudo groupadd docker
 sudo gpasswd -a ${USER} docker
@@ -354,8 +596,8 @@ newgrp docker
 </div>
 
 <div id="outline-container-org125f5f3" class="outline-2">
-<h2 id="org125f5f3"><span class="section-number-2">3</span> Dockerfile</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org125f5f3"><span class="section-number-2">6</span> Dockerfile</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 I'm trying a docker file for srcml container. 
 </p>
@@ -368,10 +610,11 @@ RUN dpkg -i srcml.deb
 </div>
 
 <div id="outline-container-org74fc38a" class="outline-3">
-<h3 id="org74fc38a"><span class="section-number-3">3.1</span> Commands</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org74fc38a"><span class="section-number-3">6.1</span> Commands</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>FROM: a base image</li>
+<li>ENV key=value</li>
 <li>ADD: <code>ADD &lt;src&gt; .. &lt;dst&gt;</code> The difference from copy:
 <ul class="org-ul">
 <li>ADD allows src to be url</li>
@@ -392,6 +635,8 @@ the Dockerfile
 <li>it can be used multiple times, if it is relative, it is relative
 to the previous WORKDIR</li>
 </ul></li>
+<li>ENTRYPOINT ["executable", "param1", "param2"]: configure the
+container to be run as an executable.</li>
 </ul>
 </div>
 </div>
@@ -400,17 +645,22 @@ to the previous WORKDIR</li>
 
 
 <div id="outline-container-org18e51d5" class="outline-2">
-<h2 id="org18e51d5"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Docker hub</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org18e51d5"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> Docker hub</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 When pushing and pulling, what exactly happens?
 </p>
+
+<pre class="example">
+docker tag local-image lihebi/my-image
+docker push lihebi/my-image
+</pre>
 </div>
 </div>
 
 <div id="outline-container-org29ae041" class="outline-2">
-<h2 id="org29ae041"><span class="section-number-2">5</span> Tricks</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org29ae041"><span class="section-number-2">8</span> Tricks</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 Stop all containers
 </p>
@@ -433,11 +683,11 @@ docker rm $(docker ps -a -q)
 
 
 <div id="outline-container-orgfd680e7" class="outline-2">
-<h2 id="orgfd680e7"><span class="section-number-2">6</span> Trouble Shooting</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="orgfd680e7"><span class="section-number-2">9</span> Trouble Shooting</h2>
+<div class="outline-text-2" id="text-9">
 </div><div id="outline-container-org6607646" class="outline-3">
-<h3 id="org6607646"><span class="section-number-3">6.1</span> I have to type double C-p to take effect</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org6607646"><span class="section-number-3">9.1</span> I have to type double C-p to take effect</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 <code>C-p C-q</code> is the default binding for detaching a container. This
 blocks C-p, I have to type it twice, must change.  In
@@ -459,8 +709,8 @@ Restart docker daemon to take effect. This can also be set by
 
 
 <div id="outline-container-orgfb55b9c" class="outline-3">
-<h3 id="orgfb55b9c"><span class="section-number-3">6.2</span> Docker exec tty is not a real tty</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="orgfb55b9c"><span class="section-number-3">9.2</span> Docker exec tty is not a real tty</h3>
+<div class="outline-text-3" id="text-9-2">
 <p>
 I cannot connect to emacs server through emacsclient -t, and error
 message is terminal is not found. You can not open tmux also. But the
@@ -487,7 +737,7 @@ get the correct colors.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-22 Thu 10:34</p>
+<p class="date">Created: 2017-07-07 Fri 17:53</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

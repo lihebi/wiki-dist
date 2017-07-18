@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-07-18 Tue 11:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,46 +234,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0c9bad0">1. Type</a>
+<li><a href="#org571a8f2">1. clojure.core</a>
 <ul>
-<li><a href="#orgb8b3525">1.1. Number</a>
-<ul>
-<li><a href="#org3ec02ed">1.1.1. Arithmetic</a></li>
-<li><a href="#org90e83e7">1.1.2. Compare</a></li>
-<li><a href="#org47319b0">1.1.3. Bitwise</a></li>
-<li><a href="#orgd73f7fc">1.1.4. Cast</a></li>
-<li><a href="#org4686072">1.1.5. Predicate</a></li>
-<li><a href="#orge4b2c93">1.1.6. Random</a></li>
+<li><a href="#orgcff053b">1.1. Namespace</a></li>
 </ul>
 </li>
-<li><a href="#org84a4ad4">1.2. symbols &amp; keywords</a></li>
-<li><a href="#orgfae3d54">1.3. String</a>
+<li><a href="#org0c9bad0">2. Type</a>
 <ul>
-<li><a href="#org6963b0e">1.3.1. Use</a></li>
-<li><a href="#org62b6ab6">1.3.2. Regex</a></li>
-<li><a href="#orgcbc6666">1.3.3. Letter</a></li>
-<li><a href="#orge080558">1.3.4. trim</a></li>
-<li><a href="#orgf184e7e">1.3.5. Predicate</a></li>
-<li><a href="#org2f3de56">1.3.6. characters</a></li>
+<li><a href="#orgb8b3525">2.1. Number</a>
+<ul>
+<li><a href="#org3ec02ed">2.1.1. Arithmetic</a></li>
+<li><a href="#org90e83e7">2.1.2. Compare</a></li>
+<li><a href="#org47319b0">2.1.3. Bitwise</a></li>
+<li><a href="#orgd73f7fc">2.1.4. Cast</a></li>
+<li><a href="#orgf184e7e">2.1.5. Predicate</a></li>
+<li><a href="#orge4b2c93">2.1.6. Random</a></li>
+</ul>
+</li>
+<li><a href="#org84a4ad4">2.2. symbols &amp; keywords</a></li>
+<li><a href="#orgfae3d54">2.3. String</a>
+<ul>
+<li><a href="#org6963b0e">2.3.1. Use</a></li>
+<li><a href="#org62b6ab6">2.3.2. Regex</a></li>
+<li><a href="#orgcbc6666">2.3.3. Letter</a></li>
+<li><a href="#orge080558">2.3.4. trim</a></li>
+<li><a href="#orgc5abdcd">2.3.5. Predicate</a></li>
+<li><a href="#org2f3de56">2.3.6. characters</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org564c584">2. Collections</a>
+<li><a href="#org564c584">3. Collections</a>
 <ul>
-<li><a href="#org1ff75ec">2.1. Collection</a>
+<li><a href="#org1ff75ec">3.1. Collection</a>
 <ul>
-<li><a href="#org50abb1a">2.1.1. Generic</a></li>
-<li><a href="#org9f24968">2.1.2. ops</a></li>
-<li><a href="#org56f03aa">2.1.3. Predicates</a></li>
-<li><a href="#orgae6537b">2.1.4. Capabilities</a></li>
+<li><a href="#org50abb1a">3.1.1. Generic</a></li>
+<li><a href="#org9f24968">3.1.2. ops</a></li>
+<li><a href="#org56f03aa">3.1.3. Predicates</a></li>
+<li><a href="#orgae6537b">3.1.4. Capabilities</a></li>
 </ul>
 </li>
-<li><a href="#org9055884">2.2. List</a></li>
-<li><a href="#org06a6dc5">2.3. Vector</a>
+<li><a href="#org9055884">3.2. List</a></li>
+<li><a href="#org06a6dc5">3.3. Vector</a>
 <ul>
-<li><a href="#org534c1f0">2.3.1. Create</a></li>
-<li><a href="#orgbc08aed">2.3.2. Examine</a></li>
+<li><a href="#org534c1f0">3.3.1. Create</a></li>
+<li><a href="#orgbc08aed">3.3.2. Examine</a></li>
 </ul>
 </li>
 </ul>
@@ -296,20 +301,104 @@ document better. I simply want to read a well sectioned document containing all 
 Suspend the interest for clojure for now.
 </p>
 
+<ul class="org-ul">
+<li>The <a href="clojure-other.html">old clojure page</a></li>
+<li>the <a href="clojure-tools.html">tools</a> for clojure</li>
+
+<li><a href="https://clojure.github.io/">https://clojure.github.io/</a> is the API reference, in alphabet order</li>
+</ul>
+
+
+<div id="outline-container-org571a8f2" class="outline-2">
+<h2 id="org571a8f2"><span class="section-number-2">1</span> clojure.core</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><code>*in*</code></li>
+<li><code>*out*</code></li>
+<li><code>*err*</code></li>
+
+<li>assert</li>
+</ul>
+</div>
+
+
+<div id="outline-container-orgcff053b" class="outline-3">
+<h3 id="orgcff053b"><span class="section-number-3">1.1</span> Namespace</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-The <a href="clojure-other.html">old clojure page</a>
+Namespaces are maps that map name to var. Namespace is seperated by
+dot, similar to java. The recommended format: <code>org.lib.funcgroup</code>.
 </p>
 
+<ul class="org-ul">
+<li><code>clojure.core/ns</code>: [name docstring? attr-map? references*]
+<ul class="org-ul">
+<li>set <code>*ns*</code> to name</li>
+<li>references are same as calling them, except arguments are not quoted
+<ul class="org-ul">
+<li>(:refer-clojure &#x2026;)</li>
+<li>(:require &#x2026;)</li>
+<li>(:use &#x2026;)</li>
+<li>(:import &#x2026;)</li>
+<li>(:load &#x2026;)</li>
+<li>(:gen-class)</li>
+</ul></li>
+</ul></li>
+
+<li><code>require [&amp; args]</code>: The scope will be available, the functions under
+them can be called using the scope.
+<ul class="org-ul">
+<li>load libs, skip already loaded.</li>
+<li>do not usually use directly, use in <code>ns</code> instead</li>
+<li>args can be a single symbol, or with options. It recognizes options
+<ul class="org-ul">
+<li><code>:as sym</code>: as a symbol. e.g. <code>(require [clojure.walk :as walk])</code></li>
+<li><code>:refer sym-list</code>: the list of symbols inside the lib can be
+called without the scope. The list can be <code>:all</code></li>
+</ul></li>
+</ul></li>
+<li><code>refer [ns-sym &amp;filters]</code>: refer to all public vars of ns into
+current namespace. Filters:
+<ul class="org-ul">
+<li>:exclude list-of-symbols</li>
+<li>:only list-of-symbols</li>
+<li>:rename map-of-fromsymbol-tosymbol</li>
+</ul></li>
+<li><code>refer-clojure [&amp; filters]</code>: same as (refer 'clojure-core
+&lt;filters&gt;). clojure-core is refered by default, so this is typically
+used with exclude filter.</li>
+<li><code>use [&amp; args]</code>: do not use after clojure 1.4. Use <code>require</code> with
+<code>:refer</code> instead
+<ol class="org-ol">
+<li>require</li>
+<li>refer the lib's namespace</li>
+</ol></li>
+<li><code>import [&amp; import-symbols-or-lists]</code>: as import a java classes and
+make them usable in their short name in clojure
+<ul class="org-ul">
+<li>since we have the rest sign <code>&amp;</code>, the arguments are not inside a
+list, but as multiple arguments for import</li>
+<li>as the argument name indicates, it can be symbol or list
+<ul class="org-ul">
+<li>symbol: is the full java class, e.g. <code>java.util.Date</code></li>
+<li>list: to save some typing, if importing multiple classes from
+same namespace: <code>[java.util.concurrent Executors TimeUnit]</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
 
 <div id="outline-container-org0c9bad0" class="outline-2">
-<h2 id="org0c9bad0"><span class="section-number-2">1</span> Type</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org0c9bad0"><span class="section-number-2">2</span> Type</h2>
+<div class="outline-text-2" id="text-2">
 </div><div id="outline-container-orgb8b3525" class="outline-3">
-<h3 id="orgb8b3525"><span class="section-number-3">1.1</span> Number</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgb8b3525"><span class="section-number-3">2.1</span> Number</h3>
+<div class="outline-text-3" id="text-2-1">
 </div><div id="outline-container-org3ec02ed" class="outline-4">
-<h4 id="org3ec02ed"><span class="section-number-4">1.1.1</span> Arithmetic</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<h4 id="org3ec02ed"><span class="section-number-4">2.1.1</span> Arithmetic</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>+-*/</li>
 <li>quot</li>
@@ -325,8 +414,8 @@ The <a href="clojure-other.html">old clojure page</a>
 </div>
 
 <div id="outline-container-org90e83e7" class="outline-4">
-<h4 id="org90e83e7"><span class="section-number-4">1.1.2</span> Compare</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<h4 id="org90e83e7"><span class="section-number-4">2.1.2</span> Compare</h4>
+<div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>=</li>
 <li>==</li>
@@ -337,8 +426,8 @@ The <a href="clojure-other.html">old clojure page</a>
 </div>
 
 <div id="outline-container-org47319b0" class="outline-4">
-<h4 id="org47319b0"><span class="section-number-4">1.1.3</span> Bitwise</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<h4 id="org47319b0"><span class="section-number-4">2.1.3</span> Bitwise</h4>
+<div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>bit-and</li>
 <li>bit-or</li>
@@ -355,8 +444,8 @@ The <a href="clojure-other.html">old clojure page</a>
 </div>
 
 <div id="outline-container-orgd73f7fc" class="outline-4">
-<h4 id="orgd73f7fc"><span class="section-number-4">1.1.4</span> Cast</h4>
-<div class="outline-text-4" id="text-1-1-4">
+<h4 id="orgd73f7fc"><span class="section-number-4">2.1.4</span> Cast</h4>
+<div class="outline-text-4" id="text-2-1-4">
 <ul class="org-ul">
 <li>byte</li>
 <li>short</li>
@@ -371,9 +460,9 @@ The <a href="clojure-other.html">old clojure page</a>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4686072" class="outline-4">
-<h4 id="org4686072"><span class="section-number-4">1.1.5</span> Predicate</h4>
-<div class="outline-text-4" id="text-1-1-5">
+<div id="outline-container-orgf184e7e" class="outline-4">
+<h4 id="orgf184e7e"><span class="section-number-4">2.1.5</span> Predicate</h4>
+<div class="outline-text-4" id="text-2-1-5">
 <ul class="org-ul">
 <li>nil?</li>
 <li>identical?</li>
@@ -398,8 +487,8 @@ Other
 </div>
 </div>
 <div id="outline-container-orge4b2c93" class="outline-4">
-<h4 id="orge4b2c93"><span class="section-number-4">1.1.6</span> Random</h4>
-<div class="outline-text-4" id="text-1-1-6">
+<h4 id="orge4b2c93"><span class="section-number-4">2.1.6</span> Random</h4>
+<div class="outline-text-4" id="text-2-1-6">
 <ul class="org-ul">
 <li>rand</li>
 <li>rand-int</li>
@@ -410,8 +499,8 @@ Other
 
 
 <div id="outline-container-org84a4ad4" class="outline-3">
-<h3 id="org84a4ad4"><span class="section-number-3">1.2</span> symbols &amp; keywords</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org84a4ad4"><span class="section-number-3">2.2</span> symbols &amp; keywords</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-ns</code>
 </p>
@@ -420,11 +509,11 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 
 
 <div id="outline-container-orgfae3d54" class="outline-3">
-<h3 id="orgfae3d54"><span class="section-number-3">1.3</span> String</h3>
-<div class="outline-text-3" id="text-1-3">
+<h3 id="orgfae3d54"><span class="section-number-3">2.3</span> String</h3>
+<div class="outline-text-3" id="text-2-3">
 </div><div id="outline-container-org6963b0e" class="outline-4">
-<h4 id="org6963b0e"><span class="section-number-4">1.3.1</span> Use</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<h4 id="org6963b0e"><span class="section-number-4">2.3.1</span> Use</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>count</li>
 <li>get</li>
@@ -443,8 +532,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org62b6ab6" class="outline-4">
-<h4 id="org62b6ab6"><span class="section-number-4">1.3.2</span> Regex</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<h4 id="org62b6ab6"><span class="section-number-4">2.3.2</span> Regex</h4>
+<div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li>#"pattern"</li>
 <li>re-find</li>
@@ -460,8 +549,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgcbc6666" class="outline-4">
-<h4 id="orgcbc6666"><span class="section-number-4">1.3.3</span> Letter</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<h4 id="orgcbc6666"><span class="section-number-4">2.3.3</span> Letter</h4>
+<div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li>capitalize</li>
 <li>lower-case</li>
@@ -470,8 +559,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orge080558" class="outline-4">
-<h4 id="orge080558"><span class="section-number-4">1.3.4</span> trim</h4>
-<div class="outline-text-4" id="text-1-3-4">
+<h4 id="orge080558"><span class="section-number-4">2.3.4</span> trim</h4>
+<div class="outline-text-4" id="text-2-3-4">
 <ul class="org-ul">
 <li>trim</li>
 <li>trim-newline</li>
@@ -480,9 +569,9 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf184e7e" class="outline-4">
-<h4 id="orgf184e7e"><span class="section-number-4">1.3.5</span> Predicate</h4>
-<div class="outline-text-4" id="text-1-3-5">
+<div id="outline-container-orgc5abdcd" class="outline-4">
+<h4 id="orgc5abdcd"><span class="section-number-4">2.3.5</span> Predicate</h4>
+<div class="outline-text-4" id="text-2-3-5">
 <ul class="org-ul">
 <li>string?</li>
 <li>blank?</li>
@@ -493,8 +582,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org2f3de56" class="outline-4">
-<h4 id="org2f3de56"><span class="section-number-4">1.3.6</span> characters</h4>
-<div class="outline-text-4" id="text-1-3-6">
+<h4 id="org2f3de56"><span class="section-number-4">2.3.6</span> characters</h4>
+<div class="outline-text-4" id="text-2-3-6">
 <ul class="org-ul">
 <li>literals: <code>\a</code> <code>\newline</code></li>
 <li>char</li>
@@ -509,14 +598,14 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 
 
 <div id="outline-container-org564c584" class="outline-2">
-<h2 id="org564c584"><span class="section-number-2">2</span> Collections</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org564c584"><span class="section-number-2">3</span> Collections</h2>
+<div class="outline-text-2" id="text-3">
 </div><div id="outline-container-org1ff75ec" class="outline-3">
-<h3 id="org1ff75ec"><span class="section-number-3">2.1</span> Collection</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org1ff75ec"><span class="section-number-3">3.1</span> Collection</h3>
+<div class="outline-text-3" id="text-3-1">
 </div><div id="outline-container-org50abb1a" class="outline-4">
-<h4 id="org50abb1a"><span class="section-number-4">2.1.1</span> Generic</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<h4 id="org50abb1a"><span class="section-number-4">3.1.1</span> Generic</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>count</li>
 <li>empty</li>
@@ -525,8 +614,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org9f24968" class="outline-4">
-<h4 id="org9f24968"><span class="section-number-4">2.1.2</span> ops</h4>
-<div class="outline-text-4" id="text-2-1-2">
+<h4 id="org9f24968"><span class="section-number-4">3.1.2</span> ops</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>into</li>
 <li>conj</li>
@@ -538,8 +627,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org56f03aa" class="outline-4">
-<h4 id="org56f03aa"><span class="section-number-4">2.1.3</span> Predicates</h4>
-<div class="outline-text-4" id="text-2-1-3">
+<h4 id="org56f03aa"><span class="section-number-4">3.1.3</span> Predicates</h4>
+<div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>distince?</li>
 <li>empty?</li>
@@ -551,8 +640,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgae6537b" class="outline-4">
-<h4 id="orgae6537b"><span class="section-number-4">2.1.4</span> Capabilities</h4>
-<div class="outline-text-4" id="text-2-1-4">
+<h4 id="orgae6537b"><span class="section-number-4">3.1.4</span> Capabilities</h4>
+<div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>sequential?</li>
 <li>associative?</li>
@@ -572,8 +661,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org9055884" class="outline-3">
-<h3 id="org9055884"><span class="section-number-3">2.2</span> List</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="org9055884"><span class="section-number-3">3.2</span> List</h3>
+<div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>list</li>
 <li>list*</li>
@@ -591,11 +680,11 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 
 <div id="outline-container-org06a6dc5" class="outline-3">
-<h3 id="org06a6dc5"><span class="section-number-3">2.3</span> Vector</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="org06a6dc5"><span class="section-number-3">3.3</span> Vector</h3>
+<div class="outline-text-3" id="text-3-3">
 </div><div id="outline-container-org534c1f0" class="outline-4">
-<h4 id="org534c1f0"><span class="section-number-4">2.3.1</span> Create</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<h4 id="org534c1f0"><span class="section-number-4">3.3.1</span> Create</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li><code>[ ]</code></li>
 <li>vector</li>
@@ -608,8 +697,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgbc08aed" class="outline-4">
-<h4 id="orgbc08aed"><span class="section-number-4">2.3.2</span> Examine</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<h4 id="orgbc08aed"><span class="section-number-4">3.3.2</span> Examine</h4>
+<div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>nth</li>
 <li>get</li>
@@ -622,7 +711,7 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-07-18 Tue 11:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

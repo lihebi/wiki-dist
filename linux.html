@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-07-18 Tue 11:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux</title>
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,49 +234,58 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9a5ba29">1. Files</a></li>
-<li><a href="#org0518ef0">2. System</a></li>
-<li><a href="#org6a35d3d">3. Shell Interaction</a></li>
-<li><a href="#org0843f4c">4. App</a>
+<li><a href="#orgadedfb9">1. Network</a></li>
+<li><a href="#orgc83ebc5">2. Trouble Shooting</a>
 <ul>
-<li><a href="#orgd2b7c23">4.1. Speech recognition engines</a></li>
-<li><a href="#org5140360">4.2. mplayer</a></li>
-<li><a href="#org459b15d">4.3. youtube-dl</a></li>
+<li><a href="#org049b633">2.1. Cannot su root</a></li>
+<li><a href="#org6d36887">2.2. in docker, cannot open chromium</a></li>
 </ul>
 </li>
-<li><a href="#org5b7ebfa">5. Prompt</a>
+<li><a href="#org9a5ba29">3. Files</a></li>
+<li><a href="#org0518ef0">4. System</a></li>
+<li><a href="#org6a35d3d">5. Shell Interaction</a></li>
+<li><a href="#org0843f4c">6. App</a>
 <ul>
-<li><a href="#org6c99625">5.1. escape color</a></li>
+<li><a href="#orgd2b7c23">6.1. Speech recognition engines</a></li>
+<li><a href="#org5140360">6.2. mplayer</a></li>
+<li><a href="#org46b22b0">6.3. unzip</a></li>
+<li><a href="#org459b15d">6.4. youtube-dl</a></li>
+<li><a href="#org3c107f7">6.5. VNC</a></li>
 </ul>
 </li>
-<li><a href="#org6bfc758">6. Job control</a></li>
-<li><a href="#org99151e6">7. Install fonts</a></li>
-<li><a href="#org1d425e0">8. Power management</a></li>
-<li><a href="#org39ce975">9. Grub</a>
+<li><a href="#org5b7ebfa">7. Prompt</a>
 <ul>
-<li><a href="#org66266b5">9.1. Introduction</a></li>
-<li><a href="#org9b283f3">9.2. Grub 2</a></li>
+<li><a href="#org6c99625">7.1. escape color</a></li>
 </ul>
 </li>
-<li><a href="#orgafab072">10. Run level</a>
+<li><a href="#org6bfc758">8. Job control</a></li>
+<li><a href="#org99151e6">9. Install fonts</a></li>
+<li><a href="#org1d425e0">10. Power management</a></li>
+<li><a href="#org39ce975">11. Grub</a>
 <ul>
-<li><a href="#orgf3ad450">10.1. Run level description</a></li>
+<li><a href="#org66266b5">11.1. Introduction</a></li>
+<li><a href="#org9b283f3">11.2. Grub 2</a></li>
 </ul>
 </li>
-<li><a href="#org8ba734f">11. LD<sub>LIBRARY</sub><sub>PATH</sub></a></li>
-<li><a href="#org9f57fc5">12. Networking using NetworkManager</a>
+<li><a href="#orgafab072">12. Run level</a>
 <ul>
-<li><a href="#orgdcd0ee9">12.1. add a wifi connection</a></li>
+<li><a href="#orgf3ad450">12.1. Run level description</a></li>
 </ul>
 </li>
-<li><a href="#org4502353">13. Remove viewer</a></li>
-<li><a href="#org52f0a04">14. File Management</a>
+<li><a href="#org8ba734f">13. LD<sub>LIBRARY</sub><sub>PATH</sub></a></li>
+<li><a href="#org9f57fc5">14. Networking using NetworkManager</a>
 <ul>
-<li><a href="#org87b8165">14.1. Swap File</a></li>
+<li><a href="#orgdcd0ee9">14.1. add a wifi connection</a></li>
 </ul>
 </li>
-<li><a href="#orgebc738e">15. Drivers</a></li>
-<li><a href="#org6c6500b">16. Encoding</a></li>
+<li><a href="#org4502353">15. Remove viewer</a></li>
+<li><a href="#org52f0a04">16. File Management</a>
+<ul>
+<li><a href="#org87b8165">16.1. Swap File</a></li>
+</ul>
+</li>
+<li><a href="#orgebc738e">17. Drivers</a></li>
+<li><a href="#org6c6500b">18. Encoding</a></li>
 </ul>
 </div>
 </div>
@@ -297,9 +306,62 @@ One of the situation I encountered is the <code>xsession-errors</code> file is m
 <li>FreeBSD: <a href="https://www.freebsd.org/">https://www.freebsd.org/</a></li>
 </ul>
 
-<div id="outline-container-org9a5ba29" class="outline-2">
-<h2 id="org9a5ba29"><span class="section-number-2">1</span> Files</h2>
+<div id="outline-container-orgadedfb9" class="outline-2">
+<h2 id="orgadedfb9"><span class="section-number-2">1</span> Network</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+To resolve a name to IP address, you can add it into
+<code>/etc/hosts</code>. E.g. at the end of the file, add:
+</p>
+
+<pre class="example">
+172.18.0.2 srcml-server-container
+</pre>
+
+<p>
+The scenario to use this is that host system cannot resolve the name
+of container to the specific IP. I have to specify it manually.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc83ebc5" class="outline-2">
+<h2 id="orgc83ebc5"><span class="section-number-2">2</span> Trouble Shooting</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org049b633" class="outline-3">
+<h3 id="org049b633"><span class="section-number-3">2.1</span> Cannot su root</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+When su cannot change to root, run
+</p>
+<pre class="example">
+chmod u+s /bin/su
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6d36887" class="outline-3">
+<h3 id="org6d36887"><span class="section-number-3">2.2</span> in docker, cannot open chromium</h3>
+<div class="outline-text-3" id="text-2-2">
+<blockquote>
+<p>
+failed to move to new namespace: PID namespaces supported, Network
+namespace supported, but failed: errno = Operation not permitted.
+</p>
+</blockquote>
+
+<p>
+Solution
+</p>
+<pre class="example">
+chromium --no-sandbox
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a5ba29" class="outline-2">
+<h2 id="org9a5ba29"><span class="section-number-2">3</span> Files</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 In Unix, everything is a file.
 </p>
@@ -310,20 +372,23 @@ In Unix, everything is a file.
 </div>
 
 <div id="outline-container-org0518ef0" class="outline-2">
-<h2 id="org0518ef0"><span class="section-number-2">2</span> System</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org0518ef0"><span class="section-number-2">4</span> System</h2>
+<div class="outline-text-2" id="text-4">
 <dl class="org-dl">
 <dt><code>iostat</code></dt><dd>to monitor the IO usage. (from <code>sysstat</code> package)</dd>
 <dt><code>id</code></dt><dd>show the group information of current user</dd>
 <dt><code>dmesg</code></dt><dd>kernel log</dd>
 <dt><code>/proc/cpuinfo</code></dt><dd>the file describing CPU</dd>
 </dl>
+<ul class="org-ul">
+<li>hostname -i: print host ip addr</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-org6a35d3d" class="outline-2">
-<h2 id="org6a35d3d"><span class="section-number-2">3</span> Shell Interaction</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org6a35d3d"><span class="section-number-2">5</span> Shell Interaction</h2>
+<div class="outline-text-2" id="text-5">
 <dl class="org-dl">
 <dt><code>Ctrl-s</code></dt><dd>stop the screen</dd>
 <dt><code>Ctrl-q</code></dt><dd>recover the screen</dd>
@@ -334,8 +399,8 @@ In Unix, everything is a file.
 </div>
 </div>
 <div id="outline-container-org0843f4c" class="outline-2">
-<h2 id="org0843f4c"><span class="section-number-2">4</span> App</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org0843f4c"><span class="section-number-2">6</span> App</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>File explorer: konquerer</li>
 <li>Image viewer: feh</li>
@@ -362,8 +427,8 @@ sh ~/.fehbg &amp;
 </div>
 
 <div id="outline-container-orgd2b7c23" class="outline-3">
-<h3 id="orgd2b7c23"><span class="section-number-3">4.1</span> Speech recognition engines</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="orgd2b7c23"><span class="section-number-3">6.1</span> Speech recognition engines</h3>
+<div class="outline-text-3" id="text-6-1">
 <dl class="org-dl">
 <dt><code>gnustep-gui-runtime</code></dt><dd><code>say "hello"</code> It is not working yet</dd>
 <dt><code>festival</code></dt><dd><code>echo "hello" | festival --tts</code> The speech is pretty smooth</dd>
@@ -374,8 +439,8 @@ sh ~/.fehbg &amp;
 </div>
 
 <div id="outline-container-org5140360" class="outline-3">
-<h3 id="org5140360"><span class="section-number-3">4.2</span> mplayer</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org5140360"><span class="section-number-3">6.2</span> mplayer</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 Interactive controls:
 </p>
@@ -404,9 +469,23 @@ starting.
 </div>
 </div>
 
+<div id="outline-container-org46b22b0" class="outline-3">
+<h3 id="org46b22b0"><span class="section-number-3">6.3</span> unzip</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li><code>-q</code>: quiet</li>
+<li><code>-d folder</code>: output to that folder</li>
+</ul>
+
+<p>
+Cannot rename the content, must mv after extraction.
+</p>
+</div>
+</div>
+
 <div id="outline-container-org459b15d" class="outline-3">
-<h3 id="org459b15d"><span class="section-number-3">4.3</span> youtube-dl</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="org459b15d"><span class="section-number-3">6.4</span> youtube-dl</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 When downloading a playlist, you can make the template to number the files
 </p>
@@ -415,12 +494,35 @@ youtube-dl -o "%(playlist_index)s-%(title)s.%(ext)s" &lt;playlist_link&gt;
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org3c107f7" class="outline-3">
+<h3 id="org3c107f7"><span class="section-number-3">6.5</span> VNC</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+I use tigervnc because it seems to be fast.
+</p>
+
+<ul class="org-ul">
+<li>vncpasswd: set the password</li>
+<li>vncserver&amp;: start the server.
+<ul class="org-ul">
+<li>It is started in :1 by default, so connect it with
+<code>vncviewer &lt;ip&gt;:1</code></li>
+<li>On mac, the docker bridge network does not work, so you cannot
+connect to the contianer by IP addr. In this case, map the
+port 5901. 5900+N is the default VNC port.</li>
+<li>vncserver -kill :1 will kill the vncserver</li>
+<li>vncserver :2 will open :2</li>
+</ul></li>
+</ul>
+</div>
+</div>
 </div>
 
 
 <div id="outline-container-org5b7ebfa" class="outline-2">
-<h2 id="org5b7ebfa"><span class="section-number-2">5</span> Prompt</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org5b7ebfa"><span class="section-number-2">7</span> Prompt</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>prompt($PS1-4)
 <ul class="org-ul">
@@ -438,8 +540,8 @@ youtube-dl -o "%(playlist_index)s-%(title)s.%(ext)s" &lt;playlist_link&gt;
 </ul>
 </div>
 <div id="outline-container-org6c99625" class="outline-3">
-<h3 id="org6c99625"><span class="section-number-3">5.1</span> escape color</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="org6c99625"><span class="section-number-3">7.1</span> escape color</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>1: bold</li>
 <li>4: underline</li>
@@ -471,8 +573,8 @@ in PS1, use:
 
 
 <div id="outline-container-org6bfc758" class="outline-2">
-<h2 id="org6bfc758"><span class="section-number-2">6</span> Job control</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org6bfc758"><span class="section-number-2">8</span> Job control</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><code>C-z</code> to suspend.
 <ul class="org-ul">
@@ -503,8 +605,8 @@ Some commands:
 </div>
 
 <div id="outline-container-org99151e6" class="outline-2">
-<h2 id="org99151e6"><span class="section-number-2">7</span> Install fonts</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org99151e6"><span class="section-number-2">9</span> Install fonts</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>OTF: OpenType</li>
 <li>TTF: TrueType</li>
@@ -527,8 +629,8 @@ fc-list
 
 
 <div id="outline-container-org1d425e0" class="outline-2">
-<h2 id="org1d425e0"><span class="section-number-2">8</span> Power management</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org1d425e0"><span class="section-number-2">10</span> Power management</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 No extra software needed! <code>systmed</code> can handle it, by <code>acpid</code>.
 The configure file is <code>/etc/systemd/logind.conf</code>.
@@ -548,11 +650,11 @@ Both of them will resume to the current status.
 </div>
 
 <div id="outline-container-org39ce975" class="outline-2">
-<h2 id="org39ce975"><span class="section-number-2">9</span> Grub</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org39ce975"><span class="section-number-2">11</span> Grub</h2>
+<div class="outline-text-2" id="text-11">
 </div><div id="outline-container-org66266b5" class="outline-3">
-<h3 id="org66266b5"><span class="section-number-3">9.1</span> Introduction</h3>
-<div class="outline-text-3" id="text-9-1">
+<h3 id="org66266b5"><span class="section-number-3">11.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-11-1">
 <p>
 Use grub 2 instead of grub legacy. For a quick look at what they look like:
 </p>
@@ -585,8 +687,8 @@ Note that the root is <code>(hd0,2)</code> in grub legacy vs. <code>(hd0,3)</cod
 </div>
 
 <div id="outline-container-org9b283f3" class="outline-3">
-<h3 id="org9b283f3"><span class="section-number-3">9.2</span> Grub 2</h3>
-<div class="outline-text-3" id="text-9-2">
+<h3 id="org9b283f3"><span class="section-number-3">11.2</span> Grub 2</h3>
+<div class="outline-text-3" id="text-11-2">
 <p>
 The menu configure file is located at <code>/boot/grub/grub.cfg</code>.
 It is generated by <code>/usr/sbin/update-grub</code> (8) using templates from <code>/etc/grub.d/*</code> and settings from <code>/etc/default/grub</code>.
@@ -596,8 +698,8 @@ It is generated by <code>/usr/sbin/update-grub</code> (8) using templates from <
 </div>
 
 <div id="outline-container-orgafab072" class="outline-2">
-<h2 id="orgafab072"><span class="section-number-2">10</span> Run level</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="orgafab072"><span class="section-number-2">12</span> Run level</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 Use debian as example distribution.
 </p>
@@ -609,8 +711,8 @@ By default there's no difference between level 2 to 5.
 </div>
 
 <div id="outline-container-orgf3ad450" class="outline-3">
-<h3 id="orgf3ad450"><span class="section-number-3">10.1</span> Run level description</h3>
-<div class="outline-text-3" id="text-10-1">
+<h3 id="orgf3ad450"><span class="section-number-3">12.1</span> Run level description</h3>
+<div class="outline-text-3" id="text-12-1">
 <ul class="org-ul">
 <li>0: halt</li>
 <li>S: single user mode on boot</li>
@@ -633,8 +735,8 @@ Those scripts are symbol linked to <code>../init.d/xxx</code>.
 
 
 <div id="outline-container-org8ba734f" class="outline-2">
-<h2 id="org8ba734f"><span class="section-number-2">11</span> LD<sub>LIBRARY</sub><sub>PATH</sub></h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="org8ba734f"><span class="section-number-2">13</span> LD<sub>LIBRARY</sub><sub>PATH</sub></h2>
+<div class="outline-text-2" id="text-13">
 <p>
 On <code>CentOS</code>, the default <code>LD_LIBRARY_PATH</code> does not contains the <code>/usr/local/lib</code>.
 The consequence is the <code>-lpugi</code> and <code>-lctags</code> are not recognized because they are put in that directory.
@@ -660,8 +762,8 @@ So the solution is <code>sudo ldconfig</code>
 
 
 <div id="outline-container-org9f57fc5" class="outline-2">
-<h2 id="org9f57fc5"><span class="section-number-2">12</span> Networking using NetworkManager</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org9f57fc5"><span class="section-number-2">14</span> Networking using NetworkManager</h2>
+<div class="outline-text-2" id="text-14">
 <p>
 Install network-manager package, and:
 </p>
@@ -691,8 +793,8 @@ systemctl restart NetworkManager
 
 
 <div id="outline-container-orgdcd0ee9" class="outline-3">
-<h3 id="orgdcd0ee9"><span class="section-number-3">12.1</span> add a wifi connection</h3>
-<div class="outline-text-3" id="text-12-1">
+<h3 id="orgdcd0ee9"><span class="section-number-3">14.1</span> add a wifi connection</h3>
+<div class="outline-text-3" id="text-14-1">
 <pre class="example">
 nmcli device wifi list
 nmcli device wifi connect IASTATE
@@ -703,8 +805,8 @@ nmcli device wifi connect ID password pwd
 </div>
 
 <div id="outline-container-org4502353" class="outline-2">
-<h2 id="org4502353"><span class="section-number-2">13</span> Remove viewer</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="org4502353"><span class="section-number-2">15</span> Remove viewer</h2>
+<div class="outline-text-2" id="text-15">
 <p>
 The lab machines are accessed via spice. The client for spice is
 virt-viewer. It can be installed through package manager. The actual
@@ -716,11 +818,11 @@ the command to connect to the .vv file: <code>remove-viewer console.vv</code>.
 
 
 <div id="outline-container-org52f0a04" class="outline-2">
-<h2 id="org52f0a04"><span class="section-number-2">14</span> File Management</h2>
-<div class="outline-text-2" id="text-14">
+<h2 id="org52f0a04"><span class="section-number-2">16</span> File Management</h2>
+<div class="outline-text-2" id="text-16">
 </div><div id="outline-container-org87b8165" class="outline-3">
-<h3 id="org87b8165"><span class="section-number-3">14.1</span> Swap File</h3>
-<div class="outline-text-3" id="text-14-1">
+<h3 id="org87b8165"><span class="section-number-3">16.1</span> Swap File</h3>
+<div class="outline-text-3" id="text-16-1">
 <p>
 A swap file can also be used as swap memory. When doing linking, the
 <code>ld</code> might fail because of lack of memory.
@@ -757,8 +859,8 @@ This will not be in effect after reboot. To automatically swap it on, in <code>/
 </div>
 
 <div id="outline-container-orgebc738e" class="outline-2">
-<h2 id="orgebc738e"><span class="section-number-2">15</span> Drivers</h2>
-<div class="outline-text-2" id="text-15">
+<h2 id="orgebc738e"><span class="section-number-2">17</span> Drivers</h2>
+<div class="outline-text-2" id="text-17">
 <p>
 I was installing drivers for my RX470 on Debian strench. The good news
 is it works out of box, I guess using
@@ -787,8 +889,8 @@ integrated graphic. The RGB lighting is not going to be customize-able.
 </div>
 
 <div id="outline-container-org6c6500b" class="outline-2">
-<h2 id="org6c6500b"><span class="section-number-2">16</span> Encoding</h2>
-<div class="outline-text-2" id="text-16">
+<h2 id="org6c6500b"><span class="section-number-2">18</span> Encoding</h2>
+<div class="outline-text-2" id="text-18">
 <p>
 When converting MS windows format to unix format, you can use emacs and call <code>set-buffer-file-coding-system</code> and set to unix.
 Or you can use <code>dos2unix</code>, perhaps by
@@ -802,7 +904,7 @@ find . -name *.java | xargs dos2unix
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-07-18 Tue 11:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-07-10 Mon 17:53 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rust Lang</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Rust Lang</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgede34b8">1. <span class="todo TODO">TODO</span> More In the Book</a></li>
+<li><a href="#orgee7b4c5">2. <span class="todo TODO">TODO</span> the library reference</a></li>
+<li><a href="#org3f0321b">3. Why Rust a.k.a. features</a>
+<ul>
+<li><a href="#orge3387a2">3.1. <span class="todo TODO">TODO</span> know how to describe the feature</a></li>
+</ul>
+</li>
+<li><a href="#orga6bd682">4. Reference</a></li>
+<li><a href="#org5b76006">5. Environment Setup</a></li>
+<li><a href="#orgae350b1">6. Compile</a></li>
+<li><a href="#org6aa0af1">7. Misc</a></li>
+<li><a href="#orgf4888b3">8. Statement and expression</a></li>
+<li><a href="#org473c34c">9. function</a></li>
+<li><a href="#org4eaf47c">10. import</a></li>
+<li><a href="#orgdbb4387">11. variable</a>
+<ul>
+<li><a href="#org87a6099">11.1. Variable</a></li>
+<li><a href="#orgb99f8de">11.2. Constant</a></li>
+<li><a href="#org98d5e84">11.3. Reference</a></li>
+</ul>
+</li>
+<li><a href="#org9109503">12. Type</a>
+<ul>
+<li><a href="#orge3df4ec">12.1. Scalar type</a>
+<ul>
+<li><a href="#org2a3d1a1">12.1.1. Integer</a></li>
+<li><a href="#orgee08bac">12.1.2. float</a></li>
+<li><a href="#orgd0d001f">12.1.3. boolean</a></li>
+<li><a href="#org270a361">12.1.4. character</a></li>
+</ul>
+</li>
+<li><a href="#org1db5acd">12.2. Compound type</a>
+<ul>
+<li><a href="#org5fb08d4">12.2.1. tuple</a></li>
+<li><a href="#org64e924c">12.2.2. array</a></li>
+</ul>
+</li>
+<li><a href="#org5f9a369">12.3. String</a></li>
+<li><a href="#org7de4c58">12.4. Result</a></li>
+</ul>
+</li>
+<li><a href="#org03fa44f">13. Ownership</a>
+<ul>
+<li><a href="#org3808090">13.1. Reference</a></li>
+<li><a href="#org1f96644">13.2. Slice</a></li>
+</ul>
+</li>
+<li><a href="#orgea7031f">14. control flow</a>
+<ul>
+<li><a href="#org8f95405">14.1. match</a></li>
+<li><a href="#orgf4c6ec6">14.2. loop</a></li>
+<li><a href="#org06717f9">14.3. while</a></li>
+<li><a href="#org381e68e">14.4. for</a></li>
+<li><a href="#org9fefdf6">14.5. if</a></li>
+</ul>
+</li>
+<li><a href="#orgecba34f">15. Standard Library</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgede34b8" class="outline-2">
+<h2 id="orgede34b8"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> More In the Book</h2>
+</div>
+<div id="outline-container-orgee7b4c5" class="outline-2">
+<h2 id="orgee7b4c5"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> the library reference</h2>
+</div>
+
+<div id="outline-container-org3f0321b" class="outline-2">
+<h2 id="org3f0321b"><span class="section-number-2">3</span> Why Rust a.k.a. features</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Focus:
+</p>
+<ul class="org-ul">
+<li>Safety</li>
+<li>Speed</li>
+<li>concurrency</li>
+<li>low level control &amp; high level abstraction</li>
+</ul>
+
+<p>
+What I understand:
+</p>
+<ul class="org-ul">
+<li>move semantics</li>
+<li>guaranteed memory safety</li>
+<li>threads without data races</li>
+<li>type inference</li>
+<li>minimal runtime</li>
+<li>efficient C bindings</li>
+</ul>
+
+<p>
+Not understand yet:
+</p>
+<ul class="org-ul">
+<li>zero-cost abstractions</li>
+<li>trait-based generics</li>
+<li>pattern matching</li>
+</ul>
+</div>
+
+<div id="outline-container-orge3387a2" class="outline-3">
+<h3 id="orge3387a2"><span class="section-number-3">3.1</span> <span class="todo TODO">TODO</span> know how to describe the feature</h3>
+</div>
+</div>
+
+<div id="outline-container-orga6bd682" class="outline-2">
+<h2 id="orga6bd682"><span class="section-number-2">4</span> Reference</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Official website: <a href="https://www.rust-lang.org">https://www.rust-lang.org</a></li>
+<li>The Rust Programming Language (The book): <a href="https://doc.rust-lang.org/book/">https://doc.rust-lang.org/book/</a></li>
+<li>Standard library reference: <a href="https://doc.rust-lang.org/std/">https://doc.rust-lang.org/std/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5b76006" class="outline-2">
+<h2 id="org5b76006"><span class="section-number-2">5</span> Environment Setup</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Install the <code>rust</code> package in arch linux.  The <code>cargo</code> package is the
+package manager for rust. The official site for cargo:
+<a href="https://crates.io/">https://crates.io/</a>, is also powered by Rust, so Rust is capable of
+writing web applications.
+</p>
+
+<p>
+There's another package called <code>rustup</code>. It is the official rust
+installation method. It is a rust toolchain installer. It seems to be
+able to manage the version of rust, and also support cross compile.
+Rustup method will install both rustc and cargo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgae350b1" class="outline-2">
+<h2 id="orgae350b1"><span class="section-number-2">6</span> Compile</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Directly use the compiler by <code>rustc main.rs</code>, will generate the executable.
+</p>
+
+<p>
+Using cargo as build system:
+</p>
+
+<ul class="org-ul">
+<li><code>cargo new hello_cargo --bin</code>: create a project. &#x2013;bin option
+specify that we want a executable project instead library one.</li>
+<li><code>cargo build</code>: run this inside the generated hello<sub>cargo</sub> folder,
+build the project, into <code>target/debug</code> folder</li>
+<li><code>cargo run</code>: to compile and run</li>
+<li><code>cargo build --release</code> will enable optimization and output to
+<code>target/release</code> folder.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6aa0af1" class="outline-2">
+<h2 id="org6aa0af1"><span class="section-number-2">7</span> Misc</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Comment is only <code>//</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf4888b3" class="outline-2">
+<h2 id="orgf4888b3"><span class="section-number-2">8</span> Statement and expression</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Statement does not have a value. So you cannot assign a let statement
+to another let. However, experssion has a value. A block is also an
+expression, and evaluates to the last expression it contains.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> x = 5;
+<span style="color: #859900;">let</span> y = (<span style="color: #859900;">let</span> x = 5); <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">wrong</span>
+<span style="color: #859900;">let</span> y = { <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">ok</span>
+    <span style="color: #859900;">let</span> x = 3;
+    x+1
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org473c34c" class="outline-2">
+<h2 id="org473c34c"><span class="section-number-2">9</span> function</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">fn</span> <span style="color: #268bd2;">main</span>() {
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this is the main entry point of program</span>
+}
+<span style="color: #859900;">fn</span> <span style="color: #268bd2;">foo</span>() {}
+<span style="color: #859900;">fn</span> <span style="color: #268bd2;">bar</span>(<span style="color: #268bd2;">x</span>: <span style="color: #b58900;">u32</span>, <span style="color: #268bd2;">y</span>: <span style="color: #b58900;">i32</span>) -&gt; <span style="color: #b58900;">i32</span> {5}
+</pre>
+</div>
+<p>
+The return value is the final expression in the block of the body of
+the function. Note that the final expression should NOT have a
+semicolon. The semicolon will make it a statement, thus not able to
+have a value for return.
+</p>
+
+<p>
+Of course, you can have a return statement <code>return 8;</code> to return
+explicitly.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4eaf47c" class="outline-2">
+<h2 id="org4eaf47c"><span class="section-number-2">10</span> import</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+use directive is only for shortcut. Without use, you can still use it, but need to full name.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #2aa198;">std</span>::<span style="color: #2aa198;">io</span>::stdin()
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">using "use"</span>
+<span style="color: #859900;">use</span> <span style="color: #2aa198;">std</span>::io;
+<span style="color: #2aa198;">io</span>::stdin()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdbb4387" class="outline-2">
+<h2 id="orgdbb4387"><span class="section-number-2">11</span> variable</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-org87a6099" class="outline-3">
+<h3 id="org87a6099"><span class="section-number-3">11.1</span> Variable</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+All variables are immutable by default, but you can make it
+mutable. The type can be omitted for rust to infer.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> foo = 5; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">immutable</span>
+<span style="color: #859900;">let</span> <span style="color: #859900;">mut</span> bar = 5; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">mutable</span>
+</pre>
+</div>
+
+<p>
+Variable can be shadowed, of course, but in rust, you can shadow a
+variable in sequencial block. The effect is creating a new variable
+with the same name, and the type of variable can be changed:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> spaces = <span style="color: #2aa198;">"   "</span>;
+<span style="color: #859900;">let</span> spaces = spaces.len();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb99f8de" class="outline-3">
+<h3 id="orgb99f8de"><span class="section-number-3">11.2</span> Constant</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+A constant must be declared with:
+</p>
+<ul class="org-ul">
+<li>const keyword</li>
+<li>explicit type</li>
+<li>have value not computed at runtime</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">const</span> <span style="color: #268bd2;">foo</span>: <span style="color: #b58900;">u32</span> = 8;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98d5e84" class="outline-3">
+<h3 id="org98d5e84"><span class="section-number-3">11.3</span> Reference</h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+Reference is also immutable by default, so when passing a variable by
+reference as a parameter to a function, use:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">foo(&amp;<span style="color: #859900;">mut</span> bar)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9109503" class="outline-2">
+<h2 id="org9109503"><span class="section-number-2">12</span> Type</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-orge3df4ec" class="outline-3">
+<h3 id="orge3df4ec"><span class="section-number-3">12.1</span> Scalar type</h3>
+<div class="outline-text-3" id="text-12-1">
+</div><div id="outline-container-org2a3d1a1" class="outline-4">
+<h4 id="org2a3d1a1"><span class="section-number-4">12.1.1</span> Integer</h4>
+<div class="outline-text-4" id="text-12-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">length</th>
+<th scope="col" class="org-left">signed</th>
+<th scope="col" class="org-left">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">i8</td>
+<td class="org-left">u8</td>
+</tr>
+
+<tr>
+<td class="org-right">16</td>
+<td class="org-left">i16</td>
+<td class="org-left">u16</td>
+</tr>
+
+<tr>
+<td class="org-right">32</td>
+<td class="org-left">i32</td>
+<td class="org-left">u32</td>
+</tr>
+
+<tr>
+<td class="org-right">64</td>
+<td class="org-left">i64</td>
+<td class="org-left">u64</td>
+</tr>
+
+<tr>
+<td class="org-right">arch</td>
+<td class="org-left">isize</td>
+<td class="org-left">usize</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+isize and usize will be 64-bit on a 64 machine, and 32-bit on a 32
+one.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgee08bac" class="outline-4">
+<h4 id="orgee08bac"><span class="section-number-4">12.1.2</span> float</h4>
+<div class="outline-text-4" id="text-12-1-2">
+<ul class="org-ul">
+<li>f32</li>
+<li>f64</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd0d001f" class="outline-4">
+<h4 id="orgd0d001f"><span class="section-number-4">12.1.3</span> boolean</h4>
+<div class="outline-text-4" id="text-12-1-3">
+<ul class="org-ul">
+<li>bool: have value true and false</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org270a361" class="outline-4">
+<h4 id="org270a361"><span class="section-number-4">12.1.4</span> character</h4>
+<div class="outline-text-4" id="text-12-1-4">
+<ul class="org-ul">
+<li>char</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1db5acd" class="outline-3">
+<h3 id="org1db5acd"><span class="section-number-3">12.2</span> Compound type</h3>
+<div class="outline-text-3" id="text-12-2">
+</div><div id="outline-container-org5fb08d4" class="outline-4">
+<h4 id="org5fb08d4"><span class="section-number-4">12.2.1</span> tuple</h4>
+<div class="outline-text-4" id="text-12-2-1">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> <span style="color: #268bd2;">tup</span>: (<span style="color: #b58900;">i32</span>, <span style="color: #b58900;">f64</span>, <span style="color: #b58900;">u8</span>) = (500, 6.4, 1);
+<span style="color: #859900;">let</span> (x,y,z) = tup;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org64e924c" class="outline-4">
+<h4 id="org64e924c"><span class="section-number-4">12.2.2</span> array</h4>
+<div class="outline-text-4" id="text-12-2-2">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> arr = [1,2,3,4,5];
+<span style="color: #859900;">let</span> first = a[0];
+<span style="color: #859900;">let</span> second = a[1];
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5f9a369" class="outline-3">
+<h3 id="org5f9a369"><span class="section-number-3">12.3</span> String</h3>
+<div class="outline-text-3" id="text-12-3">
+<p>
+The String::new is a static method of the type String.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> <span style="color: #859900;">mut</span> <span style="color: #b58900;">str</span> = <span style="color: #b58900;">String</span>::new();
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">the expect is a method of Result object</span>
+<span style="color: #2aa198;">io</span>::stdin().read_line(&amp;<span style="color: #859900;">mut</span> <span style="color: #b58900;">str</span>).expect(<span style="color: #2aa198;">"Failed to read line"</span>);
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">convert string to num</span>
+<span style="color: #859900;">let</span> <span style="color: #268bd2;">num</span>: <span style="color: #b58900;">u32</span> = <span style="color: #b58900;">str</span>.trim().parse().expect(<span style="color: #2aa198;">"Failed to convert to number"</span>);
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">convert string to num without crash on exception</span>
+<span style="color: #859900;">let</span> <span style="color: #268bd2;">num</span>: <span style="color: #b58900;">u32</span> = <span style="color: #859900;">match</span> <span style="color: #b58900;">str</span>.trim().parse() {
+    <span style="color: #b58900;">Ok</span>(num) =&gt; num,
+    <span style="color: #b58900;">Err</span>(_) =&gt; <span style="color: #cb4b16;">println!</span>(<span style="color: #2aa198;">"Error but not going to crash"</span>),
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7de4c58" class="outline-3">
+<h3 id="org7de4c58"><span class="section-number-3">12.4</span> Result</h3>
+<div class="outline-text-3" id="text-12-4">
+<p>
+Result is a type. It can be either Ok or Err. It has expect method,
+which consume the result, and crash the program if the result is
+Err. If not want to crash, use match and catch both Ok and Err.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org03fa44f" class="outline-2">
+<h2 id="org03fa44f"><span class="section-number-2">13</span> Ownership</h2>
+<div class="outline-text-2" id="text-13">
+<ul class="org-ul">
+<li>each value in Rust has a variable as its owner</li>
+<li>There can only be one owner at a time</li>
+<li>When the owner goes out of scope, the value will be dropped</li>
+</ul>
+
+<p>
+The ownership changes at assignment. A variable is allocated on stack
+if the size of it is known, such as the primitive types and tuples
+containing only primitive types. More compliacated types such as
+string are allocated on heap.
+</p>
+
+<p>
+When doing assignment, the stack variable will do copy, but heap ones
+will do move. After move, it is not valid to use the previous
+variable, thus prevent double free. E.g.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> x = 5;
+<span style="color: #859900;">let</span> y = x;
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">now x and y will both be valid, holding a seperate copy of value 5</span>
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">on stack</span>
+<span style="color: #859900;">let</span> s1 = <span style="color: #b58900;">String</span>::from(<span style="color: #2aa198;">"hello"</span>);
+<span style="color: #859900;">let</span> s2 = s1;
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">now s1 is invalid to use because it is moved</span>
+<span style="color: #859900;">let</span> s3 = <span style="color: #b58900;">String</span>::from(<span style="color: #2aa198;">"hello"</span>);
+<span style="color: #859900;">let</span> s4 = s3.clone();
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">now s3 is still valid</span>
+</pre>
+</div>
+
+<p>
+The function parameter passing and return value follow the same rule.
+</p>
+</div>
+
+<div id="outline-container-org3808090" class="outline-3">
+<h3 id="org3808090"><span class="section-number-3">13.1</span> Reference</h3>
+<div class="outline-text-3" id="text-13-1">
+<p>
+To use reference in function passing, you have to use reference sign at both end:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">fn</span> <span style="color: #268bd2;">foo</span>(<span style="color: #268bd2;">x</span>: &amp;<span style="color: #b58900;">String</span>) {}
+<span style="color: #859900;">fn</span> <span style="color: #268bd2;">main</span>() {
+    <span style="color: #859900;">let</span> x = 8;
+    foo(&amp;x);
+}
+</pre>
+</div>
+
+<p>
+The reference is immutable by default, so to create mutable one:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">fn</span> <span style="color: #268bd2;">foo</span>(<span style="color: #268bd2;">x</span>: &amp;<span style="color: #859900;">mut</span> <span style="color: #b58900;">String</span>) {}
+<span style="color: #859900;">fn</span> <span style="color: #268bd2;">main</span>() {
+    <span style="color: #859900;">let</span> <span style="color: #859900;">mut</span> x = 8;
+    foo(&amp;<span style="color: #859900;">mut</span> x);
+}
+</pre>
+</div>
+
+<p>
+Reference can also be used without function
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> <span style="color: #859900;">mut</span> s = <span style="color: #b58900;">String</span>::from(<span style="color: #2aa198;">"hello"</span>);
+<span style="color: #859900;">let</span> r1 = &amp;s;
+<span style="color: #859900;">let</span> r2 = &amp;s;
+</pre>
+</div>
+
+<p>
+You cannot have multiple mutable reference, or one mutable reference
+and one or more immutable one.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> <span style="color: #859900;">mut</span> s = <span style="color: #b58900;">String</span>::from(<span style="color: #2aa198;">"hello"</span>);
+<span style="color: #859900;">let</span> r1 = &amp;<span style="color: #859900;">mut</span> s;
+<span style="color: #859900;">let</span> r2 = &amp;<span style="color: #859900;">mut</span> s; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">error</span>
+
+<span style="color: #859900;">let</span> <span style="color: #859900;">mut</span> s = <span style="color: #b58900;">String</span>::from(<span style="color: #2aa198;">"hello"</span>);
+<span style="color: #859900;">let</span> r1 = &amp;s;
+<span style="color: #859900;">let</span> r2 = &amp;<span style="color: #859900;">mut</span> s; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">error</span>
+</pre>
+</div>
+
+<p>
+This prevent dangling reference, and data race. The compiler will ensure the data will not be dropped before the reference goes out of scope.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f96644" class="outline-3">
+<h3 id="org1f96644"><span class="section-number-3">13.2</span> Slice</h3>
+<div class="outline-text-3" id="text-13-2">
+<p>
+Slice is a reference of part of a collection. It can be a string, or an array, etc.
+</p>
+
+<p>
+The string slice type is <code>&amp;str</code>, it is always immutable.
+String literal is actually string slice, thus it is immutable.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> s = <span style="color: #b58900;">String</span>::from(<span style="color: #2aa198;">"hello world"</span>);
+<span style="color: #859900;">let</span> hello = &amp;s[0..5];
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">same as</span>
+<span style="color: #859900;">let</span> hello = &amp;s[..5];
+<span style="color: #859900;">let</span> world = &amp;s[6..11];
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">same as</span>
+<span style="color: #859900;">let</span> world = &amp;s[6..s.len()]
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">same as</span>
+<span style="color: #859900;">let</span> world = &amp;s[6..];
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">whole</span>
+<span style="color: #859900;">let</span> whole = &amp;s[..];
+</pre>
+</div>
+
+<p>
+It is similar for an array, the slice has type <code>&amp;[i32]</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> a = [1,2,3,4,5]
+<span style="color: #859900;">let</span> slice = &amp;a[1..3]
+</pre>
+</div>
+
+<p>
+Use slice reference to get the first word of a string:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">fn</span> <span style="color: #268bd2;">first_world</span>(<span style="color: #268bd2;">s</span>: &amp;<span style="color: #b58900;">String</span>) -&gt; &amp;<span style="color: #b58900;">str</span> {
+    <span style="color: #859900;">let</span> bytes = s.as_bytes();
+    <span style="color: #859900;">for</span> (i, &amp;item) <span style="color: #859900;">in</span> bytes.iter().enumerate() {
+        <span style="color: #859900;">if</span> item == b<span style="color: #2aa198;">' '</span> {
+            <span style="color: #859900;">return</span> &amp;s[..i];
+        }
+    }
+    &amp;s[..]
+}
+</pre>
+</div>
+
+<p>
+The compiler will make sure the reference will be valid all the time.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgea7031f" class="outline-2">
+<h2 id="orgea7031f"><span class="section-number-2">14</span> control flow</h2>
+<div class="outline-text-2" id="text-14">
+</div><div id="outline-container-org8f95405" class="outline-3">
+<h3 id="org8f95405"><span class="section-number-3">14.1</span> match</h3>
+<div class="outline-text-3" id="text-14-1">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">use</span> <span style="color: #2aa198;">std</span>::<span style="color: #2aa198;">cmp</span>::<span style="color: #b58900;">Ordering</span>;
+<span style="color: #859900;">fn</span> <span style="color: #268bd2;">main</span>() {
+  <span style="color: #859900;">let</span> num1 = 1;
+  <span style="color: #859900;">let</span> num2 = 2;
+  <span style="color: #859900;">match</span> num1.cmp(&amp;num2) {
+      <span style="color: #b58900;">Ordering</span>::<span style="color: #b58900;">Less</span> =&gt; <span style="color: #cb4b16;">println!</span>(<span style="color: #2aa198;">"Too small"</span>);
+      <span style="color: #b58900;">Ordering</span>::<span style="color: #b58900;">Greater</span> =&gt; <span style="color: #cb4b16;">println!</span>(<span style="color: #2aa198;">"Too Big"</span>);
+      <span style="color: #b58900;">Ordering</span>::<span style="color: #b58900;">Equal</span> =&gt; {
+          <span style="color: #cb4b16;">println!</span>(<span style="color: #2aa198;">"Correct"</span>);
+          <span style="color: #cb4b16;">println!</span>(<span style="color: #2aa198;">"Exiting"</span>);
+      }
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf4c6ec6" class="outline-3">
+<h3 id="orgf4c6ec6"><span class="section-number-3">14.2</span> loop</h3>
+<div class="outline-text-3" id="text-14-2">
+<ul class="org-ul">
+<li>loop {}: infinite loop</li>
+<li>can use break and continue</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org06717f9" class="outline-3">
+<h3 id="org06717f9"><span class="section-number-3">14.3</span> while</h3>
+<div class="outline-text-3" id="text-14-3">
+<pre class="example">
+while expr {}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org381e68e" class="outline-3">
+<h3 id="org381e68e"><span class="section-number-3">14.4</span> for</h3>
+<div class="outline-text-3" id="text-14-4">
+<p>
+It is used to loop all items in a collection.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #859900;">let</span> a = [1,2,3,4,5];
+<span style="color: #859900;">for</span> elem <span style="color: #859900;">in</span> a.iter() {}
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">reverse</span>
+<span style="color: #859900;">for</span> number <span style="color: #859900;">in</span> (1..4).rev() {}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9fefdf6" class="outline-3">
+<h3 id="org9fefdf6"><span class="section-number-3">14.5</span> if</h3>
+<div class="outline-text-3" id="text-14-5">
+<pre class="example">
+if expr {} else if expr {} else {}
+</pre>
+
+<p>
+expr does not need <code>()</code>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgecba34f" class="outline-2">
+<h2 id="orgecba34f"><span class="section-number-2">15</span> Standard Library</h2>
+<div class="outline-text-2" id="text-15">
+<ul class="org-ul">
+<li>println!</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #cb4b16;">println!</span>(<span style="color: #2aa198;">"This is x: {} and y: {}"</span>, x, y);
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2017-07-10 Mon 17:53</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
