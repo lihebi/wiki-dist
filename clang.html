@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-18 Tue 11:27 -->
+<!-- 2017-07-18 Tue 16:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clang</title>
@@ -254,121 +254,127 @@ for the JavaScript code in this tag.
 <li><a href="#org241d5a8">4.1. clang::ASTUnit</a></li>
 <li><a href="#org8e442d4">4.2. clang::ASTContext</a></li>
 <li><a href="#orgda8abc2">4.3. clang::SourceManager</a></li>
-<li><a href="#orgb9e7e34">4.4. Location</a></li>
+<li><a href="#org31728ca">4.4. Location</a></li>
 </ul>
 </li>
-<li><a href="#org8750b6c">5. clang::Decl</a>
+<li><a href="#orgd51246f">5. clang::Type</a>
 <ul>
-<li><a href="#orgba89c07">5.1. clang::DeclContext</a></li>
-<li><a href="#orgf2fc462">5.2. clang::TranslationUnitDecl</a></li>
-<li><a href="#org30972d2">5.3. clang::BlockDecl</a></li>
-<li><a href="#orgefd7870">5.4. clang::NamedDecl</a>
+<li><a href="#org07eafa6">5.1. canonical type</a></li>
+<li><a href="#org1702a52">5.2. QualType</a></li>
+</ul>
+</li>
+<li><a href="#org8750b6c">6. clang::Decl</a>
 <ul>
-<li><a href="#orgd22b884">5.4.1. clang::LabelDecl</a></li>
-<li><a href="#org1abab9d">5.4.2. clang::TypeDecl</a>
+<li><a href="#orgba89c07">6.1. clang::DeclContext</a></li>
+<li><a href="#orgf2fc462">6.2. clang::TranslationUnitDecl</a></li>
+<li><a href="#org30972d2">6.3. clang::BlockDecl</a></li>
+<li><a href="#orgefd7870">6.4. clang::NamedDecl</a>
 <ul>
-<li><a href="#org4b772e1">5.4.2.1. clang::TypeDecl -&gt; clang::TypedefNameDecl -&gt; clang::TypedefDecl</a></li>
-<li><a href="#org6d66263">5.4.2.2. clang::TypeDecl -&gt; clang::TagDecl</a></li>
-<li><a href="#org183e079">5.4.2.3. clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::EnumDecl</a></li>
-<li><a href="#orgf079eac">5.4.2.4. clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::RecordDecl</a></li>
-</ul>
-</li>
-<li><a href="#org1ab2421">5.4.3. clang::ValueDecl</a></li>
-<li><a href="#orgc37f29a">5.4.4. clang::ValueDecl -&gt; clang::DeclaratorDecl</a></li>
-<li><a href="#org60be0f9">5.4.5. clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FunctionDecl</a></li>
-<li><a href="#org2f536a8">5.4.6. clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FieldDecl</a></li>
-<li><a href="#orgd6f6d85">5.4.7. clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::VarDecl</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org8d1a283">6. clang::Stmt</a>
+<li><a href="#orgd22b884">6.4.1. clang::LabelDecl</a></li>
+<li><a href="#org1abab9d">6.4.2. clang::TypeDecl</a>
 <ul>
-<li><a href="#org1c5ed34">6.1. Single</a>
+<li><a href="#org4b772e1">6.4.2.1. clang::TypeDecl -&gt; clang::TypedefNameDecl -&gt; clang::TypedefDecl</a></li>
+<li><a href="#org6d66263">6.4.2.2. clang::TypeDecl -&gt; clang::TagDecl</a></li>
+<li><a href="#org183e079">6.4.2.3. clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::EnumDecl</a></li>
+<li><a href="#orgf079eac">6.4.2.4. clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::RecordDecl</a></li>
+</ul>
+</li>
+<li><a href="#org1ab2421">6.4.3. clang::ValueDecl</a></li>
+<li><a href="#orgc37f29a">6.4.4. clang::ValueDecl -&gt; clang::DeclaratorDecl</a></li>
+<li><a href="#org60be0f9">6.4.5. clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FunctionDecl</a></li>
+<li><a href="#org2f536a8">6.4.6. clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FieldDecl</a></li>
+<li><a href="#orgd6f6d85">6.4.7. clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::VarDecl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8d1a283">7. clang::Stmt</a>
 <ul>
-<li><a href="#org885e104">6.1.1. clang::BreakStmt</a></li>
-<li><a href="#orga73c615">6.1.2. clang::ReturnStmt</a></li>
-<li><a href="#orgd4b50fd">6.1.3. clang::ContinueStmt</a></li>
-</ul>
-</li>
-<li><a href="#org2126700">6.2. Conditional</a>
+<li><a href="#org1c5ed34">7.1. Single</a>
 <ul>
-<li><a href="#org4f950bc">6.2.1. clang::IfStmt</a></li>
-<li><a href="#org32b6ca0">6.2.2. clang::SwitchCase</a></li>
-<li><a href="#orgabccd78">6.2.3. clang::SwitchStmt</a></li>
-<li><a href="#org0950b67">6.2.4. clang::LabelStmt</a></li>
-<li><a href="#org377d9c6">6.2.5. clang::GotoStmt</a></li>
+<li><a href="#org885e104">7.1.1. clang::BreakStmt</a></li>
+<li><a href="#orga73c615">7.1.2. clang::ReturnStmt</a></li>
+<li><a href="#orgd4b50fd">7.1.3. clang::ContinueStmt</a></li>
 </ul>
 </li>
-<li><a href="#orgff417b9">6.3. loop</a>
+<li><a href="#org2126700">7.2. Conditional</a>
 <ul>
-<li><a href="#org5127dc5">6.3.1. clang::DoStmt</a></li>
-<li><a href="#org92e746e">6.3.2. clang::ForStmt</a></li>
-<li><a href="#orga7458ac">6.3.3. clang::WhileStmt</a></li>
+<li><a href="#org4f950bc">7.2.1. clang::IfStmt</a></li>
+<li><a href="#org32b6ca0">7.2.2. clang::SwitchCase</a></li>
+<li><a href="#orgabccd78">7.2.3. clang::SwitchStmt</a></li>
+<li><a href="#org0950b67">7.2.4. clang::LabelStmt</a></li>
+<li><a href="#org377d9c6">7.2.5. clang::GotoStmt</a></li>
 </ul>
 </li>
-<li><a href="#orgf4ba41c">6.4. Other</a>
+<li><a href="#orgff417b9">7.3. loop</a>
 <ul>
-<li><a href="#org4847342">6.4.1. clang::CompoundStmt</a></li>
-<li><a href="#orgb547e65">6.4.2. clang::DeclStmt</a></li>
-<li><a href="#orga2a0b8d">6.4.3. <span class="todo TODO">TODO</span> clang::Expr</a></li>
+<li><a href="#org5127dc5">7.3.1. clang::DoStmt</a></li>
+<li><a href="#org92e746e">7.3.2. clang::ForStmt</a></li>
+<li><a href="#orga7458ac">7.3.3. clang::WhileStmt</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org7669758">7. clang::Expr</a>
+<li><a href="#orgf4ba41c">7.4. Other</a>
 <ul>
-<li><a href="#org36c7f4e">7.1. <span class="todo TODO">TODO</span> how to convert expr to source code string</a></li>
-<li><a href="#org82c122e">7.2. clang::CallExpr</a></li>
-<li><a href="#org04030f1">7.3. clang::BinaryOperator</a></li>
-<li><a href="#org11e847a">7.4. clang::CastExpr</a></li>
-<li><a href="#orgaf77268">7.5. clang::ChooseExpr</a></li>
-<li><a href="#org27b7b53">7.6. clang::CompoundLiteralExpr</a></li>
-<li><a href="#org5fefdf8">7.7. clang::GNUNullExpr</a></li>
-<li><a href="#org82324eb">7.8. clang::MemberExpr</a></li>
-<li><a href="#org07f0c3e">7.9. clang::LambdaExpr</a></li>
-<li><a href="#orgf84024c">7.10. clang::IntegerLiteral</a></li>
-<li><a href="#orge5cad2e">7.11. clang::ImplicitValueInitExpr</a></li>
-<li><a href="#org44b99f5">7.12. clang::InitListExpr</a></li>
-<li><a href="#org2085dfd">7.13. clang::ParenExpr</a></li>
-<li><a href="#orga6c23a5">7.14. clang::ParenListExpr</a></li>
-<li><a href="#org3773ae4">7.15. clang::StmtExpr</a></li>
-<li><a href="#org575eb88">7.16. clang::StringLiteral</a></li>
-<li><a href="#org596342a">7.17. clang::TypoExpr</a></li>
-<li><a href="#orgc79b140">7.18. clang::UnaryOperator</a></li>
+<li><a href="#org4847342">7.4.1. clang::CompoundStmt</a></li>
+<li><a href="#orgb547e65">7.4.2. clang::DeclStmt</a></li>
+<li><a href="#org7669758">7.4.3. <span class="todo TODO">TODO</span> clang::Expr</a></li>
 </ul>
 </li>
-<li><a href="#orgdcead5f">8. Topics</a>
+</ul>
+</li>
+<li><a href="#orgf6b5aba">8. clang::Expr</a>
 <ul>
-<li><a href="#org72c137a">8.1. <span class="todo TODO">TODO</span> Clang AST to source code</a>
+<li><a href="#org36c7f4e">8.1. <span class="todo TODO">TODO</span> how to convert expr to source code string</a></li>
+<li><a href="#org82c122e">8.2. clang::CallExpr</a></li>
+<li><a href="#org04030f1">8.3. clang::BinaryOperator</a></li>
+<li><a href="#org11e847a">8.4. clang::CastExpr</a></li>
+<li><a href="#orgaf77268">8.5. clang::ChooseExpr</a></li>
+<li><a href="#org27b7b53">8.6. clang::CompoundLiteralExpr</a></li>
+<li><a href="#org5fefdf8">8.7. clang::GNUNullExpr</a></li>
+<li><a href="#org82324eb">8.8. clang::MemberExpr</a></li>
+<li><a href="#org07f0c3e">8.9. clang::LambdaExpr</a></li>
+<li><a href="#orgf84024c">8.10. clang::IntegerLiteral</a></li>
+<li><a href="#orge5cad2e">8.11. clang::ImplicitValueInitExpr</a></li>
+<li><a href="#org44b99f5">8.12. clang::InitListExpr</a></li>
+<li><a href="#org2085dfd">8.13. clang::ParenExpr</a></li>
+<li><a href="#orga6c23a5">8.14. clang::ParenListExpr</a></li>
+<li><a href="#org3773ae4">8.15. clang::StmtExpr</a></li>
+<li><a href="#org575eb88">8.16. clang::StringLiteral</a></li>
+<li><a href="#org596342a">8.17. clang::TypoExpr</a></li>
+<li><a href="#orgc79b140">8.18. clang::UnaryOperator</a></li>
+</ul>
+</li>
+<li><a href="#orgdcead5f">9. Topics</a>
 <ul>
-<li><a href="#org5fb0ba5">8.1.1. clang::Rewriter</a></li>
-</ul>
-</li>
-<li><a href="#orgdfa9dfa">8.2. Create AST</a>
+<li><a href="#org72c137a">9.1. <span class="todo TODO">TODO</span> Clang AST to source code</a>
 <ul>
-<li><a href="#org75a5c39">8.2.1. Using Compilation Database</a></li>
-<li><a href="#orgfc23c0d">8.2.2. From Code String</a></li>
+<li><a href="#org5fb0ba5">9.1.1. clang::Rewriter</a></li>
 </ul>
 </li>
-<li><a href="#orge1e33ab">8.3. LibTooling</a>
+<li><a href="#orgdfa9dfa">9.2. Create AST</a>
 <ul>
-<li><a href="#org391456d">8.3.1. Project Setup</a>
+<li><a href="#org75a5c39">9.2.1. Using Compilation Database</a></li>
+<li><a href="#orgfc23c0d">9.2.2. From Code String</a></li>
+</ul>
+</li>
+<li><a href="#orge1e33ab">9.3. LibTooling</a>
 <ul>
-<li><a href="#org304f0ab">8.3.1.1. Main File</a></li>
-<li><a href="#org1db79e0">8.3.1.2. Sub-directory files</a></li>
+<li><a href="#org391456d">9.3.1. Project Setup</a>
+<ul>
+<li><a href="#org304f0ab">9.3.1.1. Main File</a></li>
+<li><a href="#org1db79e0">9.3.1.2. Sub-directory files</a></li>
 </ul>
 </li>
-<li><a href="#orgd8dab0e">8.3.2. Header files</a></li>
-<li><a href="#org15cf1e6">8.3.3. Entry Point</a></li>
-<li><a href="#org31728ca">8.3.4. Location</a></li>
-<li><a href="#org5834609">8.3.5. APIs</a></li>
+<li><a href="#orgd8dab0e">9.3.2. Header files</a></li>
+<li><a href="#org15cf1e6">9.3.3. Entry Point</a></li>
+<li><a href="#org1ee7a27">9.3.4. Location</a></li>
+<li><a href="#org5834609">9.3.5. APIs</a></li>
 </ul>
 </li>
-<li><a href="#orgcbeae11">8.4. Use As Command</a></li>
+<li><a href="#orgcbeae11">9.4. Use As Command</a></li>
 </ul>
 </li>
-<li><a href="#orgd3d5164">9. Reference</a></li>
+<li><a href="#orgd3d5164">10. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -538,8 +544,8 @@ FileEntry *getFileEntryForID(<span style="color: #228b22;">FileID</span> <span s
 </div>
 
 
-<div id="outline-container-orgb9e7e34" class="outline-3">
-<h3 id="orgb9e7e34"><span class="section-number-3">4.4</span> Location</h3>
+<div id="outline-container-org31728ca" class="outline-3">
+<h3 id="org31728ca"><span class="section-number-3">4.4</span> Location</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>clang::SourceRange</li>
@@ -573,9 +579,98 @@ FileEntry *getFileEntry();
 </div>
 </div>
 
-<div id="outline-container-org8750b6c" class="outline-2">
-<h2 id="org8750b6c"><span class="section-number-2">5</span> clang::Decl</h2>
+
+
+<div id="outline-container-orgd51246f" class="outline-2">
+<h2 id="orgd51246f"><span class="section-number-2">5</span> clang::Type</h2>
 <div class="outline-text-2" id="text-5">
+<p>
+The raw type will be whatever appeared in the source code. If a type
+is a typedef to another type (may be pointer), then the "type" will
+not record the pointer information.
+</p>
+</div>
+
+<div id="outline-container-org07eafa6" class="outline-3">
+<h3 id="org07eafa6"><span class="section-number-3">5.1</span> canonical type</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Every instance of type has a canonical type pointer.
+</p>
+<ul class="org-ul">
+<li>If the type is a simple primitive type, the pointer points to itself</li>
+<li>If any part of the type has typedef, the pointer will point to a
+type instance that is equivalent to it but without typedefs. You can
+check whether two types are the same by comparing this pointer.</li>
+</ul>
+
+<p>
+You should not use isa/cast/dyn<sub>cast</sub> on types
+(e.g. <code>isa&lt;PointerType&gt;(expr-&gt;getType())</code>). The reason is it is not
+canonical. So use help functions instead:
+<code>expr-&gt;getType()-&gt;isPointerType()</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1702a52" class="outline-3">
+<h3 id="org1702a52"><span class="section-number-3">5.2</span> QualType</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+The type and its qualifiers (const, volatile, restrict) are
+seperate. That is the QualType. It is designed to be small and
+pass-by-value. It is essentially a pair of (Type*, bits) where the
+bits stores the qualifiers.
+</p>
+
+<p>
+This helps making only one type for each kind, e.g. int, const int,
+volatile const int.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #a020f0;">const</span> <span style="color: #228b22;">Type</span>* <span style="color: #0000ff;">getTypePtr</span>() <span style="color: #a020f0;">const</span>;
+<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Type</span>&amp; <span style="color: #a020f0;">operator</span><span style="color: #0000ff;">*</span>() <span style="color: #a020f0;">const</span>;
+<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Type</span>* <span style="color: #a020f0;">operator</span><span style="color: #0000ff;">-&gt;</span>() <span style="color: #a020f0;">const</span>;
+
+<span style="color: #228b22;">SplitQualType</span> <span style="color: #0000ff;">split</span>() <span style="color: #a020f0;">const</span>;
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">SplitQualType</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #a020f0;">const</span> <span style="color: #228b22;">Type</span> *<span style="color: #a0522d;">Ty</span>;
+  <span style="color: #228b22;">Qualifiers</span> <span style="color: #a0522d;">Quals</span>;
+};
+
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isCanonical</span>();
+<span style="color: #228b22;">QualType</span> <span style="color: #0000ff;">getCanonicalType</span>() <span style="color: #a020f0;">const</span>;
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isNull</span>();
+
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isConstQualified</span>();
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isVolatileQualified</span>();
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isRestrictQualified</span>();
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">hasLocalQualifiers</span>();
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">hasQualifiers</span>();
+
+<span style="color: #228b22;">Qualifiers</span> <span style="color: #0000ff;">getQualifiers</span>();
+
+<span style="color: #228b22;">QualType</span> <span style="color: #0000ff;">withConst</span>();
+<span style="color: #228b22;">QualType</span> <span style="color: #0000ff;">withVolatile</span>();
+<span style="color: #228b22;">QualType</span> <span style="color: #0000ff;">withRestrict</span>();
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">dump</span>();
+<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #0000ff;">getAsString</span>();
+
+<span style="color: #a020f0;">static</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #0000ff;">getAsString</span>(<span style="color: #228b22;">SplitQualType</span> <span style="color: #a0522d;">split</span>);
+<span style="color: #a020f0;">static</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #0000ff;">getAsString</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Type</span> *<span style="color: #a0522d;">ty</span>, <span style="color: #228b22;">Qualifiers</span> <span style="color: #a0522d;">qs</span>);
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org8750b6c" class="outline-2">
+<h2 id="org8750b6c"><span class="section-number-2">6</span> clang::Decl</h2>
+<div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getLocStart</span>();
 <span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getLocEnd</span>();
@@ -587,8 +682,8 @@ DeclContext *getDeclContext();
 </div>
 
 <div id="outline-container-orgba89c07" class="outline-3">
-<h3 id="orgba89c07"><span class="section-number-3">5.1</span> clang::DeclContext</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="orgba89c07"><span class="section-number-3">6.1</span> clang::DeclContext</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 All classes inherited from it:
 </p>
@@ -638,8 +733,8 @@ This should provide all information to get the children nodes.
 </div>
 
 <div id="outline-container-orgf2fc462" class="outline-3">
-<h3 id="orgf2fc462"><span class="section-number-3">5.2</span> clang::TranslationUnitDecl</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="orgf2fc462"><span class="section-number-3">6.2</span> clang::TranslationUnitDecl</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 It is also inherited from DeclContext.
 </p>
@@ -647,8 +742,8 @@ It is also inherited from DeclContext.
 </div>
 
 <div id="outline-container-org30972d2" class="outline-3">
-<h3 id="org30972d2"><span class="section-number-3">5.3</span> clang::BlockDecl</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="org30972d2"><span class="section-number-3">6.3</span> clang::BlockDecl</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 Like a unamed FunctionDecl. Also inherited from DeclContext.
 </p>
@@ -662,8 +757,8 @@ Like a unamed FunctionDecl. Also inherited from DeclContext.
 </div>
 </div>
 <div id="outline-container-orgefd7870" class="outline-3">
-<h3 id="orgefd7870"><span class="section-number-3">5.4</span> clang::NamedDecl</h3>
-<div class="outline-text-3" id="text-5-4">
+<h3 id="orgefd7870"><span class="section-number-3">6.4</span> clang::NamedDecl</h3>
+<div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 <pre class="src src-C++">IdentifierInfo *getIdentifier();
 <span style="color: #228b22;">StringRef</span> <span style="color: #0000ff;">getName</span>();
@@ -673,8 +768,8 @@ Like a unamed FunctionDecl. Also inherited from DeclContext.
 </div>
 
 <div id="outline-container-orgd22b884" class="outline-4">
-<h4 id="orgd22b884"><span class="section-number-4">5.4.1</span> clang::LabelDecl</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<h4 id="orgd22b884"><span class="section-number-4">6.4.1</span> clang::LabelDecl</h4>
+<div class="outline-text-4" id="text-6-4-1">
 <div class="org-src-container">
 <pre class="src src-C++">LabelStmt *getStmt();
 <span style="color: #228b22;">SourceRange</span> <span style="color: #0000ff;">getSourceRange</span>();
@@ -683,24 +778,24 @@ Like a unamed FunctionDecl. Also inherited from DeclContext.
 </div>
 </div>
 <div id="outline-container-org1abab9d" class="outline-4">
-<h4 id="org1abab9d"><span class="section-number-4">5.4.2</span> clang::TypeDecl</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<h4 id="org1abab9d"><span class="section-number-4">6.4.2</span> clang::TypeDecl</h4>
+<div class="outline-text-4" id="text-6-4-2">
 <p>
 No interesting methods.
 </p>
 </div>
 
 <div id="outline-container-org4b772e1" class="outline-5">
-<h5 id="org4b772e1"><span class="section-number-5">5.4.2.1</span> clang::TypeDecl -&gt; clang::TypedefNameDecl -&gt; clang::TypedefDecl</h5>
-<div class="outline-text-5" id="text-5-4-2-1">
+<h5 id="org4b772e1"><span class="section-number-5">6.4.2.1</span> clang::TypeDecl -&gt; clang::TypedefNameDecl -&gt; clang::TypedefDecl</h5>
+<div class="outline-text-5" id="text-6-4-2-1">
 <p>
 No interesting methods
 </p>
 </div>
 </div>
 <div id="outline-container-org6d66263" class="outline-5">
-<h5 id="org6d66263"><span class="section-number-5">5.4.2.2</span> clang::TypeDecl -&gt; clang::TagDecl</h5>
-<div class="outline-text-5" id="text-5-4-2-2">
+<h5 id="org6d66263"><span class="section-number-5">6.4.2.2</span> clang::TypeDecl -&gt; clang::TagDecl</h5>
+<div class="outline-text-5" id="text-6-4-2-2">
 <ul class="org-ul">
 <li>struct</li>
 <li>union</li>
@@ -734,8 +829,8 @@ TagDecl *getDefinition();
 </div>
 </div>
 <div id="outline-container-org183e079" class="outline-5">
-<h5 id="org183e079"><span class="section-number-5">5.4.2.3</span> clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::EnumDecl</h5>
-<div class="outline-text-5" id="text-5-4-2-3">
+<h5 id="org183e079"><span class="section-number-5">6.4.2.3</span> clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::EnumDecl</h5>
+<div class="outline-text-5" id="text-6-4-2-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">enumerator_range</span> <span style="color: #0000ff;">enumerators</span>();
 <span style="color: #228b22;">enumerator_iterator</span> <span style="color: #0000ff;">enumerator_begin</span>();
@@ -745,8 +840,8 @@ TagDecl *getDefinition();
 </div>
 </div>
 <div id="outline-container-orgf079eac" class="outline-5">
-<h5 id="orgf079eac"><span class="section-number-5">5.4.2.4</span> clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::RecordDecl</h5>
-<div class="outline-text-5" id="text-5-4-2-4">
+<h5 id="orgf079eac"><span class="section-number-5">6.4.2.4</span> clang::TypeDecl -&gt; clang::TagDecl -&gt; clang::RecordDecl</h5>
+<div class="outline-text-5" id="text-6-4-2-4">
 <ul class="org-ul">
 <li>struct</li>
 <li>union</li>
@@ -764,8 +859,8 @@ TagDecl *getDefinition();
 </div>
 </div>
 <div id="outline-container-org1ab2421" class="outline-4">
-<h4 id="org1ab2421"><span class="section-number-4">5.4.3</span> clang::ValueDecl</h4>
-<div class="outline-text-4" id="text-5-4-3">
+<h4 id="org1ab2421"><span class="section-number-4">6.4.3</span> clang::ValueDecl</h4>
+<div class="outline-text-4" id="text-6-4-3">
 <p>
 Declaration of either
 </p>
@@ -797,8 +892,8 @@ An instance of this object exists for each enum constant that is defined
 </div>
 
 <div id="outline-container-orgc37f29a" class="outline-4">
-<h4 id="orgc37f29a"><span class="section-number-4">5.4.4</span> clang::ValueDecl -&gt; clang::DeclaratorDecl</h4>
-<div class="outline-text-4" id="text-5-4-4">
+<h4 id="orgc37f29a"><span class="section-number-4">6.4.4</span> clang::ValueDecl -&gt; clang::DeclaratorDecl</h4>
+<div class="outline-text-4" id="text-6-4-4">
 <div class="org-src-container">
 <pre class="src src-C++">TypeSourceInfo *getTypeSourceInfo();
 <span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getInnerLocStart</span>();
@@ -813,8 +908,8 @@ NestedNameSpecifier *getQualifier();
 </div>
 
 <div id="outline-container-org60be0f9" class="outline-4">
-<h4 id="org60be0f9"><span class="section-number-4">5.4.5</span> clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FunctionDecl</h4>
-<div class="outline-text-4" id="text-5-4-5">
+<h4 id="org60be0f9"><span class="section-number-4">6.4.5</span> clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FunctionDecl</h4>
+<div class="outline-text-4" id="text-6-4-5">
 <ul class="org-ul">
 <li>Also inherit from <code>clang::DeclContext</code></li>
 </ul>
@@ -836,8 +931,8 @@ Stmt *getBody();
 </div>
 
 <div id="outline-container-org2f536a8" class="outline-4">
-<h4 id="org2f536a8"><span class="section-number-4">5.4.6</span> clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FieldDecl</h4>
-<div class="outline-text-4" id="text-5-4-6">
+<h4 id="org2f536a8"><span class="section-number-4">6.4.6</span> clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::FieldDecl</h4>
+<div class="outline-text-4" id="text-6-4-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">unsigned</span> <span style="color: #0000ff;">getFieldIndex</span>();
 <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isBitField</span>();
@@ -850,8 +945,8 @@ RecordDecl* getParent();
 </div>
 </div>
 <div id="outline-container-orgd6f6d85" class="outline-4">
-<h4 id="orgd6f6d85"><span class="section-number-4">5.4.7</span> clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::VarDecl</h4>
-<div class="outline-text-4" id="text-5-4-7">
+<h4 id="orgd6f6d85"><span class="section-number-4">6.4.7</span> clang::ValueDecl -&gt; clang::DeclaratorDecl -&gt; clang::VarDecl</h4>
+<div class="outline-text-4" id="text-6-4-7">
 <p>
 Represent a variable declaration or definition.
 </p>
@@ -892,8 +987,8 @@ Expr *getDefaultArg();
 
 
 <div id="outline-container-org8d1a283" class="outline-2">
-<h2 id="org8d1a283"><span class="section-number-2">6</span> clang::Stmt</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org8d1a283"><span class="section-number-2">7</span> clang::Stmt</h2>
+<div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceRange</span> <span style="color: #0000ff;">getSourceRange</span>();
 <span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getLocStart</span>();
@@ -920,11 +1015,11 @@ All subclasses has
 </div>
 
 <div id="outline-container-org1c5ed34" class="outline-3">
-<h3 id="org1c5ed34"><span class="section-number-3">6.1</span> Single</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org1c5ed34"><span class="section-number-3">7.1</span> Single</h3>
+<div class="outline-text-3" id="text-7-1">
 </div><div id="outline-container-org885e104" class="outline-4">
-<h4 id="org885e104"><span class="section-number-4">6.1.1</span> clang::BreakStmt</h4>
-<div class="outline-text-4" id="text-6-1-1">
+<h4 id="org885e104"><span class="section-number-4">7.1.1</span> clang::BreakStmt</h4>
+<div class="outline-text-4" id="text-7-1-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getBreakLoc</span>();
 </pre>
@@ -932,8 +1027,8 @@ All subclasses has
 </div>
 </div>
 <div id="outline-container-orga73c615" class="outline-4">
-<h4 id="orga73c615"><span class="section-number-4">6.1.2</span> clang::ReturnStmt</h4>
-<div class="outline-text-4" id="text-6-1-2">
+<h4 id="orga73c615"><span class="section-number-4">7.1.2</span> clang::ReturnStmt</h4>
+<div class="outline-text-4" id="text-7-1-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getContinueLoc</span>();
 Expr *getRetValue();
@@ -942,8 +1037,8 @@ Expr *getRetValue();
 </div>
 </div>
 <div id="outline-container-orgd4b50fd" class="outline-4">
-<h4 id="orgd4b50fd"><span class="section-number-4">6.1.3</span> clang::ContinueStmt</h4>
-<div class="outline-text-4" id="text-6-1-3">
+<h4 id="orgd4b50fd"><span class="section-number-4">7.1.3</span> clang::ContinueStmt</h4>
+<div class="outline-text-4" id="text-7-1-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getContinueLoc</span>();
 </pre>
@@ -953,11 +1048,11 @@ Expr *getRetValue();
 </div>
 
 <div id="outline-container-org2126700" class="outline-3">
-<h3 id="org2126700"><span class="section-number-3">6.2</span> Conditional</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="org2126700"><span class="section-number-3">7.2</span> Conditional</h3>
+<div class="outline-text-3" id="text-7-2">
 </div><div id="outline-container-org4f950bc" class="outline-4">
-<h4 id="org4f950bc"><span class="section-number-4">6.2.1</span> clang::IfStmt</h4>
-<div class="outline-text-4" id="text-6-2-1">
+<h4 id="org4f950bc"><span class="section-number-4">7.2.1</span> clang::IfStmt</h4>
+<div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 <pre class="src src-C++">Stmt *getInit();
 Expr *getCond();
@@ -971,8 +1066,8 @@ Stmt *getElse();
 </div>
 </div>
 <div id="outline-container-org32b6ca0" class="outline-4">
-<h4 id="org32b6ca0"><span class="section-number-4">6.2.2</span> clang::SwitchCase</h4>
-<div class="outline-text-4" id="text-6-2-2">
+<h4 id="org32b6ca0"><span class="section-number-4">7.2.2</span> clang::SwitchCase</h4>
+<div class="outline-text-4" id="text-7-2-2">
 <p>
 Has two subclasses
 </p>
@@ -1016,8 +1111,8 @@ DefaultStmt
 </div>
 
 <div id="outline-container-orgabccd78" class="outline-4">
-<h4 id="orgabccd78"><span class="section-number-4">6.2.3</span> clang::SwitchStmt</h4>
-<div class="outline-text-4" id="text-6-2-3">
+<h4 id="orgabccd78"><span class="section-number-4">7.2.3</span> clang::SwitchStmt</h4>
+<div class="outline-text-4" id="text-7-2-3">
 <div class="org-src-container">
 <pre class="src src-C++">VarDecl *getConditionVariable();
 DeclStmt *getConditionVariableDeclStmt();
@@ -1032,8 +1127,8 @@ SwitchCase *getSwitchCaseList();
 </div>
 </div>
 <div id="outline-container-org0950b67" class="outline-4">
-<h4 id="org0950b67"><span class="section-number-4">6.2.4</span> clang::LabelStmt</h4>
-<div class="outline-text-4" id="text-6-2-4">
+<h4 id="org0950b67"><span class="section-number-4">7.2.4</span> clang::LabelStmt</h4>
+<div class="outline-text-4" id="text-7-2-4">
 <div class="org-src-container">
 <pre class="src src-C++">LabelDecl *getDecl();
 <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #0000ff;">getName</span>();
@@ -1043,8 +1138,8 @@ Stmt *getSubStmt();
 </div>
 </div>
 <div id="outline-container-org377d9c6" class="outline-4">
-<h4 id="org377d9c6"><span class="section-number-4">6.2.5</span> clang::GotoStmt</h4>
-<div class="outline-text-4" id="text-6-2-5">
+<h4 id="org377d9c6"><span class="section-number-4">7.2.5</span> clang::GotoStmt</h4>
+<div class="outline-text-4" id="text-7-2-5">
 <div class="org-src-container">
 <pre class="src src-C++">LabelDecl *getLabel();
 <span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getGotoLoc</span>();
@@ -1055,11 +1150,11 @@ Stmt *getSubStmt();
 </div>
 </div>
 <div id="outline-container-orgff417b9" class="outline-3">
-<h3 id="orgff417b9"><span class="section-number-3">6.3</span> loop</h3>
-<div class="outline-text-3" id="text-6-3">
+<h3 id="orgff417b9"><span class="section-number-3">7.3</span> loop</h3>
+<div class="outline-text-3" id="text-7-3">
 </div><div id="outline-container-org5127dc5" class="outline-4">
-<h4 id="org5127dc5"><span class="section-number-4">6.3.1</span> clang::DoStmt</h4>
-<div class="outline-text-4" id="text-6-3-1">
+<h4 id="org5127dc5"><span class="section-number-4">7.3.1</span> clang::DoStmt</h4>
+<div class="outline-text-4" id="text-7-3-1">
 <div class="org-src-container">
 <pre class="src src-C++">Expr *getCond();
 Stmt *getBody();
@@ -1072,8 +1167,8 @@ Stmt *getBody();
 </div>
 </div>
 <div id="outline-container-org92e746e" class="outline-4">
-<h4 id="org92e746e"><span class="section-number-4">6.3.2</span> clang::ForStmt</h4>
-<div class="outline-text-4" id="text-6-3-2">
+<h4 id="org92e746e"><span class="section-number-4">7.3.2</span> clang::ForStmt</h4>
+<div class="outline-text-4" id="text-7-3-2">
 <div class="org-src-container">
 <pre class="src src-C++">VarDecl *getConditionVariable();
 <span style="color: #a020f0;">const</span> <span style="color: #228b22;">DeclStmt</span> *<span style="color: #0000ff;">getConditionVariableDeclStmt</span>();
@@ -1092,8 +1187,8 @@ Stmt *getBody();
 </div>
 </div>
 <div id="outline-container-orga7458ac" class="outline-4">
-<h4 id="orga7458ac"><span class="section-number-4">6.3.3</span> clang::WhileStmt</h4>
-<div class="outline-text-4" id="text-6-3-3">
+<h4 id="orga7458ac"><span class="section-number-4">7.3.3</span> clang::WhileStmt</h4>
+<div class="outline-text-4" id="text-7-3-3">
 <div class="org-src-container">
 <pre class="src src-C++">VarDecl *getConditionVariable();
 <span style="color: #a020f0;">const</span> <span style="color: #228b22;">DeclStmt</span> *<span style="color: #0000ff;">getConditionVariableDeclStmt</span>();
@@ -1107,11 +1202,11 @@ Stmt *getBody();
 </div>
 </div>
 <div id="outline-container-orgf4ba41c" class="outline-3">
-<h3 id="orgf4ba41c"><span class="section-number-3">6.4</span> Other</h3>
-<div class="outline-text-3" id="text-6-4">
+<h3 id="orgf4ba41c"><span class="section-number-3">7.4</span> Other</h3>
+<div class="outline-text-3" id="text-7-4">
 </div><div id="outline-container-org4847342" class="outline-4">
-<h4 id="org4847342"><span class="section-number-4">6.4.1</span> clang::CompoundStmt</h4>
-<div class="outline-text-4" id="text-6-4-1">
+<h4 id="org4847342"><span class="section-number-4">7.4.1</span> clang::CompoundStmt</h4>
+<div class="outline-text-4" id="text-7-4-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #0000ff;">body_empty</span>();
 <span style="color: #228b22;">unsigned</span> <span style="color: #0000ff;">size</span>();
@@ -1130,8 +1225,8 @@ Stmt *body_back();
 </div>
 </div>
 <div id="outline-container-orgb547e65" class="outline-4">
-<h4 id="orgb547e65"><span class="section-number-4">6.4.2</span> clang::DeclStmt</h4>
-<div class="outline-text-4" id="text-6-4-2">
+<h4 id="orgb547e65"><span class="section-number-4">7.4.2</span> clang::DeclStmt</h4>
+<div class="outline-text-4" id="text-7-4-2">
 <p>
 This is adapter class for mixing declarations with statements and
 expressions.
@@ -1149,9 +1244,9 @@ Decl *getSingleDecl();
 </div>
 </div>
 </div>
-<div id="outline-container-orga2a0b8d" class="outline-4">
-<h4 id="orga2a0b8d"><span class="section-number-4">6.4.3</span> <span class="todo TODO">TODO</span> clang::Expr</h4>
-<div class="outline-text-4" id="text-6-4-3">
+<div id="outline-container-org7669758" class="outline-4">
+<h4 id="org7669758"><span class="section-number-4">7.4.3</span> <span class="todo TODO">TODO</span> clang::Expr</h4>
+<div class="outline-text-4" id="text-7-4-3">
 <p>
 This is a big topic. In a seperate outline.
 </p>
@@ -1166,12 +1261,12 @@ transparently used in any place a Stmt is required.
 </div>
 
 
-<div id="outline-container-org7669758" class="outline-2">
-<h2 id="org7669758"><span class="section-number-2">7</span> clang::Expr</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgf6b5aba" class="outline-2">
+<h2 id="orgf6b5aba"><span class="section-number-2">8</span> clang::Expr</h2>
+<div class="outline-text-2" id="text-8">
 </div><div id="outline-container-org36c7f4e" class="outline-3">
-<h3 id="org36c7f4e"><span class="section-number-3">7.1</span> <span class="todo TODO">TODO</span> how to convert expr to source code string</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org36c7f4e"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> how to convert expr to source code string</h3>
+<div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getExprLoc</span>();
 <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isLValue</span>();
@@ -1187,8 +1282,8 @@ transparently used in any place a Stmt is required.
 
 
 <div id="outline-container-org82c122e" class="outline-3">
-<h3 id="org82c122e"><span class="section-number-3">7.2</span> clang::CallExpr</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="org82c122e"><span class="section-number-3">8.2</span> clang::CallExpr</h3>
+<div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
 <pre class="src src-C++">Expr *getCallee();
 Decl *getCalleeDecl();
@@ -1211,8 +1306,8 @@ Expr *getArg(<span style="color: #228b22;">unsigned</span> <span style="color: #
 </div>
 </div>
 <div id="outline-container-org04030f1" class="outline-3">
-<h3 id="org04030f1"><span class="section-number-3">7.3</span> clang::BinaryOperator</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="org04030f1"><span class="section-number-3">8.3</span> clang::BinaryOperator</h3>
+<div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getExprLoc</span>();
 <span style="color: #228b22;">SourceLocation</span> <span style="color: #0000ff;">getOperatorLoc</span>();
@@ -1237,41 +1332,41 @@ Expr *getRHS();
 </div>
 </div>
 <div id="outline-container-org11e847a" class="outline-3">
-<h3 id="org11e847a"><span class="section-number-3">7.4</span> clang::CastExpr</h3>
+<h3 id="org11e847a"><span class="section-number-3">8.4</span> clang::CastExpr</h3>
 </div>
 <div id="outline-container-orgaf77268" class="outline-3">
-<h3 id="orgaf77268"><span class="section-number-3">7.5</span> clang::ChooseExpr</h3>
+<h3 id="orgaf77268"><span class="section-number-3">8.5</span> clang::ChooseExpr</h3>
 </div>
 <div id="outline-container-org27b7b53" class="outline-3">
-<h3 id="org27b7b53"><span class="section-number-3">7.6</span> clang::CompoundLiteralExpr</h3>
+<h3 id="org27b7b53"><span class="section-number-3">8.6</span> clang::CompoundLiteralExpr</h3>
 </div>
 <div id="outline-container-org5fefdf8" class="outline-3">
-<h3 id="org5fefdf8"><span class="section-number-3">7.7</span> clang::GNUNullExpr</h3>
+<h3 id="org5fefdf8"><span class="section-number-3">8.7</span> clang::GNUNullExpr</h3>
 </div>
 <div id="outline-container-org82324eb" class="outline-3">
-<h3 id="org82324eb"><span class="section-number-3">7.8</span> clang::MemberExpr</h3>
+<h3 id="org82324eb"><span class="section-number-3">8.8</span> clang::MemberExpr</h3>
 </div>
 <div id="outline-container-org07f0c3e" class="outline-3">
-<h3 id="org07f0c3e"><span class="section-number-3">7.9</span> clang::LambdaExpr</h3>
+<h3 id="org07f0c3e"><span class="section-number-3">8.9</span> clang::LambdaExpr</h3>
 </div>
 <div id="outline-container-orgf84024c" class="outline-3">
-<h3 id="orgf84024c"><span class="section-number-3">7.10</span> clang::IntegerLiteral</h3>
+<h3 id="orgf84024c"><span class="section-number-3">8.10</span> clang::IntegerLiteral</h3>
 </div>
 <div id="outline-container-orge5cad2e" class="outline-3">
-<h3 id="orge5cad2e"><span class="section-number-3">7.11</span> clang::ImplicitValueInitExpr</h3>
+<h3 id="orge5cad2e"><span class="section-number-3">8.11</span> clang::ImplicitValueInitExpr</h3>
 </div>
 <div id="outline-container-org44b99f5" class="outline-3">
-<h3 id="org44b99f5"><span class="section-number-3">7.12</span> clang::InitListExpr</h3>
+<h3 id="org44b99f5"><span class="section-number-3">8.12</span> clang::InitListExpr</h3>
 </div>
 <div id="outline-container-org2085dfd" class="outline-3">
-<h3 id="org2085dfd"><span class="section-number-3">7.13</span> clang::ParenExpr</h3>
+<h3 id="org2085dfd"><span class="section-number-3">8.13</span> clang::ParenExpr</h3>
 </div>
 <div id="outline-container-orga6c23a5" class="outline-3">
-<h3 id="orga6c23a5"><span class="section-number-3">7.14</span> clang::ParenListExpr</h3>
+<h3 id="orga6c23a5"><span class="section-number-3">8.14</span> clang::ParenListExpr</h3>
 </div>
 <div id="outline-container-org3773ae4" class="outline-3">
-<h3 id="org3773ae4"><span class="section-number-3">7.15</span> clang::StmtExpr</h3>
-<div class="outline-text-3" id="text-7-15">
+<h3 id="org3773ae4"><span class="section-number-3">8.15</span> clang::StmtExpr</h3>
+<div class="outline-text-3" id="text-8-15">
 <p>
 This is the GNU Statement Expression extension: <code>({int X=4;X;})</code>. Not
 very useful for me.
@@ -1279,25 +1374,25 @@ very useful for me.
 </div>
 </div>
 <div id="outline-container-org575eb88" class="outline-3">
-<h3 id="org575eb88"><span class="section-number-3">7.16</span> clang::StringLiteral</h3>
+<h3 id="org575eb88"><span class="section-number-3">8.16</span> clang::StringLiteral</h3>
 </div>
 <div id="outline-container-org596342a" class="outline-3">
-<h3 id="org596342a"><span class="section-number-3">7.17</span> clang::TypoExpr</h3>
+<h3 id="org596342a"><span class="section-number-3">8.17</span> clang::TypoExpr</h3>
 </div>
 <div id="outline-container-orgc79b140" class="outline-3">
-<h3 id="orgc79b140"><span class="section-number-3">7.18</span> clang::UnaryOperator</h3>
+<h3 id="orgc79b140"><span class="section-number-3">8.18</span> clang::UnaryOperator</h3>
 </div>
 </div>
 
 <div id="outline-container-orgdcead5f" class="outline-2">
-<h2 id="orgdcead5f"><span class="section-number-2">8</span> Topics</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="orgdcead5f"><span class="section-number-2">9</span> Topics</h2>
+<div class="outline-text-2" id="text-9">
 </div><div id="outline-container-org72c137a" class="outline-3">
-<h3 id="org72c137a"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> Clang AST to source code</h3>
-<div class="outline-text-3" id="text-8-1">
+<h3 id="org72c137a"><span class="section-number-3">9.1</span> <span class="todo TODO">TODO</span> Clang AST to source code</h3>
+<div class="outline-text-3" id="text-9-1">
 </div><div id="outline-container-org5fb0ba5" class="outline-4">
-<h4 id="org5fb0ba5"><span class="section-number-4">8.1.1</span> clang::Rewriter</h4>
-<div class="outline-text-4" id="text-8-1-1">
+<h4 id="org5fb0ba5"><span class="section-number-4">9.1.1</span> clang::Rewriter</h4>
+<div class="outline-text-4" id="text-9-1-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"clang/Rewrite/Core/Rewriter.h"</span>
 
@@ -1342,11 +1437,11 @@ rewriter.setSourceMgr(source_manager, )
 </div>
 </div>
 <div id="outline-container-orgdfa9dfa" class="outline-3">
-<h3 id="orgdfa9dfa"><span class="section-number-3">8.2</span> Create AST</h3>
-<div class="outline-text-3" id="text-8-2">
+<h3 id="orgdfa9dfa"><span class="section-number-3">9.2</span> Create AST</h3>
+<div class="outline-text-3" id="text-9-2">
 </div><div id="outline-container-org75a5c39" class="outline-4">
-<h4 id="org75a5c39"><span class="section-number-4">8.2.1</span> Using Compilation Database</h4>
-<div class="outline-text-4" id="text-8-2-1">
+<h4 id="org75a5c39"><span class="section-number-4">9.2.1</span> Using Compilation Database</h4>
+<div class="outline-text-4" id="text-9-2-1">
 <p>
 Using compilation database can make sure clang uses the right
 flags. This is usually the include path, but also some flags like
@@ -1394,8 +1489,8 @@ As an example, to use the data base, invoke clang tooling by:
 </div>
 </div>
 <div id="outline-container-orgfc23c0d" class="outline-4">
-<h4 id="orgfc23c0d"><span class="section-number-4">8.2.2</span> From Code String</h4>
-<div class="outline-text-4" id="text-8-2-2">
+<h4 id="orgfc23c0d"><span class="section-number-4">9.2.2</span> From Code String</h4>
+<div class="outline-text-4" id="text-9-2-2">
 <p>
 Of cource using the database will introduce overhead to obtain the
 database. We may only care about the header path
@@ -1417,14 +1512,14 @@ there's also a <code>buildASTFromCode</code> family:
 </div>
 
 <div id="outline-container-orge1e33ab" class="outline-3">
-<h3 id="orge1e33ab"><span class="section-number-3">8.3</span> LibTooling</h3>
-<div class="outline-text-3" id="text-8-3">
+<h3 id="orge1e33ab"><span class="section-number-3">9.3</span> LibTooling</h3>
+<div class="outline-text-3" id="text-9-3">
 </div><div id="outline-container-org391456d" class="outline-4">
-<h4 id="org391456d"><span class="section-number-4">8.3.1</span> Project Setup</h4>
-<div class="outline-text-4" id="text-8-3-1">
+<h4 id="org391456d"><span class="section-number-4">9.3.1</span> Project Setup</h4>
+<div class="outline-text-4" id="text-9-3-1">
 </div><div id="outline-container-org304f0ab" class="outline-5">
-<h5 id="org304f0ab"><span class="section-number-5">8.3.1.1</span> Main File</h5>
-<div class="outline-text-5" id="text-8-3-1-1">
+<h5 id="org304f0ab"><span class="section-number-5">9.3.1.1</span> Main File</h5>
+<div class="outline-text-5" id="text-9-3-1-1">
 <p>
 First of all, get the <code>CMakeLists.txt</code> setup:
 </p>
@@ -1518,8 +1613,8 @@ Add sub-directories
 </div>
 
 <div id="outline-container-org1db79e0" class="outline-5">
-<h5 id="org1db79e0"><span class="section-number-5">8.3.1.2</span> Sub-directory files</h5>
-<div class="outline-text-5" id="text-8-3-1-2">
+<h5 id="org1db79e0"><span class="section-number-5">9.3.1.2</span> Sub-directory files</h5>
+<div class="outline-text-5" id="text-9-3-1-2">
 <p>
 <code>src/CMakeLists.txt</code> to add libraries, executables
 </p>
@@ -1554,8 +1649,8 @@ command can be in <code>src</code> level list if no test source files.
 </div>
 
 <div id="outline-container-orgd8dab0e" class="outline-4">
-<h4 id="orgd8dab0e"><span class="section-number-4">8.3.2</span> Header files</h4>
-<div class="outline-text-4" id="text-8-3-2">
+<h4 id="orgd8dab0e"><span class="section-number-4">9.3.2</span> Header files</h4>
+<div class="outline-text-4" id="text-9-3-2">
 <p>
 Some representative header files:
 </p>
@@ -1575,8 +1670,8 @@ Some representative header files:
 </div>
 
 <div id="outline-container-org15cf1e6" class="outline-4">
-<h4 id="org15cf1e6"><span class="section-number-4">8.3.3</span> Entry Point</h4>
-<div class="outline-text-4" id="text-8-3-3">
+<h4 id="org15cf1e6"><span class="section-number-4">9.3.3</span> Entry Point</h4>
+<div class="outline-text-4" id="text-9-3-3">
 <p>
 The entry point is creating the <code>tooling::ClangTool</code> class.  Just pass
 <code>argc/v</code> into it. The command line option <code>--</code> at the end to invoke the
@@ -1660,9 +1755,9 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </div>
 
 
-<div id="outline-container-org31728ca" class="outline-4">
-<h4 id="org31728ca"><span class="section-number-4">8.3.4</span> Location</h4>
-<div class="outline-text-4" id="text-8-3-4">
+<div id="outline-container-org1ee7a27" class="outline-4">
+<h4 id="org1ee7a27"><span class="section-number-4">9.3.4</span> Location</h4>
+<div class="outline-text-4" id="text-9-3-4">
 <ul class="org-ul">
 <li>Decl::getLocStart -&gt; <code>SourceLocation</code> loc</li>
 <li>context-&gt;getFullLoc(loc) -&gt; FullSourceLoc full</li>
@@ -1672,8 +1767,8 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </div>
 
 <div id="outline-container-org5834609" class="outline-4">
-<h4 id="org5834609"><span class="section-number-4">8.3.5</span> APIs</h4>
-<div class="outline-text-4" id="text-8-3-5">
+<h4 id="org5834609"><span class="section-number-4">9.3.5</span> APIs</h4>
+<div class="outline-text-4" id="text-9-3-5">
 <p>
 <code>Decl</code>
 </p>
@@ -1721,8 +1816,8 @@ the list of <code>VisitXXX</code> method for each type of AST node.
 </div>
 
 <div id="outline-container-orgcbeae11" class="outline-3">
-<h3 id="orgcbeae11"><span class="section-number-3">8.4</span> Use As Command</h3>
-<div class="outline-text-3" id="text-8-4">
+<h3 id="orgcbeae11"><span class="section-number-3">9.4</span> Use As Command</h3>
+<div class="outline-text-3" id="text-9-4">
 <dl class="org-dl">
 <dt><code>-ast-dump</code></dt><dd>dump ast</dd>
 <dt><code>-ast-dump-filter</code></dt><dd>filter to only dump part of the AST</dd>
@@ -1740,8 +1835,8 @@ clang-check a.cc -ast-dump -ast-dump-filter=StdStringA --
 </div>
 
 <div id="outline-container-orgd3d5164" class="outline-2">
-<h2 id="orgd3d5164"><span class="section-number-2">9</span> Reference</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="orgd3d5164"><span class="section-number-2">10</span> Reference</h2>
+<div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>A article as tutorial:
 <a href="http://bastian.rieck.ru/blog/posts/2016/baby_steps_libclang_function_extents/">http://bastian.rieck.ru/blog/posts/2016/baby_steps_libclang_function_extents/</a></li>
@@ -1752,7 +1847,7 @@ clang-check a.cc -ast-dump -ast-dump-filter=StdStringA --
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-07-18 Tue 11:27</p>
+<p class="date">Created: 2017-07-18 Tue 16:24</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
