@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-09-06 Wed 22:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>X11</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,40 +235,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org03c8b8d">1. Misc</a></li>
-<li><a href="#org01abf89">2. font</a></li>
-<li><a href="#org83e4ce4">3. Xrandr</a></li>
-<li><a href="#orgf8be170">4. Display Manager</a></li>
-<li><a href="#orgea1bc82">5. Window Manager</a>
+<li><a href="#org641c099">1. Misc</a></li>
+<li><a href="#orgc71afb6">2. font</a></li>
+<li><a href="#orgafc5624">3. Xrandr</a></li>
+<li><a href="#orgdc8b26e">4. Display Manager</a></li>
+<li><a href="#orgaa76f69">5. Window Manager</a>
 <ul>
-<li><a href="#orgd0b90ea">5.1. ratpoison</a></li>
+<li><a href="#orgdaba0d7">5.1. ratpoison</a></li>
 </ul>
 </li>
-<li><a href="#orgd2e41dd">6. Theme</a>
+<li><a href="#orgda7c77f">6. Theme</a>
 <ul>
-<li><a href="#org8baf5e4">6.1. cursor</a></li>
-<li><a href="#orgb651581">6.2. color</a></li>
+<li><a href="#orge2431d3">6.1. cursor</a></li>
+<li><a href="#org5a2dfcf">6.2. color</a></li>
 </ul>
 </li>
-<li><a href="#org9660235">7. Emacs As Window Manager</a>
+<li><a href="#org54682bb">7. Emacs As Window Manager</a>
 <ul>
-<li><a href="#org9c9dc51">7.1. A time sink</a></li>
+<li><a href="#org4a816f9">7.1. A time sink</a></li>
 </ul>
 </li>
-<li><a href="#org32f0758">8. Trouble shooting</a>
+<li><a href="#org1a77c81">8. Trouble shooting</a>
 <ul>
-<li><a href="#orgd09f910">8.1. xinit</a></li>
-<li><a href="#org85d93dc">8.2. Multi screen, stumpwm detect as one</a></li>
+<li><a href="#org6654bd7">8.1. xinit</a></li>
+<li><a href="#org49a405c">8.2. Multi screen, stumpwm detect as one</a></li>
 </ul>
 </li>
-<li><a href="#org98ddda7">9. Nvidia Driver</a></li>
-<li><a href="#org7c0e674">10. Natural Scrolling</a></li>
+<li><a href="#org3f92c46">9. Nvidia Driver</a></li>
+<li><a href="#org9b918f1">10. Natural Scrolling</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org03c8b8d" class="outline-2">
-<h2 id="org03c8b8d"><span class="section-number-2">1</span> Misc</h2>
+<div id="outline-container-org641c099" class="outline-2">
+<h2 id="org641c099"><span class="section-number-2">1</span> Misc</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 check the screen resolution:
@@ -278,8 +279,8 @@ xdpyinfo | grep -B 2 resolution
 </div>
 </div>
 
-<div id="outline-container-org01abf89" class="outline-2">
-<h2 id="org01abf89"><span class="section-number-2">2</span> font</h2>
+<div id="outline-container-orgc71afb6" class="outline-2">
+<h2 id="orgc71afb6"><span class="section-number-2">2</span> font</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 How I made the WenQuanYi Micro Hei ttf font (clx-truetype only recognizes ttf, not ttc):
@@ -298,8 +299,8 @@ The validation failed, but doesn't matter
 </div>
 
 
-<div id="outline-container-org83e4ce4" class="outline-2">
-<h2 id="org83e4ce4"><span class="section-number-2">3</span> Xrandr</h2>
+<div id="outline-container-orgafc5624" class="outline-2">
+<h2 id="orgafc5624"><span class="section-number-2">3</span> Xrandr</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Multiple Display:
@@ -327,8 +328,8 @@ xrandr --output HDMI-1 --mode 1920x1080
 </div>
 </div>
 
-<div id="outline-container-orgf8be170" class="outline-2">
-<h2 id="orgf8be170"><span class="section-number-2">4</span> Display Manager</h2>
+<div id="outline-container-orgdc8b26e" class="outline-2">
+<h2 id="orgdc8b26e"><span class="section-number-2">4</span> Display Manager</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Install xdm. It will use the file <code>$HOME/.xsession</code>, so
@@ -340,8 +341,8 @@ ln -s $HOME/.xinitrc $HOME/.xsession
 </div>
 
 
-<div id="outline-container-orgea1bc82" class="outline-2">
-<h2 id="orgea1bc82"><span class="section-number-2">5</span> Window Manager</h2>
+<div id="outline-container-orgaa76f69" class="outline-2">
+<h2 id="orgaa76f69"><span class="section-number-2">5</span> Window Manager</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Candidates:
@@ -362,8 +363,8 @@ Noop:
 </div>
 
 
-<div id="outline-container-orgd0b90ea" class="outline-3">
-<h3 id="orgd0b90ea"><span class="section-number-3">5.1</span> ratpoison</h3>
+<div id="outline-container-orgdaba0d7" class="outline-3">
+<h3 id="orgdaba0d7"><span class="section-number-3">5.1</span> ratpoison</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 This is actually a wonderful WM.
@@ -409,11 +410,12 @@ Fortunately the stumpwm is very like this one, but
 </div>
 </div>
 
-<div id="outline-container-orgd2e41dd" class="outline-2">
-<h2 id="orgd2e41dd"><span class="section-number-2">6</span> Theme</h2>
+<div id="outline-container-orgda7c77f" class="outline-2">
+<h2 id="orgda7c77f"><span class="section-number-2">6</span> Theme</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-org8baf5e4" class="outline-3">
-<h3 id="org8baf5e4"><span class="section-number-3">6.1</span> cursor</h3>
+</div>
+<div id="outline-container-orge2431d3" class="outline-3">
+<h3 id="orge2431d3"><span class="section-number-3">6.1</span> cursor</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 Install xcursor-themes:
@@ -432,8 +434,8 @@ Xcursor.theme: redglass
 </div>
 </div>
 
-<div id="outline-container-orgb651581" class="outline-3">
-<h3 id="orgb651581"><span class="section-number-3">6.2</span> color</h3>
+<div id="outline-container-org5a2dfcf" class="outline-3">
+<h3 id="org5a2dfcf"><span class="section-number-3">6.2</span> color</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 X11 color names: <code>/etc/X11/rgb.txt</code>
@@ -443,8 +445,8 @@ X11 color names: <code>/etc/X11/rgb.txt</code>
 </div>
 
 
-<div id="outline-container-org9660235" class="outline-2">
-<h2 id="org9660235"><span class="section-number-2">7</span> Emacs As Window Manager</h2>
+<div id="outline-container-org54682bb" class="outline-2">
+<h2 id="org54682bb"><span class="section-number-2">7</span> Emacs As Window Manager</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <a href="http://www.howardism.org/Technical/Emacs/new-window-manager.html">http://www.howardism.org/Technical/Emacs/new-window-manager.html</a>
@@ -475,45 +477,46 @@ When you need to run something, just <code>M-x !</code> and call <code>xterm</co
 </p>
 </div>
 
-<div id="outline-container-org9c9dc51" class="outline-3">
-<h3 id="org9c9dc51"><span class="section-number-3">7.1</span> A time sink</h3>
+<div id="outline-container-org4a816f9" class="outline-3">
+<h3 id="org4a816f9"><span class="section-number-3">7.1</span> A time sink</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">setup-windows</span> ()
-  <span style="color: #93a1a1; font-style: italic;">"Organize a series of windows for ultimate distraction."</span>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">setup-windows</span> ()
+  <span style="color: #8b2252;">"Organize a series of windows for ultimate distraction."</span>
   (interactive)
   (delete-other-windows)
 
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Start with the Stack Overflow interface</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">Start with the Stack Overflow interface</span>
   (sx-tab-frontpage t nil)
 
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Put IRC on the other side</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">Put IRC on the other side</span>
   (split-window-horizontally)
   (other-window 1)
   (circe-connect-all)
 
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">My RSS Feed goes on top:</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">My RSS Feed goes on top:</span>
   (split-window-vertically)
   (elfeed)
 
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">And start up the Twitter interface above that:</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">And start up the Twitter interface above that:</span>
   (other-window 2)
   (split-window-vertically)
   (twit)
 
   (window-configuration-to-register ?w))
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org32f0758" class="outline-2">
-<h2 id="org32f0758"><span class="section-number-2">8</span> Trouble shooting</h2>
+<div id="outline-container-org1a77c81" class="outline-2">
+<h2 id="org1a77c81"><span class="section-number-2">8</span> Trouble shooting</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-orgd09f910" class="outline-3">
-<h3 id="orgd09f910"><span class="section-number-3">8.1</span> xinit</h3>
+</div>
+<div id="outline-container-org6654bd7" class="outline-3">
+<h3 id="org6654bd7"><span class="section-number-3">8.1</span> xinit</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 On Debian, when I <code>dist-upgrade</code> Debian 8 Jessie to 9 Stretch,
@@ -537,8 +540,8 @@ chomd u+s /usr/bin/xinit
 </pre>
 </div>
 </div>
-<div id="outline-container-org85d93dc" class="outline-3">
-<h3 id="org85d93dc"><span class="section-number-3">8.2</span> Multi screen, stumpwm detect as one</h3>
+<div id="outline-container-org49a405c" class="outline-3">
+<h3 id="org49a405c"><span class="section-number-3">8.2</span> Multi screen, stumpwm detect as one</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 Install <code>xdpyinfo</code>. It is used to detect the heads.
@@ -547,8 +550,8 @@ Install <code>xdpyinfo</code>. It is used to detect the heads.
 </div>
 </div>
 
-<div id="outline-container-org98ddda7" class="outline-2">
-<h2 id="org98ddda7"><span class="section-number-2">9</span> Nvidia Driver</h2>
+<div id="outline-container-org3f92c46" class="outline-2">
+<h2 id="org3f92c46"><span class="section-number-2">9</span> Nvidia Driver</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 I'm installing the driver for my GTX 1060.
@@ -577,8 +580,8 @@ But, I haven't been able to boot to login page using nvidia card&#x2026;
 </div>
 </div>
 
-<div id="outline-container-org7c0e674" class="outline-2">
-<h2 id="org7c0e674"><span class="section-number-2">10</span> Natural Scrolling</h2>
+<div id="outline-container-org9b918f1" class="outline-2">
+<h2 id="org9b918f1"><span class="section-number-2">10</span> Natural Scrolling</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 The old solution is to swap the pointer button "4" and "5", by <code>xmodmap</code> or <code>xinput</code>:
@@ -625,7 +628,7 @@ xinput set-prop &lt;deviceID&gt; &lt;propID&gt; &lt;value&gt;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-09-06 Wed 22:51</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

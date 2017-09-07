@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Debian Setup</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,49 +235,50 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8f71194">1. Vanilla</a></li>
-<li><a href="#org5f2ac2b">2. Basic System</a>
+<li><a href="#org00ec793">1. Vanilla</a></li>
+<li><a href="#orgc198a91">2. Basic System</a>
 <ul>
-<li><a href="#org9643180">2.1. The sources.list file, add:</a></li>
-<li><a href="#orgaf4deb9">2.2. Install these packages:</a>
+<li><a href="#org0fe8027">2.1. The sources.list file, add:</a></li>
+<li><a href="#org9b8b6ef">2.2. Install these packages:</a>
 <ul>
-<li><a href="#orgad6268b">2.2.1. X11</a></li>
-<li><a href="#org168a93f">2.2.2. Essential</a></li>
-<li><a href="#orga8b54c0">2.2.3. APP</a></li>
-<li><a href="#orgef57f7e">2.2.4. Helium</a>
+<li><a href="#org35de73a">2.2.1. X11</a></li>
+<li><a href="#org084b62f">2.2.2. Essential</a></li>
+<li><a href="#org31c52eb">2.2.3. APP</a></li>
+<li><a href="#org89f1de7">2.2.4. Helium</a>
 <ul>
-<li><a href="#org1a89c7e">2.2.4.1. Note</a></li>
+<li><a href="#orgf0e7313">2.2.4.1. Note</a></li>
 </ul>
 </li>
-<li><a href="#org1067701">2.2.5. documentation packages</a></li>
-<li><a href="#org843b255">2.2.6. Extra packages</a></li>
-<li><a href="#org6490e3f">2.2.7. pending packages:</a>
+<li><a href="#orgdcb31c5">2.2.5. documentation packages</a></li>
+<li><a href="#org84a7f24">2.2.6. Extra packages</a></li>
+<li><a href="#org36b60cb">2.2.7. pending packages:</a>
 <ul>
-<li><a href="#orgc6cc6f3">2.2.7.1. note for cl-quicklisp</a></li>
+<li><a href="#org33816b5">2.2.7.1. note for cl-quicklisp</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd1d9d22">2.3. Add to sudo</a></li>
-<li><a href="#orgc12c11c">2.4. default setting</a></li>
-<li><a href="#orge0e8718">2.5. git setup</a></li>
-<li><a href="#org18d6fcf">2.6. wallpaper setup</a></li>
-<li><a href="#org00c66dd">2.7. Other staff</a></li>
+<li><a href="#org50a709e">2.3. Add to sudo</a></li>
+<li><a href="#orgd14fa7c">2.4. default setting</a></li>
+<li><a href="#org4407a24">2.5. git setup</a></li>
+<li><a href="#orgff3a08d">2.6. wallpaper setup</a></li>
+<li><a href="#org7a981e9">2.7. Other staff</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8f71194" class="outline-2">
-<h2 id="org8f71194"><span class="section-number-2">1</span> Vanilla</h2>
+<div id="outline-container-org00ec793" class="outline-2">
+<h2 id="org00ec793"><span class="section-number-2">1</span> Vanilla</h2>
 </div>
 
-<div id="outline-container-org5f2ac2b" class="outline-2">
-<h2 id="org5f2ac2b"><span class="section-number-2">2</span> Basic System</h2>
+<div id="outline-container-orgc198a91" class="outline-2">
+<h2 id="orgc198a91"><span class="section-number-2">2</span> Basic System</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org9643180" class="outline-3">
-<h3 id="org9643180"><span class="section-number-3">2.1</span> The sources.list file, add:</h3>
+</div>
+<div id="outline-container-org0fe8027" class="outline-3">
+<h3 id="org0fe8027"><span class="section-number-3">2.1</span> The sources.list file, add:</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 # backports
@@ -288,11 +290,12 @@ deb-src http://noone.org/conkeror-nightly-debs jessie main
 </div>
 </div>
 
-<div id="outline-container-orgaf4deb9" class="outline-3">
-<h3 id="orgaf4deb9"><span class="section-number-3">2.2</span> Install these packages:</h3>
+<div id="outline-container-org9b8b6ef" class="outline-3">
+<h3 id="org9b8b6ef"><span class="section-number-3">2.2</span> Install these packages:</h3>
 <div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-orgad6268b" class="outline-4">
-<h4 id="orgad6268b"><span class="section-number-4">2.2.1</span> X11</h4>
+</div>
+<div id="outline-container-org35de73a" class="outline-4">
+<h4 id="org35de73a"><span class="section-number-4">2.2.1</span> X11</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 xorg xinit tmux stumpwm xcursor-themes
@@ -306,8 +309,8 @@ pavucontrol # this is GUI to config pulseaudio! Very useful
 </div>
 </div>
 
-<div id="outline-container-org168a93f" class="outline-4">
-<h4 id="org168a93f"><span class="section-number-4">2.2.2</span> Essential</h4>
+<div id="outline-container-org084b62f" class="outline-4">
+<h4 id="org084b62f"><span class="section-number-4">2.2.2</span> Essential</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <pre class="example">
 global build-essential sudo git cifs-utils curl pkg-config cmake
@@ -315,8 +318,8 @@ global build-essential sudo git cifs-utils curl pkg-config cmake
 </div>
 </div>
 
-<div id="outline-container-orga8b54c0" class="outline-4">
-<h4 id="orga8b54c0"><span class="section-number-4">2.2.3</span> APP</h4>
+<div id="outline-container-org31c52eb" class="outline-4">
+<h4 id="org31c52eb"><span class="section-number-4">2.2.3</span> APP</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <pre class="example">
 xpdf feh emacs silversearcher-ag conkeror sqlite3 tree
@@ -324,8 +327,8 @@ xpdf feh emacs silversearcher-ag conkeror sqlite3 tree
 </div>
 </div>
 
-<div id="outline-container-orgef57f7e" class="outline-4">
-<h4 id="orgef57f7e"><span class="section-number-4">2.2.4</span> Helium</h4>
+<div id="outline-container-org89f1de7" class="outline-4">
+<h4 id="org89f1de7"><span class="section-number-4">2.2.4</span> Helium</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <pre class="example">
 exuberant-ctags libsqlite3-dev autoconf graphviz
@@ -335,8 +338,8 @@ feh cmake
 </pre>
 </div>
 
-<div id="outline-container-org1a89c7e" class="outline-5">
-<h5 id="org1a89c7e"><span class="section-number-5">2.2.4.1</span> Note</h5>
+<div id="outline-container-orgf0e7313" class="outline-5">
+<h5 id="orgf0e7313"><span class="section-number-5">2.2.4.1</span> Note</h5>
 <div class="outline-text-5" id="text-2-2-4-1">
 <pre class="example">
 cd /tmp
@@ -362,8 +365,8 @@ $ cmake ..
 </div>
 
 
-<div id="outline-container-org1067701" class="outline-4">
-<h4 id="org1067701"><span class="section-number-4">2.2.5</span> documentation packages</h4>
+<div id="outline-container-orgdcb31c5" class="outline-4">
+<h4 id="orgdcb31c5"><span class="section-number-4">2.2.5</span> documentation packages</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <pre class="example">
 bash-doc
@@ -373,8 +376,8 @@ r-doc-info
 </div>
 </div>
 
-<div id="outline-container-org843b255" class="outline-4">
-<h4 id="org843b255"><span class="section-number-4">2.2.6</span> Extra packages</h4>
+<div id="outline-container-org84a7f24" class="outline-4">
+<h4 id="org84a7f24"><span class="section-number-4">2.2.6</span> Extra packages</h4>
 <div class="outline-text-4" id="text-2-2-6">
 <pre class="example">
 openjdk-7-jdk
@@ -385,8 +388,8 @@ zlib1g-dev
 </div>
 </div>
 
-<div id="outline-container-org6490e3f" class="outline-4">
-<h4 id="org6490e3f"><span class="section-number-4">2.2.7</span> pending packages:</h4>
+<div id="outline-container-org36b60cb" class="outline-4">
+<h4 id="org36b60cb"><span class="section-number-4">2.2.7</span> pending packages:</h4>
 <div class="outline-text-4" id="text-2-2-7">
 <pre class="example">
 cl-quicklisp # need manual installation
@@ -431,8 +434,8 @@ Non-package software:
 <li><a href="https://www.soimort.org/translate-shell/">https://www.soimort.org/translate-shell/</a></li>
 </ul>
 </div>
-<div id="outline-container-orgc6cc6f3" class="outline-5">
-<h5 id="orgc6cc6f3"><span class="section-number-5">2.2.7.1</span> note for cl-quicklisp</h5>
+<div id="outline-container-org33816b5" class="outline-5">
+<h5 id="org33816b5"><span class="section-number-5">2.2.7.1</span> note for cl-quicklisp</h5>
 <div class="outline-text-5" id="text-2-2-7-1">
 <ol class="org-ol">
 <li>use apt to install</li>
@@ -451,8 +454,8 @@ Non-package software:
 </div>
 </div>
 
-<div id="outline-container-orgd1d9d22" class="outline-3">
-<h3 id="orgd1d9d22"><span class="section-number-3">2.3</span> Add to sudo</h3>
+<div id="outline-container-org50a709e" class="outline-3">
+<h3 id="org50a709e"><span class="section-number-3">2.3</span> Add to sudo</h3>
 <div class="outline-text-3" id="text-2-3">
 <blockquote>
 <p>
@@ -471,8 +474,8 @@ pull from git repository:
 </div>
 </div>
 
-<div id="outline-container-orgc12c11c" class="outline-3">
-<h3 id="orgc12c11c"><span class="section-number-3">2.4</span> default setting</h3>
+<div id="outline-container-orgd14fa7c" class="outline-3">
+<h3 id="orgd14fa7c"><span class="section-number-3">2.4</span> default setting</h3>
 <div class="outline-text-3" id="text-2-4">
 <pre class="example">
 update-alternative --config x-terminal-emulator
@@ -481,8 +484,8 @@ update-alternative --config x-www-browser
 </div>
 </div>
 
-<div id="outline-container-orge0e8718" class="outline-3">
-<h3 id="orge0e8718"><span class="section-number-3">2.5</span> git setup</h3>
+<div id="outline-container-org4407a24" class="outline-3">
+<h3 id="org4407a24"><span class="section-number-3">2.5</span> git setup</h3>
 <div class="outline-text-3" id="text-2-5">
 <pre class="example">
 git config --global user.name "Hebi Li"
@@ -494,8 +497,8 @@ git config --global push.default simple
 </div>
 
 
-<div id="outline-container-org18d6fcf" class="outline-3">
-<h3 id="org18d6fcf"><span class="section-number-3">2.6</span> wallpaper setup</h3>
+<div id="outline-container-orgff3a08d" class="outline-3">
+<h3 id="orgff3a08d"><span class="section-number-3">2.6</span> wallpaper setup</h3>
 <div class="outline-text-3" id="text-2-6">
 <pre class="example">
 feh --bg-fill /path/to/wallpaper.suffix
@@ -503,8 +506,8 @@ feh --bg-fill /path/to/wallpaper.suffix
 </div>
 </div>
 
-<div id="outline-container-org00c66dd" class="outline-3">
-<h3 id="org00c66dd"><span class="section-number-3">2.7</span> Other staff</h3>
+<div id="outline-container-org7a981e9" class="outline-3">
+<h3 id="org7a981e9"><span class="section-number-3">2.7</span> Other staff</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 <a href="https://github.com/kiwanami/emacs-edbi">https://github.com/kiwanami/emacs-edbi</a>
@@ -519,7 +522,7 @@ cpan RPC::EPC::Service DBI DBD::SQLite DBD::Pg DBD::mysql
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

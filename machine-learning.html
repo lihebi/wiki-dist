@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Machine Learning</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -256,203 +257,203 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org85a8101">1. Introduction</a>
+<li><a href="#org5294fdc">1. Introduction</a>
 <ul>
-<li><a href="#org98eb209">1.1. General Concepts</a></li>
-<li><a href="#orge43b218">1.2. Different models</a></li>
-<li><a href="#orge335952">1.3. The purpose of estimate \(f\)</a></li>
-<li><a href="#org007fce9">1.4. Classification</a></li>
-<li><a href="#orgfae456d">1.5. Model Accuracy</a>
+<li><a href="#org4c4b2dd">1.1. General Concepts</a></li>
+<li><a href="#org47e0130">1.2. Different models</a></li>
+<li><a href="#org83c09fb">1.3. The purpose of estimate \(f\)</a></li>
+<li><a href="#org13a67c8">1.4. Classification</a></li>
+<li><a href="#orgefb503e">1.5. Model Accuracy</a>
 <ul>
-<li><a href="#org63dcc22">1.5.1. The bias-variance trade-off</a></li>
+<li><a href="#org2ab332a">1.5.1. The bias-variance trade-off</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgfb59058">2. Linear Regression</a>
+<li><a href="#org60cc7e9">2. Linear Regression</a>
 <ul>
-<li><a href="#org2532988">2.1. Estimate Coefficients</a></li>
-<li><a href="#orgc78d1e1">2.2. accuracy</a>
+<li><a href="#orga81cd66">2.1. Estimate Coefficients</a></li>
+<li><a href="#orgeecd361">2.2. accuracy</a>
 <ul>
-<li><a href="#orge2c4d7f">2.2.1. accuracy of coefficients measure</a>
+<li><a href="#orgc090060">2.2.1. accuracy of coefficients measure</a>
 <ul>
-<li><a href="#org45b2a14">2.2.1.1. Hypothesis Test</a></li>
+<li><a href="#org017929f">2.2.1.1. Hypothesis Test</a></li>
 </ul>
 </li>
-<li><a href="#orgdcd5041">2.2.2. accuracy of model</a></li>
+<li><a href="#orgfea0aed">2.2.2. accuracy of model</a></li>
 </ul>
 </li>
-<li><a href="#org413af32">2.3. Assumptions</a>
+<li><a href="#org22b0450">2.3. Assumptions</a>
 <ul>
-<li><a href="#org2e65663">2.3.1. Kris Note</a>
+<li><a href="#orgff0e018">2.3.1. Kris Note</a>
 <ul>
-<li><a href="#org2609705">2.3.1.1. Tests</a></li>
+<li><a href="#orgb401549">2.3.1.1. Tests</a></li>
 </ul>
 </li>
-<li><a href="#orgecad8cc">2.3.2. non-linearity of the response-predictor relationships</a>
+<li><a href="#org7c243f6">2.3.2. non-linearity of the response-predictor relationships</a>
 <ul>
-<li><a href="#orgadc7fb9">2.3.2.1. Detection</a></li>
-<li><a href="#orgcd88442">2.3.2.2. Solution</a></li>
+<li><a href="#org865be8d">2.3.2.1. Detection</a></li>
+<li><a href="#org2beeaf1">2.3.2.2. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orga82eb79">2.3.3. correlation of error terms</a>
+<li><a href="#org492f5a1">2.3.3. correlation of error terms</a>
 <ul>
-<li><a href="#org6c35eb3">2.3.3.1. Consequence</a></li>
-<li><a href="#org5f88fa9">2.3.3.2. Detection</a></li>
+<li><a href="#org5190328">2.3.3.1. Consequence</a></li>
+<li><a href="#org0c0668f">2.3.3.2. Detection</a></li>
 </ul>
 </li>
-<li><a href="#orga7f8bc1">2.3.4. non-constant variance of error terms</a>
+<li><a href="#orgb22d199">2.3.4. non-constant variance of error terms</a>
 <ul>
-<li><a href="#org9c88e55">2.3.4.1. Consequence</a></li>
-<li><a href="#org280f206">2.3.4.2. Detection</a></li>
-<li><a href="#orge8fad23">2.3.4.3. Solution</a></li>
+<li><a href="#org7f851e7">2.3.4.1. Consequence</a></li>
+<li><a href="#orgeb0fd81">2.3.4.2. Detection</a></li>
+<li><a href="#org35b9275">2.3.4.3. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org0930392">2.3.5. Outliers</a>
+<li><a href="#orgdc6dba0">2.3.5. Outliers</a>
 <ul>
-<li><a href="#org284062d">2.3.5.1. Consequence</a></li>
-<li><a href="#org5b261c4">2.3.5.2. Detection</a></li>
-<li><a href="#org3481798">2.3.5.3. Solution</a></li>
+<li><a href="#org9c47403">2.3.5.1. Consequence</a></li>
+<li><a href="#org9a098ed">2.3.5.2. Detection</a></li>
+<li><a href="#orgd58e453">2.3.5.3. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org62aae34">2.3.6. High-leverage points</a>
+<li><a href="#org7fe32b7">2.3.6. High-leverage points</a>
 <ul>
-<li><a href="#orgf23c001">2.3.6.1. Consequence</a></li>
-<li><a href="#orgb92998f">2.3.6.2. Detection</a></li>
+<li><a href="#orge420d8d">2.3.6.1. Consequence</a></li>
+<li><a href="#orgc8f872e">2.3.6.2. Detection</a></li>
 </ul>
 </li>
-<li><a href="#org0f4e3fc">2.3.7. collinearity</a>
+<li><a href="#orgaca4a3c">2.3.7. collinearity</a>
 <ul>
-<li><a href="#org0e31d63">2.3.7.1. Consequence</a></li>
-<li><a href="#orgbf3eb02">2.3.7.2. Detection</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orge9f4600">2.4. KNN regression</a></li>
-</ul>
-</li>
-<li><a href="#org72a9277">3. Classification</a>
-<ul>
-<li><a href="#orgf7f4c2a">3.1. logistic regression</a>
-<ul>
-<li><a href="#orgce685c9">3.1.1. Estimate the coefficients</a></li>
-<li><a href="#orgaeaab85">3.1.2. multiple logistic regression</a></li>
-</ul>
-</li>
-<li><a href="#org6456aef">3.2. Linear Discriminant Analysis (LDA)</a></li>
-<li><a href="#orgf7f77e9">3.3. Quadratic Discriminant Analysis (QDA)</a>
-<ul>
-<li><a href="#org791c82b">3.3.1. How to choose from LDA or QDA</a></li>
-</ul>
-</li>
-<li><a href="#org0b21e9c">3.4. KNN</a></li>
-</ul>
-</li>
-<li><a href="#orge95095c">4. Re-sampling Methods</a>
-<ul>
-<li><a href="#orgad9f9e0">4.1. cross-validation</a>
-<ul>
-<li><a href="#org742d50b">4.1.1. Validation set approach</a></li>
-<li><a href="#org39069f4">4.1.2. cross validation</a>
-<ul>
-<li><a href="#orgfcdd7fd">4.1.2.1. Leave-One-Out Cross-Validation (LOOCV)</a></li>
-<li><a href="#orgb92b87e">4.1.2.2. k-Fold Cross-Validation</a></li>
+<li><a href="#org941a3ef">2.3.7.1. Consequence</a></li>
+<li><a href="#orgf125477">2.3.7.2. Detection</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3f56303">4.2. bootstrap</a></li>
+<li><a href="#orgb0ce0b8">2.4. KNN regression</a></li>
 </ul>
 </li>
-<li><a href="#org6a11df7">5. Linear Model Selection and Regularization</a>
+<li><a href="#orga6c88e8">3. Classification</a>
 <ul>
-<li><a href="#org419d8f7">5.1. Subset Selection</a>
+<li><a href="#orgcac707b">3.1. logistic regression</a>
 <ul>
-<li><a href="#org849d5e6">5.1.1. best subset selection</a></li>
-<li><a href="#org8805f1a">5.1.2. Stepwise Selection</a>
-<ul>
-<li><a href="#org76aa65c">5.1.2.1. forward stepwise selection</a></li>
-<li><a href="#org058858b">5.1.2.2. backward stepwise selection</a></li>
-<li><a href="#org9e47345">5.1.2.3. hybrid approaches</a></li>
+<li><a href="#org651a77f">3.1.1. Estimate the coefficients</a></li>
+<li><a href="#orgadadcd0">3.1.2. multiple logistic regression</a></li>
 </ul>
 </li>
+<li><a href="#orgca90dcb">3.2. Linear Discriminant Analysis (LDA)</a></li>
+<li><a href="#orgef19321">3.3. Quadratic Discriminant Analysis (QDA)</a>
+<ul>
+<li><a href="#org8c9fa13">3.3.1. How to choose from LDA or QDA</a></li>
 </ul>
 </li>
-<li><a href="#org0ff2bed">5.2. Shrinkage</a>
-<ul>
-<li><a href="#orgd73c0bb">5.2.1. Ridge Regression</a></li>
-<li><a href="#org65d5b82">5.2.2. Lasso</a></li>
+<li><a href="#org1363016">3.4. KNN</a></li>
 </ul>
 </li>
-<li><a href="#org0897c82">5.3. Dimension Reduction</a>
+<li><a href="#org0d5158a">4. Re-sampling Methods</a>
 <ul>
-<li><a href="#orga4636f0">5.3.1. Principal Components Regression</a>
+<li><a href="#org0a6d701">4.1. cross-validation</a>
 <ul>
-<li><a href="#org2176570">5.3.1.1. Principal Component Analysis (PCA)</a></li>
-<li><a href="#org1a90ff4">5.3.1.2. Principal Component Regression (PCR)</a></li>
-</ul>
-</li>
-<li><a href="#org3a7dd79">5.3.2. Partial Least Squares (PLS)</a></li>
+<li><a href="#org3732cd6">4.1.1. Validation set approach</a></li>
+<li><a href="#org2293699">4.1.2. cross validation</a>
+<ul>
+<li><a href="#orga9a347f">4.1.2.1. Leave-One-Out Cross-Validation (LOOCV)</a></li>
+<li><a href="#org253ea9c">4.1.2.2. k-Fold Cross-Validation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org553d8de">6. Non-linear</a>
-<ul>
-<li><a href="#orgb56369b">6.1. polynomial regression</a></li>
-<li><a href="#org99cbfc7">6.2. step function</a></li>
-<li><a href="#org1a81da2">6.3. basis function</a></li>
-<li><a href="#orgafb63cf">6.4. regression spline</a></li>
-<li><a href="#orgd9077e9">6.5. smoothing spline</a></li>
-<li><a href="#org5366d04">6.6. local regression</a></li>
-<li><a href="#org6296315">6.7. Generalized Additive Models (GAMs)</a></li>
+<li><a href="#org4f3d9d6">4.2. bootstrap</a></li>
 </ul>
 </li>
-<li><a href="#orgd1a64fe">7. Tree-based Methods</a>
+<li><a href="#org2f4c24a">5. Linear Model Selection and Regularization</a>
 <ul>
-<li><a href="#orgecdcb3c">7.1. Decision tree</a>
+<li><a href="#org3687300">5.1. Subset Selection</a>
 <ul>
-<li><a href="#orgca3ee7a">7.1.1. regression tree</a></li>
-<li><a href="#org3216d02">7.1.2. classification tree</a></li>
-</ul>
-</li>
-<li><a href="#org0d591fa">7.2. bagging</a></li>
-<li><a href="#org3827f73">7.3. boosting</a></li>
-</ul>
-</li>
-<li><a href="#org172895f">8. Support Vector Machine</a>
+<li><a href="#org8c1cc5e">5.1.1. best subset selection</a></li>
+<li><a href="#org36de8b0">5.1.2. Stepwise Selection</a>
 <ul>
-<li><a href="#org7bbc3e3">8.1. Maximal Margin Classifier</a></li>
-<li><a href="#orgc656737">8.2. Support Vector Classifier</a></li>
-<li><a href="#org399a6b2">8.3. Support Vector Machine</a></li>
-<li><a href="#org75454eb">8.4. SVMs with More than two classes</a>
-<ul>
-<li><a href="#org6647d8a">8.4.1. one-versus-one classification</a></li>
-<li><a href="#orgb448f52">8.4.2. one-versus-all classification</a></li>
+<li><a href="#orgf65c0d5">5.1.2.1. forward stepwise selection</a></li>
+<li><a href="#org7531441">5.1.2.2. backward stepwise selection</a></li>
+<li><a href="#orgcd31ff0">5.1.2.3. hybrid approaches</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgf1cbc6a">9. Unsupervised Learning (Clustering)</a>
+<li><a href="#orgc13b0ca">5.2. Shrinkage</a>
 <ul>
-<li><a href="#orgabf3d70">9.1. K-means</a></li>
-<li><a href="#orge26bb36">9.2. Hierarchical Clustering</a></li>
+<li><a href="#orgda0b7d3">5.2.1. Ridge Regression</a></li>
+<li><a href="#org7c8032c">5.2.2. Lasso</a></li>
+</ul>
+</li>
+<li><a href="#orga724e79">5.3. Dimension Reduction</a>
+<ul>
+<li><a href="#orga2c0464">5.3.1. Principal Components Regression</a>
+<ul>
+<li><a href="#orge7a6cda">5.3.1.1. Principal Component Analysis (PCA)</a></li>
+<li><a href="#org8399969">5.3.1.2. Principal Component Regression (PCR)</a></li>
+</ul>
+</li>
+<li><a href="#org4c2d6e1">5.3.2. Partial Least Squares (PLS)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org70ccf43">6. Non-linear</a>
+<ul>
+<li><a href="#orge298aa4">6.1. polynomial regression</a></li>
+<li><a href="#org8bb2c14">6.2. step function</a></li>
+<li><a href="#org56b33dc">6.3. basis function</a></li>
+<li><a href="#orgc91d66d">6.4. regression spline</a></li>
+<li><a href="#orgaba5131">6.5. smoothing spline</a></li>
+<li><a href="#org1c4f997">6.6. local regression</a></li>
+<li><a href="#orgb0fb81a">6.7. Generalized Additive Models (GAMs)</a></li>
+</ul>
+</li>
+<li><a href="#orga00151d">7. Tree-based Methods</a>
+<ul>
+<li><a href="#orgfbece4d">7.1. Decision tree</a>
+<ul>
+<li><a href="#org15904b1">7.1.1. regression tree</a></li>
+<li><a href="#org65bfb02">7.1.2. classification tree</a></li>
+</ul>
+</li>
+<li><a href="#orgd4e1f99">7.2. bagging</a></li>
+<li><a href="#orgc1587ef">7.3. boosting</a></li>
+</ul>
+</li>
+<li><a href="#org8b88d1d">8. Support Vector Machine</a>
+<ul>
+<li><a href="#orgb7aeb8d">8.1. Maximal Margin Classifier</a></li>
+<li><a href="#org82d0d5b">8.2. Support Vector Classifier</a></li>
+<li><a href="#org6ab6ead">8.3. Support Vector Machine</a></li>
+<li><a href="#org0aeb6d4">8.4. SVMs with More than two classes</a>
+<ul>
+<li><a href="#org21d122a">8.4.1. one-versus-one classification</a></li>
+<li><a href="#org8ae4082">8.4.2. one-versus-all classification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6ceb862">9. Unsupervised Learning (Clustering)</a>
+<ul>
+<li><a href="#orgc5e76e5">9.1. K-means</a></li>
+<li><a href="#orgb441512">9.2. Hierarchical Clustering</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org85a8101" class="outline-2">
-<h2 id="org85a8101"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org5294fdc" class="outline-2">
+<h2 id="org5294fdc"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Euclidean distance</li>
 </ul>
 </div>
-<div id="outline-container-org98eb209" class="outline-3">
-<h3 id="org98eb209"><span class="section-number-3">1.1</span> General Concepts</h3>
+<div id="outline-container-org4c4b2dd" class="outline-3">
+<h3 id="org4c4b2dd"><span class="section-number-3">1.1</span> General Concepts</h3>
 <div class="outline-text-3" id="text-1-1">
 <dl class="org-dl">
 <dt>X</dt><dd>predictors, independent variables, features, variables</dd>
@@ -475,8 +476,8 @@ Y = f(X) + \epsilon
 </div>
 </div>
 
-<div id="outline-container-orge43b218" class="outline-3">
-<h3 id="orge43b218"><span class="section-number-3">1.2</span> Different models</h3>
+<div id="outline-container-org47e0130" class="outline-3">
+<h3 id="org47e0130"><span class="section-number-3">1.2</span> Different models</h3>
 <div class="outline-text-3" id="text-1-2">
 <dl class="org-dl">
 <dt>parametric method</dt><dd>reduce the fitting problem to estimating a set of coefficients.
@@ -488,8 +489,8 @@ But it will be imprecise if the model choose-d is very different from the true m
 </div>
 </div>
 
-<div id="outline-container-orge335952" class="outline-3">
-<h3 id="orge335952"><span class="section-number-3">1.3</span> The purpose of estimate \(f\)</h3>
+<div id="outline-container-org83c09fb" class="outline-3">
+<h3 id="org83c09fb"><span class="section-number-3">1.3</span> The purpose of estimate \(f\)</h3>
 <div class="outline-text-3" id="text-1-3">
 <dl class="org-dl">
 <dt>prediction</dt><dd>\(\hat{f}\) is treated as black box</dd>
@@ -500,8 +501,8 @@ But it will be imprecise if the model choose-d is very different from the true m
 </div>
 
 
-<div id="outline-container-org007fce9" class="outline-3">
-<h3 id="org007fce9"><span class="section-number-3">1.4</span> Classification</h3>
+<div id="outline-container-org13a67c8" class="outline-3">
+<h3 id="org13a67c8"><span class="section-number-3">1.4</span> Classification</h3>
 <div class="outline-text-3" id="text-1-4">
 <dl class="org-dl">
 <dt>Bayes Classifier</dt><dd>assign each observation to the most likely class, given its predictor values.</dd>
@@ -516,8 +517,8 @@ Use the largest probability.</dd>
 </div>
 </div>
 
-<div id="outline-container-orgfae456d" class="outline-3">
-<h3 id="orgfae456d"><span class="section-number-3">1.5</span> Model Accuracy</h3>
+<div id="outline-container-orgefb503e" class="outline-3">
+<h3 id="orgefb503e"><span class="section-number-3">1.5</span> Model Accuracy</h3>
 <div class="outline-text-3" id="text-1-5">
 <dl class="org-dl">
 <dt>mean square error (MSE)</dt><dd></dd>
@@ -534,8 +535,8 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{f}(x_i))^2
 </dl>
 </div>
 
-<div id="outline-container-org63dcc22" class="outline-4">
-<h4 id="org63dcc22"><span class="section-number-4">1.5.1</span> The bias-variance trade-off</h4>
+<div id="outline-container-org2ab332a" class="outline-4">
+<h4 id="org2ab332a"><span class="section-number-4">1.5.1</span> The bias-variance trade-off</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <dl class="org-dl">
 <dt>variance</dt><dd>the amount by which \(\hat{f}\) would change if we estimated it using a different training data set.
@@ -550,8 +551,8 @@ E.g. it is unlikely that any real-life problem has simple linear relationship.
 </div>
 
 
-<div id="outline-container-orgfb59058" class="outline-2">
-<h2 id="orgfb59058"><span class="section-number-2">2</span> Linear Regression</h2>
+<div id="outline-container-org60cc7e9" class="outline-2">
+<h2 id="org60cc7e9"><span class="section-number-2">2</span> Linear Regression</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 regress Y on X, or Y onto X.
@@ -567,8 +568,8 @@ Y = \beta_0 + \beta_1 X
 </dl>
 </div>
 
-<div id="outline-container-org2532988" class="outline-3">
-<h3 id="org2532988"><span class="section-number-3">2.1</span> Estimate Coefficients</h3>
+<div id="outline-container-orga81cd66" class="outline-3">
+<h3 id="orga81cd66"><span class="section-number-3">2.1</span> Estimate Coefficients</h3>
 <div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt>Residual Sum of Squares (RSS)</dt><dd></dd>
@@ -599,11 +600,12 @@ The result:
 </div>
 </div>
 
-<div id="outline-container-orgc78d1e1" class="outline-3">
-<h3 id="orgc78d1e1"><span class="section-number-3">2.2</span> accuracy</h3>
+<div id="outline-container-orgeecd361" class="outline-3">
+<h3 id="orgeecd361"><span class="section-number-3">2.2</span> accuracy</h3>
 <div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-orge2c4d7f" class="outline-4">
-<h4 id="orge2c4d7f"><span class="section-number-4">2.2.1</span> accuracy of coefficients measure</h4>
+</div>
+<div id="outline-container-orgc090060" class="outline-4">
+<h4 id="orgc090060"><span class="section-number-4">2.2.1</span> accuracy of coefficients measure</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <dl class="org-dl">
 <dt>\(\hat{\mu}\)</dt><dd>sample mean</dd>
@@ -636,8 +638,8 @@ For linear regression, the 95% confidence interval for \(\beta_1\) is
 \end{eqnarray}
 </div>
 
-<div id="outline-container-org45b2a14" class="outline-5">
-<h5 id="org45b2a14"><span class="section-number-5">2.2.1.1</span> Hypothesis Test</h5>
+<div id="outline-container-org017929f" class="outline-5">
+<h5 id="org017929f"><span class="section-number-5">2.2.1.1</span> Hypothesis Test</h5>
 <div class="outline-text-5" id="text-2-2-1-1">
 <p>
 Standard error can be used to perform Hypothesis test on coefficients.
@@ -680,8 +682,8 @@ Reject null hypothesis if p-value is small enough, often 1%.</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcd5041" class="outline-4">
-<h4 id="orgdcd5041"><span class="section-number-4">2.2.2</span> accuracy of model</h4>
+<div id="outline-container-orgfea0aed" class="outline-4">
+<h4 id="orgfea0aed"><span class="section-number-4">2.2.2</span> accuracy of model</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Use:
@@ -742,11 +744,12 @@ Again, a small p-value reject NULL hypothesis.
 
 
 
-<div id="outline-container-org413af32" class="outline-3">
-<h3 id="org413af32"><span class="section-number-3">2.3</span> Assumptions</h3>
+<div id="outline-container-org22b0450" class="outline-3">
+<h3 id="org22b0450"><span class="section-number-3">2.3</span> Assumptions</h3>
 <div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-org2e65663" class="outline-4">
-<h4 id="org2e65663"><span class="section-number-4">2.3.1</span> Kris Note</h4>
+</div>
+<div id="outline-container-orgff0e018" class="outline-4">
+<h4 id="orgff0e018"><span class="section-number-4">2.3.1</span> Kris Note</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Note that in Kris's note, the assumptions and testing stragtage is pretty different.
@@ -763,8 +766,8 @@ The third one can be detected in <i>autocorrelation function</i> (ACF).
 Every vertical line crossing the confidence interval (95%) is suspicious.
 </p>
 </div>
-<div id="outline-container-org2609705" class="outline-5">
-<h5 id="org2609705"><span class="section-number-5">2.3.1.1</span> Tests</h5>
+<div id="outline-container-orgb401549" class="outline-5">
+<h5 id="orgb401549"><span class="section-number-5">2.3.1.1</span> Tests</h5>
 <div class="outline-text-5" id="text-2-3-1-1">
 <ul class="org-ul">
 <li>Testing for randomness of the residuals: <i>Runs test</i>.</li>
@@ -774,11 +777,12 @@ Every vertical line crossing the confidence interval (95%) is suspicious.
 </div>
 </div>
 
-<div id="outline-container-orgecad8cc" class="outline-4">
-<h4 id="orgecad8cc"><span class="section-number-4">2.3.2</span> non-linearity of the response-predictor relationships</h4>
+<div id="outline-container-org7c243f6" class="outline-4">
+<h4 id="org7c243f6"><span class="section-number-4">2.3.2</span> non-linearity of the response-predictor relationships</h4>
 <div class="outline-text-4" id="text-2-3-2">
-</div><div id="outline-container-orgadc7fb9" class="outline-5">
-<h5 id="orgadc7fb9"><span class="section-number-5">2.3.2.1</span> Detection</h5>
+</div>
+<div id="outline-container-org865be8d" class="outline-5">
+<h5 id="org865be8d"><span class="section-number-5">2.3.2.1</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-2-1">
 <p>
 plot the <i>residual plots</i>.
@@ -789,8 +793,8 @@ If it is "U shape", then it indicates non-linear
 </p>
 </div>
 </div>
-<div id="outline-container-orgcd88442" class="outline-5">
-<h5 id="orgcd88442"><span class="section-number-5">2.3.2.2</span> Solution</h5>
+<div id="outline-container-org2beeaf1" class="outline-5">
+<h5 id="org2beeaf1"><span class="section-number-5">2.3.2.2</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-2-2">
 <p>
 try some non-linear transformations of the predictors, such as \(log X\), \(\sqrt{X}\), \(X^2\).
@@ -798,15 +802,15 @@ try some non-linear transformations of the predictors, such as \(log X\), \(\sqr
 </div>
 </div>
 </div>
-<div id="outline-container-orga82eb79" class="outline-4">
-<h4 id="orga82eb79"><span class="section-number-4">2.3.3</span> correlation of error terms</h4>
+<div id="outline-container-org492f5a1" class="outline-4">
+<h4 id="org492f5a1"><span class="section-number-4">2.3.3</span> correlation of error terms</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 The error terms \(\epsilon_i\) should be uncorrelated.
 </p>
 </div>
-<div id="outline-container-org6c35eb3" class="outline-5">
-<h5 id="org6c35eb3"><span class="section-number-5">2.3.3.1</span> Consequence</h5>
+<div id="outline-container-org5190328" class="outline-5">
+<h5 id="org5190328"><span class="section-number-5">2.3.3.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-3-1">
 <p>
 Confidence and prediction intervals will be narrower.
@@ -814,8 +818,8 @@ p-values associated with the model will be lower.
 </p>
 </div>
 </div>
-<div id="outline-container-org5f88fa9" class="outline-5">
-<h5 id="org5f88fa9"><span class="section-number-5">2.3.3.2</span> Detection</h5>
+<div id="outline-container-org0c0668f" class="outline-5">
+<h5 id="org0c0668f"><span class="section-number-5">2.3.3.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-3-2">
 <p>
 Plot the residuals.
@@ -826,23 +830,23 @@ i.e. adjacent residuals may have similar values.
 </div>
 </div>
 
-<div id="outline-container-orga7f8bc1" class="outline-4">
-<h4 id="orga7f8bc1"><span class="section-number-4">2.3.4</span> non-constant variance of error terms</h4>
+<div id="outline-container-orgb22d199" class="outline-4">
+<h4 id="orgb22d199"><span class="section-number-4">2.3.4</span> non-constant variance of error terms</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <p>
 The linear regression model assumes the error terms have a constant variance, i.e. \(Var(\epsilon_i) = \sigma^2\).
 </p>
 </div>
-<div id="outline-container-org9c88e55" class="outline-5">
-<h5 id="org9c88e55"><span class="section-number-5">2.3.4.1</span> Consequence</h5>
+<div id="outline-container-org7f851e7" class="outline-5">
+<h5 id="org7f851e7"><span class="section-number-5">2.3.4.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-4-1">
 <p>
 Standard errors, confidence interval, hypothesis test.
 </p>
 </div>
 </div>
-<div id="outline-container-org280f206" class="outline-5">
-<h5 id="org280f206"><span class="section-number-5">2.3.4.2</span> Detection</h5>
+<div id="outline-container-orgeb0fd81" class="outline-5">
+<h5 id="orgeb0fd81"><span class="section-number-5">2.3.4.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-4-2">
 <p>
 E.g. the residuals increase with the value of response.
@@ -850,8 +854,8 @@ To confirm it is constant, we can use <i>Breusch-Pagan test</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-orge8fad23" class="outline-5">
-<h5 id="orge8fad23"><span class="section-number-5">2.3.4.3</span> Solution</h5>
+<div id="outline-container-org35b9275" class="outline-5">
+<h5 id="org35b9275"><span class="section-number-5">2.3.4.3</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-4-3">
 <p>
 Transform response Y to concave function such as \(log Y\) or \(\sqrt{Y}\).
@@ -860,15 +864,15 @@ Transform response Y to concave function such as \(log Y\) or \(\sqrt{Y}\).
 </div>
 </div>
 
-<div id="outline-container-org0930392" class="outline-4">
-<h4 id="org0930392"><span class="section-number-4">2.3.5</span> Outliers</h4>
+<div id="outline-container-orgdc6dba0" class="outline-4">
+<h4 id="orgdc6dba0"><span class="section-number-4">2.3.5</span> Outliers</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <p>
 An outlier is a point for which y<sub>i</sub> is far from the value predicted by the model.
 </p>
 </div>
-<div id="outline-container-org284062d" class="outline-5">
-<h5 id="org284062d"><span class="section-number-5">2.3.5.1</span> Consequence</h5>
+<div id="outline-container-org9c47403" class="outline-5">
+<h5 id="org9c47403"><span class="section-number-5">2.3.5.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-5-1">
 <p>
 An outlier does not have much effect on the least squares fit.
@@ -876,8 +880,8 @@ But it can cause RSE and R<sup>2</sup> to decrease.
 </p>
 </div>
 </div>
-<div id="outline-container-org5b261c4" class="outline-5">
-<h5 id="org5b261c4"><span class="section-number-5">2.3.5.2</span> Detection</h5>
+<div id="outline-container-org9a098ed" class="outline-5">
+<h5 id="org9a098ed"><span class="section-number-5">2.3.5.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-5-2">
 <p>
 Residual plots can be used.
@@ -887,8 +891,8 @@ If the value exceeds 3, it is possibly an outlier.
 </p>
 </div>
 </div>
-<div id="outline-container-org3481798" class="outline-5">
-<h5 id="org3481798"><span class="section-number-5">2.3.5.3</span> Solution</h5>
+<div id="outline-container-orgd58e453" class="outline-5">
+<h5 id="orgd58e453"><span class="section-number-5">2.3.5.3</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-5-3">
 <ul class="org-ul">
 <li>remove the observation</li>
@@ -898,23 +902,23 @@ If the value exceeds 3, it is possibly an outlier.
 </div>
 </div>
 
-<div id="outline-container-org62aae34" class="outline-4">
-<h4 id="org62aae34"><span class="section-number-4">2.3.6</span> High-leverage points</h4>
+<div id="outline-container-org7fe32b7" class="outline-4">
+<h4 id="org7fe32b7"><span class="section-number-4">2.3.6</span> High-leverage points</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <p>
 observations with an unusual value for \(x_i\).
 </p>
 </div>
-<div id="outline-container-orgf23c001" class="outline-5">
-<h5 id="orgf23c001"><span class="section-number-5">2.3.6.1</span> Consequence</h5>
+<div id="outline-container-orge420d8d" class="outline-5">
+<h5 id="orge420d8d"><span class="section-number-5">2.3.6.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-6-1">
 <p>
 Impact on least squares line.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb92998f" class="outline-5">
-<h5 id="orgb92998f"><span class="section-number-5">2.3.6.2</span> Detection</h5>
+<div id="outline-container-orgc8f872e" class="outline-5">
+<h5 id="orgc8f872e"><span class="section-number-5">2.3.6.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-6-2">
 <p>
 compute <i>leverage statistic</i>.
@@ -933,15 +937,15 @@ If it greatly exceeds \((p+1)/n\), it is a high leverage point.
 </div>
 
 
-<div id="outline-container-org0f4e3fc" class="outline-4">
-<h4 id="org0f4e3fc"><span class="section-number-4">2.3.7</span> collinearity</h4>
+<div id="outline-container-orgaca4a3c" class="outline-4">
+<h4 id="orgaca4a3c"><span class="section-number-4">2.3.7</span> collinearity</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <p>
 Two or more predictor variables are closely related to one another.
 </p>
 </div>
-<div id="outline-container-org0e31d63" class="outline-5">
-<h5 id="org0e31d63"><span class="section-number-5">2.3.7.1</span> Consequence</h5>
+<div id="outline-container-org941a3ef" class="outline-5">
+<h5 id="org941a3ef"><span class="section-number-5">2.3.7.1</span> Consequence</h5>
 <div class="outline-text-5" id="text-2-3-7-1">
 <ul class="org-ul">
 <li>Difficult to separate out the individual effects of collinear variables on the response.</li>
@@ -952,8 +956,8 @@ Two or more predictor variables are closely related to one another.
 </div>
 </div>
 
-<div id="outline-container-orgbf3eb02" class="outline-5">
-<h5 id="orgbf3eb02"><span class="section-number-5">2.3.7.2</span> Detection</h5>
+<div id="outline-container-orgf125477" class="outline-5">
+<h5 id="orgf125477"><span class="section-number-5">2.3.7.2</span> Detection</h5>
 <div class="outline-text-5" id="text-2-3-7-2">
 <ul class="org-ul">
 <li>look at correlation matrix, to see if correlated</li>
@@ -969,8 +973,8 @@ A VIF value that exceeds 5 or 10 indicates a problematic  amount of collinearity
 </div>
 </div>
 
-<div id="outline-container-orge9f4600" class="outline-3">
-<h3 id="orge9f4600"><span class="section-number-3">2.4</span> KNN regression</h3>
+<div id="outline-container-orgb0ce0b8" class="outline-3">
+<h3 id="orgb0ce0b8"><span class="section-number-3">2.4</span> KNN regression</h3>
 <div class="outline-text-3" id="text-2-4">
 <ol class="org-ol">
 <li>find the K nearest observations, \(N_0\)</li>
@@ -985,11 +989,12 @@ A VIF value that exceeds 5 or 10 indicates a problematic  amount of collinearity
 </div>
 
 
-<div id="outline-container-org72a9277" class="outline-2">
-<h2 id="org72a9277"><span class="section-number-2">3</span> Classification</h2>
+<div id="outline-container-orga6c88e8" class="outline-2">
+<h2 id="orga6c88e8"><span class="section-number-2">3</span> Classification</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgf7f4c2a" class="outline-3">
-<h3 id="orgf7f4c2a"><span class="section-number-3">3.1</span> logistic regression</h3>
+</div>
+<div id="outline-container-orgcac707b" class="outline-3">
+<h3 id="orgcac707b"><span class="section-number-3">3.1</span> logistic regression</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Linear regression will have negative values.
@@ -1012,8 +1017,8 @@ So logistic regression model has a logit that is linear in X.
 </p>
 </div>
 
-<div id="outline-container-orgce685c9" class="outline-4">
-<h4 id="orgce685c9"><span class="section-number-4">3.1.1</span> Estimate the coefficients</h4>
+<div id="outline-container-org651a77f" class="outline-4">
+<h4 id="org651a77f"><span class="section-number-4">3.1.1</span> Estimate the coefficients</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 To fit the model, we use <i>maximum likelihood</i>.
@@ -1025,8 +1030,8 @@ l(\beta_0, \beta_1) = \prod_{i:y_i=1} p(x_i) \prod_{i':y_{i'} = 0} (1-p(x_{i'}))
 </div>
 </div>
 
-<div id="outline-container-orgaeaab85" class="outline-4">
-<h4 id="orgaeaab85"><span class="section-number-4">3.1.2</span> multiple logistic regression</h4>
+<div id="outline-container-orgadadcd0" class="outline-4">
+<h4 id="orgadadcd0"><span class="section-number-4">3.1.2</span> multiple logistic regression</h4>
 <div class="outline-text-4" id="text-3-1-2">
 \begin{eqnarray}
 log(\frac{p(X)}{1-p(X)}) = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p
@@ -1035,8 +1040,8 @@ log(\frac{p(X)}{1-p(X)}) = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p
 </div>
 </div>
 
-<div id="outline-container-org6456aef" class="outline-3">
-<h3 id="org6456aef"><span class="section-number-3">3.2</span> Linear Discriminant Analysis (LDA)</h3>
+<div id="outline-container-orgca90dcb" class="outline-3">
+<h3 id="orgca90dcb"><span class="section-number-3">3.2</span> Linear Discriminant Analysis (LDA)</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Assume the observations within each class are drawn from a multivariate Gaussian distribution.
@@ -1051,8 +1056,8 @@ it is closely related to logistic regression.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf7f77e9" class="outline-3">
-<h3 id="orgf7f77e9"><span class="section-number-3">3.3</span> Quadratic Discriminant Analysis (QDA)</h3>
+<div id="outline-container-orgef19321" class="outline-3">
+<h3 id="orgef19321"><span class="section-number-3">3.3</span> Quadratic Discriminant Analysis (QDA)</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 It has similar assumptions as LDA except:
@@ -1063,8 +1068,8 @@ It has similar assumptions as LDA except:
 </ul>
 </div>
 
-<div id="outline-container-org791c82b" class="outline-4">
-<h4 id="org791c82b"><span class="section-number-4">3.3.1</span> How to choose from LDA or QDA</h4>
+<div id="outline-container-org8c9fa13" class="outline-4">
+<h4 id="org8c9fa13"><span class="section-number-4">3.3.1</span> How to choose from LDA or QDA</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 The bias-variance trade-off.
@@ -1091,28 +1096,28 @@ QDA is better:
 </div>
 
 
-<div id="outline-container-org0b21e9c" class="outline-3">
-<h3 id="org0b21e9c"><span class="section-number-3">3.4</span> KNN</h3>
+<div id="outline-container-org1363016" class="outline-3">
+<h3 id="org1363016"><span class="section-number-3">3.4</span> KNN</h3>
 </div>
 </div>
 
-<div id="outline-container-orge95095c" class="outline-2">
-<h2 id="orge95095c"><span class="section-number-2">4</span> Re-sampling Methods</h2>
+<div id="outline-container-org0d5158a" class="outline-2">
+<h2 id="org0d5158a"><span class="section-number-2">4</span> Re-sampling Methods</h2>
 <div class="outline-text-2" id="text-4">
 <dl class="org-dl">
 <dt>model assessment</dt><dd>The process of evaluating a model's performance.</dd>
 <dt>model selection</dt><dd>the process of selecting the proper level of flexibility for a model</dd>
 </dl>
 </div>
-<div id="outline-container-orgad9f9e0" class="outline-3">
-<h3 id="orgad9f9e0"><span class="section-number-3">4.1</span> cross-validation</h3>
+<div id="outline-container-org0a6d701" class="outline-3">
+<h3 id="org0a6d701"><span class="section-number-3">4.1</span> cross-validation</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Hold out a subset of training observations from the fitting process, for test.
 </p>
 </div>
-<div id="outline-container-org742d50b" class="outline-4">
-<h4 id="org742d50b"><span class="section-number-4">4.1.1</span> Validation set approach</h4>
+<div id="outline-container-org3732cd6" class="outline-4">
+<h4 id="org3732cd6"><span class="section-number-4">4.1.1</span> Validation set approach</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 Randomly divide the available set of observations into two parts, a <i>training set</i> and a <i>validation set</i> or <i>hold-out set</i>.
@@ -1120,16 +1125,16 @@ It has two drawbacks
 </p>
 </div>
 </div>
-<div id="outline-container-org39069f4" class="outline-4">
-<h4 id="org39069f4"><span class="section-number-4">4.1.2</span> cross validation</h4>
+<div id="outline-container-org2293699" class="outline-4">
+<h4 id="org2293699"><span class="section-number-4">4.1.2</span> cross validation</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 It is a refinement of validation set approach to address the two drawbacks.
 </p>
 </div>
 
-<div id="outline-container-orgfcdd7fd" class="outline-5">
-<h5 id="orgfcdd7fd"><span class="section-number-5">4.1.2.1</span> Leave-One-Out Cross-Validation (LOOCV)</h5>
+<div id="outline-container-orga9a347f" class="outline-5">
+<h5 id="orga9a347f"><span class="section-number-5">4.1.2.1</span> Leave-One-Out Cross-Validation (LOOCV)</h5>
 <div class="outline-text-5" id="text-4-1-2-1">
 <p>
 every time, a single observation pair is left out.
@@ -1155,8 +1160,8 @@ But it can be expensive. But there's an "amazing shortcut".
 </p>
 </div>
 </div>
-<div id="outline-container-orgb92b87e" class="outline-5">
-<h5 id="orgb92b87e"><span class="section-number-5">4.1.2.2</span> k-Fold Cross-Validation</h5>
+<div id="outline-container-org253ea9c" class="outline-5">
+<h5 id="org253ea9c"><span class="section-number-5">4.1.2.2</span> k-Fold Cross-Validation</h5>
 <div class="outline-text-5" id="text-4-1-2-2">
 <p>
 randomly divide observations into k groups.
@@ -1168,8 +1173,8 @@ The test MSE is still the average.
 </div>
 </div>
 
-<div id="outline-container-org3f56303" class="outline-3">
-<h3 id="org3f56303"><span class="section-number-3">4.2</span> bootstrap</h3>
+<div id="outline-container-org4f3d9d6" class="outline-3">
+<h3 id="org4f3d9d6"><span class="section-number-3">4.2</span> bootstrap</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Can be used to estimate the standard errors of the coefficients from a linear regression fit.
@@ -1188,14 +1193,16 @@ We can sample 6 items into a sample even if the total number of observations is 
 </div>
 </div>
 
-<div id="outline-container-org6a11df7" class="outline-2">
-<h2 id="org6a11df7"><span class="section-number-2">5</span> Linear Model Selection and Regularization</h2>
+<div id="outline-container-org2f4c24a" class="outline-2">
+<h2 id="org2f4c24a"><span class="section-number-2">5</span> Linear Model Selection and Regularization</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-org419d8f7" class="outline-3">
-<h3 id="org419d8f7"><span class="section-number-3">5.1</span> Subset Selection</h3>
+</div>
+<div id="outline-container-org3687300" class="outline-3">
+<h3 id="org3687300"><span class="section-number-3">5.1</span> Subset Selection</h3>
 <div class="outline-text-3" id="text-5-1">
-</div><div id="outline-container-org849d5e6" class="outline-4">
-<h4 id="org849d5e6"><span class="section-number-4">5.1.1</span> best subset selection</h4>
+</div>
+<div id="outline-container-org8c1cc5e" class="outline-4">
+<h4 id="org8c1cc5e"><span class="section-number-4">5.1.1</span> best subset selection</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 Try all the combinations of the features.
@@ -1203,15 +1210,15 @@ Pick the best model from \(2^p\) possibilities.
 </p>
 </div>
 </div>
-<div id="outline-container-org8805f1a" class="outline-4">
-<h4 id="org8805f1a"><span class="section-number-4">5.1.2</span> Stepwise Selection</h4>
+<div id="outline-container-org36de8b0" class="outline-4">
+<h4 id="org36de8b0"><span class="section-number-4">5.1.2</span> Stepwise Selection</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 The best subset selection cannot be used with large \(p\) value.
 </p>
 </div>
-<div id="outline-container-org76aa65c" class="outline-5">
-<h5 id="org76aa65c"><span class="section-number-5">5.1.2.1</span> forward stepwise selection</h5>
+<div id="outline-container-orgf65c0d5" class="outline-5">
+<h5 id="orgf65c0d5"><span class="section-number-5">5.1.2.1</span> forward stepwise selection</h5>
 <div class="outline-text-5" id="text-5-1-2-1">
 <p>
 adds predictors to the model, one at a time, until all of the predictors are in the model.
@@ -1219,16 +1226,16 @@ At each step, the variable gives the greatest additional improvement to the fit 
 </p>
 </div>
 </div>
-<div id="outline-container-org058858b" class="outline-5">
-<h5 id="org058858b"><span class="section-number-5">5.1.2.2</span> backward stepwise selection</h5>
+<div id="outline-container-org7531441" class="outline-5">
+<h5 id="org7531441"><span class="section-number-5">5.1.2.2</span> backward stepwise selection</h5>
 <div class="outline-text-5" id="text-5-1-2-2">
 <p>
 Start from all predictors, iteratively remove the least useful predictor, one at a time.
 </p>
 </div>
 </div>
-<div id="outline-container-org9e47345" class="outline-5">
-<h5 id="org9e47345"><span class="section-number-5">5.1.2.3</span> hybrid approaches</h5>
+<div id="outline-container-orgcd31ff0" class="outline-5">
+<h5 id="orgcd31ff0"><span class="section-number-5">5.1.2.3</span> hybrid approaches</h5>
 <div class="outline-text-5" id="text-5-1-2-3">
 <p>
 After adding each new variable, the method may also remove any variables that no longer provide an improvement.
@@ -1237,11 +1244,12 @@ After adding each new variable, the method may also remove any variables that no
 </div>
 </div>
 </div>
-<div id="outline-container-org0ff2bed" class="outline-3">
-<h3 id="org0ff2bed"><span class="section-number-3">5.2</span> Shrinkage</h3>
+<div id="outline-container-orgc13b0ca" class="outline-3">
+<h3 id="orgc13b0ca"><span class="section-number-3">5.2</span> Shrinkage</h3>
 <div class="outline-text-3" id="text-5-2">
-</div><div id="outline-container-orgd73c0bb" class="outline-4">
-<h4 id="orgd73c0bb"><span class="section-number-4">5.2.1</span> Ridge Regression</h4>
+</div>
+<div id="outline-container-orgda0b7d3" class="outline-4">
+<h4 id="orgda0b7d3"><span class="section-number-4">5.2.1</span> Ridge Regression</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 The ordinary least squares minimize:
@@ -1273,8 +1281,8 @@ Actually it uses the l<sub>2</sub> norm.
 </div>
 </div>
 
-<div id="outline-container-org65d5b82" class="outline-4">
-<h4 id="org65d5b82"><span class="section-number-4">5.2.2</span> Lasso</h4>
+<div id="outline-container-org7c8032c" class="outline-4">
+<h4 id="org7c8032c"><span class="section-number-4">5.2.2</span> Lasso</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 Ridge regression cannot remove any features, unless \(\lambda = \infty\).
@@ -1302,8 +1310,8 @@ It is much easier to interpret, it yields <i>sparse</i> model, i.e. models that 
 </div>
 
 
-<div id="outline-container-org0897c82" class="outline-3">
-<h3 id="org0897c82"><span class="section-number-3">5.3</span> Dimension Reduction</h3>
+<div id="outline-container-orga724e79" class="outline-3">
+<h3 id="orga724e79"><span class="section-number-3">5.3</span> Dimension Reduction</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 linear combination of the predictors into M new predictors.
@@ -1316,11 +1324,12 @@ Z_m = \sum_{j=1}^p \phi_{jm} X_j
 
 
 
-<div id="outline-container-orga4636f0" class="outline-4">
-<h4 id="orga4636f0"><span class="section-number-4">5.3.1</span> Principal Components Regression</h4>
+<div id="outline-container-orga2c0464" class="outline-4">
+<h4 id="orga2c0464"><span class="section-number-4">5.3.1</span> Principal Components Regression</h4>
 <div class="outline-text-4" id="text-5-3-1">
-</div><div id="outline-container-org2176570" class="outline-5">
-<h5 id="org2176570"><span class="section-number-5">5.3.1.1</span> Principal Component Analysis (PCA)</h5>
+</div>
+<div id="outline-container-orge7a6cda" class="outline-5">
+<h5 id="orge7a6cda"><span class="section-number-5">5.3.1.1</span> Principal Component Analysis (PCA)</h5>
 <div class="outline-text-5" id="text-5-3-1-1">
 <p>
 The following are some criteria for the direction selection, they all talk about the same thing:
@@ -1339,8 +1348,8 @@ Actually \(Z_1\) and \(Z_2\) are always orthogonal.
 </p>
 </div>
 </div>
-<div id="outline-container-org1a90ff4" class="outline-5">
-<h5 id="org1a90ff4"><span class="section-number-5">5.3.1.2</span> Principal Component Regression (PCR)</h5>
+<div id="outline-container-org8399969" class="outline-5">
+<h5 id="org8399969"><span class="section-number-5">5.3.1.2</span> Principal Component Regression (PCR)</h5>
 <div class="outline-text-5" id="text-5-3-1-2">
 <p>
 Construct the first M principal components, and do linear regression on the new predictors.
@@ -1348,8 +1357,8 @@ Construct the first M principal components, and do linear regression on the new 
 </div>
 </div>
 </div>
-<div id="outline-container-org3a7dd79" class="outline-4">
-<h4 id="org3a7dd79"><span class="section-number-4">5.3.2</span> Partial Least Squares (PLS)</h4>
+<div id="outline-container-org4c2d6e1" class="outline-4">
+<h4 id="org4c2d6e1"><span class="section-number-4">5.3.2</span> Partial Least Squares (PLS)</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <p>
 The directions identified by PCA is in an unsupervised way,
@@ -1375,11 +1384,12 @@ This captures the remaining information that has not been explained by the first
 </div>
 </div>
 
-<div id="outline-container-org553d8de" class="outline-2">
-<h2 id="org553d8de"><span class="section-number-2">6</span> Non-linear</h2>
+<div id="outline-container-org70ccf43" class="outline-2">
+<h2 id="org70ccf43"><span class="section-number-2">6</span> Non-linear</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgb56369b" class="outline-3">
-<h3 id="orgb56369b"><span class="section-number-3">6.1</span> polynomial regression</h3>
+</div>
+<div id="outline-container-orge298aa4" class="outline-3">
+<h3 id="orge298aa4"><span class="section-number-3">6.1</span> polynomial regression</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 It is just replace standard linear model to higher dimension ones (typically less than 4).
@@ -1387,8 +1397,8 @@ The one with \(X,X^2,X^3\) is called cubic regression.
 </p>
 </div>
 </div>
-<div id="outline-container-org99cbfc7" class="outline-3">
-<h3 id="org99cbfc7"><span class="section-number-3">6.2</span> step function</h3>
+<div id="outline-container-org8bb2c14" class="outline-3">
+<h3 id="org8bb2c14"><span class="section-number-3">6.2</span> step function</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Also called <i>piecewise constant regression</i>.
@@ -1405,8 +1415,8 @@ Given a value X, there's at most one of \(C_i\) can be non-zero.
 </div>
 </div>
 
-<div id="outline-container-org1a81da2" class="outline-3">
-<h3 id="org1a81da2"><span class="section-number-3">6.3</span> basis function</h3>
+<div id="outline-container-org56b33dc" class="outline-3">
+<h3 id="org56b33dc"><span class="section-number-3">6.3</span> basis function</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 a set of basis function \(b_i(X)\):
@@ -1418,8 +1428,8 @@ y_i = \beta_0 + \beta_1 b_1(x_i) + \beta_2 b_2(x_i) + ... + \beta_K b_K(x_i) + \
 </div>
 
 
-<div id="outline-container-orgafb63cf" class="outline-3">
-<h3 id="orgafb63cf"><span class="section-number-3">6.4</span> regression spline</h3>
+<div id="outline-container-orgc91d66d" class="outline-3">
+<h3 id="orgc91d66d"><span class="section-number-3">6.4</span> regression spline</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 It is piecewise polynomial.
@@ -1432,8 +1442,8 @@ At the knots, we need to ensure the 0,1,2 deviation is the same.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd9077e9" class="outline-3">
-<h3 id="orgd9077e9"><span class="section-number-3">6.5</span> smoothing spline</h3>
+<div id="outline-container-orgaba5131" class="outline-3">
+<h3 id="orgaba5131"><span class="section-number-3">6.5</span> smoothing spline</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 This is a different approach, but also produces a spline.
@@ -1465,8 +1475,8 @@ The first term is a <i>loss function</i>, nd second is a <i>penalty term</i>.
 </div>
 
 
-<div id="outline-container-org5366d04" class="outline-3">
-<h3 id="org5366d04"><span class="section-number-3">6.6</span> local regression</h3>
+<div id="outline-container-org1c4f997" class="outline-3">
+<h3 id="org1c4f997"><span class="section-number-3">6.6</span> local regression</h3>
 <div class="outline-text-3" id="text-6-6">
 <ol class="org-ol">
 <li>gather the fraction \(s = k/n\) of training points whose \(x_i\) are closest to \(x_0\).</li>
@@ -1485,8 +1495,8 @@ because there will be very few training observations close to x<sub>0</sub>.
 </div>
 </div>
 
-<div id="outline-container-org6296315" class="outline-3">
-<h3 id="org6296315"><span class="section-number-3">6.7</span> Generalized Additive Models (GAMs)</h3>
+<div id="outline-container-orgb0fb81a" class="outline-3">
+<h3 id="orgb0fb81a"><span class="section-number-3">6.7</span> Generalized Additive Models (GAMs)</h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 It is called additive model because we calculate a separate \(f_j\) for each \(X_j\), and add together all of their contributions.
@@ -1494,14 +1504,16 @@ It is called additive model because we calculate a separate \(f_j\) for each \(X
 </div>
 </div>
 </div>
-<div id="outline-container-orgd1a64fe" class="outline-2">
-<h2 id="orgd1a64fe"><span class="section-number-2">7</span> Tree-based Methods</h2>
+<div id="outline-container-orga00151d" class="outline-2">
+<h2 id="orga00151d"><span class="section-number-2">7</span> Tree-based Methods</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orgecdcb3c" class="outline-3">
-<h3 id="orgecdcb3c"><span class="section-number-3">7.1</span> Decision tree</h3>
+</div>
+<div id="outline-container-orgfbece4d" class="outline-3">
+<h3 id="orgfbece4d"><span class="section-number-3">7.1</span> Decision tree</h3>
 <div class="outline-text-3" id="text-7-1">
-</div><div id="outline-container-orgca3ee7a" class="outline-4">
-<h4 id="orgca3ee7a"><span class="section-number-4">7.1.1</span> regression tree</h4>
+</div>
+<div id="outline-container-org15904b1" class="outline-4">
+<h4 id="org15904b1"><span class="section-number-4">7.1.1</span> regression tree</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <ol class="org-ol">
 <li>divide the predictor space into J distinct and non-overlapping regions \(R_1,...,R_J\).</li>
@@ -1531,8 +1543,8 @@ The whole algorithm goes here:
 </ol>
 </div>
 </div>
-<div id="outline-container-org3216d02" class="outline-4">
-<h4 id="org3216d02"><span class="section-number-4">7.1.2</span> classification tree</h4>
+<div id="outline-container-org65bfb02" class="outline-4">
+<h4 id="org65bfb02"><span class="section-number-4">7.1.2</span> classification tree</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <p>
 intuitive
@@ -1540,8 +1552,8 @@ intuitive
 </div>
 </div>
 </div>
-<div id="outline-container-org0d591fa" class="outline-3">
-<h3 id="org0d591fa"><span class="section-number-3">7.2</span> bagging</h3>
+<div id="outline-container-orgd4e1f99" class="outline-3">
+<h3 id="orgd4e1f99"><span class="section-number-3">7.2</span> bagging</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 The decision tree suffers from high variance.
@@ -1571,8 +1583,8 @@ The key idea is averaging a set of observations reduces variance.
 </p>
 </div>
 </div>
-<div id="outline-container-org3827f73" class="outline-3">
-<h3 id="org3827f73"><span class="section-number-3">7.3</span> boosting</h3>
+<div id="outline-container-orgc1587ef" class="outline-3">
+<h3 id="orgc1587ef"><span class="section-number-3">7.3</span> boosting</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 This is another approach for improving the prediction results from a decision tree.
@@ -1587,8 +1599,8 @@ Each tree is fit on a modified version of the original data set.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org172895f" class="outline-2">
-<h2 id="org172895f"><span class="section-number-2">8</span> Support Vector Machine</h2>
+<div id="outline-container-org8b88d1d" class="outline-2">
+<h2 id="org8b88d1d"><span class="section-number-2">8</span> Support Vector Machine</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 the best “out of the box” classifiers.
@@ -1605,8 +1617,8 @@ A hyperplane is something like this:
 A hyperplane can separate two clusters.
 </p>
 </div>
-<div id="outline-container-org7bbc3e3" class="outline-3">
-<h3 id="org7bbc3e3"><span class="section-number-3">8.1</span> Maximal Margin Classifier</h3>
+<div id="outline-container-orgb7aeb8d" class="outline-3">
+<h3 id="orgb7aeb8d"><span class="section-number-3">8.1</span> Maximal Margin Classifier</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 Also known as <i>optimal separating hyperplane</i>.
@@ -1640,8 +1652,8 @@ guarantees that each observation will be on the correct side of the hyper- plane
 </div>
 </div>
 
-<div id="outline-container-orgc656737" class="outline-3">
-<h3 id="orgc656737"><span class="section-number-3">8.2</span> Support Vector Classifier</h3>
+<div id="outline-container-org82d0d5b" class="outline-3">
+<h3 id="org82d0d5b"><span class="section-number-3">8.2</span> Support Vector Classifier</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 The above method is
@@ -1685,8 +1697,8 @@ Some observations:
 </div>
 
 
-<div id="outline-container-org399a6b2" class="outline-3">
-<h3 id="org399a6b2"><span class="section-number-3">8.3</span> Support Vector Machine</h3>
+<div id="outline-container-org6ab6ead" class="outline-3">
+<h3 id="org6ab6ead"><span class="section-number-3">8.3</span> Support Vector Machine</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 enlarging the feature space in a specific way, using kernels.
@@ -1717,19 +1729,20 @@ K(x_i, x_{i'}) = exp(-\gamma \sum_{j=1}^p (x_{ij} - x{i'j})^2)
 </div>
 </div>
 
-<div id="outline-container-org75454eb" class="outline-3">
-<h3 id="org75454eb"><span class="section-number-3">8.4</span> SVMs with More than two classes</h3>
+<div id="outline-container-org0aeb6d4" class="outline-3">
+<h3 id="org0aeb6d4"><span class="section-number-3">8.4</span> SVMs with More than two classes</h3>
 <div class="outline-text-3" id="text-8-4">
-</div><div id="outline-container-org6647d8a" class="outline-4">
-<h4 id="org6647d8a"><span class="section-number-4">8.4.1</span> one-versus-one classification</h4>
+</div>
+<div id="outline-container-org21d122a" class="outline-4">
+<h4 id="org21d122a"><span class="section-number-4">8.4.1</span> one-versus-one classification</h4>
 <div class="outline-text-4" id="text-8-4-1">
 <p>
 compute all pairs SVMs.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb448f52" class="outline-4">
-<h4 id="orgb448f52"><span class="section-number-4">8.4.2</span> one-versus-all classification</h4>
+<div id="outline-container-org8ae4082" class="outline-4">
+<h4 id="org8ae4082"><span class="section-number-4">8.4.2</span> one-versus-all classification</h4>
 <div class="outline-text-4" id="text-8-4-2">
 <p>
 compute all one versus all other SVMs.
@@ -1742,16 +1755,16 @@ compute all one versus all other SVMs.
 
 
 
-<div id="outline-container-orgf1cbc6a" class="outline-2">
-<h2 id="orgf1cbc6a"><span class="section-number-2">9</span> Unsupervised Learning (Clustering)</h2>
+<div id="outline-container-org6ceb862" class="outline-2">
+<h2 id="org6ceb862"><span class="section-number-2">9</span> Unsupervised Learning (Clustering)</h2>
 <div class="outline-text-2" id="text-9">
 <dl class="org-dl">
 <dt>Euclidean distance</dt><dd></dd>
 </dl>
 </div>
 
-<div id="outline-container-orgabf3d70" class="outline-3">
-<h3 id="orgabf3d70"><span class="section-number-3">9.1</span> K-means</h3>
+<div id="outline-container-orgc5e76e5" class="outline-3">
+<h3 id="orgc5e76e5"><span class="section-number-3">9.1</span> K-means</h3>
 <div class="outline-text-3" id="text-9-1">
 <dl class="org-dl">
 <dt>W(C<sub>k</sub>)</dt><dd>the amount by which the observations within a cluster differ from each other</dd>
@@ -1786,8 +1799,8 @@ This algorithm guarantee to decrease the objective formula above.
 </p>
 </div>
 </div>
-<div id="outline-container-orge26bb36" class="outline-3">
-<h3 id="orge26bb36"><span class="section-number-3">9.2</span> Hierarchical Clustering</h3>
+<div id="outline-container-orgb441512" class="outline-3">
+<h3 id="orgb441512"><span class="section-number-3">9.2</span> Hierarchical Clustering</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 Does not predefine the number of clusters.
@@ -1822,7 +1835,7 @@ The four most commonly used types of linkage:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

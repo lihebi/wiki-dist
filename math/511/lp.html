@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Programming</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -256,31 +257,31 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4f4d11a">1. Standard Form and Slack Form</a>
+<li><a href="#orga8f2725">1. Standard Form and Slack Form</a>
 <ul>
-<li><a href="#org3d94e52">1.1. Standard form</a>
+<li><a href="#org08213bd">1.1. Standard form</a>
 <ul>
-<li><a href="#orgeb20482">1.1.1. 转成standard form</a></li>
+<li><a href="#org21f7185">1.1.1. 转成standard form</a></li>
 </ul>
 </li>
-<li><a href="#orgfa94237">1.2. Slack form</a></li>
+<li><a href="#orgf914b2f">1.2. Slack form</a></li>
 </ul>
 </li>
-<li><a href="#orge94decf">2. 把一些问题用linear programs表示</a>
+<li><a href="#org1921e22">2. 把一些问题用linear programs表示</a>
 <ul>
-<li><a href="#org523cafa">2.1. shortest path</a></li>
-<li><a href="#orgf89961d">2.2. maximum flow</a></li>
-<li><a href="#orgfa2c005">2.3. Minimum cost flow</a></li>
-<li><a href="#orgd20a800">2.4. multicommodity flow</a></li>
+<li><a href="#org2adc9cc">2.1. shortest path</a></li>
+<li><a href="#org6eac04d">2.2. maximum flow</a></li>
+<li><a href="#org940677e">2.3. Minimum cost flow</a></li>
+<li><a href="#orga30c2e6">2.4. multicommodity flow</a></li>
 </ul>
 </li>
-<li><a href="#org99101b9">3. SIMPLEX (用于slack form)</a>
+<li><a href="#orge62a9da">3. SIMPLEX (用于slack form)</a>
 <ul>
-<li><a href="#org7ab3292">3.1. PIVOT and SIMPLEX procedure</a></li>
+<li><a href="#orgb1162f9">3.1. PIVOT and SIMPLEX procedure</a></li>
 </ul>
 </li>
-<li><a href="#orgc3831d6">4. Duality</a></li>
-<li><a href="#org30e33c6">5. 初值可行性</a></li>
+<li><a href="#orgd02202b">4. Duality</a></li>
+<li><a href="#orge12434f">5. 初值可行性</a></li>
 </ul>
 </div>
 </div>
@@ -310,11 +311,12 @@ constraint有&gt;=,&lt;=,=。计算constraint数量时，\(x_1,x_2\ge 0\) 也算
 <li><code>integer linear programming</code>: 所有变量取整数。找到这个问题的可行解是NP-hard的。但是不是integer的问题就有Polynomial solution.</li>
 </ul>
 
-<div id="outline-container-org4f4d11a" class="outline-2">
-<h2 id="org4f4d11a"><span class="section-number-2">1</span> Standard Form and Slack Form</h2>
+<div id="outline-container-orga8f2725" class="outline-2">
+<h2 id="orga8f2725"><span class="section-number-2">1</span> Standard Form and Slack Form</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org3d94e52" class="outline-3">
-<h3 id="org3d94e52"><span class="section-number-3">1.1</span> Standard form</h3>
+</div>
+<div id="outline-container-org08213bd" class="outline-3">
+<h3 id="org08213bd"><span class="section-number-3">1.1</span> Standard form</h3>
 <div class="outline-text-3" id="text-1-1">
 \begin{eqnarray}
 & \text{maximize} & \qquad \sum_1^n c_jx_j \\
@@ -350,8 +352,8 @@ constraint有&gt;=,&lt;=,=。计算constraint数量时，\(x_1,x_2\ge 0\) 也算
 </p>
 </div>
 
-<div id="outline-container-orgeb20482" class="outline-4">
-<h4 id="orgeb20482"><span class="section-number-4">1.1.1</span> 转成standard form</h4>
+<div id="outline-container-org21f7185" class="outline-4">
+<h4 id="org21f7185"><span class="section-number-4">1.1.1</span> 转成standard form</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ol class="org-ol">
 <li><b><b>IMPORTANT</b></b> 对变量 \(x_j\) 不&gt;=0白，拆成\(x_j' - x_j'', x_j',x_j'' \ge 0\)</li>
@@ -362,8 +364,8 @@ constraint有&gt;=,&lt;=,=。计算constraint数量时，\(x_1,x_2\ge 0\) 也算
 </div>
 </div>
 
-<div id="outline-container-orgfa94237" class="outline-3">
-<h3 id="orgfa94237"><span class="section-number-3">1.2</span> Slack form</h3>
+<div id="outline-container-orgf914b2f" class="outline-3">
+<h3 id="orgf914b2f"><span class="section-number-3">1.2</span> Slack form</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 nonnegative constraints是唯一的不等式constraints。
@@ -423,8 +425,8 @@ B表示basic variable的index, e.g. {1,2,3}. N表示nonbasic. v is constant.
 </div>
 </div>
 
-<div id="outline-container-orge94decf" class="outline-2">
-<h2 id="orge94decf"><span class="section-number-2">2</span> 把一些问题用linear programs表示</h2>
+<div id="outline-container-org1921e22" class="outline-2">
+<h2 id="org1921e22"><span class="section-number-2">2</span> 把一些问题用linear programs表示</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 问题2,3,4都有假设
@@ -436,8 +438,8 @@ B表示basic variable的index, e.g. {1,2,3}. N表示nonbasic. v is constant.
 </ol>
 </div>
 
-<div id="outline-container-org523cafa" class="outline-3">
-<h3 id="org523cafa"><span class="section-number-3">2.1</span> shortest path</h3>
+<div id="outline-container-org2adc9cc" class="outline-3">
+<h3 id="org2adc9cc"><span class="section-number-3">2.1</span> shortest path</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 一个图Ｇ，source s，到t。用$d<sub>v</sub>$表示s到v的最短路径的值。我们要找\(d_t\)
@@ -466,8 +468,8 @@ B表示basic variable的index, e.g. {1,2,3}. N表示nonbasic. v is constant.
 </div>
 </div>
 
-<div id="outline-container-orgf89961d" class="outline-3">
-<h3 id="orgf89961d"><span class="section-number-3">2.2</span> maximum flow</h3>
+<div id="outline-container-org6eac04d" class="outline-3">
+<h3 id="org6eac04d"><span class="section-number-3">2.2</span> maximum flow</h3>
 <div class="outline-text-3" id="text-2-2">
 \begin{eqnarray}
 & \text{maximize} & \qquad \sum_{v \in V} f_{sv} - \sum_{v \in V}f_{vs} \\
@@ -483,8 +485,8 @@ B表示basic variable的index, e.g. {1,2,3}. N表示nonbasic. v is constant.
 </div>
 </div>
 
-<div id="outline-container-orgfa2c005" class="outline-3">
-<h3 id="orgfa2c005"><span class="section-number-3">2.3</span> Minimum cost flow</h3>
+<div id="outline-container-org940677e" class="outline-3">
+<h3 id="org940677e"><span class="section-number-3">2.3</span> Minimum cost flow</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 定义cost为，如果(u,v)上流了一个$f<sub>uv</sub>$，那么引入cost为$a(u,v)f<sub>uv</sub>$。
@@ -502,8 +504,8 @@ B表示basic variable的index, e.g. {1,2,3}. N表示nonbasic. v is constant.
 </div>
 </div>
 
-<div id="outline-container-orgd20a800" class="outline-3">
-<h3 id="orgd20a800"><span class="section-number-3">2.4</span> multicommodity flow</h3>
+<div id="outline-container-orga30c2e6" class="outline-3">
+<h3 id="orga30c2e6"><span class="section-number-3">2.4</span> multicommodity flow</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 有k种货，每一个有一个s和t。$f<sub>iuv</sub>$是货i从u到v的flow。
@@ -524,8 +526,8 @@ $f<sub>uv</sub>=&sum;<sub>i</sub> f<sub>iuv</sub>$是叠加flow(aggregate flow)�
 </div>
 </div>
 
-<div id="outline-container-org99101b9" class="outline-2">
-<h2 id="org99101b9"><span class="section-number-2">3</span> SIMPLEX (用于slack form)</h2>
+<div id="outline-container-orge62a9da" class="outline-2">
+<h2 id="orge62a9da"><span class="section-number-2">3</span> SIMPLEX (用于slack form)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 一个solution is feasible: 所有\(x_i \ge 0\)
@@ -555,15 +557,15 @@ basic solution: 右侧nonbasic变量全为0.
 </p>
 </div>
 
-<div id="outline-container-org7ab3292" class="outline-3">
-<h3 id="org7ab3292"><span class="section-number-3">3.1</span> PIVOT and SIMPLEX procedure</h3>
+<div id="outline-container-orgb1162f9" class="outline-3">
+<h3 id="orgb1162f9"><span class="section-number-3">3.1</span> PIVOT and SIMPLEX procedure</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 PIVOT(N,B,A,b,c,v,l,e)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-text">// &#35745;&#31639;leaving&#36825;&#19968;&#34892;&#30340;&#26032;&#31995;&#25968;
+<pre><code class="src src-text">// &#35745;&#31639;leaving&#36825;&#19968;&#34892;&#30340;&#26032;&#31995;&#25968;
 b'[e] = b[l]/a[l][e]
 for j in N-{e}
   a'[e][j] = a[l][j]/a[l][e]
@@ -582,7 +584,7 @@ c'[l] = -c[e]a'[e][l]
 // &#35745;&#31639;&#26032;&#30340;N,B
 ...
 return (N',B',A',b',c',v');
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -590,21 +592,21 @@ SIMPLEX(A,b,c)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C">(N,B,A,b,c,v) = INITIALIZE-SIMPLEX(A,b,c)
-<span style="color: #859900;">for</span> each c[j]&gt;0
-  <span style="color: #859900;">for</span> i in B
-    <span style="color: #859900;">if</span> a[i][e]&gt;0
+<pre><code class="src src-C">(N,B,A,b,c,v) = INITIALIZE-SIMPLEX(A,b,c)
+<span style="color: #a020f0;">for</span> each c[j]&gt;0
+  <span style="color: #a020f0;">for</span> i in B
+    <span style="color: #a020f0;">if</span> a[i][e]&gt;0
       tmp.push(b[i]/a[i][e])
-    <span style="color: #859900;">if</span> (tmp.length ==0) <span style="color: #859900;">return</span> <span style="color: #2aa198;">"unbounded"</span>
+    <span style="color: #a020f0;">if</span> (tmp.length ==0) <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"unbounded"</span>
     l = indexOf(min(tmp))
     (N,B,A,b,c,v) = PIVOT(N,B,A,b,c,v,l,e)
-<span style="color: #859900;">for</span> i = 1 to n
-  <span style="color: #859900;">if</span> i in B
+<span style="color: #a020f0;">for</span> i = 1 to n
+  <span style="color: #a020f0;">if</span> i in B
     x[i] = b[i]
-  <span style="color: #859900;">else</span>
+  <span style="color: #a020f0;">else</span>
     x[i] = 0
-<span style="color: #859900;">return</span> x <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">final answer</span>
-</pre>
+<span style="color: #a020f0;">return</span> x <span style="color: #b22222;">// </span><span style="color: #b22222;">final answer</span>
+</code></pre>
 </div>
 
 
@@ -683,8 +685,8 @@ it is impossible to have two solutions with the same object value
 </div>
 </div>
 
-<div id="outline-container-orgc3831d6" class="outline-2">
-<h2 id="orgc3831d6"><span class="section-number-2">4</span> Duality</h2>
+<div id="outline-container-orgd02202b" class="outline-2">
+<h2 id="orgd02202b"><span class="section-number-2">4</span> Duality</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 primal:
@@ -804,8 +806,8 @@ v' = b^T\overline{y}
 </div>
 </div>
 
-<div id="outline-container-org30e33c6" class="outline-2">
-<h2 id="org30e33c6"><span class="section-number-2">5</span> 初值可行性</h2>
+<div id="outline-container-orge12434f" class="outline-2">
+<h2 id="orge12434f"><span class="section-number-2">5</span> 初值可行性</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 设primal是
@@ -834,7 +836,7 @@ INITIALIZE-SIMPLEX(A,b,c)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-text">b[k] = min{b[i]}
+<pre><code class="src src-text">b[k] = min{b[i]}
 if b[k] &gt;=0 return ({1,2,..,n},{n+1,...,n+m},A,b,c,0)
 form Laux
 get Laux's slack form (N,B,A,b,c,v)
@@ -849,7 +851,7 @@ if optimal of Laux = 0
   z = &#21407;&#34920;&#36798;&#24335;&#65292;&#24182;&#23558;B&#25442;&#25104;N
   return this form
 else return "infeasible"
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -896,7 +898,7 @@ a_{ie}=a_{le}=-1 \rightarrow \overline{x_i}=b_i-b_l\ge 0
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

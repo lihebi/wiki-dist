@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell Utilities</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,44 +235,44 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcf5d72a">1. Tmp</a></li>
-<li><a href="#orga024e3d">2. Q&amp;A</a>
+<li><a href="#org46c4e7e">1. Tmp</a></li>
+<li><a href="#org20bf8e7">2. Q&amp;A</a>
 <ul>
-<li><a href="#orgd464700">2.1. redirect output of time</a></li>
+<li><a href="#orgcb978a9">2.1. redirect output of time</a></li>
 </ul>
 </li>
-<li><a href="#org33b0231">3. Mathematics</a>
+<li><a href="#org614d8cf">3. Mathematics</a>
 <ul>
-<li><a href="#org2829561">3.1. random number generation</a></li>
+<li><a href="#org5190c15">3.1. random number generation</a></li>
 </ul>
 </li>
-<li><a href="#orga112cab">4. Text Editing</a>
+<li><a href="#org26170d1">4. Text Editing</a>
 <ul>
-<li><a href="#org036b049">4.1. Patch System</a></li>
-<li><a href="#org1b4fd9c">4.2. grep</a></li>
-<li><a href="#org7b7c050">4.3. tr: translate characters</a></li>
-<li><a href="#org44511ec">4.4. uniq: report or filter out repeated lines in a file</a></li>
-<li><a href="#org026b583">4.5. Other</a></li>
+<li><a href="#orge15836b">4.1. Patch System</a></li>
+<li><a href="#org93581f5">4.2. grep</a></li>
+<li><a href="#orgd1da0ac">4.3. tr: translate characters</a></li>
+<li><a href="#orgbdc4088">4.4. uniq: report or filter out repeated lines in a file</a></li>
+<li><a href="#orgd5bc352">4.5. Other</a></li>
 </ul>
 </li>
-<li><a href="#org6002b54">5. System Management</a>
+<li><a href="#org0228e19">5. System Management</a>
 <ul>
-<li><a href="#orgc7053e4">5.1. man</a></li>
-<li><a href="#org491b6d4">5.2. sort</a></li>
-<li><a href="#orgaf67b93">5.3. xargs</a></li>
-<li><a href="#orgdcf17db">5.4. Find</a></li>
-<li><a href="#org7e0227a">5.5. Filesystem related</a></li>
-<li><a href="#org8b985c8">5.6. unzip</a></li>
-<li><a href="#org313857d">5.7. tar</a></li>
-<li><a href="#orgbbf4c7e">5.8. Other</a></li>
+<li><a href="#org15bf2c3">5.1. man</a></li>
+<li><a href="#org6a18bf5">5.2. sort</a></li>
+<li><a href="#orgab5d22d">5.3. xargs</a></li>
+<li><a href="#org6e20e04">5.4. Find</a></li>
+<li><a href="#orgaf480f6">5.5. Filesystem related</a></li>
+<li><a href="#org5762ee7">5.6. unzip</a></li>
+<li><a href="#orgf578913">5.7. tar</a></li>
+<li><a href="#org00da977">5.8. Other</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcf5d72a" class="outline-2">
-<h2 id="orgcf5d72a"><span class="section-number-2">1</span> Tmp</h2>
+<div id="outline-container-org46c4e7e" class="outline-2">
+<h2 id="org46c4e7e"><span class="section-number-2">1</span> Tmp</h2>
 <div class="outline-text-2" id="text-1">
 <pre class="example">
 find ~/data/fast/pick-master/ -name '*.[ch]'
@@ -283,11 +284,12 @@ find ~/data/fast/pick-master/ -name '*.[ch]'
 </div>
 </div>
 
-<div id="outline-container-orga024e3d" class="outline-2">
-<h2 id="orga024e3d"><span class="section-number-2">2</span> Q&amp;A</h2>
+<div id="outline-container-org20bf8e7" class="outline-2">
+<h2 id="org20bf8e7"><span class="section-number-2">2</span> Q&amp;A</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgd464700" class="outline-3">
-<h3 id="orgd464700"><span class="section-number-3">2.1</span> redirect output of time</h3>
+</div>
+<div id="outline-container-orgcb978a9" class="outline-3">
+<h3 id="orgcb978a9"><span class="section-number-3">2.1</span> redirect output of time</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 { time sleep 1 ; } 2&gt; time.txt
@@ -297,15 +299,16 @@ find ~/data/fast/pick-master/ -name '*.[ch]'
 </div>
 </div>
 
-<div id="outline-container-org33b0231" class="outline-2">
-<h2 id="org33b0231"><span class="section-number-2">3</span> Mathematics</h2>
+<div id="outline-container-org614d8cf" class="outline-2">
+<h2 id="org614d8cf"><span class="section-number-2">3</span> Mathematics</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org2829561" class="outline-3">
-<h3 id="org2829561"><span class="section-number-3">3.1</span> random number generation</h3>
+</div>
+<div id="outline-container-org5190c15" class="outline-3">
+<h3 id="org5190c15"><span class="section-number-3">3.1</span> random number generation</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-shell">shuf -i 1-100 -n 1
-</pre>
+<pre><code class="src src-shell">shuf -i 1-100 -n 1
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>bc</code> calculator</li>
@@ -314,11 +317,12 @@ find ~/data/fast/pick-master/ -name '*.[ch]'
 </div>
 </div>
 
-<div id="outline-container-orga112cab" class="outline-2">
-<h2 id="orga112cab"><span class="section-number-2">4</span> Text Editing</h2>
+<div id="outline-container-org26170d1" class="outline-2">
+<h2 id="org26170d1"><span class="section-number-2">4</span> Text Editing</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org036b049" class="outline-3">
-<h3 id="org036b049"><span class="section-number-3">4.1</span> Patch System</h3>
+</div>
+<div id="outline-container-orge15836b" class="outline-3">
+<h3 id="orge15836b"><span class="section-number-3">4.1</span> Patch System</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Create a patch (notice the order: old then new):
@@ -354,21 +358,21 @@ This works as if you swapped the old and new file when creating the patch.
 </div>
 </div>
 
-<div id="outline-container-org1b4fd9c" class="outline-3">
-<h3 id="org1b4fd9c"><span class="section-number-3">4.2</span> grep</h3>
+<div id="outline-container-org93581f5" class="outline-3">
+<h3 id="org93581f5"><span class="section-number-3">4.2</span> grep</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-n: &#26174;&#31034;&#34892;&#21495;</span>
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
+<pre><code class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">-i: &#24573;&#30053;&#22823;&#23567;&#20889;</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">-n: &#26174;&#31034;&#34892;&#21495;</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">-v: &#36755;&#20986;&#19981;&#21305;&#37197;&#30340;&#34892;</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">-H: &#21516;&#26102;&#36755;&#20986;&#27492;&#34892;&#25152;&#22312;&#30340;&#25991;&#20214;&#21517;</span>
 grep &lt;pattern&gt; &lt;file&gt;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7b7c050" class="outline-3">
-<h3 id="org7b7c050"><span class="section-number-3">4.3</span> tr: translate characters</h3>
+<div id="outline-container-orgd1da0ac" class="outline-3">
+<h3 id="orgd1da0ac"><span class="section-number-3">4.3</span> tr: translate characters</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 tr &lt;string1&gt; &lt;string2&gt;
@@ -400,8 +404,8 @@ any characters will represent itself if not:
 </div>
 </div>
 
-<div id="outline-container-org44511ec" class="outline-3">
-<h3 id="org44511ec"><span class="section-number-3">4.4</span> uniq: report or filter out repeated lines in a file</h3>
+<div id="outline-container-orgbdc4088" class="outline-3">
+<h3 id="orgbdc4088"><span class="section-number-3">4.4</span> uniq: report or filter out repeated lines in a file</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 Repeated lines in the input will not be detected if they are not adjacent,
@@ -418,8 +422,8 @@ space. You can then comtine this with <code>sort -n</code></li>
 </div>
 </div>
 
-<div id="outline-container-org026b583" class="outline-3">
-<h3 id="org026b583"><span class="section-number-3">4.5</span> Other</h3>
+<div id="outline-container-orgd5bc352" class="outline-3">
+<h3 id="orgd5bc352"><span class="section-number-3">4.5</span> Other</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li><code>cat</code>: <code>-n</code> output with line number</li>
@@ -435,11 +439,12 @@ space. You can then comtine this with <code>sort -n</code></li>
 </div>
 </div>
 
-<div id="outline-container-org6002b54" class="outline-2">
-<h2 id="org6002b54"><span class="section-number-2">5</span> System Management</h2>
+<div id="outline-container-org0228e19" class="outline-2">
+<h2 id="org0228e19"><span class="section-number-2">5</span> System Management</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-orgc7053e4" class="outline-3">
-<h3 id="orgc7053e4"><span class="section-number-3">5.1</span> man</h3>
+</div>
+<div id="outline-container-org15bf2c3" class="outline-3">
+<h3 id="org15bf2c3"><span class="section-number-3">5.1</span> man</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 <code>man [num] &lt;item&gt;</code>
@@ -451,8 +456,8 @@ space. You can then comtine this with <code>sort -n</code></li>
 </div>
 </div>
 
-<div id="outline-container-org491b6d4" class="outline-3">
-<h3 id="org491b6d4"><span class="section-number-3">5.2</span> sort</h3>
+<div id="outline-container-org6a18bf5" class="outline-3">
+<h3 id="org6a18bf5"><span class="section-number-3">5.2</span> sort</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li><code>-n</code>: compare according to string numerical value</li>
@@ -461,61 +466,61 @@ space. You can then comtine this with <code>sort -n</code></li>
 </div>
 </div>
 
-<div id="outline-container-orgaf67b93" class="outline-3">
-<h3 id="orgaf67b93"><span class="section-number-3">5.3</span> xargs</h3>
+<div id="outline-container-orgab5d22d" class="outline-3">
+<h3 id="orgab5d22d"><span class="section-number-3">5.3</span> xargs</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 相当于~~，并把输出放 <i>结尾</i>
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">find /etc -name <span style="color: #2aa198;">'*.conf'</span> | xargs ls -l
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">the same as:</span>
+<pre><code class="src src-shell">find /etc -name <span style="color: #8b2252;">'*.conf'</span> | xargs ls -l
+<span style="color: #b22222;"># </span><span style="color: #b22222;">the same as:</span>
 ls -l ~find ...~
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgdcf17db" class="outline-3">
-<h3 id="orgdcf17db"><span class="section-number-3">5.4</span> Find</h3>
+<div id="outline-container-org6e20e04" class="outline-3">
+<h3 id="org6e20e04"><span class="section-number-3">5.4</span> Find</h3>
 <div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
-<pre class="src src-shell">find . -type f -name *.flac -exec mv {} ../out/ <span style="color: #2aa198;">\;</span>
-</pre>
+<pre><code class="src src-shell">find . -type f -name *.flac -exec mv {} ../out/ <span style="color: #8b2252;">\;</span>
+</code></pre>
 </div>
 <p>
 Copy file based on find, and take care of quotes and spaces:
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">find CloudMusic -type f -name <span style="color: #2aa198;">"*mp3"</span> -exec cp <span style="color: #2aa198;">"{}"</span> all_music <span style="color: #2aa198;">\;</span>
-</pre>
+<pre><code class="src src-shell">find CloudMusic -type f -name <span style="color: #8b2252;">"*mp3"</span> -exec cp <span style="color: #8b2252;">"{}"</span> all_music <span style="color: #8b2252;">\;</span>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7e0227a" class="outline-3">
-<h3 id="org7e0227a"><span class="section-number-3">5.5</span> Filesystem related</h3>
+<div id="outline-container-orgaf480f6" class="outline-3">
+<h3 id="orgaf480f6"><span class="section-number-3">5.5</span> Filesystem related</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 from relative path to absolute path
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">realpath -f /relative/path <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">this will follow symbolic link</span>
-</pre>
+<pre><code class="src src-shell">realpath -f /relative/path <span style="color: #b22222;"># </span><span style="color: #b22222;">this will follow symbolic link</span>
+</code></pre>
 </div>
 
 <p>
 <code>du</code>: estimate file space usage
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">du -sm * | sort -nr
-</pre>
+<pre><code class="src src-shell">du -sm * | sort -nr
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8b985c8" class="outline-3">
-<h3 id="org8b985c8"><span class="section-number-3">5.6</span> unzip</h3>
+<div id="outline-container-org5762ee7" class="outline-3">
+<h3 id="org5762ee7"><span class="section-number-3">5.6</span> unzip</h3>
 <div class="outline-text-3" id="text-5-6">
 <ul class="org-ul">
 <li><code>-o</code> overwrite existing file without prompt</li>
@@ -525,8 +530,8 @@ from relative path to absolute path
 </div>
 
 
-<div id="outline-container-org313857d" class="outline-3">
-<h3 id="org313857d"><span class="section-number-3">5.7</span> tar</h3>
+<div id="outline-container-orgf578913" class="outline-3">
+<h3 id="orgf578913"><span class="section-number-3">5.7</span> tar</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 tar zcvf file.tar.gz &#x2013;exclude=a.out &#x2013;exclude=*.gmout folder
@@ -539,8 +544,8 @@ tar zcvf file.tar.gz &#x2013;exclude=a.out &#x2013;exclude=*.gmout folder
 </div>
 </div>
 
-<div id="outline-container-orgbbf4c7e" class="outline-3">
-<h3 id="orgbbf4c7e"><span class="section-number-3">5.8</span> Other</h3>
+<div id="outline-container-org00da977" class="outline-3">
+<h3 id="org00da977"><span class="section-number-3">5.8</span> Other</h3>
 <div class="outline-text-3" id="text-5-8">
 <ul class="org-ul">
 <li><code>time &lt;command&gt;</code>: # the total user and system time consumed by the shell and its children</li>
@@ -566,7 +571,7 @@ tar zcvf file.tar.gz &#x2013;exclude=a.out &#x2013;exclude=*.gmout folder
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

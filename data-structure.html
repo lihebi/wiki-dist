@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LeetCode Used Data Structure</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,43 +235,43 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga078a80">1. Heap</a>
+<li><a href="#org7ea5d33">1. Heap</a>
 <ul>
-<li><a href="#orgbd07601">1.1. priority queue</a>
+<li><a href="#org828201d">1.1. priority queue</a>
 <ul>
-<li><a href="#orge9e0240">1.1.1. Usage</a>
+<li><a href="#org3768711">1.1.1. Usage</a>
 <ul>
-<li><a href="#orgd609960">1.1.1.1. 295. Find Median from Data Stream</a></li>
+<li><a href="#orgfa67edb">1.1.1.1. 295. Find Median from Data Stream</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc176fce">1.2. Implement</a></li>
+<li><a href="#orge8ad081">1.2. Implement</a></li>
 </ul>
 </li>
-<li><a href="#orgac5dad4">2. <span class="todo TODO">TODO</span> Binary Search Tree</a></li>
-<li><a href="#orgc12010d">3. Other</a>
+<li><a href="#orge668b52">2. <span class="todo TODO">TODO</span> Binary Search Tree</a></li>
+<li><a href="#orgb002220">3. Other</a>
 <ul>
-<li><a href="#orgfae6705">3.1. Trie</a>
+<li><a href="#orgb1cd3d7">3.1. Trie</a>
 <ul>
-<li><a href="#orga7e27eb">3.1.1. 79. Word Search I</a></li>
-<li><a href="#orga2dd347">3.1.2. Trie</a></li>
-<li><a href="#org7050fe4">3.1.3. 212. Word Search II</a></li>
+<li><a href="#org0bc7c89">3.1.1. 79. Word Search I</a></li>
+<li><a href="#orge0b74cb">3.1.2. Trie</a></li>
+<li><a href="#orgbdcb767">3.1.3. 212. Word Search II</a></li>
 </ul>
 </li>
-<li><a href="#org6cb7ea6">3.2. prefix tree</a>
+<li><a href="#orgb01016b">3.2. prefix tree</a>
 <ul>
-<li><a href="#orgd23b17d">3.2.1. Radix Tree</a></li>
+<li><a href="#orgafa745b">3.2.1. Radix Tree</a></li>
 </ul>
 </li>
-<li><a href="#orga213a5c">3.3. Aho Corasick</a>
+<li><a href="#org68e5d90">3.3. Aho Corasick</a>
 <ul>
-<li><a href="#orgd56b874">3.3.1. Construct Trie</a></li>
-<li><a href="#org62e2d54">3.3.2. Node</a></li>
-<li><a href="#org872cc09">3.3.3. Color</a></li>
-<li><a href="#orgf7f1943">3.3.4. blue arc</a></li>
-<li><a href="#org4c8a29d">3.3.5. Green Arc</a></li>
-<li><a href="#orgf6dccd4">3.3.6. Match Process</a></li>
+<li><a href="#org10fcd4e">3.3.1. Construct Trie</a></li>
+<li><a href="#org3d31de0">3.3.2. Node</a></li>
+<li><a href="#orgc1a5b96">3.3.3. Color</a></li>
+<li><a href="#org4403000">3.3.4. blue arc</a></li>
+<li><a href="#orga6d67d4">3.3.5. Green Arc</a></li>
+<li><a href="#orged1260f">3.3.6. Match Process</a></li>
 </ul>
 </li>
 </ul>
@@ -279,8 +280,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga078a80" class="outline-2">
-<h2 id="orga078a80"><span class="section-number-2">1</span> Heap</h2>
+<div id="outline-container-org7ea5d33" class="outline-2">
+<h2 id="org7ea5d33"><span class="section-number-2">1</span> Heap</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A heap is a structure that the value in the parent node is always <i>greater or equal</i> to its children.
@@ -293,8 +294,8 @@ The heap must be of the shape of a complete binary tree. Meaning only the last l
 </p>
 </div>
 
-<div id="outline-container-orgbd07601" class="outline-3">
-<h3 id="orgbd07601"><span class="section-number-3">1.1</span> priority queue</h3>
+<div id="outline-container-org828201d" class="outline-3">
+<h3 id="org828201d"><span class="section-number-3">1.1</span> priority queue</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can <i>use</i> a heap data structure to implement a <i>priority queue</i>.
@@ -302,11 +303,12 @@ Instead of FIFO, the order that come out of priority queue is by its priority, a
 </p>
 </div>
 
-<div id="outline-container-orge9e0240" class="outline-4">
-<h4 id="orge9e0240"><span class="section-number-4">1.1.1</span> Usage</h4>
+<div id="outline-container-org3768711" class="outline-4">
+<h4 id="org3768711"><span class="section-number-4">1.1.1</span> Usage</h4>
 <div class="outline-text-4" id="text-1-1-1">
-</div><div id="outline-container-orgd609960" class="outline-5">
-<h5 id="orgd609960"><span class="section-number-5">1.1.1.1</span> 295. Find Median from Data Stream</h5>
+</div>
+<div id="outline-container-orgfa67edb" class="outline-5">
+<h5 id="orgfa67edb"><span class="section-number-5">1.1.1.1</span> 295. Find Median from Data Stream</h5>
 <div class="outline-text-5" id="text-1-1-1-1">
 <blockquote>
 <p>
@@ -328,63 +330,63 @@ Design a data structure that supports the following two operations:
 Here's a solution that use linked list. So slow.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">MedianFinder</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Adds a number into the data structure.</span>
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">addNum</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">num</span>) {
-    <span style="color: #859900;">if</span> (m_data.empty()) {
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">MedianFinder</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">Adds a number into the data structure.</span>
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">addNum</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">num</span>) {
+    <span style="color: #a020f0;">if</span> (m_data.empty()) {
       m_data.push_back(num);
       m_it = m_data.begin();
-    } <span style="color: #859900;">else</span> {
-      <span style="color: #2aa198;">std</span>::<span style="color: #2aa198;">list</span>&lt;<span style="color: #b58900;">int</span>&gt;::<span style="color: #b58900;">iterator</span> <span style="color: #268bd2;">it</span> = m_it;
-      <span style="color: #859900;">if</span> (*it &lt; num) {
-        <span style="color: #859900;">while</span> (it != m_data.end() &amp;&amp; *it &lt; num) {
+    } <span style="color: #a020f0;">else</span> {
+      <span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">list</span>&lt;<span style="color: #228b22;">int</span>&gt;::<span style="color: #228b22;">iterator</span> <span style="color: #a0522d;">it</span> = m_it;
+      <span style="color: #a020f0;">if</span> (*it &lt; num) {
+        <span style="color: #a020f0;">while</span> (it != m_data.end() &amp;&amp; *it &lt; num) {
           it++;
         }
         m_data.insert(it, num);
-        <span style="color: #859900;">if</span> (m_data.size() % 2 == 1) {
+        <span style="color: #a020f0;">if</span> (m_data.size() % 2 == 1) {
           m_it++;
         }
-      } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (*it == num) {
+      } <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (*it == num) {
         m_data.insert(it, num);
-        <span style="color: #859900;">if</span> (m_data.size() % 2 == 0) {
+        <span style="color: #a020f0;">if</span> (m_data.size() % 2 == 0) {
           m_it--;
         }
-      } <span style="color: #859900;">else</span> {
-        <span style="color: #859900;">while</span> (it != m_data.begin() &amp;&amp; *it &gt; num) {
+      } <span style="color: #a020f0;">else</span> {
+        <span style="color: #a020f0;">while</span> (it != m_data.begin() &amp;&amp; *it &gt; num) {
           it--;
         }
-        <span style="color: #859900;">if</span> (it == m_data.begin() &amp;&amp; *it &gt; num) {
+        <span style="color: #a020f0;">if</span> (it == m_data.begin() &amp;&amp; *it &gt; num) {
           m_data.insert(it, num);
-        } <span style="color: #859900;">else</span> {
+        } <span style="color: #a020f0;">else</span> {
           it++;
           m_data.insert(it, num);
         }
-        <span style="color: #859900;">if</span> (m_data.size() % 2 == 0) {
+        <span style="color: #a020f0;">if</span> (m_data.size() % 2 == 0) {
           m_it--;
         }
       }
     }
   }
 
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Returns the median of current data stream</span>
-  <span style="color: #b58900;">double</span> <span style="color: #268bd2;">findMedian</span>() {
-    <span style="color: #b58900;">double</span> <span style="color: #268bd2;">ret</span> = 0;
-    <span style="color: #2aa198;">std</span>::<span style="color: #2aa198;">list</span>&lt;<span style="color: #b58900;">int</span>&gt;::<span style="color: #b58900;">iterator</span> <span style="color: #268bd2;">it</span> = m_it;
-    <span style="color: #859900;">if</span> (m_data.size() % 2 == 0) {
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">Returns the median of current data stream</span>
+  <span style="color: #228b22;">double</span> <span style="color: #0000ff;">findMedian</span>() {
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">ret</span> = 0;
+    <span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">list</span>&lt;<span style="color: #228b22;">int</span>&gt;::<span style="color: #228b22;">iterator</span> <span style="color: #a0522d;">it</span> = m_it;
+    <span style="color: #a020f0;">if</span> (m_data.size() % 2 == 0) {
       ret = *it;
       ret += *(++it);
       ret /= 2;
-      <span style="color: #859900;">return</span> ret;
-    } <span style="color: #859900;">else</span> {
-      <span style="color: #859900;">return</span> *it;
+      <span style="color: #a020f0;">return</span> ret;
+    } <span style="color: #a020f0;">else</span> {
+      <span style="color: #a020f0;">return</span> *it;
     }
   }
-<span style="color: #859900;">private</span>:
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">list</span>&lt;<span style="color: #b58900;">int</span>&gt; <span style="color: #268bd2;">m_data</span>;
-  <span style="color: #2aa198;">std</span>::<span style="color: #2aa198;">list</span>&lt;<span style="color: #b58900;">int</span>&gt;::<span style="color: #b58900;">iterator</span> <span style="color: #268bd2;">m_it</span>;
+<span style="color: #a020f0;">private</span>:
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">list</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">m_data</span>;
+  <span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">list</span>&lt;<span style="color: #228b22;">int</span>&gt;::<span style="color: #228b22;">iterator</span> <span style="color: #a0522d;">m_it</span>;
 };
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -399,73 +401,73 @@ Some points needs to be careful:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">MedianFinder</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">addNum</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">num</span>) {
-    <span style="color: #859900;">if</span> (smaller.empty()) {
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">MedianFinder</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">addNum</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">num</span>) {
+    <span style="color: #a020f0;">if</span> (smaller.empty()) {
       smaller.push(num);
-      <span style="color: #859900;">return</span>;
+      <span style="color: #a020f0;">return</span>;
     }
-    <span style="color: #b58900;">long</span> <span style="color: #268bd2;">n</span> = num;
-    <span style="color: #859900;">if</span> (smaller.size() == larger.size()) {
-      <span style="color: #859900;">if</span> (larger.top() &gt; -n) {
+    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">n</span> = num;
+    <span style="color: #a020f0;">if</span> (smaller.size() == larger.size()) {
+      <span style="color: #a020f0;">if</span> (larger.top() &gt; -n) {
         larger.push(-n);
         smaller.push(-larger.top());
         larger.pop();
-      } <span style="color: #859900;">else</span> {
+      } <span style="color: #a020f0;">else</span> {
         smaller.push(n);
       }
-    } <span style="color: #859900;">else</span> {
-      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">smaller have one more</span>
-      <span style="color: #859900;">if</span> (smaller.top() &gt; n) {
+    } <span style="color: #a020f0;">else</span> {
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">smaller have one more</span>
+      <span style="color: #a020f0;">if</span> (smaller.top() &gt; n) {
         smaller.push(n);
         larger.push(-smaller.top());
         smaller.pop();
-      } <span style="color: #859900;">else</span> {
+      } <span style="color: #a020f0;">else</span> {
         larger.push(-n);
       }
     }
   }
-  <span style="color: #b58900;">double</span> <span style="color: #268bd2;">findMedian</span>() {
-    assert(<span style="color: #dc322f;">!</span>smaller.empty());
-    <span style="color: #859900;">if</span> (smaller.size() == larger.size()) {
-      <span style="color: #859900;">return</span> (<span style="color: #b58900;">double</span>)(smaller.top() - larger.top()) / 2;
-    } <span style="color: #859900;">else</span> {
-      <span style="color: #859900;">return</span> smaller.top();
+  <span style="color: #228b22;">double</span> <span style="color: #0000ff;">findMedian</span>() {
+    assert(!smaller.empty());
+    <span style="color: #a020f0;">if</span> (smaller.size() == larger.size()) {
+      <span style="color: #a020f0;">return</span> (<span style="color: #228b22;">double</span>)(smaller.top() - larger.top()) / 2;
+    } <span style="color: #a020f0;">else</span> {
+      <span style="color: #a020f0;">return</span> smaller.top();
     }
   }
-<span style="color: #859900;">private</span>:
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">priority_queue</span>&lt;<span style="color: #b58900;">long</span>&gt; <span style="color: #268bd2;">smaller</span>;
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">priority_queue</span>&lt;<span style="color: #b58900;">long</span>&gt; <span style="color: #268bd2;">larger</span>;
+<span style="color: #a020f0;">private</span>:
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">priority_queue</span>&lt;<span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">smaller</span>;
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">priority_queue</span>&lt;<span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">larger</span>;
 };
-</pre>
+</code></pre>
 </div>
 
 <p>
 This is not very clean code, a more elegant one (Note this will have more push and pop to the heap, so more time overhead):
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">MedianFinder3</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">addNum</span>(<span style="color: #b58900;">int</span> <span style="color: #268bd2;">num</span>) {
-    smaller.push((<span style="color: #b58900;">long</span>)num);
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">MedianFinder3</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">addNum</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">num</span>) {
+    smaller.push((<span style="color: #228b22;">long</span>)num);
     larger.push(-smaller.top());
     smaller.pop();
-    <span style="color: #859900;">if</span> (larger.size() &gt; smaller.size()) {
+    <span style="color: #a020f0;">if</span> (larger.size() &gt; smaller.size()) {
       smaller.push(-larger.top());
       larger.pop();
     }
   }
-  <span style="color: #b58900;">double</span> <span style="color: #268bd2;">findMedian</span>() {
-    assert(<span style="color: #dc322f;">!</span>smaller.empty());
-    <span style="color: #859900;">return</span> smaller.size() == larger.size() ?
-      (<span style="color: #b58900;">double</span>)(smaller.top() - larger.top()) / 2 : smaller.top();
+  <span style="color: #228b22;">double</span> <span style="color: #0000ff;">findMedian</span>() {
+    assert(!smaller.empty());
+    <span style="color: #a020f0;">return</span> smaller.size() == larger.size() ?
+      (<span style="color: #228b22;">double</span>)(smaller.top() - larger.top()) / 2 : smaller.top();
   }
-<span style="color: #859900;">private</span>:
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">priority_queue</span>&lt;<span style="color: #b58900;">long</span>&gt; <span style="color: #268bd2;">smaller</span>;
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">priority_queue</span>&lt;<span style="color: #b58900;">long</span>&gt; <span style="color: #268bd2;">larger</span>;
+<span style="color: #a020f0;">private</span>:
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">priority_queue</span>&lt;<span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">smaller</span>;
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">priority_queue</span>&lt;<span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">larger</span>;
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -475,8 +477,8 @@ This is not very clean code, a more elegant one (Note this will have more push a
 
 
 
-<div id="outline-container-orgc176fce" class="outline-3">
-<h3 id="orgc176fce"><span class="section-number-3">1.2</span> Implement</h3>
+<div id="outline-container-orge8ad081" class="outline-3">
+<h3 id="orge8ad081"><span class="section-number-3">1.2</span> Implement</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Insert:
@@ -497,18 +499,20 @@ Remove:
 </div>
 </div>
 
-<div id="outline-container-orgac5dad4" class="outline-2">
-<h2 id="orgac5dad4"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Binary Search Tree</h2>
+<div id="outline-container-orge668b52" class="outline-2">
+<h2 id="orge668b52"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Binary Search Tree</h2>
 </div>
 
-<div id="outline-container-orgc12010d" class="outline-2">
-<h2 id="orgc12010d"><span class="section-number-2">3</span> Other</h2>
+<div id="outline-container-orgb002220" class="outline-2">
+<h2 id="orgb002220"><span class="section-number-2">3</span> Other</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgfae6705" class="outline-3">
-<h3 id="orgfae6705"><span class="section-number-3">3.1</span> Trie</h3>
+</div>
+<div id="outline-container-orgb1cd3d7" class="outline-3">
+<h3 id="orgb1cd3d7"><span class="section-number-3">3.1</span> Trie</h3>
 <div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-orga7e27eb" class="outline-4">
-<h4 id="orga7e27eb"><span class="section-number-4">3.1.1</span> 79. Word Search I</h4>
+</div>
+<div id="outline-container-org0bc7c89" class="outline-4">
+<h4 id="org0bc7c89"><span class="section-number-4">3.1.1</span> 79. Word Search I</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Given a 2D board and a word, find if the word exists in the grid.
@@ -522,196 +526,196 @@ Recur the four directions, so that the back-tracing is automatic by recurrence.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">Solution</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">exist</span>(<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">char</span>&gt;&gt;&amp; <span style="color: #268bd2;">board</span>, <span style="color: #b58900;">string</span> <span style="color: #268bd2;">word</span>) {
-    <span style="color: #859900;">if</span> (board.empty() || board[0].empty()) <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
-    <span style="color: #859900;">for</span> (<span style="color: #b58900;">size_t</span> <span style="color: #268bd2;">i</span>=0;i&lt;board.size();i++) {
-      <span style="color: #859900;">for</span> (<span style="color: #b58900;">size_t</span> <span style="color: #268bd2;">j</span>=0;j&lt;board[0].size();j++) {
-        <span style="color: #859900;">if</span> (recur(<span style="color: #b58900;">board</span>, word, i, j, 0)) <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">exist</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">char</span>&gt;&gt;&amp; <span style="color: #a0522d;">board</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">word</span>) {
+    <span style="color: #a020f0;">if</span> (board.empty() || board[0].empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">i</span>=0;i&lt;board.size();i++) {
+      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">j</span>=0;j&lt;board[0].size();j++) {
+        <span style="color: #a020f0;">if</span> (recur(<span style="color: #228b22;">board</span>, word, i, j, 0)) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
       }
     }
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
   }
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">recur</span>(<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">char</span>&gt;&gt; &amp;<span style="color: #268bd2;">board</span>, <span style="color: #b58900;">string</span> <span style="color: #268bd2;">word</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">x</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">y</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">idx</span>) {
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">std::cout &lt;&lt; "recur: " &lt;&lt; x &lt;&lt; "," &lt;&lt; y  &lt;&lt; "\n";</span>
-    <span style="color: #859900;">if</span> (idx &gt;= (<span style="color: #b58900;">int</span>)word.size()) {
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
+  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">recur</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">char</span>&gt;&gt; &amp;<span style="color: #a0522d;">board</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">word</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">idx</span>) {
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">std::cout &lt;&lt; "recur: " &lt;&lt; x &lt;&lt; "," &lt;&lt; y  &lt;&lt; "\n";</span>
+    <span style="color: #a020f0;">if</span> (idx &gt;= (<span style="color: #228b22;">int</span>)word.size()) {
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
     }
-    <span style="color: #859900;">if</span> (x &lt; 0 || y &lt; 0 || x &gt;= (<span style="color: #b58900;">int</span>)board.size() || y &gt;= (<span style="color: #b58900;">int</span>)board[0].size()) {
-      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">std::cout &lt;&lt; "  &lt;--"  &lt;&lt; "\n";</span>
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+    <span style="color: #a020f0;">if</span> (x &lt; 0 || y &lt; 0 || x &gt;= (<span style="color: #228b22;">int</span>)board.size() || y &gt;= (<span style="color: #228b22;">int</span>)board[0].size()) {
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">std::cout &lt;&lt; "  &lt;--"  &lt;&lt; "\n";</span>
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
     }
-    <span style="color: #859900;">if</span> (board[x][y] != word[idx]) {
-      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">std::cout &lt;&lt; "  &lt;--"  &lt;&lt; "\n";</span>
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+    <span style="color: #a020f0;">if</span> (board[x][y] != word[idx]) {
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">std::cout &lt;&lt; "  &lt;--"  &lt;&lt; "\n";</span>
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
     }
-    <span style="color: #859900;">if</span> (board[x][y] == word[idx]) {
-      <span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span> = board[x][y];
-      board[x][y] = <span style="color: #2aa198;">'\0'</span>;
-      <span style="color: #859900;">if</span> (
-          recur(<span style="color: #b58900;">board</span>, word, x+1, y, idx+1)
-          || recur(<span style="color: #b58900;">board</span>, word, x, y+1, idx+1)
-          || recur(<span style="color: #b58900;">board</span>, word, x-1, y, idx+1)
-          || recur(<span style="color: #b58900;">board</span>, word, x, y-1, idx+1)
-          ) <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
+    <span style="color: #a020f0;">if</span> (board[x][y] == word[idx]) {
+      <span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = board[x][y];
+      board[x][y] = <span style="color: #8b2252;">'\0'</span>;
+      <span style="color: #a020f0;">if</span> (
+          recur(<span style="color: #228b22;">board</span>, word, x+1, y, idx+1)
+          || recur(<span style="color: #228b22;">board</span>, word, x, y+1, idx+1)
+          || recur(<span style="color: #228b22;">board</span>, word, x-1, y, idx+1)
+          || recur(<span style="color: #228b22;">board</span>, word, x, y-1, idx+1)
+          ) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
       board[x][y] = c;
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
     }
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
   }
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga2dd347" class="outline-4">
-<h4 id="orga2dd347"><span class="section-number-4">3.1.2</span> Trie</h4>
+<div id="outline-container-orge0b74cb" class="outline-4">
+<h4 id="orge0b74cb"><span class="section-number-4">3.1.2</span> Trie</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 The implementation is easy, but know when to use it is hard!
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">TrieNode</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #268bd2;">TrieNode</span>() {
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TrieNode</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #0000ff;">TrieNode</span>() {
   }
-  <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">child</span>(<span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span>) {
-    <span style="color: #859900;">if</span> (m_map.count(c) == 1) <span style="color: #859900;">return</span> m_map[c];
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">NULL</span>;
+  <span style="color: #228b22;">TrieNode</span> *<span style="color: #0000ff;">child</span>(<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span>) {
+    <span style="color: #a020f0;">if</span> (m_map.count(c) == 1) <span style="color: #a020f0;">return</span> m_map[c];
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">NULL</span>;
   }
-  <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">addChild</span>(<span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span>) {
-    <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">node</span> = <span style="color: #859900;">new</span> <span style="color: #b58900;">TrieNode</span>();
+  <span style="color: #228b22;">TrieNode</span> *<span style="color: #0000ff;">addChild</span>(<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span>) {
+    <span style="color: #228b22;">TrieNode</span> *<span style="color: #a0522d;">node</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TrieNode</span>();
     m_map[c] = node;
-    <span style="color: #859900;">return</span> node;
+    <span style="color: #a020f0;">return</span> node;
   }
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">isLeaf</span>() {
-    <span style="color: #859900;">return</span> m_isleaf;
+  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isLeaf</span>() {
+    <span style="color: #a020f0;">return</span> m_isleaf;
   }
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">setLeaf</span>() {
-    m_isleaf = <span style="color: #2aa198;">true</span>;
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setLeaf</span>() {
+    m_isleaf = <span style="color: #008b8b;">true</span>;
   }
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">hasChild</span>() {
-    <span style="color: #859900;">return</span> <span style="color: #dc322f;">!</span>m_map.empty();
+  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">hasChild</span>() {
+    <span style="color: #a020f0;">return</span> !m_map.empty();
   }
 
-<span style="color: #859900;">private</span>:
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">map</span>&lt;<span style="color: #b58900;">char</span>, <span style="color: #b58900;">TrieNode</span>*&gt; <span style="color: #268bd2;">m_map</span>;
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">m_isleaf</span> = <span style="color: #2aa198;">false</span>;
+<span style="color: #a020f0;">private</span>:
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">map</span>&lt;<span style="color: #228b22;">char</span>, <span style="color: #228b22;">TrieNode</span>*&gt; <span style="color: #a0522d;">m_map</span>;
+  <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">m_isleaf</span> = <span style="color: #008b8b;">false</span>;
 };
 
-<span style="color: #859900;">class</span> <span style="color: #b58900;">Trie</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #268bd2;">Trie</span>() {
-    root = <span style="color: #859900;">new</span> <span style="color: #b58900;">TrieNode</span>();
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Trie</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #0000ff;">Trie</span>() {
+    root = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TrieNode</span>();
   }
 
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Inserts a word into the trie.</span>
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">insert</span>(<span style="color: #b58900;">string</span> <span style="color: #268bd2;">word</span>) {
-    <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">node</span> = root;
-    <span style="color: #859900;">for</span> (<span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span> : word) {
-      <span style="color: #859900;">if</span> (node-&gt;child(c)) {
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">Inserts a word into the trie.</span>
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">insert</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">word</span>) {
+    <span style="color: #228b22;">TrieNode</span> *<span style="color: #a0522d;">node</span> = root;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> : word) {
+      <span style="color: #a020f0;">if</span> (node-&gt;child(c)) {
         node = node-&gt;child(c);
-      } <span style="color: #859900;">else</span> {
+      } <span style="color: #a020f0;">else</span> {
         node = node-&gt;addChild(c);
       }
     }
     node-&gt;setLeaf();
   }
 
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Returns if the word is in the trie.</span>
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">search</span>(<span style="color: #b58900;">string</span> <span style="color: #268bd2;">word</span>) {
-    <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">node</span> = root;
-    <span style="color: #859900;">for</span> (<span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span> : word) {
-      <span style="color: #859900;">if</span> ((node = node-&gt;child(c))) {
-      } <span style="color: #859900;">else</span> {
-        <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">Returns if the word is in the trie.</span>
+  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">search</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">word</span>) {
+    <span style="color: #228b22;">TrieNode</span> *<span style="color: #a0522d;">node</span> = root;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> : word) {
+      <span style="color: #a020f0;">if</span> ((node = node-&gt;child(c))) {
+      } <span style="color: #a020f0;">else</span> {
+        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
       }
     }
-    <span style="color: #859900;">if</span> (node-&gt;isLeaf()) {
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
+    <span style="color: #a020f0;">if</span> (node-&gt;isLeaf()) {
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
     }
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
   }
 
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Returns if there is any word in the trie</span>
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">that starts with the given prefix.</span>
-  <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">startsWith</span>(<span style="color: #b58900;">string</span> <span style="color: #268bd2;">prefix</span>) {
-    <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">node</span> = root;
-    <span style="color: #859900;">for</span> (<span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span> : prefix) {
-      <span style="color: #859900;">if</span> ((node = node-&gt;child(c))) {
-      } <span style="color: #859900;">else</span> {
-        <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">Returns if there is any word in the trie</span>
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">that starts with the given prefix.</span>
+  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">startsWith</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">prefix</span>) {
+    <span style="color: #228b22;">TrieNode</span> *<span style="color: #a0522d;">node</span> = root;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> : prefix) {
+      <span style="color: #a020f0;">if</span> ((node = node-&gt;child(c))) {
+      } <span style="color: #a020f0;">else</span> {
+        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
       }
     }
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
   }
 
-<span style="color: #859900;">private</span>:
-  <span style="color: #b58900;">TrieNode</span>* <span style="color: #268bd2;">root</span>;
+<span style="color: #a020f0;">private</span>:
+  <span style="color: #228b22;">TrieNode</span>* <span style="color: #a0522d;">root</span>;
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7050fe4" class="outline-4">
-<h4 id="org7050fe4"><span class="section-number-4">3.1.3</span> 212. Word Search II</h4>
+<div id="outline-container-orgbdcb767" class="outline-4">
+<h4 id="orgbdcb767"><span class="section-number-4">3.1.3</span> 212. Word Search II</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 We only carry the TrieNode, and it should store the word, aka the value.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">Solution</span> {
-<span style="color: #859900;">public</span>:
-  <span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">string</span>&gt; <span style="color: #268bd2;">findWords</span>(<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">char</span>&gt;&gt;&amp; <span style="color: #268bd2;">board</span>, <span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">string</span>&gt;&amp; <span style="color: #268bd2;">words</span>) {
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">construct a trie for all the words to search</span>
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">continue to do the recursive method</span>
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">keep the track of current value</span>
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">if cannot search it on trie, stop the recursion along this line</span>
-    <span style="color: #b58900;">Trie</span> <span style="color: #268bd2;">trie</span>;
-    <span style="color: #859900;">for</span> (<span style="color: #b58900;">string</span> <span style="color: #268bd2;">s</span> : words) {
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span> {
+<span style="color: #a020f0;">public</span>:
+  <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">string</span>&gt; <span style="color: #0000ff;">findWords</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">char</span>&gt;&gt;&amp; <span style="color: #a0522d;">board</span>, <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">string</span>&gt;&amp; <span style="color: #a0522d;">words</span>) {
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">construct a trie for all the words to search</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">continue to do the recursive method</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">keep the track of current value</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">if cannot search it on trie, stop the recursion along this line</span>
+    <span style="color: #228b22;">Trie</span> <span style="color: #a0522d;">trie</span>;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> : words) {
       trie.insert(s);
     }
-    <span style="color: #859900;">for</span> (<span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>=0;i&lt;(<span style="color: #b58900;">int</span>)board.size();i++) {
-      <span style="color: #859900;">for</span> (<span style="color: #b58900;">int</span> <span style="color: #268bd2;">j</span>=0;j&lt;(<span style="color: #b58900;">int</span>)board[0].size();j++) {
-        recur(<span style="color: #b58900;">board</span>, i, j, trie.getRoot());
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=0;i&lt;(<span style="color: #228b22;">int</span>)board.size();i++) {
+      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span>=0;j&lt;(<span style="color: #228b22;">int</span>)board[0].size();j++) {
+        recur(<span style="color: #228b22;">board</span>, i, j, trie.getRoot());
       }
     }
-    <span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">string</span>&gt; <span style="color: #268bd2;">retv</span> (ret.begin(), ret.end());
-    <span style="color: #859900;">return</span> retv;
+    <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">string</span>&gt; <span style="color: #0000ff;">retv</span> (ret.begin(), ret.end());
+    <span style="color: #a020f0;">return</span> retv;
   }
-  <span style="color: #b58900;">void</span> <span style="color: #268bd2;">recur</span>(<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">vector</span>&lt;<span style="color: #b58900;">char</span>&gt; &gt; &amp;<span style="color: #268bd2;">board</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">j</span>, <span style="color: #b58900;">TrieNode</span> *<span style="color: #268bd2;">node</span>) {
-    <span style="color: #859900;">if</span> (<span style="color: #dc322f;">!</span>node) {<span style="color: #859900;">return</span>;}
-    <span style="color: #859900;">if</span> (node-&gt;isLeaf()) ret.insert(node-&gt;Value());
-    <span style="color: #859900;">if</span> (<span style="color: #dc322f;">!</span>node-&gt;hasChild()) {<span style="color: #859900;">return</span>;}
-    <span style="color: #859900;">if</span> (i &lt; 0 || j &lt; 0 || i &gt;= (<span style="color: #b58900;">int</span>)board.size() || j &gt;= (<span style="color: #b58900;">int</span>)board[0].size()) {<span style="color: #859900;">return</span>;}
-    <span style="color: #859900;">if</span> (node-&gt;child(<span style="color: #b58900;">board</span>[i][j])) {
-      <span style="color: #b58900;">char</span> <span style="color: #268bd2;">c</span> = board[i][j];
-      board[i][j] = <span style="color: #2aa198;">'\0'</span>;
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">recur</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">char</span>&gt; &gt; &amp;<span style="color: #a0522d;">board</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span>, <span style="color: #228b22;">TrieNode</span> *<span style="color: #a0522d;">node</span>) {
+    <span style="color: #a020f0;">if</span> (!node) {<span style="color: #a020f0;">return</span>;}
+    <span style="color: #a020f0;">if</span> (node-&gt;isLeaf()) ret.insert(node-&gt;Value());
+    <span style="color: #a020f0;">if</span> (!node-&gt;hasChild()) {<span style="color: #a020f0;">return</span>;}
+    <span style="color: #a020f0;">if</span> (i &lt; 0 || j &lt; 0 || i &gt;= (<span style="color: #228b22;">int</span>)board.size() || j &gt;= (<span style="color: #228b22;">int</span>)board[0].size()) {<span style="color: #a020f0;">return</span>;}
+    <span style="color: #a020f0;">if</span> (node-&gt;child(<span style="color: #228b22;">board</span>[i][j])) {
+      <span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = board[i][j];
+      board[i][j] = <span style="color: #8b2252;">'\0'</span>;
       node = node-&gt;child(c);
-      recur(<span style="color: #b58900;">board</span>, i, j-1, node);
-      recur(<span style="color: #b58900;">board</span>, i, j+1, node);
-      recur(<span style="color: #b58900;">board</span>, i-1, j, node);
-      recur(<span style="color: #b58900;">board</span>, i+1, j, node);
+      recur(<span style="color: #228b22;">board</span>, i, j-1, node);
+      recur(<span style="color: #228b22;">board</span>, i, j+1, node);
+      recur(<span style="color: #228b22;">board</span>, i-1, j, node);
+      recur(<span style="color: #228b22;">board</span>, i+1, j, node);
       board[i][j] = c;
-    } <span style="color: #859900;">else</span> {
-      <span style="color: #859900;">return</span>;
+    } <span style="color: #a020f0;">else</span> {
+      <span style="color: #a020f0;">return</span>;
     }
   }
-<span style="color: #859900;">private</span>:
-  <span style="color: #b58900;">set</span>&lt;<span style="color: #b58900;">string</span>&gt; <span style="color: #268bd2;">ret</span>;
+<span style="color: #a020f0;">private</span>:
+  <span style="color: #228b22;">set</span>&lt;<span style="color: #228b22;">string</span>&gt; <span style="color: #a0522d;">ret</span>;
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org6cb7ea6" class="outline-3">
-<h3 id="org6cb7ea6"><span class="section-number-3">3.2</span> prefix tree</h3>
+<div id="outline-container-orgb01016b" class="outline-3">
+<h3 id="orgb01016b"><span class="section-number-3">3.2</span> prefix tree</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Alias: <code>Trie</code>, <code>Prefix Tree</code>, <code>Radix Tree</code>
@@ -730,8 +734,8 @@ It is an ordered tree data structure that is used to store a dynamic set or asso
 </div>
 
 
-<div id="outline-container-orgd23b17d" class="outline-4">
-<h4 id="orgd23b17d"><span class="section-number-4">3.2.1</span> Radix Tree</h4>
+<div id="outline-container-orgafa745b" class="outline-4">
+<h4 id="orgafa745b"><span class="section-number-4">3.2.1</span> Radix Tree</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 A radix tree (also patricia trie or radix trie or compact prefix tree) is a space-optimized trie data structure where each node with only one child is merged with its parent.
@@ -751,8 +755,8 @@ Unlike in regular tries, edges can be labeled with sequences of elements as well
 </div>
 
 
-<div id="outline-container-orga213a5c" class="outline-3">
-<h3 id="orga213a5c"><span class="section-number-3">3.3</span> Aho Corasick</h3>
+<div id="outline-container-org68e5d90" class="outline-3">
+<h3 id="org68e5d90"><span class="section-number-3">3.3</span> Aho Corasick</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 It is a multiple string match algorithm. <code>fgrep</code> is based on this.
@@ -760,8 +764,8 @@ It is a multiple string match algorithm. <code>fgrep</code> is based on this.
 </div>
 
 
-<div id="outline-container-orgd56b874" class="outline-4">
-<h4 id="orgd56b874"><span class="section-number-4">3.3.1</span> Construct Trie</h4>
+<div id="outline-container-org10fcd4e" class="outline-4">
+<h4 id="org10fcd4e"><span class="section-number-4">3.3.1</span> Construct Trie</h4>
 <div class="outline-text-4" id="text-3-3-1">
 
 <div class="figure">
@@ -775,8 +779,8 @@ dictionary: <code>{a,ab,bab,bc,bca,c,caa}</code>
 </div>
 </div>
 
-<div id="outline-container-org62e2d54" class="outline-4">
-<h4 id="org62e2d54"><span class="section-number-4">3.3.2</span> Node</h4>
+<div id="outline-container-org3d31de0" class="outline-4">
+<h4 id="org3d31de0"><span class="section-number-4">3.3.2</span> Node</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
 The data structure has one node for every prefix of every string in the dictionary.
@@ -786,8 +790,8 @@ then there will be nodes for (bca), (bc), (b), and ().
 </div>
 </div>
 
-<div id="outline-container-org872cc09" class="outline-4">
-<h4 id="org872cc09"><span class="section-number-4">3.3.3</span> Color</h4>
+<div id="outline-container-orgc1a5b96" class="outline-4">
+<h4 id="orgc1a5b96"><span class="section-number-4">3.3.3</span> Color</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 If a node is in the dictionary then it is blue node.
@@ -796,8 +800,8 @@ Otherwise it is a grey node.
 </div>
 </div>
 
-<div id="outline-container-orgf7f1943" class="outline-4">
-<h4 id="orgf7f1943"><span class="section-number-4">3.3.4</span> blue arc</h4>
+<div id="outline-container-org4403000" class="outline-4">
+<h4 id="org4403000"><span class="section-number-4">3.3.4</span> blue arc</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <p>
 a blue directed "suffix" arc from each node to the node that is the longest possible strict suffix of it in the graph.
@@ -808,8 +812,8 @@ So there is a blue arc from (caa) to (a).
 </div>
 </div>
 
-<div id="outline-container-org4c8a29d" class="outline-4">
-<h4 id="org4c8a29d"><span class="section-number-4">3.3.5</span> Green Arc</h4>
+<div id="outline-container-orga6d67d4" class="outline-4">
+<h4 id="orga6d67d4"><span class="section-number-4">3.3.5</span> Green Arc</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <p>
 There is a green "dictionary suffix" arc from each node to the next node in the dictionary that can be reached by following blue arcs. For example, there is a green arc from (bca) to (a) because (a) is the first node in the dictionary (i.e. a blue node) that is reached when following the blue arcs to (ca) and then on to (a).
@@ -817,8 +821,8 @@ There is a green "dictionary suffix" arc from each node to the next node in the 
 </div>
 </div>
 
-<div id="outline-container-orgf6dccd4" class="outline-4">
-<h4 id="orgf6dccd4"><span class="section-number-4">3.3.6</span> Match Process</h4>
+<div id="outline-container-orged1260f" class="outline-4">
+<h4 id="orged1260f"><span class="section-number-4">3.3.6</span> Match Process</h4>
 <div class="outline-text-4" id="text-3-3-6">
 <p>
 At each step, the current node is extended by finding its child,
@@ -833,7 +837,7 @@ and so on, finally ending in the root node if nothing's seen before.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

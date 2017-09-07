@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Common Lisp</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -256,206 +257,206 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc6c8788">1. Type</a>
+<li><a href="#org3fad4e1">1. Type</a>
 <ul>
-<li><a href="#orgdd301f3">1.1. Numbers</a>
+<li><a href="#org00ea82a">1.1. Numbers</a>
 <ul>
-<li><a href="#org806fc63">1.1.1. Predicates</a></li>
-<li><a href="#org7a16f9b">1.1.2. Comparison</a></li>
-<li><a href="#org4800fed">1.1.3. Arithmetic</a></li>
-<li><a href="#org0d52c59">1.1.4. Other</a></li>
-<li><a href="#org53e0480">1.1.5. Type Conversion</a></li>
-<li><a href="#org146128e">1.1.6. Logical Operations</a></li>
-<li><a href="#orgb5b1c18">1.1.7. Byte</a></li>
-<li><a href="#org3b36a30">1.1.8. Random Numbers</a></li>
+<li><a href="#orgd16eded">1.1.1. Predicates</a></li>
+<li><a href="#orge914198">1.1.2. Comparison</a></li>
+<li><a href="#org3c5091f">1.1.3. Arithmetic</a></li>
+<li><a href="#org02a3d26">1.1.4. Other</a></li>
+<li><a href="#org2140839">1.1.5. Type Conversion</a></li>
+<li><a href="#org2d4ba64">1.1.6. Logical Operations</a></li>
+<li><a href="#orga3ab984">1.1.7. Byte</a></li>
+<li><a href="#org527a50b">1.1.8. Random Numbers</a></li>
 </ul>
 </li>
-<li><a href="#orgd947020">1.2. Character</a></li>
-<li><a href="#org4886f86">1.3. Boolean</a></li>
-<li><a href="#orga74e97d">1.4. Symbols</a>
+<li><a href="#org1ea48d3">1.2. Character</a></li>
+<li><a href="#org946a225">1.3. Boolean</a></li>
+<li><a href="#orga1e12c6">1.4. Symbols</a>
 <ul>
-<li><a href="#org8623152">1.4.1. Property list</a></li>
+<li><a href="#orgf62e7c4">1.4.1. Property list</a></li>
 </ul>
 </li>
-<li><a href="#org90a53e5">1.5. Sequence</a>
+<li><a href="#org7ec2ac3">1.5. Sequence</a>
 <ul>
-<li><a href="#orgb779788">1.5.1. Predicates</a></li>
-<li><a href="#org087ac8a">1.5.2. Simple Sequence Functions</a></li>
-<li><a href="#org0d023c4">1.5.3. Mapping</a></li>
-<li><a href="#orge03ae0a">1.5.4. Modifying Seq</a></li>
-<li><a href="#org9f0050f">1.5.5. Searching</a></li>
-<li><a href="#orge32ee27">1.5.6. Sorting &amp; Merging</a></li>
+<li><a href="#orgc4b1100">1.5.1. Predicates</a></li>
+<li><a href="#orgdbce806">1.5.2. Simple Sequence Functions</a></li>
+<li><a href="#orgf073eb0">1.5.3. Mapping</a></li>
+<li><a href="#org6d1aebb">1.5.4. Modifying Seq</a></li>
+<li><a href="#orgda7d7fa">1.5.5. Searching</a></li>
+<li><a href="#org227ba94">1.5.6. Sorting &amp; Merging</a></li>
 </ul>
 </li>
-<li><a href="#org7ceb832">1.6. List</a>
+<li><a href="#orgdd4d4e5">1.6. List</a>
 <ul>
-<li><a href="#orgb689a7f">1.6.1. cons</a></li>
-<li><a href="#org36c6006">1.6.2. lists</a></li>
-<li><a href="#org6382094">1.6.3. alteration of list structure</a></li>
-<li><a href="#org8fa965e">1.6.4. substitution</a></li>
-<li><a href="#org1007581">1.6.5. Set</a></li>
-<li><a href="#org36cfe33">1.6.6. Association Lists</a></li>
+<li><a href="#org23ff750">1.6.1. cons</a></li>
+<li><a href="#orgc014ddf">1.6.2. lists</a></li>
+<li><a href="#orgd4fee7d">1.6.3. alteration of list structure</a></li>
+<li><a href="#orgde66c6c">1.6.4. substitution</a></li>
+<li><a href="#org12b6bf2">1.6.5. Set</a></li>
+<li><a href="#orgb1c235c">1.6.6. Association Lists</a></li>
 </ul>
 </li>
-<li><a href="#orgd27adc0">1.7. Hash Table</a></li>
-<li><a href="#orgcbef74d">1.8. Array</a>
+<li><a href="#org0cee935">1.7. Hash Table</a></li>
+<li><a href="#org76b76e6">1.8. Array</a>
 <ul>
-<li><a href="#orgd8fe10d">1.8.1. Creation</a></li>
-<li><a href="#orgcc0c46e">1.8.2. Access</a></li>
-<li><a href="#orgafd29b7">1.8.3. Information</a></li>
-<li><a href="#org975e582">1.8.4. bit-array</a></li>
-<li><a href="#orgc0150d1">1.8.5. Fill</a></li>
-<li><a href="#org4b02b45">1.8.6. Change dimension</a></li>
+<li><a href="#orgecb969b">1.8.1. Creation</a></li>
+<li><a href="#org2928164">1.8.2. Access</a></li>
+<li><a href="#org8024f8d">1.8.3. Information</a></li>
+<li><a href="#org004fae2">1.8.4. bit-array</a></li>
+<li><a href="#org2003d97">1.8.5. Fill</a></li>
+<li><a href="#org725feea">1.8.6. Change dimension</a></li>
 </ul>
 </li>
-<li><a href="#org71bbf53">1.9. String</a>
+<li><a href="#org8eafb3c">1.9. String</a>
 <ul>
-<li><a href="#org79f7412">1.9.1. Access</a></li>
-<li><a href="#org818b03a">1.9.2. Comparision</a></li>
-<li><a href="#orgbfeb8be">1.9.3. String Construction and Manipulation</a></li>
+<li><a href="#orgcf93086">1.9.1. Access</a></li>
+<li><a href="#orga89707a">1.9.2. Comparision</a></li>
+<li><a href="#org79881c3">1.9.3. String Construction and Manipulation</a></li>
 </ul>
 </li>
-<li><a href="#orgd454523">1.10. Structure</a>
+<li><a href="#org18181cb">1.10. Structure</a>
 <ul>
-<li><a href="#orge705fd5">1.10.1. defstruct</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgda09557">2. Program Structure</a>
-<ul>
-<li><a href="#orgdc599d9">2.1. Form</a></li>
-<li><a href="#orgff07431">2.2. Scope and Extent</a></li>
-<li><a href="#orgddf4bfd">2.3. Variable</a>
-<ul>
-<li><a href="#org0d21146">2.3.1. Creation</a></li>
-<li><a href="#org6e7cbc1">2.3.2. Assignment</a></li>
-<li><a href="#org3277511">2.3.3. Destructive</a></li>
-</ul>
-</li>
-<li><a href="#org1744076">2.4. Equality</a></li>
-<li><a href="#orgd8495db">2.5. Function</a>
-<ul>
-<li><a href="#org48fac59">2.5.1. Defun and Lambda Expression</a></li>
-<li><a href="#org87b3122">2.5.2. Multiple Values</a></li>
-</ul>
-</li>
-<li><a href="#orgc495022">2.6. Macro</a>
-<ul>
-<li><a href="#orgcb63786">2.6.1. Definition</a></li>
-<li><a href="#org7bf638a">2.6.2. Macro Expansion</a></li>
-</ul>
-</li>
-<li><a href="#org55f702b">2.7. Exception</a>
-<ul>
-<li><a href="#org2dcbb50">2.7.1. Error</a></li>
-<li><a href="#org6f4cec9">2.7.2. Condition</a>
-<ul>
-<li><a href="#orgeefcc5c">2.7.2.1. <span class="todo TODO">TODO</span> Concepts</a></li>
-<li><a href="#org98b2cf8">2.7.2.2. Signaling</a></li>
-<li><a href="#org7432c36">2.7.2.3. Handling Conditions</a></li>
-<li><a href="#org4ac7e11">2.7.2.4. Defining Conditions</a></li>
-<li><a href="#orgea2827c">2.7.2.5. Restart</a></li>
-<li><a href="#org9541fef">2.7.2.6. Debugging</a></li>
-<li><a href="#org77a40a3">2.7.2.7. Condition Types</a></li>
+<li><a href="#org5053cab">1.10.1. defstruct</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org101a44c">2.8. Evaluator</a></li>
+<li><a href="#org280eaa5">2. Program Structure</a>
+<ul>
+<li><a href="#org225c99c">2.1. Form</a></li>
+<li><a href="#org70934de">2.2. Scope and Extent</a></li>
+<li><a href="#org7d0f2ea">2.3. Variable</a>
+<ul>
+<li><a href="#org5ef2d4b">2.3.1. Creation</a></li>
+<li><a href="#org8349790">2.3.2. Assignment</a></li>
+<li><a href="#orgd2b1d45">2.3.3. Destructive</a></li>
 </ul>
 </li>
-<li><a href="#orgb22bc89">3. Control Structure</a>
+<li><a href="#orge9ef145">2.4. Equality</a></li>
+<li><a href="#orgd39e027">2.5. Function</a>
 <ul>
-<li><a href="#org9e78f5d">3.1. Sequential</a></li>
-<li><a href="#org95aa2fe">3.2. Conditional</a></li>
-<li><a href="#org020efef">3.3. Iteration</a>
-<ul>
-<li><a href="#orga689160">3.3.1. Mapping</a></li>
-<li><a href="#orgca12ba0">3.3.2. Append to a list</a></li>
+<li><a href="#orgd389bcb">2.5.1. Defun and Lambda Expression</a></li>
+<li><a href="#orgf6319ff">2.5.2. Multiple Values</a></li>
 </ul>
 </li>
-<li><a href="#org168ddb3">3.4. Loop Facility</a>
+<li><a href="#orgefe1c9b">2.6. Macro</a>
 <ul>
-<li><a href="#org64f68d3">3.4.1. Loop Clauses</a></li>
-<li><a href="#org2413aba">3.4.2. Loop Syntax</a></li>
-<li><a href="#org439246b">3.4.3. Iteration Control (for, as, repeat)</a></li>
-<li><a href="#orgdb47615">3.4.4. End Test Control (always, never, thereis, until, while)</a></li>
-<li><a href="#org9c74ac5">3.4.5. Value Accumulation</a></li>
-<li><a href="#orgab12550">3.4.6. Variable Initialization (with)</a></li>
-<li><a href="#orge996b65">3.4.7. Conditional Execution (if, when, unless)</a></li>
-<li><a href="#org261ed25">3.4.8. Unconditional Execution (do, return)</a></li>
-<li><a href="#org2062e71">3.4.9. Misc (named, initially, finally)</a></li>
-<li><a href="#org2da8367">3.4.10. Destructure</a></li>
+<li><a href="#org29be6f9">2.6.1. Definition</a></li>
+<li><a href="#org29e2066">2.6.2. Macro Expansion</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org3995f39">4. System Interface</a>
+<li><a href="#orgb6ee8df">2.7. Exception</a>
 <ul>
-<li><a href="#org32a6ac5">4.1. Package</a>
+<li><a href="#org2c46171">2.7.1. Error</a></li>
+<li><a href="#org858e9fb">2.7.2. Condition</a>
 <ul>
-<li><a href="#orgbc25991">4.1.1. Modules</a></li>
-</ul>
-</li>
-<li><a href="#org6029601">4.2. Stream</a>
-<ul>
-<li><a href="#org4a3fca4">4.2.1. Create Stream</a></li>
-<li><a href="#org4070feb">4.2.2. Operation</a></li>
-</ul>
-</li>
-<li><a href="#org7da9fce">4.3. Input/Output</a>
-<ul>
-<li><a href="#org50f03a5">4.3.1. Input</a></li>
-<li><a href="#orgd14e576">4.3.2. Output</a>
-<ul>
-<li><a href="#orgc6017d9">4.3.2.1. Format</a></li>
-</ul>
-</li>
-<li><a href="#org3ec9222">4.3.3. Query</a></li>
-</ul>
-</li>
-<li><a href="#orge624253">4.4. File System</a>
-<ul>
-<li><a href="#orgb33804d">4.4.1. File Names</a></li>
-<li><a href="#org3496b77">4.4.2. Open and Close</a></li>
-<li><a href="#orgba73934">4.4.3. File Operation</a></li>
-<li><a href="#org9312140">4.4.4. Other</a></li>
+<li><a href="#orgc900e6f">2.7.2.1. <span class="todo TODO">TODO</span> Concepts</a></li>
+<li><a href="#org41ab5fc">2.7.2.2. Signaling</a></li>
+<li><a href="#org26292cc">2.7.2.3. Handling Conditions</a></li>
+<li><a href="#org22f31d4">2.7.2.4. Defining Conditions</a></li>
+<li><a href="#org49aee9f">2.7.2.5. Restart</a></li>
+<li><a href="#org2fee1c9">2.7.2.6. Debugging</a></li>
+<li><a href="#org7c8113a">2.7.2.7. Condition Types</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1f4bf24">5. Common Lisp Object System</a>
-<ul>
-<li><a href="#org32c58b3">5.1. <span class="todo TODO">TODO</span> Concept</a></li>
-<li><a href="#org51a8084">5.2. Functions</a></li>
+<li><a href="#orgc7b27d6">2.8. Evaluator</a></li>
 </ul>
 </li>
-<li><a href="#orgbc14dac">6. ASDF (Another System Definition Facility)</a>
+<li><a href="#orgf044d00">3. Control Structure</a>
 <ul>
-<li><a href="#org780b15d">6.1. Load ASDF</a></li>
-<li><a href="#orgfd9a714">6.2. Load System</a></li>
-<li><a href="#orgc7e597d">6.3. Build System</a></li>
+<li><a href="#orge6ecd62">3.1. Sequential</a></li>
+<li><a href="#org3413ccf">3.2. Conditional</a></li>
+<li><a href="#orgf9a7104">3.3. Iteration</a>
+<ul>
+<li><a href="#orgbc813de">3.3.1. Mapping</a></li>
+<li><a href="#orgeb920ba">3.3.2. Append to a list</a></li>
 </ul>
 </li>
-<li><a href="#org3fe6248">7. Appendix</a>
+<li><a href="#orgb1a841d">3.4. Loop Facility</a>
 <ul>
-<li><a href="#org0846908">7.1. Installation</a>
-<ul>
-<li><a href="#orga04b9c4">7.1.1. quicklisp</a></li>
-<li><a href="#org70991e2">7.1.2. packages</a></li>
-<li><a href="#orgd541365">7.1.3. org babel</a></li>
-<li><a href="#orgab9a30c">7.1.4. Slime</a>
-<ul>
-<li><a href="#org5db54e4">7.1.4.1. Commands</a></li>
+<li><a href="#org47fa7cd">3.4.1. Loop Clauses</a></li>
+<li><a href="#org38b8c40">3.4.2. Loop Syntax</a></li>
+<li><a href="#org0de820e">3.4.3. Iteration Control (for, as, repeat)</a></li>
+<li><a href="#org401631e">3.4.4. End Test Control (always, never, thereis, until, while)</a></li>
+<li><a href="#org2c8384f">3.4.5. Value Accumulation</a></li>
+<li><a href="#orgf3f6df3">3.4.6. Variable Initialization (with)</a></li>
+<li><a href="#org77ccc0b">3.4.7. Conditional Execution (if, when, unless)</a></li>
+<li><a href="#orgc326b60">3.4.8. Unconditional Execution (do, return)</a></li>
+<li><a href="#org98b65e1">3.4.9. Misc (named, initially, finally)</a></li>
+<li><a href="#org0c3d7ad">3.4.10. Destructure</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd7bdc7d">7.2. Practical Common Lisp</a>
+<li><a href="#org43e031a">4. System Interface</a>
 <ul>
-<li><a href="#org895c7ca">7.2.1. CD database</a></li>
-<li><a href="#orgcb07d4b">7.2.2. Unit Test Framework</a></li>
+<li><a href="#org36b3223">4.1. Package</a>
+<ul>
+<li><a href="#orgf07bdfc">4.1.1. Modules</a></li>
+</ul>
+</li>
+<li><a href="#org61c8489">4.2. Stream</a>
+<ul>
+<li><a href="#orga500c5e">4.2.1. Create Stream</a></li>
+<li><a href="#org08b72e6">4.2.2. Operation</a></li>
+</ul>
+</li>
+<li><a href="#orgce5f990">4.3. Input/Output</a>
+<ul>
+<li><a href="#orgc3c308a">4.3.1. Input</a></li>
+<li><a href="#orgd3bd663">4.3.2. Output</a>
+<ul>
+<li><a href="#orgabd0e3f">4.3.2.1. Format</a></li>
+</ul>
+</li>
+<li><a href="#org6895897">4.3.3. Query</a></li>
+</ul>
+</li>
+<li><a href="#orgcd553f6">4.4. File System</a>
+<ul>
+<li><a href="#org565f192">4.4.1. File Names</a></li>
+<li><a href="#org32219ce">4.4.2. Open and Close</a></li>
+<li><a href="#orgb22f188">4.4.3. File Operation</a></li>
+<li><a href="#org3290113">4.4.4. Other</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd7ed061">5. Common Lisp Object System</a>
+<ul>
+<li><a href="#orgab96657">5.1. <span class="todo TODO">TODO</span> Concept</a></li>
+<li><a href="#orgde14744">5.2. Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgeb8ac94">6. ASDF (Another System Definition Facility)</a>
+<ul>
+<li><a href="#orgfa0e8f3">6.1. Load ASDF</a></li>
+<li><a href="#orgc959f50">6.2. Load System</a></li>
+<li><a href="#org804392c">6.3. Build System</a></li>
+</ul>
+</li>
+<li><a href="#org2dd03f0">7. Appendix</a>
+<ul>
+<li><a href="#org3c91fc2">7.1. Installation</a>
+<ul>
+<li><a href="#org9f7bf83">7.1.1. quicklisp</a></li>
+<li><a href="#orgd22784e">7.1.2. packages</a></li>
+<li><a href="#org70f37c3">7.1.3. org babel</a></li>
+<li><a href="#org9d90747">7.1.4. Slime</a>
+<ul>
+<li><a href="#org4a4277e">7.1.4.1. Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgcde2172">7.2. Practical Common Lisp</a>
+<ul>
+<li><a href="#org1ea68f4">7.2.1. CD database</a></li>
+<li><a href="#org8cbdeab">7.2.2. Unit Test Framework</a></li>
 </ul>
 </li>
 </ul>
@@ -468,8 +469,8 @@ Common Lisp the language:
 <a href="http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html">http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/html/cltl/cltl2.html</a>
 </p>
 
-<div id="outline-container-orgc6c8788" class="outline-2">
-<h2 id="orgc6c8788"><span class="section-number-2">1</span> Type</h2>
+<div id="outline-container-org3fad4e1" class="outline-2">
+<h2 id="org3fad4e1"><span class="section-number-2">1</span> Type</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Common Lisp is strong typed, but the type is associated with objects,
@@ -480,14 +481,14 @@ not variables.
 Type predicate
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(typep obj type)
+<pre><code class="src src-lisp">(typep obj type)
 (subtypep type1 type2)
-</pre>
+</code></pre>
 </div>
 </div>
 
-<div id="outline-container-orgdd301f3" class="outline-3">
-<h3 id="orgdd301f3"><span class="section-number-3">1.1</span> Numbers</h3>
+<div id="outline-container-org00ea82a" class="outline-3">
+<h3 id="org00ea82a"><span class="section-number-3">1.1</span> Numbers</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Representation:
@@ -497,8 +498,8 @@ Representation:
 <li><code>#xaf08</code></li>
 </ul>
 </div>
-<div id="outline-container-org806fc63" class="outline-4">
-<h4 id="org806fc63"><span class="section-number-4">1.1.1</span> Predicates</h4>
+<div id="outline-container-orgd16eded" class="outline-4">
+<h4 id="orgd16eded"><span class="section-number-4">1.1.1</span> Predicates</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 Group 1:
@@ -525,8 +526,8 @@ Group 2:
 </div>
 </div>
 
-<div id="outline-container-org7a16f9b" class="outline-4">
-<h4 id="org7a16f9b"><span class="section-number-4">1.1.2</span> Comparison</h4>
+<div id="outline-container-orge914198" class="outline-4">
+<h4 id="orge914198"><span class="section-number-4">1.1.2</span> Comparison</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 These operators are functions, they takes multiple numbers.
@@ -541,8 +542,8 @@ These operators are functions, they takes multiple numbers.
 </div>
 </div>
 
-<div id="outline-container-org4800fed" class="outline-4">
-<h4 id="org4800fed"><span class="section-number-4">1.1.3</span> Arithmetic</h4>
+<div id="outline-container-org3c5091f" class="outline-4">
+<h4 id="org3c5091f"><span class="section-number-4">1.1.3</span> Arithmetic</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>+, -, *, /</li>
@@ -556,8 +557,8 @@ These operators are functions, they takes multiple numbers.
 </div>
 </div>
 
-<div id="outline-container-org0d52c59" class="outline-4">
-<h4 id="org0d52c59"><span class="section-number-4">1.1.4</span> Other</h4>
+<div id="outline-container-org02a3d26" class="outline-4">
+<h4 id="org02a3d26"><span class="section-number-4">1.1.4</span> Other</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>exp</li>
@@ -577,8 +578,8 @@ These operators are functions, they takes multiple numbers.
 </div>
 </div>
 
-<div id="outline-container-org53e0480" class="outline-4">
-<h4 id="org53e0480"><span class="section-number-4">1.1.5</span> Type Conversion</h4>
+<div id="outline-container-org2140839" class="outline-4">
+<h4 id="org2140839"><span class="section-number-4">1.1.5</span> Type Conversion</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li>float</li>
@@ -610,8 +611,8 @@ These operators are functions, they takes multiple numbers.
 </div>
 </div>
 
-<div id="outline-container-org146128e" class="outline-4">
-<h4 id="org146128e"><span class="section-number-4">1.1.6</span> Logical Operations</h4>
+<div id="outline-container-org2d4ba64" class="outline-4">
+<h4 id="org2d4ba64"><span class="section-number-4">1.1.6</span> Logical Operations</h4>
 <div class="outline-text-4" id="text-1-1-6">
 <ul class="org-ul">
 <li>logior</li>
@@ -634,8 +635,8 @@ These operators are functions, they takes multiple numbers.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb5b1c18" class="outline-4">
-<h4 id="orgb5b1c18"><span class="section-number-4">1.1.7</span> Byte</h4>
+<div id="outline-container-orga3ab984" class="outline-4">
+<h4 id="orga3ab984"><span class="section-number-4">1.1.7</span> Byte</h4>
 <div class="outline-text-4" id="text-1-1-7">
 <ul class="org-ul">
 <li>byte</li>
@@ -650,8 +651,8 @@ These operators are functions, they takes multiple numbers.
 </div>
 </div>
 
-<div id="outline-container-org3b36a30" class="outline-4">
-<h4 id="org3b36a30"><span class="section-number-4">1.1.8</span> Random Numbers</h4>
+<div id="outline-container-org527a50b" class="outline-4">
+<h4 id="org527a50b"><span class="section-number-4">1.1.8</span> Random Numbers</h4>
 <div class="outline-text-4" id="text-1-1-8">
 <ul class="org-ul">
 <li>random</li>
@@ -665,8 +666,8 @@ These operators are functions, they takes multiple numbers.
 
 
 
-<div id="outline-container-orgd947020" class="outline-3">
-<h3 id="orgd947020"><span class="section-number-3">1.2</span> Character</h3>
+<div id="outline-container-org1ea48d3" class="outline-3">
+<h3 id="org1ea48d3"><span class="section-number-3">1.2</span> Character</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 A character object can be notated by writing <code>#\c</code> where c is any
@@ -725,8 +726,8 @@ standard character.
 </div>
 </div>
 
-<div id="outline-container-org4886f86" class="outline-3">
-<h3 id="org4886f86"><span class="section-number-3">1.3</span> Boolean</h3>
+<div id="outline-container-org946a225" class="outline-3">
+<h3 id="org946a225"><span class="section-number-3">1.3</span> Boolean</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li><code>nil</code> is false, everything else is true</li>
@@ -735,8 +736,8 @@ standard character.
 </div>
 </div>
 
-<div id="outline-container-orga74e97d" class="outline-3">
-<h3 id="orga74e97d"><span class="section-number-3">1.4</span> Symbols</h3>
+<div id="outline-container-orga1e12c6" class="outline-3">
+<h3 id="orga1e12c6"><span class="section-number-3">1.4</span> Symbols</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 In addition to letters and numbers, the following characters can also
@@ -769,8 +770,8 @@ upper case when stored in computer.
 </p>
 </div>
 
-<div id="outline-container-org8623152" class="outline-4">
-<h4 id="org8623152"><span class="section-number-4">1.4.1</span> Property list</h4>
+<div id="outline-container-orgf62e7c4" class="outline-4">
+<h4 id="orgf62e7c4"><span class="section-number-4">1.4.1</span> Property list</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 A symbol has such a list.
@@ -787,8 +788,8 @@ A symbol has such a list.
 </div>
 </div>
 
-<div id="outline-container-org90a53e5" class="outline-3">
-<h3 id="org90a53e5"><span class="section-number-3">1.5</span> Sequence</h3>
+<div id="outline-container-org7ec2ac3" class="outline-3">
+<h3 id="org7ec2ac3"><span class="section-number-3">1.5</span> Sequence</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Sequence contains both lists and vectors. Here are the common
@@ -797,8 +798,8 @@ sets of elements.
 </p>
 </div>
 
-<div id="outline-container-orgb779788" class="outline-4">
-<h4 id="orgb779788"><span class="section-number-4">1.5.1</span> Predicates</h4>
+<div id="outline-container-orgc4b1100" class="outline-4">
+<h4 id="orgc4b1100"><span class="section-number-4">1.5.1</span> Predicates</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <ul class="org-ul">
 <li>consp</li>
@@ -812,8 +813,8 @@ sets of elements.
 </div>
 </div>
 
-<div id="outline-container-org087ac8a" class="outline-4">
-<h4 id="org087ac8a"><span class="section-number-4">1.5.2</span> Simple Sequence Functions</h4>
+<div id="outline-container-orgdbce806" class="outline-4">
+<h4 id="orgdbce806"><span class="section-number-4">1.5.2</span> Simple Sequence Functions</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <ul class="org-ul">
 <li>elt</li>
@@ -827,8 +828,8 @@ sets of elements.
 </div>
 </div>
 
-<div id="outline-container-org0d023c4" class="outline-4">
-<h4 id="org0d023c4"><span class="section-number-4">1.5.3</span> Mapping</h4>
+<div id="outline-container-orgf073eb0" class="outline-4">
+<h4 id="orgf073eb0"><span class="section-number-4">1.5.3</span> Mapping</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <ul class="org-ul">
 <li>concatenate: <code>concatenate result-type &amp;rest sequences =&gt; result-sequence</code></li>
@@ -838,9 +839,9 @@ sets of elements.
 This is used for concatenate not only strings, but also lists, etc.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(concatenate 'string <span style="color: #2aa198;">"hello"</span> <span style="color: #2aa198;">"world"</span>)
+<pre><code class="src src-lisp">(concatenate 'string <span style="color: #8b2252;">"hello"</span> <span style="color: #8b2252;">"world"</span>)
 (concatenate 'list )
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -851,10 +852,10 @@ The map also needs a type as first argument. <code>nil</code> means no return, t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(map 'list '1+ '(2 3))
-(map nil (<span style="color: #859900;">lambda</span> (x) (1+ x))
+<pre><code class="src src-lisp">(map 'list '1+ '(2 3))
+(map nil (<span style="color: #a020f0;">lambda</span> (x) (1+ x))
      '(2 3))
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -868,8 +869,8 @@ The map also needs a type as first argument. <code>nil</code> means no return, t
 </div>
 </div>
 
-<div id="outline-container-orge03ae0a" class="outline-4">
-<h4 id="orge03ae0a"><span class="section-number-4">1.5.4</span> Modifying Seq</h4>
+<div id="outline-container-org6d1aebb" class="outline-4">
+<h4 id="org6d1aebb"><span class="section-number-4">1.5.4</span> Modifying Seq</h4>
 <div class="outline-text-4" id="text-1-5-4">
 <ul class="org-ul">
 <li>fill</li>
@@ -892,8 +893,8 @@ The map also needs a type as first argument. <code>nil</code> means no return, t
 </div>
 </div>
 
-<div id="outline-container-org9f0050f" class="outline-4">
-<h4 id="org9f0050f"><span class="section-number-4">1.5.5</span> Searching</h4>
+<div id="outline-container-orgda7d7fa" class="outline-4">
+<h4 id="orgda7d7fa"><span class="section-number-4">1.5.5</span> Searching</h4>
 <div class="outline-text-4" id="text-1-5-5">
 <ul class="org-ul">
 <li>find</li>
@@ -911,8 +912,8 @@ The map also needs a type as first argument. <code>nil</code> means no return, t
 </div>
 </div>
 
-<div id="outline-container-orge32ee27" class="outline-4">
-<h4 id="orge32ee27"><span class="section-number-4">1.5.6</span> Sorting &amp; Merging</h4>
+<div id="outline-container-org227ba94" class="outline-4">
+<h4 id="org227ba94"><span class="section-number-4">1.5.6</span> Sorting &amp; Merging</h4>
 <div class="outline-text-4" id="text-1-5-6">
 <ul class="org-ul">
 <li>sort</li>
@@ -923,11 +924,12 @@ The map also needs a type as first argument. <code>nil</code> means no return, t
 </div>
 </div>
 
-<div id="outline-container-org7ceb832" class="outline-3">
-<h3 id="org7ceb832"><span class="section-number-3">1.6</span> List</h3>
+<div id="outline-container-orgdd4d4e5" class="outline-3">
+<h3 id="orgdd4d4e5"><span class="section-number-3">1.6</span> List</h3>
 <div class="outline-text-3" id="text-1-6">
-</div><div id="outline-container-orgb689a7f" class="outline-4">
-<h4 id="orgb689a7f"><span class="section-number-4">1.6.1</span> cons</h4>
+</div>
+<div id="outline-container-org23ff750" class="outline-4">
+<h4 id="org23ff750"><span class="section-number-4">1.6.1</span> cons</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <ul class="org-ul">
 <li>car</li>
@@ -938,8 +940,8 @@ The map also needs a type as first argument. <code>nil</code> means no return, t
 </ul>
 </div>
 </div>
-<div id="outline-container-org36c6006" class="outline-4">
-<h4 id="org36c6006"><span class="section-number-4">1.6.2</span> lists</h4>
+<div id="outline-container-orgc014ddf" class="outline-4">
+<h4 id="orgc014ddf"><span class="section-number-4">1.6.2</span> lists</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <ul class="org-ul">
 <li>endp: predicate to check the end of a list</li>
@@ -969,8 +971,8 @@ copy-tree to copy all levels of a list.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6382094" class="outline-4">
-<h4 id="org6382094"><span class="section-number-4">1.6.3</span> alteration of list structure</h4>
+<div id="outline-container-orgd4fee7d" class="outline-4">
+<h4 id="orgd4fee7d"><span class="section-number-4">1.6.3</span> alteration of list structure</h4>
 <div class="outline-text-4" id="text-1-6-3">
 <p>
 Change the car or cdr of an existing cons. It is destructive.
@@ -981,8 +983,8 @@ Change the car or cdr of an existing cons. It is destructive.
 </ul>
 </div>
 </div>
-<div id="outline-container-org8fa965e" class="outline-4">
-<h4 id="org8fa965e"><span class="section-number-4">1.6.4</span> substitution</h4>
+<div id="outline-container-orgde66c6c" class="outline-4">
+<h4 id="orgde66c6c"><span class="section-number-4">1.6.4</span> substitution</h4>
 <div class="outline-text-4" id="text-1-6-4">
 <ul class="org-ul">
 <li>subst</li>
@@ -996,8 +998,8 @@ Change the car or cdr of an existing cons. It is destructive.
 </ul>
 </div>
 </div>
-<div id="outline-container-org1007581" class="outline-4">
-<h4 id="org1007581"><span class="section-number-4">1.6.5</span> Set</h4>
+<div id="outline-container-org12b6bf2" class="outline-4">
+<h4 id="org12b6bf2"><span class="section-number-4">1.6.5</span> Set</h4>
 <div class="outline-text-4" id="text-1-6-5">
 <ul class="org-ul">
 <li>member</li>
@@ -1017,8 +1019,8 @@ Change the car or cdr of an existing cons. It is destructive.
 </ul>
 </div>
 </div>
-<div id="outline-container-org36cfe33" class="outline-4">
-<h4 id="org36cfe33"><span class="section-number-4">1.6.6</span> Association Lists</h4>
+<div id="outline-container-orgb1c235c" class="outline-4">
+<h4 id="orgb1c235c"><span class="section-number-4">1.6.6</span> Association Lists</h4>
 <div class="outline-text-4" id="text-1-6-6">
 <ul class="org-ul">
 <li>acons</li>
@@ -1035,8 +1037,8 @@ Change the car or cdr of an existing cons. It is destructive.
 </div>
 
 
-<div id="outline-container-orgd27adc0" class="outline-3">
-<h3 id="orgd27adc0"><span class="section-number-3">1.7</span> Hash Table</h3>
+<div id="outline-container-org0cee935" class="outline-3">
+<h3 id="org0cee935"><span class="section-number-3">1.7</span> Hash Table</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 This is a map.
@@ -1059,8 +1061,8 @@ This is a map.
 </div>
 </div>
 
-<div id="outline-container-orgcbef74d" class="outline-3">
-<h3 id="orgcbef74d"><span class="section-number-3">1.8</span> Array</h3>
+<div id="outline-container-org76b76e6" class="outline-3">
+<h3 id="org76b76e6"><span class="section-number-3">1.8</span> Array</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 Array can be general array, holding arbitrary object types; it can
@@ -1070,8 +1072,8 @@ arrays are called vectors. Vectors holding arbitrary objects are
 called <i>strings</i>, holding type <code>bit</code> are called <i>bit-vectors</i>.
 </p>
 </div>
-<div id="outline-container-orgd8fe10d" class="outline-4">
-<h4 id="orgd8fe10d"><span class="section-number-4">1.8.1</span> Creation</h4>
+<div id="outline-container-orgecb969b" class="outline-4">
+<h4 id="orgecb969b"><span class="section-number-4">1.8.1</span> Creation</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <ul class="org-ul">
 <li>make-array</li>
@@ -1083,8 +1085,8 @@ called <i>strings</i>, holding type <code>bit</code> are called <i>bit-vectors</
 </div>
 </div>
 
-<div id="outline-container-orgcc0c46e" class="outline-4">
-<h4 id="orgcc0c46e"><span class="section-number-4">1.8.2</span> Access</h4>
+<div id="outline-container-org2928164" class="outline-4">
+<h4 id="org2928164"><span class="section-number-4">1.8.2</span> Access</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <ul class="org-ul">
 <li>aref</li>
@@ -1092,8 +1094,8 @@ called <i>strings</i>, holding type <code>bit</code> are called <i>bit-vectors</
 </ul>
 </div>
 </div>
-<div id="outline-container-orgafd29b7" class="outline-4">
-<h4 id="orgafd29b7"><span class="section-number-4">1.8.3</span> Information</h4>
+<div id="outline-container-org8024f8d" class="outline-4">
+<h4 id="org8024f8d"><span class="section-number-4">1.8.3</span> Information</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <ul class="org-ul">
 <li>array-element-type</li>
@@ -1108,8 +1110,8 @@ called <i>strings</i>, holding type <code>bit</code> are called <i>bit-vectors</
 </ul>
 </div>
 </div>
-<div id="outline-container-org975e582" class="outline-4">
-<h4 id="org975e582"><span class="section-number-4">1.8.4</span> bit-array</h4>
+<div id="outline-container-org004fae2" class="outline-4">
+<h4 id="org004fae2"><span class="section-number-4">1.8.4</span> bit-array</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <ul class="org-ul">
 <li>bit</li>
@@ -1128,8 +1130,8 @@ called <i>strings</i>, holding type <code>bit</code> are called <i>bit-vectors</
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc0150d1" class="outline-4">
-<h4 id="orgc0150d1"><span class="section-number-4">1.8.5</span> Fill</h4>
+<div id="outline-container-org2003d97" class="outline-4">
+<h4 id="org2003d97"><span class="section-number-4">1.8.5</span> Fill</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 The <i>fill pointer</i> is a non-negative integer no larger than the total
@@ -1145,8 +1147,8 @@ of filled-in elements in the vector.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4b02b45" class="outline-4">
-<h4 id="org4b02b45"><span class="section-number-4">1.8.6</span> Change dimension</h4>
+<div id="outline-container-org725feea" class="outline-4">
+<h4 id="org725feea"><span class="section-number-4">1.8.6</span> Change dimension</h4>
 <div class="outline-text-4" id="text-1-8-6">
 <ul class="org-ul">
 <li>adjust-array</li>
@@ -1158,8 +1160,8 @@ of filled-in elements in the vector.
 
 
 
-<div id="outline-container-org71bbf53" class="outline-3">
-<h3 id="org71bbf53"><span class="section-number-3">1.9</span> String</h3>
+<div id="outline-container-org8eafb3c" class="outline-3">
+<h3 id="org8eafb3c"><span class="section-number-3">1.9</span> String</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 A string is a specialized vector (one-dimensional array) whose
@@ -1176,8 +1178,8 @@ Some predicates
 </ul>
 </div>
 
-<div id="outline-container-org79f7412" class="outline-4">
-<h4 id="org79f7412"><span class="section-number-4">1.9.1</span> Access</h4>
+<div id="outline-container-orgcf93086" class="outline-4">
+<h4 id="orgcf93086"><span class="section-number-4">1.9.1</span> Access</h4>
 <div class="outline-text-4" id="text-1-9-1">
 <ul class="org-ul">
 <li>char</li>
@@ -1185,8 +1187,8 @@ Some predicates
 </ul>
 </div>
 </div>
-<div id="outline-container-org818b03a" class="outline-4">
-<h4 id="org818b03a"><span class="section-number-4">1.9.2</span> Comparision</h4>
+<div id="outline-container-orga89707a" class="outline-4">
+<h4 id="orga89707a"><span class="section-number-4">1.9.2</span> Comparision</h4>
 <div class="outline-text-4" id="text-1-9-2">
 <ul class="org-ul">
 <li>string=</li>
@@ -1204,8 +1206,8 @@ Some predicates
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbfeb8be" class="outline-4">
-<h4 id="orgbfeb8be"><span class="section-number-4">1.9.3</span> String Construction and Manipulation</h4>
+<div id="outline-container-org79881c3" class="outline-4">
+<h4 id="org79881c3"><span class="section-number-4">1.9.3</span> String Construction and Manipulation</h4>
 <div class="outline-text-4" id="text-1-9-3">
 <ul class="org-ul">
 <li>make-string</li>
@@ -1224,11 +1226,12 @@ Some predicates
 </div>
 </div>
 
-<div id="outline-container-orgd454523" class="outline-3">
-<h3 id="orgd454523"><span class="section-number-3">1.10</span> Structure</h3>
+<div id="outline-container-org18181cb" class="outline-3">
+<h3 id="org18181cb"><span class="section-number-3">1.10</span> Structure</h3>
 <div class="outline-text-3" id="text-1-10">
-</div><div id="outline-container-orge705fd5" class="outline-4">
-<h4 id="orge705fd5"><span class="section-number-4">1.10.1</span> defstruct</h4>
+</div>
+<div id="outline-container-org5053cab" class="outline-4">
+<h4 id="org5053cab"><span class="section-number-4">1.10.1</span> defstruct</h4>
 <div class="outline-text-4" id="text-1-10-1">
 <ul class="org-ul">
 <li>MACRO defstruct</li>
@@ -1240,11 +1243,12 @@ will also define <code>make-foo</code></li>
 </div>
 </div>
 
-<div id="outline-container-orgda09557" class="outline-2">
-<h2 id="orgda09557"><span class="section-number-2">2</span> Program Structure</h2>
+<div id="outline-container-org280eaa5" class="outline-2">
+<h2 id="org280eaa5"><span class="section-number-2">2</span> Program Structure</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgdc599d9" class="outline-3">
-<h3 id="orgdc599d9"><span class="section-number-3">2.1</span> Form</h3>
+</div>
+<div id="outline-container-org225c99c" class="outline-3">
+<h3 id="org225c99c"><span class="section-number-3">2.1</span> Form</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Forms are the building block of lisp program. There're three kinds of
@@ -1262,8 +1266,8 @@ forms:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgff07431" class="outline-3">
-<h3 id="orgff07431"><span class="section-number-3">2.2</span> Scope and Extent</h3>
+<div id="outline-container-org70934de" class="outline-3">
+<h3 id="org70934de"><span class="section-number-3">2.2</span> Scope and Extent</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Although the global variable can be referred at any place, the binding
@@ -1292,17 +1296,18 @@ assigning to the parameter will change the referenced object.
 </div>
 </div>
 
-<div id="outline-container-orgddf4bfd" class="outline-3">
-<h3 id="orgddf4bfd"><span class="section-number-3">2.3</span> Variable</h3>
+<div id="outline-container-org7d0f2ea" class="outline-3">
+<h3 id="org7d0f2ea"><span class="section-number-3">2.3</span> Variable</h3>
 <div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-org0d21146" class="outline-4">
-<h4 id="org0d21146"><span class="section-number-4">2.3.1</span> Creation</h4>
+</div>
+<div id="outline-container-org5ef2d4b" class="outline-4">
+<h4 id="org5ef2d4b"><span class="section-number-4">2.3.1</span> Creation</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defparameter</span> <span style="color: #268bd2;">*varname*</span> init-value <span style="color: #2aa198;">"Optional document string"</span>)
-(<span style="color: #859900;">defvar</span> <span style="color: #268bd2;">*varname*</span> optional-init-value <span style="color: #93a1a1; font-style: italic;">"optional document string"</span>)
-(<span style="color: #859900;">defconstant</span> <span style="color: #268bd2;">+name+</span> init-value <span style="color: #2aa198;">"optional document string"</span>)
-</pre>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">*varname*</span> init-value <span style="color: #8b2252;">"Optional document string"</span>)
+(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*varname*</span> optional-init-value <span style="color: #8b2252;">"optional document string"</span>)
+(<span style="color: #a020f0;">defconstant</span> <span style="color: #a0522d;">+name+</span> init-value <span style="color: #8b2252;">"optional document string"</span>)
+</code></pre>
 </div>
 
 <p>
@@ -1326,8 +1331,8 @@ otherwise it is not a constant, use <code>defparameter</code> instead.
 </div>
 </div>
 
-<div id="outline-container-org6e7cbc1" class="outline-4">
-<h4 id="org6e7cbc1"><span class="section-number-4">2.3.2</span> Assignment</h4>
+<div id="outline-container-org8349790" class="outline-4">
+<h4 id="org8349790"><span class="section-number-4">2.3.2</span> Assignment</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Assigning a value to a binding is:
@@ -1373,8 +1378,8 @@ here <code>incf</code> and <code>decf</code> modifies the argument, so they are 
 </div>
 </div>
 
-<div id="outline-container-org3277511" class="outline-4">
-<h4 id="org3277511"><span class="section-number-4">2.3.3</span> Destructive</h4>
+<div id="outline-container-orgd2b1d45" class="outline-4">
+<h4 id="orgd2b1d45"><span class="section-number-4">2.3.3</span> Destructive</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 There are two types of destructive functions:
@@ -1390,17 +1395,17 @@ percent of the use cases are <code>PUSH/NREVERSE</code> and <code>SETF/DELETE</c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">upto</span> (max)
-  (<span style="color: #859900;">let</span> ((result nil))
-    (<span style="color: #859900;">dotimes</span> (i max)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">upto</span> (max)
+  (<span style="color: #a020f0;">let</span> ((result nil))
+    (<span style="color: #a020f0;">dotimes</span> (i max)
       (push i result))
     (nreverse result)))
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(setf foo (delete nil foo))
-</pre>
+<pre><code class="src src-lisp">(setf foo (delete nil foo))
+</code></pre>
 </div>
 
 <p>
@@ -1409,20 +1414,20 @@ to assign it back to the variable.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defparameter</span> <span style="color: #268bd2;">*list*</span> (list 4 3 2 1))
-(sort *list* #'&lt;) <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(1 2 3 4)</span>
-*list* <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(4)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">so shoud use:</span>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">*list*</span> (list 4 3 2 1))
+(sort *list* #'&lt;) <span style="color: #b22222;">;; </span><span style="color: #b22222;">(1 2 3 4)</span>
+*list* <span style="color: #b22222;">;; </span><span style="color: #b22222;">(4)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">so shoud use:</span>
 (setf *list* (sort *list* #'&lt;))
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org1744076" class="outline-3">
-<h3 id="org1744076"><span class="section-number-3">2.4</span> Equality</h3>
+<div id="outline-container-orge9ef145" class="outline-3">
+<h3 id="orge9ef145"><span class="section-number-3">2.4</span> Equality</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li><code>EQ</code> tests for object identity. Two objects are <code>EQ</code> if they're
@@ -1441,32 +1446,33 @@ equal case-insensitively. NEVER use this.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd8495db" class="outline-3">
-<h3 id="orgd8495db"><span class="section-number-3">2.5</span> Function</h3>
+<div id="outline-container-orgd39e027" class="outline-3">
+<h3 id="orgd39e027"><span class="section-number-3">2.5</span> Function</h3>
 <div class="outline-text-3" id="text-2-5">
-</div><div id="outline-container-org48fac59" class="outline-4">
-<h4 id="org48fac59"><span class="section-number-4">2.5.1</span> Defun and Lambda Expression</h4>
+</div>
+<div id="outline-container-orgd389bcb" class="outline-4">
+<h4 id="orgd389bcb"><span class="section-number-4">2.5.1</span> Defun and Lambda Expression</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 <code>defun</code> is a macro.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">name</span> (a b
-             <span style="color: #b58900;">&amp;optional</span> op1 (op2 def-value) (op3 def-value op3-supplied-p)
-             <span style="color: #b58900;">&amp;rest</span> rests
-             <span style="color: #b58900;">&amp;key</span> k1 (k2 def-value k2-supplied-p) ((<span style="color: #859900;">:kkkkk3</span> k3) def-value k3-supplied-p))
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">name</span> (a b
+             <span style="color: #228b22;">&amp;optional</span> op1 (op2 def-value) (op3 def-value op3-supplied-p)
+             <span style="color: #228b22;">&amp;rest</span> rests
+             <span style="color: #228b22;">&amp;key</span> k1 (k2 def-value k2-supplied-p) ((<span style="color: #483d8b;">:kkkkk3</span> k3) def-value k3-supplied-p))
   (body-forms))
-</pre>
+</code></pre>
 </div>
 
 <p>
 lambda expression shares the same structures.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">lambda</span>
-    (a b <span style="color: #b58900;">&amp;optional</span> op1 <span style="color: #b58900;">&amp;rest</span> rests <span style="color: #b58900;">&amp;key</span> k1)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">lambda</span>
+    (a b <span style="color: #228b22;">&amp;optional</span> op1 <span style="color: #228b22;">&amp;rest</span> rests <span style="color: #228b22;">&amp;key</span> k1)
   (body))
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -1507,8 +1513,8 @@ as long as the last one is a list.</dd>
 </div>
 </div>
 
-<div id="outline-container-org87b3122" class="outline-4">
-<h4 id="org87b3122"><span class="section-number-4">2.5.2</span> Multiple Values</h4>
+<div id="outline-container-orgf6319ff" class="outline-4">
+<h4 id="orgf6319ff"><span class="section-number-4">2.5.2</span> Multiple Values</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 If return multiple values, use <code>values</code> instead of a list; if return
@@ -1530,11 +1536,12 @@ no values, use <code>(values)</code>
 </div>
 </div>
 
-<div id="outline-container-orgc495022" class="outline-3">
-<h3 id="orgc495022"><span class="section-number-3">2.6</span> Macro</h3>
+<div id="outline-container-orgefe1c9b" class="outline-3">
+<h3 id="orgefe1c9b"><span class="section-number-3">2.6</span> Macro</h3>
 <div class="outline-text-3" id="text-2-6">
-</div><div id="outline-container-orgcb63786" class="outline-4">
-<h4 id="orgcb63786"><span class="section-number-4">2.6.1</span> Definition</h4>
+</div>
+<div id="outline-container-org29be6f9" class="outline-4">
+<h4 id="org29be6f9"><span class="section-number-4">2.6.1</span> Definition</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <pre class="example">
 defmacro name lambda-list [[ {declaration}* | doc-string ]] {form}*
@@ -1546,8 +1553,8 @@ lambda-list is parameter list.
 </div>
 </div>
 
-<div id="outline-container-org7bf638a" class="outline-4">
-<h4 id="org7bf638a"><span class="section-number-4">2.6.2</span> Macro Expansion</h4>
+<div id="outline-container-org29e2066" class="outline-4">
+<h4 id="org29e2066"><span class="section-number-4">2.6.2</span> Macro Expansion</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <ul class="org-ul">
 <li>macroexpand</li>
@@ -1557,11 +1564,12 @@ lambda-list is parameter list.
 </div>
 </div>
 
-<div id="outline-container-org55f702b" class="outline-3">
-<h3 id="org55f702b"><span class="section-number-3">2.7</span> Exception</h3>
+<div id="outline-container-orgb6ee8df" class="outline-3">
+<h3 id="orgb6ee8df"><span class="section-number-3">2.7</span> Exception</h3>
 <div class="outline-text-3" id="text-2-7">
-</div><div id="outline-container-org2dcbb50" class="outline-4">
-<h4 id="org2dcbb50"><span class="section-number-4">2.7.1</span> Error</h4>
+</div>
+<div id="outline-container-org2c46171" class="outline-4">
+<h4 id="org2c46171"><span class="section-number-4">2.7.1</span> Error</h4>
 <div class="outline-text-4" id="text-2-7-1">
 <ul class="org-ul">
 <li>error</li>
@@ -1578,14 +1586,15 @@ lambda-list is parameter list.
 </ul>
 </div>
 </div>
-<div id="outline-container-org6f4cec9" class="outline-4">
-<h4 id="org6f4cec9"><span class="section-number-4">2.7.2</span> Condition</h4>
+<div id="outline-container-org858e9fb" class="outline-4">
+<h4 id="org858e9fb"><span class="section-number-4">2.7.2</span> Condition</h4>
 <div class="outline-text-4" id="text-2-7-2">
-</div><div id="outline-container-orgeefcc5c" class="outline-5">
-<h5 id="orgeefcc5c"><span class="section-number-5">2.7.2.1</span> <span class="todo TODO">TODO</span> Concepts</h5>
 </div>
-<div id="outline-container-org98b2cf8" class="outline-5">
-<h5 id="org98b2cf8"><span class="section-number-5">2.7.2.2</span> Signaling</h5>
+<div id="outline-container-orgc900e6f" class="outline-5">
+<h5 id="orgc900e6f"><span class="section-number-5">2.7.2.1</span> <span class="todo TODO">TODO</span> Concepts</h5>
+</div>
+<div id="outline-container-org41ab5fc" class="outline-5">
+<h5 id="org41ab5fc"><span class="section-number-5">2.7.2.2</span> Signaling</h5>
 <div class="outline-text-5" id="text-2-7-2-2">
 <ul class="org-ul">
 <li>error</li>
@@ -1615,8 +1624,8 @@ Exhaustive Case Analysis
 </div>
 </div>
 
-<div id="outline-container-org7432c36" class="outline-5">
-<h5 id="org7432c36"><span class="section-number-5">2.7.2.3</span> Handling Conditions</h5>
+<div id="outline-container-org26292cc" class="outline-5">
+<h5 id="org26292cc"><span class="section-number-5">2.7.2.3</span> Handling Conditions</h5>
 <div class="outline-text-5" id="text-2-7-2-3">
 <ul class="org-ul">
 <li>hanlder-case</li>
@@ -1625,8 +1634,8 @@ Exhaustive Case Analysis
 </ul>
 </div>
 </div>
-<div id="outline-container-org4ac7e11" class="outline-5">
-<h5 id="org4ac7e11"><span class="section-number-5">2.7.2.4</span> Defining Conditions</h5>
+<div id="outline-container-org22f31d4" class="outline-5">
+<h5 id="org22f31d4"><span class="section-number-5">2.7.2.4</span> Defining Conditions</h5>
 <div class="outline-text-5" id="text-2-7-2-4">
 <ul class="org-ul">
 <li>define-condition</li>
@@ -1634,8 +1643,8 @@ Exhaustive Case Analysis
 </ul>
 </div>
 </div>
-<div id="outline-container-orgea2827c" class="outline-5">
-<h5 id="orgea2827c"><span class="section-number-5">2.7.2.5</span> Restart</h5>
+<div id="outline-container-org49aee9f" class="outline-5">
+<h5 id="org49aee9f"><span class="section-number-5">2.7.2.5</span> Restart</h5>
 <div class="outline-text-5" id="text-2-7-2-5">
 <ul class="org-ul">
 <li>with-simple-restart</li>
@@ -1661,8 +1670,8 @@ Restart functions
 </ul>
 </div>
 </div>
-<div id="outline-container-org9541fef" class="outline-5">
-<h5 id="org9541fef"><span class="section-number-5">2.7.2.6</span> Debugging</h5>
+<div id="outline-container-org2fee1c9" class="outline-5">
+<h5 id="org2fee1c9"><span class="section-number-5">2.7.2.6</span> Debugging</h5>
 <div class="outline-text-5" id="text-2-7-2-6">
 <ul class="org-ul">
 <li>break</li>
@@ -1670,8 +1679,8 @@ Restart functions
 </ul>
 </div>
 </div>
-<div id="outline-container-org77a40a3" class="outline-5">
-<h5 id="org77a40a3"><span class="section-number-5">2.7.2.7</span> Condition Types</h5>
+<div id="outline-container-org7c8113a" class="outline-5">
+<h5 id="org7c8113a"><span class="section-number-5">2.7.2.7</span> Condition Types</h5>
 <div class="outline-text-5" id="text-2-7-2-7">
 <ul class="org-ul">
 <li>TYPE restart</li>
@@ -1729,8 +1738,8 @@ Restart functions
 </div>
 
 
-<div id="outline-container-org101a44c" class="outline-3">
-<h3 id="org101a44c"><span class="section-number-3">2.8</span> Evaluator</h3>
+<div id="outline-container-orgc7b27d6" class="outline-3">
+<h3 id="orgc7b27d6"><span class="section-number-3">2.8</span> Evaluator</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>eval form: evaluate form in the current dynamic environment and a null lexical environment</li>
@@ -1741,11 +1750,12 @@ Restart functions
 </div>
 </div>
 
-<div id="outline-container-orgb22bc89" class="outline-2">
-<h2 id="orgb22bc89"><span class="section-number-2">3</span> Control Structure</h2>
+<div id="outline-container-orgf044d00" class="outline-2">
+<h2 id="orgf044d00"><span class="section-number-2">3</span> Control Structure</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org9e78f5d" class="outline-3">
-<h3 id="org9e78f5d"><span class="section-number-3">3.1</span> Sequential</h3>
+</div>
+<div id="outline-container-orge6ecd62" class="outline-3">
+<h3 id="orge6ecd62"><span class="section-number-3">3.1</span> Sequential</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>progn</li>
@@ -1755,16 +1765,16 @@ Restart functions
 </div>
 </div>
 
-<div id="outline-container-org95aa2fe" class="outline-3">
-<h3 id="org95aa2fe"><span class="section-number-3">3.2</span> Conditional</h3>
+<div id="outline-container-org3413ccf" class="outline-3">
+<h3 id="org3413ccf"><span class="section-number-3">3.2</span> Conditional</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">if</span> condition then-form [else-form])
-(<span style="color: #859900;">progn</span> forms*)
-(<span style="color: #859900;">when</span> cond forms*)
-(<span style="color: #859900;">unless</span> cond forms*)
-(<span style="color: #859900;">cond</span> (test-1 form*) (test-2 form*))
-</pre>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">if</span> condition then-form [else-form])
+(<span style="color: #a020f0;">progn</span> forms*)
+(<span style="color: #a020f0;">when</span> cond forms*)
+(<span style="color: #a020f0;">unless</span> cond forms*)
+(<span style="color: #a020f0;">cond</span> (test-1 form*) (test-2 form*))
+</code></pre>
 </div>
 
 <p>
@@ -1780,30 +1790,30 @@ simple conditional evaluation. For example,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use</span>
+<pre><code class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
 (and x (setf y t))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">instead of</span>
-(<span style="color: #859900;">when</span> x
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
+(<span style="color: #a020f0;">when</span> x
   (setf y t))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
 (or x (setf y t))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">instead of</span>
-(<span style="color: #859900;">unless</span> x
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
+(<span style="color: #a020f0;">unless</span> x
   (setf y t))
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org020efef" class="outline-3">
-<h3 id="org020efef"><span class="section-number-3">3.3</span> Iteration</h3>
+<div id="outline-container-orgf9a7104" class="outline-3">
+<h3 id="orgf9a7104"><span class="section-number-3">3.3</span> Iteration</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">dolist</span> (var list-form) body-form*)
-(<span style="color: #859900;">dotimes</span> (var count-form) body-form*)
-(<span style="color: #859900;">do</span> (var-def*) (end-test-form result-form*) statements*)
-</pre>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">dolist</span> (var list-form) body-form*)
+(<span style="color: #a020f0;">dotimes</span> (var count-form) body-form*)
+(<span style="color: #a020f0;">do</span> (var-def*) (end-test-form result-form*) statements*)
+</code></pre>
 </div>
 
 <p>
@@ -1811,13 +1821,13 @@ simple conditional evaluation. For example,
 the var-def is <code>(var init-form step-form)</code>. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">do</span> ((i 0 (1+ i))) ((&gt; i 4)) (print i))
-</pre>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">do</span> ((i 0 (1+ i))) ((&gt; i 4)) (print i))
+</code></pre>
 </div>
 </div>
 
-<div id="outline-container-orga689160" class="outline-4">
-<h4 id="orga689160"><span class="section-number-4">3.3.1</span> Mapping</h4>
+<div id="outline-container-orgbc813de" class="outline-4">
+<h4 id="orgbc813de"><span class="section-number-4">3.3.1</span> Mapping</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>mapcar</li>
@@ -1830,8 +1840,8 @@ the var-def is <code>(var init-form step-form)</code>. For example:
 </div>
 </div>
 
-<div id="outline-container-orgca12ba0" class="outline-4">
-<h4 id="orgca12ba0"><span class="section-number-4">3.3.2</span> Append to a list</h4>
+<div id="outline-container-orgeb920ba" class="outline-4">
+<h4 id="orgeb920ba"><span class="section-number-4">3.3.2</span> Append to a list</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
 Remember that append copies its arguments.  Avoid using append
@@ -1844,35 +1854,35 @@ nreverse the list to return the original ordering.
 Bad:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">let</span> ((result ()))
-  (<span style="color: #859900;">dolist</span> (x list)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">let</span> ((result ()))
+  (<span style="color: #a020f0;">dolist</span> (x list)
     (setf result (append result (list x))))
   result)
-</pre>
+</code></pre>
 </div>
 <p>
 Better:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">let</span> ((result ()))
-  (<span style="color: #859900;">dolist</span> (x list)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">let</span> ((result ()))
+  (<span style="color: #a020f0;">dolist</span> (x list)
     (push x result))
   (nreverse result))
-</pre>
+</code></pre>
 </div>
 <p>
 Best:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">loop</span> for x in list collect x)
-</pre>
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">loop</span> for x in list collect x)
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org168ddb3" class="outline-3">
-<h3 id="org168ddb3"><span class="section-number-3">3.4</span> Loop Facility</h3>
+<div id="outline-container-orgb1a841d" class="outline-3">
+<h3 id="orgb1a841d"><span class="section-number-3">3.4</span> Loop Facility</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <i>Loop keywords</i> are not true common lisp keywords. They are symbols
@@ -1895,8 +1905,8 @@ All variables are initialized in the loop prologue.
 </p>
 </div>
 
-<div id="outline-container-org64f68d3" class="outline-4">
-<h4 id="org64f68d3"><span class="section-number-4">3.4.1</span> Loop Clauses</h4>
+<div id="outline-container-org47fa7cd" class="outline-4">
+<h4 id="org47fa7cd"><span class="section-number-4">3.4.1</span> Loop Clauses</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 Inside the loop is the loop clauses.
@@ -1969,8 +1979,8 @@ Miscellaneous
 </ul>
 </div>
 </div>
-<div id="outline-container-org2413aba" class="outline-4">
-<h4 id="org2413aba"><span class="section-number-4">3.4.2</span> Loop Syntax</h4>
+<div id="outline-container-org38b8c40" class="outline-4">
+<h4 id="org38b8c40"><span class="section-number-4">3.4.2</span> Loop Syntax</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <pre class="example">
 loop ::= (loop [named name] {variables}* {main}*)
@@ -1995,8 +2005,8 @@ initial-final ::= initially | finally
 </div>
 </div>
 
-<div id="outline-container-org439246b" class="outline-4">
-<h4 id="org439246b"><span class="section-number-4">3.4.3</span> Iteration Control (for, as, repeat)</h4>
+<div id="outline-container-org0de820e" class="outline-4">
+<h4 id="org0de820e"><span class="section-number-4">3.4.3</span> Iteration Control (for, as, repeat)</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 for and as are exctly the same.
@@ -2097,8 +2107,8 @@ repeat the body (expr) times.
 </div>
 </div>
 
-<div id="outline-container-orgdb47615" class="outline-4">
-<h4 id="orgdb47615"><span class="section-number-4">3.4.4</span> End Test Control (always, never, thereis, until, while)</h4>
+<div id="outline-container-org401631e" class="outline-4">
+<h4 id="org401631e"><span class="section-number-4">3.4.4</span> End Test Control (always, never, thereis, until, while)</h4>
 <div class="outline-text-4" id="text-3-4-4">
 <p>
 always, never, thereis change the return value, so
@@ -2124,8 +2134,8 @@ if so, otherwise return t</li>
 </div>
 </div>
 
-<div id="outline-container-org9c74ac5" class="outline-4">
-<h4 id="org9c74ac5"><span class="section-number-4">3.4.5</span> Value Accumulation</h4>
+<div id="outline-container-org2c8384f" class="outline-4">
+<h4 id="org2c8384f"><span class="section-number-4">3.4.5</span> Value Accumulation</h4>
 <div class="outline-text-4" id="text-3-4-5">
 <ul class="org-ul">
 <li>multiple accumulation can be used if they operate the same type,
@@ -2164,8 +2174,8 @@ Clauses: all of them have <code>xxx expr [into var]</code> format
 </ul>
 </div>
 </div>
-<div id="outline-container-orgab12550" class="outline-4">
-<h4 id="orgab12550"><span class="section-number-4">3.4.6</span> Variable Initialization (with)</h4>
+<div id="outline-container-orgf3f6df3" class="outline-4">
+<h4 id="orgf3f6df3"><span class="section-number-4">3.4.6</span> Variable Initialization (with)</h4>
 <div class="outline-text-4" id="text-3-4-6">
 <pre class="example">
 with var [= expr] {and var [= expr]}*
@@ -2177,8 +2187,8 @@ with var [= expr] {and var [= expr]}*
 </ul>
 </div>
 </div>
-<div id="outline-container-orge996b65" class="outline-4">
-<h4 id="orge996b65"><span class="section-number-4">3.4.7</span> Conditional Execution (if, when, unless)</h4>
+<div id="outline-container-org77ccc0b" class="outline-4">
+<h4 id="org77ccc0b"><span class="section-number-4">3.4.7</span> Conditional Execution (if, when, unless)</h4>
 <div class="outline-text-4" id="text-3-4-7">
 <p>
 They all have the same signature:
@@ -2202,8 +2212,8 @@ keyword marks the end. This is useful in compound clauses.</li>
 </div>
 </div>
 
-<div id="outline-container-org261ed25" class="outline-4">
-<h4 id="org261ed25"><span class="section-number-4">3.4.8</span> Unconditional Execution (do, return)</h4>
+<div id="outline-container-orgc326b60" class="outline-4">
+<h4 id="orgc326b60"><span class="section-number-4">3.4.8</span> Unconditional Execution (do, return)</h4>
 <div class="outline-text-4" id="text-3-4-8">
 <ul class="org-ul">
 <li>do {expr}*: execute sequentially</li>
@@ -2212,8 +2222,8 @@ keyword marks the end. This is useful in compound clauses.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2062e71" class="outline-4">
-<h4 id="org2062e71"><span class="section-number-4">3.4.9</span> Misc (named, initially, finally)</h4>
+<div id="outline-container-org98b65e1" class="outline-4">
+<h4 id="org98b65e1"><span class="section-number-4">3.4.9</span> Misc (named, initially, finally)</h4>
 <div class="outline-text-4" id="text-3-4-9">
 <ul class="org-ul">
 <li>named: name a loop so that we can use return-from</li>
@@ -2224,8 +2234,8 @@ collected into one place inside <code>progn</code> in the order they present.</l
 </ul>
 </div>
 </div>
-<div id="outline-container-org2da8367" class="outline-4">
-<h4 id="org2da8367"><span class="section-number-4">3.4.10</span> Destructure</h4>
+<div id="outline-container-org0c3d7ad" class="outline-4">
+<h4 id="org0c3d7ad"><span class="section-number-4">3.4.10</span> Destructure</h4>
 <div class="outline-text-4" id="text-3-4-10">
 <p>
 bind result to a list of variables. This can be used in <code>for</code> and
@@ -2245,11 +2255,12 @@ value</li>
 
 
 
-<div id="outline-container-org3995f39" class="outline-2">
-<h2 id="org3995f39"><span class="section-number-2">4</span> System Interface</h2>
+<div id="outline-container-org43e031a" class="outline-2">
+<h2 id="org43e031a"><span class="section-number-2">4</span> System Interface</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org32a6ac5" class="outline-3">
-<h3 id="org32a6ac5"><span class="section-number-3">4.1</span> Package</h3>
+</div>
+<div id="outline-container-org36b3223" class="outline-3">
+<h3 id="org36b3223"><span class="section-number-3">4.1</span> Package</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 This is used to solve name conflict.
@@ -2287,8 +2298,8 @@ This is used to solve name conflict.
 </ul>
 </div>
 
-<div id="outline-container-orgbc25991" class="outline-4">
-<h4 id="orgbc25991"><span class="section-number-4">4.1.1</span> Modules</h4>
+<div id="outline-container-orgf07bdfc" class="outline-4">
+<h4 id="orgf07bdfc"><span class="section-number-4">4.1.1</span> Modules</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 A module is a subsystem. It consists of one or more packages. It may
@@ -2303,8 +2314,8 @@ be loaded from one or more files.
 </div>
 </div>
 
-<div id="outline-container-org6029601" class="outline-3">
-<h3 id="org6029601"><span class="section-number-3">4.2</span> Stream</h3>
+<div id="outline-container-org61c8489" class="outline-3">
+<h3 id="org61c8489"><span class="section-number-3">4.2</span> Stream</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Some global variables are used by many functions. Conventionally the
@@ -2321,8 +2332,8 @@ respectively, while -io represents streams with bidirectional stream.
 <li><code>*trace-output*</code></li>
 </ul>
 </div>
-<div id="outline-container-org4a3fca4" class="outline-4">
-<h4 id="org4a3fca4"><span class="section-number-4">4.2.1</span> Create Stream</h4>
+<div id="outline-container-orga500c5e" class="outline-4">
+<h4 id="orga500c5e"><span class="section-number-4">4.2.1</span> Create Stream</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>make-synonym-stream</li>
@@ -2340,8 +2351,8 @@ respectively, while -io represents streams with bidirectional stream.
 </div>
 </div>
 
-<div id="outline-container-org4070feb" class="outline-4">
-<h4 id="org4070feb"><span class="section-number-4">4.2.2</span> Operation</h4>
+<div id="outline-container-org08b72e6" class="outline-4">
+<h4 id="org08b72e6"><span class="section-number-4">4.2.2</span> Operation</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>streamp</li>
@@ -2364,15 +2375,15 @@ respectively, while -io represents streams with bidirectional stream.
 </div>
 </div>
 
-<div id="outline-container-org7da9fce" class="outline-3">
-<h3 id="org7da9fce"><span class="section-number-3">4.3</span> Input/Output</h3>
+<div id="outline-container-orgce5f990" class="outline-3">
+<h3 id="orgce5f990"><span class="section-number-3">4.3</span> Input/Output</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 These input/output operations perform on streams.
 </p>
 </div>
-<div id="outline-container-org50f03a5" class="outline-4">
-<h4 id="org50f03a5"><span class="section-number-4">4.3.1</span> Input</h4>
+<div id="outline-container-orgc3c308a" class="outline-4">
+<h4 id="orgc3c308a"><span class="section-number-4">4.3.1</span> Input</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 Input stream defaults to <code>*standard-input*</code>.
@@ -2394,8 +2405,8 @@ Input stream defaults to <code>*standard-input*</code>.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd14e576" class="outline-4">
-<h4 id="orgd14e576"><span class="section-number-4">4.3.2</span> Output</h4>
+<div id="outline-container-orgd3bd663" class="outline-4">
+<h4 id="orgd3bd663"><span class="section-number-4">4.3.2</span> Output</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <ul class="org-ul">
 <li>write</li>
@@ -2418,8 +2429,8 @@ Input stream defaults to <code>*standard-input*</code>.
 <li>write-byte</li>
 </ul>
 </div>
-<div id="outline-container-orgc6017d9" class="outline-5">
-<h5 id="orgc6017d9"><span class="section-number-5">4.3.2.1</span> Format</h5>
+<div id="outline-container-orgabd0e3f" class="outline-5">
+<h5 id="orgabd0e3f"><span class="section-number-5">4.3.2.1</span> Format</h5>
 <div class="outline-text-5" id="text-4-3-2-1">
 <pre class="example">
 format destination control-string &amp;rest arguments
@@ -2488,8 +2499,8 @@ I'll not easily use them.
 </div>
 
 
-<div id="outline-container-org3ec9222" class="outline-4">
-<h4 id="org3ec9222"><span class="section-number-4">4.3.3</span> Query</h4>
+<div id="outline-container-org6895897" class="outline-4">
+<h4 id="org6895897"><span class="section-number-4">4.3.3</span> Query</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <ul class="org-ul">
 <li>y-or-n-p</li>
@@ -2499,11 +2510,12 @@ I'll not easily use them.
 </div>
 </div>
 
-<div id="outline-container-orge624253" class="outline-3">
-<h3 id="orge624253"><span class="section-number-3">4.4</span> File System</h3>
+<div id="outline-container-orgcd553f6" class="outline-3">
+<h3 id="orgcd553f6"><span class="section-number-3">4.4</span> File System</h3>
 <div class="outline-text-3" id="text-4-4">
-</div><div id="outline-container-orgb33804d" class="outline-4">
-<h4 id="orgb33804d"><span class="section-number-4">4.4.1</span> File Names</h4>
+</div>
+<div id="outline-container-org565f192" class="outline-4">
+<h4 id="org565f192"><span class="section-number-4">4.4.1</span> File Names</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 There's a type called <i>pathname</i>. It always has 6 components.
@@ -2552,8 +2564,8 @@ Functions
 </div>
 </div>
 
-<div id="outline-container-org3496b77" class="outline-4">
-<h4 id="org3496b77"><span class="section-number-4">4.4.2</span> Open and Close</h4>
+<div id="outline-container-org32219ce" class="outline-4">
+<h4 id="org32219ce"><span class="section-number-4">4.4.2</span> Open and Close</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <ul class="org-ul">
 <li>open</li>
@@ -2562,8 +2574,8 @@ Functions
 </div>
 </div>
 
-<div id="outline-container-orgba73934" class="outline-4">
-<h4 id="orgba73934"><span class="section-number-4">4.4.3</span> File Operation</h4>
+<div id="outline-container-orgb22f188" class="outline-4">
+<h4 id="orgb22f188"><span class="section-number-4">4.4.3</span> File Operation</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <ul class="org-ul">
 <li>rename-file</li>
@@ -2579,8 +2591,8 @@ Functions
 </div>
 </div>
 
-<div id="outline-container-org9312140" class="outline-4">
-<h4 id="org9312140"><span class="section-number-4">4.4.4</span> Other</h4>
+<div id="outline-container-org3290113" class="outline-4">
+<h4 id="org3290113"><span class="section-number-4">4.4.4</span> Other</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <ul class="org-ul">
 <li>load: Load a common lisp file and evaluate the forms.</li>
@@ -2592,14 +2604,15 @@ Functions
 
 
 
-<div id="outline-container-org1f4bf24" class="outline-2">
-<h2 id="org1f4bf24"><span class="section-number-2">5</span> Common Lisp Object System</h2>
+<div id="outline-container-orgd7ed061" class="outline-2">
+<h2 id="orgd7ed061"><span class="section-number-2">5</span> Common Lisp Object System</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-org32c58b3" class="outline-3">
-<h3 id="org32c58b3"><span class="section-number-3">5.1</span> <span class="todo TODO">TODO</span> Concept</h3>
 </div>
-<div id="outline-container-org51a8084" class="outline-3">
-<h3 id="org51a8084"><span class="section-number-3">5.2</span> Functions</h3>
+<div id="outline-container-orgab96657" class="outline-3">
+<h3 id="orgab96657"><span class="section-number-3">5.1</span> <span class="todo TODO">TODO</span> Concept</h3>
+</div>
+<div id="outline-container-orgde14744" class="outline-3">
+<h3 id="orgde14744"><span class="section-number-3">5.2</span> Functions</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>add-method</li>
@@ -2651,15 +2664,15 @@ Functions
 </div>
 
 
-<div id="outline-container-orgbc14dac" class="outline-2">
-<h2 id="orgbc14dac"><span class="section-number-2">6</span> ASDF (Another System Definition Facility)</h2>
+<div id="outline-container-orgeb8ac94" class="outline-2">
+<h2 id="orgeb8ac94"><span class="section-number-2">6</span> ASDF (Another System Definition Facility)</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <a href="https://common-lisp.net/project/asdf/asdf.html">https://common-lisp.net/project/asdf/asdf.html</a>
 </p>
 </div>
-<div id="outline-container-org780b15d" class="outline-3">
-<h3 id="org780b15d"><span class="section-number-3">6.1</span> Load ASDF</h3>
+<div id="outline-container-orgfa0e8f3" class="outline-3">
+<h3 id="orgfa0e8f3"><span class="section-number-3">6.1</span> Load ASDF</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 ASDF should come along with lisp implementations.
@@ -2688,8 +2701,8 @@ However, quicklisp should already configured the load path.
 </div>
 </div>
 
-<div id="outline-container-orgfd9a714" class="outline-3">
-<h3 id="orgfd9a714"><span class="section-number-3">6.2</span> Load System</h3>
+<div id="outline-container-orgc959f50" class="outline-3">
+<h3 id="orgc959f50"><span class="section-number-3">6.2</span> Load System</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li><code>(require "asdf")</code></li>
@@ -2714,8 +2727,8 @@ Some functions:
 </div>
 </div>
 
-<div id="outline-container-orgc7e597d" class="outline-3">
-<h3 id="orgc7e597d"><span class="section-number-3">6.3</span> Build System</h3>
+<div id="outline-container-org804392c" class="outline-3">
+<h3 id="org804392c"><span class="section-number-3">6.3</span> Build System</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li><code>(require "asdf")</code></li>
@@ -2733,53 +2746,55 @@ The system is specified using <code>defsystem</code> syntax. An example
 (hello-lisp.asd):
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Usual Lisp comments are allowed </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">here</span>
-(defsystem <span style="color: #2aa198;">"hello-lisp"</span>
-    <span style="color: #859900;">:description</span> <span style="color: #2aa198;">"hello-lisp: a sample Lisp system."</span>
-    <span style="color: #859900;">:version</span> <span style="color: #2aa198;">"0.0.1"</span>
-    <span style="color: #859900;">:author</span> <span style="color: #2aa198;">"Joe User <a href="mailto:joe%40example.com">&lt;joe@example.com&gt;</a>"</span>
-    <span style="color: #859900;">:licence</span> <span style="color: #2aa198;">"Public Domain"</span>
-    <span style="color: #859900;">:depends-on</span> (<span style="color: #2aa198;">"optima.ppcre"</span> <span style="color: #2aa198;">"command-line-arguments"</span>)
-    <span style="color: #859900;">:components</span> ((<span style="color: #859900;">:file</span> <span style="color: #2aa198;">"packages"</span>)
-                 (<span style="color: #859900;">:file</span> <span style="color: #2aa198;">"macros"</span> <span style="color: #859900;">:depends-on</span> (<span style="color: #2aa198;">"packages"</span>))
-                 (<span style="color: #859900;">:file</span> <span style="color: #2aa198;">"hello"</span> <span style="color: #859900;">:depends-on</span> (<span style="color: #2aa198;">"macros"</span>))))
-</pre>
+<pre><code class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">Usual Lisp comments are allowed </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">here</span>
+(defsystem <span style="color: #8b2252;">"hello-lisp"</span>
+    <span style="color: #483d8b;">:description</span> <span style="color: #8b2252;">"hello-lisp: a sample Lisp system."</span>
+    <span style="color: #483d8b;">:version</span> <span style="color: #8b2252;">"0.0.1"</span>
+    <span style="color: #483d8b;">:author</span> <span style="color: #8b2252;">"Joe User <a href="mailto:joe%40example.com">&lt;joe@example.com&gt;</a>"</span>
+    <span style="color: #483d8b;">:licence</span> <span style="color: #8b2252;">"Public Domain"</span>
+    <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"optima.ppcre"</span> <span style="color: #8b2252;">"command-line-arguments"</span>)
+    <span style="color: #483d8b;">:components</span> ((<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"packages"</span>)
+                 (<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"macros"</span> <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"packages"</span>))
+                 (<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"hello"</span> <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"macros"</span>))))
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3fe6248" class="outline-2">
-<h2 id="org3fe6248"><span class="section-number-2">7</span> Appendix</h2>
+<div id="outline-container-org2dd03f0" class="outline-2">
+<h2 id="org2dd03f0"><span class="section-number-2">7</span> Appendix</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-org0846908" class="outline-3">
-<h3 id="org0846908"><span class="section-number-3">7.1</span> Installation</h3>
+</div>
+<div id="outline-container-org3c91fc2" class="outline-3">
+<h3 id="org3c91fc2"><span class="section-number-3">7.1</span> Installation</h3>
 <div class="outline-text-3" id="text-7-1">
-</div><div id="outline-container-orga04b9c4" class="outline-4">
-<h4 id="orga04b9c4"><span class="section-number-4">7.1.1</span> quicklisp</h4>
+</div>
+<div id="outline-container-org9f7bf83" class="outline-4">
+<h4 id="org9f7bf83"><span class="section-number-4">7.1.1</span> quicklisp</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">sbcl --load /path/to/quicklisp.lisp</span>
-(load <span style="color: #2aa198;">"/path/to/quicklisp.lisp"</span>)
+<pre><code class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">sbcl --load /path/to/quicklisp.lisp</span>
+(load <span style="color: #8b2252;">"/path/to/quicklisp.lisp"</span>)
 (quicklisp-quickstart:install)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">setting up</span>
-(load <span style="color: #2aa198;">"~/quicklisp/setup.lisp"</span>)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">load quicklisp when you start lisp</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">setting up</span>
+(load <span style="color: #8b2252;">"~/quicklisp/setup.lisp"</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">load quicklisp when you start lisp</span>
 (ql:add-to-init-file)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">install/remove a software</span>
-(ql:quickload <span style="color: #2aa198;">"clx-truetype"</span>)
-(ql:uninstall <span style="color: #2aa198;">"clx-truetype"</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">install/remove a software</span>
+(ql:quickload <span style="color: #8b2252;">"clx-truetype"</span>)
+(ql:uninstall <span style="color: #8b2252;">"clx-truetype"</span>)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">query installed packages</span>
-(ql:system-apropos <span style="color: #2aa198;">"substring"</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">query installed packages</span>
+(ql:system-apropos <span style="color: #8b2252;">"substring"</span>)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">updating all packages</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">updating all packages</span>
 (ql:update-all-dists)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">update</span><span style="color: #93a1a1; font-style: italic;"> quicklisp itself</span>
+<span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">update</span><span style="color: #b22222;"> quicklisp itself</span>
 (ql:update-client)
-</pre>
+</code></pre>
 </div>
 
 <dl class="org-dl">
@@ -2798,8 +2813,8 @@ A list of packages used:
 </dl>
 </div>
 </div>
-<div id="outline-container-org70991e2" class="outline-4">
-<h4 id="org70991e2"><span class="section-number-4">7.1.2</span> packages</h4>
+<div id="outline-container-orgd22784e" class="outline-4">
+<h4 id="orgd22784e"><span class="section-number-4">7.1.2</span> packages</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <ul class="org-ul">
 <li><code>cl-quicklisp</code></li>
@@ -2809,22 +2824,22 @@ A list of packages used:
 
 
 
-<div id="outline-container-orgd541365" class="outline-4">
-<h4 id="orgd541365"><span class="section-number-4">7.1.3</span> org babel</h4>
+<div id="outline-container-org70f37c3" class="outline-4">
+<h4 id="org70f37c3"><span class="section-number-4">7.1.3</span> org babel</h4>
 <div class="outline-text-4" id="text-7-1-3">
 <p>
 first, start <code>M-x slime</code>, then you can evaluate this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp" id="org604d215">(princ message)
-</pre>
+<pre><code class="src src-lisp" id="orga5b40a8">(princ message)
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgab9a30c" class="outline-4">
-<h4 id="orgab9a30c"><span class="section-number-4">7.1.4</span> Slime</h4>
+<div id="outline-container-org9d90747" class="outline-4">
+<h4 id="org9d90747"><span class="section-number-4">7.1.4</span> Slime</h4>
 <div class="outline-text-4" id="text-7-1-4">
 <ul class="org-ul">
 <li>slime (emacs IDE)</li>
@@ -2861,8 +2876,8 @@ The staff added into <code>.sbclrc</code>:
 </pre>
 </div>
 
-<div id="outline-container-org5db54e4" class="outline-5">
-<h5 id="org5db54e4"><span class="section-number-5">7.1.4.1</span> Commands</h5>
+<div id="outline-container-org4a4277e" class="outline-5">
+<h5 id="org4a4277e"><span class="section-number-5">7.1.4.1</span> Commands</h5>
 <div class="outline-text-5" id="text-7-1-4-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2907,263 +2922,263 @@ In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <c
 
 
 
-<div id="outline-container-orgd7bdc7d" class="outline-3">
-<h3 id="orgd7bdc7d"><span class="section-number-3">7.2</span> Practical Common Lisp</h3>
+<div id="outline-container-orgcde2172" class="outline-3">
+<h3 id="orgcde2172"><span class="section-number-3">7.2</span> Practical Common Lisp</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 <a href="http://www.gigamonkeys.com/book/">http://www.gigamonkeys.com/book/</a>
 </p>
 </div>
-<div id="outline-container-org895c7ca" class="outline-4">
-<h4 id="org895c7ca"><span class="section-number-4">7.2.1</span> CD database</h4>
+<div id="outline-container-org1ea68f4" class="outline-4">
+<h4 id="org1ea68f4"><span class="section-number-4">7.2.1</span> CD database</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: hello world, testing environment)</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">hello-world</span> ()
-  (format t <span style="color: #2aa198;">"Hello, world!"</span>))
+<pre><code class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hello world, testing environment)</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">hello-world</span> ()
+  (format t <span style="color: #8b2252;">"Hello, world!"</span>))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this function makes the cd</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">make-cd</span> (title artist rating ripped)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: the list created is a property list. The :key is the key, and followed by the value)</span>
-  (list <span style="color: #859900;">:title</span> title <span style="color: #859900;">:artist</span> artist <span style="color: #859900;">:rating</span> rating <span style="color: #859900;">:ripped</span> ripped))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this function makes the cd</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-cd</span> (title artist rating ripped)
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the list created is a property list. The :key is the key, and followed by the value)</span>
+  (list <span style="color: #483d8b;">:title</span> title <span style="color: #483d8b;">:artist</span> artist <span style="color: #483d8b;">:rating</span> rating <span style="color: #483d8b;">:ripped</span> ripped))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">make a cd record</span>
-(make-cd <span style="color: #2aa198;">"Roses"</span> <span style="color: #2aa198;">"Kathy Mattea"</span> 7 t)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">make a cd record</span>
+(make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: the *xx* is the convention for a global variable)</span>
-(<span style="color: #859900;">defvar</span> <span style="color: #268bd2;">*db*</span> nil)
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the *xx* is the convention for a global variable)</span>
+(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*db*</span> nil)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: The push will push the cd onto the global *db*)</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">add-record</span> (cd) (push cd *db*))
-
-
-
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">add some records to the database</span>
-(add-record (make-cd <span style="color: #2aa198;">"Roses"</span> <span style="color: #2aa198;">"Kathy Mattea"</span> 7 t))
-(add-record (make-cd <span style="color: #2aa198;">"Fly"</span> <span style="color: #2aa198;">"Dixie Chicks"</span> 8 t))
-(add-record (make-cd <span style="color: #2aa198;">"Home"</span> <span style="color: #2aa198;">"Dixie Chicks"</span> 9 t))
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: The push will push the cd onto the global *db*)</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-record</span> (cd) (push cd *db*))
 
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">dump-db</span> ()
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: dolist)</span>
-  (<span style="color: #859900;">dolist</span> (cd *db*)
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: format)</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the first is the output stream, with t as standard output</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">It will work for both keyword and value</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">~t is for tabulating. ~10t means emit enough spaces to move to the tenth column</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">~{ and ~} will make format: 1. require the next argument to be a list 2. consume the elements of the list for each ~a inside them</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">~% emit a new line</span>
-    (format t <span style="color: #2aa198;">"~{~a:~10t~a~%~}~%"</span> cd)))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: note: the above function can use format to iterate the whole *db* list)</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">dump-db-2</span> ()
-  (format t <span style="color: #2aa198;">"~{~{~a:~10t~a~%~}~%~}"</span> *db*))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">add some records to the database</span>
+(add-record (make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t))
+(add-record (make-cd <span style="color: #8b2252;">"Fly"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 8 t))
+(add-record (make-cd <span style="color: #8b2252;">"Home"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 9 t))
 
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">prompt-read</span> (prompt)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the *query-io* is a global variable that contains the input stream connected to the terminal</span>
-  (format *query-io* <span style="color: #2aa198;">"~a: "</span> prompt)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: flush)</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db</span> ()
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: dolist)</span>
+  (<span style="color: #a020f0;">dolist</span> (cd *db*)
+    <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: format)</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">the first is the output stream, with t as standard output</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">It will work for both keyword and value</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~t is for tabulating. ~10t means emit enough spaces to move to the tenth column</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~{ and ~} will make format: 1. require the next argument to be a list 2. consume the elements of the list for each ~a inside them</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~% emit a new line</span>
+    (format t <span style="color: #8b2252;">"~{~a:~10t~a~%~}~%"</span> cd)))
+
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: note: the above function can use format to iterate the whole *db* list)</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db-2</span> ()
+  (format t <span style="color: #8b2252;">"~{~{~a:~10t~a~%~}~%~}"</span> *db*))
+
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-read</span> (prompt)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">the *query-io* is a global variable that contains the input stream connected to the terminal</span>
+  (format *query-io* <span style="color: #8b2252;">"~a: "</span> prompt)
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: flush)</span>
   (force-output *query-io*)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">read-line will read the string without the trailing newline</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">read-line will read the string without the trailing newline</span>
   (read-line *query-io*))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">prompt-for-cd</span> ()
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-for-cd</span> ()
   (make-cd
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">read a string</span>
-   (prompt-read <span style="color: #2aa198;">"Title"</span>)
-   (prompt-read <span style="color: #2aa198;">"Artist"</span>)
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: parse the string to int)</span>
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">if nil, the parse-integer will emit error. :junk-allowed t will make it silent</span>
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the surrounding "or" will make a default value of 0 instead of nil</span>
-   (or (parse-integer (prompt-read <span style="color: #2aa198;">"Rating"</span>) <span style="color: #859900;">:junk-allowed</span> t) 0)
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: y-or-n-p)</span><span style="color: #93a1a1; font-style: italic;"> is a builtin function. It is very robust, in the sense that it will reopen the prompt if answer is not yY or nN.</span>
-   (y-or-n-p <span style="color: #2aa198;">"Ripped [y/n]: "</span>)))
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">read a string</span>
+   (prompt-read <span style="color: #8b2252;">"Title"</span>)
+   (prompt-read <span style="color: #8b2252;">"Artist"</span>)
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: parse the string to int)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">if nil, the parse-integer will emit error. :junk-allowed t will make it silent</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">the surrounding "or" will make a default value of 0 instead of nil</span>
+   (or (parse-integer (prompt-read <span style="color: #8b2252;">"Rating"</span>) <span style="color: #483d8b;">:junk-allowed</span> t) 0)
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: y-or-n-p)</span><span style="color: #b22222;"> is a builtin function. It is very robust, in the sense that it will reopen the prompt if answer is not yY or nN.</span>
+   (y-or-n-p <span style="color: #8b2252;">"Ripped [y/n]: "</span>)))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">add-cds</span> ()
-  (<span style="color: #859900;">loop</span> (add-record (prompt-for-cd))
-     <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this loop will end if the another query is answered as n</span>
-     (<span style="color: #859900;">if</span> (not (y-or-n-p <span style="color: #2aa198;">"Another? [y/n]: "</span>)) (<span style="color: #859900;">return</span>))))
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-cds</span> ()
+  (<span style="color: #a020f0;">loop</span> (add-record (prompt-for-cd))
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">this loop will end if the another query is answered as n</span>
+     (<span style="color: #a020f0;">if</span> (not (y-or-n-p <span style="color: #8b2252;">"Another? [y/n]: "</span>)) (<span style="color: #a020f0;">return</span>))))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">save-db</span> (filename)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: open the file and store the stream)</span><span style="color: #93a1a1; font-style: italic;"> as variable "out"</span>
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">filename is the filename string</span>
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">direction defaults to :input, so if want output, need to specify</span>
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">if-exists, overwrite it</span>
-  (<span style="color: #859900;">with-open-file</span> (out filename
-                       <span style="color: #859900;">:direction</span> <span style="color: #859900;">:output</span>
-                       <span style="color: #859900;">:if-exists</span> <span style="color: #859900;">:supersede</span>)
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this is used to ensures that certain variables that affect the behavior of print are set to their standard values.</span>
-    <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">be sure to use the same macro when reading the data back</span>
-    (<span style="color: #859900;">with-standard-io-syntax</span>
-      <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: directly print the *db* to the stream)</span>
-      <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">lisp will print the object out in the form that it can be read back</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">save-db</span> (filename)
+  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: open the file and store the stream)</span><span style="color: #b22222;"> as variable "out"</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">filename is the filename string</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">direction defaults to :input, so if want output, need to specify</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">if-exists, overwrite it</span>
+  (<span style="color: #a020f0;">with-open-file</span> (out filename
+                       <span style="color: #483d8b;">:direction</span> <span style="color: #483d8b;">:output</span>
+                       <span style="color: #483d8b;">:if-exists</span> <span style="color: #483d8b;">:supersede</span>)
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">this is used to ensures that certain variables that affect the behavior of print are set to their standard values.</span>
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">be sure to use the same macro when reading the data back</span>
+    (<span style="color: #a020f0;">with-standard-io-syntax</span>
+      <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: directly print the *db* to the stream)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">lisp will print the object out in the form that it can be read back</span>
       (print *db* out))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">now</span><span style="color: #93a1a1; font-style: italic;"> you can save it</span>
-(save-db <span style="color: #2aa198;">"~/my-cds.db"</span>)
+<span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">now</span><span style="color: #b22222;"> you can save it</span>
+(save-db <span style="color: #8b2252;">"~/my-cds.db"</span>)
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">load the db back</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">load-db</span> (filename)
-  (<span style="color: #859900;">with-open-file</span> (in filename)
-    (<span style="color: #859900;">with-standard-io-syntax</span>
-      <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use read to </span><span style="color: #ff0000; font-style: italic;">(HEBI: read everything from the stream in)</span>
-      <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use </span><span style="color: #ff0000; font-style: italic;">(HEBI: setf)</span><span style="color: #93a1a1; font-style: italic;"> to set result of the read to the *db* variable</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">load the db back</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">load-db</span> (filename)
+  (<span style="color: #a020f0;">with-open-file</span> (in filename)
+    (<span style="color: #a020f0;">with-standard-io-syntax</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">use read to </span><span style="color: #ff0000;">(HEBI: read everything from the stream in)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">use </span><span style="color: #ff0000;">(HEBI: setf)</span><span style="color: #b22222;"> to set result of the read to the *db* variable</span>
       (setf *db* (read in)))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">query</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">select-by-artist</span> (artist)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">make a copy of *db* by removing if not the predicate, and return that copy</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">query</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select-by-artist</span> (artist)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">make a copy of *db* by removing if not the predicate, and return that copy</span>
   (remove-if-not
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: getf can get the value of a plist by the key)</span>
-   <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">#' is the quote for function</span>
-   #'(<span style="color: #859900;">lambda</span> (cd) (equal (getf cd <span style="color: #859900;">:artist</span>) artist))
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: getf can get the value of a plist by the key)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">#' is the quote for function</span>
+   #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist))
    *db*))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">select</span> (selector-fn)
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select</span> (selector-fn)
   (remove-if-not selector-fn *db*))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">artist-selector</span> (artist)
-  #'(<span style="color: #859900;">lambda</span> (cd) (equal (getf cd <span style="color: #859900;">:artist</span>) artist)))
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">artist-selector</span> (artist)
+  #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist)))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use this by:</span>
-(select (artist-selector <span style="color: #2aa198;">"Dixie Chicks"</span>))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">use this by:</span>
+(select (artist-selector <span style="color: #8b2252;">"Dixie Chicks"</span>))
 
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">keyword argument, can be called by (func :key value)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">default value using (var default)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(var default var-p) var-p is used to check whether the argument is supplied or not</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">where</span> (<span style="color: #b58900;">&amp;key</span> title artist rating (ripped nil ripped-p))
-  #'(<span style="color: #859900;">lambda</span> (cd)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">keyword argument, can be called by (func :key value)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">default value using (var default)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">(var default var-p) var-p is used to check whether the argument is supplied or not</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
+  #'(<span style="color: #a020f0;">lambda</span> (cd)
       (and
-       (<span style="color: #859900;">if</span> title    (equal (getf cd <span style="color: #859900;">:title</span>)  title)  t)
-       (<span style="color: #859900;">if</span> artist   (equal (getf cd <span style="color: #859900;">:artist</span>) artist) t)
-       (<span style="color: #859900;">if</span> rating   (equal (getf cd <span style="color: #859900;">:rating</span>) rating) t)
-       (<span style="color: #859900;">if</span> ripped-p (equal (getf cd <span style="color: #859900;">:ripped</span>) ripped) t))))
+       (<span style="color: #a020f0;">if</span> title    (equal (getf cd <span style="color: #483d8b;">:title</span>)  title)  t)
+       (<span style="color: #a020f0;">if</span> artist   (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist) t)
+       (<span style="color: #a020f0;">if</span> rating   (equal (getf cd <span style="color: #483d8b;">:rating</span>) rating) t)
+       (<span style="color: #a020f0;">if</span> ripped-p (equal (getf cd <span style="color: #483d8b;">:ripped</span>) ripped) t))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">use by:</span>
-(select (where <span style="color: #859900;">:rating</span> 10 <span style="color: #859900;">:ripped</span> nil))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">use by:</span>
+(select (where <span style="color: #483d8b;">:rating</span> 10 <span style="color: #483d8b;">:ripped</span> nil))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">update</span> (selector-fn <span style="color: #b58900;">&amp;key</span> title artist rating (ripped nil ripped-p))
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">update</span> (selector-fn <span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
   (setf *db*
-        <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: mapcar)</span><span style="color: #93a1a1; font-style: italic;"> apply the function to each element of the list, and return the list of results</span>
+        <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: mapcar)</span><span style="color: #b22222;"> apply the function to each element of the list, and return the list of results</span>
         (mapcar
-         #'(<span style="color: #859900;">lambda</span> (row)
-             (<span style="color: #859900;">when</span> (funcall selector-fn row)
-               <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this (setf (getf) xx) staff is magic. setf has nothing to do with getf</span>
-               (<span style="color: #859900;">if</span> title    (setf (getf row <span style="color: #859900;">:title</span>) title))
-               (<span style="color: #859900;">if</span> artist   (setf (getf row <span style="color: #859900;">:artist</span>) artist))
-               (<span style="color: #859900;">if</span> rating   (setf (getf row <span style="color: #859900;">:rating</span>) rating))
-               (<span style="color: #859900;">if</span> ripped-p (setf (getf row <span style="color: #859900;">:ripped</span>) ripped)))
-             row) <span style="color: #dc322f; font-weight: bold;">*db*)))</span>
+         #'(<span style="color: #a020f0;">lambda</span> (row)
+             (<span style="color: #a020f0;">when</span> (funcall selector-fn row)
+               <span style="color: #b22222;">;; </span><span style="color: #b22222;">this (setf (getf) xx) staff is magic. setf has nothing to do with getf</span>
+               (<span style="color: #a020f0;">if</span> title    (setf (getf row <span style="color: #483d8b;">:title</span>) title))
+               (<span style="color: #a020f0;">if</span> artist   (setf (getf row <span style="color: #483d8b;">:artist</span>) artist))
+               (<span style="color: #a020f0;">if</span> rating   (setf (getf row <span style="color: #483d8b;">:rating</span>) rating))
+               (<span style="color: #a020f0;">if</span> ripped-p (setf (getf row <span style="color: #483d8b;">:ripped</span>) ripped)))
+             row) <span style="color: #ff0000; font-weight: bold;">*db*)))</span>
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this can be called:</span>
-(update (where <span style="color: #859900;">:artist</span> <span style="color: #2aa198;">"Dixie Chicks"</span>) <span style="color: #859900;">:rating</span> 11)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this can be called:</span>
+(update (where <span style="color: #483d8b;">:artist</span> <span style="color: #8b2252;">"Dixie Chicks"</span>) <span style="color: #483d8b;">:rating</span> 11)
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">delete-rows</span> (selector-fn)
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">delete-rows</span> (selector-fn)
   (setf *db* (remove-if selector-fn *db*)))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">OK, refactoring time</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Problems for where:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the if ... checking inside "and" is almosts the same, that's duplicate code</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">for the querys that do not have other fields, we don't want to check those fields, to avoid overhead</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">OK, refactoring time</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Problems for where:</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">the if ... checking inside "and" is almosts the same, that's duplicate code</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">for the querys that do not have other fields, we don't want to check those fields, to avoid overhead</span>
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">The solution is the MACRO, the code generator of lisp</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">The solution is the MACRO, the code generator of lisp</span>
 
-<span style="color: #93a1a1; font-style: italic;">;;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: Macros, all kinds of quoting)</span>
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">make-comparison-expr</span> (field value)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">' will leave the expression unevaluated.</span>
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">` will do the same thing, and it can do one more: can evaluate part of it</span>
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">, before a subexpression will evalute that</span>
+<span style="color: #b22222;">;;; </span><span style="color: #ff0000;">(HEBI: Macros, all kinds of quoting)</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparison-expr</span> (field value)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">' will leave the expression unevaluated.</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">` will do the same thing, and it can do one more: can evaluate part of it</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">, before a subexpression will evalute that</span>
   `(equal (getf cd ,field) ,value))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">make-comparisons-list</span> (fields)
-  (<span style="color: #859900;">loop</span> while fields
-     <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">using loop facility, make comparison expr for all the fields</span>
-     <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">pop will pop the first of the list</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparisons-list</span> (fields)
+  (<span style="color: #a020f0;">loop</span> while fields
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">using loop facility, make comparison expr for all the fields</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">pop will pop the first of the list</span>
      collecting (make-comparison-expr (pop fields) (pop fields))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">wrap comparison expr into and clause</span>
-(<span style="color: #859900;">defmacro</span> <span style="color: #268bd2;">where</span> (<span style="color: #b58900;">&amp;rest</span> clauses)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">,@() will evaluate the subexpression, and splice the resulting list into the surrounding list</span>
-  `#'(<span style="color: #859900;">lambda</span> (cd) (and ,@(make-comparisons-list clauses))))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">wrap comparison expr into and clause</span>
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;rest</span> clauses)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">,@() will evaluate the subexpression, and splice the resulting list into the surrounding list</span>
+  `#'(<span style="color: #a020f0;">lambda</span> (cd) (and ,@(make-comparisons-list clauses))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this can check what this macro expanded to</span>
-(macroexpand-1 '(where <span style="color: #859900;">:title</span> <span style="color: #2aa198;">"Give Us a Break"</span> <span style="color: #859900;">:ripped</span> t))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this can check what this macro expanded to</span>
+(macroexpand-1 '(where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Final test:</span>
-(select (where <span style="color: #859900;">:title</span> <span style="color: #2aa198;">"Give Us a Break"</span> <span style="color: #859900;">:ripped</span> t))
-</pre>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Final test:</span>
+(select (where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t))
+</code></pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgcb07d4b" class="outline-4">
-<h4 id="orgcb07d4b"><span class="section-number-4">7.2.2</span> Unit Test Framework</h4>
+<div id="outline-container-org8cbdeab" class="outline-4">
+<h4 id="org8cbdeab"><span class="section-number-4">7.2.2</span> Unit Test Framework</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the design goal of a unit test framework:</span>
+<pre><code class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">the design goal of a unit test framework:</span>
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">- easy to add new test</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">- easy to run tests</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">- easy to track down test failures</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to add new test</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to run tests</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to track down test failures</span>
 
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: report test name)</span>
-(<span style="color: #859900;">defmacro</span> <span style="color: #268bd2;">deftest</span> (name parameters <span style="color: #b58900;">&amp;body</span> body)
-  <span style="color: #93a1a1; font-style: italic;">"Define a test function. Within a test function we can call</span>
-<span style="color: #93a1a1; font-style: italic;">   other test functions or use 'check' to run individual test</span>
-<span style="color: #93a1a1; font-style: italic;">   cases."</span>
-  `(<span style="color: #859900;">defun</span> ,name ,parameters
-     <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #ff0000; font-style: italic;">(HEBI: hierarchy test name report)</span>
-    (<span style="color: #859900;">let</span> ((*test-name* (append *test-name* (list ',name))))
+<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: report test name)</span>
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">deftest</span> (name parameters <span style="color: #228b22;">&amp;body</span> body)
+  <span style="color: #8b2252;">"Define a test function. Within a test function we can call</span>
+<span style="color: #8b2252;">   other test functions or use 'check' to run individual test</span>
+<span style="color: #8b2252;">   cases."</span>
+  `(<span style="color: #a020f0;">defun</span> ,name ,parameters
+     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hierarchy test name report)</span>
+    (<span style="color: #a020f0;">let</span> ((*test-name* (append *test-name* (list ',name))))
       ,@body)))
 
 
-(<span style="color: #859900;">defmacro</span> <span style="color: #268bd2;">with-gensyms</span> ((<span style="color: #b58900;">&amp;rest</span> names) <span style="color: #b58900;">&amp;body</span> body)
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">gensym generate a unique symbol name that the reader has never seen</span>
-  <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">the reason to use such unique name is to avoid leaking of information</span>
-  `(<span style="color: #859900;">let</span> ,(<span style="color: #859900;">loop</span> for n in names collect `(,n (gensym)))
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">with-gensyms</span> ((<span style="color: #228b22;">&amp;rest</span> names) <span style="color: #228b22;">&amp;body</span> body)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">gensym generate a unique symbol name that the reader has never seen</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">the reason to use such unique name is to avoid leaking of information</span>
+  `(<span style="color: #a020f0;">let</span> ,(<span style="color: #a020f0;">loop</span> for n in names collect `(,n (gensym)))
      ,@body))
 
-(<span style="color: #859900;">defvar</span> <span style="color: #268bd2;">*test-name*</span> nil)
+(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*test-name*</span> nil)
 
 
-(<span style="color: #859900;">defmacro</span> <span style="color: #268bd2;">combine-results</span> (<span style="color: #b58900;">&amp;body</span> forms)
-  <span style="color: #93a1a1; font-style: italic;">"Combine the results (as booleans) of evaluating 'forms' in order."</span>
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">combine-results</span> (<span style="color: #228b22;">&amp;body</span> forms)
+  <span style="color: #8b2252;">"Combine the results (as booleans) of evaluating 'forms' in order."</span>
   (with-gensyms (result)
-    `(<span style="color: #859900;">let</span> ((,result t))
-      ,@(<span style="color: #859900;">loop</span> for f in forms collect `(<span style="color: #859900;">unless</span> ,f (setf ,result nil)))
+    `(<span style="color: #a020f0;">let</span> ((,result t))
+      ,@(<span style="color: #a020f0;">loop</span> for f in forms collect `(<span style="color: #a020f0;">unless</span> ,f (setf ,result nil)))
       ,result)))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">this will generate</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(let ((result t))</span>
-<span style="color: #93a1a1; font-style: italic;">;;   </span><span style="color: #93a1a1; font-style: italic;">(unless (foo) (setf result nil))</span>
-<span style="color: #93a1a1; font-style: italic;">;;   </span><span style="color: #93a1a1; font-style: italic;">(unless (bar) (setf result nil))</span>
-<span style="color: #93a1a1; font-style: italic;">;;   </span><span style="color: #93a1a1; font-style: italic;">(unless (baz) (setf result nil))</span>
-<span style="color: #93a1a1; font-style: italic;">;;   </span><span style="color: #93a1a1; font-style: italic;">result)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">this will generate</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">(let ((result t))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (foo) (setf result nil))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (bar) (setf result nil))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (baz) (setf result nil))</span>
+<span style="color: #b22222;">;;   </span><span style="color: #b22222;">result)</span>
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">report-result</span> (result form)
-  <span style="color: #93a1a1; font-style: italic;">"Report the results of a single test case. Called by 'check'."</span>
-  (format t <span style="color: #2aa198;">"~:[FAIL~;pass~] ... ~a: ~a~%"</span> result *test-name* form)
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">report-result</span> (result form)
+  <span style="color: #8b2252;">"Report the results of a single test case. Called by 'check'."</span>
+  (format t <span style="color: #8b2252;">"~:[FAIL~;pass~] ... ~a: ~a~%"</span> result *test-name* form)
   result)
 
 
-(<span style="color: #859900;">defmacro</span> <span style="color: #268bd2;">check</span> (<span style="color: #b58900;">&amp;body</span> forms)
-  <span style="color: #93a1a1; font-style: italic;">"Run each expression in 'forms' as a test case."</span>
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">check</span> (<span style="color: #228b22;">&amp;body</span> forms)
+  <span style="color: #8b2252;">"Run each expression in 'forms' as a test case."</span>
   `(combine-results
-    ,@(<span style="color: #859900;">loop</span> for f in forms collect `(report-result ,f ',f))))
+    ,@(<span style="color: #a020f0;">loop</span> for f in forms collect `(report-result ,f ',f))))
 
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">usage example:</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">usage example:</span>
 (deftest test-+ ()
   (check
     (= (+ 1 2) 3)
     (= (+ 1 2 3) 6)
     (= (+ -1 -3) -4)))
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -3172,7 +3187,7 @@ In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <c
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

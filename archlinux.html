@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-18 Tue 11:28 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ArchLinux</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,39 +235,39 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7f2e464">1. Installation</a>
+<li><a href="#orgc298d00">1. Installation</a>
 <ul>
-<li><a href="#org5f800b8">1.1. Verify UEFI</a></li>
-<li><a href="#orgf00c24b">1.2. System clock</a></li>
-<li><a href="#orga087f61">1.3. Partition</a></li>
-<li><a href="#orgc22c92d">1.4. Select mirror</a></li>
-<li><a href="#org3542dc3">1.5. Install base system</a></li>
-<li><a href="#orgb8c8264">1.6. chroot</a></li>
-<li><a href="#orgbd08b38">1.7. Configure</a></li>
+<li><a href="#orgd0513ba">1.1. Verify UEFI</a></li>
+<li><a href="#org6c68bfd">1.2. System clock</a></li>
+<li><a href="#org8f55689">1.3. Partition</a></li>
+<li><a href="#org6332470">1.4. Select mirror</a></li>
+<li><a href="#orge0bb845">1.5. Install base system</a></li>
+<li><a href="#orgd0568e9">1.6. chroot</a></li>
+<li><a href="#org3e2dc11">1.7. Configure</a></li>
 </ul>
 </li>
-<li><a href="#org261c86a">2. System Setup</a>
+<li><a href="#org40addc6">2. System Setup</a>
 <ul>
-<li><a href="#org5d0cb76">2.1. Intall packages</a>
+<li><a href="#orgfcf328c">2.1. Intall packages</a>
 <ul>
-<li><a href="#org8a9af96">2.1.1. Essential packages</a></li>
-<li><a href="#org2ee1c24">2.1.2. For Helium</a>
+<li><a href="#orgbfe6262">2.1.1. Essential packages</a></li>
+<li><a href="#org5d5bf66">2.1.2. For Helium</a>
 <ul>
-<li><a href="#org3ca1c0f">2.1.2.1. audio</a></li>
+<li><a href="#org7173d20">2.1.2.1. audio</a></li>
 </ul>
 </li>
-<li><a href="#org7ec3716">2.1.3. Apps</a></li>
-<li><a href="#org0e29c39">2.1.4. for Pdf Tools</a></li>
-<li><a href="#orgcdc9c0f">2.1.5. Install using AUR (in order!)</a></li>
+<li><a href="#org63ec474">2.1.3. Apps</a></li>
+<li><a href="#org2ac25e6">2.1.4. for Pdf Tools</a></li>
+<li><a href="#orgca20d1b">2.1.5. Install using AUR (in order!)</a></li>
 </ul>
 </li>
-<li><a href="#org0ac258d">2.2. Then</a></li>
+<li><a href="#org261a915">2.2. Then</a></li>
 </ul>
 </li>
-<li><a href="#orgf129fe4">3. Trouble shooting</a></li>
-<li><a href="#orgada96f9">4. Pacman</a></li>
-<li><a href="#org2585be4">5. AUR</a></li>
-<li><a href="#org251ca22">6. Setup</a></li>
+<li><a href="#org1a2dba9">3. Trouble shooting</a></li>
+<li><a href="#orgb9ba84d">4. Pacman</a></li>
+<li><a href="#org0f2ad28">5. AUR</a></li>
+<li><a href="#org0018f38">6. Setup</a></li>
 </ul>
 </div>
 </div>
@@ -282,8 +283,8 @@ You can back up configuration by:
 </ul>
 
 
-<div id="outline-container-org7f2e464" class="outline-2">
-<h2 id="org7f2e464"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-orgc298d00" class="outline-2">
+<h2 id="orgc298d00"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Download the image (no need extra package files as the time of 2011
@@ -296,8 +297,8 @@ The system will boot into the host OS.
 </div>
 
 
-<div id="outline-container-org5f800b8" class="outline-3">
-<h3 id="org5f800b8"><span class="section-number-3">1.1</span> Verify UEFI</h3>
+<div id="outline-container-orgd0513ba" class="outline-3">
+<h3 id="orgd0513ba"><span class="section-number-3">1.1</span> Verify UEFI</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Nowadays (start from 2017) Arch only supports 64 bits &#x2026; and seems to
@@ -314,8 +315,8 @@ ls /sys/firmware/efi/efivars
 </div>
 </div>
 
-<div id="outline-container-orgf00c24b" class="outline-3">
-<h3 id="orgf00c24b"><span class="section-number-3">1.2</span> System clock</h3>
+<div id="outline-container-org6c68bfd" class="outline-3">
+<h3 id="org6c68bfd"><span class="section-number-3">1.2</span> System clock</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 timedatectl set-ntp true
@@ -323,8 +324,8 @@ timedatectl set-ntp true
 </div>
 </div>
 
-<div id="outline-container-orga087f61" class="outline-3">
-<h3 id="orga087f61"><span class="section-number-3">1.3</span> Partition</h3>
+<div id="outline-container-org8f55689" class="outline-3">
+<h3 id="org8f55689"><span class="section-number-3">1.3</span> Partition</h3>
 <div class="outline-text-3" id="text-1-3">
 <pre class="example">
 parted /dev/sda mklabel gpt
@@ -363,8 +364,8 @@ mount /dev/sda1 /mnt/boot
 </div>
 
 
-<div id="outline-container-orgc22c92d" class="outline-3">
-<h3 id="orgc22c92d"><span class="section-number-3">1.4</span> Select mirror</h3>
+<div id="outline-container-org6332470" class="outline-3">
+<h3 id="org6332470"><span class="section-number-3">1.4</span> Select mirror</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 look into <code>/etc/pacman.d/mirrorlist</code> and modify if necessary. The order
@@ -373,8 +374,8 @@ matters. The file will be copied to new system.
 </div>
 </div>
 
-<div id="outline-container-org3542dc3" class="outline-3">
-<h3 id="org3542dc3"><span class="section-number-3">1.5</span> Install base system</h3>
+<div id="outline-container-orge0bb845" class="outline-3">
+<h3 id="orge0bb845"><span class="section-number-3">1.5</span> Install base system</h3>
 <div class="outline-text-3" id="text-1-5">
 <pre class="example">
 pacstrap /mnt base
@@ -382,8 +383,8 @@ pacstrap /mnt base
 </div>
 </div>
 
-<div id="outline-container-orgb8c8264" class="outline-3">
-<h3 id="orgb8c8264"><span class="section-number-3">1.6</span> chroot</h3>
+<div id="outline-container-orgd0568e9" class="outline-3">
+<h3 id="orgd0568e9"><span class="section-number-3">1.6</span> chroot</h3>
 <div class="outline-text-3" id="text-1-6">
 <pre class="example">
 genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
@@ -392,8 +393,8 @@ arch-chroot /mnt
 </div>
 </div>
 
-<div id="outline-container-orgbd08b38" class="outline-3">
-<h3 id="orgbd08b38"><span class="section-number-3">1.7</span> Configure</h3>
+<div id="outline-container-org3e2dc11" class="outline-3">
+<h3 id="org3e2dc11"><span class="section-number-3">1.7</span> Configure</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Now we are in the new system.
@@ -449,8 +450,8 @@ Now reboot
 </div>
 </div>
 
-<div id="outline-container-org261c86a" class="outline-2">
-<h2 id="org261c86a"><span class="section-number-2">2</span> System Setup</h2>
+<div id="outline-container-org40addc6" class="outline-2">
+<h2 id="org40addc6"><span class="section-number-2">2</span> System Setup</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 DHCP is not enabled by default. It is the philloshophy for Arch: installing a package will not enable any service. Enable it by;
@@ -461,11 +462,12 @@ systemctl enable dhcpcd
 </pre>
 </div>
 
-<div id="outline-container-org5d0cb76" class="outline-3">
-<h3 id="org5d0cb76"><span class="section-number-3">2.1</span> Intall packages</h3>
+<div id="outline-container-orgfcf328c" class="outline-3">
+<h3 id="orgfcf328c"><span class="section-number-3">2.1</span> Intall packages</h3>
 <div class="outline-text-3" id="text-2-1">
-</div><div id="outline-container-org8a9af96" class="outline-4">
-<h4 id="org8a9af96"><span class="section-number-4">2.1.1</span> Essential packages</h4>
+</div>
+<div id="outline-container-orgbfe6262" class="outline-4">
+<h4 id="orgbfe6262"><span class="section-number-4">2.1.1</span> Essential packages</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>base-devel</li>
@@ -530,16 +532,16 @@ texlive-science</li>
 </div>
 </div>
 
-<div id="outline-container-org2ee1c24" class="outline-4">
-<h4 id="org2ee1c24"><span class="section-number-4">2.1.2</span> For Helium</h4>
+<div id="outline-container-org5d5bf66" class="outline-4">
+<h4 id="org5d5bf66"><span class="section-number-4">2.1.2</span> For Helium</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>zeromq</li>
 <li>memcached libmemcached</li>
 </ul>
 </div>
-<div id="outline-container-org3ca1c0f" class="outline-5">
-<h5 id="org3ca1c0f"><span class="section-number-5">2.1.2.1</span> audio</h5>
+<div id="outline-container-org7173d20" class="outline-5">
+<h5 id="org7173d20"><span class="section-number-5">2.1.2.1</span> audio</h5>
 <div class="outline-text-5" id="text-2-1-2-1">
 <ul class="org-ul">
 <li>pavucontrol</li>
@@ -549,8 +551,8 @@ texlive-science</li>
 </div>
 </div>
 
-<div id="outline-container-org7ec3716" class="outline-4">
-<h4 id="org7ec3716"><span class="section-number-4">2.1.3</span> Apps</h4>
+<div id="outline-container-org63ec474" class="outline-4">
+<h4 id="org63ec474"><span class="section-number-4">2.1.3</span> Apps</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>chromium</li>
@@ -558,8 +560,8 @@ texlive-science</li>
 </div>
 </div>
 
-<div id="outline-container-org0e29c39" class="outline-4">
-<h4 id="org0e29c39"><span class="section-number-4">2.1.4</span> for Pdf Tools</h4>
+<div id="outline-container-org2ac25e6" class="outline-4">
+<h4 id="org2ac25e6"><span class="section-number-4">2.1.4</span> for Pdf Tools</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <ul class="org-ul">
 <li>libzip</li>
@@ -569,8 +571,8 @@ texlive-science</li>
 </div>
 </div>
 
-<div id="outline-container-orgcdc9c0f" class="outline-4">
-<h4 id="orgcdc9c0f"><span class="section-number-4">2.1.5</span> Install using AUR (in order!)</h4>
+<div id="outline-container-orgca20d1b" class="outline-4">
+<h4 id="orgca20d1b"><span class="section-number-4">2.1.5</span> Install using AUR (in order!)</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <ul class="org-ul">
 <li>cl-ppcre</li>
@@ -590,8 +592,8 @@ quicklisp <i>etc/default/quicklisp into ~</i>.sbclrc.</li>
 </div>
 </div>
 
-<div id="outline-container-org0ac258d" class="outline-3">
-<h3 id="org0ac258d"><span class="section-number-3">2.2</span> Then</h3>
+<div id="outline-container-org261a915" class="outline-3">
+<h3 id="org261a915"><span class="section-number-3">2.2</span> Then</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 run
@@ -605,8 +607,8 @@ run
 </div>
 
 
-<div id="outline-container-orgf129fe4" class="outline-2">
-<h2 id="orgf129fe4"><span class="section-number-2">3</span> Trouble shooting</h2>
+<div id="outline-container-org1a2dba9" class="outline-2">
+<h2 id="org1a2dba9"><span class="section-number-2">3</span> Trouble shooting</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>After booting stumpwm, sbcl cannot be executed.</li>
@@ -614,8 +616,8 @@ run
 </div>
 </div>
 
-<div id="outline-container-orgada96f9" class="outline-2">
-<h2 id="orgada96f9"><span class="section-number-2">4</span> Pacman</h2>
+<div id="outline-container-orgb9ba84d" class="outline-2">
+<h2 id="orgb9ba84d"><span class="section-number-2">4</span> Pacman</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Option
@@ -653,8 +655,8 @@ Typical usage:
 </div>
 </div>
 
-<div id="outline-container-org2585be4" class="outline-2">
-<h2 id="org2585be4"><span class="section-number-2">5</span> AUR</h2>
+<div id="outline-container-org0f2ad28" class="outline-2">
+<h2 id="org0f2ad28"><span class="section-number-2">5</span> AUR</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Have to search through its web interface. Find the git download link
@@ -683,8 +685,8 @@ md5sum value inside the quotes with <code>'SKIP'</code>.
 
 
 
-<div id="outline-container-org251ca22" class="outline-2">
-<h2 id="org251ca22"><span class="section-number-2">6</span> Setup</h2>
+<div id="outline-container-org0018f38" class="outline-2">
+<h2 id="org0018f38"><span class="section-number-2">6</span> Setup</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Although I set the right timezone (check by <code>timedatectl</code>), the clock
@@ -699,7 +701,7 @@ sudo ntpd -qg
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-07-18 Tue 11:28</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

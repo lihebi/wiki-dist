@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cpp Libraries</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,22 +235,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfe0b4c8">1. RapidJson</a>
+<li><a href="#orgd81e87c">1. RapidJson</a>
 <ul>
-<li><a href="#org1e69d88">1.1. Parse Document</a></li>
-<li><a href="#orgc67234f">1.2. Create Document</a></li>
-<li><a href="#org3f8f0db">1.3. Access Document</a></li>
-<li><a href="#org873d0b7">1.4. Create Value &amp; Save Document</a></li>
-<li><a href="#orgd9648e7">1.5. Save</a></li>
-<li><a href="#org20e2ebf">1.6. Reference</a>
+<li><a href="#org8e4ff4b">1.1. Parse Document</a></li>
+<li><a href="#org8a5fc0f">1.2. Create Document</a></li>
+<li><a href="#org0a7d303">1.3. Access Document</a></li>
+<li><a href="#orga22369d">1.4. Create Value &amp; Save Document</a></li>
+<li><a href="#orgb02d0b5">1.5. Save</a></li>
+<li><a href="#org50f5bbb">1.6. Reference</a>
 <ul>
-<li><a href="#orgf65c62a">1.6.1. GenericDocument : public GenericValue</a></li>
-<li><a href="#orga6ddcbc">1.6.2. GenericValue</a>
+<li><a href="#org6c14b0d">1.6.1. GenericDocument : public GenericValue</a></li>
+<li><a href="#org65e49a9">1.6.2. GenericValue</a>
 <ul>
-<li><a href="#org8f3bbd0">1.6.2.1. Predicate</a></li>
-<li><a href="#org4a9e826">1.6.2.2. Object</a></li>
-<li><a href="#org341d691">1.6.2.3. Array</a></li>
-<li><a href="#org99133d6">1.6.2.4. Other</a></li>
+<li><a href="#org0d96261">1.6.2.1. Predicate</a></li>
+<li><a href="#org57b193b">1.6.2.2. Object</a></li>
+<li><a href="#orgb2134e2">1.6.2.3. Array</a></li>
+<li><a href="#org08a12bd">1.6.2.4. Other</a></li>
 </ul>
 </li>
 </ul>
@@ -260,102 +261,103 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgfe0b4c8" class="outline-2">
-<h2 id="orgfe0b4c8"><span class="section-number-2">1</span> RapidJson</h2>
+<div id="outline-container-orgd81e87c" class="outline-2">
+<h2 id="orgd81e87c"><span class="section-number-2">1</span> RapidJson</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;rapidjson/istreamwrapper.h&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;rapidjson/document.h&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;rapidjson/prettywriter.h&gt;</span>
-</pre>
+<pre><code class="src src-cpp"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;rapidjson/istreamwrapper.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;rapidjson/document.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;rapidjson/prettywriter.h&gt;</span>
+</code></pre>
 </div>
 </div>
 
 
-<div id="outline-container-org1e69d88" class="outline-3">
-<h3 id="org1e69d88"><span class="section-number-3">1.1</span> Parse Document</h3>
+<div id="outline-container-org8e4ff4b" class="outline-3">
+<h3 id="org8e4ff4b"><span class="section-number-3">1.1</span> Parse Document</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900;">const</span> <span style="color: #b58900;">char</span>* <span style="color: #268bd2;">json</span> = <span style="color: #2aa198;">"{\"project\":\"rapidjson\",\"stars\":10}"</span>;
-<span style="color: #b58900;">Document</span> <span style="color: #268bd2;">d</span>;
+<pre><code class="src src-cpp"><span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">json</span> = <span style="color: #8b2252;">"{\"project\":\"rapidjson\",\"stars\":10}"</span>;
+<span style="color: #228b22;">Document</span> <span style="color: #a0522d;">d</span>;
 d.Parse(json);
 
-<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Document</span> <span style="color: #268bd2;">document</span>;
-<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">ifstream</span> <span style="color: #268bd2;">ifs</span>(p.string());
-<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">IStreamWrapper</span> <span style="color: #268bd2;">isw</span>(ifs);
+<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">Document</span> <span style="color: #a0522d;">document</span>;
+<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">ifstream</span> <span style="color: #0000ff;">ifs</span>(p.string());
+<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">IStreamWrapper</span> <span style="color: #0000ff;">isw</span>(ifs);
 document.ParseStream(isw);
 assert(document.IsArray());
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc67234f" class="outline-3">
-<h3 id="orgc67234f"><span class="section-number-3">1.2</span> Create Document</h3>
+<div id="outline-container-org8a5fc0f" class="outline-3">
+<h3 id="org8a5fc0f"><span class="section-number-3">1.2</span> Create Document</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Document</span> <span style="color: #268bd2;">doc</span>;
+<pre><code class="src src-cpp"><span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">Document</span> <span style="color: #a0522d;">doc</span>;
 doc.SetObject();
 doc.SetArray();
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3f8f0db" class="outline-3">
-<h3 id="org3f8f0db"><span class="section-number-3">1.3</span> Access Document</h3>
+<div id="outline-container-org0a7d303" class="outline-3">
+<h3 id="org0a7d303"><span class="section-number-3">1.3</span> Access Document</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900;">for</span> (<span style="color: #2aa198;">rapidjson</span>::Value &amp;field : v[<span style="color: #2aa198;">"fields"</span>].GetArray()) {
+<pre><code class="src src-cpp"><span style="color: #a020f0;">for</span> (<span style="color: #008b8b;">rapidjson</span>::Value &amp;field : v[<span style="color: #8b2252;">"fields"</span>].GetArray()) {
   Fields.push_back(field.GetString());
  }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org873d0b7" class="outline-3">
-<h3 id="org873d0b7"><span class="section-number-3">1.4</span> Create Value &amp; Save Document</h3>
+<div id="outline-container-orga22369d" class="outline-3">
+<h3 id="orga22369d"><span class="section-number-3">1.4</span> Create Value &amp; Save Document</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">rapidjson::kObjectType</span>
-<span style="color: #b58900;">Value</span> <span style="color: #268bd2;">array</span>(kArrayType);
-<span style="color: #2aa198;">Document</span>::<span style="color: #b58900;">AllocatorType</span> &amp;<span style="color: #268bd2;">allocator</span> = document.GetAllocator();
-array.PushBack(<span style="color: #2aa198;">"hello"</span>, allocator).PushBack(<span style="color: #2aa198;">"world"</span>, allocator);
+<pre><code class="src src-cpp"><span style="color: #b22222;">// </span><span style="color: #b22222;">rapidjson::kObjectType</span>
+<span style="color: #228b22;">Value</span> <span style="color: #0000ff;">array</span>(kArrayType);
+<span style="color: #008b8b;">Document</span>::<span style="color: #228b22;">AllocatorType</span> &amp;<span style="color: #a0522d;">allocator</span> = document.GetAllocator();
+array.PushBack(<span style="color: #8b2252;">"hello"</span>, allocator).PushBack(<span style="color: #8b2252;">"world"</span>, allocator);
 
-document.AddMember(<span style="color: #2aa198;">"array"</span>, array, allocator);
+document.AddMember(<span style="color: #8b2252;">"array"</span>, array, allocator);
 
-document.AddMember(<span style="color: #2aa198;">"Name"</span>, <span style="color: #2aa198;">"XYZ"</span>, allocator);
-document.AddMember(<span style="color: #2aa198;">"Name"</span>, <span style="color: #2aa198;">"5"</span>, allocator);
-document.AddMember(<span style="color: #2aa198;">"Name"</span>, 5, allocator);
+document.AddMember(<span style="color: #8b2252;">"Name"</span>, <span style="color: #8b2252;">"XYZ"</span>, allocator);
+document.AddMember(<span style="color: #8b2252;">"Name"</span>, <span style="color: #8b2252;">"5"</span>, allocator);
+document.AddMember(<span style="color: #8b2252;">"Name"</span>, 5, allocator);
 
-<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Value</span> <span style="color: #268bd2;">str</span>;
-<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #268bd2;">Name</span> = <span style="color: #2aa198;">"hello"</span>;
+<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">Value</span> <span style="color: #a0522d;">str</span>;
+<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span> = <span style="color: #8b2252;">"hello"</span>;
 str.SetString(Name.c_str(), allocator);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd9648e7" class="outline-3">
-<h3 id="orgd9648e7"><span class="section-number-3">1.5</span> Save</h3>
+<div id="outline-container-orgb02d0b5" class="outline-3">
+<h3 id="orgb02d0b5"><span class="section-number-3">1.5</span> Save</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">StringBuffer</span> <span style="color: #268bd2;">sb</span>;
-<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">PrettyWriter</span>&lt;<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">StringBuffer</span>&gt; <span style="color: #268bd2;">writer</span>(sb);
-<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">Writer</span>&lt;<span style="color: #2aa198;">rapidjson</span>::<span style="color: #b58900;">StringBuffer</span>&gt; <span style="color: #268bd2;">writer</span>(sb);
+<pre><code class="src src-cpp"><span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">StringBuffer</span> <span style="color: #a0522d;">sb</span>;
+<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">PrettyWriter</span>&lt;<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">StringBuffer</span>&gt; <span style="color: #0000ff;">writer</span>(sb);
+<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">Writer</span>&lt;<span style="color: #008b8b;">rapidjson</span>::<span style="color: #228b22;">StringBuffer</span>&gt; <span style="color: #0000ff;">writer</span>(sb);
 v.Accept(writer);
-os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
-</pre>
+os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #8b2252;">"\n"</span>;
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org20e2ebf" class="outline-3">
-<h3 id="org20e2ebf"><span class="section-number-3">1.6</span> Reference</h3>
+<div id="outline-container-org50f5bbb" class="outline-3">
+<h3 id="org50f5bbb"><span class="section-number-3">1.6</span> Reference</h3>
 <div class="outline-text-3" id="text-1-6">
-</div><div id="outline-container-orgf65c62a" class="outline-4">
-<h4 id="orgf65c62a"><span class="section-number-4">1.6.1</span> GenericDocument : public GenericValue</h4>
+</div>
+<div id="outline-container-org6c14b0d" class="outline-4">
+<h4 id="org6c14b0d"><span class="section-number-4">1.6.1</span> GenericDocument : public GenericValue</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <ul class="org-ul">
 <li>Allocator GetAllocator()</li>
@@ -365,11 +367,12 @@ os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
 </div>
 </div>
 
-<div id="outline-container-orga6ddcbc" class="outline-4">
-<h4 id="orga6ddcbc"><span class="section-number-4">1.6.2</span> GenericValue</h4>
+<div id="outline-container-org65e49a9" class="outline-4">
+<h4 id="org65e49a9"><span class="section-number-4">1.6.2</span> GenericValue</h4>
 <div class="outline-text-4" id="text-1-6-2">
-</div><div id="outline-container-org8f3bbd0" class="outline-5">
-<h5 id="org8f3bbd0"><span class="section-number-5">1.6.2.1</span> Predicate</h5>
+</div>
+<div id="outline-container-org0d96261" class="outline-5">
+<h5 id="org0d96261"><span class="section-number-5">1.6.2.1</span> Predicate</h5>
 <div class="outline-text-5" id="text-1-6-2-1">
 <ul class="org-ul">
 <li>IsNull</li>
@@ -383,8 +386,8 @@ os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
 </div>
 </div>
 
-<div id="outline-container-org4a9e826" class="outline-5">
-<h5 id="org4a9e826"><span class="section-number-5">1.6.2.2</span> Object</h5>
+<div id="outline-container-org57b193b" class="outline-5">
+<h5 id="org57b193b"><span class="section-number-5">1.6.2.2</span> Object</h5>
 <div class="outline-text-5" id="text-1-6-2-2">
 <ul class="org-ul">
 <li>SetObject()</li>
@@ -400,8 +403,8 @@ os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
 </div>
 </div>
 
-<div id="outline-container-org341d691" class="outline-5">
-<h5 id="org341d691"><span class="section-number-5">1.6.2.3</span> Array</h5>
+<div id="outline-container-orgb2134e2" class="outline-5">
+<h5 id="orgb2134e2"><span class="section-number-5">1.6.2.3</span> Array</h5>
 <div class="outline-text-5" id="text-1-6-2-3">
 <ul class="org-ul">
 <li>SetArray</li>
@@ -419,8 +422,8 @@ os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
 </div>
 </div>
 
-<div id="outline-container-org99133d6" class="outline-5">
-<h5 id="org99133d6"><span class="section-number-5">1.6.2.4</span> Other</h5>
+<div id="outline-container-org08a12bd" class="outline-5">
+<h5 id="org08a12bd"><span class="section-number-5">1.6.2.4</span> Other</h5>
 <div class="outline-text-5" id="text-1-6-2-4">
 <ul class="org-ul">
 <li>SetBool()</li>
@@ -438,7 +441,7 @@ os &lt;&lt; sb.GetString() &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

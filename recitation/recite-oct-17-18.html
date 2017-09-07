@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>COMS342 Recitation Oct 17 &amp; 18</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -253,11 +254,12 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">COMS342 Recitation Oct 17 &amp; 18</h1>
 
-<div id="outline-container-org5513432" class="outline-2">
-<h2 id="org5513432"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-org9bb3087" class="outline-2">
+<h2 id="org9bb3087"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org36f630e" class="outline-3">
-<h3 id="org36f630e"><span class="section-number-3">1.1</span> Outline</h3>
+</div>
+<div id="outline-container-org533688e" class="outline-3">
+<h3 id="org533688e"><span class="section-number-3">1.1</span> Outline</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>quicksort algorithm in general</li>
@@ -267,8 +269,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org9343945" class="outline-3">
-<h3 id="org9343945"><span class="section-number-3">1.2</span> quicksort algorithm in general</h3>
+<div id="outline-container-orge3999f5" class="outline-3">
+<h3 id="orge3999f5"><span class="section-number-3">1.2</span> quicksort algorithm in general</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 quicksort(lst) {
@@ -290,35 +292,35 @@ partition(pivot, lst) {
 </div>
 
 
-<div id="outline-container-org51052d5" class="outline-3">
-<h3 id="org51052d5"><span class="section-number-3">1.3</span> The "instanceof" operator of java.</h3>
+<div id="outline-container-orged14b31" class="outline-3">
+<h3 id="orged14b31"><span class="section-number-3">1.3</span> The "instanceof" operator of java.</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Used to check whether a variable has a type of a class <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #b58900;">A</span> { }  
-<span style="color: #859900;">class</span> <span style="color: #b58900;">C</span> <span style="color: #859900;">extends</span> <span style="color: #b58900;">A</span> { } 
-<span style="color: #859900;">class</span> <span style="color: #b58900;">D</span> <span style="color: #859900;">extends</span> <span style="color: #b58900;">A</span> <span style="color: #859900;">implements</span> <span style="color: #b58900;">MyInterface</span> { } 
+<pre><code class="src src-java"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span> { }  
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">C</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">A</span> { } 
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">D</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">A</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">MyInterface</span> { } 
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #b58900;">void</span> <span style="color: #268bd2;">testInstance</span>(){
-    <span style="color: #b58900;">A</span> <span style="color: #268bd2;">c</span> = <span style="color: #859900;">new</span> <span style="color: #b58900;">C</span>();
-    <span style="color: #b58900;">A</span> <span style="color: #268bd2;">d</span> = <span style="color: #859900;">new</span> <span style="color: #b58900;">D</span>();
-    Assert.assertTrue(c <span style="color: #859900;">instanceof</span> A &amp;&amp; d <span style="color: #859900;">instanceof</span> A);
-    Assert.assertTrue(c <span style="color: #859900;">instanceof</span> C &amp;&amp; d <span style="color: #859900;">instanceof</span> D);
-    Assert.assertFalse(c <span style="color: #859900;">instanceof</span> D);
-    Assert.assertFalse(d <span style="color: #859900;">instanceof</span> C);
-    Assert.assertFalse(c <span style="color: #859900;">instanceof</span> MyInterface);
-    Assert.assertTrue(d <span style="color: #859900;">instanceof</span> MyInterface);
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">testInstance</span>(){
+    <span style="color: #228b22;">A</span> <span style="color: #a0522d;">c</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">C</span>();
+    <span style="color: #228b22;">A</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">D</span>();
+    Assert.assertTrue(c <span style="color: #a020f0;">instanceof</span> A &amp;&amp; d <span style="color: #a020f0;">instanceof</span> A);
+    Assert.assertTrue(c <span style="color: #a020f0;">instanceof</span> C &amp;&amp; d <span style="color: #a020f0;">instanceof</span> D);
+    Assert.assertFalse(c <span style="color: #a020f0;">instanceof</span> D);
+    Assert.assertFalse(d <span style="color: #a020f0;">instanceof</span> C);
+    Assert.assertFalse(c <span style="color: #a020f0;">instanceof</span> MyInterface);
+    Assert.assertTrue(d <span style="color: #a020f0;">instanceof</span> MyInterface);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org24d4e51" class="outline-3">
-<h3 id="org24d4e51"><span class="section-number-3">1.4</span> higher order function advantage <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div id="outline-container-orgfc39791" class="outline-3">
+<h3 id="orgfc39791"><span class="section-number-3">1.4</span> higher order function advantage <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
 <div class="outline-text-3" id="text-1-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -375,63 +377,78 @@ We want to define a SQL-like query language.
 </div>
 </div>
 
-<div id="outline-container-org6ce38e5" class="outline-3">
-<h3 id="org6ce38e5"><span class="section-number-3">1.5</span> higher order function advantage (Ct.)</h3>
+<div id="outline-container-org5b24b3e" class="outline-3">
+<h3 id="org5b24b3e"><span class="section-number-3">1.5</span> higher order function advantage (Ct.)</h3>
 <div class="outline-text-3" id="text-1-5">
-</div><ol class="org-ol"><li><a id="org12971a8"></a>Ordinary solution (use a loop):<br /><div class="outline-text-5" id="text-1-5-0-1">
+</div>
+<ol class="org-ol">
+<li><a id="org237febd"></a>Ordinary solution (use a loop):<br />
+<div class="outline-text-5" id="text-1-5-0-1">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">select-by-artist</span> (artist)
-  (<span style="color: #859900;">loop</span> for cd in *db*
-       (<span style="color: #859900;">if</span> (equal (getf cd : artist) artist)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select-by-artist</span> (artist)
+  (<span style="color: #a020f0;">loop</span> for cd in *db*
+       (<span style="color: #a020f0;">if</span> (equal (getf cd : artist) artist)
            collect cd)))
-</pre>
+</code></pre>
 </div>
-</div></li></ol>
+</div>
+</li>
+</ol>
 </div>
 
 
-<div id="outline-container-org332f6d5" class="outline-3">
-<h3 id="org332f6d5"><span class="section-number-3">1.6</span> higher order function advantage (Ct.)</h3>
+<div id="outline-container-orgc077a70" class="outline-3">
+<h3 id="orgc077a70"><span class="section-number-3">1.6</span> higher order function advantage (Ct.)</h3>
 <div class="outline-text-3" id="text-1-6">
-</div><ol class="org-ol"><li><a id="org3441a39"></a>Better solution (mapping a function):<br /><div class="outline-text-5" id="text-1-6-0-1">
+</div>
+<ol class="org-ol">
+<li><a id="org1626367"></a>Better solution (mapping a function):<br />
+<div class="outline-text-5" id="text-1-6-0-1">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">select-by-artist</span> (artist)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select-by-artist</span> (artist)
   (remove-if-not
-   #'(<span style="color: #859900;">lambda</span> (cd) (equal (getf cd <span style="color: #859900;">:artist</span>) artist))
+   #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist))
    *db*))
-</pre>
+</code></pre>
 </div>
 
 <p>
 \pause
 </p>
-</div></li>
+</div>
+</li>
 
-<li><a id="org4a59ca3"></a>Even better (functions as selectors)<br /><div class="outline-text-5" id="text-1-6-0-2">
+<li><a id="org995859b"></a>Even better (functions as selectors)<br />
+<div class="outline-text-5" id="text-1-6-0-2">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">select</span> (selector-fn)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select</span> (selector-fn)
   (remove-if-not selector-fn *db*))
 
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">artist-selector</span> (artist)
-  #'(<span style="color: #859900;">lambda</span> (cd) (equal (getf cd <span style="color: #859900;">:artist</span>) artist)))
-</pre>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">artist-selector</span> (artist)
+  #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist)))
+</code></pre>
 </div>
-</div></li></ol>
+</div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-orgbe9457e" class="outline-3">
-<h3 id="orgbe9457e"><span class="section-number-3">1.7</span> higher order function advantage (Ct.)</h3>
+<div id="outline-container-orgd3079e0" class="outline-3">
+<h3 id="orgd3079e0"><span class="section-number-3">1.7</span> higher order function advantage (Ct.)</h3>
 <div class="outline-text-3" id="text-1-7">
-</div><ol class="org-ol"><li><a id="org5a8911a"></a>Where clause:<br /><div class="outline-text-4" id="text-1-7-1">
+</div>
+<ol class="org-ol">
+<li><a id="org881e733"></a>Where clause:<br />
+<div class="outline-text-4" id="text-1-7-1">
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">where</span> (<span style="color: #b58900;">&amp;key</span> title artist rating (ripped nil ripped-p))
-  #'(<span style="color: #859900;">lambda</span> (cd)
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
+  #'(<span style="color: #a020f0;">lambda</span> (cd)
       (and
-       (<span style="color: #859900;">if</span> title    (equal (getf cd <span style="color: #859900;">:title</span>)  title)  t)
-       (<span style="color: #859900;">if</span> artist   (equal (getf cd <span style="color: #859900;">:artist</span>) artist) t)
-       (<span style="color: #859900;">if</span> rating   (equal (getf cd <span style="color: #859900;">:rating</span>) rating) t)
-       (<span style="color: #859900;">if</span> ripped-p (equal (getf cd <span style="color: #859900;">:ripped</span>) ripped) t))))
-</pre>
+       (<span style="color: #a020f0;">if</span> title    (equal (getf cd <span style="color: #483d8b;">:title</span>)  title)  t)
+       (<span style="color: #a020f0;">if</span> artist   (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist) t)
+       (<span style="color: #a020f0;">if</span> rating   (equal (getf cd <span style="color: #483d8b;">:rating</span>) rating) t)
+       (<span style="color: #a020f0;">if</span> ripped-p (equal (getf cd <span style="color: #483d8b;">:ripped</span>) ripped) t))))
+</code></pre>
 </div>
 
 <p>
@@ -441,20 +458,24 @@ using by: <code>(select (where :rating 10 :ripped nil))</code>
 <p>
 \pause
 </p>
-</div></li>
-
-<li><a id="orge9a4c28"></a><b>Ultimate Solution: Macro:</b><br /><div class="outline-text-4" id="text-1-7-2">
-<div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">make-comparison-expr</span> (field value)
-  `(equal (getf cd ,field) ,value))
-(<span style="color: #859900;">defun</span> <span style="color: #268bd2;">make-comparisons-list</span> (fields)
-  (<span style="color: #859900;">loop</span> while fields
-     collecting (make-comparison-expr (pop fields) (pop fields))))
-(<span style="color: #859900;">defmacro</span> <span style="color: #268bd2;">where</span> (<span style="color: #b58900;">&amp;rest</span> clauses)
-  `#'(<span style="color: #859900;">lambda</span> (cd) (and ,@(make-comparisons-list clauses))))
-</pre>
 </div>
-</div></li></ol>
+</li>
+
+<li><a id="orgb92a75a"></a><b>Ultimate Solution: Macro:</b><br />
+<div class="outline-text-4" id="text-1-7-2">
+<div class="org-src-container">
+<pre><code class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparison-expr</span> (field value)
+  `(equal (getf cd ,field) ,value))
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparisons-list</span> (fields)
+  (<span style="color: #a020f0;">loop</span> while fields
+     collecting (make-comparison-expr (pop fields) (pop fields))))
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;rest</span> clauses)
+  `#'(<span style="color: #a020f0;">lambda</span> (cd) (and ,@(make-comparisons-list clauses))))
+</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div id="footnotes">
@@ -474,7 +495,7 @@ using by: <code>(select (where :rating 10 :ripped nil))</code>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

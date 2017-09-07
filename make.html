@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Make</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -262,40 +263,40 @@ for the JavaScript code in this tag.
 
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span style="color: #268bd2;">CC</span>=g++
-<span style="color: #268bd2;">CFLAGS</span> = -g -Wall
-<span style="color: #268bd2;">INCLUDES</span> = -I/home/newhall/include  -I../include
-<span style="color: #268bd2;">LFLAGS</span> = -L/home/newhall/lib  -L../lib
-<span style="color: #268bd2;">LIBS</span> = -lmylib -lm
-<span style="color: #268bd2;">SRCS</span> = majority_element.cpp
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">SRCS = $(</span><span style="color: #268bd2; font-style: italic;">wildcard</span><span style="color: #93a1a1; font-style: italic;"> *.c)</span>
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">SRCS = $(</span><span style="color: #268bd2; font-style: italic;">filter-out</span><span style="color: #93a1a1; font-style: italic;"> support.c, $(</span><span style="color: #268bd2; font-style: italic;">wildcard</span><span style="color: #93a1a1; font-style: italic;"> *.c))</span>
-<span style="color: #268bd2;">OBJS</span> = $(<span style="color: #268bd2;">SRCS</span>:<span style="color: #268bd2;">.c</span>=.o)
-<span style="color: #268bd2;">MAIN</span> = myprog
+<pre><code class="src src-makefile"><span style="color: #a0522d;">CC</span>=g++
+<span style="color: #a0522d;">CFLAGS</span> = -g -Wall
+<span style="color: #a0522d;">INCLUDES</span> = -I/home/newhall/include  -I../include
+<span style="color: #a0522d;">LFLAGS</span> = -L/home/newhall/lib  -L../lib
+<span style="color: #a0522d;">LIBS</span> = -lmylib -lm
+<span style="color: #a0522d;">SRCS</span> = majority_element.cpp
+<span style="color: #b22222;"># </span><span style="color: #b22222;">SRCS = $(</span><span style="color: #a0522d;">wildcard</span><span style="color: #b22222;"> *.c)</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">SRCS = $(</span><span style="color: #a0522d;">filter-out</span><span style="color: #b22222;"> support.c, $(</span><span style="color: #a0522d;">wildcard</span><span style="color: #b22222;"> *.c))</span>
+<span style="color: #a0522d;">OBJS</span> = $(<span style="color: #a0522d;">SRCS</span>:<span style="color: #a0522d;">.c</span>=.o)
+<span style="color: #a0522d;">MAIN</span> = myprog
 
-<span style="color: #268bd2;">.PHONY</span>: all clean
+<span style="color: #0000ff;">.PHONY</span>: all clean
 
 
-<span style="color: #268bd2;">all</span>: $(<span style="color: #268bd2;">MAIN</span>)
-  @echo Compiled $(<span style="color: #268bd2;">MAIN</span>)
+<span style="color: #0000ff;">all</span>: $(<span style="color: #a0522d;">MAIN</span>)
+  @echo Compiled $(<span style="color: #a0522d;">MAIN</span>)
 
-<span style="color: #268bd2;">$(</span><span style="color: #268bd2;">MAIN</span><span style="color: #268bd2;">)</span>: $(<span style="color: #268bd2;">OBJS</span>)
-  $(<span style="color: #268bd2;">CC</span>) $(<span style="color: #268bd2;">CFLAGS</span>) $(<span style="color: #268bd2;">INCLUDES</span>) -o $(<span style="color: #268bd2;">MAIN</span>) $(<span style="color: #268bd2;">OBJS</span>) $(<span style="color: #268bd2;">LFLAGS</span>) $(<span style="color: #268bd2;">LIBS</span>)
+<span style="color: #0000ff;">$(</span><span style="color: #0000ff;">MAIN</span><span style="color: #0000ff;">)</span>: $(<span style="color: #a0522d;">OBJS</span>)
+  $(<span style="color: #a0522d;">CC</span>) $(<span style="color: #a0522d;">CFLAGS</span>) $(<span style="color: #a0522d;">INCLUDES</span>) -o $(<span style="color: #a0522d;">MAIN</span>) $(<span style="color: #a0522d;">OBJS</span>) $(<span style="color: #a0522d;">LFLAGS</span>) $(<span style="color: #a0522d;">LIBS</span>)
 
-<span style="color: #268bd2;">test</span>: test.cpp
-  $(<span style="color: #268bd2;">CC</span>) $(<span style="color: #268bd2;">CFLAGS</span>) $(<span style="color: #268bd2;">INCLUDES</span>) -o test test.cpp
+<span style="color: #0000ff;">test</span>: test.cpp
+  $(<span style="color: #a0522d;">CC</span>) $(<span style="color: #a0522d;">CFLAGS</span>) $(<span style="color: #a0522d;">INCLUDES</span>) -o test test.cpp
 
-<span style="color: #268bd2;">%.o</span> : %.cpp
-  $(<span style="color: #268bd2;">CC</span>) $(<span style="color: #268bd2;">CFLAGS</span>) $(<span style="color: #268bd2;">INCLUDES</span>) -c $<span style="color: #2aa198;">&lt;</span> -o <span style="color: #268bd2;">$</span><span style="color: #2aa198;">@</span>
+<span style="color: #0000ff;">%.o</span> : %.cpp
+  $(<span style="color: #a0522d;">CC</span>) $(<span style="color: #a0522d;">CFLAGS</span>) $(<span style="color: #a0522d;">INCLUDES</span>) -c $<span style="color: #008b8b;">&lt;</span> -o <span style="color: #0000ff;">$</span><span style="color: #008b8b;">@</span>
 
-<span style="color: #268bd2;">clean</span>:
-  $(<span style="color: #268bd2;">RM</span>) *.o *~ $(<span style="color: #268bd2;">MAIN</span>) test
-</pre>
+<span style="color: #0000ff;">clean</span>:
+  $(<span style="color: #a0522d;">RM</span>) *.o *~ $(<span style="color: #a0522d;">MAIN</span>) test
+</code></pre>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

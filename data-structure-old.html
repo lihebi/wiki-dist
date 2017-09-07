@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Data Structure</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -256,75 +257,75 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga79c582">1. 树</a>
+<li><a href="#org1ed387f">1. 树</a>
 <ul>
-<li><a href="#org1bac675">1.1. 一些定义</a></li>
-<li><a href="#org36b678b">1.2. 一些性质</a>
+<li><a href="#org2b3c97d">1.1. 一些定义</a></li>
+<li><a href="#org0008d22">1.2. 一些性质</a>
 <ul>
-<li><a href="#org30da2fe">1.2.1. 完全二叉树</a></li>
+<li><a href="#orgec962e2">1.2.1. 完全二叉树</a></li>
 </ul>
 </li>
-<li><a href="#orgc06c8f3">1.3. 二叉查找树</a>
+<li><a href="#orgfcbb7bc">1.3. 二叉查找树</a>
 <ul>
-<li><a href="#orga571359">1.3.1. 删除操作</a></li>
+<li><a href="#orgeb0e3cb">1.3.1. 删除操作</a></li>
 </ul>
 </li>
-<li><a href="#orgbfb03d2">1.4. AVL树</a>
+<li><a href="#org06dd70d">1.4. AVL树</a>
 <ul>
-<li><a href="#org8f2c75a">1.4.1. 单旋转</a></li>
-<li><a href="#org2b28021">1.4.2. 双旋转</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgad609fa">2. 堆</a>
-<ul>
-<li><a href="#org19f37df">2.1. Insert</a></li>
-<li><a href="#orgb5abae9">2.2. DeleteMin</a></li>
-</ul>
-</li>
-<li><a href="#orgbcd9086">3. 排序</a>
-<ul>
-<li><a href="#org394762b">3.1. 插入排序</a></li>
-<li><a href="#org07956fd">3.2. 希尔排序</a></li>
-<li><a href="#org8731bf7">3.3. 堆排序</a>
-<ul>
-<li><a href="#org3ad93a6">3.3.1. 额外阅读</a></li>
-</ul>
-</li>
-<li><a href="#org9887fc6">3.4. 归并排序</a></li>
-<li><a href="#org8581fe5">3.5. 快速排序</a>
-<ul>
-<li><a href="#org543604c">3.5.1. 选取枢纽元</a>
-<ul>
-<li><a href="#org3513a8f">3.5.1.1. 错误的方法</a></li>
-<li><a href="#orgf3040fa">3.5.1.2. 安全的做法</a></li>
-<li><a href="#orgdd1fd55">3.5.1.3. 三数中值分割法</a></li>
-</ul>
-</li>
-<li><a href="#org1bf23de">3.5.2. 分割策略</a></li>
+<li><a href="#orgae73a8d">1.4.1. 单旋转</a></li>
+<li><a href="#org582d9aa">1.4.2. 双旋转</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org70a924f">4. 图</a>
+<li><a href="#org02684d0">2. 堆</a>
 <ul>
-<li><a href="#orgf0b2a92">4.1. 一些定义</a></li>
-<li><a href="#org53f89be">4.2. 拓扑排序</a>
-<ul>
-<li><a href="#org94c69af">4.2.1. 一个简单的算法</a></li>
+<li><a href="#orgeb48030">2.1. Insert</a></li>
+<li><a href="#orga298993">2.2. DeleteMin</a></li>
 </ul>
 </li>
-<li><a href="#org5bcbfdf">4.3. 最短路径</a>
+<li><a href="#org6ddc2bc">3. 排序</a>
 <ul>
-<li><a href="#org42cd6e6">4.3.1. 无权最短路径</a></li>
-<li><a href="#org297e065">4.3.2. 赋权最短路径</a></li>
+<li><a href="#org7135340">3.1. 插入排序</a></li>
+<li><a href="#orga5adacc">3.2. 希尔排序</a></li>
+<li><a href="#org225ff7a">3.3. 堆排序</a>
+<ul>
+<li><a href="#org32375ee">3.3.1. 额外阅读</a></li>
 </ul>
 </li>
-<li><a href="#orgb151a83">4.4. 最小生成树</a>
+<li><a href="#orga3e9f3b">3.4. 归并排序</a></li>
+<li><a href="#orgf14dfb9">3.5. 快速排序</a>
 <ul>
-<li><a href="#org725e54b">4.4.1. Prim算法</a></li>
-<li><a href="#org4a80385">4.4.2. Kruskal算法</a></li>
+<li><a href="#orgc50652e">3.5.1. 选取枢纽元</a>
+<ul>
+<li><a href="#orge88a426">3.5.1.1. 错误的方法</a></li>
+<li><a href="#org201340c">3.5.1.2. 安全的做法</a></li>
+<li><a href="#org32d4128">3.5.1.3. 三数中值分割法</a></li>
+</ul>
+</li>
+<li><a href="#org5f900bf">3.5.2. 分割策略</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org409a879">4. 图</a>
+<ul>
+<li><a href="#orgde45094">4.1. 一些定义</a></li>
+<li><a href="#org0f37f94">4.2. 拓扑排序</a>
+<ul>
+<li><a href="#org5617ef1">4.2.1. 一个简单的算法</a></li>
+</ul>
+</li>
+<li><a href="#org3657f29">4.3. 最短路径</a>
+<ul>
+<li><a href="#orgfc917ab">4.3.1. 无权最短路径</a></li>
+<li><a href="#org4d6f5f6">4.3.2. 赋权最短路径</a></li>
+</ul>
+</li>
+<li><a href="#org9fc98af">4.4. 最小生成树</a>
+<ul>
+<li><a href="#org07779c0">4.4.1. Prim算法</a></li>
+<li><a href="#org3c9af6a">4.4.2. Kruskal算法</a></li>
 </ul>
 </li>
 </ul>
@@ -333,11 +334,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga79c582" class="outline-2">
-<h2 id="orga79c582"><span class="section-number-2">1</span> 树</h2>
+<div id="outline-container-org1ed387f" class="outline-2">
+<h2 id="org1ed387f"><span class="section-number-2">1</span> 树</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org1bac675" class="outline-3">
-<h3 id="org1bac675"><span class="section-number-3">1.1</span> 一些定义</h3>
+</div>
+<div id="outline-container-org2b3c97d" class="outline-3">
+<h3 id="org2b3c97d"><span class="section-number-3">1.1</span> 一些定义</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>满二叉树:全满.</li>
@@ -346,11 +348,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org36b678b" class="outline-3">
-<h3 id="org36b678b"><span class="section-number-3">1.2</span> 一些性质</h3>
+<div id="outline-container-org0008d22" class="outline-3">
+<h3 id="org0008d22"><span class="section-number-3">1.2</span> 一些性质</h3>
 <div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-org30da2fe" class="outline-4">
-<h4 id="org30da2fe"><span class="section-number-4">1.2.1</span> 完全二叉树</h4>
+</div>
+<div id="outline-container-orgec962e2" class="outline-4">
+<h4 id="orgec962e2"><span class="section-number-4">1.2.1</span> 完全二叉树</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 一个位置为=i=的节点,其左孩子为=2i=,父节点为&amp;lfloor;i/2&amp;rfloor;
@@ -359,16 +362,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc06c8f3" class="outline-3">
-<h3 id="orgc06c8f3"><span class="section-number-3">1.3</span> 二叉查找树</h3>
+<div id="outline-container-orgfcbb7bc" class="outline-3">
+<h3 id="orgfcbb7bc"><span class="section-number-3">1.3</span> 二叉查找树</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 对于树中每一个节点，其左子树中所有关键字值小于该节点关键字值，右子树中所有关键字值大于之。
 </p>
 </div>
 
-<div id="outline-container-orga571359" class="outline-4">
-<h4 id="orga571359"><span class="section-number-4">1.3.1</span> 删除操作</h4>
+<div id="outline-container-orgeb0e3cb" class="outline-4">
+<h4 id="orgeb0e3cb"><span class="section-number-4">1.3.1</span> 删除操作</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li>若要删除的节点是一片树叶，直接删。</li>
@@ -383,8 +386,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgbfb03d2" class="outline-3">
-<h3 id="orgbfb03d2"><span class="section-number-3">1.4</span> AVL树</h3>
+<div id="outline-container-org06dd70d" class="outline-3">
+<h3 id="org06dd70d"><span class="section-number-3">1.4</span> AVL树</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 带有平衡条件的二叉查找树.
@@ -433,8 +436,8 @@ for the JavaScript code in this tag.
 </p>
 </div>
 
-<div id="outline-container-org8f2c75a" class="outline-4">
-<h4 id="org8f2c75a"><span class="section-number-4">1.4.1</span> 单旋转</h4>
+<div id="outline-container-orgae73a8d" class="outline-4">
+<h4 id="orgae73a8d"><span class="section-number-4">1.4.1</span> 单旋转</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 下图中X比Z深2,需要修复.
@@ -463,8 +466,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2b28021" class="outline-4">
-<h4 id="org2b28021"><span class="section-number-4">1.4.2</span> 双旋转</h4>
+<div id="outline-container-org582d9aa" class="outline-4">
+<h4 id="org582d9aa"><span class="section-number-4">1.4.2</span> 双旋转</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <p>
 k2那个分支太深了,单旋转解决不了.双旋转修复法:
@@ -496,8 +499,8 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </div>
 
 
-<div id="outline-container-orgad609fa" class="outline-2">
-<h2 id="orgad609fa"><span class="section-number-2">2</span> 堆</h2>
+<div id="outline-container-org02684d0" class="outline-2">
+<h2 id="org02684d0"><span class="section-number-2">2</span> 堆</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 堆又叫=优先队列=.
@@ -525,8 +528,8 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </p>
 </div>
 
-<div id="outline-container-org19f37df" class="outline-3">
-<h3 id="org19f37df"><span class="section-number-3">2.1</span> Insert</h3>
+<div id="outline-container-orgeb48030" class="outline-3">
+<h3 id="orgeb48030"><span class="section-number-3">2.1</span> Insert</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 上滤:
@@ -541,8 +544,8 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </div>
 </div>
 
-<div id="outline-container-orgb5abae9" class="outline-3">
-<h3 id="orgb5abae9"><span class="section-number-3">2.2</span> DeleteMin</h3>
+<div id="outline-container-orga298993" class="outline-3">
+<h3 id="orga298993"><span class="section-number-3">2.2</span> DeleteMin</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 下滤:
@@ -567,11 +570,12 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </div>
 </div>
 
-<div id="outline-container-orgbcd9086" class="outline-2">
-<h2 id="orgbcd9086"><span class="section-number-2">3</span> 排序</h2>
+<div id="outline-container-org6ddc2bc" class="outline-2">
+<h2 id="org6ddc2bc"><span class="section-number-2">3</span> 排序</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org394762b" class="outline-3">
-<h3 id="org394762b"><span class="section-number-3">3.1</span> 插入排序</h3>
+</div>
+<div id="outline-container-org7135340" class="outline-3">
+<h3 id="org7135340"><span class="section-number-3">3.1</span> 插入排序</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 在第 <code>P</code> 趟,将位置 <code>P</code> 上的元素向左移动到它在前 <code>P+1</code> 个元素的正确位置上.
@@ -579,8 +583,8 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </div>
 </div>
 
-<div id="outline-container-org07956fd" class="outline-3">
-<h3 id="org07956fd"><span class="section-number-3">3.2</span> 希尔排序</h3>
+<div id="outline-container-orga5adacc" class="outline-3">
+<h3 id="orga5adacc"><span class="section-number-3">3.2</span> 希尔排序</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 又叫 <code>缩小增量排序</code>
@@ -615,8 +619,8 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </div>
 </div>
 
-<div id="outline-container-org8731bf7" class="outline-3">
-<h3 id="org8731bf7"><span class="section-number-3">3.3</span> 堆排序</h3>
+<div id="outline-container-org225ff7a" class="outline-3">
+<h3 id="org225ff7a"><span class="section-number-3">3.3</span> 堆排序</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 建立N个元素的二叉堆,花费 \(O(N)\) 时间.
@@ -631,8 +635,8 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </p>
 </div>
 
-<div id="outline-container-org3ad93a6" class="outline-4">
-<h4 id="org3ad93a6"><span class="section-number-4">3.3.1</span> 额外阅读</h4>
+<div id="outline-container-org32375ee" class="outline-4">
+<h4 id="org32375ee"><span class="section-number-4">3.3.1</span> 额外阅读</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 <code>DeleteMin</code> 输出结果时,要使用另一个数组.可以避免的.方法是将出来的放到最后新空出来的空穴中.
@@ -646,24 +650,24 @@ k2那个分支太深了,单旋转解决不了.双旋转修复法:
 </div>
 </div>
 
-<div id="outline-container-org9887fc6" class="outline-3">
-<h3 id="org9887fc6"><span class="section-number-3">3.4</span> 归并排序</h3>
+<div id="outline-container-orga3e9f3b" class="outline-3">
+<h3 id="orga3e9f3b"><span class="section-number-3">3.4</span> 归并排序</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 基本操作是合并两个已经排序的表.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">MSort</span>(<span style="color: #b58900;">ElementType</span> <span style="color: #268bd2;">A</span>[], <span style="color: #b58900;">ElementType</span> <span style="color: #268bd2;">TmpArray</span>[], <span style="color: #b58900;">int</span> <span style="color: #268bd2;">Left</span>, <span style="color: #b58900;">int</span> <span style="color: #268bd2;">Right</span>) {
-  <span style="color: #b58900;">int</span> <span style="color: #268bd2;">Center</span>;
-  <span style="color: #859900;">if</span> (Left&lt;Right) {
+<pre><code class="src src-C"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">MSort</span>(<span style="color: #228b22;">ElementType</span> <span style="color: #a0522d;">A</span>[], <span style="color: #228b22;">ElementType</span> <span style="color: #a0522d;">TmpArray</span>[], <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Left</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Right</span>) {
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Center</span>;
+  <span style="color: #a020f0;">if</span> (Left&lt;Right) {
     Center = (Left+Right)/2;
     MSort(A, TmpArray, Left, Center);
     MSort(A, TmpArray, Center+1, Right);
     Merge(A, TmpArrray, Center+1, Right);
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -680,8 +684,8 @@ Merge函数用来连接两个已经排序的表.
 </div>
 </div>
 
-<div id="outline-container-org8581fe5" class="outline-3">
-<h3 id="org8581fe5"><span class="section-number-3">3.5</span> 快速排序</h3>
+<div id="outline-container-orgf14dfb9" class="outline-3">
+<h3 id="orgf14dfb9"><span class="section-number-3">3.5</span> 快速排序</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 快速排序是在实践中最快的已知排序算法.
@@ -702,27 +706,28 @@ Merge函数用来连接两个已经排序的表.
 </ul>
 </div>
 
-<div id="outline-container-org543604c" class="outline-4">
-<h4 id="org543604c"><span class="section-number-4">3.5.1</span> 选取枢纽元</h4>
+<div id="outline-container-orgc50652e" class="outline-4">
+<h4 id="orgc50652e"><span class="section-number-4">3.5.1</span> 选取枢纽元</h4>
 <div class="outline-text-4" id="text-3-5-1">
-</div><div id="outline-container-org3513a8f" class="outline-5">
-<h5 id="org3513a8f"><span class="section-number-5">3.5.1.1</span> 错误的方法</h5>
+</div>
+<div id="outline-container-orge88a426" class="outline-5">
+<h5 id="orge88a426"><span class="section-number-5">3.5.1.1</span> 错误的方法</h5>
 <div class="outline-text-5" id="text-3-5-1-1">
 <p>
 使用第一个元素
 </p>
 </div>
 </div>
-<div id="outline-container-orgf3040fa" class="outline-5">
-<h5 id="orgf3040fa"><span class="section-number-5">3.5.1.2</span> 安全的做法</h5>
+<div id="outline-container-org201340c" class="outline-5">
+<h5 id="org201340c"><span class="section-number-5">3.5.1.2</span> 安全的做法</h5>
 <div class="outline-text-5" id="text-3-5-1-2">
 <p>
 随机选取.但是不好,随机数生成一般是昂贵的.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdd1fd55" class="outline-5">
-<h5 id="orgdd1fd55"><span class="section-number-5">3.5.1.3</span> 三数中值分割法</h5>
+<div id="outline-container-org32d4128" class="outline-5">
+<h5 id="org32d4128"><span class="section-number-5">3.5.1.3</span> 三数中值分割法</h5>
 <div class="outline-text-5" id="text-3-5-1-3">
 <p>
 最好的方法是使用数组的中值,但是计算昂贵.
@@ -735,8 +740,8 @@ Merge函数用来连接两个已经排序的表.
 </div>
 </div>
 
-<div id="outline-container-org1bf23de" class="outline-4">
-<h4 id="org1bf23de"><span class="section-number-4">3.5.2</span> 分割策略</h4>
+<div id="outline-container-org5f900bf" class="outline-4">
+<h4 id="org5f900bf"><span class="section-number-4">3.5.2</span> 分割策略</h4>
 <div class="outline-text-4" id="text-3-5-2">
 <p>
 已知枢纽元,如何将小的放前面,大的放后面?
@@ -754,11 +759,12 @@ Merge函数用来连接两个已经排序的表.
 </div>
 </div>
 
-<div id="outline-container-org70a924f" class="outline-2">
-<h2 id="org70a924f"><span class="section-number-2">4</span> 图</h2>
+<div id="outline-container-org409a879" class="outline-2">
+<h2 id="org409a879"><span class="section-number-2">4</span> 图</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgf0b2a92" class="outline-3">
-<h3 id="orgf0b2a92"><span class="section-number-3">4.1</span> 一些定义</h3>
+</div>
+<div id="outline-container-orgde45094" class="outline-3">
+<h3 id="orgde45094"><span class="section-number-3">4.1</span> 一些定义</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><code>无向图是连通的</code>: 一个无向图,每一个顶点到其他顶点都存在一条路径</li>
@@ -767,8 +773,8 @@ Merge函数用来连接两个已经排序的表.
 </div>
 </div>
 
-<div id="outline-container-org53f89be" class="outline-3">
-<h3 id="org53f89be"><span class="section-number-3">4.2</span> 拓扑排序</h3>
+<div id="outline-container-org0f37f94" class="outline-3">
+<h3 id="org0f37f94"><span class="section-number-3">4.2</span> 拓扑排序</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 拓扑排序是对有向无圈图的顶点的一种排序,使得如果存在vi到vj的路径,那么在排序中vi在vj前面.
@@ -779,8 +785,8 @@ Merge函数用来连接两个已经排序的表.
 </p>
 </div>
 
-<div id="outline-container-org94c69af" class="outline-4">
-<h4 id="org94c69af"><span class="section-number-4">4.2.1</span> 一个简单的算法</h4>
+<div id="outline-container-org5617ef1" class="outline-4">
+<h4 id="org5617ef1"><span class="section-number-4">4.2.1</span> 一个简单的算法</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ol class="org-ol">
 <li>在图中找到一个入度为0的点</li>
@@ -789,13 +795,13 @@ Merge函数用来连接两个已经排序的表.
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-text">for(all vertex) {
+<pre><code class="src src-text">for(all vertex) {
   v = findVertexOfIndegreeZero();
   for each w adjacent to v {
     Indegree[w]--;
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -803,33 +809,33 @@ Merge函数用来连接两个已经排序的表.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C">q = createQueue(N);
+<pre><code class="src src-C">q = createQueue(N);
 MakeEmpty(q);
-<span style="color: #859900;">for</span> each vertex v {
-  <span style="color: #859900;">if</span> (Indegree[v]==0) Enqueue(V,Q);
+<span style="color: #a020f0;">for</span> each vertex v {
+  <span style="color: #a020f0;">if</span> (Indegree[v]==0) Enqueue(V,Q);
 }
-<span style="color: #859900;">while</span>(<span style="color: #dc322f;">!</span>IsEmpty(q)) {
+<span style="color: #a020f0;">while</span>(!IsEmpty(q)) {
   v = Dequeue(q);
-  <span style="color: #859900;">for</span> each w adjacent to v {
-    <span style="color: #859900;">if</span> (--Indegree[v]==0) Enqueue(w,q);
+  <span style="color: #a020f0;">for</span> each w adjacent to v {
+    <span style="color: #a020f0;">if</span> (--Indegree[v]==0) Enqueue(w,q);
   }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5bcbfdf" class="outline-3">
-<h3 id="org5bcbfdf"><span class="section-number-3">4.3</span> 最短路径</h3>
+<div id="outline-container-org3657f29" class="outline-3">
+<h3 id="org3657f29"><span class="section-number-3">4.3</span> 最短路径</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 单源最短路径问题: 从一个特定顶点s到该图种每个个顶点的最短路径.
 </p>
 </div>
 
-<div id="outline-container-org42cd6e6" class="outline-4">
-<h4 id="org42cd6e6"><span class="section-number-4">4.3.1</span> 无权最短路径</h4>
+<div id="outline-container-orgfc917ab" class="outline-4">
+<h4 id="orgfc917ab"><span class="section-number-4">4.3.1</span> 无权最短路径</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 所有边的权值为1.
@@ -857,15 +863,15 @@ MakeEmpty(q);
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">Unweighted</span>(<span style="color: #b58900;">Table</span> <span style="color: #268bd2;">t</span>) {
-  <span style="color: #b58900;">int</span> <span style="color: #268bd2;">currDist</span>;
-  <span style="color: #b58900;">Vertex</span> <span style="color: #268bd2;">v</span>,<span style="color: #268bd2;">w</span>;
-  <span style="color: #859900;">for</span> (currDist=0;currDist&lt;Num; currDist++) {
-    <span style="color: #859900;">for</span> each vertex v {
-      <span style="color: #859900;">if</span> (<span style="color: #dc322f;">!</span>t[v].Known &amp;&amp; t[v].Disk == currDist) {
+<pre><code class="src src-C"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">Unweighted</span>(<span style="color: #228b22;">Table</span> <span style="color: #a0522d;">t</span>) {
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">currDist</span>;
+  <span style="color: #228b22;">Vertex</span> <span style="color: #a0522d;">v</span>,<span style="color: #a0522d;">w</span>;
+  <span style="color: #a020f0;">for</span> (currDist=0;currDist&lt;Num; currDist++) {
+    <span style="color: #a020f0;">for</span> each vertex v {
+      <span style="color: #a020f0;">if</span> (!t[v].Known &amp;&amp; t[v].Disk == currDist) {
         t[v].known = 1;
-        <span style="color: #859900;">for</span> each w adjacent to v {
-          <span style="color: #859900;">if</span> (t[w].dist == Infinity) {
+        <span style="color: #a020f0;">for</span> each w adjacent to v {
+          <span style="color: #a020f0;">if</span> (t[w].dist == Infinity) {
             t[w].dist = currDist+1;
             t[w].path = v;
           }
@@ -874,7 +880,7 @@ MakeEmpty(q);
     }
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -888,17 +894,17 @@ MakeEmpty(q);
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">Unweighted</span>(<span style="color: #b58900;">Table</span> <span style="color: #268bd2;">t</span>) {
-  <span style="color: #b58900;">Queue</span> <span style="color: #268bd2;">q</span>;
-  <span style="color: #b58900;">Vertex</span> <span style="color: #268bd2;">v</span>,<span style="color: #268bd2;">w</span>;
+<pre><code class="src src-C"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">Unweighted</span>(<span style="color: #228b22;">Table</span> <span style="color: #a0522d;">t</span>) {
+  <span style="color: #228b22;">Queue</span> <span style="color: #a0522d;">q</span>;
+  <span style="color: #228b22;">Vertex</span> <span style="color: #a0522d;">v</span>,<span style="color: #a0522d;">w</span>;
   q = CreateQueue(N);
   MakeEmpty(q);
   Enqueue(s,q);
-  <span style="color: #859900;">while</span>(<span style="color: #dc322f;">!</span>IsEmpty(q)) {
+  <span style="color: #a020f0;">while</span>(!IsEmpty(q)) {
     v = Dequeue(Q);
     t[v].known = 1;
-    <span style="color: #859900;">for</span> each w adjacent to v {
-      <span style="color: #859900;">if</span> (t[w].dist == Infinity) {
+    <span style="color: #a020f0;">for</span> each w adjacent to v {
+      <span style="color: #a020f0;">if</span> (t[w].dist == Infinity) {
         t[w].dist = t[v].dist + 1;
         t[w].path = v;
         Enqueue(W,Q);
@@ -906,13 +912,13 @@ MakeEmpty(q);
     }
   }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org297e065" class="outline-4">
-<h4 id="org297e065"><span class="section-number-4">4.3.2</span> 赋权最短路径</h4>
+<div id="outline-container-org4d6f5f6" class="outline-4">
+<h4 id="org4d6f5f6"><span class="section-number-4">4.3.2</span> 赋权最短路径</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 解决单源最短路径问题的一般方法叫做 <code>Dijkstra算法</code>.
@@ -926,16 +932,16 @@ MakeEmpty(q);
 </div>
 </div>
 
-<div id="outline-container-orgb151a83" class="outline-3">
-<h3 id="orgb151a83"><span class="section-number-3">4.4</span> 最小生成树</h3>
+<div id="outline-container-org9fc98af" class="outline-3">
+<h3 id="org9fc98af"><span class="section-number-3">4.4</span> 最小生成树</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 一般是在无向图中考虑.
 </p>
 </div>
 
-<div id="outline-container-org725e54b" class="outline-4">
-<h4 id="org725e54b"><span class="section-number-4">4.4.1</span> Prim算法</h4>
+<div id="outline-container-org07779c0" class="outline-4">
+<h4 id="org07779c0"><span class="section-number-4">4.4.1</span> Prim算法</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 步骤:
@@ -968,8 +974,8 @@ MakeEmpty(q);
 </div>
 </div>
 
-<div id="outline-container-org4a80385" class="outline-4">
-<h4 id="org4a80385"><span class="section-number-4">4.4.2</span> Kruskal算法</h4>
+<div id="outline-container-org3c9af6a" class="outline-4">
+<h4 id="org3c9af6a"><span class="section-number-4">4.4.2</span> Kruskal算法</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 在所有边上,选择最小的,如果它加入树中,不构成圈,则加入到树中.
@@ -990,7 +996,7 @@ MakeEmpty(q);
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

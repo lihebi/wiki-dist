@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-22 Thu 10:34 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LLVM</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,27 +235,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org76de5d1">1. Build and install LLVM system</a></li>
-<li><a href="#org271cd9a">2. try the llvm toolchain</a></li>
-<li><a href="#org41bcec3">3. Use the framework</a>
+<li><a href="#org4dac5e6">1. Build and install LLVM system</a></li>
+<li><a href="#org23e5a4e">2. try the llvm toolchain</a></li>
+<li><a href="#orga481f93">3. Use the framework</a>
 <ul>
-<li><a href="#orgc6db283">3.1. Project setup</a></li>
-<li><a href="#orgb00cea1">3.2. Passes</a>
+<li><a href="#orgbcabeb0">3.1. Project setup</a></li>
+<li><a href="#orgb5c292a">3.2. Passes</a>
 <ul>
-<li><a href="#org7d82fe3">3.2.1. Various passes</a></li>
-<li><a href="#orgbe3961f">3.2.2. register a pass</a></li>
-<li><a href="#orgb3cd2e8">3.2.3. Pass Interaction</a></li>
+<li><a href="#org7007320">3.2.1. Various passes</a></li>
+<li><a href="#orgb8d575e">3.2.2. register a pass</a></li>
+<li><a href="#orgcaf4b63">3.2.3. Pass Interaction</a></li>
 </ul>
 </li>
-<li><a href="#org3380519">3.3. LLVM template</a></li>
-<li><a href="#org9dd6719">3.4. Values</a>
+<li><a href="#org406da3f">3.3. LLVM template</a></li>
+<li><a href="#org03279cb">3.4. Values</a>
 <ul>
-<li><a href="#org9cc5453">3.4.1. Function</a></li>
-<li><a href="#org48d0d29">3.4.2. BasicBlock</a></li>
+<li><a href="#orga2f5ee8">3.4.1. Function</a></li>
+<li><a href="#org6c8a5a0">3.4.2. BasicBlock</a></li>
 </ul>
 </li>
-<li><a href="#org6bed0da">3.5. User</a></li>
-<li><a href="#org34ec8e1">3.6. CFG</a></li>
+<li><a href="#orga66fced">3.5. User</a></li>
+<li><a href="#org44723b8">3.6. CFG</a></li>
 </ul>
 </li>
 </ul>
@@ -273,30 +274,30 @@ Some useful manuals:
 <li>Pass: <a href="http://llvm.org/docs/WritingAnLLVMPass.html">http://llvm.org/docs/WritingAnLLVMPass.html</a></li>
 <li>Source Level Debugging: <a href="http://llvm.org/docs/SourceLevelDebugging.html">http://llvm.org/docs/SourceLevelDebugging.html</a></li>
 </ul>
-<div id="outline-container-org76de5d1" class="outline-2">
-<h2 id="org76de5d1"><span class="section-number-2">1</span> Build and install LLVM system</h2>
+<div id="outline-container-org4dac5e6" class="outline-2">
+<h2 id="org4dac5e6"><span class="section-number-2">1</span> Build and install LLVM system</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-shell">svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
-<span style="color: #859900;">cd</span> llvm/tools
+<pre><code class="src src-shell">svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+<span style="color: #483d8b;">cd</span> llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
-<span style="color: #859900;">cd</span> llvm/tools/clang/tools
+<span style="color: #483d8b;">cd</span> llvm/tools/clang/tools
 svn co http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
-<span style="color: #859900;">cd</span> llvm/projects
+<span style="color: #483d8b;">cd</span> llvm/projects
 svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
-<span style="color: #859900;">cd</span> ..
+<span style="color: #483d8b;">cd</span> ..
 mkdir build
-</pre>
+</code></pre>
 </div>
 
 <p>
 Using make
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">cmake -G <span style="color: #2aa198;">"Unix Makefiles"</span> ..
+<pre><code class="src src-shell">cmake -G <span style="color: #8b2252;">"Unix Makefiles"</span> ..
 make
 make install
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -329,8 +330,8 @@ Variables:
 </div>
 </div>
 
-<div id="outline-container-org271cd9a" class="outline-2">
-<h2 id="org271cd9a"><span class="section-number-2">2</span> try the llvm toolchain</h2>
+<div id="outline-container-org23e5a4e" class="outline-2">
+<h2 id="org23e5a4e"><span class="section-number-2">2</span> try the llvm toolchain</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>clang --help</code></li>
@@ -348,12 +349,12 @@ from <a href="http://llvm.org/docs/GettingStarted.html">http://llvm.org/docs/Get
 Use the following code to test
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">main</span>() {
-  printf(<span style="color: #2aa198;">"hello world\n"</span>);
-  <span style="color: #859900;">return</span> 0;
+<pre><code class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
+  printf(<span style="color: #8b2252;">"hello world\n"</span>);
+  <span style="color: #a020f0;">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -399,11 +400,12 @@ gcc hello.s -o hello.native
 </div>
 </div>
 
-<div id="outline-container-org41bcec3" class="outline-2">
-<h2 id="org41bcec3"><span class="section-number-2">3</span> Use the framework</h2>
+<div id="outline-container-orga481f93" class="outline-2">
+<h2 id="orga481f93"><span class="section-number-2">3</span> Use the framework</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgc6db283" class="outline-3">
-<h3 id="orgc6db283"><span class="section-number-3">3.1</span> Project setup</h3>
+</div>
+<div id="outline-container-orgbcabeb0" class="outline-3">
+<h3 id="orgbcabeb0"><span class="section-number-3">3.1</span> Project setup</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 project directory should look like this
@@ -419,53 +421,53 @@ The top level CMakeLists.txt will configure the environment,
 including finding the LLVM package
 </p>
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #268bd2;">find_package</span>(LLVM REQUIRED CONFIG)
+<pre><code class="src src-cmake"><span style="color: #0000ff;">find_package</span>(LLVM REQUIRED CONFIG)
 
-<span style="color: #268bd2;">add_definitions</span>(${<span style="color: #268bd2;">LLVM_DEFINITIONS</span>})
-<span style="color: #268bd2;">include_directories</span>(${<span style="color: #268bd2;">LLVM_INCLUDE_DIRS</span>})
+<span style="color: #0000ff;">add_definitions</span>(${<span style="color: #a0522d;">LLVM_DEFINITIONS</span>})
+<span style="color: #0000ff;">include_directories</span>(${<span style="color: #a0522d;">LLVM_INCLUDE_DIRS</span>})
 
-<span style="color: #268bd2;">add_definitions</span>(-std=c++11) <span style="color: #93a1a1; font-style: italic;"># patch: used c++ 11</span>
-<span style="color: #93a1a1; font-style: italic;"># patch: I didn't compile LLVM with rtti,</span>
-<span style="color: #93a1a1; font-style: italic;"># so I need to disable rtti when compiling pass</span>
-<span style="color: #93a1a1; font-style: italic;"># or I will get error when opt -load my pass</span>
-<span style="color: #268bd2;">SET</span>(CMAKE_CXX_FLAGS <span style="color: #2aa198;">"-Wall -fno-rtti"</span>)
+<span style="color: #0000ff;">add_definitions</span>(-std=c++11) <span style="color: #b22222;"># patch: used c++ 11</span>
+<span style="color: #b22222;"># patch: I didn't compile LLVM with rtti,</span>
+<span style="color: #b22222;"># so I need to disable rtti when compiling pass</span>
+<span style="color: #b22222;"># or I will get error when opt -load my pass</span>
+<span style="color: #0000ff;">SET</span>(CMAKE_CXX_FLAGS <span style="color: #8b2252;">"-Wall -fno-rtti"</span>)
 
-<span style="color: #268bd2;">add_subdirectory</span>(hellopass)
-</pre>
+<span style="color: #0000ff;">add_subdirectory</span>(hellopass)
+</code></pre>
 </div>
 
 <p>
 The sub-directory CMakeLists.txt file will tell the pass source files
 </p>
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #268bd2;">add_library</span>(HebiPass MODULE MyPass.cpp)
-</pre>
+<pre><code class="src src-cmake"><span style="color: #0000ff;">add_library</span>(HebiPass MODULE MyPass.cpp)
+</code></pre>
 </div>
 
 <p>
 The pass source file should look like this:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"llvm/Pass.h"</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"llvm/IR/Function.h"</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"llvm/Support/raw_ostream.h"</span>
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"llvm/Pass.h"</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"llvm/IR/Function.h"</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"llvm/Support/raw_ostream.h"</span>
 
-<span style="color: #859900;">using</span> <span style="color: #859900;">namespace</span> <span style="color: #2aa198;">llvm</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">llvm</span>;
 
-<span style="color: #859900;">namespace</span> {
-  <span style="color: #859900;">struct</span> <span style="color: #b58900;">Hello</span> : <span style="color: #859900;">public</span> <span style="color: #b58900;">FunctionPass</span> {
-    <span style="color: #859900;">static</span> <span style="color: #b58900;">char</span> <span style="color: #268bd2;">ID</span>;
-    <span style="color: #268bd2;">Hello</span>() : FunctionPass(ID) {}
-    <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">runOnFunction</span>(<span style="color: #b58900;">Function</span> &amp;<span style="color: #268bd2;">F</span>) <span style="color: #859900;">override</span> {
-      errs() &lt;&lt; <span style="color: #2aa198;">"Hello: "</span>;
-      errs().write_escaped(F.getName()) &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+<span style="color: #a020f0;">namespace</span> {
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">Hello</span> : <span style="color: #a020f0;">public</span> <span style="color: #228b22;">FunctionPass</span> {
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">char</span> <span style="color: #a0522d;">ID</span>;
+    <span style="color: #0000ff;">Hello</span>() : FunctionPass(ID) {}
+    <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">runOnFunction</span>(<span style="color: #228b22;">Function</span> &amp;<span style="color: #a0522d;">F</span>) <span style="color: #a020f0;">override</span> {
+      errs() &lt;&lt; <span style="color: #8b2252;">"Hello: "</span>;
+      errs().write_escaped(F.getName()) &lt;&lt; <span style="color: #8b2252;">"\n"</span>;
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
     }
   };
 }
-<span style="color: #b58900;">char</span> <span style="color: #2aa198;">Hello</span>::<span style="color: #268bd2;">ID</span> = 0;
-<span style="color: #859900;">static</span> <span style="color: #b58900;">RegisterPass</span>&lt;<span style="color: #b58900;">Hello</span>&gt; <span style="color: #268bd2;">X</span>(<span style="color: #2aa198;">"hello"</span>, <span style="color: #2aa198;">"Hello World Pass"</span>, <span style="color: #2aa198;">false</span>, <span style="color: #2aa198;">false</span>);
-</pre>
+<span style="color: #228b22;">char</span> <span style="color: #008b8b;">Hello</span>::<span style="color: #a0522d;">ID</span> = 0;
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">RegisterPass</span>&lt;<span style="color: #228b22;">Hello</span>&gt; <span style="color: #a0522d;">X</span>(<span style="color: #8b2252;">"hello"</span>, <span style="color: #8b2252;">"Hello World Pass"</span>, <span style="color: #008b8b;">false</span>, <span style="color: #008b8b;">false</span>);
+</code></pre>
 </div>
 
 <p>
@@ -479,10 +481,10 @@ The name is given in the source file by <code>RegisterPass</code> class.</li>
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-shell">cmake .
-make <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">output mypass/libHebiPass.so</span>
+<pre><code class="src src-shell">cmake .
+make <span style="color: #b22222;"># </span><span style="color: #b22222;">output mypass/libHebiPass.so</span>
 opt -load ./mypass/libHebiPass.so -hello &lt; hello.bc
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -491,32 +493,33 @@ It first load the library
 </div>
 </div>
 
-<div id="outline-container-orgb00cea1" class="outline-3">
-<h3 id="orgb00cea1"><span class="section-number-3">3.2</span> Passes</h3>
+<div id="outline-container-orgb5c292a" class="outline-3">
+<h3 id="orgb5c292a"><span class="section-number-3">3.2</span> Passes</h3>
 <div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-org7d82fe3" class="outline-4">
-<h4 id="org7d82fe3"><span class="section-number-4">3.2.1</span> Various passes</h4>
+</div>
+<div id="outline-container-org7007320" class="outline-4">
+<h4 id="org7007320"><span class="section-number-4">3.2.1</span> Various passes</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 All these functions return false indicating they do not modify the code,
 true otherwise.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">class</span> <span style="color: #b58900;">ModulePass</span> {
-<span style="color: #859900;">virtual</span> <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">runOnModule</span>(<span style="color: #b58900;">Module</span> &amp;<span style="color: #268bd2;">M</span>) = 0;
+<pre><code class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ModulePass</span> {
+<span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">runOnModule</span>(<span style="color: #228b22;">Module</span> &amp;<span style="color: #a0522d;">M</span>) = 0;
 }
-<span style="color: #859900;">class</span> <span style="color: #b58900;">FunctionPass</span> {
-<span style="color: #859900;">virtual</span> <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">runOnFunction</span>(<span style="color: #b58900;">Function</span> &amp;<span style="color: #268bd2;">F</span>) = 0;
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">FunctionPass</span> {
+<span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">runOnFunction</span>(<span style="color: #228b22;">Function</span> &amp;<span style="color: #a0522d;">F</span>) = 0;
 }
-<span style="color: #859900;">class</span> <span style="color: #b58900;">BasicBlockPass</span> {
-<span style="color: #859900;">virtual</span> <span style="color: #b58900;">bool</span> <span style="color: #268bd2;">runOnBasicBlock</span>(<span style="color: #b58900;">BasicBlock</span> &amp;<span style="color: #268bd2;">BB</span>) = 0;
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">BasicBlockPass</span> {
+<span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">runOnBasicBlock</span>(<span style="color: #228b22;">BasicBlock</span> &amp;<span style="color: #a0522d;">BB</span>) = 0;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbe3961f" class="outline-4">
-<h4 id="orgbe3961f"><span class="section-number-4">3.2.2</span> register a pass</h4>
+<div id="outline-container-orgb8d575e" class="outline-4">
+<h4 id="orgb8d575e"><span class="section-number-4">3.2.2</span> register a pass</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 The four parameters:
@@ -531,27 +534,27 @@ for example true for dominator tree pass</li>
 
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">static</span> <span style="color: #b58900;">RegisterPass</span>&lt;Hello&gt; <span style="color: #268bd2;">X</span>(<span style="color: #2aa198;">"hello"</span>, <span style="color: #2aa198;">"Hello World Pass"</span>,
-                             <span style="color: #2aa198;">false</span> <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">Only looks at CFG */</span>,
-                             <span style="color: #2aa198;">false</span> <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">Analysis Pass */</span>);
-</pre>
+<pre><code class="src src-C++"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">RegisterPass</span>&lt;Hello&gt; <span style="color: #a0522d;">X</span>(<span style="color: #8b2252;">"hello"</span>, <span style="color: #8b2252;">"Hello World Pass"</span>,
+                             <span style="color: #008b8b;">false</span> <span style="color: #b22222;">/* </span><span style="color: #b22222;">Only looks at CFG */</span>,
+                             <span style="color: #008b8b;">false</span> <span style="color: #b22222;">/* </span><span style="color: #b22222;">Analysis Pass */</span>);
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb3cd2e8" class="outline-4">
-<h4 id="orgb3cd2e8"><span class="section-number-4">3.2.3</span> Pass Interaction</h4>
+<div id="outline-container-orgcaf4b63" class="outline-4">
+<h4 id="orgcaf4b63"><span class="section-number-4">3.2.3</span> Pass Interaction</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 <code>MyPass::getAnalysisUsage</code> will set the required passes.
 It also tells what information is modified (or preserved) by this pass.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b58900;">void</span> <span style="color: #2aa198;">MyPass</span>::<span style="color: #268bd2;">getAnalysisUsage</span>(<span style="color: #b58900;">AnalysisUsage</span> &amp;<span style="color: #268bd2;">AU</span>) <span style="color: #859900;">const</span> {
+<pre><code class="src src-C++"><span style="color: #228b22;">void</span> <span style="color: #008b8b;">MyPass</span>::<span style="color: #0000ff;">getAnalysisUsage</span>(<span style="color: #228b22;">AnalysisUsage</span> &amp;<span style="color: #a0522d;">AU</span>) <span style="color: #a020f0;">const</span> {
   AU.setPreservesAll();
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">AU.setPreservesCFG();</span>
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">AU.setPreservesCFG();</span>
   AU.addRequired&lt;LoopInfoWrapperPass&gt;();
 }
-</pre>
+</code></pre>
 </div>
 <p>
 Inside that Pass, you can use <code>getAnalysis</code> to get <i>that pass</i> itself.
@@ -559,131 +562,132 @@ In this example, <code>getLoopInfo</code> is a method of <code>LoopInfoWrapperPa
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b58900;">bool</span> <span style="color: #2aa198;">MyPass</span>::<span style="color: #268bd2;">runOnFunction</span>(<span style="color: #b58900;">Function</span> &amp;<span style="color: #268bd2;">F</span>) {
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">this must be in the Pass class</span>
-  <span style="color: #b58900;">LoopInfo</span> &amp;<span style="color: #268bd2;">LI</span> = getAnalysis&lt;LoopInfoWrapperPass&gt;().getLoopInfo();
-  <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">...</span>
+<pre><code class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #008b8b;">MyPass</span>::<span style="color: #0000ff;">runOnFunction</span>(<span style="color: #228b22;">Function</span> &amp;<span style="color: #a0522d;">F</span>) {
+<span style="color: #b22222;">// </span><span style="color: #b22222;">this must be in the Pass class</span>
+  <span style="color: #228b22;">LoopInfo</span> &amp;<span style="color: #a0522d;">LI</span> = getAnalysis&lt;LoopInfoWrapperPass&gt;().getLoopInfo();
+  <span style="color: #b22222;">//</span><span style="color: #b22222;">...</span>
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3380519" class="outline-3">
-<h3 id="org3380519"><span class="section-number-3">3.3</span> LLVM template</h3>
+<div id="outline-container-org406da3f" class="outline-3">
+<h3 id="org406da3f"><span class="section-number-3">3.3</span> LLVM template</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <code>isa</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">if</span> (isa&lt;Constant&gt;(V) || isa&lt;Argument&gt;(V) || isa&lt;GlobalValue&gt;(V))
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
-</pre>
+<pre><code class="src src-C++"><span style="color: #a020f0;">if</span> (isa&lt;Constant&gt;(V) || isa&lt;Argument&gt;(V) || isa&lt;GlobalValue&gt;(V))
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
+</code></pre>
 </div>
 <p>
 <code>cast</code>: This is a <i>checked cast</i>. If the cast is not valid, assertion failure.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">cast&lt;Instruction&gt;(V)-&gt;getParent()
-</pre>
+<pre><code class="src src-C++">cast&lt;Instruction&gt;(V)-&gt;getParent()
+</code></pre>
 </div>
 <p>
 <code>dyn_cast</code>: This is a <i>checking cast</i>. If not valid, NULL pointer is returned.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">if</span> (<span style="color: #b58900;">AllocationInst</span> *<span style="color: #268bd2;">AI</span> = dyn_cast&lt;<span style="color: #b58900;">AllocationInst</span>&gt;(Val)) {}
-</pre>
+<pre><code class="src src-C++"><span style="color: #a020f0;">if</span> (<span style="color: #228b22;">AllocationInst</span> *<span style="color: #a0522d;">AI</span> = dyn_cast&lt;<span style="color: #228b22;">AllocationInst</span>&gt;(Val)) {}
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org9dd6719" class="outline-3">
-<h3 id="org9dd6719"><span class="section-number-3">3.4</span> Values</h3>
+<div id="outline-container-org03279cb" class="outline-3">
+<h3 id="org03279cb"><span class="section-number-3">3.4</span> Values</h3>
 <div class="outline-text-3" id="text-3-4">
-</div><div id="outline-container-org9cc5453" class="outline-4">
-<h4 id="org9cc5453"><span class="section-number-4">3.4.1</span> Function</h4>
+</div>
+<div id="outline-container-orga2f5ee8" class="outline-4">
+<h4 id="orga2f5ee8"><span class="section-number-4">3.4.1</span> Function</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 Iterating basic blocks:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">func is a pointer to a Function instance</span>
-<span style="color: #859900;">for</span> (<span style="color: #2aa198;">Function</span>::<span style="color: #b58900;">iterator</span> <span style="color: #268bd2;">it</span> = func-&gt;begin(), <span style="color: #268bd2;">end</span> = func-&gt;end(); it != end; ++it) {
-  <span style="color: #b58900;">BasicBlock</span> *<span style="color: #268bd2;">bb</span> = &amp;*i;
+<pre><code class="src src-C++"><span style="color: #b22222;">// </span><span style="color: #b22222;">func is a pointer to a Function instance</span>
+<span style="color: #a020f0;">for</span> (<span style="color: #008b8b;">Function</span>::<span style="color: #228b22;">iterator</span> <span style="color: #a0522d;">it</span> = func-&gt;begin(), <span style="color: #a0522d;">end</span> = func-&gt;end(); it != end; ++it) {
+  <span style="color: #228b22;">BasicBlock</span> *<span style="color: #a0522d;">bb</span> = &amp;*i;
 }
-</pre>
+</code></pre>
 </div>
 <p>
 Iterating instructions directly:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">f is a pointer to a Function instance</span>
-<span style="color: #859900;">for</span> (<span style="color: #b58900;">inst_iterator</span> <span style="color: #268bd2;">it</span>=inst_begin(f), <span style="color: #268bd2;">end</span>=inst_end(f);it!=end;++it) {
-  <span style="color: #b58900;">Instruction</span> *<span style="color: #268bd2;">inst</span> = &amp;*it;
+<pre><code class="src src-C++"><span style="color: #b22222;">// </span><span style="color: #b22222;">f is a pointer to a Function instance</span>
+<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">inst_iterator</span> <span style="color: #a0522d;">it</span>=inst_begin(f), <span style="color: #a0522d;">end</span>=inst_end(f);it!=end;++it) {
+  <span style="color: #228b22;">Instruction</span> *<span style="color: #a0522d;">inst</span> = &amp;*it;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org48d0d29" class="outline-4">
-<h4 id="org48d0d29"><span class="section-number-4">3.4.2</span> BasicBlock</h4>
+<div id="outline-container-org6c8a5a0" class="outline-4">
+<h4 id="org6c8a5a0"><span class="section-number-4">3.4.2</span> BasicBlock</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">blk is a pointer to a BasicBlock instance</span>
-<span style="color: #859900;">for</span> (<span style="color: #2aa198;">BasicBlock</span>::<span style="color: #b58900;">iterator</span> <span style="color: #268bd2;">it</span>=blk-&gt;begin(), <span style="color: #268bd2;">end</span>=blk-&gt;end();it!=end;++it) {
-  <span style="color: #b58900;">Instruction</span> *<span style="color: #268bd2;">inst</span> = &amp;*it;
+<pre><code class="src src-C++"><span style="color: #b22222;">// </span><span style="color: #b22222;">blk is a pointer to a BasicBlock instance</span>
+<span style="color: #a020f0;">for</span> (<span style="color: #008b8b;">BasicBlock</span>::<span style="color: #228b22;">iterator</span> <span style="color: #a0522d;">it</span>=blk-&gt;begin(), <span style="color: #a0522d;">end</span>=blk-&gt;end();it!=end;++it) {
+  <span style="color: #228b22;">Instruction</span> *<span style="color: #a0522d;">inst</span> = &amp;*it;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6bed0da" class="outline-3">
-<h3 id="org6bed0da"><span class="section-number-3">3.5</span> User</h3>
+<div id="outline-container-orga66fced" class="outline-3">
+<h3 id="orga66fced"><span class="section-number-3">3.5</span> User</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Get users of a value:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b58900;">Function</span> *<span style="color: #268bd2;">F</span>;
-<span style="color: #859900;">for</span> (User *U : F-&gt;users()) {
-  <span style="color: #859900;">if</span> (<span style="color: #b58900;">Instruction</span> *<span style="color: #268bd2;">Inst</span> = dyn_cast&lt;<span style="color: #b58900;">Instruction</span>&gt;(U)) {
-    errs() &lt;&lt; <span style="color: #2aa198;">"F is used in instruction:\n"</span>;
-    errs() &lt;&lt; *Inst &lt;&lt; <span style="color: #2aa198;">"\n"</span>;
+<pre><code class="src src-C++"><span style="color: #228b22;">Function</span> *<span style="color: #a0522d;">F</span>;
+<span style="color: #a020f0;">for</span> (User *U : F-&gt;users()) {
+  <span style="color: #a020f0;">if</span> (<span style="color: #228b22;">Instruction</span> *<span style="color: #a0522d;">Inst</span> = dyn_cast&lt;<span style="color: #228b22;">Instruction</span>&gt;(U)) {
+    errs() &lt;&lt; <span style="color: #8b2252;">"F is used in instruction:\n"</span>;
+    errs() &lt;&lt; *Inst &lt;&lt; <span style="color: #8b2252;">"\n"</span>;
   }
-</pre>
+</code></pre>
 </div>
 <p>
 Get used values of an instruction:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b58900;">Instruction</span> *<span style="color: #268bd2;">pi</span>;
-<span style="color: #859900;">for</span> (Use &amp;U : pi-&gt;operands()) {
-  <span style="color: #b58900;">Value</span> *<span style="color: #268bd2;">v</span> = U.get();
+<pre><code class="src src-C++"><span style="color: #228b22;">Instruction</span> *<span style="color: #a0522d;">pi</span>;
+<span style="color: #a020f0;">for</span> (Use &amp;U : pi-&gt;operands()) {
+  <span style="color: #228b22;">Value</span> *<span style="color: #a0522d;">v</span> = U.get();
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org34ec8e1" class="outline-3">
-<h3 id="org34ec8e1"><span class="section-number-3">3.6</span> CFG</h3>
+<div id="outline-container-org44723b8" class="outline-3">
+<h3 id="org44723b8"><span class="section-number-3">3.6</span> CFG</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 CFG consists of basic blocks.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">"llvm/Support/CFG.h"</span>
-<span style="color: #b58900;">BasicBlock</span> *<span style="color: #268bd2;">BB</span> = ...;
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"llvm/Support/CFG.h"</span>
+<span style="color: #228b22;">BasicBlock</span> *<span style="color: #a0522d;">BB</span> = ...;
 
-<span style="color: #859900;">for</span> (<span style="color: #b58900;">pred_iterator</span> <span style="color: #268bd2;">PI</span> = pred_begin(BB), <span style="color: #268bd2;">E</span> = pred_end(BB); PI != E; ++PI) {
-  <span style="color: #b58900;">BasicBlock</span> *<span style="color: #268bd2;">Pred</span> = *PI;
+<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">pred_iterator</span> <span style="color: #a0522d;">PI</span> = pred_begin(BB), <span style="color: #a0522d;">E</span> = pred_end(BB); PI != E; ++PI) {
+  <span style="color: #228b22;">BasicBlock</span> *<span style="color: #a0522d;">Pred</span> = *PI;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -691,7 +695,7 @@ CFG consists of basic blocks.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-22 Thu 10:34</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

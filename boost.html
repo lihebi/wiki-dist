@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-15 Thu 12:00 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Boost</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,67 +235,67 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org10b52a8">1. Filesystem</a></li>
-<li><a href="#orgd87a8e4">2. boost.any</a>
+<li><a href="#org1a0a306">1. Filesystem</a></li>
+<li><a href="#org2005ecd">2. boost.any</a>
 <ul>
-<li><a href="#org55cd4f0">2.1. Usage</a></li>
-<li><a href="#org7976560">2.2. Convert into boost::any</a></li>
-<li><a href="#org5c7cb95">2.3. Checking of type</a>
+<li><a href="#orgaba505d">2.1. Usage</a></li>
+<li><a href="#orgd8a296d">2.2. Convert into boost::any</a></li>
+<li><a href="#orgd55273d">2.3. Checking of type</a>
 <ul>
-<li><a href="#orgbd5e6c6">2.3.1. <code>boost::any::type()</code></a></li>
-<li><a href="#orgff67bc8">2.3.2. <code>boost::any_cast()</code></a></li>
+<li><a href="#orgec16c3c">2.3.1. <code>boost::any::type()</code></a></li>
+<li><a href="#org707a5bd">2.3.2. <code>boost::any_cast()</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5dd614d">3. program options</a>
+<li><a href="#orgb8815f9">3. program options</a>
 <ul>
-<li><a href="#orgc0ff9e8">3.1. Usage</a></li>
-<li><a href="#org469728a">3.2. construct arguments</a></li>
-<li><a href="#org45b62bd">3.3. help message</a></li>
-<li><a href="#org5c94ac2">3.4. Do the parsing</a></li>
-<li><a href="#orgd60895d">3.5. Retrieve from vm</a></li>
+<li><a href="#org8e32804">3.1. Usage</a></li>
+<li><a href="#org3e9642a">3.2. construct arguments</a></li>
+<li><a href="#org93ceffe">3.3. help message</a></li>
+<li><a href="#org4bb2853">3.4. Do the parsing</a></li>
+<li><a href="#orgc7d0e1a">3.5. Retrieve from vm</a></li>
 </ul>
 </li>
-<li><a href="#org1e20b5e">4. filesystem</a>
+<li><a href="#orgce68c6d">4. filesystem</a>
 <ul>
-<li><a href="#orge821b3d">4.1. Usage</a></li>
-<li><a href="#orga2788a3">4.2. Path</a>
+<li><a href="#org92f357a">4.1. Usage</a></li>
+<li><a href="#orgdecdbba">4.2. Path</a>
 <ul>
-<li><a href="#orgb6f84cc">4.2.1. modification</a></li>
-<li><a href="#org2caeacf">4.2.2. Decomposite</a></li>
-<li><a href="#org20ed9fc">4.2.3. Query</a></li>
+<li><a href="#orga0b992b">4.2.1. modification</a></li>
+<li><a href="#org001970e">4.2.2. Decomposite</a></li>
+<li><a href="#orgb46db29">4.2.3. Query</a></li>
 </ul>
 </li>
-<li><a href="#org2c62452">4.3. path utilities</a>
+<li><a href="#orgc84610f">4.3. path utilities</a>
 <ul>
-<li><a href="#org67499db">4.3.1. File operations</a></li>
-<li><a href="#org53d4f30">4.3.2. predicates</a>
+<li><a href="#orgf82f589">4.3.1. File operations</a></li>
+<li><a href="#orgbfd1e87">4.3.2. predicates</a>
 <ul>
-<li><a href="#org1301568">4.3.2.1. Linux is file or dir</a></li>
+<li><a href="#orgae4da63">4.3.2.1. Linux is file or dir</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgef5bc70">4.4. Temp Directory</a></li>
-<li><a href="#org784987f">4.5. Iterators</a></li>
+<li><a href="#org4dc40a2">4.4. Temp Directory</a></li>
+<li><a href="#org59b83cb">4.5. Iterators</a></li>
 </ul>
 </li>
-<li><a href="#org5ea9d14">5. Timer</a></li>
-<li><a href="#org2d8e4f1">6. Algorithm</a>
+<li><a href="#org00be014">5. Timer</a></li>
+<li><a href="#org2f03703">6. Algorithm</a>
 <ul>
-<li><a href="#orgea07aee">6.1. string</a></li>
+<li><a href="#org8c4b1c5">6.1. string</a></li>
 </ul>
 </li>
-<li><a href="#org1680b55">7. Graph</a>
+<li><a href="#orge9c05ce">7. Graph</a>
 <ul>
-<li><a href="#orge1bc22d">7.1. adjacency<sub>list</sub></a>
+<li><a href="#org20a320d">7.1. adjacency<sub>list</sub></a>
 <ul>
-<li><a href="#org4d692a6">7.1.1. Member Functions</a></li>
-<li><a href="#orga31ac39">7.1.2. Non-member functions</a>
+<li><a href="#orgcfef31b">7.1.1. Member Functions</a></li>
+<li><a href="#org2c7e5c4">7.1.2. Non-member functions</a>
 <ul>
-<li><a href="#org8dcb172">7.1.2.1. Access</a></li>
-<li><a href="#orgb26fd87">7.1.2.2. Modification</a></li>
+<li><a href="#org8b4c04d">7.1.2.1. Access</a></li>
+<li><a href="#orgba8f42a">7.1.2.2. Modification</a></li>
 </ul>
 </li>
 </ul>
@@ -305,8 +306,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org10b52a8" class="outline-2">
-<h2 id="org10b52a8"><span class="section-number-2">1</span> Filesystem</h2>
+<div id="outline-container-org1a0a306" class="outline-2">
+<h2 id="org1a0a306"><span class="section-number-2">1</span> Filesystem</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Compilation flag: <code>-lboost_filesystem -lboost_system</code>
@@ -316,21 +317,21 @@ Compilation flag: <code>-lboost_filesystem -lboost_system</code>
 common usage:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/filesystem.hpp&gt;</span>
-<span style="color: #859900;">namespace</span> <span style="color: #2aa198;">fs</span> = <span style="color: #2aa198;">boost</span>::filesystem;
-<span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">path</span> <span style="color: #268bd2;">path</span>(<span style="color: #2aa198;">"./main.cpp"</span>);
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">absolute path, basically just add the prefix, but retain the ".." and "//"</span>
-<span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">path</span> <span style="color: #268bd2;">abs_path</span> = <span style="color: #2aa198;">fs</span>::absolute(path);
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">absolute, follow symbol link, and remove dot and extra slashes. Will throw exception if file does not exist</span>
-<span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">path</span> <span style="color: #268bd2;">con_path</span> = <span style="color: #2aa198;">fs</span>::canonical(path);
-<span style="color: #2aa198;">fs</span>::exists(path); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">if path exists or not</span>
-</pre>
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/filesystem.hpp&gt;</span>
+<span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">fs</span> = <span style="color: #008b8b;">boost</span>::filesystem;
+<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a0522d;">path</span>(<span style="color: #8b2252;">"./main.cpp"</span>);
+<span style="color: #b22222;">// </span><span style="color: #b22222;">absolute path, basically just add the prefix, but retain the ".." and "//"</span>
+<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a0522d;">abs_path</span> = <span style="color: #008b8b;">fs</span>::absolute(path);
+<span style="color: #b22222;">// </span><span style="color: #b22222;">absolute, follow symbol link, and remove dot and extra slashes. Will throw exception if file does not exist</span>
+<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a0522d;">con_path</span> = <span style="color: #008b8b;">fs</span>::canonical(path);
+<span style="color: #008b8b;">fs</span>::exists(path); <span style="color: #b22222;">// </span><span style="color: #b22222;">if path exists or not</span>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd87a8e4" class="outline-2">
-<h2 id="orgd87a8e4"><span class="section-number-2">2</span> boost.any</h2>
+<div id="outline-container-org2005ecd" class="outline-2">
+<h2 id="org2005ecd"><span class="section-number-2">2</span> boost.any</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This is a class for conversion.
@@ -343,65 +344,66 @@ It can
 </ul>
 </div>
 
-<div id="outline-container-org55cd4f0" class="outline-3">
-<h3 id="org55cd4f0"><span class="section-number-3">2.1</span> Usage</h3>
+<div id="outline-container-orgaba505d" class="outline-3">
+<h3 id="orgaba505d"><span class="section-number-3">2.1</span> Usage</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;list&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/any.hpp&gt;</span>
-</pre>
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;list&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/any.hpp&gt;</span>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7976560" class="outline-3">
-<h3 id="org7976560"><span class="section-number-3">2.2</span> Convert into boost::any</h3>
+<div id="outline-container-orgd8a296d" class="outline-3">
+<h3 id="orgd8a296d"><span class="section-number-3">2.2</span> Convert into boost::any</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Converting any type to boost::any is as simple as assignment:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">list</span>&lt;<span style="color: #2aa198;">boost</span>::any&gt; <span style="color: #268bd2;">values</span>;
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>;
-<span style="color: #2aa198;">boost</span>::<span style="color: #b58900;">any</span> <span style="color: #268bd2;">to_append</span> = i;
+<pre><code class="src src-C++"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">list</span>&lt;<span style="color: #008b8b;">boost</span>::any&gt; <span style="color: #a0522d;">values</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+<span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">any</span> <span style="color: #a0522d;">to_append</span> = i;
 values.push_back(to_append);
-<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #268bd2;">s</span>;
+<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>;
 values.push_back(s);
-<span style="color: #b58900;">char</span> *<span style="color: #268bd2;">cp</span>;
+<span style="color: #228b22;">char</span> *<span style="color: #a0522d;">cp</span>;
 values.push_back(cp);
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">append nothing</span>
-values.push_back(<span style="color: #2aa198;">boost</span>::<span style="color: #268bd2;">any</span>());
-</pre>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">append nothing</span>
+values.push_back(<span style="color: #008b8b;">boost</span>::<span style="color: #0000ff;">any</span>());
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5c7cb95" class="outline-3">
-<h3 id="org5c7cb95"><span class="section-number-3">2.3</span> Checking of type</h3>
+<div id="outline-container-orgd55273d" class="outline-3">
+<h3 id="orgd55273d"><span class="section-number-3">2.3</span> Checking of type</h3>
 <div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-orgbd5e6c6" class="outline-4">
-<h4 id="orgbd5e6c6"><span class="section-number-4">2.3.1</span> <code>boost::any::type()</code></h4>
+</div>
+<div id="outline-container-orgec16c3c" class="outline-4">
+<h4 id="orgec16c3c"><span class="section-number-4">2.3.1</span> <code>boost::any::type()</code></h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 first, the <code>boost::any</code> class has a method called <code>type()</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">const</span> <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">type_info</span> &amp; <span style="color: #268bd2;">type</span>() <span style="color: #859900;">const</span>;
-</pre>
+<pre><code class="src src-C++"><span style="color: #a020f0;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">type_info</span> &amp; <span style="color: #0000ff;">type</span>() <span style="color: #a020f0;">const</span>;
+</code></pre>
 </div>
 
 <p>
 If the instance is empty, it returns <code>typeid(void)</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">any.type() == <span style="color: #859900;">typeid</span>(<span style="color: #b58900;">int</span>);
-</pre>
+<pre><code class="src src-C++">any.type() == <span style="color: #a020f0;">typeid</span>(<span style="color: #228b22;">int</span>);
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgff67bc8" class="outline-4">
-<h4 id="orgff67bc8"><span class="section-number-4">2.3.2</span> <code>boost::any_cast()</code></h4>
+<div id="outline-container-org707a5bd" class="outline-4">
+<h4 id="org707a5bd"><span class="section-number-4">2.3.2</span> <code>boost::any_cast()</code></h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 <code>any_cast</code> can be used to check if the value is of some type.
@@ -414,9 +416,9 @@ When accepting a pointer, it will not throw exception, but return a pointer of N
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;<span style="color: #859900;">typename</span> <span style="color: #b58900;">T</span>&gt; <span style="color: #b58900;">T</span> <span style="color: #268bd2;">any_cast</span>(<span style="color: #b58900;">any</span> &amp; <span style="color: #268bd2;">operand</span>);
-<span style="color: #859900;">template</span>&lt;<span style="color: #859900;">typename</span> <span style="color: #b58900;">ValueType</span>&gt; <span style="color: #b58900;">ValueType</span> * <span style="color: #268bd2;">any_cast</span>(<span style="color: #b58900;">any</span> * <span style="color: #268bd2;">operand</span>);
-</pre>
+<pre><code class="src src-C++"><span style="color: #a020f0;">template</span>&lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt; <span style="color: #228b22;">T</span> <span style="color: #0000ff;">any_cast</span>(<span style="color: #228b22;">any</span> &amp; <span style="color: #a0522d;">operand</span>);
+<span style="color: #a020f0;">template</span>&lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">ValueType</span>&gt; <span style="color: #228b22;">ValueType</span> * <span style="color: #0000ff;">any_cast</span>(<span style="color: #228b22;">any</span> * <span style="color: #a0522d;">operand</span>);
+</code></pre>
 </div>
 
 <p>
@@ -424,39 +426,40 @@ An example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b58900;">bool</span> <span style="color: #268bd2;">is_char_ptr</span>(<span style="color: #859900;">const</span> <span style="color: #2aa198;">boost</span>::<span style="color: #b58900;">any</span> &amp; <span style="color: #268bd2;">operand</span>) {
-  <span style="color: #859900;">try</span> {
-    any_cast&lt;<span style="color: #859900;">const</span> <span style="color: #b58900;">char</span> *&gt;(operand);
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
-  } <span style="color: #859900;">catch</span>(<span style="color: #859900;">const</span> <span style="color: #2aa198;">boost</span>::<span style="color: #b58900;">bad_any_cast</span> &amp;) {
-    <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+<pre><code class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #0000ff;">is_char_ptr</span>(<span style="color: #a020f0;">const</span> <span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">any</span> &amp; <span style="color: #a0522d;">operand</span>) {
+  <span style="color: #a020f0;">try</span> {
+    any_cast&lt;<span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *&gt;(operand);
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
+  } <span style="color: #a020f0;">catch</span>(<span style="color: #a020f0;">const</span> <span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">bad_any_cast</span> &amp;) {
+    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
   }
 }
 
-<span style="color: #b58900;">bool</span> <span style="color: #268bd2;">is_string</span>(<span style="color: #859900;">const</span> <span style="color: #2aa198;">boost</span>::<span style="color: #b58900;">any</span> &amp; <span style="color: #268bd2;">operand</span>) {
-  <span style="color: #859900;">return</span> any_cast&lt;<span style="color: #2aa198;">std</span>::string&gt;(&amp;operand);
+<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">is_string</span>(<span style="color: #a020f0;">const</span> <span style="color: #008b8b;">boost</span>::<span style="color: #228b22;">any</span> &amp; <span style="color: #a0522d;">operand</span>) {
+  <span style="color: #a020f0;">return</span> any_cast&lt;<span style="color: #008b8b;">std</span>::string&gt;(&amp;operand);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5dd614d" class="outline-2">
-<h2 id="org5dd614d"><span class="section-number-2">3</span> program options</h2>
+<div id="outline-container-orgb8815f9" class="outline-2">
+<h2 id="orgb8815f9"><span class="section-number-2">3</span> program options</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgc0ff9e8" class="outline-3">
-<h3 id="orgc0ff9e8"><span class="section-number-3">3.1</span> Usage</h3>
+</div>
+<div id="outline-container-org8e32804" class="outline-3">
+<h3 id="org8e32804"><span class="section-number-3">3.1</span> Usage</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/program_options.hpp&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/program_options/options_description.hpp&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/program_options/variables_map.hpp&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/program_options/parsers.hpp&gt;</span>
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options.hpp&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options/options_description.hpp&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options/variables_map.hpp&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/program_options/parsers.hpp&gt;</span>
 
-<span style="color: #859900;">namespace</span> <span style="color: #2aa198;">po</span> = <span style="color: #2aa198;">boost</span>::program_options;
-</pre>
+<span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">po</span> = <span style="color: #008b8b;">boost</span>::program_options;
+</code></pre>
 </div>
 
 <p>
@@ -465,8 +468,8 @@ compile use <code>-lboost_program_options</code> flag.
 </div>
 </div>
 
-<div id="outline-container-org469728a" class="outline-3">
-<h3 id="org469728a"><span class="section-number-3">3.2</span> construct arguments</h3>
+<div id="outline-container-org3e9642a" class="outline-3">
+<h3 id="org3e9642a"><span class="section-number-3">3.2</span> construct arguments</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Create some options.
@@ -484,14 +487,14 @@ But if you use <code>default_value()</code>, po will throw exception if you prov
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">po</span>::<span style="color: #b58900;">options_description</span> <span style="color: #268bd2;">options</span>(<span style="color: #2aa198;">"Arguments"</span>);
+<pre><code class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">options</span>(<span style="color: #8b2252;">"Arguments"</span>);
 options.add_options()
-  (<span style="color: #2aa198;">"help,h"</span>, <span style="color: #2aa198;">"produce help message"</span>) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">--help, -h</span>
-  (<span style="color: #2aa198;">"config,f"</span>, <span style="color: #2aa198;">po</span>::value&lt;<span style="color: #2aa198;">std</span>::string&gt;(), <span style="color: #2aa198;">"config file"</span>)
-  (<span style="color: #2aa198;">"optimization"</span>, value&lt;<span style="color: #b58900;">int</span>&gt;()-&gt;default_value(10), <span style="color: #2aa198;">"optimization level"</span>)
-  (<span style="color: #2aa198;">"print,p"</span>, <span style="color: #2aa198;">po</span>::value&lt;<span style="color: #2aa198;">std</span>::string&gt;()-&gt;implicit_value(<span style="color: #2aa198;">""</span>), <span style="color: #2aa198;">"what to be print"</span>)
+  (<span style="color: #8b2252;">"help,h"</span>, <span style="color: #8b2252;">"produce help message"</span>) <span style="color: #b22222;">// </span><span style="color: #b22222;">--help, -h</span>
+  (<span style="color: #8b2252;">"config,f"</span>, <span style="color: #008b8b;">po</span>::value&lt;<span style="color: #008b8b;">std</span>::string&gt;(), <span style="color: #8b2252;">"config file"</span>)
+  (<span style="color: #8b2252;">"optimization"</span>, value&lt;<span style="color: #228b22;">int</span>&gt;()-&gt;default_value(10), <span style="color: #8b2252;">"optimization level"</span>)
+  (<span style="color: #8b2252;">"print,p"</span>, <span style="color: #008b8b;">po</span>::value&lt;<span style="color: #008b8b;">std</span>::string&gt;()-&gt;implicit_value(<span style="color: #8b2252;">""</span>), <span style="color: #8b2252;">"what to be print"</span>)
 ;
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -499,119 +502,120 @@ The options can spread into multiple descriptions.
 This is helpful for create options that you don't want to show in help message.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">po</span>::<span style="color: #b58900;">options_description</span> <span style="color: #268bd2;">another_options</span>(<span style="color: #2aa198;">"Utils"</span>);
+<pre><code class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">another_options</span>(<span style="color: #8b2252;">"Utils"</span>);
 another_options.add_options()
-  (<span style="color: #2aa198;">"create-tagfile"</span>, <span style="color: #2aa198;">"create tag file"</span>)
+  (<span style="color: #8b2252;">"create-tagfile"</span>, <span style="color: #8b2252;">"create tag file"</span>)
 ;
-<span style="color: #2aa198;">po</span>::<span style="color: #b58900;">options_description</span> <span style="color: #268bd2;">hidden</span>(<span style="color: #2aa198;">"Hidden options"</span>);
+<span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">hidden</span>(<span style="color: #8b2252;">"Hidden options"</span>);
 hidden.add_options()
-  (<span style="color: #2aa198;">"folder"</span>, <span style="color: #2aa198;">"project folder"</span>)
+  (<span style="color: #8b2252;">"folder"</span>, <span style="color: #8b2252;">"project folder"</span>)
   ;
-</pre>
+</code></pre>
 </div>
 
 <p>
 positional argument is those that don't require dash.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">po</span>::<span style="color: #b58900;">positional_options_description</span> <span style="color: #268bd2;">positional</span>;
-positional.add(<span style="color: #2aa198;">"folder"</span>, 1);
-</pre>
+<pre><code class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">positional_options_description</span> <span style="color: #a0522d;">positional</span>;
+positional.add(<span style="color: #8b2252;">"folder"</span>, 1);
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org45b62bd" class="outline-3">
-<h3 id="org45b62bd"><span class="section-number-3">3.3</span> help message</h3>
+<div id="outline-container-org93ceffe" class="outline-3">
+<h3 id="org93ceffe"><span class="section-number-3">3.3</span> help message</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Organize and print out help message:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">po</span>::<span style="color: #b58900;">options_description</span> <span style="color: #268bd2;">help_options</span>;
+<pre><code class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">help_options</span>;
 help_options
   .add(options)
   .add(another_options)
 ;
-<span style="color: #2aa198;">std</span>::cout&lt;&lt; m_help_options &lt;&lt; <span style="color: #2aa198;">std</span>::endl;
-</pre>
+<span style="color: #008b8b;">std</span>::cout&lt;&lt; m_help_options &lt;&lt; <span style="color: #008b8b;">std</span>::endl;
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5c94ac2" class="outline-3">
-<h3 id="org5c94ac2"><span class="section-number-3">3.4</span> Do the parsing</h3>
+<div id="outline-container-org4bb2853" class="outline-3">
+<h3 id="org4bb2853"><span class="section-number-3">3.4</span> Do the parsing</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Put all descriptions together and do the parsing:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">po</span>::<span style="color: #b58900;">options_description</span> <span style="color: #268bd2;">cmdline_options</span>;
+<pre><code class="src src-C++"><span style="color: #008b8b;">po</span>::<span style="color: #228b22;">options_description</span> <span style="color: #a0522d;">cmdline_options</span>;
 cmdline_options
   .add(options)
   .add(another_options)
   .add(hidden)
 ;
-<span style="color: #2aa198;">po</span>::<span style="color: #b58900;">variables_map</span> <span style="color: #268bd2;">vm</span>;
-<span style="color: #2aa198;">po</span>::store(<span style="color: #2aa198;">po</span>::command_line_parser(argc, argv)
-          .options(m_cmdline_options) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">add cmdline options</span>
-          .positional(positional)     <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">add positional options</span>
-          .run(),                     <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">run the parser</span>
+<span style="color: #008b8b;">po</span>::<span style="color: #228b22;">variables_map</span> <span style="color: #a0522d;">vm</span>;
+<span style="color: #008b8b;">po</span>::store(<span style="color: #008b8b;">po</span>::command_line_parser(argc, argv)
+          .options(m_cmdline_options) <span style="color: #b22222;">// </span><span style="color: #b22222;">add cmdline options</span>
+          .positional(positional)     <span style="color: #b22222;">// </span><span style="color: #b22222;">add positional options</span>
+          .run(),                     <span style="color: #b22222;">// </span><span style="color: #b22222;">run the parser</span>
           vm
           );
-<span style="color: #2aa198;">po</span>::notify(vm);
+<span style="color: #008b8b;">po</span>::notify(vm);
 
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">also from a config file.</span>
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the value stored first is prefered, so the command line options automatically overwrite config file.</span>
-<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">ifstream</span> <span style="color: #268bd2;">ifs</span>(config_file.c_str());
-<span style="color: #859900;">if</span> (ifs) {
-  <span style="color: #2aa198;">po</span>::store(<span style="color: #2aa198;">po</span>::parse_config_file(ifs, config_file_options), vm);
+<span style="color: #b22222;">// </span><span style="color: #b22222;">also from a config file.</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">the value stored first is prefered, so the command line options automatically overwrite config file.</span>
+<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">ifstream</span> <span style="color: #0000ff;">ifs</span>(config_file.c_str());
+<span style="color: #a020f0;">if</span> (ifs) {
+  <span style="color: #008b8b;">po</span>::store(<span style="color: #008b8b;">po</span>::parse_config_file(ifs, config_file_options), vm);
   notify(vm);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd60895d" class="outline-3">
-<h3 id="orgd60895d"><span class="section-number-3">3.5</span> Retrieve from vm</h3>
+<div id="outline-container-orgc7d0e1a" class="outline-3">
+<h3 id="orgc7d0e1a"><span class="section-number-3">3.5</span> Retrieve from vm</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Now the <code>vm</code> is ready to get data. It is extended from <code>std::map</code>. The value of the map is <code>variable_value</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;<span style="color: #859900;">typename</span> <span style="color: #b58900;">T</span>&gt; <span style="color: #b58900;">T</span> &amp; <span style="color: #268bd2;">as</span>();
-<span style="color: #2aa198;">boost</span>::any &amp; value();
-</pre>
+<pre><code class="src src-C++"><span style="color: #a020f0;">template</span>&lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt; <span style="color: #228b22;">T</span> &amp; <span style="color: #0000ff;">as</span>();
+<span style="color: #008b8b;">boost</span>::any &amp; value();
+</code></pre>
 </div>
 
 <p>
 example:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">vm.count(key);
-vm[key].as&lt;<span style="color: #2aa198;">std</span>::string&gt;();
+<pre><code class="src src-C++">vm.count(key);
+vm[key].as&lt;<span style="color: #008b8b;">std</span>::string&gt;();
 vm[key].value();
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org1e20b5e" class="outline-2">
-<h2 id="org1e20b5e"><span class="section-number-2">4</span> filesystem</h2>
+<div id="outline-container-orgce68c6d" class="outline-2">
+<h2 id="orgce68c6d"><span class="section-number-2">4</span> filesystem</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orge821b3d" class="outline-3">
-<h3 id="orge821b3d"><span class="section-number-3">4.1</span> Usage</h3>
+</div>
+<div id="outline-container-org92f357a" class="outline-3">
+<h3 id="org92f357a"><span class="section-number-3">4.1</span> Usage</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/filesystem.hpp&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/foreach.hpp&gt;</span>
-<span style="color: #859900;">namespace</span> <span style="color: #2aa198;">fs</span> = <span style="color: #2aa198;">boost</span>::filesystem;
-</pre>
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/filesystem.hpp&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/foreach.hpp&gt;</span>
+<span style="color: #a020f0;">namespace</span> <span style="color: #008b8b;">fs</span> = <span style="color: #008b8b;">boost</span>::filesystem;
+</code></pre>
 </div>
 
 <p>
@@ -620,32 +624,32 @@ Compile use <code>-lboost_system -lboost_filesystem</code> flag.
 </div>
 </div>
 
-<div id="outline-container-orga2788a3" class="outline-3">
-<h3 id="orga2788a3"><span class="section-number-3">4.2</span> Path</h3>
+<div id="outline-container-orgdecdbba" class="outline-3">
+<h3 id="orgdecdbba"><span class="section-number-3">4.2</span> Path</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 These are the methods of class <code>path</code>.
 Basic construct and retrieve string:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">path</span> <span style="color: #268bd2;">p</span>(<span style="color: #2aa198;">"/path"</span>);
+<pre><code class="src src-C++"><span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a0522d;">p</span>(<span style="color: #8b2252;">"/path"</span>);
 p.string();
 p.clear();
-</pre>
+</code></pre>
 </div>
 </div>
 
-<div id="outline-container-orgb6f84cc" class="outline-4">
-<h4 id="orgb6f84cc"><span class="section-number-4">4.2.1</span> modification</h4>
+<div id="outline-container-orga0b992b" class="outline-4">
+<h4 id="orga0b992b"><span class="section-number-4">4.2.1</span> modification</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 append will concatenate paths by separator, but will not add if duplicate.
 concatenation simply concatenate.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">path&amp; <span style="color: #859900;">operator</span>/=(<span style="color: #859900;">const</span> <span style="color: #b58900;">path</span>&amp; <span style="color: #268bd2;">p</span>);
-<span style="color: #b58900;">path</span>&amp; <span style="color: #859900;">operator</span><span style="color: #268bd2;">+=</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">path</span>&amp; <span style="color: #268bd2;">x</span>);
-</pre>
+<pre><code class="src src-C++">path&amp; <span style="color: #a020f0;">operator</span>/=(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">path</span>&amp; <span style="color: #a0522d;">p</span>);
+<span style="color: #228b22;">path</span>&amp; <span style="color: #a020f0;">operator</span><span style="color: #0000ff;">+=</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">path</span>&amp; <span style="color: #a0522d;">x</span>);
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -658,8 +662,8 @@ concatenation simply concatenate.
 </div>
 </div>
 
-<div id="outline-container-org2caeacf" class="outline-4">
-<h4 id="org2caeacf"><span class="section-number-4">4.2.2</span> Decomposite</h4>
+<div id="outline-container-org001970e" class="outline-4">
+<h4 id="org001970e"><span class="section-number-4">4.2.2</span> Decomposite</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 All of these returns a <code>path</code>.
@@ -687,8 +691,8 @@ All of these returns a <code>path</code>.
 </div>
 </div>
 
-<div id="outline-container-org20ed9fc" class="outline-4">
-<h4 id="org20ed9fc"><span class="section-number-4">4.2.3</span> Query</h4>
+<div id="outline-container-orgb46db29" class="outline-4">
+<h4 id="orgb46db29"><span class="section-number-4">4.2.3</span> Query</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li><code>empty</code></li>
@@ -699,8 +703,8 @@ All of these returns a <code>path</code>.
 </div>
 </div>
 
-<div id="outline-container-org2c62452" class="outline-3">
-<h3 id="org2c62452"><span class="section-number-3">4.3</span> path utilities</h3>
+<div id="outline-container-orgc84610f" class="outline-3">
+<h3 id="orgc84610f"><span class="section-number-3">4.3</span> path utilities</h3>
 <div class="outline-text-3" id="text-4-3">
 <dl class="org-dl">
 <dt><code>absolute</code></dt><dd>if relative, return current path / p</dd>
@@ -712,8 +716,8 @@ no symbol link, no dots, no extra slashes.</dd>
 </dl>
 </div>
 
-<div id="outline-container-org67499db" class="outline-4">
-<h4 id="org67499db"><span class="section-number-4">4.3.1</span> File operations</h4>
+<div id="outline-container-orgf82f589" class="outline-4">
+<h4 id="orgf82f589"><span class="section-number-4">4.3.1</span> File operations</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 copy
@@ -745,8 +749,8 @@ modify
 </div>
 </div>
 
-<div id="outline-container-org53d4f30" class="outline-4">
-<h4 id="org53d4f30"><span class="section-number-4">4.3.2</span> predicates</h4>
+<div id="outline-container-orgbfd1e87" class="outline-4">
+<h4 id="orgbfd1e87"><span class="section-number-4">4.3.2</span> predicates</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <dl class="org-dl">
 <dt><code>is_directory(path &amp;p)</code></dt><dd></dd>
@@ -760,21 +764,21 @@ modify
 </dl>
 </div>
 
-<div id="outline-container-org1301568" class="outline-5">
-<h5 id="org1301568"><span class="section-number-5">4.3.2.1</span> Linux is file or dir</h5>
+<div id="outline-container-orgae4da63" class="outline-5">
+<h5 id="orgae4da63"><span class="section-number-5">4.3.2.1</span> Linux is file or dir</h5>
 <div class="outline-text-5" id="text-4-3-2-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b58900;">bool</span> <span style="color: #2aa198;">utils</span>::<span style="color: #268bd2;">is_file</span>(<span style="color: #859900;">const</span> <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> &amp;<span style="color: #268bd2;">file</span>) {
-  <span style="color: #859900;">struct</span> <span style="color: #b58900;">stat</span> <span style="color: #268bd2;">sb</span>;
-  <span style="color: #859900;">if</span> (<span style="color: #268bd2;">stat</span>(file.c_str(), &amp;sb) == 0 &amp;&amp; S_ISREG(sb.st_mode)) <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
-  <span style="color: #859900;">else</span> <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+<pre><code class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #008b8b;">utils</span>::<span style="color: #0000ff;">is_file</span>(<span style="color: #a020f0;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">file</span>) {
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">stat</span> <span style="color: #a0522d;">sb</span>;
+  <span style="color: #a020f0;">if</span> (<span style="color: #0000ff;">stat</span>(file.c_str(), &amp;sb) == 0 &amp;&amp; S_ISREG(sb.st_mode)) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
+  <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
 }
-<span style="color: #b58900;">bool</span> <span style="color: #2aa198;">utils</span>::<span style="color: #268bd2;">is_dir</span>(<span style="color: #859900;">const</span> <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> &amp;<span style="color: #268bd2;">file</span>) {
-  <span style="color: #859900;">struct</span> <span style="color: #b58900;">stat</span> <span style="color: #268bd2;">sb</span>;
-  <span style="color: #859900;">if</span> (<span style="color: #268bd2;">stat</span>(file.c_str(), &amp;sb) == 0 &amp;&amp; S_ISDIR(sb.st_mode)) <span style="color: #859900;">return</span> <span style="color: #2aa198;">true</span>;
-  <span style="color: #859900;">else</span> <span style="color: #859900;">return</span> <span style="color: #2aa198;">false</span>;
+<span style="color: #228b22;">bool</span> <span style="color: #008b8b;">utils</span>::<span style="color: #0000ff;">is_dir</span>(<span style="color: #a020f0;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">file</span>) {
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">stat</span> <span style="color: #a0522d;">sb</span>;
+  <span style="color: #a020f0;">if</span> (<span style="color: #0000ff;">stat</span>(file.c_str(), &amp;sb) == 0 &amp;&amp; S_ISDIR(sb.st_mode)) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
+  <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -782,8 +786,8 @@ modify
 </div>
 
 
-<div id="outline-container-orgef5bc70" class="outline-3">
-<h3 id="orgef5bc70"><span class="section-number-3">4.4</span> Temp Directory</h3>
+<div id="outline-container-org4dc40a2" class="outline-3">
+<h3 id="org4dc40a2"><span class="section-number-3">4.4</span> Temp Directory</h3>
 <div class="outline-text-3" id="text-4-4">
 <dl class="org-dl">
 <dt><code>temp_directory_path()</code></dt><dd>return a temp directory name suited for creation.
@@ -792,96 +796,97 @@ Will throw exception if the one being returned exists, so feel free to use.</dd>
 </dl>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #93a1a1; font-style: italic;">/**</span>
-<span style="color: #93a1a1; font-style: italic;"> * create tmp dir, return it.</span>
-<span style="color: #93a1a1; font-style: italic;"> * @input s /tmp/helium-XXXXXX (must have 6 X at the end.)</span>
-<span style="color: #93a1a1; font-style: italic;"> */</span>
-<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #2aa198;">utils</span>::<span style="color: #268bd2;">create_tmp_dir</span>(<span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #268bd2;">s</span>) {
-  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">char tmp_dir[] = "/tmp/helium-test-temp.XXXXXX";</span>
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #268bd2;">sub</span> = s.substr(s.find_last_not_of(<span style="color: #2aa198;">'X'</span>));
-  <span style="color: #859900;">if</span> (sub.size() !=7) <span style="color: #859900;">return</span> <span style="color: #2aa198;">""</span>;
+<pre><code class="src src-C++"><span style="color: #b22222;">/**</span>
+<span style="color: #b22222;"> * create tmp dir, return it.</span>
+<span style="color: #b22222;"> * @input s /tmp/helium-XXXXXX (must have 6 X at the end.)</span>
+<span style="color: #b22222;"> */</span>
+<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #008b8b;">utils</span>::<span style="color: #0000ff;">create_tmp_dir</span>(<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>) {
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">char tmp_dir[] = "/tmp/helium-test-temp.XXXXXX";</span>
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">sub</span> = s.substr(s.find_last_not_of(<span style="color: #8b2252;">'X'</span>));
+  <span style="color: #a020f0;">if</span> (sub.size() !=7) <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">""</span>;
   sub = sub.substr(1);
-  assert(sub.size() == 6 &amp;&amp; <span style="color: #2aa198;">"tmp dir url format error!"</span>);
-  <span style="color: #859900;">if</span> (sub.find_first_not_of(<span style="color: #2aa198;">'X'</span>) != <span style="color: #2aa198;">std</span>::<span style="color: #2aa198;">string</span>::npos) <span style="color: #859900;">return</span> <span style="color: #2aa198;">""</span>;
-  <span style="color: #b58900;">char</span> <span style="color: #268bd2;">tmp_dir</span>[s.size()+1];
+  assert(sub.size() == 6 &amp;&amp; <span style="color: #8b2252;">"tmp dir url format error!"</span>);
+  <span style="color: #a020f0;">if</span> (sub.find_first_not_of(<span style="color: #8b2252;">'X'</span>) != <span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">string</span>::npos) <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">""</span>;
+  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">tmp_dir</span>[s.size()+1];
   strcpy(tmp_dir, s.c_str());
 
-  <span style="color: #b58900;">char</span> *<span style="color: #268bd2;">result</span> = mkdtemp(tmp_dir);
+  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">result</span> = mkdtemp(tmp_dir);
 
-  <span style="color: #859900;">if</span> (result == <span style="color: #2aa198;">NULL</span>) <span style="color: #859900;">return</span> <span style="color: #2aa198;">""</span>;
-  <span style="color: #2aa198;">std</span>::<span style="color: #b58900;">string</span> <span style="color: #268bd2;">dir</span> = tmp_dir;
-  <span style="color: #859900;">return</span> dir;
+  <span style="color: #a020f0;">if</span> (result == <span style="color: #008b8b;">NULL</span>) <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">""</span>;
+  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">dir</span> = tmp_dir;
+  <span style="color: #a020f0;">return</span> dir;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org784987f" class="outline-3">
-<h3 id="org784987f"><span class="section-number-3">4.5</span> Iterators</h3>
+<div id="outline-container-org59b83cb" class="outline-3">
+<h3 id="org59b83cb"><span class="section-number-3">4.5</span> Iterators</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>class directory<sub>iterator</sub></li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #859900;">if</span> (<span style="color: #2aa198;">fs</span>::is_directory(p)) {
-  <span style="color: #859900;">for</span> (<span style="color: #2aa198;">fs</span>::directory_entry &amp;e : <span style="color: #2aa198;">fs</span>::directory_iterator(p)) {
+<pre><code class="src src-C++"><span style="color: #a020f0;">if</span> (<span style="color: #008b8b;">fs</span>::is_directory(p)) {
+  <span style="color: #a020f0;">for</span> (<span style="color: #008b8b;">fs</span>::directory_entry &amp;e : <span style="color: #008b8b;">fs</span>::directory_iterator(p)) {
     e.path();
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
 <li>class recursive<sub>directory</sub><sub>iterator</sub></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">path</span> <span style="color: #268bd2;">project_folder</span>(folder);
-<span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">recursive_directory_iterator</span> <span style="color: #268bd2;">it</span>(folder), <span style="color: #268bd2;">eod</span>;
-<span style="color: #268bd2;">BOOST_FOREACH</span> (<span style="color: #2aa198;">fs</span>::<span style="color: #b58900;">path</span> <span style="color: #859900;">const</span> &amp; <span style="color: #268bd2;">p</span>, <span style="color: #2aa198;">std</span>::<span style="color: #268bd2;">make_pair</span>(it, eod)) {
-  <span style="color: #859900;">if</span> (is_regular_file(p)) {
+<pre><code class="src src-C++"><span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #0000ff;">project_folder</span>(folder);
+<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">recursive_directory_iterator</span> <span style="color: #0000ff;">it</span>(folder), <span style="color: #a0522d;">eod</span>;
+<span style="color: #0000ff;">BOOST_FOREACH</span> (<span style="color: #008b8b;">fs</span>::<span style="color: #228b22;">path</span> <span style="color: #a020f0;">const</span> &amp; <span style="color: #a0522d;">p</span>, <span style="color: #008b8b;">std</span>::<span style="color: #0000ff;">make_pair</span>(it, eod)) {
+  <span style="color: #a020f0;">if</span> (is_regular_file(p)) {
     vs.push_back(p.string());
   }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5ea9d14" class="outline-2">
-<h2 id="org5ea9d14"><span class="section-number-2">5</span> Timer</h2>
+<div id="outline-container-org00be014" class="outline-2">
+<h2 id="org00be014"><span class="section-number-2">5</span> Timer</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;boost/timer/timer.hpp&gt;</span>
-<span style="color: #859900;">using</span> <span style="color: #2aa198;">boost</span>::<span style="color: #2aa198;">timer</span>::<span style="color: #b58900;">cpu_timer</span>;
-<span style="color: #859900;">using</span> <span style="color: #2aa198;">boost</span>::<span style="color: #2aa198;">timer</span>::<span style="color: #b58900;">cpu_times</span>;
-<span style="color: #859900;">using</span> <span style="color: #2aa198;">boost</span>::<span style="color: #2aa198;">timer</span>::<span style="color: #b58900;">nanosecond_type</span>;
+<pre><code class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;boost/timer/timer.hpp&gt;</span>
+<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">boost</span>::<span style="color: #008b8b;">timer</span>::<span style="color: #228b22;">cpu_timer</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">boost</span>::<span style="color: #008b8b;">timer</span>::<span style="color: #228b22;">cpu_times</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">boost</span>::<span style="color: #008b8b;">timer</span>::<span style="color: #228b22;">nanosecond_type</span>;
 
-<span style="color: #b58900;">nanosecond_type</span> <span style="color: #859900;">const</span> <span style="color: #268bd2;">twenty_seconds</span>(20 * 1000000000LL);
-<span style="color: #b58900;">nanosecond_type</span> <span style="color: #268bd2;">last</span>(0);
-<span style="color: #b58900;">cpu_timer</span> <span style="color: #268bd2;">timer</span>;
-<span style="color: #859900;">while</span> (more_transactions) {
+<span style="color: #228b22;">nanosecond_type</span> <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">twenty_seconds</span>(20 * 1000000000LL);
+<span style="color: #228b22;">nanosecond_type</span> <span style="color: #a0522d;">last</span>(0);
+<span style="color: #228b22;">cpu_timer</span> <span style="color: #a0522d;">timer</span>;
+<span style="color: #a020f0;">while</span> (more_transactions) {
   process_a_transaction();
-  <span style="color: #b58900;">cpu_times</span> <span style="color: #859900;">const</span> <span style="color: #268bd2;">elapsed_times</span>(timer.elapsed());
-  <span style="color: #b58900;">nanosecond_type</span> <span style="color: #859900;">const</span> <span style="color: #268bd2;">elapsed</span>(elapsed_times.system
+  <span style="color: #228b22;">cpu_times</span> <span style="color: #a020f0;">const</span> <span style="color: #0000ff;">elapsed_times</span>(timer.elapsed());
+  <span style="color: #228b22;">nanosecond_type</span> <span style="color: #a020f0;">const</span> <span style="color: #0000ff;">elapsed</span>(elapsed_times.system
                                 + elapsed_times.user);
-  <span style="color: #859900;">if</span> (elapsed &gt;= twenty_seconds) {
+  <span style="color: #a020f0;">if</span> (elapsed &gt;= twenty_seconds) {
     last = elapsed;
   }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2d8e4f1" class="outline-2">
-<h2 id="org2d8e4f1"><span class="section-number-2">6</span> Algorithm</h2>
+<div id="outline-container-org2f03703" class="outline-2">
+<h2 id="org2f03703"><span class="section-number-2">6</span> Algorithm</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgea07aee" class="outline-3">
-<h3 id="orgea07aee"><span class="section-number-3">6.1</span> string</h3>
+</div>
+<div id="outline-container-org8c4b1c5" class="outline-3">
+<h3 id="org8c4b1c5"><span class="section-number-3">6.1</span> string</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 Header: <code>&lt;boost/algorithm/string/trim.hpp&gt;</code>
@@ -921,14 +926,16 @@ Both:
 </div>
 
 
-<div id="outline-container-org1680b55" class="outline-2">
-<h2 id="org1680b55"><span class="section-number-2">7</span> Graph</h2>
+<div id="outline-container-orge9c05ce" class="outline-2">
+<h2 id="orge9c05ce"><span class="section-number-2">7</span> Graph</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-orge1bc22d" class="outline-3">
-<h3 id="orge1bc22d"><span class="section-number-3">7.1</span> adjacency<sub>list</sub></h3>
+</div>
+<div id="outline-container-org20a320d" class="outline-3">
+<h3 id="org20a320d"><span class="section-number-3">7.1</span> adjacency<sub>list</sub></h3>
 <div class="outline-text-3" id="text-7-1">
-</div><div id="outline-container-org4d692a6" class="outline-4">
-<h4 id="org4d692a6"><span class="section-number-4">7.1.1</span> Member Functions</h4>
+</div>
+<div id="outline-container-orgcfef31b" class="outline-4">
+<h4 id="orgcfef31b"><span class="section-number-4">7.1.1</span> Member Functions</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <ul class="org-ul">
 <li><code>adjacency_list(...)</code></li>
@@ -938,222 +945,223 @@ Both:
 </div>
 </div>
 
-<div id="outline-container-orga31ac39" class="outline-4">
-<h4 id="orga31ac39"><span class="section-number-4">7.1.2</span> Non-member functions</h4>
+<div id="outline-container-org2c7e5c4" class="outline-4">
+<h4 id="org2c7e5c4"><span class="section-number-4">7.1.2</span> Non-member functions</h4>
 <div class="outline-text-4" id="text-7-1-2">
-</div><div id="outline-container-org8dcb172" class="outline-5">
-<h5 id="org8dcb172"><span class="section-number-5">7.1.2.1</span> Access</h5>
+</div>
+<div id="outline-container-org8b4c04d" class="outline-5">
+<h5 id="org8b4c04d"><span class="section-number-5">7.1.2.1</span> Access</h5>
 <div class="outline-text-5" id="text-7-1-2-1">
 <ul class="org-ul">
 <li><code>vertices</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;vertex_iterator, vertex_iterator&gt; <span style="color: #268bd2;">vertices</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;vertex_iterator, vertex_iterator&gt; <span style="color: #0000ff;">vertices</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>edges</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;edge_iterator, edge_iterator&gt; <span style="color: #268bd2;">edges</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;edge_iterator, edge_iterator&gt; <span style="color: #0000ff;">edges</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>adjacent_vertices</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;adjacency_iterator, adjacency_iterator&gt; <span style="color: #268bd2;">adjacent_vertices</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;adjacency_iterator, adjacency_iterator&gt; <span style="color: #0000ff;">adjacent_vertices</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>inv_adjacent_vertices</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;inv_adjacency_iterator, inv_adjacency_iterator&gt; <span style="color: #268bd2;">inv_adjacent_vertices</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;inv_adjacency_iterator, inv_adjacency_iterator&gt; <span style="color: #0000ff;">inv_adjacent_vertices</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>out_edges</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;out_edge_iterator, out_edge_iterator&gt; <span style="color: #268bd2;">out_edges</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;out_edge_iterator, out_edge_iterator&gt; <span style="color: #0000ff;">out_edges</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>in_edges</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;in_edge_iterator, in_edge_iterator&gt; <span style="color: #268bd2;">in_edges</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;in_edge_iterator, in_edge_iterator&gt; <span style="color: #0000ff;">in_edges</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>source</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">source</span>(<span style="color: #b58900;">edge_descriptor</span> <span style="color: #268bd2;">e</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">vertex_descriptor</span> <span style="color: #0000ff;">source</span>(<span style="color: #228b22;">edge_descriptor</span> <span style="color: #a0522d;">e</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>target</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">target</span>(<span style="color: #b58900;">edge_descriptor</span> <span style="color: #268bd2;">e</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">vertex_descriptor</span> <span style="color: #0000ff;">target</span>(<span style="color: #228b22;">edge_descriptor</span> <span style="color: #a0522d;">e</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>out_degree</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">degree_size_type</span> <span style="color: #268bd2;">out_degree</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">degree_size_type</span> <span style="color: #0000ff;">out_degree</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>in_degree</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">degree_size_type</span> <span style="color: #268bd2;">in_degree</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">degree_size_type</span> <span style="color: #0000ff;">in_degree</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>num_vertices</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">vertices_size_type</span> <span style="color: #268bd2;">num_vertices</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">vertices_size_type</span> <span style="color: #0000ff;">num_vertices</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>num_edges</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">edges_size_type</span> <span style="color: #268bd2;">num_edges</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">edges_size_type</span> <span style="color: #0000ff;">num_edges</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>vertex</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">vertex</span>(<span style="color: #b58900;">vertices_size_type</span> <span style="color: #268bd2;">n</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">vertex_descriptor</span> <span style="color: #0000ff;">vertex</span>(<span style="color: #228b22;">vertices_size_type</span> <span style="color: #a0522d;">n</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>edge</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;edge_descriptor, <span style="color: #b58900;">bool</span>&gt; <span style="color: #268bd2;">edge</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;edge_descriptor, <span style="color: #228b22;">bool</span>&gt; <span style="color: #0000ff;">edge</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>edge_range</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;out_edge_iterator, out_edge_iterator&gt; <span style="color: #268bd2;">edge_range</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;out_edge_iterator, out_edge_iterator&gt; <span style="color: #0000ff;">edge_range</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgb26fd87" class="outline-5">
-<h5 id="orgb26fd87"><span class="section-number-5">7.1.2.2</span> Modification</h5>
+<div id="outline-container-orgba8f42a" class="outline-5">
+<h5 id="orgba8f42a"><span class="section-number-5">7.1.2.2</span> Modification</h5>
 <div class="outline-text-5" id="text-7-1-2-2">
 <ul class="org-ul">
 <li><code>add_edge</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;edge_descriptor, <span style="color: #b58900;">bool</span>&gt; <span style="color: #268bd2;">add_edge</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;edge_descriptor, <span style="color: #228b22;">bool</span>&gt; <span style="color: #0000ff;">add_edge</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 
 <ul class="org-ul">
 <li><code>add_edge</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #2aa198;">std</span>::<span style="color: #b58900;">pair</span>&lt;edge_descriptor, <span style="color: #b58900;">bool</span>&gt; <span style="color: #268bd2;">add_edge</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #859900;">const</span> <span style="color: #b58900;">EdgeProperties</span>&amp; <span style="color: #268bd2;">p</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;edge_descriptor, <span style="color: #228b22;">bool</span>&gt; <span style="color: #0000ff;">add_edge</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">EdgeProperties</span>&amp; <span style="color: #a0522d;">p</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_edge</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_edge</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_edge</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_edge</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_edge</span>(<span style="color: #b58900;">edge_descriptor</span> <span style="color: #268bd2;">e</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_edge</span>(<span style="color: #228b22;">edge_descriptor</span> <span style="color: #a0522d;">e</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_edge</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_edge</span>(<span style="color: #b58900;">out_edge_iterator</span> <span style="color: #268bd2;">iter</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_edge</span>(<span style="color: #228b22;">out_edge_iterator</span> <span style="color: #a0522d;">iter</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_out_edge_if</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900;">template</span> &lt;<span style="color: #859900;">class</span> <span style="color: #b58900;">Predicate</span>&gt; <span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_out_edge_if</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">Predicate</span> <span style="color: #268bd2;">predicate</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Predicate</span>&gt; <span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_out_edge_if</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">Predicate</span> <span style="color: #a0522d;">predicate</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_in_edge_if</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900;">template</span> &lt;<span style="color: #859900;">class</span> <span style="color: #b58900;">Predicate</span>&gt; <span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_in_edge_if</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">v</span>, <span style="color: #b58900;">Predicate</span> <span style="color: #268bd2;">predicate</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Predicate</span>&gt; <span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_in_edge_if</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">v</span>, <span style="color: #228b22;">Predicate</span> <span style="color: #a0522d;">predicate</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_edge_if</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #859900;">template</span> &lt;<span style="color: #859900;">class</span> <span style="color: #b58900;">Predicate</span>&gt; <span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_edge_if</span>(<span style="color: #b58900;">Predicate</span> <span style="color: #268bd2;">predicate</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Predicate</span>&gt; <span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_edge_if</span>(<span style="color: #228b22;">Predicate</span> <span style="color: #a0522d;">predicate</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>add_vertex</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">add_vertex</span>(<span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">vertex_descriptor</span> <span style="color: #0000ff;">add_vertex</span>(<span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>add_vertex</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">add_vertex</span>(<span style="color: #859900;">const</span> <span style="color: #b58900;">VertexProperties</span>&amp; <span style="color: #268bd2;">p</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">vertex_descriptor</span> <span style="color: #0000ff;">add_vertex</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">VertexProperties</span>&amp; <span style="color: #a0522d;">p</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>clear_vertex</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">clear_vertex</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">clear_vertex</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>clear_out_edges</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">clear_out_edges</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">clear_out_edges</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>clear_in_edges</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">clear_in_edges</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">clear_in_edges</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>remove_vertex</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #b58900;">void</span> <span style="color: #268bd2;">remove_vertex</span>(<span style="color: #b58900;">vertex_descriptor</span> <span style="color: #268bd2;">u</span>, <span style="color: #b58900;">adjacency_list</span>&amp; <span style="color: #268bd2;">g</span>)
-</pre>
+<pre><code class="src src-cpp"><span style="color: #228b22;">void</span> <span style="color: #0000ff;">remove_vertex</span>(<span style="color: #228b22;">vertex_descriptor</span> <span style="color: #a0522d;">u</span>, <span style="color: #228b22;">adjacency_list</span>&amp; <span style="color: #a0522d;">g</span>)
+</code></pre>
 </div>
 </div>
 </div>
@@ -1163,7 +1171,7 @@ Both:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-15 Thu 12:00</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

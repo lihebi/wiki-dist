@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -256,94 +257,95 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfd60756">1. 变量和基本类型</a>
+<li><a href="#orgda8d8b2">1. 变量和基本类型</a>
 <ul>
-<li><a href="#org98b4016">1.1. 类型</a>
+<li><a href="#orge1c1baa">1.1. 类型</a>
 <ul>
-<li><a href="#org9d59fc2">1.1.1. 如何选择类型</a></li>
-<li><a href="#org336c9b4">1.1.2. Static</a></li>
-<li><a href="#org5aa9d25">1.1.3. 转义</a></li>
-<li><a href="#orgf182da6">1.1.4. 字面值类型</a></li>
-<li><a href="#org523bcde">1.1.5. 初始化</a></li>
+<li><a href="#org1b938fb">1.1.1. 如何选择类型</a></li>
+<li><a href="#orgf30ebdc">1.1.2. Static</a></li>
+<li><a href="#orgf86b38a">1.1.3. 转义</a></li>
+<li><a href="#org4b6f370">1.1.4. 字面值类型</a></li>
+<li><a href="#org5af251a">1.1.5. 初始化</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgef269ed">2. Language Specification</a>
+<li><a href="#org4924cd2">2. Language Specification</a>
 <ul>
-<li><a href="#orge34dd0b">2.1. varargs functions (variadic functions)</a></li>
-<li><a href="#orgc61a462">2.2. Variadic Macros</a></li>
+<li><a href="#org7e02e06">2.1. varargs functions (variadic functions)</a></li>
+<li><a href="#org460b289">2.2. Variadic Macros</a></li>
 </ul>
 </li>
-<li><a href="#org7d1832a">3. idioms</a></li>
-<li><a href="#orgb9055e4">4. Cast</a>
+<li><a href="#orgb0f89cf">3. idioms</a></li>
+<li><a href="#org0dac551">4. Cast</a>
 <ul>
-<li><a href="#org4dc5ef3">4.1. In a word</a></li>
-<li><a href="#org9ae4f18">4.2. C style cast: <b><b>DO NOT USE</b></b></a></li>
-<li><a href="#orgf99502f">4.3. Static Cast</a></li>
-<li><a href="#org251d782">4.4. Const Cast</a></li>
-<li><a href="#org8821d8c">4.5. Dynamic Cast</a></li>
-<li><a href="#org4349496">4.6. Reinterpret Cast</a></li>
-<li><a href="#orgc8dfa07">4.7. C style cast</a></li>
+<li><a href="#orgdc860bd">4.1. In a word</a></li>
+<li><a href="#orgfe075ef">4.2. C style cast: <b><b>DO NOT USE</b></b></a></li>
+<li><a href="#org2c78027">4.3. Static Cast</a></li>
+<li><a href="#org0baaa64">4.4. Const Cast</a></li>
+<li><a href="#org339d7d4">4.5. Dynamic Cast</a></li>
+<li><a href="#orge39d060">4.6. Reinterpret Cast</a></li>
+<li><a href="#org806e98c">4.7. C style cast</a></li>
 </ul>
 </li>
-<li><a href="#orgd386659">5. Compound Literals</a>
+<li><a href="#orgc87e965">5. Compound Literals</a>
 <ul>
-<li><a href="#org88ef9d2">5.1. Example</a></li>
-<li><a href="#orge66f3b5">5.2. more examples</a></li>
-<li><a href="#org4185422">5.3. static</a></li>
+<li><a href="#org6f09d87">5.1. Example</a></li>
+<li><a href="#org7e175c9">5.2. more examples</a></li>
+<li><a href="#org6cd36c9">5.3. static</a></li>
 </ul>
 </li>
-<li><a href="#orgaf9f227">6. extern</a>
+<li><a href="#orgfc5a130">6. extern</a>
 <ul>
-<li><a href="#org7d89394">6.1. Function</a></li>
-<li><a href="#org763f958">6.2. Variable</a></li>
-<li><a href="#orgdf0d10b">6.3. extern "C"</a></li>
-<li><a href="#orgfe0691c">6.4. syntax</a></li>
+<li><a href="#orgf4d433f">6.1. Function</a></li>
+<li><a href="#org2bfc398">6.2. Variable</a></li>
+<li><a href="#org7798d07">6.3. extern "C"</a></li>
+<li><a href="#org118c07e">6.4. syntax</a></li>
 </ul>
 </li>
-<li><a href="#orga0db353">7. restrict</a></li>
-<li><a href="#orgc383590">8. volatile</a>
+<li><a href="#org48c65b2">7. restrict</a></li>
+<li><a href="#org25fe51c">8. volatile</a>
 <ul>
-<li><a href="#org5f3f655">8.1. syntax</a></li>
-<li><a href="#org5a82026">8.2. When to use it</a>
+<li><a href="#org77d5a0e">8.1. syntax</a></li>
+<li><a href="#org741714e">8.2. When to use it</a>
 <ul>
-<li><a href="#orge3d942d">8.2.1. Memory-mapped peripheral registers</a></li>
-<li><a href="#org23b8508">8.2.2. Global variables modified by an ISR(Interrupt Service Routine)</a></li>
-<li><a href="#org44b15b3">8.2.3. Global variables accessed by multiple tasks within a multi-threaded application</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org488d687">9. Operator Precedence</a>
-<ul>
-<li><a href="#org8bc63f0">9.1. notes</a>
-<ul>
-<li><a href="#org64bfea8">9.1.1. For <code>?:</code></a></li>
-<li><a href="#orge1b3eb7">9.1.2. For C++</a></li>
-<li><a href="#orgbf0d0a3">9.1.3. In c++ table, the <code>?:</code> is also in 14 cell</a></li>
+<li><a href="#orgcaee130">8.2.1. Memory-mapped peripheral registers</a></li>
+<li><a href="#orgefac324">8.2.2. Global variables modified by an ISR(Interrupt Service Routine)</a></li>
+<li><a href="#org05836d9">8.2.3. Global variables accessed by multiple tasks within a multi-threaded application</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2920995">10. Unix Library</a></li>
+<li><a href="#org31a3038">9. Operator Precedence</a>
+<ul>
+<li><a href="#orgd3311a4">9.1. notes</a>
+<ul>
+<li><a href="#org787b131">9.1.1. For <code>?:</code></a></li>
+<li><a href="#org4d410a8">9.1.2. For C++</a></li>
+<li><a href="#orgdf5e609">9.1.3. In c++ table, the <code>?:</code> is also in 14 cell</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org51b2068">10. Unix Library</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfd60756" class="outline-2">
-<h2 id="orgfd60756"><span class="section-number-2">1</span> 变量和基本类型</h2>
+<div id="outline-container-orgda8d8b2" class="outline-2">
+<h2 id="orgda8d8b2"><span class="section-number-2">1</span> 变量和基本类型</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org98b4016" class="outline-3">
-<h3 id="org98b4016"><span class="section-number-3">1.1</span> 类型</h3>
+</div>
+<div id="outline-container-orge1c1baa" class="outline-3">
+<h3 id="orge1c1baa"><span class="section-number-3">1.1</span> 类型</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>是用 <code>char</code> 时，需要明确指明 <code>unsigned char</code> 还是 <code>signed char</code> ，否则根据系统的不同而不同。</li>
 <li><code>long long</code> &gt;= <code>long</code> &gt;= <code>int</code> &gt;= <code>short</code></li>
 </ul>
 </div>
-<div id="outline-container-org9d59fc2" class="outline-4">
-<h4 id="org9d59fc2"><span class="section-number-4">1.1.1</span> 如何选择类型</h4>
+<div id="outline-container-org1b938fb" class="outline-4">
+<h4 id="org1b938fb"><span class="section-number-4">1.1.1</span> 如何选择类型</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ol class="org-ol">
 <li>若不为负，选unsigned</li>
@@ -354,8 +356,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org336c9b4" class="outline-4">
-<h4 id="org336c9b4"><span class="section-number-4">1.1.2</span> Static</h4>
+<div id="outline-container-orgf30ebdc" class="outline-4">
+<h4 id="orgf30ebdc"><span class="section-number-4">1.1.2</span> Static</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li><code>static member function</code>: can use <code>ClassName::function()</code> directly</li>
@@ -368,8 +370,8 @@ A static global variable or a function is "seen" only in the file it's declared 
 </div>
 
 
-<div id="outline-container-org5aa9d25" class="outline-4">
-<h4 id="org5aa9d25"><span class="section-number-4">1.1.3</span> 转义</h4>
+<div id="outline-container-orgf86b38a" class="outline-4">
+<h4 id="orgf86b38a"><span class="section-number-4">1.1.3</span> 转义</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -422,8 +424,8 @@ A static global variable or a function is "seen" only in the file it's declared 
 </div>
 </div>
 
-<div id="outline-container-orgf182da6" class="outline-4">
-<h4 id="orgf182da6"><span class="section-number-4">1.1.4</span> 字面值类型</h4>
+<div id="outline-container-org4b6f370" class="outline-4">
+<h4 id="org4b6f370"><span class="section-number-4">1.1.4</span> 字面值类型</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 前缀
@@ -541,15 +543,15 @@ A static global variable or a function is "seen" only in the file it's declared 
 </div>
 </div>
 
-<div id="outline-container-org523bcde" class="outline-4">
-<h4 id="org523bcde"><span class="section-number-4">1.1.5</span> 初始化</h4>
+<div id="outline-container-org5af251a" class="outline-4">
+<h4 id="org5af251a"><span class="section-number-4">1.1.5</span> 初始化</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>=0;
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>={0};
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>{0}; <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">C++11</span>
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>(0);
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>=0;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>={0};
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>{0}; <span style="color: #b22222;">//</span><span style="color: #b22222;">C++11</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">a</span>(0);
+</code></pre>
 </div>
 
 <p>
@@ -562,9 +564,9 @@ string默认为空串。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">extern</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#22768;&#26126;</span>
-<span style="color: #859900;">extern</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>=1; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#23450;&#20041;&#65292;&#19981;&#21487;&#22312;&#20989;&#25968;&#20307;&#20869;&#37096;</span>
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">extern</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22768;&#26126;</span>
+<span style="color: #a020f0;">extern</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=1; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23450;&#20041;&#65292;&#19981;&#21487;&#22312;&#20989;&#25968;&#20307;&#20869;&#37096;</span>
+</code></pre>
 </div>
 </div>
 </div>
@@ -573,11 +575,12 @@ string默认为空串。
 
 
 
-<div id="outline-container-orgef269ed" class="outline-2">
-<h2 id="orgef269ed"><span class="section-number-2">2</span> Language Specification</h2>
+<div id="outline-container-org4924cd2" class="outline-2">
+<h2 id="org4924cd2"><span class="section-number-2">2</span> Language Specification</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orge34dd0b" class="outline-3">
-<h3 id="orge34dd0b"><span class="section-number-3">2.1</span> varargs functions (variadic functions)</h3>
+</div>
+<div id="outline-container-org7e02e06" class="outline-3">
+<h3 id="org7e02e06"><span class="section-number-3">2.1</span> varargs functions (variadic functions)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 a function to take a variable number or type of arguments
@@ -608,41 +611,41 @@ The macro prototypes (defined in <code>stdarg.h</code>). Note these are macros, 
 An real world example:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdarg.h&gt;</span>
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
+<pre><code class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdarg.h&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
 
-<span style="color: #b58900;">int</span>
-<span style="color: #268bd2;">add_em_up</span> (<span style="color: #b58900;">int</span> <span style="color: #268bd2;">count</span>,...)
+<span style="color: #228b22;">int</span>
+<span style="color: #0000ff;">add_em_up</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">count</span>,...)
 {
-  <span style="color: #b58900;">va_list</span> <span style="color: #268bd2;">ap</span>;
-  <span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>, <span style="color: #268bd2;">sum</span>;
-  va_start (ap, count);         <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">Initialize the argument list. </span><span style="color: #93a1a1; font-style: italic;">*/</span>
+  <span style="color: #228b22;">va_list</span> <span style="color: #a0522d;">ap</span>;
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>, <span style="color: #a0522d;">sum</span>;
+  va_start (ap, count);         <span style="color: #b22222;">/* </span><span style="color: #b22222;">Initialize the argument list. </span><span style="color: #b22222;">*/</span>
   sum = 0;
-  <span style="color: #859900;">for</span> (i = 0; i &lt; count; i++)
-    sum += va_arg (ap, <span style="color: #b58900;">int</span>);    <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">Get the next argument value. </span><span style="color: #93a1a1; font-style: italic;">*/</span>
-  va_end (ap);                  <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">Clean up. </span><span style="color: #93a1a1; font-style: italic;">*/</span>
-  <span style="color: #859900;">return</span> sum;
+  <span style="color: #a020f0;">for</span> (i = 0; i &lt; count; i++)
+    sum += va_arg (ap, <span style="color: #228b22;">int</span>);    <span style="color: #b22222;">/* </span><span style="color: #b22222;">Get the next argument value. </span><span style="color: #b22222;">*/</span>
+  va_end (ap);                  <span style="color: #b22222;">/* </span><span style="color: #b22222;">Clean up. </span><span style="color: #b22222;">*/</span>
+  <span style="color: #a020f0;">return</span> sum;
 }
-<span style="color: #b58900;">int</span>
-<span style="color: #268bd2;">main</span> (<span style="color: #b58900;">void</span>)
+<span style="color: #228b22;">int</span>
+<span style="color: #0000ff;">main</span> (<span style="color: #228b22;">void</span>)
 {
-  <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">This call prints 16. </span><span style="color: #93a1a1; font-style: italic;">*/</span>
-  printf (<span style="color: #2aa198;">"%d\n"</span>, add_em_up (3, 5, 5, 6));
-  <span style="color: #93a1a1; font-style: italic;">/* </span><span style="color: #93a1a1; font-style: italic;">This call prints 55. </span><span style="color: #93a1a1; font-style: italic;">*/</span>
-  printf (<span style="color: #2aa198;">"%d\n"</span>, add_em_up (10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-  <span style="color: #859900;">return</span> 0;
+  <span style="color: #b22222;">/* </span><span style="color: #b22222;">This call prints 16. </span><span style="color: #b22222;">*/</span>
+  printf (<span style="color: #8b2252;">"%d\n"</span>, add_em_up (3, 5, 5, 6));
+  <span style="color: #b22222;">/* </span><span style="color: #b22222;">This call prints 55. </span><span style="color: #b22222;">*/</span>
+  printf (<span style="color: #8b2252;">"%d\n"</span>, add_em_up (10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+  <span style="color: #a020f0;">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc61a462" class="outline-3">
-<h3 id="orgc61a462"><span class="section-number-3">2.2</span> Variadic Macros</h3>
+<div id="outline-container-org460b289" class="outline-3">
+<h3 id="org460b289"><span class="section-number-3">2.2</span> Variadic Macros</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #cb4b16;">#define</span> <span style="color: #268bd2;">eprintf</span>(<span style="color: #268bd2;">format</span>, ...) fprintf (stderr, format, __VA_ARGS__)
-</pre>
+<pre><code class="src src-C"><span style="color: #483d8b;">#define</span> <span style="color: #0000ff;">eprintf</span>(<span style="color: #a0522d;">format</span>, ...) fprintf (stderr, format, __VA_ARGS__)
+</code></pre>
 </div>
 
 <p>
@@ -654,21 +657,22 @@ just like an ordinary argument.
 </div>
 </div>
 
-<div id="outline-container-org7d1832a" class="outline-2">
-<h2 id="org7d1832a"><span class="section-number-2">3</span> idioms</h2>
+<div id="outline-container-orgb0f89cf" class="outline-2">
+<h2 id="orgb0f89cf"><span class="section-number-2">3</span> idioms</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">typedef</span> <span style="color: #859900;">enum</span> { <span style="color: #2aa198;">false</span>, <span style="color: #2aa198;">true</span> } <span style="color: #b58900;">bool</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">typedef</span> <span style="color: #a020f0;">enum</span> { <span style="color: #008b8b;">false</span>, <span style="color: #008b8b;">true</span> } <span style="color: #228b22;">bool</span>;
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb9055e4" class="outline-2">
-<h2 id="orgb9055e4"><span class="section-number-2">4</span> Cast</h2>
+<div id="outline-container-org0dac551" class="outline-2">
+<h2 id="org0dac551"><span class="section-number-2">4</span> Cast</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org4dc5ef3" class="outline-3">
-<h3 id="org4dc5ef3"><span class="section-number-3">4.1</span> In a word</h3>
+</div>
+<div id="outline-container-orgdc860bd" class="outline-3">
+<h3 id="orgdc860bd"><span class="section-number-3">4.1</span> In a word</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><code>static_cast</code>: ordinary type conversions.</li>
@@ -680,12 +684,12 @@ Avoid this unless you are stuck using a const-incorrect API.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9ae4f18" class="outline-3">
-<h3 id="org9ae4f18"><span class="section-number-3">4.2</span> C style cast: <b><b>DO NOT USE</b></b></h3>
+<div id="outline-container-orgfe075ef" class="outline-3">
+<h3 id="orgfe075ef"><span class="section-number-3">4.2</span> C style cast: <b><b>DO NOT USE</b></b></h3>
 </div>
 
-<div id="outline-container-orgf99502f" class="outline-3">
-<h3 id="orgf99502f"><span class="section-number-3">4.3</span> Static Cast</h3>
+<div id="outline-container-org2c78027" class="outline-3">
+<h3 id="org2c78027"><span class="section-number-3">4.3</span> Static Cast</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <code>static_cast</code> is the first cast you should attempt to use.
@@ -708,8 +712,8 @@ and it is undefined behavior to <code>static_cast</code> down a hierarchy to a t
 </div>
 </div>
 
-<div id="outline-container-org251d782" class="outline-3">
-<h3 id="org251d782"><span class="section-number-3">4.4</span> Const Cast</h3>
+<div id="outline-container-org0baaa64" class="outline-3">
+<h3 id="org0baaa64"><span class="section-number-3">4.4</span> Const Cast</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 <code>const_cast</code> can be used to remove or add const to a variable;
@@ -729,8 +733,8 @@ though that's less common.
 </div>
 </div>
 
-<div id="outline-container-org8821d8c" class="outline-3">
-<h3 id="org8821d8c"><span class="section-number-3">4.5</span> Dynamic Cast</h3>
+<div id="outline-container-org339d7d4" class="outline-3">
+<h3 id="org339d7d4"><span class="section-number-3">4.5</span> Dynamic Cast</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 <code>dynamic_cast</code> is almost exclusively used for handling polymorphism.
@@ -753,8 +757,8 @@ This is rarely an issue, however, as such forms of inheritance are rare.
 </div>
 </div>
 
-<div id="outline-container-org4349496" class="outline-3">
-<h3 id="org4349496"><span class="section-number-3">4.6</span> Reinterpret Cast</h3>
+<div id="outline-container-orge39d060" class="outline-3">
+<h3 id="orge39d060"><span class="section-number-3">4.6</span> Reinterpret Cast</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 <code>reinterpret_cast</code> is the most dangerous cast, and should be used very sparingly.
@@ -771,8 +775,8 @@ or storing data in the low bits of an aligned pointer.
 </div>
 </div>
 
-<div id="outline-container-orgc8dfa07" class="outline-3">
-<h3 id="orgc8dfa07"><span class="section-number-3">4.7</span> C style cast</h3>
+<div id="outline-container-org806e98c" class="outline-3">
+<h3 id="org806e98c"><span class="section-number-3">4.7</span> C style cast</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 C casts are casts using (type)object or type(object).
@@ -806,8 +810,8 @@ and in my mind is just another reason to avoid C-style casts.
 </div>
 
 
-<div id="outline-container-orgd386659" class="outline-2">
-<h2 id="orgd386659"><span class="section-number-2">5</span> Compound Literals</h2>
+<div id="outline-container-orgc87e965" class="outline-2">
+<h2 id="orgc87e965"><span class="section-number-2">5</span> Compound Literals</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 A compound literal looks like a cast containing an initializer.
@@ -817,12 +821,12 @@ it is an lvalue.
 </p>
 </div>
 
-<div id="outline-container-org88ef9d2" class="outline-3">
-<h3 id="org88ef9d2"><span class="section-number-3">5.1</span> Example</h3>
+<div id="outline-container-org6f09d87" class="outline-3">
+<h3 id="org6f09d87"><span class="section-number-3">5.1</span> Example</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">struct</span> <span style="color: #b58900;">foo</span> {<span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>; <span style="color: #b58900;">char</span> <span style="color: #268bd2;">b</span>[2];} <span style="color: #268bd2;">structure</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">foo</span> {<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>; <span style="color: #228b22;">char</span> <span style="color: #a0522d;">b</span>[2];} <span style="color: #a0522d;">structure</span>;
+</code></pre>
 </div>
 
 <p>
@@ -830,42 +834,42 @@ The constructing:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C">structure = ((<span style="color: #859900;">struct</span> <span style="color: #b58900;">foo</span>) {x + y, <span style="color: #2aa198;">'a'</span>, 0});
-</pre>
+<pre><code class="src src-C">structure = ((<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">foo</span>) {x + y, <span style="color: #8b2252;">'a'</span>, 0});
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orge66f3b5" class="outline-3">
-<h3 id="orge66f3b5"><span class="section-number-3">5.2</span> more examples</h3>
+<div id="outline-container-org7e175c9" class="outline-3">
+<h3 id="org7e175c9"><span class="section-number-3">5.2</span> more examples</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">char</span> **<span style="color: #268bd2;">foo</span> = (<span style="color: #b58900;">char</span> *[]) { <span style="color: #2aa198;">"x"</span>, <span style="color: #2aa198;">"y"</span>, <span style="color: #2aa198;">"z"</span> };
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">char</span> **<span style="color: #a0522d;">foo</span> = (<span style="color: #228b22;">char</span> *[]) { <span style="color: #8b2252;">"x"</span>, <span style="color: #8b2252;">"y"</span>, <span style="color: #8b2252;">"z"</span> };
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4185422" class="outline-3">
-<h3 id="org4185422"><span class="section-number-3">5.3</span> static</h3>
+<div id="outline-container-org6cd36c9" class="outline-3">
+<h3 id="org6cd36c9"><span class="section-number-3">5.3</span> static</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Value in the compound literals must be constant.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">static</span> <span style="color: #859900;">struct</span> <span style="color: #b58900;">foo</span> <span style="color: #268bd2;">x</span> = (<span style="color: #859900;">struct</span> <span style="color: #b58900;">foo</span>) {1, <span style="color: #2aa198;">'a'</span>, <span style="color: #2aa198;">'b'</span>};
-<span style="color: #859900;">static</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">y</span>[] = (<span style="color: #b58900;">int</span> []) {1, 2, 3};
-<span style="color: #859900;">static</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">z</span>[] = (<span style="color: #b58900;">int</span> [3]) {1};
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">foo</span> <span style="color: #a0522d;">x</span> = (<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">foo</span>) {1, <span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'b'</span>};
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>[] = (<span style="color: #228b22;">int</span> []) {1, 2, 3};
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">z</span>[] = (<span style="color: #228b22;">int</span> [3]) {1};
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgaf9f227" class="outline-2">
-<h2 id="orgaf9f227"><span class="section-number-2">6</span> extern</h2>
+<div id="outline-container-orgfc5a130" class="outline-2">
+<h2 id="orgfc5a130"><span class="section-number-2">6</span> extern</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>extern means extend the visibility of a variable or function.</li>
@@ -874,8 +878,8 @@ Value in the compound literals must be constant.
 </ul>
 </div>
 
-<div id="outline-container-org7d89394" class="outline-3">
-<h3 id="org7d89394"><span class="section-number-3">6.1</span> Function</h3>
+<div id="outline-container-orgf4d433f" class="outline-3">
+<h3 id="orgf4d433f"><span class="section-number-3">6.1</span> Function</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 For function declare and define, `extern` is added by compiler by default.
@@ -884,16 +888,16 @@ So use or not use `extern` for functions are equivalent.
 </div>
 </div>
 
-<div id="outline-container-org763f958" class="outline-3">
-<h3 id="org763f958"><span class="section-number-3">6.2</span> Variable</h3>
+<div id="outline-container-org2bfc398" class="outline-3">
+<h3 id="org2bfc398"><span class="section-number-3">6.2</span> Variable</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 define a variable
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>;
+</code></pre>
 </div>
 
 <p>
@@ -901,8 +905,8 @@ declare a variable
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">extern</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">extern</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>;
+</code></pre>
 </div>
 
 <p>
@@ -917,8 +921,8 @@ An exception: extern a variable with initialization
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">extern</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">a</span> = 8;
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">extern</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = 8;
+</code></pre>
 </div>
 
 <p>
@@ -927,8 +931,8 @@ This will be treated as definition.
 </div>
 </div>
 
-<div id="outline-container-orgdf0d10b" class="outline-3">
-<h3 id="orgdf0d10b"><span class="section-number-3">6.3</span> extern "C"</h3>
+<div id="outline-container-org7798d07" class="outline-3">
+<h3 id="org7798d07"><span class="section-number-3">6.3</span> extern "C"</h3>
 <div class="outline-text-3" id="text-6-3">
 <blockquote>
 <p>
@@ -954,8 +958,8 @@ to the name used for linkage.
 </div>
 </div>
 
-<div id="outline-container-orgfe0691c" class="outline-3">
-<h3 id="orgfe0691c"><span class="section-number-3">6.4</span> syntax</h3>
+<div id="outline-container-org118c07e" class="outline-3">
+<h3 id="org118c07e"><span class="section-number-3">6.4</span> syntax</h3>
 <div class="outline-text-3" id="text-6-4">
 <ul class="org-ul">
 <li>can specify "C" linkage to each individual declaration/definition explicitly</li>
@@ -963,21 +967,21 @@ to the name used for linkage.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">extern</span> <span style="color: #2aa198;">"C"</span> <span style="color: #b58900;">void</span> <span style="color: #268bd2;">foo</span>(<span style="color: #b58900;">int</span>);
-<span style="color: #859900;">extern</span> <span style="color: #2aa198;">"C"</span>
+<pre><code class="src src-C"><span style="color: #a020f0;">extern</span> <span style="color: #8b2252;">"C"</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">foo</span>(<span style="color: #228b22;">int</span>);
+<span style="color: #a020f0;">extern</span> <span style="color: #8b2252;">"C"</span>
 {
-   <span style="color: #b58900;">void</span> <span style="color: #268bd2;">g</span>(<span style="color: #b58900;">char</span>);
-   <span style="color: #b58900;">int</span> <span style="color: #268bd2;">i</span>;
+   <span style="color: #228b22;">void</span> <span style="color: #0000ff;">g</span>(<span style="color: #228b22;">char</span>);
+   <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orga0db353" class="outline-2">
-<h2 id="orga0db353"><span class="section-number-2">7</span> restrict</h2>
+<div id="outline-container-org48c65b2" class="outline-2">
+<h2 id="org48c65b2"><span class="section-number-2">7</span> restrict</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 The restrict keyword is a declaration of intent given by the programmer to the compiler.
@@ -1003,8 +1007,8 @@ this will result in undefined behavior.
 
 
 
-<div id="outline-container-orgc383590" class="outline-2">
-<h2 id="orgc383590"><span class="section-number-2">8</span> volatile</h2>
+<div id="outline-container-org25fe51c" class="outline-2">
+<h2 id="org25fe51c"><span class="section-number-2">8</span> volatile</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 When your code works without compiler optimization, but fails when you turn optimization on,
@@ -1023,17 +1027,17 @@ so DO NOT optimize the code when you compiler think it would not change.
 </p>
 </div>
 
-<div id="outline-container-org5f3f655" class="outline-3">
-<h3 id="org5f3f655"><span class="section-number-3">8.1</span> syntax</h3>
+<div id="outline-container-org77d5a0e" class="outline-3">
+<h3 id="org77d5a0e"><span class="section-number-3">8.1</span> syntax</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 declare a variable(both are equalvalent)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">volatile</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">foo</span>;
-<span style="color: #b58900;">int</span> <span style="color: #859900;">volatile</span> <span style="color: #268bd2;">foo</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">volatile</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">foo</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a020f0;">volatile</span> <span style="color: #a0522d;">foo</span>;
+</code></pre>
 </div>
 
 <p>
@@ -1041,9 +1045,9 @@ declare pointers to volatile varialbes(common usage)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #859900;">volatile</span> <span style="color: #b58900;">uint8_t</span> *<span style="color: #268bd2;">pReg</span>;
-<span style="color: #b58900;">uint8_t</span> <span style="color: #859900;">volatile</span> *<span style="color: #268bd2;">pReg</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #a020f0;">volatile</span> <span style="color: #228b22;">uint8_t</span> *<span style="color: #a0522d;">pReg</span>;
+<span style="color: #228b22;">uint8_t</span> <span style="color: #a020f0;">volatile</span> *<span style="color: #a0522d;">pReg</span>;
+</code></pre>
 </div>
 
 <p>
@@ -1051,8 +1055,8 @@ volatile pointers to non-volatile data(very rare)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">int</span> * <span style="color: #859900;">volatile</span> <span style="color: #268bd2;">p</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">int</span> * <span style="color: #a020f0;">volatile</span> <span style="color: #a0522d;">p</span>;
+</code></pre>
 </div>
 
 <p>
@@ -1060,17 +1064,18 @@ volatile pointer to volatile variable(also rare)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #859900;">volatile</span> * <span style="color: #859900;">volatile</span> <span style="color: #268bd2;">p</span>;
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #a020f0;">volatile</span> * <span style="color: #a020f0;">volatile</span> <span style="color: #a0522d;">p</span>;
+</code></pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5a82026" class="outline-3">
-<h3 id="org5a82026"><span class="section-number-3">8.2</span> When to use it</h3>
+<div id="outline-container-org741714e" class="outline-3">
+<h3 id="org741714e"><span class="section-number-3">8.2</span> When to use it</h3>
 <div class="outline-text-3" id="text-8-2">
-</div><div id="outline-container-orge3d942d" class="outline-4">
-<h4 id="orge3d942d"><span class="section-number-4">8.2.1</span> Memory-mapped peripheral registers</h4>
+</div>
+<div id="outline-container-orgcaee130" class="outline-4">
+<h4 id="orgcaee130"><span class="section-number-4">8.2.1</span> Memory-mapped peripheral registers</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <p>
 The register's value may change by hardware.
@@ -1079,9 +1084,9 @@ so it may assume it is constant, and do some optimization.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">uint8_t</span> *<span style="color: #268bd2;">pReg</span> = (<span style="color: #b58900;">uint8_t</span>) 0x1234;
-<span style="color: #859900;">while</span> (*pReg==0) {}
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">uint8_t</span> *<span style="color: #a0522d;">pReg</span> = (<span style="color: #228b22;">uint8_t</span>) 0x1234;
+<span style="color: #a020f0;">while</span> (*pReg==0) {}
+</code></pre>
 </div>
 
 <p>
@@ -1089,11 +1094,11 @@ Since no `volatile`, the assembly looks like:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm">  <span style="color: #859900;">mov</span> ptr, #0x1234
-  <span style="color: #859900;">mov</span> a, @ptr
-<span style="color: #268bd2;">loop</span>:
-  <span style="color: #859900;">bz</span> loop
-</pre>
+<pre><code class="src src-asm">  <span style="color: #a020f0;">mov</span> ptr, #0x1234
+  <span style="color: #a020f0;">mov</span> a, @ptr
+<span style="color: #0000ff;">loop</span>:
+  <span style="color: #a020f0;">bz</span> loop
+</code></pre>
 </div>
 
 <p>
@@ -1101,8 +1106,8 @@ To fix it, use volatile to declare it:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">uint8_t</span> <span style="color: #859900;">volatile</span> *<span style="color: #268bd2;">pReg</span> = (uint8_t <span style="color: #859900;">volatile</span> *)0x1234
-</pre>
+<pre><code class="src src-C"><span style="color: #228b22;">uint8_t</span> <span style="color: #a020f0;">volatile</span> *<span style="color: #a0522d;">pReg</span> = (uint8_t <span style="color: #a020f0;">volatile</span> *)0x1234
+</code></pre>
 </div>
 
 <p>
@@ -1119,8 +1124,8 @@ loop:
 </p>
 </div>
 </div>
-<div id="outline-container-org23b8508" class="outline-4">
-<h4 id="org23b8508"><span class="section-number-4">8.2.2</span> Global variables modified by an ISR(Interrupt Service Routine)</h4>
+<div id="outline-container-orgefac324" class="outline-4">
+<h4 id="orgefac324"><span class="section-number-4">8.2.2</span> Global variables modified by an ISR(Interrupt Service Routine)</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <p>
 Compiler will of course not know about interrupt.
@@ -1129,16 +1134,16 @@ we must tell it.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">int</span> <span style="color: #859900;">volatile</span> <span style="color: #268bd2;">etx_rcvd</span> = FALSE;
-<span style="color: #b58900;">void</span> <span style="color: #268bd2;">main</span>() {
-  <span style="color: #859900;">while</span>(<span style="color: #dc322f;">!</span>ext_rcvd) {}
+<pre><code class="src src-C"><span style="color: #228b22;">int</span> <span style="color: #a020f0;">volatile</span> <span style="color: #a0522d;">etx_rcvd</span> = FALSE;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span>() {
+  <span style="color: #a020f0;">while</span>(!ext_rcvd) {}
 }
-interrupt <span style="color: #b58900;">void</span> <span style="color: #268bd2;">rx_isr</span>(<span style="color: #b58900;">void</span>) {
-  <span style="color: #859900;">if</span> (ETX == rx_char) {
+interrupt <span style="color: #228b22;">void</span> <span style="color: #0000ff;">rx_isr</span>(<span style="color: #228b22;">void</span>) {
+  <span style="color: #a020f0;">if</span> (ETX == rx_char) {
     etx_rcvd = TRUE;
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -1148,8 +1153,8 @@ thus never go out of the loop.
 </div>
 </div>
 
-<div id="outline-container-org44b15b3" class="outline-4">
-<h4 id="org44b15b3"><span class="section-number-4">8.2.3</span> Global variables accessed by multiple tasks within a multi-threaded application</h4>
+<div id="outline-container-org05836d9" class="outline-4">
+<h4 id="org05836d9"><span class="section-number-4">8.2.3</span> Global variables accessed by multiple tasks within a multi-threaded application</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <p>
 Compiler doesn't find the variable change near the code it is defined,
@@ -1163,8 +1168,8 @@ it is just like the interrupt.
 </div>
 
 
-<div id="outline-container-org488d687" class="outline-2">
-<h2 id="org488d687"><span class="section-number-2">9</span> Operator Precedence</h2>
+<div id="outline-container-org31a3038" class="outline-2">
+<h2 id="org31a3038"><span class="section-number-2">9</span> Operator Precedence</h2>
 <div class="outline-text-2" id="text-9">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1453,11 +1458,12 @@ it is just like the interrupt.
 </table>
 </div>
 
-<div id="outline-container-org8bc63f0" class="outline-3">
-<h3 id="org8bc63f0"><span class="section-number-3">9.1</span> notes</h3>
+<div id="outline-container-orgd3311a4" class="outline-3">
+<h3 id="orgd3311a4"><span class="section-number-3">9.1</span> notes</h3>
 <div class="outline-text-3" id="text-9-1">
-</div><div id="outline-container-org64bfea8" class="outline-4">
-<h4 id="org64bfea8"><span class="section-number-4">9.1.1</span> For <code>?:</code></h4>
+</div>
+<div id="outline-container-org787b131" class="outline-4">
+<h4 id="org787b131"><span class="section-number-4">9.1.1</span> For <code>?:</code></h4>
 <div class="outline-text-4" id="text-9-1-1">
 <p>
 the middle of the conditional operator (between ? and :)
@@ -1465,8 +1471,8 @@ is parsed as if parenthesized: its precedence relative to <code>?:</code> is ign
 </p>
 </div>
 </div>
-<div id="outline-container-orge1b3eb7" class="outline-4">
-<h4 id="orge1b3eb7"><span class="section-number-4">9.1.2</span> For C++</h4>
+<div id="outline-container-org4d410a8" class="outline-4">
+<h4 id="org4d410a8"><span class="section-number-4">9.1.2</span> For C++</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <p>
 The operand of sizeof can't be a C-style type cast:
@@ -1475,67 +1481,67 @@ but not <code>sizeof((int)*p)</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf0d0a3" class="outline-4">
-<h4 id="orgbf0d0a3"><span class="section-number-4">9.1.3</span> In c++ table, the <code>?:</code> is also in 14 cell</h4>
+<div id="outline-container-orgdf5e609" class="outline-4">
+<h4 id="orgdf5e609"><span class="section-number-4">9.1.3</span> In c++ table, the <code>?:</code> is also in 14 cell</h4>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2920995" class="outline-2">
-<h2 id="org2920995"><span class="section-number-2">10</span> Unix Library</h2>
+<div id="outline-container-org51b2068" class="outline-2">
+<h2 id="org51b2068"><span class="section-number-2">10</span> Unix Library</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 sleep
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;unistd.h&gt;</span>
-<span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">sleep</span>(<span style="color: #b58900;">unsigned</span> <span style="color: #b58900;">int</span> <span style="color: #268bd2;">seconds</span>); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">seconds</span>
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">usleep</span>(<span style="color: #b58900;">useconds_t</span> <span style="color: #268bd2;">useconds</span>); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">microseconds</span>
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">nanosleep</span>(<span style="color: #859900;">const</span> <span style="color: #859900;">struct</span> <span style="color: #b58900;">timespec</span> *<span style="color: #268bd2;">rqtp</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">timespec</span> *<span style="color: #268bd2;">rmtp</span>);
-</pre>
+<pre><code class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;unistd.h&gt;</span>
+<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">sleep</span>(<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">seconds</span>); <span style="color: #b22222;">// </span><span style="color: #b22222;">seconds</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">usleep</span>(<span style="color: #228b22;">useconds_t</span> <span style="color: #a0522d;">useconds</span>); <span style="color: #b22222;">// </span><span style="color: #b22222;">microseconds</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">nanosleep</span>(<span style="color: #a020f0;">const</span> <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timespec</span> *<span style="color: #a0522d;">rqtp</span>, <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timespec</span> *<span style="color: #a0522d;">rmtp</span>);
+</code></pre>
 </div>
 
 <p>
 There's no implementation of <code>clock_gettime</code> as in Unix, the following serves as an portable solution.
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #cb4b16;">#ifdef</span> __MACH__
-<span style="color: #cb4b16;">#include</span> <span style="color: #2aa198;">&lt;sys/time.h&gt;</span>
-<span style="color: #cb4b16;">#define</span> <span style="color: #268bd2;">CLOCK_REALTIME</span> 0
-<span style="color: #cb4b16;">#define</span> <span style="color: #268bd2;">CLOCK_MONOTONIC</span> 0
-<span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">clock_gettime is not implemented on OSX</span>
-<span style="color: #b58900;">int</span> <span style="color: #268bd2;">clock_gettime</span>(<span style="color: #b58900;">int</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">clk_id</span><span style="color: #93a1a1; font-style: italic;">*/</span>, <span style="color: #859900;">struct</span> <span style="color: #b58900;">timespec</span>* <span style="color: #268bd2;">t</span>) {
-    <span style="color: #859900;">struct</span> <span style="color: #b58900;">timeval</span> <span style="color: #268bd2;">now</span>;
-    <span style="color: #b58900;">int</span> <span style="color: #268bd2;">rv</span> = gettimeofday(&amp;now, <span style="color: #2aa198;">NULL</span>);
-    <span style="color: #859900;">if</span> (rv) <span style="color: #859900;">return</span> rv;
+<pre><code class="src src-C"><span style="color: #483d8b;">#ifdef</span> __MACH__
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;sys/time.h&gt;</span>
+<span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">CLOCK_REALTIME</span> 0
+<span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">CLOCK_MONOTONIC</span> 0
+<span style="color: #b22222;">//</span><span style="color: #b22222;">clock_gettime is not implemented on OSX</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">clock_gettime</span>(<span style="color: #228b22;">int</span> <span style="color: #b22222;">/*</span><span style="color: #b22222;">clk_id</span><span style="color: #b22222;">*/</span>, <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timespec</span>* <span style="color: #a0522d;">t</span>) {
+    <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timeval</span> <span style="color: #a0522d;">now</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rv</span> = gettimeofday(&amp;now, <span style="color: #008b8b;">NULL</span>);
+    <span style="color: #a020f0;">if</span> (rv) <span style="color: #a020f0;">return</span> rv;
     t-&gt;tv_sec  = now.tv_sec;
     t-&gt;tv_nsec = now.tv_usec * 1000;
-    <span style="color: #859900;">return</span> 0;
+    <span style="color: #a020f0;">return</span> 0;
 }
-<span style="color: #cb4b16;">#endif</span>
-</pre>
+<span style="color: #483d8b;">#endif</span>
+</code></pre>
 </div>
 
 <p>
 use it like this
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b58900;">double</span> <span style="color: #268bd2;">get_time</span>() {
-  <span style="color: #859900;">struct</span> <span style="color: #b58900;">timespec</span> <span style="color: #268bd2;">ts</span>;
+<pre><code class="src src-C"><span style="color: #228b22;">double</span> <span style="color: #0000ff;">get_time</span>() {
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timespec</span> <span style="color: #a0522d;">ts</span>;
   ts.tv_sec=0;
   ts.tv_nsec=0;
   clock_gettime(CLOCK_REALTIME, &amp;ts);
-  <span style="color: #b58900;">double</span> <span style="color: #268bd2;">d</span> = (<span style="color: #b58900;">double</span>)ts.tv_sec + 1.0e-9*ts.tv_nsec;
-  <span style="color: #859900;">return</span> d;
+  <span style="color: #228b22;">double</span> <span style="color: #a0522d;">d</span> = (<span style="color: #228b22;">double</span>)ts.tv_sec + 1.0e-9*ts.tv_nsec;
+  <span style="color: #a020f0;">return</span> d;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

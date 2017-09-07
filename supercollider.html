@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SuperCollider</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,40 +235,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org35f39f0">1. The IDE</a></li>
-<li><a href="#org037072b">2. Concepts</a></li>
-<li><a href="#orgc207510">3. Playing sound</a>
+<li><a href="#org0b585a5">1. The IDE</a></li>
+<li><a href="#orgba8a36b">2. Concepts</a></li>
+<li><a href="#org5623faf">3. Playing sound</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgc18cdf2">3.0.1. Multiple Channels</a></li>
+<li><a href="#org62a1f8b">3.0.1. Multiple Channels</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgacf6a78">4. sclang</a>
+<li><a href="#org5dd5e9b">4. sclang</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org56bfdf8">4.0.1. Hello World</a></li>
-<li><a href="#org8892f8f">4.0.2. Grammar</a></li>
-<li><a href="#org91e0d27">4.0.3. the server</a></li>
-<li><a href="#org6d15c42">4.0.4. built-in object</a></li>
-<li><a href="#org82237b3">4.0.5. Function</a></li>
-<li><a href="#org403a2ed">4.0.6. Variables</a>
+<li><a href="#org5f089b5">4.0.1. Hello World</a></li>
+<li><a href="#orgd1135f6">4.0.2. Grammar</a></li>
+<li><a href="#org70d47c2">4.0.3. the server</a></li>
+<li><a href="#org13ee2e8">4.0.4. built-in object</a></li>
+<li><a href="#orgf9f6435">4.0.5. Function</a></li>
+<li><a href="#org339c478">4.0.6. Variables</a>
 <ul>
-<li><a href="#org52edd4e">4.0.6.1. Function variable</a></li>
-<li><a href="#orgb2068de">4.0.6.2. Block variable</a></li>
+<li><a href="#org67d1f4c">4.0.6.1. Function variable</a></li>
+<li><a href="#org709ed8f">4.0.6.2. Block variable</a></li>
 </ul>
 </li>
-<li><a href="#org6ed9c4d">4.0.7. Array</a></li>
-<li><a href="#org4537695">4.0.8. Class</a>
+<li><a href="#org1a03c87">4.0.7. Array</a></li>
+<li><a href="#org2c538f0">4.0.8. Class</a>
 <ul>
-<li><a href="#org935ff11">4.0.8.1. SinOsc</a></li>
-<li><a href="#org3ab79d4">4.0.8.2. PinkNoise</a></li>
-<li><a href="#org340fe9a">4.0.8.3. Pan2</a></li>
-<li><a href="#org26d3ba8">4.0.8.4. Saw</a></li>
-<li><a href="#orgc6452e4">4.0.8.5. Mix</a></li>
+<li><a href="#org53d140c">4.0.8.1. SinOsc</a></li>
+<li><a href="#org4071a15">4.0.8.2. PinkNoise</a></li>
+<li><a href="#org9a69fd3">4.0.8.3. Pan2</a></li>
+<li><a href="#org2e7c6af">4.0.8.4. Saw</a></li>
+<li><a href="#org6b5c493">4.0.8.5. Mix</a></li>
 </ul>
 </li>
 </ul>
@@ -285,8 +286,8 @@ for the JavaScript code in this tag.
 This section records along the way I went through the tutorial and documentations of SuperCollider.
 </p>
 
-<div id="outline-container-org35f39f0" class="outline-2">
-<h2 id="org35f39f0"><span class="section-number-2">1</span> The IDE</h2>
+<div id="outline-container-org0b585a5" class="outline-2">
+<h2 id="org0b585a5"><span class="section-number-2">1</span> The IDE</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I found the IDE pretty easy to use, with color highlight and auto completion.
@@ -304,8 +305,8 @@ When selecting some class, e.g. <code>SinOsc</code>, <code>CMD-d</code> will ope
 </div>
 </div>
 
-<div id="outline-container-org037072b" class="outline-2">
-<h2 id="org037072b"><span class="section-number-2">2</span> Concepts</h2>
+<div id="outline-container-orgba8a36b" class="outline-2">
+<h2 id="orgba8a36b"><span class="section-number-2">2</span> Concepts</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt><i>unit generator</i></dt><dd>or <code>UGen</code> for shot.</dd>
@@ -317,8 +318,8 @@ When selecting some class, e.g. <code>SinOsc</code>, <code>CMD-d</code> will ope
 </div>
 </div>
 
-<div id="outline-container-orgc207510" class="outline-2">
-<h2 id="orgc207510"><span class="section-number-2">3</span> Playing sound</h2>
+<div id="outline-container-org5623faf" class="outline-2">
+<h2 id="org5623faf"><span class="section-number-2">3</span> Playing sound</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 {[SinOsc.ar(440, 0, 0.2), SinOsc.ar(440, 0, 0.2)]}.play;
@@ -361,8 +362,8 @@ In addition to <code>.play</code>, such function also has <code>.plot</code>, wh
 </p>
 </div>
 
-<div id="outline-container-orgc18cdf2" class="outline-4">
-<h4 id="orgc18cdf2"><span class="section-number-4">3.0.1</span> Multiple Channels</h4>
+<div id="outline-container-org62a1f8b" class="outline-4">
+<h4 id="org62a1f8b"><span class="section-number-4">3.0.1</span> Multiple Channels</h4>
 <div class="outline-text-4" id="text-3-0-1">
 <p>
 Using arrays, you can define the left and right channels.
@@ -372,11 +373,12 @@ See array section in grammar.
 </div>
 </div>
 
-<div id="outline-container-orgacf6a78" class="outline-2">
-<h2 id="orgacf6a78"><span class="section-number-2">4</span> sclang</h2>
+<div id="outline-container-org5dd5e9b" class="outline-2">
+<h2 id="org5dd5e9b"><span class="section-number-2">4</span> sclang</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org56bfdf8" class="outline-4">
-<h4 id="org56bfdf8"><span class="section-number-4">4.0.1</span> Hello World</h4>
+</div>
+<div id="outline-container-org5f089b5" class="outline-4">
+<h4 id="org5f089b5"><span class="section-number-4">4.0.1</span> Hello World</h4>
 <div class="outline-text-4" id="text-4-0-1">
 <pre class="example">
 "hello world".postln;
@@ -384,8 +386,8 @@ See array section in grammar.
 </div>
 </div>
 
-<div id="outline-container-org8892f8f" class="outline-4">
-<h4 id="org8892f8f"><span class="section-number-4">4.0.2</span> Grammar</h4>
+<div id="outline-container-orgd1135f6" class="outline-4">
+<h4 id="orgd1135f6"><span class="section-number-4">4.0.2</span> Grammar</h4>
 <div class="outline-text-4" id="text-4-0-2">
 <p>
 semi-colon is the separator.
@@ -402,8 +404,8 @@ Statements can be grouped to run at the same time.
 </pre>
 </div>
 </div>
-<div id="outline-container-org91e0d27" class="outline-4">
-<h4 id="org91e0d27"><span class="section-number-4">4.0.3</span> the server</h4>
+<div id="outline-container-org70d47c2" class="outline-4">
+<h4 id="org70d47c2"><span class="section-number-4">4.0.3</span> the server</h4>
 <div class="outline-text-4" id="text-4-0-3">
 <p>
 The server must be started to play any sound.
@@ -412,8 +414,8 @@ Note that the object <code>s</code> is reserved and means the server.
 </p>
 </div>
 </div>
-<div id="outline-container-org6d15c42" class="outline-4">
-<h4 id="org6d15c42"><span class="section-number-4">4.0.4</span> built-in object</h4>
+<div id="outline-container-org13ee2e8" class="outline-4">
+<h4 id="org13ee2e8"><span class="section-number-4">4.0.4</span> built-in object</h4>
 <div class="outline-text-4" id="text-4-0-4">
 <pre class="example">
 "string".postln;
@@ -421,8 +423,8 @@ Note that the object <code>s</code> is reserved and means the server.
 </pre>
 </div>
 </div>
-<div id="outline-container-org82237b3" class="outline-4">
-<h4 id="org82237b3"><span class="section-number-4">4.0.5</span> Function</h4>
+<div id="outline-container-orgf9f6435" class="outline-4">
+<h4 id="orgf9f6435"><span class="section-number-4">4.0.5</span> Function</h4>
 <div class="outline-text-4" id="text-4-0-5">
 <p>
 Function is for reuse of a code. A function is an object.
@@ -450,15 +452,15 @@ g = {|a,b| a+b;} // verticle line is the same as using "arg" keyword
 </pre>
 </div>
 </div>
-<div id="outline-container-org403a2ed" class="outline-4">
-<h4 id="org403a2ed"><span class="section-number-4">4.0.6</span> Variables</h4>
+<div id="outline-container-org339c478" class="outline-4">
+<h4 id="org339c478"><span class="section-number-4">4.0.6</span> Variables</h4>
 <div class="outline-text-4" id="text-4-0-6">
 <p>
 There're two places to declare a variable.
 </p>
 </div>
-<div id="outline-container-org52edd4e" class="outline-5">
-<h5 id="org52edd4e"><span class="section-number-5">4.0.6.1</span> Function variable</h5>
+<div id="outline-container-org67d1f4c" class="outline-5">
+<h5 id="org67d1f4c"><span class="section-number-5">4.0.6.1</span> Function variable</h5>
 <div class="outline-text-5" id="text-4-0-6-1">
 <p>
 Function can have variables. Does it mean only functions can have variables?
@@ -477,8 +479,8 @@ f.value(2, 3); // this will return (2 + 3) * 2 = 10
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb2068de" class="outline-5">
-<h5 id="orgb2068de"><span class="section-number-5">4.0.6.2</span> Block variable</h5>
+<div id="outline-container-org709ed8f" class="outline-5">
+<h5 id="org709ed8f"><span class="section-number-5">4.0.6.2</span> Block variable</h5>
 <div class="outline-text-5" id="text-4-0-6-2">
 <p>
 Variables can also be declared <i>at the top</i> of any block.
@@ -503,8 +505,8 @@ You can use them without actually declare them.
 </div>
 </div>
 
-<div id="outline-container-org6ed9c4d" class="outline-4">
-<h4 id="org6ed9c4d"><span class="section-number-4">4.0.7</span> Array</h4>
+<div id="outline-container-org1a03c87" class="outline-4">
+<h4 id="org1a03c87"><span class="section-number-4">4.0.7</span> Array</h4>
 <div class="outline-text-4" id="text-4-0-7">
 <pre class="example">
 a = ["foo", "bar"];
@@ -528,34 +530,34 @@ It can me more channels, but I don't know what it means to be three channels? &#
 </div>
 </div>
 
-<div id="outline-container-org4537695" class="outline-4">
-<h4 id="org4537695"><span class="section-number-4">4.0.8</span> Class</h4>
+<div id="outline-container-org2c538f0" class="outline-4">
+<h4 id="org2c538f0"><span class="section-number-4">4.0.8</span> Class</h4>
 <div class="outline-text-4" id="text-4-0-8">
 <p>
 Classes starts with uppercase letter.
 </p>
 </div>
-<div id="outline-container-org935ff11" class="outline-5">
-<h5 id="org935ff11"><span class="section-number-5">4.0.8.1</span> SinOsc</h5>
+<div id="outline-container-org53d140c" class="outline-5">
+<h5 id="org53d140c"><span class="section-number-5">4.0.8.1</span> SinOsc</h5>
 </div>
-<div id="outline-container-org3ab79d4" class="outline-5">
-<h5 id="org3ab79d4"><span class="section-number-5">4.0.8.2</span> PinkNoise</h5>
+<div id="outline-container-org4071a15" class="outline-5">
+<h5 id="org4071a15"><span class="section-number-5">4.0.8.2</span> PinkNoise</h5>
 </div>
-<div id="outline-container-org340fe9a" class="outline-5">
-<h5 id="org340fe9a"><span class="section-number-5">4.0.8.3</span> Pan2</h5>
+<div id="outline-container-org9a69fd3" class="outline-5">
+<h5 id="org9a69fd3"><span class="section-number-5">4.0.8.3</span> Pan2</h5>
 </div>
-<div id="outline-container-org26d3ba8" class="outline-5">
-<h5 id="org26d3ba8"><span class="section-number-5">4.0.8.4</span> Saw</h5>
+<div id="outline-container-org2e7c6af" class="outline-5">
+<h5 id="org2e7c6af"><span class="section-number-5">4.0.8.4</span> Saw</h5>
 </div>
-<div id="outline-container-orgc6452e4" class="outline-5">
-<h5 id="orgc6452e4"><span class="section-number-5">4.0.8.5</span> Mix</h5>
+<div id="outline-container-org6b5c493" class="outline-5">
+<h5 id="org6b5c493"><span class="section-number-5">4.0.8.5</span> Mix</h5>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

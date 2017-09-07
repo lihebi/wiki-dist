@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:42 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Org Mode</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,43 +235,43 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6a992a0">1. Structure</a>
+<li><a href="#org3d7a353">1. Structure</a>
 <ul>
-<li><a href="#org7aa0e44">1.1. Drawer</a></li>
-<li><a href="#org6480b66">1.2. Footnote</a></li>
-<li><a href="#org3e60a38">1.3. Headings</a></li>
+<li><a href="#org07cde95">1.1. Drawer</a></li>
+<li><a href="#org58895c2">1.2. Footnote</a></li>
+<li><a href="#orgbc2a8e1">1.3. Headings</a></li>
 </ul>
 </li>
-<li><a href="#orgb891e4d">2. Agenda</a></li>
-<li><a href="#orgb8bad9d">3. Tags</a></li>
-<li><a href="#org31085b0">4. Properties</a></li>
-<li><a href="#org7c9b797">5. Exporting</a>
+<li><a href="#orgdd71a0b">2. Agenda</a></li>
+<li><a href="#org255cb84">3. Tags</a></li>
+<li><a href="#orgece5f94">4. Properties</a></li>
+<li><a href="#orgfd884d4">5. Exporting</a>
 <ul>
-<li><a href="#org50f4712">5.1. bibliography</a></li>
-<li><a href="#org36c685a">5.2. Latex Exporting</a>
+<li><a href="#orgc549694">5.1. bibliography</a></li>
+<li><a href="#orgdc2fff1">5.2. Latex Exporting</a>
 <ul>
-<li><a href="#org1c6a06f">5.2.1. doc class &amp; options</a></li>
-<li><a href="#orgc23472c">5.2.2. appendix</a></li>
-<li><a href="#org27bd04a">5.2.3. code listing</a></li>
+<li><a href="#org1a15c58">5.2.1. doc class &amp; options</a></li>
+<li><a href="#org6e80e02">5.2.2. appendix</a></li>
+<li><a href="#org42ff16c">5.2.3. code listing</a></li>
 </ul>
 </li>
-<li><a href="#org3d3594f">5.3. Beamer</a>
+<li><a href="#org1fe0421">5.3. Beamer</a>
 <ul>
-<li><a href="#orge6b53e9">5.3.1. Octave code&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></a></li>
-<li><a href="#org5cbf0af">5.3.2. The output&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></a></li>
+<li><a href="#org40b1716">5.3.1. Octave code&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></a></li>
+<li><a href="#orga5cdc0f">5.3.2. The output&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgf673336">6. Table</a></li>
-<li><a href="#org6b3b032">7. Image</a></li>
-<li><a href="#org77a7548">8. org-ref</a>
+<li><a href="#org7615578">6. Table</a></li>
+<li><a href="#org5823c22">7. Image</a></li>
+<li><a href="#org9cfac35">8. org-ref</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orga5b1fe9">8.0.1. Commands</a>
+<li><a href="#org3633266">8.0.1. Commands</a>
 <ul>
-<li><a href="#org3f339a6">8.0.1.1. Navigation in the bib file</a></li>
+<li><a href="#org3b082df">8.0.1.1. Navigation in the bib file</a></li>
 </ul>
 </li>
 </ul>
@@ -281,11 +282,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6a992a0" class="outline-2">
-<h2 id="org6a992a0"><span class="section-number-2">1</span> Structure</h2>
+<div id="outline-container-org3d7a353" class="outline-2">
+<h2 id="org3d7a353"><span class="section-number-2">1</span> Structure</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org7aa0e44" class="outline-3">
-<h3 id="org7aa0e44"><span class="section-number-3">1.1</span> Drawer</h3>
+</div>
+<div id="outline-container-org07cde95" class="outline-3">
+<h3 id="org07cde95"><span class="section-number-3">1.1</span> Drawer</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The heading can have a drawer, meaning it is hidden by default.
@@ -294,8 +296,8 @@ Under a headline, use <code>:DRAWERNAME:</code> and <code>:END:</code> to denote
 </p>
 </div>
 </div>
-<div id="outline-container-org6480b66" class="outline-3">
-<h3 id="org6480b66"><span class="section-number-3">1.2</span> Footnote</h3>
+<div id="outline-container-org58895c2" class="outline-3">
+<h3 id="org58895c2"><span class="section-number-3">1.2</span> Footnote</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Footnote can be of these format:
@@ -318,8 +320,8 @@ There should be two empty lines after the footnote definition.
 </div>
 </div>
 
-<div id="outline-container-org3e60a38" class="outline-3">
-<h3 id="org3e60a38"><span class="section-number-3">1.3</span> Headings</h3>
+<div id="outline-container-orgbc2a8e1" class="outline-3">
+<h3 id="orgbc2a8e1"><span class="section-number-3">1.3</span> Headings</h3>
 <div class="outline-text-3" id="text-1-3">
 <dl class="org-dl">
 <dt>Moving around</dt><dd><code>C-c C-n</code> :: next heading
@@ -337,8 +339,8 @@ It is very useful to narrow the subtree using <code>C-x n s</code> and widen it 
 </div>
 </div>
 
-<div id="outline-container-orgb891e4d" class="outline-2">
-<h2 id="orgb891e4d"><span class="section-number-2">2</span> Agenda</h2>
+<div id="outline-container-orgdd71a0b" class="outline-2">
+<h2 id="orgdd71a0b"><span class="section-number-2">2</span> Agenda</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt>Creating</dt><dd>A <code>TODO</code> keyword in the beginning of a heading mark it as a TODO item, or simply <code>M-S-&lt;RET&gt;</code> to create one.</dd>
@@ -379,8 +381,8 @@ Clocking in and out becomes <code>I</code> and <code>O</code>, and cancel with <
 </div>
 </div>
 
-<div id="outline-container-orgb8bad9d" class="outline-2">
-<h2 id="orgb8bad9d"><span class="section-number-2">3</span> Tags</h2>
+<div id="outline-container-org255cb84" class="outline-2">
+<h2 id="org255cb84"><span class="section-number-2">3</span> Tags</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Tags can be the variable name plus <code>@</code> is available.
@@ -390,8 +392,8 @@ Tags will be inherited by default for the subtrees.
 </p>
 </div>
 </div>
-<div id="outline-container-org31085b0" class="outline-2">
-<h2 id="org31085b0"><span class="section-number-2">4</span> Properties</h2>
+<div id="outline-container-orgece5f94" class="outline-2">
+<h2 id="orgece5f94"><span class="section-number-2">4</span> Properties</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Similar to tags, we can also set the property, the key value pairs.
@@ -402,11 +404,12 @@ Property is not inherited by default.
 </div>
 
 
-<div id="outline-container-org7c9b797" class="outline-2">
-<h2 id="org7c9b797"><span class="section-number-2">5</span> Exporting</h2>
+<div id="outline-container-orgfd884d4" class="outline-2">
+<h2 id="orgfd884d4"><span class="section-number-2">5</span> Exporting</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-org50f4712" class="outline-3">
-<h3 id="org50f4712"><span class="section-number-3">5.1</span> bibliography</h3>
+</div>
+<div id="outline-container-orgc549694" class="outline-3">
+<h3 id="orgc549694"><span class="section-number-3">5.1</span> bibliography</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Normally you only need:
@@ -422,11 +425,12 @@ It remains to be seen how to put a set of default bib file instead of specifying
 </div>
 </div>
 
-<div id="outline-container-org36c685a" class="outline-3">
-<h3 id="org36c685a"><span class="section-number-3">5.2</span> Latex Exporting</h3>
+<div id="outline-container-orgdc2fff1" class="outline-3">
+<h3 id="orgdc2fff1"><span class="section-number-3">5.2</span> Latex Exporting</h3>
 <div class="outline-text-3" id="text-5-2">
-</div><div id="outline-container-org1c6a06f" class="outline-4">
-<h4 id="org1c6a06f"><span class="section-number-4">5.2.1</span> doc class &amp; options</h4>
+</div>
+<div id="outline-container-org1a15c58" class="outline-4">
+<h4 id="org1a15c58"><span class="section-number-4">5.2.1</span> doc class &amp; options</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <pre class="example">
 #+LATEX_CLASS: fse
@@ -438,8 +442,8 @@ It remains to be seen how to put a set of default bib file instead of specifying
 </div>
 </div>
 
-<div id="outline-container-orgc23472c" class="outline-4">
-<h4 id="orgc23472c"><span class="section-number-4">5.2.2</span> appendix</h4>
+<div id="outline-container-org6e80e02" class="outline-4">
+<h4 id="org6e80e02"><span class="section-number-4">5.2.2</span> appendix</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <pre class="example">
 #+LaTeX: \appendix
@@ -452,8 +456,8 @@ It remains to be seen how to put a set of default bib file instead of specifying
 </div>
 </div>
 
-<div id="outline-container-org27bd04a" class="outline-4">
-<h4 id="org27bd04a"><span class="section-number-4">5.2.3</span> code listing</h4>
+<div id="outline-container-org42ff16c" class="outline-4">
+<h4 id="org42ff16c"><span class="section-number-4">5.2.3</span> code listing</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <pre class="example">
 #+ATTR_LATEX: :options frame=shadowbox
@@ -463,8 +467,8 @@ It remains to be seen how to put a set of default bib file instead of specifying
 </div>
 
 
-<div id="outline-container-org3d3594f" class="outline-3">
-<h3 id="org3d3594f"><span class="section-number-3">5.3</span> Beamer</h3>
+<div id="outline-container-org1fe0421" class="outline-3">
+<h3 id="org1fe0421"><span class="section-number-3">5.3</span> Beamer</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 The header setup:
@@ -504,13 +508,13 @@ These blocks can utilize the horizontal space.
 #+BEGIN<sub>EXAMPLE</sub>
 </p>
 </div>
-<div id="outline-container-orge6b53e9" class="outline-4">
-<h4 id="orge6b53e9"><span class="section-number-4">5.3.1</span> Octave code&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></h4>
+<div id="outline-container-org40b1716" class="outline-4">
+<h4 id="org40b1716"><span class="section-number-4">5.3.1</span> Octave code&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></h4>
 <div class="outline-text-4" id="text-5-3-1">
 </div>
 </div>
-<div id="outline-container-org5cbf0af" class="outline-4">
-<h4 id="org5cbf0af"><span class="section-number-4">5.3.2</span> The output&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></h4>
+<div id="outline-container-orga5cdc0f" class="outline-4">
+<h4 id="orga5cdc0f"><span class="section-number-4">5.3.2</span> The output&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BMCOL">BMCOL</span>&#xa0;<span class="B_block">B_block</span></span></h4>
 <div class="outline-text-4" id="text-5-3-2">
 <p>
 #+END<sub>EXAMPLE</sub>
@@ -521,8 +525,8 @@ These blocks can utilize the horizontal space.
 </div>
 
 
-<div id="outline-container-orgf673336" class="outline-2">
-<h2 id="orgf673336"><span class="section-number-2">6</span> Table</h2>
+<div id="outline-container-org7615578" class="outline-2">
+<h2 id="org7615578"><span class="section-number-2">6</span> Table</h2>
 <div class="outline-text-2" id="text-6">
 <pre class="example">
 #+TBLFM: $4=$2/10
@@ -531,8 +535,8 @@ These blocks can utilize the horizontal space.
 </pre>
 </div>
 </div>
-<div id="outline-container-org6b3b032" class="outline-2">
-<h2 id="org6b3b032"><span class="section-number-2">7</span> Image</h2>
+<div id="outline-container-org5823c22" class="outline-2">
+<h2 id="org5823c22"><span class="section-number-2">7</span> Image</h2>
 <div class="outline-text-2" id="text-7">
 <blockquote>
 
@@ -558,19 +562,20 @@ The width is defined by <code>org-image-actual-width</code>
 </div>
 </div>
 
-<div id="outline-container-org77a7548" class="outline-2">
-<h2 id="org77a7548"><span class="section-number-2">8</span> org-ref</h2>
+<div id="outline-container-org9cfac35" class="outline-2">
+<h2 id="org9cfac35"><span class="section-number-2">8</span> org-ref</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-orga5b1fe9" class="outline-4">
-<h4 id="orga5b1fe9"><span class="section-number-4">8.0.1</span> Commands</h4>
+</div>
+<div id="outline-container-org3633266" class="outline-4">
+<h4 id="org3633266"><span class="section-number-4">8.0.1</span> Commands</h4>
 <div class="outline-text-4" id="text-8-0-1">
 <ul class="org-ul">
 <li><code>C-c ]</code>: insert citation, typically with helm: <code>org-ref-helm-insert-cite-link</code></li>
 </ul>
 </div>
 
-<div id="outline-container-org3f339a6" class="outline-5">
-<h5 id="org3f339a6"><span class="section-number-5">8.0.1.1</span> Navigation in the bib file</h5>
+<div id="outline-container-org3b082df" class="outline-5">
+<h5 id="org3b082df"><span class="section-number-5">8.0.1.1</span> Navigation in the bib file</h5>
 <div class="outline-text-5" id="text-8-0-1-1">
 <dl class="org-dl">
 <dt><code>M-n</code></dt><dd>next entry</dd>
@@ -583,7 +588,7 @@ The width is defined by <code>org-image-actual-width</code>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:42</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

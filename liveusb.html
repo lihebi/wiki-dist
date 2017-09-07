@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-14 Wed 22:43 -->
+<!-- 2017-09-06 Wed 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Create Live USB</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,20 +235,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org501d8d7">1. Software</a></li>
-<li><a href="#org8ed3803">2. Create Linux USB</a>
+<li><a href="#orgfe01107">1. Software</a></li>
+<li><a href="#org7886094">2. Create Linux USB</a>
 <ul>
-<li><a href="#org155c5e2">2.1. Using dd</a></li>
-<li><a href="#org8589ed6">2.2. From Mac</a></li>
+<li><a href="#orgeda9068">2.1. Using dd</a></li>
+<li><a href="#orgfa5d315">2.2. From Mac</a></li>
 </ul>
 </li>
-<li><a href="#orgdd21df3">3. Create Mac USB</a></li>
+<li><a href="#orgf2effc7">3. Create Mac USB</a></li>
+<li><a href="#org462a5b3">4. Install Arch Linux on Macbook</a>
+<ul>
+<li><a href="#orgfd9f1ad">4.1. UPDATE</a></li>
+<li><a href="#orgee6427e">4.2. Reinstall OS X</a></li>
+<li><a href="#org5c2e51b">4.3. Partition</a>
+<ul>
+<li><a href="#org0da479a">4.3.1. Install rEFInd</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org501d8d7" class="outline-2">
-<h2 id="org501d8d7"><span class="section-number-2">1</span> Software</h2>
+
+<div id="outline-container-orgfe01107" class="outline-2">
+<h2 id="orgfe01107"><span class="section-number-2">1</span> Software</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>unetbootin</li>
@@ -255,11 +268,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8ed3803" class="outline-2">
-<h2 id="org8ed3803"><span class="section-number-2">2</span> Create Linux USB</h2>
+<div id="outline-container-org7886094" class="outline-2">
+<h2 id="org7886094"><span class="section-number-2">2</span> Create Linux USB</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org155c5e2" class="outline-3">
-<h3 id="org155c5e2"><span class="section-number-3">2.1</span> Using dd</h3>
+</div>
+<div id="outline-container-orgeda9068" class="outline-3">
+<h3 id="orgeda9068"><span class="section-number-3">2.1</span> Using dd</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx &amp;&amp; sync
@@ -269,8 +283,8 @@ dd count=1 bs=512 if=/dev/zero of=/dev/sdx &amp;&amp; sync
 </div>
 </div>
 
-<div id="outline-container-org8589ed6" class="outline-3">
-<h3 id="org8589ed6"><span class="section-number-3">2.2</span> From Mac</h3>
+<div id="outline-container-orgfa5d315" class="outline-3">
+<h3 id="orgfa5d315"><span class="section-number-3">2.2</span> From Mac</h3>
 <div class="outline-text-3" id="text-2-2">
 <pre class="example">
 hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso
@@ -284,8 +298,8 @@ diskutil eject /dev/diskN
 </div>
 
 
-<div id="outline-container-orgdd21df3" class="outline-2">
-<h2 id="orgdd21df3"><span class="section-number-2">3</span> Create Mac USB</h2>
+<div id="outline-container-orgf2effc7" class="outline-2">
+<h2 id="orgf2effc7"><span class="section-number-2">3</span> Create Mac USB</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 sudo /Applications/Install\ OS\ X\ Mavericks.app/Contents/Resources/createinstallmedia \
@@ -295,10 +309,127 @@ sudo /Applications/Install\ OS\ X\ Mavericks.app/Contents/Resources/createinstal
 </pre>
 </div>
 </div>
+
+
+<div id="outline-container-org462a5b3" class="outline-2">
+<h2 id="org462a5b3"><span class="section-number-2">4</span> Install Arch Linux on Macbook</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgfd9f1ad" class="outline-3">
+<h3 id="orgfd9f1ad"><span class="section-number-3">4.1</span> UPDATE</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Stopped because I want to buy DPT-RP1 for paper reading. That thing
+does not work on Linux. I'm going to use the VNC through docker
+solution.
+</p>
+</div>
+</div>
+<div id="outline-container-orgee6427e" class="outline-3">
+<h3 id="orgee6427e"><span class="section-number-3">4.2</span> Reinstall OS X</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Although I can download image and burn to disk, I found the internet
+recovery is convenient.
+</p>
+
+<p>
+When booting, hold Cmd-Option-R, then erase the disk, and reinstall
+the latest Mac OS.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">key</th>
+<th scope="col" class="org-left">desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">cmd-R</td>
+<td class="org-left">reinstall the latest OS that was installed on this mac</td>
+</tr>
+
+<tr>
+<td class="org-left">option-cmd-R</td>
+<td class="org-left">upgrade to latest OS for this mac</td>
+</tr>
+
+<tr>
+<td class="org-left">shift-option-cmd-R</td>
+<td class="org-left">reinstall the OS that comes with the mac</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org5c2e51b" class="outline-3">
+<h3 id="org5c2e51b"><span class="section-number-3">4.3</span> Partition</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+It is recommanded to keep archlinux with OS X, because only OS X can
+install firmware updata, adjust start up sound, etc.
+</p>
+
+<p>
+Partition the disk on OS X.
+</p>
+<ul class="org-ul">
+<li>run Disk Utility</li>
+<li>select the drive, click partition</li>
+<li>add new partition by pressing +. The partition will be reformated in
+Arch, so type does not matter.</li>
+</ul>
+
+<p>
+Inside arch, run cgdisk, and delete the partition. When creating the
+first partition, add 128MiB gab by typing +128M when cgdisk asks for
+it.
+</p>
+
+<p>
+For simplicity, creating one partition is fine. The swap partition can
+be replaced by a swap file. Also I prefer to use LVM.
+</p>
+</div>
+
+<div id="outline-container-org0da479a" class="outline-4">
+<h4 id="org0da479a"><span class="section-number-4">4.3.1</span> Install rEFInd</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+Download and run refind-install. The SIP must be disabled first. To do that:
+</p>
+
+<p>
+reboot and hold Cmd-R to enter recovery mode. Then open terminal from utility menu and type
+</p>
+<pre class="example">
+csrutil disable
+</pre>
+
+<p>
+Reboot. To enable it, follow the same process with command:
+</p>
+<pre class="example">
+csrutil enable
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-06-14 Wed 22:43</p>
+<p class="date">Created: 2017-09-06 Wed 22:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
