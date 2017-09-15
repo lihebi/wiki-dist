@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 22:50 -->
+<!-- 2017-09-15 Fri 10:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Create Live USB</title>
@@ -250,6 +250,7 @@ for the JavaScript code in this tag.
 <li><a href="#org5c2e51b">4.3. Partition</a>
 <ul>
 <li><a href="#org0da479a">4.3.1. Install rEFInd</a></li>
+<li><a href="#orgef0eec9">4.3.2. Wifi</a></li>
 </ul>
 </li>
 </ul>
@@ -392,19 +393,36 @@ Arch, so type does not matter.</li>
 
 <p>
 Inside arch, run cgdisk, and delete the partition. When creating the
-first partition, add 128MiB gab by typing +128M when cgdisk asks for
+first partition, add 128MiB gab by typing +128M when <code>cgdisk</code> asks for
 it.
 </p>
 
 <p>
 For simplicity, creating one partition is fine. The swap partition can
-be replaced by a swap file. Also I prefer to use LVM.
+be replaced by a swap file. Do not use LVM because
+</p>
+<ul class="org-ul">
+<li>hard to set up right</li>
+<li>need to load a module when booting, otherwise the <code>/dev/mapper/...</code>
+address is not resolved.</li>
+</ul>
+
+<p>
+The mac EFI partition can be directly used. Thus you only need to
+create one partition for the root system. Mount the EFI partition and
+chroot will be just fine. The grub bootloader in arch will add files
+to the EFI partition, so next time you start your computer, arch will
+be default. Pressing <code>option</code> while booting can enter macOS.
 </p>
 </div>
 
 <div id="outline-container-org0da479a" class="outline-4">
 <h4 id="org0da479a"><span class="section-number-4">4.3.1</span> Install rEFInd</h4>
 <div class="outline-text-4" id="text-4-3-1">
+<p>
+rEFInd is used to give options to boot to macOS or linux.
+</p>
+
 <p>
 Download and run refind-install. The SIP must be disabled first. To do that:
 </p>
@@ -424,12 +442,43 @@ csrutil enable
 </pre>
 </div>
 </div>
+
+<div id="outline-container-orgef0eec9" class="outline-4">
+<h4 id="orgef0eec9"><span class="section-number-4">4.3.2</span> Wifi</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+The wifi chipset of my 2013 late macbook pro is BCM4360. It is
+supported by <code>broadcam-wl</code> or <code>broadcam-wl-dksm</code> driver. The former is
+in AUR, need to recompile each time kernel is updated, thus do not use
+it. The later one is from official repo, and will get updated
+automatically.
+</p>
+
+<p>
+Load the module by <code>modprobe wl</code>.
+</p>
+
+<p>
+I'm using <code>wicd-client</code> to manage the wifi. You need the following packages:
+</p>
+<ul class="org-ul">
+<li><code>wpa_suppliant</code></li>
+<li><code>wicd</code></li>
+<li><code>wicd-gtk</code></li>
+</ul>
+
+<p>
+Run <code>wicd-client</code> to configure (no need root). Make sure <code>dhcpcd</code> is
+NOT active, they conflict with each other.
+</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-09-06 Wed 22:50</p>
+<p class="date">Created: 2017-09-15 Fri 10:39</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
