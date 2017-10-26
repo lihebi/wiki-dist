@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 22:50 -->
+<!-- 2017-10-26 Thu 16:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C Debugging Techniques</title>
@@ -235,18 +235,18 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfb39d85">1. backtrace(3)</a></li>
-<li><a href="#org4027fd7">2. -finstrument-funcitons</a></li>
-<li><a href="#org530dbf4">3. Callgrind</a></li>
+<li><a href="#org45261a1">1. backtrace(3)</a></li>
+<li><a href="#org1e89ff9">2. -finstrument-funcitons</a></li>
+<li><a href="#org4fcc6ca">3. Callgrind</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfb39d85" class="outline-2">
-<h2 id="orgfb39d85"><span class="section-number-2">1</span> backtrace(3)</h2>
+<div id="outline-container-org45261a1" class="outline-2">
+<h2 id="org45261a1"><span class="section-number-2">1</span> backtrace(3)</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre><code class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
 <span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;execinfo.h&gt;</span>
 
 <span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdlib.h&gt;</span>
@@ -272,7 +272,7 @@ for the JavaScript code in this tag.
 <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">argc</span>, <span style="color: #228b22;">char</span> **<span style="color: #a0522d;">argv</span>) {
   foo();
 }
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -301,8 +301,8 @@ continue
 </div>
 </div>
 
-<div id="outline-container-org4027fd7" class="outline-2">
-<h2 id="org4027fd7"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
+<div id="outline-container-org1e89ff9" class="outline-2">
+<h2 id="org1e89ff9"><span class="section-number-2">2</span> -finstrument-funcitons</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 See gcc options.
@@ -322,7 +322,7 @@ Generate instrumentation calls for entry and exit to functions. Just after funct
 trace.c:
 </p>
 <div class="org-src-container">
-<pre><code class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
 <span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;time.h&gt;</span>
 
 <span style="color: #a020f0;">static</span> <span style="color: #228b22;">FILE</span> *<span style="color: #a0522d;">fp_trace</span>;
@@ -352,14 +352,14 @@ trace.c:
     fprintf(fp_trace, <span style="color: #8b2252;">"x %p %p %lu\n"</span>, func, caller, time(<span style="color: #008b8b;">NULL</span>));
   }
 }
-</code></pre>
+</pre>
 </div>
 
 <p>
 a.c:
 </p>
 <div class="org-src-container">
-<pre><code class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio.h&gt;</span>
 <span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;string.h&gt;</span>
 <span style="color: #228b22;">void</span> <span style="color: #0000ff;">foo</span>() {
   printf(<span style="color: #8b2252;">"foo\n"</span>);
@@ -367,7 +367,7 @@ a.c:
 <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
   foo();
 }
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -401,8 +401,8 @@ addr2line -s -e a.out 0x4006c8 # filename:linum
 </div>
 </div>
 
-<div id="outline-container-org530dbf4" class="outline-2">
-<h2 id="org530dbf4"><span class="section-number-2">3</span> Callgrind</h2>
+<div id="outline-container-org4fcc6ca" class="outline-2">
+<h2 id="org4fcc6ca"><span class="section-number-2">3</span> Callgrind</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 valgrind --tool=callgrind ./a.out
@@ -417,7 +417,7 @@ The program must be running.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-09-06 Wed 22:50</p>
+<p class="date">Created: 2017-10-26 Thu 16:40</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

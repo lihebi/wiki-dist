@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 22:51 -->
+<!-- 2017-10-26 Thu 16:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>VPN</title>
@@ -231,6 +231,24 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">VPN</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf4682a0">1. OpenVPN</a>
+<ul>
+<li><a href="#org056e935">1.1. Server Setup</a></li>
+<li><a href="#org955d74d">1.2. Client Setup</a>
+<ul>
+<li><a href="#org730d0c0">1.2.1. <span class="todo TODO">TODO</span> IPv6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org49e5560">2. music</a></li>
+</ul>
+</div>
+</div>
 <pre class="example">
 apt-get purge "lxc-docker*"
 apt-get purge "docker.io*"
@@ -291,10 +309,115 @@ docker run \
 docker logs l2tp-ipsec-vpn-server
 docker exec -it l2tp-ipsec-vpn-server ipsec status
 </pre>
+
+
+<div id="outline-container-orgf4682a0" class="outline-2">
+<h2 id="orgf4682a0"><span class="section-number-2">1</span> OpenVPN</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org056e935" class="outline-3">
+<h3 id="org056e935"><span class="section-number-3">1.1</span> Server Setup</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<a href="https://github.com/kylemanna/docker-openvpn">https://github.com/kylemanna/docker-openvpn</a>
+It is very interesting to use docker this way.
+</p>
+
+<p>
+The persisit is the storage, which is mounted on /etc/openvpn, serving
+as the configuration.  Each time, create a new docker container
+mounting the same storage. Each step write to the configuration.
+</p>
+
+<pre class="example">
+OVPN_DATA="ovpn-data-example"
+docker volume create --name $OVPN_DATA
+docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+</pre>
+
+<p>
+It is easy to run the server itself. This time use -d option to make
+it a daemon.
+</p>
+<pre class="example">
+docker run -v $OVPN_DATA:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
+</pre>
+
+<p>
+It is also easy to create certificate on-the-go. For that, create new
+container to create and retrieve the certificate.
+</p>
+
+<pre class="example">
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full CLIENTNAME nopass
+docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME &gt; CLIENTNAME.ovpn
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org955d74d" class="outline-3">
+<h3 id="org955d74d"><span class="section-number-3">1.2</span> Client Setup</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+On arch, copy hebi.ovpn to /etc/openvpn/client/hebi.conf. Then the
+service openvpn-client@hebi will be available for systemd. On ubuntu,
+the path is /etc/openvpn/hebi.conf, with service openvpn@hebi.
+Start the service will forward traffic.
+</p>
+
+<p>
+It is likely that you can connect, can ping any IP address, but cannot
+resolve names. You can even use <code>drill @8.8.8.8 google.com</code> to resolve
+the name on the way.
+</p>
+
+<p>
+The trick is to push resolv conf of local machine to remote. First
+install <code>openresolv</code> and (aur) <code>openvpn-update-resolv-conf</code>. Add the
+following to the end of hebi.conf file:
+</p>
+
+<pre class="example">
+script-security 2
+up /etc/openvpn/update-resolv-conf
+down /etc/openvpn/update-resolv-conf
+</pre>
+
+<p>
+For ubuntu the openvpn package already contains the file. Just modify
+the conf file.
+</p>
+</div>
+
+<div id="outline-container-org730d0c0" class="outline-4">
+<h4 id="org730d0c0"><span class="section-number-4">1.2.1</span> <span class="todo TODO">TODO</span> IPv6</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Note that the IPv4 address is changed, but the IPv6 is not changed,
+when I didn't use IPv6 on digital ocean.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-org49e5560" class="outline-2">
+<h2 id="org49e5560"><span class="section-number-2">2</span> music</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+rutracker.org
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-09-06 Wed 22:51</p>
+<p class="date">Created: 2017-10-26 Thu 16:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

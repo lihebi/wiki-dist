@@ -6,7 +6,7 @@
 <!-- 2017-10-26 Thu 16:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Open Source Projects I should consider contribute</title>
+<title>Racket</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Hebi Li" />
 <style type="text/css">
@@ -230,10 +230,209 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Open Source Projects I should consider contribute</h1>
-<ul class="org-ul">
-<li>stumpwm</li>
+<h1 class="title">Racket</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0ece5ee">1. Black Magic</a></li>
+<li><a href="#org9f6448e">2. <span class="todo TODO">TODO</span> Haskell</a></li>
+<li><a href="#org8115c8b">3. <span class="todo TODO">TODO</span> Pattern Matching (racket/match)</a></li>
+<li><a href="#org857489b">4. <span class="todo TODO">TODO</span> Macros</a></li>
+<li><a href="#orgd7c8702">5. <span class="todo TODO">TODO</span> rackunit</a></li>
+<li><a href="#orgb148a85">6. Trouble shooting</a>
+<ul>
+<li><a href="#org2b5fc33">6.1. racket cannot find browsers</a></li>
 </ul>
+</li>
+<li><a href="#orgc0c5557">7. Logger</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0ece5ee" class="outline-2">
+<h2 id="org0ece5ee"><span class="section-number-2">1</span> Black Magic</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="http://www.greghendershott.com/2015/07/keyword-structs-revisited.html">http://www.greghendershott.com/2015/07/keyword-structs-revisited.html</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">begin-for-syntax</span>
+  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">syntax-&gt;keyword</span> (<span style="color: #483d8b;">compose1</span>
+                           <span style="color: #483d8b;">string-&gt;keyword</span>
+                           <span style="color: #483d8b;">symbol-&gt;string</span>
+                           <span style="color: #483d8b;">syntax-&gt;datum</span>)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9f6448e" class="outline-2">
+<h2 id="org9f6448e"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Haskell</h2>
+</div>
+
+<div id="outline-container-org8115c8b" class="outline-2">
+<h2 id="org8115c8b"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Pattern Matching (racket/match)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The syntax:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #483d8b;">match</span> val-expr clause <span style="color: #a020f0;">...</span>)
+
+clause <span style="color: #483d8b;">=</span> [pat [<span style="color: #cd0000;">#:when</span> cond-expr] body ...+]
+</pre>
+</div>
+<p>
+cond-expr is in teh scope of pat (to have the bind or not??).
+</p>
+
+<p>
+The clauses are checked one-by-one, and the body of first match will
+be in the tail position.
+</p>
+
+<p>
+Pattern can be
+</p>
+<ul class="org-ul">
+<li><code>_</code> to match anything and abandon it.</li>
+<li>a single id which matches anything and bind to it. An ID can appear
+more than once, in which case the pattern is considered matching
+only if all of the bindings of ID are same.
+<ul class="org-ul">
+<li>e.g. <code>(list a b a)</code> will not match <code>'(1 2 3)</code>, but will match <code>'(1
+    2 1)</code></li>
+</ul></li>
+<li>a list which binds to the destruction.</li>
+<li>The quote can not be used to construct list of symbols, it will
+match verbatically instead. For that, use quasiquote, which supports
+the evaluation and splice-eval.
+<ul class="org-ul">
+<li>e.g. <code>`(1 ,a ,b)</code> will match <code>'(1 2 3)</code> with <code>a</code> and <code>b</code> bound.</li>
+</ul></li>
+<li>hash-table can be used to match the key and values, Using <code>...</code> in
+it means collect into a list.
+<ul class="org-ul">
+<li>e.g. <code>(hash-table ("key1" a) ("key2" b))</code>.</li>
+<li>e.g. <code>(hash-table (key val) ...)</code> will match <code>#hash(("a" . 1) ("b"
+    . 2))</code>, and key will be <code>'("b" "a")</code></li>
+</ul></li>
+<li>cons can be used to match pairs</li>
+<li><code>struct-id</code> can be used to match fields by position. Use <code>(struct
+  struct-id _)</code> to match an instance of structure itself. E.g.
+<ul class="org-ul">
+<li>for structure <code>(struct tree (val left right))</code></li>
+<li>pattern <code>(tree a (tree b  _ _) _)</code> will match</li>
+<li><code>(tree 0 (tree 1 #f #f) #f)</code></li>
+<li>with <code>a</code> bound to 0, <code>b</code> bound to 1</li>
+</ul></li>
+<li><code>and</code> is used to combine a list of patterns. The typical usage is
+<code>(and id pat)</code> where you can bind <code>id</code> and still check the <code>pat</code>
+against the entire value. <code>or</code> is also available but not that
+useful.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org857489b" class="outline-2">
+<h2 id="org857489b"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Macros</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Matthias Felleisen boils down macros into three main categories:
+</p>
+<ol class="org-ol">
+<li>Binding form</li>
+<li>Change order of evaluation</li>
+<li>Make DSLs</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd7c8702" class="outline-2">
+<h2 id="orgd7c8702"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> rackunit</h2>
+</div>
+
+<div id="outline-container-orgb148a85" class="outline-2">
+<h2 id="orgb148a85"><span class="section-number-2">6</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org2b5fc33" class="outline-3">
+<h3 id="org2b5fc33"><span class="section-number-3">6.1</span> racket cannot find browsers</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Browsers are declared in sendurl.rkt, with
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">all-unix-browsers</span>
+  '(
+    firefox
+    google-chrome
+    galeon
+    opera
+    mozilla
+    konqueror
+    <span style="color: #b22222;">;; </span><span style="color: #b22222;">...</span>
+    ))
+</pre>
+</div>
+
+<p>
+chromium is not in the list, thus
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">require</span> net/sendurl)
+unix-browser-list <span style="color: #b22222;">;; </span><span style="color: #b22222;">empty</span>
+(send-url <span style="color: #8b2252;">"google.com"</span>) <span style="color: #b22222;">;; </span><span style="color: #b22222;">error</span>
+</pre>
+</div>
+
+<p>
+The trick is to create a soft link for chromium named "google-chrome".
+Also, the default is using firefox &#x2026; So I need to make sure firefox
+is uninstalled. Is there a better way to configure browser??
+</p>
+
+<p>
+The <code>racket-doc</code> will use the local racket document to search, thus in
+order for it to work, install <code>racket-doc</code> package.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc0c5557" class="outline-2">
+<h2 id="orgc0c5557"><span class="section-number-2">7</span> Logger</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">lg</span> (<span style="color: #483d8b;">make-logger</span>))
+(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">rc</span> (<span style="color: #483d8b;">make-log-receiver</span> lg <span style="color: #2e8b57;">'debug</span>))
+(<span style="color: #483d8b;">current-logger</span> lg)
+(<span style="color: #483d8b;">void</span>
+ (<span style="color: #483d8b;">thread</span>
+  (<span style="color: #a020f0;">lambda</span> () (<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">loop</span> ()
+               (<span style="color: #483d8b;">print</span> (<span style="color: #483d8b;">sync</span> rc))
+               (loop)))))
+(<span style="color: #a020f0;">log-error</span> <span style="color: #8b2252;">"error"</span>)
+(<span style="color: #a020f0;">log-fatal</span> <span style="color: #8b2252;">"fatal"</span>)
+(<span style="color: #a020f0;">log-debug</span> <span style="color: #8b2252;">"just a debug"</span>)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">require</span> racket/logging)
+(<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">my-log</span> (<span style="color: #483d8b;">open-output-string</span>)])
+  (with-logging-to-port my-log
+    (<span style="color: #a020f0;">lambda</span> ()
+      (<span style="color: #a020f0;">log-warning</span> <span style="color: #8b2252;">"Warning World!"</span>)
+      (<span style="color: #483d8b;">+</span> <span style="color: #2e8b57;">2</span> <span style="color: #2e8b57;">2</span>))
+    <span style="color: #2e8b57;">'warning</span>)
+  (<span style="color: #483d8b;">get-output-string</span> my-log))
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>

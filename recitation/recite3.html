@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 22:50 -->
+<!-- 2017-10-26 Thu 16:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>COMS342 Recitation 3</title>
@@ -233,12 +233,12 @@ for the JavaScript code in this tag.
 <h1 class="title">COMS342 Recitation 3</h1>
 
 
-<div id="outline-container-org72be4b5" class="outline-2">
-<h2 id="org72be4b5"><span class="section-number-2">1</span> Visitor</h2>
+<div id="outline-container-org4ab9eeb" class="outline-2">
+<h2 id="org4ab9eeb"><span class="section-number-2">1</span> Visitor</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgfcfe168" class="outline-3">
-<h3 id="orgfcfe168"><span class="section-number-3">1.1</span> Visitor pattern</h3>
+<div id="outline-container-org301f659" class="outline-3">
+<h3 id="org301f659"><span class="section-number-3">1.1</span> Visitor pattern</h3>
 <div class="outline-text-3" id="text-1-1">
 <blockquote>
 <p>
@@ -249,8 +249,8 @@ Visitor lets you define a new operation without changing theclasses of the eleme
 </div>
 </div>
 
-<div id="outline-container-org4ffa4a4" class="outline-3">
-<h3 id="org4ffa4a4"><span class="section-number-3">1.2</span> The problem and the naive solution</h3>
+<div id="outline-container-org78290f4" class="outline-3">
+<h3 id="org78290f4"><span class="section-number-3">1.2</span> The problem and the naive solution</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>We have a list of classes in a class hierarchy, e.g. AST nodes.</li>
@@ -269,8 +269,8 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-orgc128a2c" class="outline-3">
-<h3 id="orgc128a2c"><span class="section-number-3">1.3</span> The pattern</h3>
+<div id="outline-container-orgf072ee3" class="outline-3">
+<h3 id="orgf072ee3"><span class="section-number-3">1.3</span> The pattern</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>We define a hierarchy of visitors</li>
@@ -285,11 +285,11 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-org5e94597" class="outline-3">
-<h3 id="org5e94597"><span class="section-number-3">1.4</span> Example</h3>
+<div id="outline-container-org193bffa" class="outline-3">
+<h3 id="org193bffa"><span class="section-number-3">1.4</span> Example</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre><code class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">interface</span> <span style="color: #228b22;">AST</span> {
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">interface</span> <span style="color: #228b22;">AST</span> {
     <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">ASTNode</span> {
         <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>);
     }
@@ -311,16 +311,16 @@ This is not good. Application code is mixed with the AST node implementation.
         }
     }
 }
-</code></pre>
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org304e60a" class="outline-3">
-<h3 id="org304e60a"><span class="section-number-3">1.5</span> Example - follow</h3>
+<div id="outline-container-org537f143" class="outline-3">
+<h3 id="org537f143"><span class="section-number-3">1.5</span> Example - follow</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
-<pre><code class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Evaluator</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Visitor</span>&lt;<span style="color: #228b22;">Value</span>&gt; {
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Evaluator</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Visitor</span>&lt;<span style="color: #228b22;">Value</span>&gt; {
     <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span>(<span style="color: #228b22;">NumExp</span> <span style="color: #a0522d;">e</span>) {
         <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span>(e.v());
     }
@@ -336,7 +336,7 @@ This is not good. Application code is mixed with the AST node implementation.
         <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span>(result);
     }
 }
-</code></pre>
+</pre>
 </div>
 </div>
 </div>
@@ -344,7 +344,7 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-09-06 Wed 22:50</p>
+<p class="date">Created: 2017-10-26 Thu 16:40</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

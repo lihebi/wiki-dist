@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 22:50 -->
+<!-- 2017-10-26 Thu 16:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Online Judge Excerpts</title>
@@ -235,17 +235,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8d2e8b3">1. Binary Tree Postorder Traversal <i>Iteratively</i>:</a></li>
-<li><a href="#orga7e0843">2. middle order traversal's two different implement:</a></li>
+<li><a href="#orgb5709fe">1. Binary Tree Postorder Traversal <i>Iteratively</i>:</a></li>
+<li><a href="#org52e8fa0">2. middle order traversal's two different implement:</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8d2e8b3" class="outline-2">
-<h2 id="org8d2e8b3"><span class="section-number-2">1</span> Binary Tree Postorder Traversal <i>Iteratively</i>:</h2>
+<div id="outline-container-orgb5709fe" class="outline-2">
+<h2 id="orgb5709fe"><span class="section-number-2">1</span> Binary Tree Postorder Traversal <i>Iteratively</i>:</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre><code class="src src-text">1.1 Create an empty stack
+<pre class="src src-text">1.1 Create an empty stack
 2.1 Do following while root is not NULL
     a) Push root's right child and then root to stack.
     b) Set root as root's left child.
@@ -255,11 +255,11 @@ for the JavaScript code in this tag.
        push the root back and set root as root's right child.
     b) Else print root's data and set root as NULL.
 2.3 Repeat steps 2.1 and 2.2 while stack is not empty.
-</code></pre>
+</pre>
 </div>
 
 <div class="org-src-container">
-<pre><code class="src src-C++"><span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #0000ff;">postorderTraversal</span>(<span style="color: #228b22;">TreeNode</span>* <span style="color: #a0522d;">root</span>) {
+<pre class="src src-C++"><span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #0000ff;">postorderTraversal</span>(<span style="color: #228b22;">TreeNode</span>* <span style="color: #a0522d;">root</span>) {
   <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">result</span>;
   <span style="color: #228b22;">stack</span>&lt;<span style="color: #228b22;">TreeNode</span>*&gt; <span style="color: #a0522d;">worklist</span>;
   <span style="color: #228b22;">TreeNode</span> *<span style="color: #a0522d;">node</span> = root;
@@ -287,25 +287,25 @@ for the JavaScript code in this tag.
   } <span style="color: #a020f0;">while</span> (!worklist.empty());
   <span style="color: #a020f0;">return</span> result;
 }
-</code></pre>
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga7e0843" class="outline-2">
-<h2 id="orga7e0843"><span class="section-number-2">2</span> middle order traversal's two different implement:</h2>
+<div id="outline-container-org52e8fa0" class="outline-2">
+<h2 id="org52e8fa0"><span class="section-number-2">2</span> middle order traversal's two different implement:</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre><code class="src src-C"><span style="color: #0000ff;">bfs</span>(node) {
+<pre class="src src-C"><span style="color: #0000ff;">bfs</span>(node) {
   bfs(node-&gt;left);
   visit(node);
   bfs(node-&gt;right);
 }
-</code></pre>
+</pre>
 </div>
 
 <div class="org-src-container">
-<pre><code class="src src-C"><span style="color: #a020f0;">while</span>(stack.size()&gt;0 || node != <span style="color: #008b8b;">NULL</span>) {
+<pre class="src src-C"><span style="color: #a020f0;">while</span>(stack.size()&gt;0 || node != <span style="color: #008b8b;">NULL</span>) {
   <span style="color: #a020f0;">if</span> (node) {
     stack.push(node);
     node = node-&gt;left;
@@ -315,14 +315,14 @@ for the JavaScript code in this tag.
     node = node-&gt;right;
   }
 }
-</code></pre>
+</pre>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-09-06 Wed 22:50</p>
+<p class="date">Created: 2017-10-26 Thu 16:40</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
