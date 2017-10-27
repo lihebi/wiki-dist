@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-26 Thu 18:22 -->
+<!-- 2017-10-27 Fri 15:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket</title>
@@ -240,13 +240,11 @@ for the JavaScript code in this tag.
 <li><a href="#org8115c8b">3. Pattern Matching (racket/match)</a></li>
 <li><a href="#org857489b">4. Macros</a>
 <ul>
-<li><a href="#org5ef3e9d">4.1. with-syntax</a></li>
-<li><a href="#orga2b6291">4.2. Reader</a></li>
-<li><a href="#org4a03881">4.3. Syntax Model</a></li>
-<li><a href="#org481a29a">4.4. Expand</a></li>
+<li><a href="#orga2b6291">4.1. Reader</a></li>
+<li><a href="#org4a03881">4.2. Syntax Model</a></li>
 </ul>
 </li>
-<li><a href="#orgd7c8702">5. <span class="todo TODO">TODO</span> rackunit</a></li>
+<li><a href="#orgd7c8702">5. rackunit</a></li>
 <li><a href="#orgb148a85">6. Trouble shooting</a>
 <ul>
 <li><a href="#org2b5fc33">6.1. racket cannot find browsers</a></li>
@@ -362,6 +360,11 @@ are used.
 </p>
 
 <p>
+When using racket syntax, you typically need to require the base
+library for it, by <code>(require (for-syntax racket/base))</code>.
+</p>
+
+<p>
 Everything boils down to <code>define-syntax</code> and <code>syntax-case</code>.
 <code>define-syntax</code> is nothing fancy. It just define a binding, same as
 define, but the binding is in effect at level 1. Thus actually we
@@ -393,6 +396,18 @@ that you don't need to convert explicitly. Instead, you specify by
 position the argument, to match the datum, and construct a syntax
 object as a result.
 </p>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">syntax-case</span> stx-expr (literal-id <span style="color: #a020f0;">...</span>)
+  [pattern result-expr] <span style="color: #a020f0;">...</span>)
+</pre>
+</div>
+
+<p>
+Note the result is <code>result-expr</code>, that means the expr is going to be
+executed, and the return value should be a syntax object.
+</p>
+
 <div class="org-src-container">
 <pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">foo</span> stx)
   (<span style="color: #a020f0;">syntax-case</span> stx ()
@@ -406,14 +421,35 @@ See, stx is matched against the pattern <code>(_ a b c)</code>, and
 destructed. <code>a b c</code> can then be used to construct the returned syntax
 object. Note, the return must be a syntax object, it replaces the (foo
 xxx) and be evaluated. The first is <code>_</code> because we don't care about
-the <code>#'foo</code>. <code>stx</code> is not used??
+the leading identifier <code>#'foo</code>.
 </p>
 
+<p>
+<code>syntax-rules</code> is a lambda expression, that calls <code>syntax-case</code> to
+return a syntax object. It is used to define multiple patterns and
+templates at one time. Note that the result is a "template" instead of
+"expr", meaning it is restricted: cannot run any code, merely return
+the template as if quoted. Thus when using syntax-rules, the result
+need not be quoted by <code>syntax</code>.
+</p>
 
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">syntax-rules</span> (literal-id <span style="color: #a020f0;">...</span>)
+  [(id . pattern) template] <span style="color: #a020f0;">...</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
+(<span style="color: #a020f0;">lambda</span> (stx)
+  (<span style="color: #a020f0;">syntax-case</span> stx (literal-id <span style="color: #a020f0;">...</span>)
+    [(generated-id . pattern) (<span style="color: #483d8b;">syntax-protect</span> #<span style="color: #2e8b57;">'template</span>)] <span style="color: #a020f0;">...</span>))
+</pre>
+</div>
 
 <p>
 <code>define-syntax-rule</code> is shorthand for <code>define-syntax</code> and
-<code>syntax-rules</code>.
+<code>syntax-rules</code>. The pattern is a list, the first is an identifier, the
+following are pattern variables that matches anything. The template is
+the constructed form to replace the old form. It is not quoted,
+because it uses syntax-rules to construct. All pattern variables will
+be replaced by the actual form.
 </p>
 
 <div class="org-src-container">
@@ -434,40 +470,21 @@ This is so constrained. The following is equivalent to the above:
 </div>
 
 <p>
-While <code>syntax-rules</code> is a lambda expression, that call <code>syntax-case</code>
-to return a syntax object.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">syntax-rules</span> (literal-id <span style="color: #a020f0;">...</span>)
-  [(id . pattern) template] <span style="color: #a020f0;">...</span>)
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
-(<span style="color: #a020f0;">lambda</span> (stx)
-  (<span style="color: #a020f0;">syntax-case</span> stx (literal-id <span style="color: #a020f0;">...</span>)
-    [(generated-id . pattern) (<span style="color: #483d8b;">syntax-protect</span> #<span style="color: #2e8b57;">'template</span>)] <span style="color: #a020f0;">...</span>))
-</pre>
-</div>
-</div>
-
-
-<div id="outline-container-org5ef3e9d" class="outline-3">
-<h3 id="org5ef3e9d"><span class="section-number-3">4.1</span> with-syntax</h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-This is often used to nest syntax. It is like <code>let</code>
+<code>with-syntax</code> is often used to nest syntax. It is like <code>let</code> but is
+able to bind pattern variables.
 </p>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">syntax-case</span> &lt;syntax&gt; () [&lt;pattern&gt; &lt;body&gt;])
+<pre class="src src-racket">(<span style="color: #a020f0;">syntax-case</span> &lt;syntax&gt; () [&lt;pattern&gt; &lt;body&gt;] <span style="color: #a020f0;">...</span>)
+(<span style="color: #a020f0;">syntax-case</span> (<span style="color: #483d8b;">list</span> stx-expr <span style="color: #a020f0;">...</span>) () [(pattern <span style="color: #a020f0;">...</span>) (<span style="color: #a020f0;">let</span> () body ...+)])
 <span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
-(<span style="color: #a020f0;">with-syntax</span> ([&lt;pattern&gt; &lt;syntax&gt;]) &lt;body&gt;)
+(<span style="color: #a020f0;">with-syntax</span> ([&lt;pattern&gt; &lt;stx-expr&gt;] <span style="color: #a020f0;">...</span>) &lt;body&gt; ...+)
 </pre>
-</div>
 </div>
 </div>
 
 <div id="outline-container-orga2b6291" class="outline-3">
-<h3 id="orga2b6291"><span class="section-number-3">4.2</span> Reader</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="orga2b6291"><span class="section-number-3">4.1</span> Reader</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 To understand how macro works, we need to know how the reader handles
 the program.
@@ -493,8 +510,8 @@ complex structure, the print format is not intuitive.</li>
 </div>
 </div>
 <div id="outline-container-org4a03881" class="outline-3">
-<h3 id="org4a03881"><span class="section-number-3">4.3</span> Syntax Model</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="org4a03881"><span class="section-number-3">4.2</span> Syntax Model</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 A <i>syntax object</i> is a simple racket value + scope set + phase level.
 </p>
@@ -502,18 +519,18 @@ A <i>syntax object</i> is a simple racket value + scope set + phase level.
 <p>
 When require something, those functions are not visible in
 level 1. Thus if you want to use those when macro expands, you need
-<code>(reqire (for-syntax racket/base))</code>.
+<code>(reqire (for-syntax racket/base))</code>.  Similarly, <code>for-meta</code> can be
+used to specify any number as shift level.
 </p>
 
 <p>
 Similaryly, a top-level <code>begin</code> is not visible in macro, we need
 <code>begin-for-syntax</code> to bind variables to use at level 1.
 </p>
-</div>
-</div>
-<div id="outline-container-org481a29a" class="outline-3">
-<h3 id="org481a29a"><span class="section-number-3">4.4</span> Expand</h3>
-<div class="outline-text-3" id="text-4-4">
+
+<p>
+Use these to expand a macro:
+</p>
 <ul class="org-ul">
 <li><code>(expand top-level-form)</code>: fully expand</li>
 <li><code>(expand-once top-level-form)</code>: expand only once</li>
@@ -522,7 +539,75 @@ Similaryly, a top-level <code>begin</code> is not visible in macro, we need
 </div>
 </div>
 <div id="outline-container-orgd7c8702" class="outline-2">
-<h2 id="orgd7c8702"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> rackunit</h2>
+<h2 id="orgd7c8702"><span class="section-number-2">5</span> rackunit</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Since racket has the <code>test</code> module concept, there needs no unit test
+framework. However, it seems that <code>rackunit</code> provides some
+predicate functions.
+</p>
+
+<p>
+In racket, each file is a module with the file name as the module
+name. You can define a submodule using <code>module*</code> and <code>module+</code>. The
+former can only appear exactly once for each module, while the latter
+can appear multiple times, all of them concatenated into a single
+module as if using <code>module*</code>.
+</p>
+
+<p>
+Thus, folks typically use <code>module*</code> to define a <code>main</code> module, which
+will be run by racket after the enclosing module by
+<code>racket</code>. <code>module+</code> is used to define <code>test</code> modules, and will be
+executed by <code>raco test</code> command.
+</p>
+
+<p>
+<code>rackunit</code> provides check APIs and also organize tests into cases and
+suites.  A check is a simple check, like equality. A test case is a
+group of checks. If one of them fails, the following will not be
+executed, and the test case fails. A suite is a group of test cases,
+and has a name.
+</p>
+
+<p>
+Check APIs (all of them accepts an optional message at the end):
+</p>
+<ul class="org-ul">
+<li><code>check-eq?</code></li>
+<li><code>check-not-eq?</code></li>
+<li><code>check-equal?</code></li>
+<li><code>check-not-equal?</code></li>
+<li><code>check-pred pred v</code>: check if apply pred on v will produce
+other than #f</li>
+<li><code>check-= v1 v2 epsilon</code>: |v1-v2| &lt;= epsilon</li>
+<li><code>check-true v</code>: #t</li>
+<li><code>check-false v</code>: #f</li>
+<li><code>check-not-flase v</code>: not #f</li>
+<li><code>check op v1 v2</code>: generic form, op is <code>(-&gt; any any any)</code></li>
+<li><code>fail</code>: fail unconditionally, useful when developing to mark some tests</li>
+</ul>
+
+<p>
+The following does not accept message, because they are straightforward:
+</p>
+<ul class="org-ul">
+<li><code>check-match v pattern</code>: check if v match pattern</li>
+</ul>
+
+<p>
+<code>test-begin expr ...</code> is used to group exprs, while <code>test-case name
+body ...+</code> accept a name for them, and get reported if test fails.
+</p>
+
+<p>
+Test suites are not going to run by default. This allows you to
+specify which tests to run. There're text (<code>run-tests</code> in
+<code>rackunit/text-ui</code>) and gui (<code>test/gui</code> in <code>rackunit/gui</code>) interfaces
+to select tests. Create a suite using <code>(test-suite name-expr test
+...)</code>. The tests can be single check or a test case.
+</p>
+</div>
 </div>
 
 <div id="outline-container-orgb148a85" class="outline-2">
@@ -610,7 +695,7 @@ order for it to work, install <code>racket-doc</code> package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-10-26 Thu 18:22</p>
+<p class="date">Created: 2017-10-27 Fri 15:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
