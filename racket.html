@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-27 Fri 15:04 -->
+<!-- 2017-10-28 Sat 00:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket</title>
@@ -245,12 +245,33 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgd7c8702">5. rackunit</a></li>
-<li><a href="#orgb148a85">6. Trouble shooting</a>
+<li><a href="#orgc834180">6. Control Structure</a></li>
+<li><a href="#orgdb59bc1">7. String</a></li>
+<li><a href="#org0b1eca7">8. Regular Expression</a></li>
+<li><a href="#orgdc03b9e">9. Pair, List, Vector</a></li>
+<li><a href="#org1cafa13">10. Hash Tables</a></li>
+<li><a href="#org98908f8">11. Sequence</a></li>
+<li><a href="#org8058d98">12. Hash set (use racket/set)</a></li>
+<li><a href="#org4ba2075">13. structure</a></li>
+<li><a href="#org883a2f1">14. Multiple Values</a></li>
+<li><a href="#orga812f43">15. Exception</a></li>
+<li><a href="#org3be8de9">16. Concurrency</a></li>
+<li><a href="#org65466c2">17. <span class="todo TODO">TODO</span> IO</a></li>
+<li><a href="#orga5f8e58">18. <span class="todo TODO">TODO</span> OS</a>
 <ul>
-<li><a href="#org2b5fc33">6.1. racket cannot find browsers</a></li>
+<li><a href="#org55527dd">18.1. <span class="todo TODO">TODO</span> File System</a></li>
+<li><a href="#org1457adb">18.2. <span class="todo TODO">TODO</span> Networking</a></li>
+<li><a href="#org84f9745">18.3. <span class="todo TODO">TODO</span> Processes</a></li>
+<li><a href="#org5c2d3dc">18.4. <span class="todo TODO">TODO</span> CMD parsing</a></li>
+<li><a href="#orga5c67bc">18.5. <span class="todo TODO">TODO</span> ENV variable</a></li>
 </ul>
 </li>
-<li><a href="#orgc0c5557">7. Logger</a></li>
+<li><a href="#orgb148a85">19. Trouble shooting</a>
+<ul>
+<li><a href="#org2b5fc33">19.1. racket cannot find browsers</a></li>
+</ul>
+</li>
+<li><a href="#orgc0c5557">20. Logger</a></li>
 </ul>
 </div>
 </div>
@@ -610,13 +631,503 @@ to select tests. Create a suite using <code>(test-suite name-expr test
 </div>
 </div>
 
-<div id="outline-container-orgb148a85" class="outline-2">
-<h2 id="orgb148a85"><span class="section-number-2">6</span> Trouble shooting</h2>
+
+<div id="outline-container-orgc834180" class="outline-2">
+<h2 id="orgc834180"><span class="section-number-2">6</span> Control Structure</h2>
 <div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>if</li>
+<li>(cond [test-expr then-body &#x2026;+] &#x2026;)</li>
+<li>(case val-expr [(datum &#x2026;) then-body &#x2026;+] &#x2026;): if val-expr
+matches one of datum, execute the body</li>
+<li>when</li>
+<li>unless</li>
+<li>(for ([id seq-expr] #:when guard-expr #:unless guard-expr) body)</li>
+<li>for/list, for/vector, for/hash</li>
+<li>for/and, for/or</li>
+<li>for/sum, for/product</li>
+<li><code>for/first</code>, <code>for/last</code></li>
+<li><code>for/fold</code></li>
+<li><code>for*</code>: like for, but with implicit #:when #t between each
+pair. Thus all clauses are nested. <code>for*</code> also has the form of
+different return values.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdb59bc1" class="outline-2">
+<h2 id="orgdb59bc1"><span class="section-number-2">7</span> String</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>make-string k [char]</li>
+<li>string-length</li>
+<li>string-ref</li>
+<li>substring str start [end]</li>
+<li>string-copy</li>
+<li>string-append</li>
+<li>string-&gt;list</li>
+<li>list-&gt;string</li>
+<li>string=?, string&lt;?, ..</li>
+<li>string-ci=?, &#x2026;</li>
+<li>string-upcase, string-downcase, string-titlecase, string-foldcase
+(normalize for different locale)</li>
+</ul>
+
+<p>
+With racket/string:
+</p>
+<ul class="org-ul">
+<li>string-join</li>
+<li>string-replace</li>
+<li>string-split</li>
+<li>string-trim</li>
+<li>string-contains? s contained</li>
+<li>string-prefix? s prefix</li>
+<li>string-suffix? s suffix</li>
+</ul>
+
+<p>
+Byte string
+</p>
+<ul class="org-ul">
+<li>make-bytes k [b]</li>
+<li>bytes-length</li>
+<li>bytes-ref</li>
+<li>subbytes bstr start [end]</li>
+<li>bytes-copy</li>
+<li>bytes-append</li>
+<li>bytes-&gt;list</li>
+<li>list-&gt;bytes</li>
+<li>bytes=?, &#x2026;</li>
+<li>bytes-&gt;string/utf-8</li>
+<li>bytes-&gt;string/locale</li>
+<li>bytes-&gt;string/latin-1</li>
+<li>string-&gt;bytes/utf-8</li>
+<li>string-&gt;bytes/locale</li>
+<li>string-&gt;bytes/latin-1</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0b1eca7" class="outline-2">
+<h2 id="org0b1eca7"><span class="section-number-2">8</span> Regular Expression</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>#rx"xxx": regular expression</li>
+<li>#px"xxx": perl regular expression</li>
+</ul>
+
+<p>
+Functions:
+</p>
+<ul class="org-ul">
+<li><code>regexp-quote</code>: generate a regular expression string that match the
+string literally</li>
+<li><code>regexp-match</code> pattern input [start-pos end-pos]: find the pattern in
+the input. and return a list containing the result (only one). If no
+match, return #f. If has capture group, return the match and all
+captured group.</li>
+<li><code>regexp-match*</code>: match multiple times, return list of
+results. <code>#:match-select</code> accepts a procedure (defaults to
+<code>car</code>). Examples: values (all), cadr</li>
+<li><code>regexp-match-position</code>: like <code>regexp-match</code>, but return list of number
+pairs, each is a range of [start, end).</li>
+<li><code>regexp-match?</code>: return #t or #f</li>
+<li><code>regexp-match-exact?</code>: return #t only if entire content matches.</li>
+
+<li><code>regexp-split pattern input</code>: complement of <code>regexp-match*</code></li>
+<li><code>regexp-replace pattern input insert</code>: replace the first
+match. Match can be referenced by using <code>&amp;</code> (whole match), <code>\0</code>
+(whole match), <code>\n</code> captured.</li>
+<li><code>regexp-replace*</code>: replace all</li>
+<li><code>regexp-replaces input ([pat rep] ...)</code>: do <code>regexp-replace*</code> for
+each replacement in order, chained. Which means latter can operate
+on former.</li>
+<li><code>regexp-replace-quote</code>: produce string suitable to use as
+replacement (unquoting <code>\</code> and <code>&amp;</code>)</li>
+</ul>
+
+<p>
+Input port specific:
+</p>
+<ul class="org-ul">
+<li><code>regexp-try-match</code>: like <code>regexp-match</code>, but if the input is a port,
+don't read the input on failure.</li>
+<li><code>regexp-match-peek</code>: do not read input ports on both failure and
+success</li>
+<li><code>regexp-match-peek-positions</code>: return positions</li>
+<li><code>regexp-match-peek-immediate</code>: non-blocking on input port</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #483d8b;">regexp-match</span> <span style="color: #2e8b57;">#rx</span><span style="color: #8b2252;">"x(.)"</span> <span style="color: #8b2252;">"12x4x6"</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">'("x4" "4")</span>
+(<span style="color: #a020f0;">regexp-match*</span> <span style="color: #2e8b57;">#rx</span><span style="color: #8b2252;">"x(.)"</span> <span style="color: #8b2252;">"12x4x6"</span> <span style="color: #cd0000;">#:match-select</span> var) <span style="color: #b22222;">; </span><span style="color: #b22222;">default</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">'("x4" "x6")</span>
+(<span style="color: #a020f0;">regexp-match*</span> <span style="color: #2e8b57;">#rx</span><span style="color: #8b2252;">"x(.)"</span> <span style="color: #8b2252;">"12x4x6"</span> <span style="color: #cd0000;">#:match-select</span> <span style="color: #483d8b;">values</span>) <span style="color: #b22222;">; </span><span style="color: #b22222;">all</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">'(("x4" "4") ("x6" "6"))</span>
+(<span style="color: #a020f0;">regexp-match*</span> <span style="color: #2e8b57;">#rx</span><span style="color: #8b2252;">"x(.)"</span> <span style="color: #8b2252;">"12x4x6"</span> <span style="color: #cd0000;">#:match-select</span> <span style="color: #483d8b;">cadr</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">'("4" "6")</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdc03b9e" class="outline-2">
+<h2 id="orgdc03b9e"><span class="section-number-2">9</span> Pair, List, Vector</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>length</li>
+<li>list-ref</li>
+<li>list-tail</li>
+<li>append</li>
+<li>reverse</li>
+<li>map, andmap, ormap</li>
+<li>for-each</li>
+<li>foldl, foldr</li>
+<li>filter</li>
+<li>remove</li>
+<li>sort</li>
+<li>member, memf (using function): if found, return the tail list
+starting from the match</li>
+<li>findf: like memf, but return just the matched element.</li>
+<li>assoc v lst: the first element of lst whose car equal to
+v. E.g. <code>(assoc 1 '((1 2) (3 4)))</code> returns <code>'(1 2)</code></li>
+</ul>
+
+<p>
+from racket/list
+</p>
+<ul class="org-ul">
+<li>empty?</li>
+<li>first</li>
+<li>rest</li>
+<li>second</li>
+<li>last</li>
+<li>list-update lst pos updater: the pos index is updated with <code>(updater
+  (list-ref lst pos))</code></li>
+<li>list-set lst pos value</li>
+<li><code>index-of lst v</code>: return the index of the first v</li>
+<li><code>index-where lst proc</code>: use function</li>
+<li><code>indexes-of</code>, <code>indexes-where</code>: return all matches</li>
+<li><code>take lst pos</code>: take only the first pos elements</li>
+<li><code>drop lst pos</code>: same as list-tail</li>
+<li><code>split-at lst pos</code>: same as <code>(values (take lst pos) (drop lst pos))</code></li>
+<li>takef, dropf, splitf-at: take all the elements satisfying the
+function.</li>
+<li>take-right, drop-right, split-at-right, and their f-version</li>
+<li>list-prefix? l r: whether l is prefix of r</li>
+<li>take-common-prefix l r</li>
+<li>drop-common-prefix l r</li>
+<li>split-common-prefix l r</li>
+<li>flatten v</li>
+<li>check-duplicates lst</li>
+<li>remove-duplicates lst</li>
+<li>range end: [0,end)</li>
+<li>range start end [step=1]</li>
+<li>shuffle lst</li>
+<li>combinations lst [size]: if size is given, return only combination
+of length size.</li>
+<li>permutations lst</li>
+<li><code>argmin proc lst</code>: return the first elemnt in lst that minimize
+<code>(proc elem)</code></li>
+<li>argmax</li>
+</ul>
+
+<p>
+Vectors
+</p>
+<ul class="org-ul">
+<li>vector-length</li>
+<li>vector-ref</li>
+<li>vector-set!: it makes sense to set a vector, because it takes
+constant time to access and update</li>
+<li>vector-&gt;list</li>
+<li>list-&gt;vector</li>
+<li>vector-fill! vec v</li>
+<li>vector-copy! dst dst-start src [src-start] [src-end]</li>
+</ul>
+
+<p>
+From racket/vector:
+</p>
+<ul class="org-ul">
+<li>vector-map</li>
+<li>vector-append</li>
+<li>vector-take, vector-drop</li>
+<li>vector-take-right, vector-drop-right</li>
+<li>vector-split-at, vector-split-at-right</li>
+<li>vector-copy</li>
+<li>vector-filter</li>
+<li>vector-filter-not</li>
+<li>vector-count proc vec</li>
+<li>vector-argmin, vector-argmax</li>
+<li>vector-member</li>
+<li>vector-sort</li>
+<li>vector-sort!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1cafa13" class="outline-2">
+<h2 id="org1cafa13"><span class="section-number-2">10</span> Hash Tables</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>(hash key val &#x2026; &#x2026;)</li>
+<li>hash-set hash key v</li>
+<li>hash-ref hash key</li>
+<li>hash-has-key?</li>
+<li>hash-update</li>
+<li>hash-remove</li>
+<li>hash-clear</li>
+<li>hash-keys</li>
+<li>hash-values</li>
+<li>hash-&gt;list</li>
+<li><code>hash-keys-subset? hash1 hash2</code>: hash1 is a subset of hash2?</li>
+<li>hash-count hash</li>
+<li>hash-empty?</li>
+<li>hash-union: require racket/hash</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org98908f8" class="outline-2">
+<h2 id="org98908f8"><span class="section-number-2">11</span> Sequence</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Sequence is designed to be used with <code>for</code>. Not only list and vectors
+are sequence, hash table is also sequence. Dictionary and set are also
+sequences. List can also be dictionary type.
+</p>
+
+<ul class="org-ul">
+<li>sequence?</li>
+</ul>
+<p>
+Constructing sequences
+</p>
+<ul class="org-ul">
+<li>in-range</li>
+<li>in-naturals</li>
+<li>in-list</li>
+<li>in-vector</li>
+<li>in-string</li>
+<li>in-lines [in=(current-input-port)]</li>
+<li>in-hash</li>
+<li>in-hash-keys, in-hash-values, in-hash-pairs</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8058d98" class="outline-2">
+<h2 id="org8058d98"><span class="section-number-2">12</span> Hash set (use racket/set)</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>set v &#x2026;: construct a hash set</li>
+<li>list-&gt;set lst: construct from list</li>
+<li>for/set</li>
+<li>set-member?</li>
+<li>set-add</li>
+<li>set-remove</li>
+<li>set-empty?</li>
+<li>set-count</li>
+<li>set-first</li>
+<li>set-rest</li>
+<li>set-copy</li>
+<li>set-clear</li>
+<li>set-union</li>
+<li>set-intersect</li>
+<li>set-subtract</li>
+<li>set=?</li>
+<li>subset? st1 st2: st1 is subset of st2?</li>
+<li>proper-subset? st1 st2: strict subset</li>
+<li>set-&gt;list</li>
+<li>in-set</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org4ba2075" class="outline-2">
+<h2 id="org4ba2075"><span class="section-number-2">13</span> structure</h2>
+<div class="outline-text-2" id="text-13">
+<ul class="org-ul">
+<li>automatic fields: don't need to initialize, associated with the
+type, same among all instances?</li>
+<li>subtype will inherit fields, when initialize, initialize those
+parent fields first</li>
+<li>prefab means <i>previously fabricated</i>. Such structure types are
+globally shared, and they can be print and read back.</li>
+</ul>
+
+<p>
+<code>struct id maybe-super (field ...) struct-option ...</code> is used to
+create (or use previous type if <code>#:prefab</code>) a structure type.
+Notable struct-options are <code>#:prefab</code>, <code>#:transparent</code>.
+</p>
+
+<p>
+The following procedures are created: id, id-field, id?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org883a2f1" class="outline-2">
+<h2 id="org883a2f1"><span class="section-number-2">14</span> Multiple Values</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+values produce multiple values value, to consume that, typically use
+<code>let-values</code>, <code>let*-values</code>, <code>define-values</code>. Also, binding forms that
+can destruct values can also be used.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga812f43" class="outline-2">
+<h2 id="orga812f43"><span class="section-number-2">15</span> Exception</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+For now, I only care about how to handle exceptions. To do that:
+</p>
+
+<ul class="org-ul">
+<li>call-with-exception-handler f thunk: (f ex)</li>
+<li>with-handlers ([pred-expr handler-expr] &#x2026;) body &#x2026;+</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">with-handlers</span> ([<span style="color: #483d8b;">exn:fail:syntax?</span>
+                 (<span style="color: #a020f0;">&#955;</span> (e) (<span style="color: #483d8b;">displayln</span> <span style="color: #8b2252;">"got a syntax error"</span>))]
+                [<span style="color: #483d8b;">exn:fail?</span>
+                 (<span style="color: #a020f0;">&#955;</span> (e) (<span style="color: #483d8b;">displayln</span> <span style="color: #8b2252;">"fallback clause"</span>))])
+  (<span style="color: #483d8b;">raise-syntax-error</span> <span style="color: #2e8b57;">#f</span> <span style="color: #8b2252;">"a syntax error"</span>))
+</pre>
+</div>
+
+<p>
+Here's the hierarchy of built-in exceptions
+</p>
+<ul class="org-ul">
+<li>exn
+<ul class="org-ul">
+<li>exn:fail
+<ul class="org-ul">
+<li>exn:fail:contract</li>
+<li>exn:fail:syntax</li>
+<li>exn:fail:read</li>
+<li>exn:fail:filesystem</li>
+<li>exn:fail:network</li>
+<li>exn:fail:out-of-memory</li>
+<li>exn:fail:unsupported</li>
+<li>exn:fail:user</li>
+</ul></li>
+<li>exn:break</li>
+</ul></li>
+</ul>
+
+<p>
+To raise an exception, you can use:
+</p>
+<ul class="org-ul">
+<li>raise: too general, don't use for now</li>
+<li>error: raise exn:fail</li>
+<li>raise-user-error</li>
+<li>raise-syntax-error</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3be8de9" class="outline-2">
+<h2 id="org3be8de9"><span class="section-number-2">16</span> Concurrency</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+Comparison
+</p>
+<ul class="org-ul">
+<li>Thread: all the threads are running parallel, but they run on the
+<i>same processor</i>.</li>
+<li>Future: can utilize multiple processors</li>
+</ul>
+
+<p>
+Thread
+</p>
+<ul class="org-ul">
+<li>thread thunk: create a thread to run, and return immediately with
+thread descriptor. When thunk terminates, the thread
+terminates. Threads are managed in current custodian.</li>
+<li>thread?</li>
+<li>current-thread</li>
+<li>thread-suspend</li>
+<li>thread-resume</li>
+<li>kill-thread</li>
+<li>break-thread</li>
+<li>sleep [secs=0]: cause the current thread to sleep. 0 simply hint
+other threads to execute (useful??).</li>
+<li>thread-running?</li>
+<li>thread-dead?</li>
+<li>thread-wait thd: block until thd terminates</li>
+<li>thread-send thd v</li>
+<li>thread-receive: block until a v is ready</li>
+<li>thread-try-receive: non-block version</li>
+</ul>
+
+<p>
+Future (racket/future)
+</p>
+<ul class="org-ul">
+<li>future thunk: return the future. It will not run, until touch it.</li>
+<li>touch f: blockingly run the future f, and return the result. After
+touch returns, the results are still hold in the future. You can
+touch it again and retrieve the same result. Then, how to run in
+parallel? Create a thread to touch it??</li>
+<li>current-future</li>
+<li>future-enabled?</li>
+<li>future?</li>
+<li>processor-count</li>
+<li>for/async (for-clause &#x2026;) body &#x2026;+</li>
+</ul>
+
+<p>
+Places can also use multiple cores. Place enables greater parallelism
+than future, because it creates a new racket VM, and include separate
+garbage collection. Thus the setup and communication cost is higher.
+Places can only communicate through place channels.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org65466c2" class="outline-2">
+<h2 id="org65466c2"><span class="section-number-2">17</span> <span class="todo TODO">TODO</span> IO</h2>
+</div>
+<div id="outline-container-orga5f8e58" class="outline-2">
+<h2 id="orga5f8e58"><span class="section-number-2">18</span> <span class="todo TODO">TODO</span> OS</h2>
+<div class="outline-text-2" id="text-18">
+</div>
+<div id="outline-container-org55527dd" class="outline-3">
+<h3 id="org55527dd"><span class="section-number-3">18.1</span> <span class="todo TODO">TODO</span> File System</h3>
+</div>
+<div id="outline-container-org1457adb" class="outline-3">
+<h3 id="org1457adb"><span class="section-number-3">18.2</span> <span class="todo TODO">TODO</span> Networking</h3>
+</div>
+<div id="outline-container-org84f9745" class="outline-3">
+<h3 id="org84f9745"><span class="section-number-3">18.3</span> <span class="todo TODO">TODO</span> Processes</h3>
+</div>
+<div id="outline-container-org5c2d3dc" class="outline-3">
+<h3 id="org5c2d3dc"><span class="section-number-3">18.4</span> <span class="todo TODO">TODO</span> CMD parsing</h3>
+</div>
+<div id="outline-container-orga5c67bc" class="outline-3">
+<h3 id="orga5c67bc"><span class="section-number-3">18.5</span> <span class="todo TODO">TODO</span> ENV variable</h3>
+</div>
+</div>
+
+
+<div id="outline-container-orgb148a85" class="outline-2">
+<h2 id="orgb148a85"><span class="section-number-2">19</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-19">
 </div>
 <div id="outline-container-org2b5fc33" class="outline-3">
-<h3 id="org2b5fc33"><span class="section-number-3">6.1</span> racket cannot find browsers</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org2b5fc33"><span class="section-number-3">19.1</span> racket cannot find browsers</h3>
+<div class="outline-text-3" id="text-19-1">
 <p>
 Browsers are declared in sendurl.rkt, with
 </p>
@@ -662,8 +1173,8 @@ order for it to work, install <code>racket-doc</code> package.
 
 
 <div id="outline-container-orgc0c5557" class="outline-2">
-<h2 id="orgc0c5557"><span class="section-number-2">7</span> Logger</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgc0c5557"><span class="section-number-2">20</span> Logger</h2>
+<div class="outline-text-2" id="text-20">
 <div class="org-src-container">
 <pre class="src src-racket">(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">lg</span> (<span style="color: #483d8b;">make-logger</span>))
 (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">rc</span> (<span style="color: #483d8b;">make-log-receiver</span> lg <span style="color: #2e8b57;">'debug</span>))
@@ -695,7 +1206,7 @@ order for it to work, install <code>racket-doc</code> package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-10-27 Fri 15:04</p>
+<p class="date">Created: 2017-10-28 Sat 00:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
