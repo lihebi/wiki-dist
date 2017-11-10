@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-26 Thu 16:40 -->
+<!-- 2017-11-09 Thu 23:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tikz</title>
@@ -227,28 +227,6 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -257,128 +235,1366 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4e054b0">1. Code Structure</a></li>
-<li><a href="#orgd8c61e0">2. Simple</a></li>
-<li><a href="#org4e0b21b">3. Style</a></li>
-<li><a href="#orge03874c">4. Coordinate</a></li>
-<li><a href="#org4cfba6d">5. Node</a>
+<li><a href="#orgd976d4b">1. FAQ</a></li>
+<li><a href="#org4e054b0">2. Code Structure</a></li>
+<li><a href="#org1fc40bd">3. Parameters (options)</a>
 <ul>
-<li><a href="#org987fd10">5.1. Label</a></li>
+<li><a href="#org1071b74">3.1. Scope</a></li>
+<li><a href="#org5352610">3.2. Styles</a></li>
 </ul>
 </li>
-<li><a href="#org17920de">6. Matrix</a></li>
-<li><a href="#orgcfa787b">7. Packages</a>
+<li><a href="#orga3e60e3">4. Coordinates</a>
 <ul>
-<li><a href="#org210091d">7.1. shapes.multipart</a></li>
+<li><a href="#org155b7ae">4.1. Intersection</a></li>
+<li><a href="#org91210e6">4.2. Relative position</a></li>
+<li><a href="#org41cbb05">4.3. calc</a></li>
+</ul>
+</li>
+<li><a href="#orge272f10">5. Path</a></li>
+<li><a href="#orgd4993d9">6. Actions (on path)</a>
+<ul>
+<li><a href="#org35d2afa">6.1. Draw</a></li>
+<li><a href="#org572ae28">6.2. Clip</a></li>
+<li><a href="#org3bf9894">6.3. Bounding box</a></li>
+</ul>
+</li>
+<li><a href="#orgd8f20c0">7. Arrow</a>
+<ul>
+<li><a href="#org6e25f7b">7.1. <span class="todo TODO">TODO</span> Bending and flexing</a></li>
+<li><a href="#orgcf913fd">7.2. <span class="todo TODO">TODO</span> arrow tips</a></li>
+</ul>
+</li>
+<li><a href="#org4cfba6d">8. Node</a>
+<ul>
+<li><a href="#orgeed20ca">8.1. Options</a></li>
+<li><a href="#orgd48970b">8.2. Foreach</a></li>
+<li><a href="#org4e0b21b">8.3. Style</a></li>
+<li><a href="#org463fe78">8.4. <span class="todo TODO">TODO</span> Multi-part node</a></li>
+<li><a href="#org522021e">8.5. Node Text</a></li>
+<li><a href="#org208a37b">8.6. Node Positioning</a>
+<ul>
+<li><a href="#org531e62e">8.6.1. <span class="todo TODO">TODO</span> positioning</a></li>
+</ul>
+</li>
+<li><a href="#orgf68d08e">8.7. Fitting</a>
+<ul>
+<li><a href="#org54186d2">8.7.1. <span class="todo TODO">TODO</span> how to get several boxes to hold several things, but those boxes are of same size and aligned?</a></li>
+</ul>
+</li>
+<li><a href="#org268a9c5">8.8. Place on a line</a></li>
+<li><a href="#orgee7160e">8.9. Label &amp; Pin</a></li>
+<li><a href="#orgaa804ab">8.10. <span class="todo TODO">TODO</span> 17.12 Edge and from here</a></li>
+</ul>
+</li>
+<li><a href="#orge0c81bb">9. Pic</a></li>
+<li><a href="#org1dcfa41">10. Graph</a>
+<ul>
+<li><a href="#orgefd803b">10.1. Specs</a>
+<ul>
+<li><a href="#orgbe0244f">10.1.1. Group Spec</a></li>
+<li><a href="#orgc2c4c9d">10.1.2. Node Spec</a></li>
+</ul>
+</li>
+<li><a href="#org294c701">10.2. Edge</a></li>
+<li><a href="#org25da036">10.3. Coloring</a></li>
+<li><a href="#org7440744">10.4. Node placement</a></li>
+</ul>
+</li>
+<li><a href="#org28babe5">11. Tree</a>
+<ul>
+<li><a href="#orga8464f2">11.1. Styling</a></li>
+<li><a href="#org226b29e">11.2. Placement</a></li>
+<li><a href="#orgfbf13cb">11.3. forest</a></li>
+</ul>
+</li>
+<li><a href="#org17920de">12. Matrix</a>
+<ul>
+<li><a href="#org4a6e690">12.1. Styling</a></li>
+<li><a href="#orgd451b52">12.2. Anchoring</a></li>
+</ul>
+</li>
+<li><a href="#orgcfa787b">13. <span class="todo TODO">TODO</span> Packages</a>
+<ul>
+<li><a href="#org210091d">13.1. shapes.multipart</a></li>
 </ul>
 </li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-orgd976d4b" class="outline-2">
+<h2 id="orgd976d4b"><span class="section-number-2">1</span> FAQ</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Use <code>scale=0.5, transform shape</code> to scale
+</p>
 </div>
 </div>
 
 <div id="outline-container-org4e054b0" class="outline-2">
-<h2 id="org4e054b0"><span class="section-number-2">1</span> Code Structure</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org4e054b0"><span class="section-number-2">2</span> Code Structure</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-\tikz command; is the same as begin and end tikzpicture, and put
-command inside.
+First, use the package
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
+</pre>
+</div>
+
+<p>
+Then load libraries
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #696969;">\usetikzlibrary</span>{shapes.multipart}
+</pre>
+</div>
+
+<p>
+Optionally some settings (TODO). Except <code>\tikzset</code> command, all other
+command should be put inside tikzpicture.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #696969;">\tikzset</span>{&gt;=latex}
+<span style="color: #696969;">\tikzset</span>{grid/.style={gray,very thin,opacity=1}}
+</pre>
+</div>
+
+
+<p>
+To start a tikzpicture, you start the <code>{tikzpicture}</code> environment. It
+is suitable to be put inside a <code>{figure}</code> env. This also means, if it
+is not put inside a figure, it can actually be used as an inline
+image. The baseline is the center of current line, and you can use
+<code>/tikz/baseline</code> option to lower or raise it. This option is evaluted
+at the end of drawing, thus have access to the node names defined. It
+can also access the outmost <code>current bounding box</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">figure*</span>}[ht]
+  <span style="color: #a020f0;">\centering</span>
+  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}[options]
+  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+  <span style="color: #a020f0;">\caption</span>{}
+  <span style="color: #a020f0;">\label</span>{}
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">figure*</span>}
+</pre>
+</div>
+
+<p>
+<code>\tikz</code> command; is the same as begin and end <code>tikzpicture</code>, and put
+command inside. At the end of this environment, tikz makes a guess
+about the bounding box, which is updated whenever it encounters a
+coordinate. This may be imprecise.
 </p>
 
 <p>
-The most common errors for tikz are:
+Finally, the background is transparent. In order to set to something
+else, you need the <code>background</code> package.
 </p>
-<ul class="org-ul">
-<li>miss semicolon</li>
-<li>miss curly braces</li>
-<li>miss include tikz library</li>
-</ul>
 </div>
 </div>
-
-<div id="outline-container-orgd8c61e0" class="outline-2">
-<h2 id="orgd8c61e0"><span class="section-number-2">2</span> Simple</h2>
-</div>
-<div id="outline-container-org4e0b21b" class="outline-2">
-<h2 id="org4e0b21b"><span class="section-number-2">3</span> Style</h2>
+<div id="outline-container-org1fc40bd" class="outline-2">
+<h2 id="org1fc40bd"><span class="section-number-2">3</span> Parameters (options)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Action
+The options are the same as using <code>\tikzset{options}</code>. Sometimes there
+needs not a value, and it is interpreted like this:
 </p>
 <ul class="org-ul">
-<li>draw=green</li>
-<li>fill=green!70!blue</li>
-<li>opacity=1</li>
-<li>scale=0.8</li>
+<li>If key is a color, <code>color=key</code> is processed</li>
+<li>if key contains a <i>dash</i>, <code>arrows=key</code> is processed</li>
+<li>if key is a name of a shape, <code>shape=key</code> is processed.</li>
 </ul>
 
 <p>
-Shape
+They are specified in <code>key=value</code> pairs.
 </p>
+
 <ul class="org-ul">
-<li>rectangle</li>
-<li>rounded corners</li>
+<li><code>color</code>: a color can be the name (list TODO) or using xcolor
+extension, (color1!30!color2), where color2 is optional.</li>
+<li><code>line width</code>. Expect a dimension. The following are <i>standalone</i>
+options, specifying to line width
+<ul class="org-ul">
+<li><code>ultra thin</code></li>
+<li><code>very thin</code></li>
+<li><code>semithick</code></li>
+<li><code>thick</code></li>
+<li><code>very thick</code></li>
+<li><code>ultra thick</code></li>
+</ul></li>
+<li>Patterns
+<ul class="org-ul">
+<li><code>solid</code></li>
+<li><code>dotted</code>, <code>densely dotted</code>, <code>loosely dotted</code></li>
+<li><code>dashed</code>, <code>densely dashed</code>, <code>loosely dashed</code></li>
+<li><code>dash dot</code>, densely .., loosely ..</li>
+<li><code>dash dot dot</code>, densely .., loosely ..</li>
+<li><code>double=&lt;core color&gt;</code></li>
+<li><code>double distance=&lt;dimension&gt;</code></li>
+</ul></li>
 </ul>
 
 <p>
-String type:
+Path can be decorated, given <code>decorate</code> and
+<code>decoration=&lt;name&gt;</code>. Possible names:
 </p>
 <ul class="org-ul">
-<li>dashed</li>
-<li>dotted</li>
-<li>thick</li>
+<li><code>zigzag</code></li>
 </ul>
+</div>
+
+
+<div id="outline-container-org1071b74" class="outline-3">
+<h3 id="org1071b74"><span class="section-number-3">3.1</span> Scope</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Parameters can have scope. It is introduced by <code>{scope}</code> invironment,
+taking the parameters as options,
+i.e. <code>\begin{scope}[key=value]</code>. Scopes can be nested, and have
+lexcial scope. The top level <code>{tikzpicture}</code> env also acts like a
+scope.
+</p>
+
+<p>
+There's also a <code>every scope</code> option to install styless for every
+scope.
+</p>
+
+<p>
+The <code>scopes</code> package provide an easier way to specify scopes, using
+just <code>{[options] ...}</code>. This is pretty useful for inside-path
+scoping. One line scope command is also available as
+<code>\scoped[options]&lt;path command&gt;</code>.
+</p>
 </div>
 </div>
 
-<div id="outline-container-orge03874c" class="outline-2">
-<h2 id="orge03874c"><span class="section-number-2">4</span> Coordinate</h2>
+<div id="outline-container-org5352610" class="outline-3">
+<h3 id="org5352610"><span class="section-number-3">3.2</span> Styles</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Another way to group code together is to define a style. Like <code>help
+lines</code> style. Styles are defined as an option, e.g.
+</p>
+<pre class="example">
+my style/.style={draw=red, fill=red!20}
+</pre>
+<p>
+The <code>.style</code> means "these keys should not be applied immediately, but
+rather a definition". Later reference to it is same as written the key
+values literally.
+</p>
+
+<p>
+There seems not to be a way to inherit a style, but rather, you can
+<code>.append style</code>. The appended style is added to the end, and the last
+style will win. There's also a <code>.prefix style</code> but not useful in this
+case. The content of style can be parameterized, by <code>#n</code> where n
+starts from 1. It seems that it will be replaced literally.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-latex">outline/.style={draw=#1, fill=#1!50},
+outline/.default=black
+</pre>
 </div>
-<div id="outline-container-org4cfba6d" class="outline-2">
-<h2 id="org4cfba6d"><span class="section-number-2">5</span> Node</h2>
+
+<p>
+Note 2 things:
+</p>
+<ol class="org-ol">
+<li>the lexer is actually pretty good</li>
+<li>can use default value (s?)</li>
+</ol>
+
+<p>
+Use it as <code>outline=blue</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga3e60e3" class="outline-2">
+<h2 id="orga3e60e3"><span class="section-number-2">4</span> Coordinates</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The general syntax is
+</p>
+<pre class="example">
+([options] &lt;coordinate spec&gt;)
+</pre>
+
+<p>
+Options are optional, and coordinate spec can be any one of the
+system. The options includes
+</p>
+<ul class="org-ul">
+<li><code>xshift=3cm</code></li>
+<li><code>shift=(x,y)</code></li>
+</ul>
+
+<p>
+The Systems. <i>Inside</i> each value, the arithmetic operations can be
+used. All numbers can accept the following unit (pt, cm, TODO), and if no unit
+is provided, it uses the coordinate system setting.
+</p>
+
+<ul class="org-ul">
+<li><code>(x,y)</code>: xy-corredinate</li>
+<li><code>(30:1cm)</code>: 1cm in the 30 degress direction.</li>
+<li><code>(x,y,z)</code>: 3d</li>
+</ul>
+
+<p>
+Node is also often used for specify a coordinate. The implicit way is
+</p>
+<ul class="org-ul">
+<li><code>(a)</code></li>
+<li><code>(a.north)</code></li>
+<li><code>(a.10)</code>: 10 degree angle</li>
+</ul>
+</div>
+<div id="outline-container-org155b7ae" class="outline-3">
+<h3 id="org155b7ae"><span class="section-number-3">4.1</span> Intersection</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Yet another way is to use <i>perpendicular</i> coordinate system. This
+calculate the intersection.
+</p>
+<ul class="org-ul">
+<li><code>(2,1 |- 3,4)</code>: yield 2,4</li>
+<li><code>(3,4 -| 2,1)</code></li>
+</ul>
+
+<p>
+A more general way to find intersection of two pathes is to use
+<code>intersections</code> library (TODO).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org91210e6" class="outline-3">
+<h3 id="org91210e6"><span class="section-number-3">4.2</span> Relative position</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li><code>++(x,y)</code>: You can also use relative position.  means shift to the
+<i>last point</i> used.</li>
+<li><code>+(x,y)</code>: similar to ++ but does not change the <i>last point</i></li>
+</ul>
+
+<p>
+Note that the scoping will not localize the position, thus to make a
+local part "local", you can use the <code>/tikz/current point is local</code>
+option.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org41cbb05" class="outline-3">
+<h3 id="org41cbb05"><span class="section-number-3">4.3</span> calc</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+The package <code>calc</code> provide calculation for coordinates. The general
+syntax is:
+</p>
+<pre class="example">
+([options] $&lt;coordinate computation$)
+</pre>
+
+<p>
+The coordinate computation is roughly
+</p>
+<pre class="example">
+compute ::= A [+-] A [+-] A ...
+A ::= &lt;factor&gt;*&lt;coordinate&gt;&lt;modifiers&gt;
+</pre>
+
+<p>
+Note that the &lt;coordinate&gt; must be surounded by <code>()</code>.  Modifiers can
+be:
+</p>
+<ul class="org-ul">
+<li>partway modifier: <code>!number!angle:&lt;second coordinate&gt;</code>,
+e.g. <code>(1,2)!.75!(3,4)</code>. angle: is optional</li>
+<li>distance modifiers: <code>!dimension!angle:&lt;second coordinate&gt;</code>. This
+differs with partway that it is a concrete distance (like 1cm)
+instead of a percentage.</li>
+<li>projection modifiers: <code>(a)!(b)!(c)</code> means draw a line between a-c,
+and project b onto c, get the intersection point.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge272f10" class="outline-2">
+<h2 id="orge272f10"><span class="section-number-2">5</span> Path</h2>
 <div class="outline-text-2" id="text-5">
-<dl class="org-dl">
-<dt>align=left</dt><dd>have to have this to make the "\\" able to create
-newline</dd>
-<dt>text=color</dt><dd>apply on text</dd>
-<dt>draw=color</dt><dd>apply on border</dd>
-<dt>color</dt><dd>apply for everything</dd>
-</dl>
-
 <p>
-<code>\path node</code>  is the same as <code>\node</code>.
+Path is a list of path operations. The coordinates can be <code>cycle</code>, literally.
+Before each operation, options can be given. The option will apply to
+ALL following path operations.
 </p>
-
-<p>
-To add the arrow tips, first add <code>[-&gt;]</code> option for the tikz environment.
-</p>
-
-<p>
-The text of a node can be anything, e.g. <code>lstlisting</code> environemnt.
-</p>
-</div>
-
-
-<div id="outline-container-org987fd10" class="outline-3">
-<h3 id="org987fd10"><span class="section-number-3">5.1</span> Label</h3>
-<div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
-<li>every label/.style</li>
-<li>label position={north east}</li>
+<li><code>rounded corners</code></li>
+<li><code>sharp corners</code></li>
+<li><code>color=red</code></li>
+</ul>
+
+<p>
+There's a style set point as <code>/tikz/every path</code>.
+</p>
+
+<p>
+Here are a list of all operations:
+</p>
+<ul class="org-ul">
+<li>move-to: <code>(a)</code></li>
+<li>line-to:
+<ul class="org-ul">
+<li>straight line: <code>-- (a)</code></li>
+<li>horizontal and vertical line: <code>-|(a)</code> and <code>|-(a)</code></li>
+</ul></li>
+<li>curve-to: <code>..controls&lt;c&gt;and&lt;d&gt;..(a)</code>
+<ul class="org-ul">
+<li><code>and&lt;d&gt;</code> is optional.</li>
+</ul></li>
+<li>rectangle: <code>rectangle (a)</code></li>
+<li>circle and ellipse <code>circle[&lt;options&gt;]</code>
+<ul class="org-ul">
+<li>the options are mandary. Set a <code>radius</code>. If set <code>x radius</code> and <code>y
+    radius</code> differently, it will be a ellipse.</li>
+</ul></li>
+<li>arc operation: <code>arc[&lt;options&gt;]</code>: TODO</li>
+<li>grid operation: <code>grid[&lt;options&gt;](a)</code>: add a grid filling the
+rectangle. Options include step, xstep, ystep. The typically used
+style is <code>help lines</code>.</li>
+</ul>
+<pre class="example">
+\draw [help lines] (0,0) grid (3,2)
+</pre>
+<ul class="org-ul">
+<li>parabola TODO</li>
+<li>sin/cos TODO</li>
+<li>svg TODO</li>
+<li>plot</li>
+<li>to path operation: <code>to[&lt;options&gt;]&lt;nodes&gt;(a)</code>: nodes are the label
+nodes, there's a <code>every to</code> style option to style it. Options
+include <code>in</code> and <code>out</code> to set the degree of the in and out lines.</li>
+<li>foreach operation
+<ul class="org-ul">
+<li><code>foreach&lt;variables&gt;[&lt;options&gt;] in {values} {&lt;path commands&gt;}</code></li>
+<li>E.g. <code>foreach \x in {1,...,3} {--(\x,1) -- (\x,0)}</code> This is
+weired.</li>
+</ul></li>
+<li>let operation: seems to bind variable to coordinates.</li>
+<li>scoping operation: <code>{}</code></li>
+<li>node and edge operation (Separate)</li>
+<li>graph operation</li>
+<li>pic operation</li>
 </ul>
 </div>
 </div>
+
+<div id="outline-container-orgd4993d9" class="outline-2">
+<h2 id="orgd4993d9"><span class="section-number-2">6</span> Actions (on path)</h2>
+<div class="outline-text-2" id="text-6">
 </div>
+<div id="outline-container-org35d2afa" class="outline-3">
+<h3 id="org35d2afa"><span class="section-number-3">6.1</span> Draw</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li><code>\draw</code>: <code>\draw</code> is an abbreviation for <code>\path[draw]</code>. It will draw
+the entire path if this option appear <i>anywhere</i> inside the
+path. The <code>draw=color</code> will specify the color.</li>
+<li><code>\fill</code>: only for closed path. abbrev for <code>\path[fill]</code>. <code>\filldraw</code>
+is abbrev for <code>\path[fill,draw]</code>.
+<ul class="org-ul">
+<li>fill=&lt;color&gt;</li>
+<li>pattern=&lt;name&gt; TODO list of patterns
+<ul class="org-ul">
+<li>dots</li>
+<li>bricks</li>
+</ul></li>
+<li>pattern color=&lt;color&gt;</li>
+</ul></li>
+<li><code>\shade</code>: similarly there're <code>\shade</code> and <code>\shadedraw</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org572ae28" class="outline-3">
+<h3 id="org572ae28"><span class="section-number-3">6.2</span> Clip</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li><code>\clip</code>: does NOT have <code>\clipdraw</code> because it seems not making
+sense. If you want, use <code>\path[draw,clip]</code> explicitly</li>
+</ul>
+
+<p>
+clip can be nested, and the clipped area will be in effect for the
+subsequent path. Those path will not affect the picture size. The only
+way to end the clip is to close the scope. Thus scope is typically
+used to create local clip, and clip is typically the first path in a
+scope.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3bf9894" class="outline-3">
+<h3 id="org3bf9894"><span class="section-number-3">6.3</span> Bounding box</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+A path can be used as a bounding box. It can be used in two ways, make
+it smaller or bigger.
+</p>
+
+<p>
+Smaller
+</p>
+<pre class="example">
+Letf\begin{tikzpicture}
+\draw[use as bounding box] (2,0) rectangle (3,1);
+\draw (1,0) -- (4.75);
+\end{tikzpicture}Right
+</pre>
+
+<p>
+The second draw will be out of the box of this picture, and strike
+through the text.
+</p>
+
+<p>
+Bigger
+</p>
+<pre class="example">
+Left
+\begin{tikzpicture}
+\useasboundingbox (0,0) rectangle (3,1);
+\fill (0.75, .25) cicle (.5cm);
+\end{tikzpicture}
+Right
+</pre>
+
+<p>
+The bounding box is larger than the filled circle, so the text will be
+further apart.
+</p>
+
+<p>
+There's a node <code>current bounding box</code>, which has the shape of
+rectangle. For a single path, there's also a node called <code>current path
+bounding box</code>. The tikzpicture env also supports a <code>trim left</code> (which
+has a default of 0pt) and <code>trim right</code>. It will trim the bounding box,
+not the figure.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd8f20c0" class="outline-2">
+<h2 id="orgd8f20c0"><span class="section-number-2">7</span> Arrow</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Use the library <code>arrows.meta</code>.
+</p>
+
+<p>
+Precoditions:
+</p>
+<ul class="org-ul">
+<li>have specified <code>arrows</code> or its short form (it must have a <i>dash</i>)
+(just put -&gt; inside the path option)</li>
+<li>the tips must be valid</li>
+<li>[C] do not use clip</li>
+<li>[C] the path is not closed</li>
+</ul>
+
+<p>
+Possible arrow specification (<code>startspec-endspec</code>) (arrows={xxx} is
+the full spec):
+</p>
+<ul class="org-ul">
+<li>-&gt;</li>
+<li>&gt;-Stealth: the first &gt; actually change the tail of the arrow</li>
+<li>-{Stealth[red]}: the red is applied to arrow tip. The option is
+inside the brackets, and multiple options can be provided,
+e.g. length, width, scale, scale length, scale width, color, fill,
+line width, round, sharp</li>
+</ul>
+</div>
+
+<div id="outline-container-org6e25f7b" class="outline-3">
+<h3 id="org6e25f7b"><span class="section-number-3">7.1</span> <span class="todo TODO">TODO</span> Bending and flexing</h3>
+</div>
+<div id="outline-container-orgcf913fd" class="outline-3">
+<h3 id="orgcf913fd"><span class="section-number-3">7.2</span> <span class="todo TODO">TODO</span> arrow tips</h3>
+</div>
+</div>
+
+<div id="outline-container-org4cfba6d" class="outline-2">
+<h2 id="org4cfba6d"><span class="section-number-2">8</span> Node</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Nodes are intended for putting text. They cannot be easily nested.  A
+node is created by a path operation, similar to other path operations,
+but node is not part of the path itself. A node has a shape, drawing a
+node means draw the shape.
+</p>
+
+<p>
+The full syntax of the node:
+</p>
+<pre class="example">
+node &lt;foreach&gt; [&lt;options&gt;] (&lt;name&gt;) at (&lt;coordinate&gt;) {&lt;content&gt;}
+</pre>
+
+<p>
+Everything between node and <code>{}</code> is optional, and the order does not
+matter except foreach. The node will be put at the current point,
+unless <code>at</code> presents. A node can have a name for future reference. It
+is given by <code>name=&lt;name&gt;</code> option, or by <code>node(name){text}</code>.
+</p>
+</div>
+
+
+<div id="outline-container-orgeed20ca" class="outline-3">
+<h3 id="orgeed20ca"><span class="section-number-3">8.1</span> Options</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Options are only applied to the node itself, possible options are:
+</p>
+<ul class="org-ul">
+<li><code>draw</code></li>
+<li><code>fill</code></li>
+<li><code>shape=rectangle</code>, <code>circle</code>, <code>ellipse</code></li>
+<li><code>behind path</code></li>
+<li><code>in front of path</code></li>
+<li><code>inner sep</code>: set the following together
+<ul class="org-ul">
+<li><code>inner xsep</code></li>
+<li><code>inner ysep</code></li>
+</ul></li>
+<li><code>outer sep</code>: set the following together
+<ul class="org-ul">
+<li><code>outer xsep</code></li>
+<li><code>outer ysep</code></li>
+</ul></li>
+<li><code>minimum size</code>: set the following together
+<ul class="org-ul">
+<li><code>minimum height</code></li>
+<li><code>minimum width</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd48970b" class="outline-3">
+<h3 id="orgd48970b"><span class="section-number-3">8.2</span> Foreach</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Foreach works like this: the following creates three nodes.  You can
+also nest the loops.
+</p>
+<pre class="example">
+\tikz \draw (0,0) node foreach \x in {1,2,3} at (\x,0) {\x};
+\tikz \draw (0,0) node foreach \x in {1,2,3} foreach \y in {1,2,3} at (\x,0) {\x};
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4e0b21b" class="outline-3">
+<h3 id="org4e0b21b"><span class="section-number-3">8.3</span> Style</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+The style hooks are <code>every node</code> and <code>every circle node</code>, <code>every
+rectangle node</code>, etc.
+</p>
+
+<p>
+The scope will not influence the lexical scope of the node names. Thus
+we can use another option <code>name prefix</code> and <code>name suffix</code> so that
+every node names inside the scope will be renamed under the hood.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org463fe78" class="outline-3">
+<h3 id="org463fe78"><span class="section-number-3">8.4</span> <span class="todo TODO">TODO</span> Multi-part node</h3>
+</div>
+<div id="outline-container-org522021e" class="outline-3">
+<h3 id="org522021e"><span class="section-number-3">8.5</span> Node Text</h3>
+<div class="outline-text-3" id="text-8-5">
+<p>
+Options
+</p>
+<ul class="org-ul">
+<li><code>text=&lt;color&gt;</code></li>
+<li><code>node font=&lt;font command&gt;</code></li>
+<li><code>font=&lt;font command&gt;</code>: font command can be <code>\small</code>, etc.</li>
+<li><code>align</code>: set the alignment. This also enables multiple line text.
+<ul class="org-ul">
+<li><code>left</code></li>
+<li><code>flush left</code> (use hyphen to break words)</li>
+<li><code>right</code></li>
+<li><code>flush right</code></li>
+<li><code>center</code></li>
+<li><code>flush center</code></li>
+<li><code>justify</code> (use variable spacing)</li>
+<li><code>none</code></li>
+</ul></li>
+<li><code>text width</code></li>
+<li><code>text height</code></li>
+<li><code>text depth</code>: seems useless</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org208a37b" class="outline-3">
+<h3 id="org208a37b"><span class="section-number-3">8.6</span> Node Positioning</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+It uses anchor. The default is the center of the node. Possible anchors
+</p>
+<ul class="org-ul">
+<li><code>north</code> <code>east</code> <code>south</code> <code>west</code></li>
+<li><code>base</code>, <code>center</code></li>
+</ul>
+
+<p>
+This is good enough, but the author thinks it is not intuitive enough,
+thus he came up with some suger:
+</p>
+<ul class="org-ul">
+<li><code>above</code>, <code>below</code>, <code>left</code>, <code>right</code></li>
+<li><code>centered</code></li>
+</ul>
+</div>
+
+<div id="outline-container-org531e62e" class="outline-4">
+<h4 id="org531e62e"><span class="section-number-4">8.6.1</span> <span class="todo TODO">TODO</span> positioning</h4>
+<div class="outline-text-4" id="text-8-6-1">
+<p>
+For more advanced placement, there's a library called
+<code>positioning</code>. This package actually redefines the above, etc, thus
+loading this package will make the program behaves differently. The
+detail seems to be interesting.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf68d08e" class="outline-3">
+<h3 id="orgf68d08e"><span class="section-number-3">8.7</span> Fitting</h3>
+<div class="outline-text-3" id="text-8-7">
+<p>
+This fits the scenario that you want a box that is just big enough to
+hold something. You need to load the <code>fit</code> library.
+</p>
+
+<p>
+You create a node, give fit as an option with the value of several
+nodes.
+</p>
+<pre class="example">
+\node[fit=(a) (b) (c)]
+</pre>
+</div>
+
+<div id="outline-container-org54186d2" class="outline-4">
+<h4 id="org54186d2"><span class="section-number-4">8.7.1</span> <span class="todo TODO">TODO</span> how to get several boxes to hold several things, but those boxes are of same size and aligned?</h4>
+</div>
+</div>
+<div id="outline-container-org268a9c5" class="outline-3">
+<h3 id="org268a9c5"><span class="section-number-3">8.8</span> Place on a line</h3>
+<div class="outline-text-3" id="text-8-8">
+<p>
+These continue the node options
+</p>
+<ul class="org-ul">
+<li><code>pos=&lt;fraction&gt;</code>
+<ul class="org-ul">
+<li><code>midway</code>: same as pos=0.5</li>
+<li><code>near start</code> 0.25</li>
+<li><code>near end</code> 0.75</li>
+<li><code>very near start</code> 0.125</li>
+<li><code>very near end</code> 0.875</li>
+<li><code>at start</code> 0</li>
+<li><code>at end</code> 1</li>
+</ul></li>
+<li><code>auto=&lt;direction&gt;</code>: direction can be <code>left</code>, <code>right</code></li>
+<li><code>swap</code>: swap left and right. The short alias is <code>'</code></li>
+<li><code>sloped</code>: the text will be aligned with the line or on the tangent
+to the curve</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgee7160e" class="outline-3">
+<h3 id="orgee7160e"><span class="section-number-3">8.9</span> Label &amp; Pin</h3>
+<div class="outline-text-3" id="text-8-9">
+<p>
+This is used to add a node of text <i>next to another node</i>.
+</p>
+
+<ul class="org-ul">
+<li><code>label=[&lt;options&gt;]&lt;angle&gt;:&lt;text&gt;</code>
+<ul class="org-ul">
+<li>the angle can be the following, if it is not specified, the value
+of <code>label position</code> is used.
+<ul class="org-ul">
+<li>a number as degree</li>
+<li>anchor like <code>north</code></li>
+<li><code>above</code>, <code>below</code>, <code>left</code>, <code>right</code></li>
+</ul></li>
+<li><code>absolute</code> is a style. It will change the meaning of angle</li>
+<li><code>label distance</code></li>
+<li><code>every label</code>: a style placeholder</li>
+</ul></li>
+
+<li><code>pin=[&lt;options&gt;]&lt;angle&gt;:&lt;text&gt;</code>: it is very similar to label, the only
+difference is that it adds a line between the two nodes
+<ul class="org-ul">
+<li><code>pin distance</code></li>
+<li><code>every pin</code></li>
+<li><code>pin position</code></li>
+<li><code>every pin edge</code></li>
+<li><code>pin edge</code></li>
+</ul></li>
+</ul>
+
+<p>
+The quotes syntax is very useful. It is in the library <code>quotes</code>. This
+must be placed <i>inside the option of a node</i>. The format is
+</p>
+<pre class="example">
+"&lt;text&gt;"&lt;options&gt;
+</pre>
+
+<p>
+options don't need to be surrounded by curly braces, unless there's a
+comma in it (because the comma should mean the next option for the
+<i>node</i>). If the text has comma or colon, it MUST be surrounded by
+curly braces, like <code>"{hello, world}"</code>. This should be limitation of
+parser.
+</p>
+
+<ul class="org-ul">
+<li><code>quotes mean label</code></li>
+<li><code>quotes mean pin</code></li>
+<li><code>every label quotes</code></li>
+<li><code>every pin quotes</code></li>
+<li><code>node quotes mean</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaa804ab" class="outline-3">
+<h3 id="orgaa804ab"><span class="section-number-3">8.10</span> <span class="todo TODO">TODO</span> 17.12 Edge and from here</h3>
+</div>
+</div>
+<div id="outline-container-orge0c81bb" class="outline-2">
+<h2 id="orge0c81bb"><span class="section-number-2">9</span> Pic</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+You can define some shape, and then reuse it at any place a node can
+appear. But the pic itself cannot be referenced. But the node inside
+pic can be referenced.
+</p>
+
+<p>
+You define a pic by
+</p>
+<pre class="example">
+\tikzset {
+mypic/.pic = {
+\draw (-3mm, 0) to [bend left] (0,0) to [bend left] (3mm,0);
+}
+}
+</pre>
+
+<p>
+Reuse it by
+</p>
+<pre class="example">
+\tikz \draw (1,1) -- (2,2) pic {mypic} -- (3,2) pic {mypic};
+</pre>
+
+<p>
+The pic syntax is
+</p>
+<pre class="example">
+pic [&lt;options&gt;] {&lt;pic type&gt;}
+</pre>
+
+<p>
+You can also draw some inline pics. Note that you still need the curly
+brace, but leave it empty.
+</p>
+<pre class="example">
+\tikz \pic [pics/code={\draw ...;}] {}
+</pre>
+
+<p>
+Pic can have actions, too, like
+</p>
+<ul class="org-ul">
+<li><code>color=red</code></li>
+<li><code>draw</code></li>
+<li><code>fill</code></li>
+</ul>
+
+<p>
+Finally, to style pic, you can use <code>every pic</code>. You can use quote
+syntax inside the option of pic, too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1dcfa41" class="outline-2">
+<h2 id="org1dcfa41"><span class="section-number-2">10</span> Graph</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+The graph system is syntax suger for nodes, for the sake of creating a
+lot of similar nodes. The <code>\graph</code> command is sure a DSL, <i>extending</i>
+the DOT syntax. To use it, load the <code>graphs</code> library.
+</p>
+
+<p>
+<code>graph</code> is actually a path command, and <code>\graph</code> is abbrev for <code>\path
+graph</code>. Thus it can be used anywhere on path that expect <code>--</code>. The
+styling hook is <code>every graph</code>. The syntax:
+</p>
+
+<pre class="example">
+graph [&lt;options&gt;] &lt;group spec&gt;
+</pre>
+
+<p>
+Options can be:
+</p>
+<ul class="org-ul">
+<li><code>nodes=&lt;options&gt;</code>: these options are applied to nodes, multiple
+options require enclosing curly braces.</li>
+<li><code>edges=&lt;options&gt;</code>: edge options</li>
+<li><code>edge</code>: alias for <code>edges</code></li>
+<li><code>edge node=&lt;node spec&gt;</code>: if this presents, it will cause a node to
+be added implicitly to each edge, placed next to it. A node spec is
+nothing special, just a <code>node [options] {text}</code>.</li>
+<li><code>edge label=&lt;text&gt;</code>: abbrev for <code>edge node=node[auto]{text}</code></li>
+<li><code>edge label'=&lt;text&gt;</code>: abbrev for <code>edge node=node[auto,swap]{text}</code></li>
+</ul>
+</div>
+
+<div id="outline-container-orgefd803b" class="outline-3">
+<h3 id="orgefd803b"><span class="section-number-3">10.1</span> Specs</h3>
+<div class="outline-text-3" id="text-10-1">
+</div>
+<div id="outline-container-orgbe0244f" class="outline-4">
+<h4 id="orgbe0244f"><span class="section-number-4">10.1.1</span> Group Spec</h4>
+<div class="outline-text-4" id="text-10-1-1">
+<pre class="example">
+&lt;group spec&gt; ::= {[options] &lt;chain spec&gt; [,;] &lt;chain spec&gt; ...}
+&lt;chain spec&gt; ::= &lt;node spec&gt; &lt;edge spec&gt; &lt;node spec&gt; ...
+&lt;edge spec&gt; ::= [-&gt; | -- | &lt;- | &lt;-&gt; | -!-] [&lt;options&gt;]
+</pre>
+
+<p>
+Options will be local to the group.
+</p>
+
+<p>
+The chain spec are seperated by comma or semicolon, they are
+equivalent.  A chain is a list of nodes seperated by edge, where 5
+types of edge is availabe. The last one means no edge is desired, this
+is useful in <code>simple</code> graph. As opposite to <code>multi</code> graph, in <code>simple</code>
+graph there's only one edge (latter win) between two nodes. These are
+graph options.
+</p>
+
+<p>
+Foreach can be used inside a group spec at any place of a chain
+spec. Each of the iteration will create a chain spec, separated by
+comma. Macros can also be used here.
+</p>
+
+<pre class="example">
+\foreach \i in {1,2,3} {
+  a\i -&gt; {x_\i, y_\i}
+}
+</pre>
+
+<p>
+The edge spec options can be:
+</p>
+<ul class="org-ul">
+<li><code>left anchor=&lt;anchor&gt;</code>: use <code>east</code>, <code>west</code>, etc. It is the anchor of
+the source.</li>
+<li><code>right anchor=&lt;anchor&gt;</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc2c4c9d" class="outline-4">
+<h4 id="orgc2c4c9d"><span class="section-number-4">10.1.2</span> Node Spec</h4>
+<div class="outline-text-4" id="text-10-1-2">
+<pre class="example">
+&lt;node spec&gt; ::= &lt;direct&gt; | &lt;reference&gt; | &lt;group spec&gt;
+&lt;direct&gt; ::= &lt;node name&gt; / &lt;text&gt; [&lt;options&gt;]
+&lt;reference&gt; ::= (&lt;node name&gt; | &lt;node set name&gt;)
+</pre>
+<p>
+If the node starts with open paren, it is treated as a reference to a
+existing node or set. If it starts with open brace, it is a
+group. Otherwise it is a direct.
+</p>
+
+<p>
+For a direct node, if the node name contains special symbols, it must
+be quoted by double quotes. The slash and text is optional, in which
+case the <i>simple</i> name is used (very likely to be the node
+name). Otherwise, the text is shown in the node.
+</p>
+
+<p>
+Typically if a node name is already created, it will use that. The
+behavior is controled by some group options.
+</p>
+<ul class="org-ul">
+<li><code>use existing node=&lt;true or false&gt;</code></li>
+<li><code>fresh nodes=&lt;true or false&gt;</code>: all nodes are created, the repeated
+nodes are named by appending a <code>'</code>. This new name can be used as
+reference to this node.</li>
+<li><code>number nodes=&lt;start number=1&gt;</code>: same as fresh nodes, but repeated
+names are renamed by append a space and an increasing number.</li>
+<li><code>name=&lt;text&gt;</code>: it is a prefix added to all nodes, separated by
+space. Prefixes can be nested.</li>
+</ul>
+
+<p>
+The nodes also accept following options:
+</p>
+<ul class="org-ul">
+<li><code>as=&lt;text&gt;</code>: use text as shown in the node</li>
+<li><code>empty nodes</code>: node text will be empty</li>
+<li><code>math nodes</code>: the node name used as text will be treated as math
+(but without requiring the dollar sign) when shown.</li>
+</ul>
+
+<p>
+For a reference node, it is simple. But you can create a node set. The
+set must be created manually, before you can add nodes into the
+set. Create the set by the following option:
+</p>
+<ul class="org-ul">
+<li><code>/tikz/new set=&lt;set name&gt;</code>: Create a set. unlike most of graph
+options (which start from <code>/tikz/graphs</code>), this is under the root
+tikz name. That means it is intended to be used outside the group
+env.</li>
+<li><code>/tikz/set=&lt;set name&gt;</code>: add the current node to the already defined
+set</li>
+</ul>
+
+<p>
+Finally, the <code>&lt;group spec&gt;</code> in the syntax means that a group spec can
+appear at whatever places a node spec can be.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org294c701" class="outline-3">
+<h3 id="org294c701"><span class="section-number-3">10.2</span> Edge</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+The edge option can accept quotes.
+</p>
+
+<ul class="org-ul">
+<li><code>edge quotes=&lt;options&gt;</code>: abbrev for <code>every edge quotes/.style</code></li>
+<li><code>edge quotes center</code>: abbrev for setting <code>edge quotes={anchor=center}</code></li>
+<li><code>edge quotes mid</code></li>
+</ul>
+
+<p>
+A good trick is to specify a graph structure first, and then specify
+the edges to be colored. The nodes will not be recreated.
+</p>
+
+<p>
+When connecting with groups, there're multiple edges. You can specify
+a single edge by add options to the node.
+</p>
+<ul class="org-ul">
+<li><code>target edge style=&lt;options&gt;</code>: abbrev <code>&gt; options</code></li>
+<li><code>target edge clear</code>: abbrev <code>clear &gt;</code></li>
+<li><code>target edge node=&lt;node spec&gt;</code></li>
+<li><code>source edge style=&lt;options&gt;</code>: abbrev <code>&lt; options</code></li>
+<li><code>source edge clear</code>: abbrev <code>clear &lt;</code></li>
+<li><code>source edge node=&lt;node spec&gt;</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org25da036" class="outline-3">
+<h3 id="org25da036"><span class="section-number-3">10.3</span> Coloring</h3>
+<div class="outline-text-3" id="text-10-3">
+<p>
+The color is logical color. Some predefined color including <code>source</code>
+and <code>target</code>. These are used by connecting groups. You can use <code>not
+source</code> and <code>not target</code> on some nodes to remove them from the list,
+thus they will not be connected. Another color class is <code>all</code> which
+reference to all nodes. You can also create classes, but I don't
+currently need this feature.
+</p>
+
+<p>
+When joining groups, you can use <code>complete bipartite</code> for the
+connecting edge option. This is called graph operator, the effect is
+to connect the each <code>source</code> and each <code>target</code>. Note that the <code>source</code>
+and <code>target</code> are the color classes of the nodes, used by <code>complete
+bipartite</code> by default. You can change it.
+</p>
+
+<p>
+E.g. create color class
+</p>
+<pre class="example">
+color class=red, color class=green
+</pre>
+
+<p>
+Set the nodes to color class, and connect them.
+</p>
+<pre class="example">
+{[red] a b c} -- [complete bipartite={red}{green}]
+{[green] d e f}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7440744" class="outline-3">
+<h3 id="org7440744"><span class="section-number-3">10.4</span> Node placement</h3>
+<div class="outline-text-3" id="text-10-4">
+<p>
+The idea of graph is to make the positioning automatic. Thus we have
+some algorithm to use.
+</p>
+
+<ul class="org-ul">
+<li>grow up, down, left, right</li>
+<li>branch up, down, left, right</li>
+<li>grid placement</li>
+</ul>
+
+<p>
+We also have some positioning that takes the node size into
+consideration.
+</p>
+<ul class="org-ul">
+<li>grow right/left/up/down sep</li>
+<li>branch up/down/left/right sep</li>
+</ul>
+
+<p>
+We also have circular placement
+</p>
+<ul class="org-ul">
+<li>clockwise</li>
+<li>counterclockwise</li>
+</ul>
+
+<p>
+For the levels, we can give them styles at once.
+</p>
+<pre class="example">
+level 1/.style={...}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org28babe5" class="outline-2">
+<h2 id="org28babe5"><span class="section-number-2">11</span> Tree</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+The node syntax can also be used to draw a tree. A node can be
+followed by any number of children, each introduced by keyword
+<code>child</code>. The children are also nodes, thus they can have children
+using the same syntax. Trees have a set of options (TODO).
+</p>
+
+<p>
+child must follow a full node, or another child. The syntax of child:
+</p>
+<pre class="example">
+child ::= child [&lt;options&gt;] foreach &lt;variables&gt; in {&lt;values&gt;} {&lt;child path&gt;}
+</pre>
+
+<p>
+The foreach staff makes this seems complex, while it is not at
+all. Apart from child keyword, everything is optional, including the
+<code>{&lt;child path&gt;}</code>, in which case an empty node is added. Foreach has a
+special keyword, and the repeatition will start from the preceeding
+child keyword, i.e. the whole thing shown above.
+</p>
+
+<p>
+The child path does not have a formal syntax, so allow me make
+one up
+</p>
+
+<pre class="example">
+&lt;child path&gt; ::= &lt;child&gt; &lt;child path&gt; | &lt;node spec&gt;
+</pre>
+
+<p>
+Multiple children can be specified, in which case they are
+siblings. Each child should only have one node. Tikz will give a name
+for each children as &lt;parent&gt;-N where N starts from 1. This naming
+system is nested. The child can also be manually named, using (name),
+and this node will not have the automatic naming. However, the rest of
+the nodes will still have the same counting names, as if this node
+also counts.
+</p>
+</div>
+
+<div id="outline-container-orga8464f2" class="outline-3">
+<h3 id="orga8464f2"><span class="section-number-3">11.1</span> Styling</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+Rules
+</p>
+<ul class="org-ul">
+<li>option before root: apply to the whole tree</li>
+<li>option after root: apply to root node only</li>
+<li>option before child: apply to all children from here</li>
+<li>option after child: apply to this child and its children</li>
+<li>option after node: apply to this node only</li>
+</ul>
+
+<p>
+Some hooks
+</p>
+<ul class="org-ul">
+<li>every child</li>
+<li>every child node</li>
+<li>level &lt;number&gt;</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org226b29e" class="outline-3">
+<h3 id="org226b29e"><span class="section-number-3">11.2</span> Placement</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+The following options can be specified multiple times for each portion
+of the tree.
+</p>
+<ul class="org-ul">
+<li>level distance</li>
+<li>sibling distance</li>
+<li>grow=direction: direction can be a degree, or down,up,left,right;
+north,east,etc.</li>
+</ul>
+
+<p>
+A special option for use after the <code>child</code> is <code>missing</code>. It will leave
+the space, but don't draw the node. A special styling of edge is to
+put <code>edge from parent[&lt;options&gt;]</code> right after a node, styling the
+coming edge.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgfbf13cb" class="outline-3">
+<h3 id="orgfbf13cb"><span class="section-number-3">11.3</span> forest</h3>
+</div>
+</div>
+
 
 <div id="outline-container-org17920de" class="outline-2">
-<h2 id="org17920de"><span class="section-number-2">6</span> Matrix</h2>
+<h2 id="org17920de"><span class="section-number-2">12</span> Matrix</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+Matrix is actually a node with <code>matrix</code> as option. The <code>\matrix</code> is
+abbrev for <code>\path node [matrix]</code>.
+</p>
+
+<p>
+A matrix consists of rows of cells. Inside each row, columns are
+seperated by <code>&amp;</code>. Rows end with <code>\\</code>, even for the last one. Each cell
+picture is a light weight drawing canvas. It need not to be a node. It
+can be multiple nodes, a drawing path, etc.
+</p>
+
+<p>
+The alignment defaults to the origin of the cell picture, i.e. for
+both row and column, origin of the cell pictures are aligned. The
+origin <i>seems</i> to be similar to the center of the node.  Eash node can
+have <code>left</code> and <code>right</code> option, to change the alignment.
+</p>
+
+<p>
+The separation of the rows and columns are controlled by <code>column
+sep=&lt;spacing list&gt;</code> and <code>row sep=&lt;spacing list&gt;</code>, where spacing list
+is <code>1cm</code> or <code>1cm, between origin</code> or <code>1cm, between borders</code>. The <code>&amp;</code>
+and <code>\\</code> can also take options, but only spacing list. This will
+specify the spacing for the next separation.
+</p>
 </div>
+
+<div id="outline-container-org4a6e690" class="outline-3">
+<h3 id="org4a6e690"><span class="section-number-3">12.1</span> Styling</h3>
+<div class="outline-text-3" id="text-12-1">
+<ul class="org-ul">
+<li><code>every cell={&lt;row&gt;}{&lt;column&gt;}</code>: this is a style hook. The row and
+column are optional.
+<ul class="org-ul">
+<li><code>cells=&lt;options&gt;</code>: abbrev for <code>every cell/.append style=&lt;options&gt;</code></li>
+<li><code>nodes=&lt;options&gt;</code>: abbrev for <code>every node/.append style=&lt;options&gt;</code></li>
+</ul></li>
+<li><code>column &lt;number&gt;</code>: style for the column
+<ul class="org-ul">
+<li><code>every odd column</code></li>
+<li><code>every even column</code></li>
+</ul></li>
+<li><code>row &lt;number&gt;</code>: style for the row
+<ul class="org-ul">
+<li><code>every odd row</code></li>
+<li><code>every even row</code></li>
+</ul></li>
+<li><code>row &lt;number&gt;  column &lt;number&gt;</code>: more specific</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd451b52" class="outline-3">
+<h3 id="orgd451b52"><span class="section-number-3">12.2</span> Anchoring</h3>
+<div class="outline-text-3" id="text-12-2">
+<ul class="org-ul">
+<li><code>matrix anchor=&lt;anchor&gt;</code>: this anchor will only apply to the matrix</li>
+<li><code>anchor=&lt;anchor&gt;</code>: apply to both matrix and cells</li>
+</ul>
+</div>
+</div>
+</div>
+
+
 <div id="outline-container-orgcfa787b" class="outline-2">
-<h2 id="orgcfa787b"><span class="section-number-2">7</span> Packages</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgcfa787b"><span class="section-number-2">13</span> <span class="todo TODO">TODO</span> Packages</h2>
+<div class="outline-text-2" id="text-13">
 </div>
 <div id="outline-container-org210091d" class="outline-3">
-<h3 id="org210091d"><span class="section-number-3">7.1</span> shapes.multipart</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org210091d"><span class="section-number-3">13.1</span> shapes.multipart</h3>
+<div class="outline-text-3" id="text-13-1">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #696969;">\usetikzlibrary</span>{shapes.multipart}
+</pre>
+</div>
+
 <p>
 It adds to the node following options:
 </p>
@@ -391,7 +1607,7 @@ mynode/.style={split, rectangle split parts=2}
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-10-26 Thu 16:40</p>
+<p class="date">Created: 2017-11-09 Thu 23:15</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

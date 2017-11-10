@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-26 Thu 16:40 -->
+<!-- 2017-11-08 Wed 09:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A tmp</title>
@@ -257,45 +257,87 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge483dd8">1. Similarity metrics</a>
+<li><a href="#orgec46799">1. Marshalling vs Serialization</a></li>
+<li><a href="#orgd0ad69a">2. Map Reduce</a></li>
+<li><a href="#orge483dd8">3. Similarity metrics</a>
 <ul>
-<li><a href="#orgd5ca6d9">1.1. Token based</a>
+<li><a href="#orgd5ca6d9">3.1. Token based</a>
 <ul>
-<li><a href="#org768bee3">1.1.1. Jaccard coefficient/index</a></li>
-<li><a href="#org897eb07">1.1.2. Cosine similarity</a>
+<li><a href="#org768bee3">3.1.1. Jaccard coefficient/index</a></li>
+<li><a href="#org897eb07">3.1.2. Cosine similarity</a>
 <ul>
-<li><a href="#orgff6b610">1.1.2.1. TF-IDF</a></li>
+<li><a href="#orgff6b610">3.1.2.1. TF-IDF</a></li>
 </ul>
 </li>
-<li><a href="#org58c4f4c">1.1.3. Levenshtein distance</a></li>
+<li><a href="#org58c4f4c">3.1.3. Levenshtein distance</a></li>
 </ul>
 </li>
-<li><a href="#org125bc05">1.2. Syntax based</a>
+<li><a href="#org125bc05">3.2. Syntax based</a>
 <ul>
-<li><a href="#orgf4f9d7c">1.2.1. KL divergence</a></li>
-<li><a href="#org8084243">1.2.2. Tree kernels</a></li>
-<li><a href="#org7811407">1.2.3. Tree edit distance</a></li>
-<li><a href="#org85bf398">1.2.4. Graph kernels</a></li>
+<li><a href="#orgf4f9d7c">3.2.1. KL divergence</a></li>
+<li><a href="#org8084243">3.2.2. Tree kernels</a></li>
+<li><a href="#org7811407">3.2.3. Tree edit distance</a></li>
+<li><a href="#org85bf398">3.2.4. Graph kernels</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7df3735">2. camera</a></li>
+<li><a href="#org7df3735">4. camera</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge483dd8" class="outline-2">
-<h2 id="orge483dd8"><span class="section-number-2">1</span> Similarity metrics</h2>
+<div id="outline-container-orgec46799" class="outline-2">
+<h2 id="orgec46799"><span class="section-number-2">1</span> Marshalling vs Serialization</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+Both of them convert an object to a data format suitable to read
+back. Serialization is a <i>subset</i> of marshalling, i.e. any
+serializable object is also marshallable. Marshalling also records the
+code base, e.g. when reading back, the class definition of the object
+might need to be loaded.
+</p>
+
+<p>
+Marshalling seems to be used often in remote servers.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd0ad69a" class="outline-2">
+<h2 id="orgd0ad69a"><span class="section-number-2">2</span> Map Reduce</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+map and reduce are from functional programming. Map is just map,
+reduce has another familiar name called <i>fold</i>.
+</p>
+
+<p>
+The Map-reduce framework does not just borrow the name. Its
+contribution is scalability and fault-tolerance.
+</p>
+
+<p>
+The steps:
+</p>
+<ol class="org-ol">
+<li>map: produce data by filtering, and emit the data (marshalling)</li>
+<li>reduce: fold</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orge483dd8" class="outline-2">
+<h2 id="orge483dd8"><span class="section-number-2">3</span> Similarity metrics</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-orgd5ca6d9" class="outline-3">
-<h3 id="orgd5ca6d9"><span class="section-number-3">1.1</span> Token based</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgd5ca6d9"><span class="section-number-3">3.1</span> Token based</h3>
+<div class="outline-text-3" id="text-3-1">
 </div>
 <div id="outline-container-org768bee3" class="outline-4">
-<h4 id="org768bee3"><span class="section-number-4">1.1.1</span> Jaccard coefficient/index</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<h4 id="org768bee3"><span class="section-number-4">3.1.1</span> Jaccard coefficient/index</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <p>
 <i>Jaccard index</i>, also known as the <i>Jaccard similarity coefficient</i>, compares two sets, A and B.
 </p>
@@ -307,8 +349,8 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-org897eb07" class="outline-4">
-<h4 id="org897eb07"><span class="section-number-4">1.1.2</span> Cosine similarity</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<h4 id="org897eb07"><span class="section-number-4">3.1.2</span> Cosine similarity</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>most widely used</li>
 <li>typically the terms are weighted with TF-IDF</li>
@@ -316,8 +358,8 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-orgff6b610" class="outline-5">
-<h5 id="orgff6b610"><span class="section-number-5">1.1.2.1</span> TF-IDF</h5>
-<div class="outline-text-5" id="text-1-1-2-1">
+<h5 id="orgff6b610"><span class="section-number-5">3.1.2.1</span> TF-IDF</h5>
+<div class="outline-text-5" id="text-3-1-2-1">
 <ul class="org-ul">
 <li>In information retrieval.</li>
 <li>short for <i>term frequency–inverse document frequency</i></li>
@@ -413,17 +455,17 @@ Both the tfidf is 0, meaning "this" is not very informative.
 </div>
 
 <div id="outline-container-org58c4f4c" class="outline-4">
-<h4 id="org58c4f4c"><span class="section-number-4">1.1.3</span> Levenshtein distance</h4>
+<h4 id="org58c4f4c"><span class="section-number-4">3.1.3</span> Levenshtein distance</h4>
 </div>
 </div>
 
 <div id="outline-container-org125bc05" class="outline-3">
-<h3 id="org125bc05"><span class="section-number-3">1.2</span> Syntax based</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org125bc05"><span class="section-number-3">3.2</span> Syntax based</h3>
+<div class="outline-text-3" id="text-3-2">
 </div>
 <div id="outline-container-orgf4f9d7c" class="outline-4">
-<h4 id="orgf4f9d7c"><span class="section-number-4">1.2.1</span> KL divergence</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<h4 id="orgf4f9d7c"><span class="section-number-4">3.2.1</span> KL divergence</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <p>
 <i>Kullback–Leibler divergence</i>
 </p>
@@ -435,24 +477,24 @@ KL divergence between language models (it is actually somewhere between token an
 </div>
 </div>
 <div id="outline-container-org8084243" class="outline-4">
-<h4 id="org8084243"><span class="section-number-4">1.2.2</span> Tree kernels</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<h4 id="org8084243"><span class="section-number-4">3.2.2</span> Tree kernels</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <p>
 <a href="https://en.wikipedia.org/wiki/Tree_kernel">https://en.wikipedia.org/wiki/Tree_kernel</a>
 </p>
 </div>
 </div>
 <div id="outline-container-org7811407" class="outline-4">
-<h4 id="org7811407"><span class="section-number-4">1.2.3</span> Tree edit distance</h4>
-<div class="outline-text-4" id="text-1-2-3">
+<h4 id="org7811407"><span class="section-number-4">3.2.3</span> Tree edit distance</h4>
+<div class="outline-text-4" id="text-3-2-3">
 <p>
 extensions of Levenshtein into the tree setting
 </p>
 </div>
 </div>
 <div id="outline-container-org85bf398" class="outline-4">
-<h4 id="org85bf398"><span class="section-number-4">1.2.4</span> Graph kernels</h4>
-<div class="outline-text-4" id="text-1-2-4">
+<h4 id="org85bf398"><span class="section-number-4">3.2.4</span> Graph kernels</h4>
+<div class="outline-text-4" id="text-3-2-4">
 <p>
 defined on dependency graphs (counterpart in PA is CFG?)
 </p>
@@ -463,8 +505,8 @@ defined on dependency graphs (counterpart in PA is CFG?)
 
 
 <div id="outline-container-org7df3735" class="outline-2">
-<h2 id="org7df3735"><span class="section-number-2">2</span> camera</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org7df3735"><span class="section-number-2">4</span> camera</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Card camera</li>
 <li id="Single lens reflex (SLR) camera">start from 1990</li>
@@ -477,7 +519,7 @@ defined on dependency graphs (counterpart in PA is CFG?)
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-10-26 Thu 16:40</p>
+<p class="date">Created: 2017-11-08 Wed 09:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
