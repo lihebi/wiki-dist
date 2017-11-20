@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-26 Thu 16:40 -->
+<!-- 2017-11-20 Mon 10:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Design Pattern</title>
@@ -235,30 +235,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org15e7bef">1. Creation</a>
+<li><a href="#org957025f">1. Creation</a>
 <ul>
-<li><a href="#org8ce238c">1.1. Abstract Factory</a></li>
-<li><a href="#orgc067b7f">1.2. Builder</a>
+<li><a href="#org6790b59">1.1. Abstract Factory</a></li>
+<li><a href="#org324e82c">1.2. Builder</a>
 <ul>
-<li><a href="#org021c608">1.2.1. Class Diagram</a></li>
-<li><a href="#org4349c3e">1.2.2. Sequence diagram</a></li>
-<li><a href="#org0b5993d">1.2.3. Implementation</a></li>
+<li><a href="#orge2a5753">1.2.1. Class Diagram</a></li>
+<li><a href="#org208c9f6">1.2.2. Sequence diagram</a></li>
+<li><a href="#org853abe2">1.2.3. Implementation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7d1e465">2. Structure</a>
+<li><a href="#org588c3a2">2. Structure</a>
 <ul>
-<li><a href="#org2b72506">2.1. Singleton</a></li>
+<li><a href="#orgffce393">2.1. Singleton</a></li>
 </ul>
 </li>
-<li><a href="#orgf7a62ff">3. Behavior Pattern</a>
+<li><a href="#orgb7c6db5">3. Behavior Pattern</a>
 <ul>
-<li><a href="#org6db9b6e">3.1. Visitor pattern</a>
+<li><a href="#org48e6f36">3.1. Visitor pattern</a>
 <ul>
-<li><a href="#orgab367be">3.1.1. The problem and the naive solution</a></li>
-<li><a href="#org1f775a4">3.1.2. The pattern</a></li>
-<li><a href="#orgc495a49">3.1.3. Example</a></li>
+<li><a href="#orga8e6422">3.1.1. The problem and the naive solution</a></li>
+<li><a href="#org411d4a6">3.1.2. The pattern</a></li>
+<li><a href="#orgbac1467">3.1.3. Example</a></li>
 </ul>
 </li>
 </ul>
@@ -268,12 +268,12 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org15e7bef" class="outline-2">
-<h2 id="org15e7bef"><span class="section-number-2">1</span> Creation</h2>
+<div id="outline-container-org957025f" class="outline-2">
+<h2 id="org957025f"><span class="section-number-2">1</span> Creation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org8ce238c" class="outline-3">
-<h3 id="org8ce238c"><span class="section-number-3">1.1</span> Abstract Factory</h3>
+<div id="outline-container-org6790b59" class="outline-3">
+<h3 id="org6790b59"><span class="section-number-3">1.1</span> Abstract Factory</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Implemented by Factory Method.</li>
@@ -282,10 +282,42 @@ for the JavaScript code in this tag.
 </ul>
 
 
+<div class="org-src-container">
+<pre class="src src-plantuml">abstract class AbstractFactory {
+  + CreateA()
+  + CreateB()
+}
 
-<div class="figure">
-<p><img src="wikitmp_abstract_factory.png" alt="wikitmp_abstract_factory.png" />
-</p>
+class ConcreteFactory1 {
+  + CreateA();
+  + CreateB();
+}
+
+class ConcreteFactory2 {
+  + CreateA();
+  + CreateB();
+}
+
+abstract class AbstractA
+abstract class AbstractB
+
+class A1
+class A2
+class B1
+class B2
+
+AbstractFactory&lt;..ConcreteFactory1
+AbstractFactory&lt;..ConcreteFactory2
+AbstractA&lt;..A1
+AbstractA&lt;..A2
+AbstractB&lt;..B1
+AbstractB&lt;..B2
+
+ConcreteFactory1*--A1
+ConcreteFactory1*--B1
+ConcreteFactory2*--A2
+ConcreteFactory2*--B2
+</pre>
 </div>
 
 <p>
@@ -315,24 +347,52 @@ The implementation:
 
 
 
-<div id="outline-container-orgc067b7f" class="outline-3">
-<h3 id="orgc067b7f"><span class="section-number-3">1.2</span> Builder</h3>
+<div id="outline-container-org324e82c" class="outline-3">
+<h3 id="org324e82c"><span class="section-number-3">1.2</span> Builder</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org021c608" class="outline-4">
-<h4 id="org021c608"><span class="section-number-4">1.2.1</span> Class Diagram</h4>
+<div id="outline-container-orge2a5753" class="outline-4">
+<h4 id="orge2a5753"><span class="section-number-4">1.2.1</span> Class Diagram</h4>
 <div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-plantuml">class Director {
+}
 
-<div class="figure">
-<p><img src="wikitmp_builder.png" alt="wikitmp_builder.png" />
-</p>
+Director &lt;|-- Builder
+note right of Director: for all objects in structure { builder-&gt;BuildPart();}
+abstract class Builder {
+  BuildPart();
+}
+class ConcreteBuilder {
+  BuildPart();
+  GetResult();
+}
+
+Builder &lt;-- ConcreteBuilder
+Product &lt;.. ConcreteBuilder
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4349c3e" class="outline-4">
-<h4 id="org4349c3e"><span class="section-number-4">1.2.2</span> Sequence diagram</h4>
+<div id="outline-container-org208c9f6" class="outline-4">
+<h4 id="org208c9f6"><span class="section-number-4">1.2.2</span> Sequence diagram</h4>
 <div class="outline-text-4" id="text-1-2-2">
+<div class="org-src-container">
+<pre class="src src-plantuml">participant Client
+participant Director
+participant ConcreteBuilder
+
+Client --&gt; ConcreteBuilder : new ConcreteBuilder
+Client --&gt; Director : new Director(concreteBuilder)
+Client --&gt; Director : Construct()
+Director --&gt; ConcreteBuilder : BuildPartA()
+Director --&gt; ConcreteBuilder : BuildPartB()
+Director --&gt; ConcreteBuilder : BuildPartC()
+Director --&gt; ConcreteBuilder : GetResult()
+</pre>
+</div>
+
 
 <div class="figure">
 <p><img src="wikitmp_builder_sequence.png" alt="wikitmp_builder_sequence.png" />
@@ -341,8 +401,8 @@ The implementation:
 </div>
 </div>
 
-<div id="outline-container-org0b5993d" class="outline-4">
-<h4 id="org0b5993d"><span class="section-number-4">1.2.3</span> Implementation</h4>
+<div id="outline-container-org853abe2" class="outline-4">
+<h4 id="org853abe2"><span class="section-number-4">1.2.3</span> Implementation</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #008b8b;">Director</span>::<span style="color: #0000ff;">Create</span>() {
@@ -364,12 +424,12 @@ builder.GetResult();
 </div>
 
 
-<div id="outline-container-org7d1e465" class="outline-2">
-<h2 id="org7d1e465"><span class="section-number-2">2</span> Structure</h2>
+<div id="outline-container-org588c3a2" class="outline-2">
+<h2 id="org588c3a2"><span class="section-number-2">2</span> Structure</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2b72506" class="outline-3">
-<h3 id="org2b72506"><span class="section-number-3">2.1</span> Singleton</h3>
+<div id="outline-container-orgffce393" class="outline-3">
+<h3 id="orgffce393"><span class="section-number-3">2.1</span> Singleton</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Singleton</span> {
@@ -394,12 +454,12 @@ builder.GetResult();
 </div>
 
 
-<div id="outline-container-orgf7a62ff" class="outline-2">
-<h2 id="orgf7a62ff"><span class="section-number-2">3</span> Behavior Pattern</h2>
+<div id="outline-container-orgb7c6db5" class="outline-2">
+<h2 id="orgb7c6db5"><span class="section-number-2">3</span> Behavior Pattern</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org6db9b6e" class="outline-3">
-<h3 id="org6db9b6e"><span class="section-number-3">3.1</span> Visitor pattern</h3>
+<div id="outline-container-org48e6f36" class="outline-3">
+<h3 id="org48e6f36"><span class="section-number-3">3.1</span> Visitor pattern</h3>
 <div class="outline-text-3" id="text-3-1">
 <blockquote>
 <p>
@@ -409,18 +469,39 @@ Visitor lets you define a new operation without changing theclasses of the eleme
 </blockquote>
 </div>
 
-<div id="outline-container-orgab367be" class="outline-4">
-<h4 id="orgab367be"><span class="section-number-4">3.1.1</span> The problem and the naive solution</h4>
+<div id="outline-container-orga8e6422" class="outline-4">
+<h4 id="orga8e6422"><span class="section-number-4">3.1.1</span> The problem and the naive solution</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 We have a list of classes in a class hierarchy, e.g. AST nodes.
 We want to define many operations, each operates different on different nodes.
 </p>
 
+<div class="org-src-container">
+<pre class="src src-plantuml">abstract class Node {
+  {abstract} TypeCheck();
+  {abstract} GenerateCode();
+  {abstract} PrettyPrint();
+}
 
-<div class="figure">
-<p><img src="wikitmp_visitor-1.png" alt="wikitmp_visitor-1.png" />
-</p>
+class NumNode {
+  TypeCheck();
+  GenerateCode();
+  PrettyPrint();
+}
+
+class ExpNode
+
+class AddExpNode {
+  TypeCheck();
+  GenerateCode();
+  PrettyPrint();
+}
+
+Node &lt;-- NumNode
+Node &lt;-- ExpNode
+ExpNode &lt;-- AddExpNode
+</pre>
 </div>
 
 <p>
@@ -429,8 +510,8 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-org1f775a4" class="outline-4">
-<h4 id="org1f775a4"><span class="section-number-4">3.1.2</span> The pattern</h4>
+<div id="outline-container-org411d4a6" class="outline-4">
+<h4 id="org411d4a6"><span class="section-number-4">3.1.2</span> The pattern</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 We define a hierarchy of visitors, and defines different behavior inside the visitors for different nodes they operate on.
@@ -438,16 +519,58 @@ This is called double-dispatch:
 The virtual functions lookup is decided not only by the object the function is defined on, but also the arguments it accepts.
 </p>
 
+<div class="org-src-container">
+<pre class="src src-plantuml">abstract class Node {
+  {abstract} Accept(Visitor v);
+}
 
-<div class="figure">
-<p><img src="wikitmp_visitor-2.png" alt="wikitmp_visitor-2.png" />
-</p>
+class NumNode {
+  Accept(Visitor v);
+}
+note left: v.visit(this);
+
+class ExpNode
+
+class AddExpNode {
+  Accept(Visitor v);
+}
+note left: v.visit(this);
+
+
+Node &lt;-- NumNode
+Node &lt;-- ExpNode
+ExpNode &lt;-- AddExpNode
+
+abstract class Visitor {
+  {abstract} visit(NumNode node);
+  {abstract} visit(AddExpNode node);
+}
+
+class TypeCheckVisitor {
+  visit(NumNode node);
+  visit(AddExpNode node);
+}
+
+class GenerateCodeVisitor {
+  visit(NumNode node);
+  visit(AddExpNode node);
+}
+
+class PrettyPrintVisitor {
+  visit(NumNode node);
+  visit(AddExpNode node);
+}
+
+Visitor &lt;-- TypeCheckVisitor
+Visitor &lt;-- GenerateCodeVisitor
+Visitor &lt;-- PrettyPrintVisitor
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc495a49" class="outline-4">
-<h4 id="orgc495a49"><span class="section-number-4">3.1.3</span> Example</h4>
+<div id="outline-container-orgbac1467" class="outline-4">
+<h4 id="orgbac1467"><span class="section-number-4">3.1.3</span> Example</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">interface</span> <span style="color: #228b22;">AST</span> {
@@ -501,7 +624,7 @@ The virtual functions lookup is decided not only by the object the function is d
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-10-26 Thu 16:40</p>
+<p class="date">Created: 2017-11-20 Mon 10:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-26 Thu 16:40 -->
+<!-- 2017-11-20 Mon 10:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Overtone</title>
@@ -235,28 +235,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3b30f21">1. Installation</a>
+<li><a href="#org5b1ffdb">1. Installation</a>
 <ul>
-<li><a href="#orgaf89590">1.1. Server Side</a></li>
-<li><a href="#org5a20cf0">1.2. Emacs Side</a></li>
+<li><a href="#org7904b3a">1.1. Server Side</a></li>
+<li><a href="#org4c9e0e5">1.2. Emacs Side</a></li>
 </ul>
 </li>
-<li><a href="#orge387d76">2. Music Source</a>
+<li><a href="#orgd928fda">2. Music Source</a>
 <ul>
-<li><a href="#orgb566a3f">2.1. Load Overtone</a></li>
-<li><a href="#org687c25b">2.2. Piano</a></li>
+<li><a href="#orgc58879c">2.1. Load Overtone</a></li>
+<li><a href="#org58fc7b3">2.2. Piano</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3b30f21" class="outline-2">
-<h2 id="org3b30f21"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-org5b1ffdb" class="outline-2">
+<h2 id="org5b1ffdb"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgaf89590" class="outline-3">
-<h3 id="orgaf89590"><span class="section-number-3">1.1</span> Server Side</h3>
+<div id="outline-container-org7904b3a" class="outline-3">
+<h3 id="org7904b3a"><span class="section-number-3">1.1</span> Server Side</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 First, install <code>lein2</code>.
@@ -297,8 +297,8 @@ It is more convenient to start the server from Emacs, see following.
 </div>
 </div>
 
-<div id="outline-container-org5a20cf0" class="outline-3">
-<h3 id="org5a20cf0"><span class="section-number-3">1.2</span> Emacs Side</h3>
+<div id="outline-container-org4c9e0e5" class="outline-3">
+<h3 id="org4c9e0e5"><span class="section-number-3">1.2</span> Emacs Side</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Install <code>clojure-mode</code> and <code>cider</code>.
@@ -309,12 +309,12 @@ Then <code>M-x cider-jack-in</code>.
 </div>
 </div>
 
-<div id="outline-container-orge387d76" class="outline-2">
-<h2 id="orge387d76"><span class="section-number-2">2</span> Music Source</h2>
+<div id="outline-container-orgd928fda" class="outline-2">
+<h2 id="orgd928fda"><span class="section-number-2">2</span> Music Source</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb566a3f" class="outline-3">
-<h3 id="orgb566a3f"><span class="section-number-3">2.1</span> Load Overtone</h3>
+<div id="outline-container-orgc58879c" class="outline-3">
+<h3 id="orgc58879c"><span class="section-number-3">2.1</span> Load Overtone</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 First in your music source, you need to load overtone.
@@ -325,9 +325,9 @@ But also refers to each lib's namespace.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">cmj.overtone</span>
-    (<span style="color: #008b8b;">:use</span> [<span style="color: #228b22;">overtone.live</span>]
-          [<span style="color: #228b22;">overtone.inst.piano</span>]
+<pre class="src src-clojure">(ns cmj.overtone
+    (:use [overtone.live]
+          [overtone.inst.piano]
           ))
 </pre>
 </div>
@@ -337,15 +337,15 @@ Alternatively you can just use the following direct way.
 It is preferred to use ":use" in a "ns" macro, like the above, than to use it directly.
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(use '<span style="color: #228b22;">overtone.live</span>)
-(use '<span style="color: #228b22;">overtone.inst.piano</span>)
+<pre class="src src-clojure">(use 'overtone.live)
+(use 'overtone.inst.piano)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org687c25b" class="outline-3">
-<h3 id="org687c25b"><span class="section-number-3">2.2</span> Piano</h3>
+<div id="outline-container-org58fc7b3" class="outline-3">
+<h3 id="org58fc7b3"><span class="section-number-3">2.2</span> Piano</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Play simple built-in piano:
@@ -363,30 +363,30 @@ Or, you can define an instrument, and play it.
 Much like a <code>defun</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">definst</span> <span style="color: #0000ff;">foo</span> [] (saw 220))
-(foo)               <span style="color: #b22222;">; this will run the above</span>
-(kill 47)           <span style="color: #b22222;">; 47 is got from the previous line, the playing id</span>
-(kill foo)          <span style="color: #b22222;">; can also use the function name</span>
-(foo)               <span style="color: #b22222;">; can start multiple phases</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">this shows I can provide a parameter to customize frequency each time</span>
-(<span style="color: #a020f0;">definst</span> <span style="color: #0000ff;">bar</span> [freq 220]
+<pre class="src src-clojure">(definst foo [] (saw 220))
+(foo)               ; this will run the above
+(kill 47)           ; 47 is got from the previous line, the playing id
+(kill foo)          ; can also use the function name
+(foo)               ; can start multiple phases
+;; this shows I can provide a parameter to customize frequency each time
+(definst bar [freq 220]
   (saw freq)
   )
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">to run it</span>
+;; to run it
 (bar 220)
 (bar 660)
-(kill bar)                              <span style="color: #b22222;">; kill all instance of "bar"</span>
-(stop)              <span style="color: #b22222;">; stop all</span>
+(kill bar)                              ; kill all instance of "bar"
+(stop)              ; stop all
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">A more complicated example</span>
-(<span style="color: #a020f0;">definst</span> <span style="color: #0000ff;">trem</span> [freq 440 depth 10 rate 6 length 3]
-  (* 0.3                                <span style="color: #b22222;">; * 0.3 means volumn 30%</span>
-     (line:kr 0 1 length <span style="color: #008b8b;">FREE</span>)          <span style="color: #b22222;">; stop after some seconds. FREE is common practive in such control, so I don't need to kill it.</span>
+;; A more complicated example
+(definst trem [freq 440 depth 10 rate 6 length 3]
+  (* 0.3                                ; * 0.3 means volumn 30%
+     (line:kr 0 1 length FREE)          ; stop after some seconds. FREE is common practive in such control, so I don't need to kill it.
      (saw (+ freq (* depth (sin-osc:kr rate))))))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">rates: </span><span style="color: #b22222;">:ar</span><span style="color: #b22222;"> and </span><span style="color: #b22222;">:kr</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">:ar</span><span style="color: #b22222;"> is audio rate, the rate of my audio card</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">:kr</span><span style="color: #b22222;"> is control rate, about 1/60 of </span><span style="color: #b22222;">:ar</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">so </span><span style="color: #b22222;">:kr</span><span style="color: #b22222;"> is often used in control signal, rather than outputing audio.</span>
+;; rates: :ar and :kr
+;; :ar is audio rate, the rate of my audio card
+;; :kr is control rate, about 1/60 of :ar
+;; so :kr is often used in control signal, rather than outputing audio.
 
 (trem)
 </pre>
@@ -397,44 +397,44 @@ A whole song example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #b22222;">;; </span><span style="color: #b22222;">define some instruments</span>
-(<span style="color: #a020f0;">definst</span> <span style="color: #0000ff;">kick</span> [freq 120 dur 0.3 width 0.5]
-  (<span style="color: #a020f0;">let</span> [freq-env (* freq (env-gen (perc 0 (* 0.99 dur))))
-        env (env-gen (perc 0.01 dur) 1 1 0 1 <span style="color: #008b8b;">FREE</span>)
+<pre class="src src-clojure">;; define some instruments
+(definst kick [freq 120 dur 0.3 width 0.5]
+  (let [freq-env (* freq (env-gen (perc 0 (* 0.99 dur))))
+        env (env-gen (perc 0.01 dur) 1 1 0 1 FREE)
         sqr (* (env-gen (perc 0 0.01)) (pulse (* 2 freq) width))
         src (sin-osc freq-env)
         drum (+ sqr (* env src))]
     (compander drum drum 0.2 1 0.1 0.01 0.01)))
 
-<span style="color: #b22222;">;;</span><span style="color: #b22222;">(kick)</span>
+;;(kick)
 
-(<span style="color: #a020f0;">definst</span> <span style="color: #0000ff;">c-hat</span> [amp 0.8 t 0.04]
-  (<span style="color: #a020f0;">let</span> [env (env-gen (perc 0.001 t) 1 1 0 1 <span style="color: #008b8b;">FREE</span>)
+(definst c-hat [amp 0.8 t 0.04]
+  (let [env (env-gen (perc 0.001 t) 1 1 0 1 FREE)
         noise (white-noise)
         sqr (* (env-gen (perc 0.01 0.04)) (pulse 880 0.2))
         filt (bpf (+ sqr noise) 9000 0.5)]
     (* amp env filt)))
 
-<span style="color: #b22222;">;;</span><span style="color: #b22222;">(c-hat)</span>
+;;(c-hat)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">metronome: &#33410;&#25293;&#22120;</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">BPM: beats per minute</span>
-(<span style="color: #a020f0;">def</span> <span style="color: #a0522d;">metro</span> (metronome 128))
+;; metronome: 节拍器
+;; BPM: beats per minute
+(def metro (metronome 128))
 
-(metro) <span style="color: #b22222;">; =&gt; current beat number</span>
-(metro 100) <span style="color: #b22222;">; =&gt; timestamp of 100th beat</span>
+(metro) ; =&gt; current beat number
+(metro 100) ; =&gt; timestamp of 100th beat
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">define player</span>
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">player</span> [beat]
+;; define player
+(defn player [beat]
   (at (metro beat) (kick))
   (at (metro (+ 0.5 beat)) (c-hat))
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">#'player is sent, so we are passing the variable "player" intead of the current value of var.</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">this enable us to redefine while it is playing</span>
+  ;; #'player is sent, so we are passing the variable "player" intead of the current value of var.
+  ;; this enable us to redefine while it is playing
   (apply-by (metro (inc beat)) #'player (inc beat) []))
 
-(player (metro))                        <span style="color: #b22222;">; play it</span>
+(player (metro))                        ; play it
 
-(metro-bpm metro 60)                   <span style="color: #b22222;">; evaluate this will live change the freqency</span>
+(metro-bpm metro 60)                   ; evaluate this will live change the freqency
 </pre>
 </div>
 </div>
@@ -443,7 +443,7 @@ A whole song example:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-10-26 Thu 16:40</p>
+<p class="date">Created: 2017-11-20 Mon 10:50</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
