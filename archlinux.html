@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-11-20 Mon 10:50 -->
+<!-- 2017-11-25 Sat 23:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ArchLinux</title>
@@ -249,11 +249,22 @@ for the JavaScript code in this tag.
 <li><a href="#org0ce2f7d">2.5. Install base system</a></li>
 <li><a href="#orgbb17650">2.6. chroot</a></li>
 <li><a href="#org50c87f9">2.7. Configure</a></li>
+<li><a href="#org895592b">2.8. Config</a></li>
+<li><a href="#org6625f6e">2.9. Dual boot with Windows</a></li>
 </ul>
 </li>
-<li><a href="#org9e7488a">3. System Setup</a>
+<li><a href="#orgb03ec46">3. Wireless Networking</a>
 <ul>
-<li><a href="#orgb8bfc06">3.1. Then</a></li>
+<li><a href="#org33365ef">3.1. General DHCPCD</a></li>
+<li><a href="#org74b5e18">3.2. iw</a></li>
+<li><a href="#org4337ca9">3.3. wpa<sub>supplicant</sub></a>
+<ul>
+<li><a href="#org29ecfdd">3.3.1. Configuration</a></li>
+<li><a href="#orgc07a60f">3.3.2. Connect</a></li>
+<li><a href="#org55455b1">3.3.3. Obtain IP</a></li>
+<li><a href="#org0012bd8">3.3.4. To Sum Up</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org9562efe">4. Trouble shooting</a>
@@ -275,7 +286,13 @@ for the JavaScript code in this tag.
 <li><a href="#org5f01cf0">8.7. fonts</a></li>
 <li><a href="#org62812fe">8.8. For Helium</a></li>
 <li><a href="#org9d4dab6">8.9. for Pdf Tools</a></li>
-<li><a href="#orgbd46cc6">8.10. Install using AUR (in order!)</a></li>
+<li><a href="#org744f1bf">8.10. Nvidia driver</a></li>
+<li><a href="#orgbd46cc6">8.11. Install using AUR (in order!)</a></li>
+</ul>
+</li>
+<li><a href="#orge7ffce7">9. TP25</a>
+<ul>
+<li><a href="#org9302c7f">9.1. backlight</a></li>
 </ul>
 </li>
 </ul>
@@ -477,29 +494,27 @@ grub-mkconfig -o /boot/grub/grub.cfg
 </pre>
 
 <p>
+Before reboot, it is good to make sure the network will work, by
+installing some networking packages:
+</p>
+<ul class="org-ul">
+<li><code>dialog</code></li>
+<li><code>wpa_suppliant</code></li>
+<li><code>iw</code></li>
+</ul>
+
+<p>
 Now reboot
 </p>
 </div>
 </div>
-</div>
 
-<div id="outline-container-org9e7488a" class="outline-2">
-<h2 id="org9e7488a"><span class="section-number-2">3</span> System Setup</h2>
-<div class="outline-text-2" id="text-3">
+
+<div id="outline-container-org895592b" class="outline-3">
+<h3 id="org895592b"><span class="section-number-3">2.8</span> Config</h3>
+<div class="outline-text-3" id="text-2-8">
 <p>
-DHCP is not enabled by default. It is the philloshophy for Arch: installing a package will not enable any service. Enable it by;
-</p>
-
-<pre class="example">
-systemctl enable dhcpcd
-</pre>
-</div>
-
-<div id="outline-container-orgb8bfc06" class="outline-3">
-<h3 id="orgb8bfc06"><span class="section-number-3">3.1</span> Then</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-run
+Install the packages, and config the system using my scripts:
 </p>
 <ul class="org-ul">
 <li>setup-quicklisp</li>
@@ -507,7 +522,176 @@ run
 </ul>
 </div>
 </div>
+
+
+<div id="outline-container-org6625f6e" class="outline-3">
+<h3 id="org6625f6e"><span class="section-number-3">2.9</span> Dual boot with Windows</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+The only difference is that, you do not need to create the EFI boot
+partition, but use the existing one. Just mount it to boot. The rest
+is the same.
+</p>
 </div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb03ec46" class="outline-2">
+<h2 id="orgb03ec46"><span class="section-number-2">3</span> Wireless Networking</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org33365ef" class="outline-3">
+<h3 id="org33365ef"><span class="section-number-3">3.1</span> General DHCPCD</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+DHCP is not enabled by default. It is the philloshophy for Arch:
+installing a package will not enable any service. Enable it by;
+</p>
+
+<pre class="example">
+systemctl enable dhcpcd
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org74b5e18" class="outline-3">
+<h3 id="org74b5e18"><span class="section-number-3">3.2</span> iw</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>iw dev: list dev</li>
+<li>iw dev &lt;interface&gt; link: show status</li>
+<li>ip link set &lt;interface&gt; up: up the interface</li>
+<li>ip link show &lt;interface&gt;: if you see &lt;UP&gt; in the output, the interface is up</li>
+<li>iw dev interface scan: scan for network</li>
+<li>iw dev &lt;interface&gt; connect "SSID": connect to open network</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4337ca9" class="outline-3">
+<h3 id="org4337ca9"><span class="section-number-3">3.3</span> wpa<sub>supplicant</sub></h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<code>iw</code> can only connect to public network. This is used to connect
+WPA2/WEP encrypted network.
+</p>
+</div>
+
+<div id="outline-container-org29ecfdd" class="outline-4">
+<h4 id="org29ecfdd"><span class="section-number-4">3.3.1</span> Configuration</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+The config file (e.g. <code>/etc/wpa_supplicant/example.conf</code>) can be
+generated in two ways: using <code>wpa_cli</code> or <code>use wpa_passphrase</code>.
+<code>wpa_cli</code> is interactive, and has commands <code>scan</code>, <code>add_network</code>,
+<code>save_config</code>.
+</p>
+
+<pre class="example">
+wpa_passphrase MYSSID &lt;passphrase&gt; &gt; /path/to/example.conf
+</pre>
+
+<p>
+Inside this file, there's a network section. The <code>ssid</code> is a quoted
+SSID name, while <code>psk</code> is unquoted encrypted phrase. The psk can also
+be quoted clear password.  If the network is open, you can use
+<code>key_mgmt=NONE</code> in place of <code>psk</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc07a60f" class="outline-4">
+<h4 id="orgc07a60f"><span class="section-number-4">3.3.2</span> Connect</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<pre class="example">
+wpa_supplicant -B -i &lt;interface&gt; -c &lt;(wpa_passphrase &lt;MYSSID&gt; &lt;passphrase&gt;)
+</pre>
+<p>
+connect to a WPA/WEP protected network
+</p>
+<ul class="org-ul">
+<li>-b: fork into background</li>
+<li>-i interface</li>
+<li>-c: path to configuration file.</li>
+</ul>
+
+<p>
+Alternatively, you can use the config file
+</p>
+<pre class="example">
+wpa_supplicant -B -i &lt;interface&gt; -c /path/to/example.conf
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org55455b1" class="outline-4">
+<h4 id="org55455b1"><span class="section-number-4">3.3.3</span> Obtain IP</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+After this, you need to get IP address by the "usual" way, e.g.
+</p>
+<pre class="example">
+dhcpcd &lt;interface&gt;
+</pre>
+
+<p>
+It seems that we should enable the service:
+</p>
+<ul class="org-ul">
+<li>wpa<sub>supplicant</sub>@&lt;interface&gt;</li>
+<li>dhcpcd@&lt;interface&gt;</li>
+</ul>
+
+<p>
+Also, dhcpcd has a hook that can launch wpa<sub>supplicant</sub> implicitly.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0012bd8" class="outline-4">
+<h4 id="org0012bd8"><span class="section-number-4">3.3.4</span> To Sum Up</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<p>
+Find the interface by <code>iw dev</code>. Say it is <code>wlp4s0</code>.
+</p>
+
+<p>
+Create config file <code>/etc/wpa_supplicant/wpa_supplicant-wlp4s0.conf</code>:
+</p>
+
+<pre class="example">
+network={
+        ssid="MYSSID"
+        psk="clear passwd"
+        psk=fjiewjilajdsf8345j38osfj
+}
+
+network={
+        ssid="2NDSSID"
+        key_mgmt=NONE
+}
+</pre>
+
+<p>
+Enable <code>wpa_supplicant@wlp4s0</code> and <code>dhcpcd@wlp4s0</code> (or just <code>dhcpcd</code>)
+</p>
+
+
+<p>
+To change another wifi, kill the server and use another one
+</p>
+<pre class="example">
+sudo killall wpa_supplicant
+wpa_supplicant -B -i wlp4s0 -c /path/to/wifi.conf
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
 
 
 <div id="outline-container-org9562efe" class="outline-2">
@@ -672,6 +856,8 @@ sudo ntpd -qg
 <h3 id="org62753b4"><span class="section-number-3">8.3</span> utils</h3>
 <div class="outline-text-3" id="text-8-3">
 <ul class="org-ul">
+<li>sbcl</li>
+<li>bc</li>
 <li>git</li>
 <li>curl</li>
 <li>mlocate</li>
@@ -702,6 +888,8 @@ sudo ntpd -qg
 <li>dosfstools: for mkfs.vfat, used for raspberry pi</li>
 <li>pavucontrol</li>
 <li>pulseaudio</li>
+<li>alsa-utils</li>
+<li>pulseaudio-alsa</li>
 </ul>
 </div>
 </div>
@@ -774,9 +962,24 @@ sudo ntpd -qg
 </div>
 </div>
 
-<div id="outline-container-orgbd46cc6" class="outline-3">
-<h3 id="orgbd46cc6"><span class="section-number-3">8.10</span> Install using AUR (in order!)</h3>
+<div id="outline-container-org744f1bf" class="outline-3">
+<h3 id="org744f1bf"><span class="section-number-3">8.10</span> Nvidia driver</h3>
 <div class="outline-text-3" id="text-8-10">
+<ul class="org-ul">
+<li>nvidia</li>
+<li>nvidia-settings</li>
+</ul>
+
+<p>
+To activate nvidia card, run <code>nvidia-xconfig</code>, and reboot (to restart
+xorg-server).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbd46cc6" class="outline-3">
+<h3 id="orgbd46cc6"><span class="section-number-3">8.11</span> Install using AUR (in order!)</h3>
+<div class="outline-text-3" id="text-8-11">
 <ul class="org-ul">
 <li>cl-ppcre</li>
 <li>clx-git</li>
@@ -787,6 +990,8 @@ sudo ntpd -qg
 <li>On arch, after install quicklisp via AUR, it prompts: to load
 quicklisp <i>etc/default/quicklisp into ~</i>.sbclrc.</li>
 </ul></li>
+<li>translate-shell</li>
+<li>acpilight</li>
 
 <li>rtags-git</li>
 <li>plantuml</li>
@@ -795,10 +1000,44 @@ quicklisp <i>etc/default/quicklisp into ~</i>.sbclrc.</li>
 </div>
 </div>
 </div>
+
+<div id="outline-container-orge7ffce7" class="outline-2">
+<h2 id="orge7ffce7"><span class="section-number-2">9</span> TP25</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+This is something I went through during setup my thinkpad 25.
+</p>
+</div>
+
+<div id="outline-container-org9302c7f" class="outline-3">
+<h3 id="org9302c7f"><span class="section-number-3">9.1</span> backlight</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+The <code>xorg-xbacklight</code> is not working. The drop-in replacement
+<code>acpilight</code> (aur) does.
+</p>
+
+<p>
+To setup for video group users to adjust backlight, place a file
+<code>/etc/udev/rules.d/90-backlight.rules</code>
+</p>
+
+<pre class="example">
+SUBSYSTEM=="backlight", ACTION=="add", \
+  RUN+="/bin/chgrp video %S%p/brightness", \
+  RUN+="/bin/chmod g+w %S%p/brightness"
+</pre>
+
+<p>
+The command is still <code>xbacklight</code>.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-11-20 Mon 10:50</p>
+<p class="date">Created: 2017-11-25 Sat 23:49</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
