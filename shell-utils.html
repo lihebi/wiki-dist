@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-11-20 Mon 10:50 -->
+<!-- 2017-11-27 Mon 03:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell Utilities</title>
@@ -252,7 +252,7 @@ for the JavaScript code in this tag.
 <li><a href="#org6b9c825">4.2. grep</a></li>
 <li><a href="#org630a880">4.3. tr: translate characters</a></li>
 <li><a href="#org84c141c">4.4. uniq: report or filter out repeated lines in a file</a></li>
-<li><a href="#orgf0de125">4.5. Other</a></li>
+<li><a href="#org01dcf21">4.5. Other</a></li>
 </ul>
 </li>
 <li><a href="#orgf254733">5. System Management</a>
@@ -264,7 +264,7 @@ for the JavaScript code in this tag.
 <li><a href="#org524948d">5.5. Filesystem related</a></li>
 <li><a href="#org6351ba5">5.6. unzip</a></li>
 <li><a href="#org9026d7a">5.7. tar</a></li>
-<li><a href="#org01dcf21">5.8. Other</a></li>
+<li><a href="#org80cf4bf">5.8. Other</a></li>
 </ul>
 </li>
 </ul>
@@ -281,6 +281,15 @@ find ~/data/fast/pick-master/ -name '*.[ch]'
 <ul class="org-ul">
 <li>sort -k 4 -n</li>
 </ul>
+
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a020f0;">for</span> name<span style="color: #a020f0;"> in</span> data/github-bench/*; <span style="color: #a020f0;">do</span> 
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"===== $name"</span><span style="color: #8b2252;">\</span>
+        | tee -a log.txt; { <span style="color: #a020f0;">time</span> helium --create-cache $<span style="color: #a0522d;">name</span>; } 2&gt;&amp;1<span style="color: #8b2252;">\</span>
+        | tee -a log.txt; <span style="color: #a020f0;">done</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -422,8 +431,8 @@ space. You can then comtine this with <code>sort -n</code></li>
 </div>
 </div>
 
-<div id="outline-container-orgf0de125" class="outline-3">
-<h3 id="orgf0de125"><span class="section-number-3">4.5</span> Other</h3>
+<div id="outline-container-org01dcf21" class="outline-3">
+<h3 id="org01dcf21"><span class="section-number-3">4.5</span> Other</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li><code>cat</code>: <code>-n</code> output with line number</li>
@@ -544,8 +553,8 @@ tar zcvf file.tar.gz &#x2013;exclude=a.out &#x2013;exclude=*.gmout folder
 </div>
 </div>
 
-<div id="outline-container-org01dcf21" class="outline-3">
-<h3 id="org01dcf21"><span class="section-number-3">5.8</span> Other</h3>
+<div id="outline-container-org80cf4bf" class="outline-3">
+<h3 id="org80cf4bf"><span class="section-number-3">5.8</span> Other</h3>
 <div class="outline-text-3" id="text-5-8">
 <ul class="org-ul">
 <li><code>time &lt;command&gt;</code>: # the total user and system time consumed by the shell and its children</li>
@@ -571,7 +580,7 @@ tar zcvf file.tar.gz &#x2013;exclude=a.out &#x2013;exclude=*.gmout folder
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-11-20 Mon 10:50</p>
+<p class="date">Created: 2017-11-27 Mon 03:18</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
