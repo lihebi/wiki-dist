@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-11-28 Tue 04:20 -->
+<!-- 2017-12-01 Fri 00:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket</title>
@@ -227,6 +227,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -235,7 +257,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org24c4143">1. Basic</a></li>
+<li><a href="#org24c4143">1. Basic</a>
+<ul>
+<li><a href="#org3d254a0">1.1. Local binding</a></li>
+<li><a href="#org7e13d0e">1.2. require</a></li>
+</ul>
+</li>
 <li><a href="#org660514d">2. Black Magic</a></li>
 <li><a href="#org22f1f24">3. Pattern Matching (racket/match)</a></li>
 <li><a href="#org83c6b8f">4. Macros</a>
@@ -285,6 +312,10 @@ for the JavaScript code in this tag.
 <div id="outline-container-org24c4143" class="outline-2">
 <h2 id="org24c4143"><span class="section-number-2">1</span> Basic</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3d254a0" class="outline-3">
+<h3 id="org3d254a0"><span class="section-number-3">1.1</span> Local binding</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 The local binding is established by <code>let</code> family. Apart from normal
 <code>let</code>, racket has a second form, known as <b>named let</b>.
@@ -316,6 +347,54 @@ Within the body, <code>proc-id</code> is bound to the procedure itself.
 </div>
 </div>
 
+<div id="outline-container-org7e13d0e" class="outline-3">
+<h3 id="org7e13d0e"><span class="section-number-3">1.2</span> require</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<code>require</code> introduces bindings. It can only be used in two context, the
+top-level context, or the module context (in which it introduce module
+bindings).
+</p>
+
+<p>
+To require a installed module, use <code>(lib "rel-string")</code>, and its
+widely used shorthand <code>(require id)</code> where id is the unquoted string.
+</p>
+
+<p>
+When requiring a local file, use plain relative (to current directory)
+path in a string. The path should NOT start or end with a slash. It
+seems that the suffix is optional.
+</p>
+
+<p>
+To use a absolute path, you have to use <code>(file string)</code>, and
+<code>expand-user-path</code> is called, so you can use:
+</p>
+<ul class="org-ul">
+<li>relative path</li>
+<li>tide home directory</li>
+<li>absolute path</li>
+</ul>
+
+<p>
+The <code>#lang</code> is a shorthand.
+</p>
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #a020f0;">#lang</span> <span style="color: #a0522d;">racket</span>
+decl <span style="color: #a020f0;">...</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">equivalent to</span>
+(<span style="color: #a020f0;">module</span> <span style="color: #0000ff;">name</span> <span style="color: #a0522d;">racket</span>
+  decl <span style="color: #a020f0;">...</span>)
+</pre>
+</div>
+
+<p>
+Where name is the file name.
+</p>
+</div>
+</div>
+</div>
 
 
 <div id="outline-container-org660514d" class="outline-2">
@@ -786,6 +865,110 @@ different return values.</li>
 <div id="outline-container-orgaf9cb33" class="outline-2">
 <h2 id="orgaf9cb33"><span class="section-number-2">8</span> String</h2>
 <div class="outline-text-2" id="text-8">
+<p>
+The reading syntax of characters starts with <code>#\</code>, with following
+forms
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">ASCII</th>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-left">#\null</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">#\backspace</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">9</td>
+<td class="org-left">#\tab</td>
+<td class="org-left">\t</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">#\newline #\linefeed</td>
+<td class="org-left">linefeed (\n), move cursor to next line</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">#\vtab</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">#\page</td>
+<td class="org-left">page break</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">#\return</td>
+<td class="org-left">carriage return (\r), move cursor to begin</td>
+</tr>
+
+<tr>
+<td class="org-right">32</td>
+<td class="org-left">#\space</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">127</td>
+<td class="org-left">#\rubout</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">#\&lt;digit<sub>8</sub>&gt;<sup>{3}</sup></td>
+<td class="org-left">Unicode for octal number</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">#\&lt;digit<sub>16</sub>&gt;<sup>{1,4}</sup></td>
+<td class="org-left">Unicode for Hex</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">#\&lt;c&gt;</td>
+<td class="org-left">the single character</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+As a side note, windows use <code>\r\n</code>, Unix use <code>\n</code>, Mac OS use <code>\r</code>
+</p>
+
+<p>
+APIs
+</p>
 <ul class="org-ul">
 <li><code>make-string k [char]</code></li>
 <li><code>string-length</code></li>
@@ -1836,7 +2019,7 @@ order for it to work, install <code>racket-doc</code> package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-11-28 Tue 04:20</p>
+<p class="date">Created: 2017-12-01 Fri 00:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
