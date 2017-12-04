@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-01 Fri 00:16 -->
+<!-- 2017-12-03 Sun 21:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ArchLinux</title>
@@ -237,7 +237,10 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgc37dd5a">1. TMP</a>
 <ul>
-<li><a href="#orga8081c2">1.1. Install on Digital ocean droplet</a></li>
+<li><a href="#org165a5ef">1.1. useradd</a></li>
+<li><a href="#org630e8bf">1.2. small</a></li>
+<li><a href="#orga8081c2">1.3. Install on Digital ocean droplet</a></li>
+<li><a href="#org93ee890">1.4. Kill Xorg</a></li>
 </ul>
 </li>
 <li><a href="#org9f0e6bc">2. Installation</a>
@@ -314,15 +317,40 @@ You can back up configuration by:
 <div id="outline-container-orgc37dd5a" class="outline-2">
 <h2 id="orgc37dd5a"><span class="section-number-2">1</span> TMP</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org165a5ef" class="outline-3">
+<h3 id="org165a5ef"><span class="section-number-3">1.1</span> useradd</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The account will use the values on command line, <b>plus</b> the default
+value for system. A group will also be created by default.
+</p>
+
+<ul class="org-ul">
+<li><code>-g GROUP</code>: specify the initial login group. Typically <b>just ignore</b>
+this, the default value will be used.</li>
+<li><code>-G group1,group2,...</code>: additional groups. You might want: <code>video</code>,
+<code>audio</code>, <code>wheel</code></li>
+<li><code>-m</code>: create home if it does not exists</li>
+<li><code>-s SHELL</code>: use this shell. Typically just ignore this, the system
+will choose for you.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org630e8bf" class="outline-3">
+<h3 id="org630e8bf"><span class="section-number-3">1.2</span> small</h3>
+<div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>install <code>vlc</code> in order to use EMMS</li>
 <li><code>mpd</code> and <code>mpc</code> for music playing</li>
 </ul>
 </div>
+</div>
 
 <div id="outline-container-orga8081c2" class="outline-3">
-<h3 id="orga8081c2"><span class="section-number-3">1.1</span> Install on Digital ocean droplet</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orga8081c2"><span class="section-number-3">1.3</span> Install on Digital ocean droplet</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 Although digital ocean didn't provide a default arch distribution, you
 can easilly convert debian to arch.
@@ -333,7 +361,33 @@ can easilly convert debian to arch.
 </p>
 </div>
 </div>
+
+<div id="outline-container-org93ee890" class="outline-3">
+<h3 id="org93ee890"><span class="section-number-3">1.4</span> Kill Xorg</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Kill all Xorg instances
+</p>
+<pre class="example">
+pkill -15 Xorg
+</pre>
+
+<p>
+If using kill:
+</p>
+<pre class="example">
+ps -ef | grep Xorg # find the pid
+kill -9 &lt;PID&gt;
+</pre>
+
+<p>
+The xkill is not working properly, giving me "unable to find display" error.
+</p>
 </div>
+</div>
+</div>
+
+
 
 <div id="outline-container-org9f0e6bc" class="outline-2">
 <h2 id="org9f0e6bc"><span class="section-number-2">2</span> Installation</h2>
@@ -842,6 +896,16 @@ sudo ntpd -qg
 <div id="outline-container-org339bc86" class="outline-3">
 <h3 id="org339bc86"><span class="section-number-3">8.2</span> Xorg</h3>
 <div class="outline-text-3" id="text-8-2">
+<p>
+Actually xorg group seems to contain all of them, except:
+</p>
+<ul class="org-ul">
+<li>xorg-xinit</li>
+</ul>
+
+<p>
+Common xorg packages:
+</p>
 <ul class="org-ul">
 <li>xorg-server</li>
 <li>xorg-xinit</li>
@@ -851,6 +915,26 @@ sudo ntpd -qg
 <li>xorg-xdm</li>
 <li>xorg-xconsole</li>
 <li>openbox: just in case stumpwm stops working</li>
+</ul>
+
+<p>
+To make the default startx work:
+</p>
+<ul class="org-ul">
+<li>xorg-twm</li>
+<li>xorg-xterm</li>
+<li>xorg-xclock</li>
+<li>xorg-xkill</li>
+<li>xorg-xeyes</li>
+<li>xorg-xcalc</li>
+<li>xorg-xconsole</li>
+</ul>
+
+<p>
+for nvidia-xconfig to work:
+</p>
+<ul class="org-ul">
+<li>xorg-server-devel</li>
 </ul>
 </div>
 </div>
@@ -1069,7 +1153,7 @@ The command is still <code>xbacklight</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-01 Fri 00:16</p>
+<p class="date">Created: 2017-12-03 Sun 21:39</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
