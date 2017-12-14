@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2017-12-12 Tue 11:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>awk</title>
+<title>Probability</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Hebi Li" />
 <style type="text/css">
@@ -227,270 +227,94 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">awk</h1>
+<h1 class="title">Probability</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1253fae">1. tmp</a></li>
-<li><a href="#org62273b8">2. Introduction</a></li>
-<li><a href="#org5342add">3. patterns</a></li>
-<li><a href="#orgc9177ca">4. Actions</a>
+<li><a href="#org3b5879f">1. Vocabulary</a></li>
+<li><a href="#org5e904ea">2. Bounds</a>
 <ul>
-<li><a href="#org30844a8">4.1. Variables</a></li>
-<li><a href="#org457671a">4.2. Output</a></li>
-<li><a href="#orgcb8b024">4.3. Control Structure</a></li>
-<li><a href="#orge0d3e3a">4.4. String Functions</a></li>
+<li><a href="#org098eed1">2.1. Union Bound</a></li>
 </ul>
 </li>
-<li><a href="#org317bcbf">5. User-defined Functions</a></li>
-<li><a href="#orgba10d6b">6. Examples</a></li>
+<li><a href="#orge9df5a7">3. Probability Example</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1253fae" class="outline-2">
-<h2 id="org1253fae"><span class="section-number-2">1</span> tmp</h2>
+
+<div id="outline-container-org3b5879f" class="outline-2">
+<h2 id="org3b5879f"><span class="section-number-2">1</span> Vocabulary</h2>
 <div class="outline-text-2" id="text-1">
-<pre class="example">
-match($0, /#include &lt;(.*)&gt;/, a) {print a[1]}
-</pre>
 <ul class="org-ul">
-<li>sum line of numbers</li>
+<li>sample point: each possible outcome of an experiment</li>
+<li>sample space: set of all sample points, \(\omega\)</li>
+<li>event E: a subset of \(\omega\)
+<ul class="org-ul">
+<li>disjoint: E<sub>1</sub> and E<sub>2</sub> are disjoint if \(E_1 \cap E_2 = \emptyset\)</li>
+<li>mutually disjoint: a collection of events are mutually disjoint if
+for every \(i \ne j\), \(E_i \cap E_j = \emptyset\)</li>
+</ul></li>
+<li>probability function: P from \(\omega\) to [0,1]</li>
+<li>\(\bar{E}\): \(\omega - E\)</li>
+<li>uniform probability: \(P(x) = \frac{1}{|\omega|}\), P(E) = \frac{|E|}{|\omega|}</li>
+<li>P(E) = &sum;<sub>x&isin; E</sub>P(x)</li>
+
+<li>independent: if events A and B are</li>
 </ul>
-<pre class="example">
-awk '{s+=$1} END {print s}' mydatafile
-</pre>
-
-
-
-<p>
-The quote for command must be single quote! not double.
-That is because the double quote will do shell substitution.
-</p>
-
-<pre class="example">
-awk '{print $0}'
-</pre>
 </div>
 </div>
 
-<div id="outline-container-org62273b8" class="outline-2">
-<h2 id="org62273b8"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org5e904ea" class="outline-2">
+<h2 id="org5e904ea"><span class="section-number-2">2</span> Bounds</h2>
 <div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org098eed1" class="outline-3">
+<h3 id="org098eed1"><span class="section-number-3">2.1</span> Union Bound</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-Use shebang <code>#! /bin/awk -f</code> for script file. In terminal, Invoke by
-<code>awk 'PROGRAM' INPUT-FILE1 INPUT-FILE2 ...</code>. MUST USE single
-quote. Run a script by <code>awk -f script.awk INPUT-FILES</code>.
+\(P(\cup_i E_i) \le \sum\limits_i P(E_i)\)
 </p>
 
 <p>
-The "program" contains a list of statements. Each of form <code>pattern
-{action}</code>.  A missing { action } means print the line; a missing
-pattern always matches.  Pattern-action statements are separated by
-newlines or semicolons.
-</p>
-
-<p>
-The program starts by evaluating the <i>all</i> BEGIN patterns in
-order. Each file is processed in turn by reading data until a record
-separator. This typically means one line at a time, for all the
-files. All patterns are examined against the line. If match, action is
-executed.
-</p>
-
-<p>
-Invoking options:
-</p>
-<dl class="org-dl">
-<dt><code>-F FS</code></dt><dd>set FS</dd>
-<dt><code>-v VAR=VAL</code></dt><dd>set variable before the program begins</dd>
-</dl>
-
-
-<p>
-AWK first read record using RS as separator from input. For each
-record, awk use FS to split it into fields.
-</p>
-
-
-<p>
-awk is line-based, and the content of lines are splited into fields
-<code>$1</code>, <code>$2</code>, &#x2026; by the separator <code>FS</code>.  <code>$0</code> refers to the entire
-line. Function parameters are local, all other variables are global.
+This is because of disjoint.
 </p>
 </div>
 </div>
-
-
-<div id="outline-container-org5342add" class="outline-2">
-<h2 id="org5342add"><span class="section-number-2">3</span> patterns</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Patterns are arbitrary Boolean combinations (with <code>!</code> <code>||</code> <code>&amp;&amp;</code>) of
-regular expressions and relational expressions.
-</p>
-
-<p>
-A pattern may consist of two patterns separated by a comma, it is
-called pattern range. In this case, the action is performed for all
-lines from an occurrence of the first pattern though an occurrence of
-the second, inclusive.
-</p>
-
-<p>
-special patterns: <code>BEGIN</code>, <code>END</code>.  Cannot combine with other patterns.
-</p>
-
-<p>
-Also, we can match part of the input by using regular expression
-comparison operators (<code>~</code> and <code>!~</code>). <code>EXP ~ /REGEXP/</code> returns true if
-match. This can be used in patterns, as well as as conditions for if,
-while, for, do statements.
-</p>
-
-<p>
-Case sensitivity is controled by <code>IGNORECASE</code> variable. You can set
-when invoking awk, or set the variable in the awk program. Another way
-to ignore case is to call <code>tolower</code> or <code>toupper</code> function before
-comparison.
-</p>
-</div>
 </div>
 
-<div id="outline-container-orgc9177ca" class="outline-2">
-<h2 id="orgc9177ca"><span class="section-number-2">4</span> Actions</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-An action is a sequence of statements.  Statements are terminated by
-semicolons, newlines or right braces.
-</p>
-
-<p>
-Reference of user-defined variable do not use $. E.g. <code>myvar=$2</code> will
-assign $2 to myvar! Refer the var directly: no need to use a $ as
-shell variables.
-</p>
-
-<p>
-Expressions are very similar to C. The added contents are:
-</p>
-<ul class="org-ul">
-<li>$N: field reference</li>
-<li>expr expr: string concatenation</li>
-<li>string [!]~ pattern: ERE match</li>
-<li>expr in array</li>
-<li>(index) in array</li>
-</ul>
-</div>
-
-<div id="outline-container-org30844a8" class="outline-3">
-<h3 id="org30844a8"><span class="section-number-3">4.1</span> Variables</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>Except function parameters, all variables are
-<i>global</i>. Uninitialized value have both a numeric value of 0 and a
-string value of empty string.</li>
-<li>field variable can be referenced by $N or $expr where expr is
-numerical expression. They are assignable. Reference to non-exist
-fields is uninitialized value. NF is the number of fields. Assign to
-non-exist field increase NF.</li>
-</ul>
-
-<p>
-Important Variables
-</p>
-<dl class="org-dl">
-<dt><code>NF</code></dt><dd>number of fields in the current record</dd>
-<dt><code>NR</code></dt><dd>line number of current record</dd>
-<dt><code>FNR</code></dt><dd>line number of current record in the current file</dd>
-<dt><code>FILENAME</code></dt><dd>the name of the current input file</dd>
-<dt><code>FS (Field Separator)</code></dt><dd>regular expression used to separate fields; also settable by option -Ffs.</dd>
-<dt><code>RS</code></dt><dd>input record separator (default newline)</dd>
-<dt><code>OFS</code></dt><dd>output field separator (default blank)</dd>
-<dt><code>ORS</code></dt><dd>output record separator (default newline)</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org457671a" class="outline-3">
-<h3 id="org457671a"><span class="section-number-3">4.2</span> Output</h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-print and printf write to standard output by default. Redirect is supported.
-</p>
-<ul class="org-ul">
-<li>&gt; expr : file</li>
-<li>&gt;&gt; expr : file</li>
-<li>| expr : command</li>
-</ul>
-</div>
-</div>
-
-
-
-
-<div id="outline-container-orgcb8b024" class="outline-3">
-<h3 id="orgcb8b024"><span class="section-number-3">4.3</span> Control Structure</h3>
-<div class="outline-text-3" id="text-4-3">
-<ul class="org-ul">
-<li><code>if (condition) then-body [else else-body]</code></li>
-<li><code>while (condition) body</code></li>
-<li><code>do body while (condition)</code></li>
-<li><code>for (init;cond;inc) body</code></li>
-<li>switch(expr) {case val: body default: body}</li>
-<li>break</li>
-<li>continue</li>
-<li>next: stop current record immediately and go on to next</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orge0d3e3a" class="outline-3">
-<h3 id="orge0d3e3a"><span class="section-number-3">4.4</span> String Functions</h3>
-<div class="outline-text-3" id="text-4-4">
-<dl class="org-dl">
-<dt><code>sub(ere, repl[, in])</code></dt><dd>substitute the first match of ere inside
-in (or $0) by repl. Return number of substitution. <code>&amp;</code> can be
-used in repl.</dd>
-<dt><code>gsub(ere, repl[, in])</code></dt><dd>sub for all matches</dd>
-<dt>index(s,t)</dt><dd>index t inside s, 0 if not occur.</dd>
-<dt>length([s])</dt><dd>return length for s (or $0)</dd>
-<dt>match(s, ere)</dt><dd>return position of match of ere in s</dd>
-<dt>split(s, a[, fs])</dt><dd>split s into array a</dd>
-<dt>sprintf(fmt, expr, expr, &#x2026;)</dt><dd>printf with format string</dd>
-<dt>substr(s, m[, n])</dt><dd>return substring from m with length at most n</dd>
-<dt>tolower(s)</dt><dd>return lowercase</dd>
-<dt>toupper(s)</dt><dd>uppercase</dd>
-</dl>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org317bcbf" class="outline-2">
-<h2 id="org317bcbf"><span class="section-number-2">5</span> User-defined Functions</h2>
-<div class="outline-text-2" id="text-5">
-<pre class="example">
-function name([param, ...]) {statements}
-</pre>
-</div>
-</div>
-
-<div id="outline-container-orgba10d6b" class="outline-2">
-<h2 id="orgba10d6b"><span class="section-number-2">6</span> Examples</h2>
-<div class="outline-text-2" id="text-6">
-<div class="org-src-container">
-<pre class="src src-shell">awk <span style="color: #8b2252;">'NR==10 {print}'</span> input.txt <span style="color: #b22222;"># </span><span style="color: #b22222;">output 10th line, or empty is less than 10 lines</span>
-</pre>
-</div>
-</div>
+<div id="outline-container-orge9df5a7" class="outline-2">
+<h2 id="orge9df5a7"><span class="section-number-2">3</span> Probability Example</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2017-12-12 Tue 11:46</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-01 Fri 00:04 -->
+<!-- 2017-12-14 Thu 12:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler</title>
@@ -257,52 +257,66 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4d2f5f9">1. Tmp</a>
+<li><a href="#org48bdee1">1. Tmp</a>
 <ul>
-<li><a href="#orgfcb5f5f">1.1. CYK parser</a></li>
-<li><a href="#orge92665c">1.2. Earley's algorithm</a></li>
+<li><a href="#org13b70f9">1.1. CYK parser</a></li>
+<li><a href="#org39d2e35">1.2. Earley's algorithm</a></li>
 </ul>
 </li>
-<li><a href="#org85a2f0b">2. Parser</a>
+<li><a href="#org8a64783">2. Chomsky Hierarchy</a>
 <ul>
-<li><a href="#orgf402600">2.1. AST</a></li>
-<li><a href="#org00229cb">2.2. <span class="todo TODO">TODO</span> Write/Fix the grammar</a>
-<ul>
-<li><a href="#orgf3ebb2a">2.2.1. <span class="todo TODO">TODO</span> Ambiguity</a></li>
-<li><a href="#org4b6285e">2.2.2. Left Recursion</a></li>
-<li><a href="#org09e5d90">2.2.3. Left Factoring</a></li>
+<li><a href="#org2c61208">2.1. Attribute grammar</a></li>
+<li><a href="#orgc4c1ddb">2.2. Affix grammar</a></li>
+<li><a href="#org07d5382">2.3. two-level grammar</a></li>
+<li><a href="#org7bb2c9d">2.4. Van Wijngaarden grammar</a></li>
+<li><a href="#org2269b64">2.5. Generalized LR parser</a></li>
+<li><a href="#org3561fdd">2.6. About C Grammar</a></li>
 </ul>
 </li>
-<li><a href="#orgfc5da93">2.3. Top Down Parsing</a>
+<li><a href="#org465b2a5">3. Parser</a>
 <ul>
-<li><a href="#org1a9b0df">2.3.1. <span class="todo TODO">TODO</span> LL(1)</a></li>
-<li><a href="#org03c776a">2.3.2. Recursive Decent Parser v.s. LR Parser generator</a></li>
-</ul>
-</li>
-<li><a href="#orgb79867d">2.4. Bottom Up Parsing</a>
+<li><a href="#orgec22bcb">3.1. AST</a></li>
+<li><a href="#org811f2f7">3.2. <span class="todo TODO">TODO</span> Write/Fix the grammar</a>
 <ul>
-<li><a href="#orgff882e7">2.4.1. shift-reduce parsing</a></li>
-<li><a href="#orga85d4bc">2.4.2. LR(k) Parsing</a>
+<li><a href="#org0bbe0ad">3.2.1. <span class="todo TODO">TODO</span> Ambiguity</a></li>
+<li><a href="#org1cdaaba">3.2.2. Left Recursion</a></li>
+<li><a href="#org6a50ab3">3.2.3. Left Factoring</a></li>
+</ul>
+</li>
+<li><a href="#orgb29a3d9">3.3. Top Down Parsing</a>
 <ul>
-<li><a href="#org8401fd4">2.4.2.1. Simple LR Parsing (SLR)</a></li>
-<li><a href="#org2a29f4d">2.4.2.2. LR(1)</a></li>
+<li><a href="#org2a1eb40">3.3.1. <span class="todo TODO">TODO</span> LL(1)</a></li>
+<li><a href="#org9888422">3.3.2. Recursive Decent Parser v.s. LR Parser generator</a></li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgb71f96d">3. Syntax Directed Translation</a></li>
-<li><a href="#org96289f7">4. FIRST and FOLLOW</a></li>
-<li><a href="#org5801305">5. Error Recovery</a></li>
-<li><a href="#orgba0c185">6. Tools</a>
+<li><a href="#org8da52da">3.4. Bottom Up Parsing</a>
 <ul>
-<li><a href="#orgc9fd2f3">6.1. Elsa and Elkhound</a></li>
-<li><a href="#org8822d6a">6.2. Semantic Design Inc</a></li>
-<li><a href="#org4ec86b2">6.3. Parser generator</a></li>
+<li><a href="#org824c2e3">3.4.1. shift-reduce parsing</a>
+<ul>
+<li><a href="#orgfad3cc0">3.4.1.1. The dangling else problem</a></li>
 </ul>
 </li>
-<li><a href="#org4951e92">7. Samples</a></li>
+<li><a href="#orgdc01e0d">3.4.2. LR(k) Parsing</a>
+<ul>
+<li><a href="#org1a11429">3.4.2.1. Simple LR Parsing (SLR)</a></li>
+<li><a href="#orgb80a362">3.4.2.2. LR(1)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd6eef91">4. Syntax Directed Translation</a></li>
+<li><a href="#org2ee913b">5. FIRST and FOLLOW</a></li>
+<li><a href="#orgf0b5063">6. Error Recovery</a></li>
+<li><a href="#orgd9f2d57">7. Tools</a>
+<ul>
+<li><a href="#org01b5a32">7.1. Elsa and Elkhound</a></li>
+<li><a href="#org4594cb3">7.2. Semantic Design Inc</a></li>
+<li><a href="#orgc447206">7.3. Parser generator</a></li>
+</ul>
+</li>
+<li><a href="#org31de83c">8. Samples</a></li>
 </ul>
 </div>
 </div>
@@ -311,12 +325,12 @@ This file describe the general concept of a compiler. I'm going to
 relearn it in the hard way.
 </p>
 
-<div id="outline-container-org4d2f5f9" class="outline-2">
-<h2 id="org4d2f5f9"><span class="section-number-2">1</span> Tmp</h2>
+<div id="outline-container-org48bdee1" class="outline-2">
+<h2 id="org48bdee1"><span class="section-number-2">1</span> Tmp</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgfcb5f5f" class="outline-3">
-<h3 id="orgfcb5f5f"><span class="section-number-3">1.1</span> CYK parser</h3>
+<div id="outline-container-org13b70f9" class="outline-3">
+<h3 id="org13b70f9"><span class="section-number-3">1.1</span> CYK parser</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 According to the length \(n\) of the program measured by tokens, it
@@ -333,8 +347,8 @@ a a b b
 </div>
 </div>
 
-<div id="outline-container-orge92665c" class="outline-3">
-<h3 id="orge92665c"><span class="section-number-3">1.2</span> Earley's algorithm</h3>
+<div id="outline-container-org39d2e35" class="outline-3">
+<h3 id="org39d2e35"><span class="section-number-3">1.2</span> Earley's algorithm</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Invented by Jay Earley, it is used to parse CFG. It can parse all CFG,
@@ -381,10 +395,269 @@ procedure COMPLETER((B → γ•, j), k)
 </div>
 </div>
 
-
-<div id="outline-container-org85a2f0b" class="outline-2">
-<h2 id="org85a2f0b"><span class="section-number-2">2</span> Parser</h2>
+<div id="outline-container-org8a64783" class="outline-2">
+<h2 id="org8a64783"><span class="section-number-2">2</span> Chomsky Hierarchy</h2>
 <div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org2c61208" class="outline-3">
+<h3 id="org2c61208"><span class="section-number-3">2.1</span> Attribute grammar</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The <b>evaluation</b> of the node will benefit from the attributes. It is
+categories into synthesized attributes and inherited attributes. This
+is mentioned in the syntax-directed translation part of dragon book,
+so I don't really think it is syntax related.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4c1ddb" class="outline-3">
+<h3 id="orgc4c1ddb"><span class="section-number-3">2.2</span> Affix grammar</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+This seems to be synonyms of attribute grammar. Wikipedia has an
+example of using it to resolve the plural verbs, e.g. <code>John likes
+children</code>. The grammar does make perfect sense to me though.
+</p>
+
+<pre class="example">
+Sentence → Subject + number Predicate+number
+Subject + number → Noun + number
+Predicate + number → Verb + number Object
+Object → Noun + number
+Noun + singular → John
+Noun + singular → Mary
+Noun + plural → children
+Noun + plural → parents
+Verb + singular → likes
+Verb + plural → like
+Verb + singular → helps
+Verb + plural → help
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org07d5382" class="outline-3">
+<h3 id="org07d5382"><span class="section-number-3">2.3</span> two-level grammar</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Two level grammar is used to generate another formal grammar. This is
+like meta programming, or abstraction. One advantage is that is can
+define a grammar with infinite number of rules, due that it is
+generated.
+</p>
+
+<p>
+For the context-sensitive language <code>{a^nb^nc^n}</code>, the two level
+grammar is:
+</p>
+<pre class="example">
+N ::= 1 | N1
+X ::= a | b
+</pre>
+
+<p>
+<b>Together</b> with the schema:
+</p>
+<pre class="example">
+S ::= &lt;a^N&gt;&lt;b^N&gt;&lt;c^N&gt;
+&lt;X^{N1}&gt; ::= &lt;X^N&gt; X
+&lt;X^1&gt; ::= X
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7bb2c9d" class="outline-3">
+<h3 id="org7bb2c9d"><span class="section-number-3">2.4</span> Van Wijngaarden grammar</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+It is named by its inventor, and used in the language ALGOL 68. It is
+also called vW-grammar, or W-grammar. Also note that it is too
+powerful and also impractical as well.
+</p>
+
+
+<p>
+It is:
+</p>
+<ul class="org-ul">
+<li>affix grammar</li>
+<li>two-level grammar</li>
+</ul>
+
+<p>
+The ALGOL 68 grammar:
+</p>
+<pre class="example">
+a) program : open symbol, standard prelude,
+     library prelude option, particular program, exit,
+     library postlude option, standard postlude, close symbol.
+b) standard prelude : declaration prelude sequence.
+c) library prelude : declaration prelude sequence.
+d) particular program :
+     label sequence option, strong CLOSED void clause.
+e) exit : go on symbol, letter e letter x letter i letter t, label symbol.
+f) library postlude : statement interlude.
+g) standard postlude : strong void clause train
+</pre>
+
+<p>
+The idea is simple: provide non-terminal symbols with attributes (or
+affixes) that pass information between nodes of parse tree. This seems
+essentially to be using syntax to specify semantics. E.g. <code>variable :=
+value</code> is in-complete but instead <code>REF TYPE variable := TYPE value</code>.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2269b64" class="outline-3">
+<h3 id="org2269b64"><span class="section-number-3">2.5</span> Generalized LR parser</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+LR cannot handle nondeteministic and ambiguous grammars. GLR allows
+shift/reduce and reduce/reduce conflicts. It does that by doing a
+breadth-first-search, whenever multiple choices can be taken. All the
+choices are explored simultaneously, until it reach an error state or
+merge into another (if they generate the same set of symbols).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3561fdd" class="outline-3">
+<h3 id="org3561fdd"><span class="section-number-3">2.6</span> About C Grammar</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+This is a easily misunderstood problem.
+There's a old 1989 discussion on comp.lang.misc:
+</p>
+<ul class="org-ul">
+<li><a href="https://groups.google.com/forum/#!topic/comp.lang.misc/MCZmQv56--Q">https://groups.google.com/forum/#!topic/comp.lang.misc/MCZmQv56--Q</a></li>
+</ul>
+
+<p>
+So here's my understanding:
+C language is context sensitive:
+</p>
+<ul class="org-ul">
+<li>an identifier must be previously defined, to be able to be a typedef-name
+<ul class="org-ul">
+<li>this is different from an undeclared variable: an identifier is
+always parsed into category "identifier", regardless of whether it
+has been declared. However, undefined typedefs are ambiguous.</li>
+<li>typedef-name : identifier</li>
+</ul></li>
+<li>else must match the closest else-less if</li>
+<li>continue and break must be in correct context</li>
+</ul>
+
+<p>
+On the other hand, the C grammar in the back of K&amp;R, <b>is</b>
+context-free, because it is in BNF format. However, it accepts more
+than C language.
+</p>
+
+<p>
+Also in another word, the K&amp;R grammar generates valid C programs and
+some invalid ones, and those are detected by the semantic analyzer.
+</p>
+
+<p>
+A word about ambiguity: it does not affect the language it generates,
+but only generates (or recognizes) the same sentence in multiple ways.
+</p>
+
+<p>
+Yacc generates LALR(1) parser. The C grammar is not a <i>no-feedback
+yacc-able grammar.</i> The thing is, when the lexer is trying the rule
+"typedef-name: identifier", the lexer should answer "typedef-name" iff
+the identifier happens to be a typedef name.. We also need to make
+sure that it tries this rule before the rule "primary: identifier". So
+the implementation is to add a predicate
+"identifier-is-really-typedef" to the action of the rule
+"typedef-name".
+</p>
+
+
+<p>
+K&amp;R has the following sentence:
+</p>
+<blockquote>
+<p>
+With one further change, namely deleting the production typedef-name:
+identifier and making typedef-name a terminal symbol, this grammar is
+acceptable to the YACC parser-generator.
+</p>
+</blockquote>
+
+<p>
+This is the fundamental reason why the yacc grammar differs from the
+K&amp;R grammar. The typedef-name a terminal symbol also means that, C
+does have a infinite number of (non?-)terminals.
+</p>
+
+<p>
+David Gudeman in that mailing archive said one sentence:
+</p>
+<blockquote>
+<p>
+The grammar is intended to show syntactic categories with semantic
+attachment.
+</p>
+</blockquote>
+
+<p>
+And someone said:
+</p>
+<blockquote>
+<p>
+we generally do not write grammars that accept only strictly correct
+inputs.  Instead, we take some shortcuts and patch things up via
+semantics.
+</p>
+</blockquote>
+
+<p>
+Chris Torek:
+</p>
+<blockquote>
+<p>
+Strictly speaking (as long as you stick with `typedef produces a new
+type specifier'), C's grammar is not context free; but it is indeed
+not seriously `screwed up'.  Perfect generators are not necessary, and
+a language `close enough to C' exists that can be parsed simply.
+</p>
+</blockquote>
+
+<p>
+Since typedef produce a new "terminal", can we really say C grammar
+has infinite number of "terminals", and the definition of Chomsky
+hierarchy context free grammar does not hold for C grammar.
+</p>
+
+<p>
+The C grammar in back of K&amp;R by no means is the correct C grammar, or
+the grammar used in compiler implementation.
+</p>
+
+<p>
+The typedef-name problem is also called <i>The Lexer Hack</i>. There must
+be a feedback loop from the parser to insert the typedef-name into the
+symbol table, and the lexer will use this information to determine
+whether it is a typedef-name or token. The parser action must insert
+this table before the <code>,=;</code> declarator terminator, because the lexer
+is allowed to lookahead 1 token, and the token might be an identifier.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org465b2a5" class="outline-2">
+<h2 id="org465b2a5"><span class="section-number-2">3</span> Parser</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Three category of parsers:
 </p>
@@ -432,9 +705,9 @@ parentheses, begin-end, if-then-else.</li>
 </ul>
 </div>
 
-<div id="outline-container-orgf402600" class="outline-3">
-<h3 id="orgf402600"><span class="section-number-3">2.1</span> AST</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgec22bcb" class="outline-3">
+<h3 id="orgec22bcb"><span class="section-number-3">3.1</span> AST</h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>In Syntax Tree, interior nodes represent programming constructs.</li>
 <li>In parse tree, interior nodes represent non-terminals</li>
@@ -531,16 +804,16 @@ A very good comparison on a lecture note <sup><a id="fnr.6" class="footref" href
 </p>
 </div>
 </div>
-<div id="outline-container-org00229cb" class="outline-3">
-<h3 id="org00229cb"><span class="section-number-3">2.2</span> <span class="todo TODO">TODO</span> Write/Fix the grammar</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org811f2f7" class="outline-3">
+<h3 id="org811f2f7"><span class="section-number-3">3.2</span> <span class="todo TODO">TODO</span> Write/Fix the grammar</h3>
+<div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgf3ebb2a" class="outline-4">
-<h4 id="orgf3ebb2a"><span class="section-number-4">2.2.1</span> <span class="todo TODO">TODO</span> Ambiguity</h4>
+<div id="outline-container-org0bbe0ad" class="outline-4">
+<h4 id="org0bbe0ad"><span class="section-number-4">3.2.1</span> <span class="todo TODO">TODO</span> Ambiguity</h4>
 </div>
-<div id="outline-container-org4b6285e" class="outline-4">
-<h4 id="org4b6285e"><span class="section-number-4">2.2.2</span> Left Recursion</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-org1cdaaba" class="outline-4">
+<h4 id="org1cdaaba"><span class="section-number-4">3.2.2</span> Left Recursion</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <p>
 Top down parser cannot handle left recursion.
 </p>
@@ -562,9 +835,9 @@ R ::= alpha | epsilon
 </div>
 </div>
 
-<div id="outline-container-org09e5d90" class="outline-4">
-<h4 id="org09e5d90"><span class="section-number-4">2.2.3</span> Left Factoring</h4>
-<div class="outline-text-4" id="text-2-2-3">
+<div id="outline-container-org6a50ab3" class="outline-4">
+<h4 id="org6a50ab3"><span class="section-number-4">3.2.3</span> Left Factoring</h4>
+<div class="outline-text-4" id="text-3-2-3">
 <p>
 a technique to rewrite production rule to achieve the effect that we
 wait until enough input has been seen to make decision. It makes
@@ -575,9 +848,9 @@ grammar more suitable for predictive or top-down parsing.
 </div>
 
 
-<div id="outline-container-orgfc5da93" class="outline-3">
-<h3 id="orgfc5da93"><span class="section-number-3">2.3</span> Top Down Parsing</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgb29a3d9" class="outline-3">
+<h3 id="orgb29a3d9"><span class="section-number-3">3.3</span> Top Down Parsing</h3>
+<div class="outline-text-3" id="text-3-3">
 <dl class="org-dl">
 <dt>Recusrive descent parsing</dt><dd><ul class="org-ul">
 <li>general form of top-down parsing</li>
@@ -625,9 +898,9 @@ A without consuming any input.
 </p>
 </div>
 
-<div id="outline-container-org1a9b0df" class="outline-4">
-<h4 id="org1a9b0df"><span class="section-number-4">2.3.1</span> <span class="todo TODO">TODO</span> LL(1)</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<div id="outline-container-org2a1eb40" class="outline-4">
+<h4 id="org2a1eb40"><span class="section-number-4">3.3.1</span> <span class="todo TODO">TODO</span> LL(1)</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <p>
 What's the LL?
 </p>
@@ -655,9 +928,9 @@ we use <i>non-recursive predictive parsing</i>.  Do not need recursive call
 </div>
 </div>
 
-<div id="outline-container-org03c776a" class="outline-4">
-<h4 id="org03c776a"><span class="section-number-4">2.3.2</span> Recursive Decent Parser v.s. LR Parser generator</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<div id="outline-container-org9888422" class="outline-4">
+<h4 id="org9888422"><span class="section-number-4">3.3.2</span> Recursive Decent Parser v.s. LR Parser generator</h4>
+<div class="outline-text-4" id="text-3-3-2">
 <p>
 Well, In a word, this is actually important. See what the clang guys say <sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>
 </p>
@@ -680,9 +953,9 @@ excellent diagnostics and error recovery.
 
 
 
-<div id="outline-container-orgb79867d" class="outline-3">
-<h3 id="orgb79867d"><span class="section-number-3">2.4</span> Bottom Up Parsing</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-org8da52da" class="outline-3">
+<h3 id="org8da52da"><span class="section-number-3">3.4</span> Bottom Up Parsing</h3>
+<div class="outline-text-3" id="text-3-4">
 <dl class="org-dl">
 <dt>shift-reduce parsing</dt><dd>a general style of bottom-up parsing</dd>
 <dt>LR grammar</dt><dd>the largest class of grammars for which shift-reduce
@@ -700,9 +973,9 @@ non-terminal. Thus the key decisions are:
 </ul>
 </div>
 
-<div id="outline-container-orgff882e7" class="outline-4">
-<h4 id="orgff882e7"><span class="section-number-4">2.4.1</span> shift-reduce parsing</h4>
-<div class="outline-text-4" id="text-2-4-1">
+<div id="outline-container-org824c2e3" class="outline-4">
+<h4 id="org824c2e3"><span class="section-number-4">3.4.1</span> shift-reduce parsing</h4>
+<div class="outline-text-4" id="text-3-4-1">
 <p>
 Think about a stack holding current string, and the input holding the rest input tokens.
 </p>
@@ -723,11 +996,72 @@ The conflict here:
 Grammar that contains these conflicts are non-LR grammar.
 </p>
 </div>
+
+<div id="outline-container-orgfad3cc0" class="outline-5">
+<h5 id="orgfad3cc0"><span class="section-number-5">3.4.1.1</span> The dangling else problem</h5>
+<div class="outline-text-5" id="text-3-4-1-1">
+<p>
+This is a canonical example for shift/reduce conflict. The C grammar
+for selection-statement is like this. <a href="https://www.gnu.org/software/bison/manual/html_node/Shift_002fReduce.html">The bison way</a> to deal with it is
+to "choose shift, unless otherwise directed by operator precedence
+declarations". This naturally groups the else with nearest if. But
+bison will <i>STILL</i> report 2 shift/reduce conflicts. You can suppress
+this warning by use <code>%expect 2</code>, but this is not recommended.
+</p>
+
+<p>
+More elegant way is to use precedence or associativity. To do this,
+either make <code>else</code> to have higher precedence than <code>then</code>, <i>OR</i> make them
+equal precedence, but give both <code>then</code> and <code>else</code> right
+associativity. In the case there is no <code>then</code> keyword, like C, the
+terminal is <code>r-paren</code>.
+</p>
+
+<p>
+Below is the code giving <code>else</code> higher precedence. Note that <code>%token</code>
+only declares the token exists, no precedence. <code>%precedence</code> does both
+declaring and precedence assigning. It follows the same rule: the
+lower the position, the higher the precedence.
+</p>
+<pre class="example">
+%precedence "then"
+%precedence "else"
+</pre>
+
+<p>
+Give right associativity:
+</p>
+<pre class="example">
+%right "then" "else"
+</pre>
+
+
+
+<p>
+One more way to resolve this is to slightly modify the grammar:
+</p>
+<pre class="example">
+statement = ...
+   | selection-statement
+
+statement-with-else = ...
+   | selection-statement-with-else
+
+selection-statement = ...
+   | IF ( expression ) statement
+   | IF ( expression ) statement-with-else ELSE statement
+
+selection-statement-with-else = ...
+   | IF ( expression ) statement-with-else ELSE statement-with-else
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orga85d4bc" class="outline-4">
-<h4 id="orga85d4bc"><span class="section-number-4">2.4.2</span> LR(k) Parsing</h4>
-<div class="outline-text-4" id="text-2-4-2">
+
+<div id="outline-container-orgdc01e0d" class="outline-4">
+<h4 id="orgdc01e0d"><span class="section-number-4">3.4.2</span> LR(k) Parsing</h4>
+<div class="outline-text-4" id="text-3-4-2">
 <dl class="org-dl">
 <dt>L</dt><dd>left to right scanning</dd>
 <dt>R</dt><dd>producing rightmost derivation</dd>
@@ -759,9 +1093,9 @@ The drawback: hard to construct by hand.
 </p>
 </div>
 
-<div id="outline-container-org8401fd4" class="outline-5">
-<h5 id="org8401fd4"><span class="section-number-5">2.4.2.1</span> Simple LR Parsing (SLR)</h5>
-<div class="outline-text-5" id="text-2-4-2-1">
+<div id="outline-container-org1a11429" class="outline-5">
+<h5 id="org1a11429"><span class="section-number-5">3.4.2.1</span> Simple LR Parsing (SLR)</h5>
+<div class="outline-text-5" id="text-3-4-2-1">
 <dl class="org-dl">
 <dt>LR(0) Item</dt><dd>each production rule will be written in a dot format:
 put one dot somewhere in the rule. This will result in
@@ -874,9 +1208,9 @@ in FOLLOW(A).</dd>
 </div>
 </div>
 
-<div id="outline-container-org2a29f4d" class="outline-5">
-<h5 id="org2a29f4d"><span class="section-number-5">2.4.2.2</span> LR(1)</h5>
-<div class="outline-text-5" id="text-2-4-2-2">
+<div id="outline-container-orgb80a362" class="outline-5">
+<h5 id="orgb80a362"><span class="section-number-5">3.4.2.2</span> LR(1)</h5>
+<div class="outline-text-5" id="text-3-4-2-2">
 <p>
 So we now allow lookahead. By this we can handle more grammars than
 LR(0). There're two methods:
@@ -897,9 +1231,9 @@ parsing table is no bigger than SLR tables. The modern choice.</dd>
 
 
 
-<div id="outline-container-orgb71f96d" class="outline-2">
-<h2 id="orgb71f96d"><span class="section-number-2">3</span> Syntax Directed Translation</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgd6eef91" class="outline-2">
+<h2 id="orgd6eef91"><span class="section-number-2">4</span> Syntax Directed Translation</h2>
+<div class="outline-text-2" id="text-4">
 <dl class="org-dl">
 <dt>Syntax Directed Definition (SDD)</dt><dd>a context-free grammar together
 with attributes and rules. Attributes are associated with grammar
@@ -953,9 +1287,9 @@ evaluate in a pre-order traversal of the tree.</li>
 </div>
 </div>
 
-<div id="outline-container-org96289f7" class="outline-2">
-<h2 id="org96289f7"><span class="section-number-2">4</span> FIRST and FOLLOW</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org2ee913b" class="outline-2">
+<h2 id="org2ee913b"><span class="section-number-2">5</span> FIRST and FOLLOW</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 The construction of <i>both</i> top-down and bottom-up parsers needs these
 two functions.
@@ -971,9 +1305,9 @@ appear immediately to the right of A.</dd>
 </div>
 
 
-<div id="outline-container-org5801305" class="outline-2">
-<h2 id="org5801305"><span class="section-number-2">5</span> Error Recovery</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgf0b5063" class="outline-2">
+<h2 id="orgf0b5063"><span class="section-number-2">6</span> Error Recovery</h2>
+<div class="outline-text-2" id="text-6">
 <dl class="org-dl">
 <dt>panic-mode</dt><dd>discard input symbols until <i>synchronizing tokens</i> are
 found. This is typically delimiters, such as semicolon
@@ -991,13 +1325,13 @@ correction. (What are they??) [Dragon P196]</dd>
 
 
 
-<div id="outline-container-orgba0c185" class="outline-2">
-<h2 id="orgba0c185"><span class="section-number-2">6</span> Tools</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgd9f2d57" class="outline-2">
+<h2 id="orgd9f2d57"><span class="section-number-2">7</span> Tools</h2>
+<div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgc9fd2f3" class="outline-3">
-<h3 id="orgc9fd2f3"><span class="section-number-3">6.1</span> Elsa and Elkhound</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-org01b5a32" class="outline-3">
+<h3 id="org01b5a32"><span class="section-number-3">7.1</span> Elsa and Elkhound</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li><a href="http://www.scottmcpeak.com/elkhound/">http://www.scottmcpeak.com/elkhound/</a></li>
 </ul>
@@ -1030,9 +1364,9 @@ The downside, since it is more general, is slower performance.
 </div>
 </div>
 
-<div id="outline-container-org8822d6a" class="outline-3">
-<h3 id="org8822d6a"><span class="section-number-3">6.2</span> Semantic Design Inc</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-org4594cb3" class="outline-3">
+<h3 id="org4594cb3"><span class="section-number-3">7.2</span> Semantic Design Inc</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 A Commercial Parser Front end:
 </p>
@@ -1042,9 +1376,9 @@ A Commercial Parser Front end:
 </div>
 </div>
 
-<div id="outline-container-org4ec86b2" class="outline-3">
-<h3 id="org4ec86b2"><span class="section-number-3">6.3</span> Parser generator</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgc447206" class="outline-3">
+<h3 id="orgc447206"><span class="section-number-3">7.3</span> Parser generator</h3>
+<div class="outline-text-3" id="text-7-3">
 <dl class="org-dl">
 <dt>yacc &amp; lex</dt><dd>generate LALR</dd>
 <dt>bison &amp; flex</dt><dd>open source for yacc, so also LALR</dd>
@@ -1056,9 +1390,9 @@ A Commercial Parser Front end:
 
 
 
-<div id="outline-container-org4951e92" class="outline-2">
-<h2 id="org4951e92"><span class="section-number-2">7</span> Samples</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org31de83c" class="outline-2">
+<h2 id="org31de83c"><span class="section-number-2">8</span> Samples</h2>
+<div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 <pre class="src src-clang">int main() {
   int a,b;
@@ -1107,7 +1441,7 @@ A Commercial Parser Front end:
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-01 Fri 00:04</p>
+<p class="date">Created: 2017-12-14 Thu 12:25</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-11-20 Mon 10:50 -->
+<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler Implementation</title>
@@ -235,55 +235,55 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org74ae12e">1. Linker</a></li>
-<li><a href="#orgd0caeb8">2. AddressSanitizer</a></li>
-<li><a href="#orgc782fea">3. C Preprocessor (CPP)</a>
+<li><a href="#org72f1ee2">1. Linker</a></li>
+<li><a href="#orgb772fee">2. AddressSanitizer</a></li>
+<li><a href="#orga25edc5">3. C Preprocessor (CPP)</a>
 <ul>
-<li><a href="#org521169e">3.1. The processing</a>
+<li><a href="#org26a2a80">3.1. The processing</a>
 <ul>
-<li><a href="#orgacc3c5c">3.1.1. Compiler option to separate them</a></li>
-<li><a href="#org92181d7">3.1.2. self-referential macro</a></li>
+<li><a href="#org6dcf4e1">3.1.1. Compiler option to separate them</a></li>
+<li><a href="#orgd72af32">3.1.2. self-referential macro</a></li>
 </ul>
 </li>
-<li><a href="#org21f25b9">3.2. Predefined macros</a>
+<li><a href="#orgb733cae">3.2. Predefined macros</a>
 <ul>
-<li><a href="#orgd7bb79e">3.2.1. Standard (in language specification)</a></li>
-<li><a href="#orgd1c9988">3.2.2. Common GNU C extension</a></li>
-<li><a href="#org435be6f">3.2.3. system specific</a>
+<li><a href="#orgf729cde">3.2.1. Standard (in language specification)</a></li>
+<li><a href="#orgdbf25cc">3.2.2. Common GNU C extension</a></li>
+<li><a href="#orgc9d193b">3.2.3. system specific</a>
 <ul>
-<li><a href="#org0b86902">3.2.3.1. MAC</a></li>
-<li><a href="#org743a750">3.2.3.2. Ubuntu</a></li>
+<li><a href="#org2522df8">3.2.3.1. MAC</a></li>
+<li><a href="#org0752ec7">3.2.3.2. Ubuntu</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga4b797d">3.3. Stringification</a></li>
-<li><a href="#org6cd125b">3.4. token-pasting</a></li>
-<li><a href="#org6d60344">3.5. Line Markers</a></li>
+<li><a href="#org5d4e4f3">3.3. Stringification</a></li>
+<li><a href="#org539aade">3.4. token-pasting</a></li>
+<li><a href="#orgcb3b45d">3.5. Line Markers</a></li>
 </ul>
 </li>
-<li><a href="#org2f4b1b6">4. Special Notations</a>
+<li><a href="#orgd018344">4. Special Notations</a>
 <ul>
-<li><a href="#orge90101d">4.1. Line Control</a></li>
+<li><a href="#org1d80233">4.1. Line Control</a></li>
 </ul>
 </li>
-<li><a href="#orgdccdf18">5. GCC options</a></li>
-<li><a href="#orgb2d95c3">6. Misc</a></li>
+<li><a href="#org6547105">5. GCC options</a></li>
+<li><a href="#orgac9de0b">6. Misc</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org74ae12e" class="outline-2">
-<h2 id="org74ae12e"><span class="section-number-2">1</span> Linker</h2>
+<div id="outline-container-org72f1ee2" class="outline-2">
+<h2 id="org72f1ee2"><span class="section-number-2">1</span> Linker</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt><code>ldd</code></dt><dd>show the dynamic library used by an executable</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgd0caeb8" class="outline-2">
-<h2 id="orgd0caeb8"><span class="section-number-2">2</span> AddressSanitizer</h2>
+<div id="outline-container-orgb772fee" class="outline-2">
+<h2 id="orgb772fee"><span class="section-number-2">2</span> AddressSanitizer</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>wiki: <a href="https://github.com/google/sanitizers/wiki">https://github.com/google/sanitizers/wiki</a></li>
@@ -325,15 +325,15 @@ ASAN_OPTIONS=halt_on_error=1 ./a.out
 </div>
 </div>
 
-<div id="outline-container-orgc782fea" class="outline-2">
-<h2 id="orgc782fea"><span class="section-number-2">3</span> C Preprocessor (CPP)</h2>
+<div id="outline-container-orga25edc5" class="outline-2">
+<h2 id="orga25edc5"><span class="section-number-2">3</span> C Preprocessor (CPP)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The CPP Manual : <a href="https://gcc.gnu.org/onlinedocs/cpp/">https://gcc.gnu.org/onlinedocs/cpp/</a>
 </p>
 </div>
-<div id="outline-container-org521169e" class="outline-3">
-<h3 id="org521169e"><span class="section-number-3">3.1</span> The processing</h3>
+<div id="outline-container-org26a2a80" class="outline-3">
+<h3 id="org26a2a80"><span class="section-number-3">3.1</span> The processing</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The following textural transformation is done before everything:
@@ -380,8 +380,8 @@ all arguments to a macro are completely macro-expanded before they are substitut
 </p>
 </div>
 
-<div id="outline-container-orgacc3c5c" class="outline-4">
-<h4 id="orgacc3c5c"><span class="section-number-4">3.1.1</span> Compiler option to separate them</h4>
+<div id="outline-container-org6dcf4e1" class="outline-4">
+<h4 id="org6dcf4e1"><span class="section-number-4">3.1.1</span> Compiler option to separate them</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Generally the compiler will do preprocessing, compilation, assembling, and linking in order.
@@ -394,8 +394,8 @@ cc -E a.c # only do preprocessing, output to stdout &gt; a.i
 </div>
 </div>
 
-<div id="outline-container-org92181d7" class="outline-4">
-<h4 id="org92181d7"><span class="section-number-4">3.1.2</span> self-referential macro</h4>
+<div id="outline-container-orgd72af32" class="outline-4">
+<h4 id="orgd72af32"><span class="section-number-4">3.1.2</span> self-referential macro</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 A self-referential macro is one whose name appears in its definition
@@ -414,12 +414,12 @@ In most cases, it is a bad idea to take advantage of this feature.
 
 
 
-<div id="outline-container-org21f25b9" class="outline-3">
-<h3 id="org21f25b9"><span class="section-number-3">3.2</span> Predefined macros</h3>
+<div id="outline-container-orgb733cae" class="outline-3">
+<h3 id="orgb733cae"><span class="section-number-3">3.2</span> Predefined macros</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgd7bb79e" class="outline-4">
-<h4 id="orgd7bb79e"><span class="section-number-4">3.2.1</span> Standard (in language specification)</h4>
+<div id="outline-container-orgf729cde" class="outline-4">
+<h4 id="orgf729cde"><span class="section-number-4">3.2.1</span> Standard (in language specification)</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <dl class="org-dl">
 <dt><code>__FILE__</code></dt><dd>expands to the name of the current input file, in the form of a C string constant
@@ -465,8 +465,8 @@ If the day of the month is less than 10, it is padded with a space on the left.<
 </dl>
 </div>
 </div>
-<div id="outline-container-orgd1c9988" class="outline-4">
-<h4 id="orgd1c9988"><span class="section-number-4">3.2.2</span> Common GNU C extension</h4>
+<div id="outline-container-orgdbf25cc" class="outline-4">
+<h4 id="orgdbf25cc"><span class="section-number-4">3.2.2</span> Common GNU C extension</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 I only list some interesting ones. For the full list see the page in <a href="https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html">gcc manual</a>.
@@ -479,8 +479,8 @@ I only list some interesting ones. For the full list see the page in <a href="ht
 </div>
 </div>
 
-<div id="outline-container-org435be6f" class="outline-4">
-<h4 id="org435be6f"><span class="section-number-4">3.2.3</span> system specific</h4>
+<div id="outline-container-orgc9d193b" class="outline-4">
+<h4 id="orgc9d193b"><span class="section-number-4">3.2.3</span> system specific</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 To find the macros that are defined in current system:
@@ -493,8 +493,8 @@ C-d <span style="color: #b22222;"># </span><span style="color: #b22222;">EOF, se
 </div>
 </div>
 
-<div id="outline-container-org0b86902" class="outline-5">
-<h5 id="org0b86902"><span class="section-number-5">3.2.3.1</span> MAC</h5>
+<div id="outline-container-org2522df8" class="outline-5">
+<h5 id="org2522df8"><span class="section-number-5">3.2.3.1</span> MAC</h5>
 <div class="outline-text-5" id="text-3-2-3-1">
 <pre class="example">
 #define OBJC_NEW_PROPERTIES 1
@@ -514,8 +514,8 @@ C-d <span style="color: #b22222;"># </span><span style="color: #b22222;">EOF, se
 </div>
 </div>
 
-<div id="outline-container-org743a750" class="outline-5">
-<h5 id="org743a750"><span class="section-number-5">3.2.3.2</span> Ubuntu</h5>
+<div id="outline-container-org0752ec7" class="outline-5">
+<h5 id="org0752ec7"><span class="section-number-5">3.2.3.2</span> Ubuntu</h5>
 <div class="outline-text-5" id="text-3-2-3-2">
 <pre class="example">
 #define __unix__ 1
@@ -530,8 +530,8 @@ C-d <span style="color: #b22222;"># </span><span style="color: #b22222;">EOF, se
 </div>
 </div>
 
-<div id="outline-container-orga4b797d" class="outline-3">
-<h3 id="orga4b797d"><span class="section-number-3">3.3</span> Stringification</h3>
+<div id="outline-container-org5d4e4f3" class="outline-3">
+<h3 id="org5d4e4f3"><span class="section-number-3">3.3</span> Stringification</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Stringification.html">https://gcc.gnu.org/onlinedocs/cpp/Stringification.html</a>
@@ -556,8 +556,8 @@ in order to get a valid C string constant with the proper contents.
 </p>
 </div>
 </div>
-<div id="outline-container-org6cd125b" class="outline-3">
-<h3 id="org6cd125b"><span class="section-number-3">3.4</span> token-pasting</h3>
+<div id="outline-container-org539aade" class="outline-3">
+<h3 id="org539aade"><span class="section-number-3">3.4</span> token-pasting</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html">https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html</a>
@@ -629,8 +629,8 @@ printf_s( <span style="color: #8b2252;">"token9 = %d"</span>, token9 );
 </div>
 </div>
 
-<div id="outline-container-org6d60344" class="outline-3">
-<h3 id="org6d60344"><span class="section-number-3">3.5</span> Line Markers</h3>
+<div id="outline-container-orgcb3b45d" class="outline-3">
+<h3 id="orgcb3b45d"><span class="section-number-3">3.5</span> Line Markers</h3>
 <div class="outline-text-3" id="text-3-5">
 <pre class="example">
 # linenum filename flags
@@ -661,12 +661,12 @@ except that trailing flags are permitted.
 </div>
 
 
-<div id="outline-container-org2f4b1b6" class="outline-2">
-<h2 id="org2f4b1b6"><span class="section-number-2">4</span> Special Notations</h2>
+<div id="outline-container-orgd018344" class="outline-2">
+<h2 id="orgd018344"><span class="section-number-2">4</span> Special Notations</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orge90101d" class="outline-3">
-<h3 id="orge90101d"><span class="section-number-3">4.1</span> Line Control</h3>
+<div id="outline-container-org1d80233" class="outline-3">
+<h3 id="org1d80233"><span class="section-number-3">4.1</span> Line Control</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 It can have three formats:
@@ -685,8 +685,8 @@ The only things that changed are <code>__FILE__</code> and <code>__LINE__</code>
 </div>
 
 
-<div id="outline-container-orgdccdf18" class="outline-2">
-<h2 id="orgdccdf18"><span class="section-number-2">5</span> GCC options</h2>
+<div id="outline-container-org6547105" class="outline-2">
+<h2 id="org6547105"><span class="section-number-2">5</span> GCC options</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><code>-include</code> include file before parsing</li>
@@ -696,8 +696,8 @@ right before looking for <code>.h</code> file in each directory.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb2d95c3" class="outline-2">
-<h2 id="orgb2d95c3"><span class="section-number-2">6</span> Misc</h2>
+<div id="outline-container-orgac9de0b" class="outline-2">
+<h2 id="orgac9de0b"><span class="section-number-2">6</span> Misc</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>nm a.o</code> list symbols from object files</li>
@@ -707,7 +707,7 @@ right before looking for <code>.h</code> file in each directory.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-11-20 Mon 10:50</p>
+<p class="date">Created: 2017-12-07 Thu 15:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

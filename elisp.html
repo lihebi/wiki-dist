@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-11-20 Mon 10:50 -->
+<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Lisp</title>
@@ -235,123 +235,123 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org411aa2b">1. Evaluation</a>
+<li><a href="#org19ce833">1. Evaluation</a>
 <ul>
-<li><a href="#orge2000dc">1.1. quoting</a></li>
-<li><a href="#org3459cc7">1.2. backquoting</a></li>
+<li><a href="#orgaeb7437">1.1. quoting</a></li>
+<li><a href="#org35513ac">1.2. backquoting</a></li>
 </ul>
 </li>
-<li><a href="#org1bfb751">2. Basic</a>
+<li><a href="#org9662e7f">2. Basic</a>
 <ul>
-<li><a href="#org8b45c56">2.1. Interactive</a></li>
-<li><a href="#orgeeb1905">2.2. Symbol</a>
+<li><a href="#orgdfacd40">2.1. Interactive</a></li>
+<li><a href="#orge0abffd">2.2. Symbol</a>
 <ul>
-<li><a href="#org9ac7adc">2.2.1. property list</a></li>
-<li><a href="#org563f2f5">2.2.2. Variable</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgc64af20">3. Regular Expression</a>
-<ul>
-<li><a href="#org367d770">3.1. syntax</a>
-<ul>
-<li><a href="#org49b0858">3.1.1. basics</a></li>
-<li><a href="#orgff0dcff">3.1.2. Character classes</a></li>
-<li><a href="#org05e09b6">3.1.3. Backslash</a></li>
-<li><a href="#orgf8507ef">3.1.4. Syntax code</a></li>
-</ul>
-</li>
-<li><a href="#org5391d35">3.2. constructing</a></li>
-<li><a href="#org7d78bcc">3.3. Searching</a></li>
-</ul>
-</li>
-<li><a href="#orgf74800d">4. Type</a>
-<ul>
-<li><a href="#org8ef09b0">4.1. number</a></li>
-<li><a href="#org3c03d33">4.2. string</a></li>
-<li><a href="#org87d5959">4.3. cons cell</a></li>
-<li><a href="#org32dcdc5">4.4. list</a>
-<ul>
-<li><a href="#orgfc8489e">4.4.1. construct</a></li>
-<li><a href="#org87e3d1c">4.4.2. access</a></li>
-<li><a href="#orgf6dcdf7">4.4.3. modify</a></li>
-</ul>
-</li>
-<li><a href="#org26570ae">4.5. set</a></li>
-<li><a href="#org407803f">4.6. association list</a></li>
-<li><a href="#orgbe81e55">4.7. property list</a></li>
-<li><a href="#org3aeddec">4.8. sequence</a></li>
-<li><a href="#org2049a79">4.9. array</a>
-<ul>
-<li><a href="#org2918619">4.9.1. constructing</a></li>
-<li><a href="#orgdeeb2d5">4.9.2. accessing</a></li>
-</ul>
-</li>
-<li><a href="#org01200e5">4.10. hash table</a></li>
-</ul>
-</li>
-<li><a href="#orge3d63a1">5. Function</a>
-<ul>
-<li><a href="#org3bba5ab">5.1. define</a></li>
-<li><a href="#orgddd6e99">5.2. Calling</a></li>
-<li><a href="#org41846fc">5.3. Mapping family</a></li>
-<li><a href="#orgac00352">5.4. Anonymous functions</a></li>
-<li><a href="#org7e2fda1">5.5. Macro</a></li>
-</ul>
-</li>
-<li><a href="#org576d8ee">6. Control Structure</a>
-<ul>
-<li><a href="#org244793e">6.1. Sequential</a></li>
-<li><a href="#org6cd5e0e">6.2. Conditional</a>
-<ul>
-<li><a href="#org2225220">6.2.1. logical computation</a></li>
-</ul>
-</li>
-<li><a href="#org68920f6">6.3. Loop</a></li>
-</ul>
-</li>
-<li><a href="#orge3bc3c3">7. Packages</a>
-<ul>
-<li><a href="#org5eb4abc">7.1. Dash.el</a></li>
-<li><a href="#org4932ffa">7.2. s.el</a></li>
-<li><a href="#org165ca6b">7.3. cl-lib.el loop</a>
-<ul>
-<li><a href="#org111c34d">7.3.1. general loop form</a></li>
-<li><a href="#orgc181117">7.3.2. for clauses</a></li>
-<li><a href="#org54c2240">7.3.3. iteration clauses</a></li>
-<li><a href="#org6665599">7.3.4. accumulation clauses</a></li>
-<li><a href="#org30602d7">7.3.5. Other clauses</a></li>
-</ul>
-</li>
-<li><a href="#orge31643b">7.4. cl-lib other</a></li>
-</ul>
-</li>
-<li><a href="#org91c74fd">8. Debugging</a>
-<ul>
-<li><a href="#org6858aec">8.1. lisp debugger</a></li>
-<li><a href="#orgeaa1d68">8.2. Edebug</a>
-<ul>
-<li><a href="#org4e5f675">8.2.1. breakpoints</a></li>
-<li><a href="#orgeeebea9">8.2.2. Moving of point</a></li>
-<li><a href="#org3a917a3">8.2.3. executions</a></li>
-<li><a href="#org07b9a04">8.2.4. evaluation</a></li>
-<li><a href="#orge6ff969">8.2.5. other commands</a></li>
+<li><a href="#org83a3fb6">2.2.1. property list</a></li>
+<li><a href="#orga2ef4df">2.2.2. Variable</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2a1f67f">9. Unit Testing</a>
+<li><a href="#org2f19359">3. Regular Expression</a>
 <ul>
-<li><a href="#org175a563">9.1. Write test</a></li>
-<li><a href="#org4f17b23">9.2. Run test</a></li>
+<li><a href="#org1c6537b">3.1. syntax</a>
+<ul>
+<li><a href="#orgc61c9ed">3.1.1. basics</a></li>
+<li><a href="#org33dc8a3">3.1.2. Character classes</a></li>
+<li><a href="#orgdb504f2">3.1.3. Backslash</a></li>
+<li><a href="#orgc8949bb">3.1.4. Syntax code</a></li>
 </ul>
 </li>
-<li><a href="#orgdf696c4">10. Some random code snippets</a>
+<li><a href="#orgcb458ba">3.2. constructing</a></li>
+<li><a href="#orgdf6ca3a">3.3. Searching</a></li>
+</ul>
+</li>
+<li><a href="#org80defb8">4. Type</a>
+<ul>
+<li><a href="#org6de2d7d">4.1. number</a></li>
+<li><a href="#orgc58295e">4.2. string</a></li>
+<li><a href="#orgafaf6b8">4.3. cons cell</a></li>
+<li><a href="#orgb037d0c">4.4. list</a>
+<ul>
+<li><a href="#orgc9c913c">4.4.1. construct</a></li>
+<li><a href="#orgac4555f">4.4.2. access</a></li>
+<li><a href="#org1507bc2">4.4.3. modify</a></li>
+</ul>
+</li>
+<li><a href="#org2f45a6f">4.5. set</a></li>
+<li><a href="#org50057c5">4.6. association list</a></li>
+<li><a href="#orgd1aaefa">4.7. property list</a></li>
+<li><a href="#orgf23c374">4.8. sequence</a></li>
+<li><a href="#org7c6ff59">4.9. array</a>
+<ul>
+<li><a href="#orge38a571">4.9.1. constructing</a></li>
+<li><a href="#org90bfae4">4.9.2. accessing</a></li>
+</ul>
+</li>
+<li><a href="#org92dcaf9">4.10. hash table</a></li>
+</ul>
+</li>
+<li><a href="#org87f4032">5. Function</a>
+<ul>
+<li><a href="#org0318ddf">5.1. define</a></li>
+<li><a href="#orge0eb70d">5.2. Calling</a></li>
+<li><a href="#orgd3d5575">5.3. Mapping family</a></li>
+<li><a href="#orgdfcc417">5.4. Anonymous functions</a></li>
+<li><a href="#org3d94999">5.5. Macro</a></li>
+</ul>
+</li>
+<li><a href="#org4cead25">6. Control Structure</a>
+<ul>
+<li><a href="#orgd37f2df">6.1. Sequential</a></li>
+<li><a href="#orgeaa3c67">6.2. Conditional</a>
+<ul>
+<li><a href="#orgf2a7af9">6.2.1. logical computation</a></li>
+</ul>
+</li>
+<li><a href="#org464f275">6.3. Loop</a></li>
+</ul>
+</li>
+<li><a href="#orge38c6f7">7. Packages</a>
+<ul>
+<li><a href="#org5e2c5f3">7.1. Dash.el</a></li>
+<li><a href="#org4b8d423">7.2. s.el</a></li>
+<li><a href="#org2b9accc">7.3. cl-lib.el loop</a>
+<ul>
+<li><a href="#org51218d1">7.3.1. general loop form</a></li>
+<li><a href="#org66827e4">7.3.2. for clauses</a></li>
+<li><a href="#orgf70bcaa">7.3.3. iteration clauses</a></li>
+<li><a href="#org35c6f56">7.3.4. accumulation clauses</a></li>
+<li><a href="#org5e0850d">7.3.5. Other clauses</a></li>
+</ul>
+</li>
+<li><a href="#org3df4ce1">7.4. cl-lib other</a></li>
+</ul>
+</li>
+<li><a href="#orgb615c53">8. Debugging</a>
+<ul>
+<li><a href="#org62a0926">8.1. lisp debugger</a></li>
+<li><a href="#orge4b0794">8.2. Edebug</a>
+<ul>
+<li><a href="#org2159625">8.2.1. breakpoints</a></li>
+<li><a href="#org1ec747a">8.2.2. Moving of point</a></li>
+<li><a href="#org7bb1cde">8.2.3. executions</a></li>
+<li><a href="#org0262793">8.2.4. evaluation</a></li>
+<li><a href="#org6e4b4f3">8.2.5. other commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd819a38">9. Unit Testing</a>
+<ul>
+<li><a href="#orgba8fd8d">9.1. Write test</a></li>
+<li><a href="#orgc341a7e">9.2. Run test</a></li>
+</ul>
+</li>
+<li><a href="#org2bb9304">10. Some random code snippets</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org561cf48">10.0.1. Url retrieval</a></li>
+<li><a href="#org80cbf49">10.0.1. Url retrieval</a></li>
 </ul>
 </li>
 </ul>
@@ -371,8 +371,8 @@ them, which in turn was named for its purpose, the construction of
 cells.
 </p>
 </blockquote>
-<div id="outline-container-org411aa2b" class="outline-2">
-<h2 id="org411aa2b"><span class="section-number-2">1</span> Evaluation</h2>
+<div id="outline-container-org19ce833" class="outline-2">
+<h2 id="org19ce833"><span class="section-number-2">1</span> Evaluation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The read and evaluate is <i>seperate</i>. For example, <code>(1 2 3)</code> is a list, and can be read by lisp interpreter as an object: a list.
@@ -386,8 +386,8 @@ For example, the number, the string, evaluates to itself.
 </p>
 </div>
 
-<div id="outline-container-orge2000dc" class="outline-3">
-<h3 id="orge2000dc"><span class="section-number-3">1.1</span> quoting</h3>
+<div id="outline-container-orgaeb7437" class="outline-3">
+<h3 id="orgaeb7437"><span class="section-number-3">1.1</span> quoting</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 From the elisp info page:
@@ -416,8 +416,8 @@ Note that <code>(quote x)</code> and <code>'x</code> are equivalent.
 </div>
 </div>
 
-<div id="outline-container-org3459cc7" class="outline-3">
-<h3 id="org3459cc7"><span class="section-number-3">1.2</span> backquoting</h3>
+<div id="outline-container-org35513ac" class="outline-3">
+<h3 id="org35513ac"><span class="section-number-3">1.2</span> backquoting</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 It is identical to quoting except that it allows to evaluate part of the object.
@@ -454,12 +454,12 @@ Without this feature, you have to write some hard to understand code:
 </div>
 
 
-<div id="outline-container-org1bfb751" class="outline-2">
-<h2 id="org1bfb751"><span class="section-number-2">2</span> Basic</h2>
+<div id="outline-container-org9662e7f" class="outline-2">
+<h2 id="org9662e7f"><span class="section-number-2">2</span> Basic</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8b45c56" class="outline-3">
-<h3 id="org8b45c56"><span class="section-number-3">2.1</span> Interactive</h3>
+<div id="outline-container-orgdfacd40" class="outline-3">
+<h3 id="orgdfacd40"><span class="section-number-3">2.1</span> Interactive</h3>
 <div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt><code>print</code></dt><dd>print the object in quotes, with a newline before and after it</dd>
@@ -470,8 +470,8 @@ Without this feature, you have to write some hard to understand code:
 </div>
 </div>
 
-<div id="outline-container-orgeeb1905" class="outline-3">
-<h3 id="orgeeb1905"><span class="section-number-3">2.2</span> Symbol</h3>
+<div id="outline-container-orge0abffd" class="outline-3">
+<h3 id="orge0abffd"><span class="section-number-3">2.2</span> Symbol</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>defvar</li>
@@ -484,8 +484,8 @@ A symbol can <i>not</i> be both a function and macro, but it can be a variable a
 </p>
 </div>
 
-<div id="outline-container-org9ac7adc" class="outline-4">
-<h4 id="org9ac7adc"><span class="section-number-4">2.2.1</span> property list</h4>
+<div id="outline-container-org83a3fb6" class="outline-4">
+<h4 id="org83a3fb6"><span class="section-number-4">2.2.1</span> property list</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 A symbol can have a property list &#x2026;
@@ -500,8 +500,8 @@ A symbol can have a property list &#x2026;
 </dl>
 </div>
 </div>
-<div id="outline-container-org563f2f5" class="outline-4">
-<h4 id="org563f2f5"><span class="section-number-4">2.2.2</span> Variable</h4>
+<div id="outline-container-orga2ef4df" class="outline-4">
+<h4 id="orga2ef4df"><span class="section-number-4">2.2.2</span> Variable</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Dynamic binding: in the defun, we can refer to free variable. When calling the defun in different environment, it will get the variable from them.
@@ -525,16 +525,16 @@ Lexical is also introduced as optional feature.
 </div>
 
 
-<div id="outline-container-orgc64af20" class="outline-2">
-<h2 id="orgc64af20"><span class="section-number-2">3</span> Regular Expression</h2>
+<div id="outline-container-org2f19359" class="outline-2">
+<h2 id="org2f19359"><span class="section-number-2">3</span> Regular Expression</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org367d770" class="outline-3">
-<h3 id="org367d770"><span class="section-number-3">3.1</span> syntax</h3>
+<div id="outline-container-org1c6537b" class="outline-3">
+<h3 id="org1c6537b"><span class="section-number-3">3.1</span> syntax</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org49b0858" class="outline-4">
-<h4 id="org49b0858"><span class="section-number-4">3.1.1</span> basics</h4>
+<div id="outline-container-orgc61c9ed" class="outline-4">
+<h4 id="orgc61c9ed"><span class="section-number-4">3.1.1</span> basics</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -602,8 +602,8 @@ Lexical is also introduced as optional feature.
 </div>
 </div>
 
-<div id="outline-container-orgff0dcff" class="outline-4">
-<h4 id="orgff0dcff"><span class="section-number-4">3.1.2</span> Character classes</h4>
+<div id="outline-container-org33dc8a3" class="outline-4">
+<h4 id="org33dc8a3"><span class="section-number-4">3.1.2</span> Character classes</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Use the double <code>[[]]</code> form. E.g. <code>[[:ascii:]]</code>, and also the negative writes <code>[^[:ascii:]]</code>.
@@ -685,8 +685,8 @@ Use the double <code>[[]]</code> form. E.g. <code>[[:ascii:]]</code>, and also t
 </div>
 </div>
 
-<div id="outline-container-org05e09b6" class="outline-4">
-<h4 id="org05e09b6"><span class="section-number-4">3.1.3</span> Backslash</h4>
+<div id="outline-container-orgdb504f2" class="outline-4">
+<h4 id="orgdb504f2"><span class="section-number-4">3.1.3</span> Backslash</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 Backslash is also used in elisp read syntax. So when you want one <code>\</code> in the string, you need to write double.
@@ -764,8 +764,8 @@ Backslash is also used in elisp read syntax. So when you want one <code>\</code>
 </div>
 </div>
 
-<div id="outline-container-orgf8507ef" class="outline-4">
-<h4 id="orgf8507ef"><span class="section-number-4">3.1.4</span> Syntax code</h4>
+<div id="outline-container-orgc8949bb" class="outline-4">
+<h4 id="orgc8949bb"><span class="section-number-4">3.1.4</span> Syntax code</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <p>
 <code>\sCODE</code> can be used to refer to any character "whose syntax is CODE".
@@ -815,8 +815,8 @@ See the "Syntax Class Table" chapter of elisp manual for details.
 </div>
 </div>
 
-<div id="outline-container-org5391d35" class="outline-3">
-<h3 id="org5391d35"><span class="section-number-3">3.2</span> constructing</h3>
+<div id="outline-container-orgcb458ba" class="outline-3">
+<h3 id="orgcb458ba"><span class="section-number-3">3.2</span> constructing</h3>
 <div class="outline-text-3" id="text-3-2">
 <dl class="org-dl">
 <dt><code>regexp-quote string</code></dt><dd>return a regular expression, whose only exact match is string.
@@ -835,8 +835,8 @@ See the "Syntax Class Table" chapter of elisp manual for details.
 </div>
 </div>
 
-<div id="outline-container-org7d78bcc" class="outline-3">
-<h3 id="org7d78bcc"><span class="section-number-3">3.3</span> Searching</h3>
+<div id="outline-container-orgdf6ca3a" class="outline-3">
+<h3 id="orgdf6ca3a"><span class="section-number-3">3.3</span> Searching</h3>
 <div class="outline-text-3" id="text-3-3">
 <dl class="org-dl">
 <dt><code>re-search-forward regexp</code></dt><dd></dd>
@@ -866,8 +866,8 @@ replacing
 </div>
 </div>
 
-<div id="outline-container-orgf74800d" class="outline-2">
-<h2 id="orgf74800d"><span class="section-number-2">4</span> Type</h2>
+<div id="outline-container-org80defb8" class="outline-2">
+<h2 id="org80defb8"><span class="section-number-2">4</span> Type</h2>
 <div class="outline-text-2" id="text-4">
 <dl class="org-dl">
 <dt><code>(eq OBJ1 OBJ2)</code></dt><dd>Return t if the two args are the same Lisp object. It is faster than <code>equal</code>.</dd>
@@ -876,8 +876,8 @@ replacing
 <dt><code>(string=)</code></dt><dd>compare two strings</dd>
 </dl>
 </div>
-<div id="outline-container-org8ef09b0" class="outline-3">
-<h3 id="org8ef09b0"><span class="section-number-3">4.1</span> number</h3>
+<div id="outline-container-org6de2d7d" class="outline-3">
+<h3 id="org6de2d7d"><span class="section-number-3">4.1</span> number</h3>
 <div class="outline-text-3" id="text-4-1">
 <dl class="org-dl">
 <dt><code>(expt 2 8)</code></dt><dd>2<sup>8</sup></dd>
@@ -885,8 +885,8 @@ replacing
 </div>
 </div>
 
-<div id="outline-container-org3c03d33" class="outline-3">
-<h3 id="org3c03d33"><span class="section-number-3">4.2</span> string</h3>
+<div id="outline-container-orgc58295e" class="outline-3">
+<h3 id="orgc58295e"><span class="section-number-3">4.2</span> string</h3>
 <div class="outline-text-3" id="text-4-2">
 <dl class="org-dl">
 <dt><code>make-string count character</code></dt><dd>make string by duplicating characters</dd>
@@ -922,8 +922,8 @@ case:
 </div>
 </div>
 
-<div id="outline-container-org87d5959" class="outline-3">
-<h3 id="org87d5959"><span class="section-number-3">4.3</span> cons cell</h3>
+<div id="outline-container-orgafaf6b8" class="outline-3">
+<h3 id="orgafaf6b8"><span class="section-number-3">4.3</span> cons cell</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 This is a pair of slots, each of them can hold anything.
@@ -939,8 +939,8 @@ As an example, <code>(1 2 3)</code> is the same as <code>(1 . (2 . (3 . nil)))</
 </div>
 </div>
 
-<div id="outline-container-org32dcdc5" class="outline-3">
-<h3 id="org32dcdc5"><span class="section-number-3">4.4</span> list</h3>
+<div id="outline-container-orgb037d0c" class="outline-3">
+<h3 id="orgb037d0c"><span class="section-number-3">4.4</span> list</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 If the CDR of a list’s last cons cell is some value other than ‘nil’,
@@ -949,8 +949,8 @@ since its printed representation would use dotted pair notation.
 </p>
 </div>
 
-<div id="outline-container-orgfc8489e" class="outline-4">
-<h4 id="orgfc8489e"><span class="section-number-4">4.4.1</span> construct</h4>
+<div id="outline-container-orgc9c913c" class="outline-4">
+<h4 id="orgc9c913c"><span class="section-number-4">4.4.1</span> construct</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <dl class="org-dl">
 <dt><code>cons obj1 obj2</code></dt><dd>if obj2 is a list, this is called "cons obj1 onto the list"</dd>
@@ -965,8 +965,8 @@ If want to force copy everything, add a <code>nil</code> as the last of append.<
 </div>
 </div>
 
-<div id="outline-container-org87e3d1c" class="outline-4">
-<h4 id="org87e3d1c"><span class="section-number-4">4.4.2</span> access</h4>
+<div id="outline-container-orgac4555f" class="outline-4">
+<h4 id="orgac4555f"><span class="section-number-4">4.4.2</span> access</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <dl class="org-dl">
 <dt><code>car</code></dt><dd></dd>
@@ -993,8 +993,8 @@ If want to force copy everything, add a <code>nil</code> as the last of append.<
 </div>
 </div>
 
-<div id="outline-container-orgf6dcdf7" class="outline-4">
-<h4 id="orgf6dcdf7"><span class="section-number-4">4.4.3</span> modify</h4>
+<div id="outline-container-org1507bc2" class="outline-4">
+<h4 id="org1507bc2"><span class="section-number-4">4.4.3</span> modify</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <p>
 <i>destructive</i> means the cdr of the cons cells are modified.
@@ -1020,8 +1020,8 @@ Examples:</dd>
 </div>
 </div>
 
-<div id="outline-container-org26570ae" class="outline-3">
-<h3 id="org26570ae"><span class="section-number-3">4.5</span> set</h3>
+<div id="outline-container-org2f45a6f" class="outline-3">
+<h3 id="org2f45a6f"><span class="section-number-3">4.5</span> set</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 We use list as set, by ignoring the order &#x2026;
@@ -1040,8 +1040,8 @@ We use list as set, by ignoring the order &#x2026;
 </dl>
 </div>
 </div>
-<div id="outline-container-org407803f" class="outline-3">
-<h3 id="org407803f"><span class="section-number-3">4.6</span> association list</h3>
+<div id="outline-container-org50057c5" class="outline-3">
+<h3 id="org50057c5"><span class="section-number-3">4.6</span> association list</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 This is a special list, each element is a key-value pair.
@@ -1066,8 +1066,8 @@ This is a special list, each element is a key-value pair.
 </div>
 </div>
 
-<div id="outline-container-orgbe81e55" class="outline-3">
-<h3 id="orgbe81e55"><span class="section-number-3">4.7</span> property list</h3>
+<div id="outline-container-orgd1aaefa" class="outline-3">
+<h3 id="orgd1aaefa"><span class="section-number-3">4.7</span> property list</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 It is a flat list. The odd elements are property name, and the even elements are values.
@@ -1130,8 +1130,8 @@ The order of the "pairs" does not matter.
 </div>
 </div>
 
-<div id="outline-container-org3aeddec" class="outline-3">
-<h3 id="org3aeddec"><span class="section-number-3">4.8</span> sequence</h3>
+<div id="outline-container-orgf23c374" class="outline-3">
+<h3 id="orgf23c374"><span class="section-number-3">4.8</span> sequence</h3>
 <div class="outline-text-3" id="text-4-8">
 <pre class="example">
  _____________________________________________
@@ -1162,15 +1162,15 @@ The order of the "pairs" does not matter.
 </div>
 </div>
 
-<div id="outline-container-org2049a79" class="outline-3">
-<h3 id="org2049a79"><span class="section-number-3">4.9</span> array</h3>
+<div id="outline-container-org7c6ff59" class="outline-3">
+<h3 id="org7c6ff59"><span class="section-number-3">4.9</span> array</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 It is fixed length sequence.
 </p>
 </div>
-<div id="outline-container-org2918619" class="outline-4">
-<h4 id="org2918619"><span class="section-number-4">4.9.1</span> constructing</h4>
+<div id="outline-container-orge38a571" class="outline-4">
+<h4 id="orge38a571"><span class="section-number-4">4.9.1</span> constructing</h4>
 <div class="outline-text-4" id="text-4-9-1">
 <dl class="org-dl">
 <dt><code>make-vector length object</code></dt><dd>create vector</dd>
@@ -1178,8 +1178,8 @@ It is fixed length sequence.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgdeeb2d5" class="outline-4">
-<h4 id="orgdeeb2d5"><span class="section-number-4">4.9.2</span> accessing</h4>
+<div id="outline-container-org90bfae4" class="outline-4">
+<h4 id="org90bfae4"><span class="section-number-4">4.9.2</span> accessing</h4>
 <div class="outline-text-4" id="text-4-9-2">
 <dl class="org-dl">
 <dt><code>aref array index</code></dt><dd>getter</dd>
@@ -1189,8 +1189,8 @@ It is fixed length sequence.
 </div>
 </div>
 
-<div id="outline-container-org01200e5" class="outline-3">
-<h3 id="org01200e5"><span class="section-number-3">4.10</span> hash table</h3>
+<div id="outline-container-org92dcaf9" class="outline-3">
+<h3 id="org92dcaf9"><span class="section-number-3">4.10</span> hash table</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 construct
@@ -1222,12 +1222,12 @@ other
 </div>
 
 
-<div id="outline-container-orge3d63a1" class="outline-2">
-<h2 id="orge3d63a1"><span class="section-number-2">5</span> Function</h2>
+<div id="outline-container-org87f4032" class="outline-2">
+<h2 id="org87f4032"><span class="section-number-2">5</span> Function</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org3bba5ab" class="outline-3">
-<h3 id="org3bba5ab"><span class="section-number-3">5.1</span> define</h3>
+<div id="outline-container-org0318ddf" class="outline-3">
+<h3 id="org0318ddf"><span class="section-number-3">5.1</span> define</h3>
 <div class="outline-text-3" id="text-5-1">
 <dl class="org-dl">
 <dt><code>defun name args body ...</code></dt><dd></dd>
@@ -1235,8 +1235,8 @@ other
 </div>
 </div>
 
-<div id="outline-container-orgddd6e99" class="outline-3">
-<h3 id="orgddd6e99"><span class="section-number-3">5.2</span> Calling</h3>
+<div id="outline-container-orge0eb70d" class="outline-3">
+<h3 id="orge0eb70d"><span class="section-number-3">5.2</span> Calling</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Usually put the function name as the car of the list will call it.
@@ -1252,8 +1252,8 @@ If you want to <b>compute the arguments</b> at runtime, use <code>apply</code>:
 </div>
 </div>
 
-<div id="outline-container-org41846fc" class="outline-3">
-<h3 id="org41846fc"><span class="section-number-3">5.3</span> Mapping family</h3>
+<div id="outline-container-orgd3d5575" class="outline-3">
+<h3 id="orgd3d5575"><span class="section-number-3">5.3</span> Mapping family</h3>
 <div class="outline-text-3" id="text-5-3">
 <dl class="org-dl">
 <dt><code>mapcar function sequence</code></dt><dd>execute function on each element of sequence, and return the list of results.</dd>
@@ -1263,8 +1263,8 @@ If you want to <b>compute the arguments</b> at runtime, use <code>apply</code>:
 </div>
 </div>
 
-<div id="outline-container-orgac00352" class="outline-3">
-<h3 id="orgac00352"><span class="section-number-3">5.4</span> Anonymous functions</h3>
+<div id="outline-container-orgdfcc417" class="outline-3">
+<h3 id="orgdfcc417"><span class="section-number-3">5.4</span> Anonymous functions</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 It has three forms:
@@ -1278,8 +1278,8 @@ It has three forms:
 </div>
 </div>
 
-<div id="outline-container-org7e2fda1" class="outline-3">
-<h3 id="org7e2fda1"><span class="section-number-3">5.5</span> Macro</h3>
+<div id="outline-container-org3d94999" class="outline-3">
+<h3 id="org3d94999"><span class="section-number-3">5.5</span> Macro</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 Macro does not evaluate its arguments. It put the arguments <i>as is</i> and put them into the macro body to form an expression.
@@ -1292,12 +1292,12 @@ The expression is then evaluated for result.
 </div>
 </div>
 
-<div id="outline-container-org576d8ee" class="outline-2">
-<h2 id="org576d8ee"><span class="section-number-2">6</span> Control Structure</h2>
+<div id="outline-container-org4cead25" class="outline-2">
+<h2 id="org4cead25"><span class="section-number-2">6</span> Control Structure</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org244793e" class="outline-3">
-<h3 id="org244793e"><span class="section-number-3">6.1</span> Sequential</h3>
+<div id="outline-container-orgd37f2df" class="outline-3">
+<h3 id="orgd37f2df"><span class="section-number-3">6.1</span> Sequential</h3>
 <div class="outline-text-3" id="text-6-1">
 <dl class="org-dl">
 <dt><code>progn forms...</code></dt><dd>return the result of final form</dd>
@@ -1306,8 +1306,8 @@ The expression is then evaluated for result.
 </dl>
 </div>
 </div>
-<div id="outline-container-org6cd5e0e" class="outline-3">
-<h3 id="org6cd5e0e"><span class="section-number-3">6.2</span> Conditional</h3>
+<div id="outline-container-orgeaa3c67" class="outline-3">
+<h3 id="orgeaa3c67"><span class="section-number-3">6.2</span> Conditional</h3>
 <div class="outline-text-3" id="text-6-2">
 <dl class="org-dl">
 <dt><code>if condition then-form else-forms...</code></dt><dd></dd>
@@ -1324,8 +1324,8 @@ The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</dd>
 </dl>
 </div>
 
-<div id="outline-container-org2225220" class="outline-4">
-<h4 id="org2225220"><span class="section-number-4">6.2.1</span> logical computation</h4>
+<div id="outline-container-orgf2a7af9" class="outline-4">
+<h4 id="orgf2a7af9"><span class="section-number-4">6.2.1</span> logical computation</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <ul class="org-ul">
 <li><code>not</code></li>
@@ -1336,8 +1336,8 @@ The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</dd>
 </div>
 </div>
 
-<div id="outline-container-org68920f6" class="outline-3">
-<h3 id="org68920f6"><span class="section-number-3">6.3</span> Loop</h3>
+<div id="outline-container-org464f275" class="outline-3">
+<h3 id="org464f275"><span class="section-number-3">6.3</span> Loop</h3>
 <div class="outline-text-3" id="text-6-3">
 <dl class="org-dl">
 <dt><code>while condition forms...</code></dt><dd></dd>
@@ -1351,12 +1351,12 @@ The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</dd>
 
 
 
-<div id="outline-container-orge3bc3c3" class="outline-2">
-<h2 id="orge3bc3c3"><span class="section-number-2">7</span> Packages</h2>
+<div id="outline-container-orge38c6f7" class="outline-2">
+<h2 id="orge38c6f7"><span class="section-number-2">7</span> Packages</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org5eb4abc" class="outline-3">
-<h3 id="org5eb4abc"><span class="section-number-3">7.1</span> Dash.el</h3>
+<div id="outline-container-org5e2c5f3" class="outline-3">
+<h3 id="org5e2c5f3"><span class="section-number-3">7.1</span> Dash.el</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 <a href="https://github.com/magnars/dash.el">https://github.com/magnars/dash.el</a>
@@ -1388,8 +1388,8 @@ the anaphoric form with double dashes executed with <code>it</code> exposed as t
 </div>
 </div>
 
-<div id="outline-container-org4932ffa" class="outline-3">
-<h3 id="org4932ffa"><span class="section-number-3">7.2</span> s.el</h3>
+<div id="outline-container-org4b8d423" class="outline-3">
+<h3 id="org4b8d423"><span class="section-number-3">7.2</span> s.el</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 <a href="https://github.com/magnars/s.el">https://github.com/magnars/s.el</a>
@@ -1401,8 +1401,8 @@ The string manipulation library
 </div>
 </div>
 
-<div id="outline-container-org165ca6b" class="outline-3">
-<h3 id="org165ca6b"><span class="section-number-3">7.3</span> cl-lib.el loop</h3>
+<div id="outline-container-org2b9accc" class="outline-3">
+<h3 id="org2b9accc"><span class="section-number-3">7.3</span> cl-lib.el loop</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 This package ports many common lisp facilities into elisp,
@@ -1411,8 +1411,8 @@ So this section, at least for now, focus on <code>cl-loop</code>.
 </p>
 </div>
 
-<div id="outline-container-org111c34d" class="outline-4">
-<h4 id="org111c34d"><span class="section-number-4">7.3.1</span> general loop form</h4>
+<div id="outline-container-org51218d1" class="outline-4">
+<h4 id="org51218d1"><span class="section-number-4">7.3.1</span> general loop form</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">cl-loop</span> clauses...)
@@ -1427,8 +1427,8 @@ The clauses can be:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc181117" class="outline-4">
-<h4 id="orgc181117"><span class="section-number-4">7.3.2</span> for clauses</h4>
+<div id="outline-container-org66827e4" class="outline-4">
+<h4 id="org66827e4"><span class="section-number-4">7.3.2</span> for clauses</h4>
 <div class="outline-text-4" id="text-7-3-2">
 <dl class="org-dl">
 <dt><code>for VAR from FROM to TO by STEP</code></dt><dd><ul class="org-ul">
@@ -1448,8 +1448,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-org54c2240" class="outline-4">
-<h4 id="org54c2240"><span class="section-number-4">7.3.3</span> iteration clauses</h4>
+<div id="outline-container-orgf70bcaa" class="outline-4">
+<h4 id="orgf70bcaa"><span class="section-number-4">7.3.3</span> iteration clauses</h4>
 <div class="outline-text-4" id="text-7-3-3">
 <dl class="org-dl">
 <dt><code>repeat integer</code></dt><dd>repeat the loop how many times</dd>
@@ -1462,8 +1462,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-org6665599" class="outline-4">
-<h4 id="org6665599"><span class="section-number-4">7.3.4</span> accumulation clauses</h4>
+<div id="outline-container-org35c6f56" class="outline-4">
+<h4 id="org35c6f56"><span class="section-number-4">7.3.4</span> accumulation clauses</h4>
 <div class="outline-text-4" id="text-7-3-4">
 <dl class="org-dl">
 <dt><code>collect form</code></dt><dd>collect into a list and return the list in the end</dd>
@@ -1477,8 +1477,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-org30602d7" class="outline-4">
-<h4 id="org30602d7"><span class="section-number-4">7.3.5</span> Other clauses</h4>
+<div id="outline-container-org5e0850d" class="outline-4">
+<h4 id="org5e0850d"><span class="section-number-4">7.3.5</span> Other clauses</h4>
 <div class="outline-text-4" id="text-7-3-5">
 <dl class="org-dl">
 <dt><code>with var = value</code></dt><dd>set the value one-time at the beginning of the loop.
@@ -1498,8 +1498,8 @@ Often used as return variable.
 </div>
 </div>
 
-<div id="outline-container-orge31643b" class="outline-3">
-<h3 id="orge31643b"><span class="section-number-3">7.4</span> cl-lib other</h3>
+<div id="outline-container-org3df4ce1" class="outline-3">
+<h3 id="org3df4ce1"><span class="section-number-3">7.4</span> cl-lib other</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 Of course, cl-lib provides much more than just loops &#x2026;
@@ -1511,12 +1511,12 @@ Of course, cl-lib provides much more than just loops &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org91c74fd" class="outline-2">
-<h2 id="org91c74fd"><span class="section-number-2">8</span> Debugging</h2>
+<div id="outline-container-orgb615c53" class="outline-2">
+<h2 id="orgb615c53"><span class="section-number-2">8</span> Debugging</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org6858aec" class="outline-3">
-<h3 id="org6858aec"><span class="section-number-3">8.1</span> lisp debugger</h3>
+<div id="outline-container-org62a0926" class="outline-3">
+<h3 id="org62a0926"><span class="section-number-3">8.1</span> lisp debugger</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 The simplest debugger is called <code>lisp debugger</code>.
@@ -1536,8 +1536,8 @@ In the debugger buffer, the following commands are available:
 </dl>
 </div>
 </div>
-<div id="outline-container-orgeaa1d68" class="outline-3">
-<h3 id="orgeaa1d68"><span class="section-number-3">8.2</span> Edebug</h3>
+<div id="outline-container-orge4b0794" class="outline-3">
+<h3 id="orge4b0794"><span class="section-number-3">8.2</span> Edebug</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 For this to work, first you need to instrument the code.
@@ -1556,8 +1556,8 @@ The <i>stop points</i> are
 </ul>
 </div>
 
-<div id="outline-container-org4e5f675" class="outline-4">
-<h4 id="org4e5f675"><span class="section-number-4">8.2.1</span> breakpoints</h4>
+<div id="outline-container-org2159625" class="outline-4">
+<h4 id="org2159625"><span class="section-number-4">8.2.1</span> breakpoints</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <dl class="org-dl">
 <dt><code>b</code></dt><dd>set a breakpoint</dd>
@@ -1571,8 +1571,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 
-<div id="outline-container-orgeeebea9" class="outline-4">
-<h4 id="orgeeebea9"><span class="section-number-4">8.2.2</span> Moving of point</h4>
+<div id="outline-container-org1ec747a" class="outline-4">
+<h4 id="org1ec747a"><span class="section-number-4">8.2.2</span> Moving of point</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <dl class="org-dl">
 <dt><code>B</code></dt><dd>move point to the next breakpoint</dd>
@@ -1581,8 +1581,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 
-<div id="outline-container-org3a917a3" class="outline-4">
-<h4 id="org3a917a3"><span class="section-number-4">8.2.3</span> executions</h4>
+<div id="outline-container-org7bb1cde" class="outline-4">
+<h4 id="org7bb1cde"><span class="section-number-4">8.2.3</span> executions</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <dl class="org-dl">
 <dt><code>&lt;SPC&gt;</code></dt><dd>run to next stop point</dd>
@@ -1603,8 +1603,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </dl>
 </div>
 </div>
-<div id="outline-container-org07b9a04" class="outline-4">
-<h4 id="org07b9a04"><span class="section-number-4">8.2.4</span> evaluation</h4>
+<div id="outline-container-org0262793" class="outline-4">
+<h4 id="org0262793"><span class="section-number-4">8.2.4</span> evaluation</h4>
 <div class="outline-text-4" id="text-8-2-4">
 <dl class="org-dl">
 <dt><code>e EXP</code></dt><dd>evaluate a prompt expression</dd>
@@ -1613,8 +1613,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 
-<div id="outline-container-orge6ff969" class="outline-4">
-<h4 id="orge6ff969"><span class="section-number-4">8.2.5</span> other commands</h4>
+<div id="outline-container-org6e4b4f3" class="outline-4">
+<h4 id="org6e4b4f3"><span class="section-number-4">8.2.5</span> other commands</h4>
 <div class="outline-text-4" id="text-8-2-5">
 <dl class="org-dl">
 <dt><code>?</code></dt><dd>show help</dd>
@@ -1628,16 +1628,16 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 
 
 
-<div id="outline-container-org2a1f67f" class="outline-2">
-<h2 id="org2a1f67f"><span class="section-number-2">9</span> Unit Testing</h2>
+<div id="outline-container-orgd819a38" class="outline-2">
+<h2 id="orgd819a38"><span class="section-number-2">9</span> Unit Testing</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Use <code>ert</code> for unit testing.
 </p>
 </div>
 
-<div id="outline-container-org175a563" class="outline-3">
-<h3 id="org175a563"><span class="section-number-3">9.1</span> Write test</h3>
+<div id="outline-container-orgba8fd8d" class="outline-3">
+<h3 id="orgba8fd8d"><span class="section-number-3">9.1</span> Write test</h3>
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">ert-deftest</span> <span style="color: #0000ff;">addition-test</span>()
@@ -1679,8 +1679,8 @@ skip test
 </div>
 </div>
 
-<div id="outline-container-org4f17b23" class="outline-3">
-<h3 id="org4f17b23"><span class="section-number-3">9.2</span> Run test</h3>
+<div id="outline-container-orgc341a7e" class="outline-3">
+<h3 id="orgc341a7e"><span class="section-number-3">9.2</span> Run test</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 <code>M-x ert</code> will run it. The selector of test accept some more fancy staff like regular expression matching.
@@ -1711,8 +1711,8 @@ Also, select test by this:
 </div>
 </div>
 
-<div id="outline-container-orgdf696c4" class="outline-2">
-<h2 id="orgdf696c4"><span class="section-number-2">10</span> Some random code snippets</h2>
+<div id="outline-container-org2bb9304" class="outline-2">
+<h2 id="org2bb9304"><span class="section-number-2">10</span> Some random code snippets</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-elisp">(cl-prettyprint (font-family-list)) <span style="color: #b22222;">;; </span><span style="color: #b22222;">see all font family available on this system</span>
@@ -1720,8 +1720,8 @@ Also, select test by this:
 </div>
 </div>
 
-<div id="outline-container-org561cf48" class="outline-4">
-<h4 id="org561cf48"><span class="section-number-4">10.0.1</span> Url retrieval</h4>
+<div id="outline-container-org80cbf49" class="outline-4">
+<h4 id="org80cbf49"><span class="section-number-4">10.0.1</span> Url retrieval</h4>
 <div class="outline-text-4" id="text-10-0-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">with-current-buffer</span> (url-retrieve-synchronously <span style="color: #8b2252;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span>)
@@ -1741,7 +1741,7 @@ Also, select test by this:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-11-20 Mon 10:50</p>
+<p class="date">Created: 2017-12-07 Thu 15:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
