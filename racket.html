@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-10 Sun 16:09 -->
+<!-- 2017-12-14 Thu 19:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket</title>
@@ -699,9 +699,103 @@ Use these to expand a macro:
 <li><code>(expand top-level-form)</code>: fully expand</li>
 <li><code>(expand-once top-level-form)</code>: expand only once</li>
 </ul>
+
+<p>
+Here's an example from Racket Guide that implements call-by-reference
+</p>
+
+<p>
+Should generate
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get-a get-b put-a! put-b!)
+  (define-get/put-id <span style="color: #a0522d;">a</span> get-a put-a!)
+  (define-get/put-id <span style="color: #a0522d;">b</span> get-b put-b!)
+  (swap a b))
+(do-f (<span style="color: #a020f0;">lambda</span> () x)
+      (<span style="color: #a020f0;">lambda</span> () y)
+      (<span style="color: #a020f0;">lambda</span> (v) (<span style="color: #a020f0;">set!</span> x v))
+      (<span style="color: #a020f0;">lambda</span> (v) (<span style="color: #a020f0;">set!</span> y v)))
+</pre>
+</div>
+
+<p>
+The test code:
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(define-cbr (<span style="color: #0000ff;">f</span> a b)
+  (swap a b))
+
+(<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">x</span> <span style="color: #2e8b57;">1</span>] [<span style="color: #a0522d;">y</span> <span style="color: #2e8b57;">2</span>])
+  (f x y)
+  (<span style="color: #483d8b;">list</span> x y))
+</pre>
+</div>
+
+<p>
+The actual implementation:
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">define-get/put-id</span> <span style="color: #a0522d;">id</span> get put!)
+  (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
+    (<span style="color: #483d8b;">make-set!-transformer</span>
+     (<span style="color: #a020f0;">lambda</span> (stx)
+       (<span style="color: #a020f0;">syntax-case</span> stx (<span style="color: #a020f0;">set!</span>)
+         [id (<span style="color: #483d8b;">identifier?</span> (<span style="color: #a020f0;">syntax</span> id)) (<span style="color: #a020f0;">syntax</span> (get))]
+         [(<span style="color: #a020f0;">set!</span> id e) (<span style="color: #a020f0;">syntax</span> (put! e))])))))
+
+(<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">define-cbr</span> (id arg <span style="color: #a020f0;">...</span>) body)
+  (<span style="color: #a020f0;">begin</span>
+    (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
+      (<span style="color: #a020f0;">syntax-rules</span> ()
+        [(id actual (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>))
+         (do-f (<span style="color: #a020f0;">lambda</span> () actual)
+               (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>)
+               (<span style="color: #a020f0;">lambda</span> (v)
+                 (<span style="color: #a020f0;">set!</span> actual v))
+               (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>))]))
+    (define-for-cbr <span style="color: #a0522d;">do-f</span> (arg <span style="color: #a020f0;">...</span>)
+      () <span style="color: #b22222;">; </span><span style="color: #b22222;">explained below...</span>
+      body)))
+
+(<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">define-for-cbr</span>
+  (<span style="color: #a020f0;">syntax-rules</span> ()
+    [(define-for-cbr <span style="color: #a0522d;">do-f</span> (id0 id <span style="color: #a020f0;">...</span>)
+       (gens <span style="color: #a020f0;">...</span>) body)
+     (define-for-cbr <span style="color: #a0522d;">do-f</span> (id <span style="color: #a020f0;">...</span>)
+       (gens <span style="color: #a020f0;">...</span> (id0 get put)) body)]
+    [(define-for-cbr <span style="color: #a0522d;">do-f</span> ()
+       ((id get put) <span style="color: #a020f0;">...</span>) body)
+     (<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get <span style="color: #a020f0;">...</span> put <span style="color: #a020f0;">...</span>)
+       (define-get/put-id <span style="color: #a0522d;">id</span> get put) <span style="color: #a020f0;">...</span>
+       body)]))
+</pre>
+</div>
+
+<p>
+The define-for-cbr is pretty tricky, the following <code>with-syntax</code> is
+better:
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">define-for-cbr</span> <span style="color: #a0522d;">stx</span>)
+  (<span style="color: #a020f0;">syntax-case</span> stx ()
+    [(<span style="color: #a020f0;">_</span> do-f (id <span style="color: #a020f0;">...</span>) body)
+     (<span style="color: #a020f0;">with-syntax</span> ([(get <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">generate-temporaries</span> #'(id <span style="color: #a020f0;">...</span>))]
+                   [(put <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">generate-temporaries</span> #'(id <span style="color: #a020f0;">...</span>))])
+       #'(<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get <span style="color: #a020f0;">...</span> put <span style="color: #a020f0;">...</span>)
+           (define-get/put-id <span style="color: #a0522d;">id</span> get put) <span style="color: #a020f0;">...</span>
+           body))]))
+</pre>
 </div>
 </div>
 </div>
+</div>
+
+
+
+
+
+
 <div id="outline-container-orgd045bcf" class="outline-2">
 <h2 id="orgd045bcf"><span class="section-number-2">5</span> rackunit</h2>
 <div class="outline-text-2" id="text-5">
@@ -2182,7 +2276,7 @@ order for it to work, install <code>racket-doc</code> package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-10 Sun 16:09</p>
+<p class="date">Created: 2017-12-14 Thu 19:45</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
