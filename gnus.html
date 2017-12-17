@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2017-12-17 Sun 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gnus</title>
@@ -235,246 +235,33 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8d06ad1">1. Tutorial</a>
+<li><a href="#org1145f52">1. Gmail Setup</a></li>
+<li><a href="#org2280d6f">2. gmane news group setting</a></li>
+<li><a href="#orgb25e30d">3. Usage</a>
 <ul>
-<li><a href="#org2a48890">1.1. In Group Buffer:</a>
-<ul>
-<li><a href="#orga054d71">1.1.1. Finding the groups</a></li>
-<li><a href="#org95f7463">1.1.2. Management</a></li>
-<li><a href="#org2aa681f">1.1.3. Topic</a></li>
+<li><a href="#org2a85033">3.1. Group Buffer:</a></li>
+<li><a href="#org0b6f33b">3.2. Summary and Article buffer</a></li>
+<li><a href="#org0733422">3.3. Message buffer</a></li>
 </ul>
 </li>
-<li><a href="#org8d9b6b3">1.2. In Article (Summary) buffer</a>
-<ul>
-<li><a href="#orgea59781">1.2.1. Navigating</a></li>
-<li><a href="#org0214fe4">1.2.2. Replying</a></li>
-<li><a href="#org2def8b5">1.2.3. Management</a></li>
-<li><a href="#orgeb728bf">1.2.4. Marking</a>
-<ul>
-<li><a href="#org32bb5cd">1.2.4.1. Unread</a></li>
-<li><a href="#org31215f2">1.2.4.2. Read</a></li>
-<li><a href="#org42b53b6">1.2.4.3. Operation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgfb3c853">1.3. In a message buffer</a></li>
-</ul>
-</li>
-<li><a href="#org1145f52">2. Gmail Setup</a></li>
 </ul>
 </div>
 </div>
-<p>
-Finally I decide to learn Gnus the hard way. I have to learn it, I
-need to read news.
-</p>
-
-<p>
-This is built in with emacs.
-To read archive messages:
-</p>
-
 <blockquote>
 <p>
 In emacs, &lt;DEL&gt; means backspace, &lt;delete&gt; means the delete key.
 </p>
 </blockquote>
 
-<div id="outline-container-org8d06ad1" class="outline-2">
-<h2 id="org8d06ad1"><span class="section-number-2">1</span> Tutorial</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Inside emacs, run <code>gnus</code> command. This brings the <code>*Group*</code> buffer.
-</p>
-
-<p>
-Some settings
-</p>
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">setq</span> gnus-default-nntp-server <span style="color: #8b2252;">"news.gmane.org"</span>)
-(<span style="color: #a020f0;">setq</span> gnus-select-method '(nntp <span style="color: #8b2252;">"news.gmane.org"</span>))
-(<span style="color: #a020f0;">setq</span> gnus-use-adaptive-scoring t)
-(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org2a48890" class="outline-3">
-<h3 id="org2a48890"><span class="section-number-3">1.1</span> In Group Buffer:</h3>
-<div class="outline-text-3" id="text-1-1">
-</div>
-
-<div id="outline-container-orga054d71" class="outline-4">
-<h4 id="orga054d71"><span class="section-number-4">1.1.1</span> Finding the groups</h4>
-<div class="outline-text-4" id="text-1-1-1">
-<dl class="org-dl">
-<dt>A A</dt><dd>List all groups that are available from the server(s).</dd>
-<dt>u</dt><dd>toggle subscription of the group</dd>
-<dt>l</dt><dd>list only subscribed ones with unread articles</dd>
-<dt>L</dt><dd>show all subscribed groups</dd>
-</dl>
-
-<p>
-Also, if you want to add RSS feeds, in group buffer:
-</p>
-<dl class="org-dl">
-<dt>G R</dt><dd>and paste the rss feed url</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org95f7463" class="outline-4">
-<h4 id="org95f7463"><span class="section-number-4">1.1.2</span> Management</h4>
-<div class="outline-text-4" id="text-1-1-2">
-<dl class="org-dl">
-<dt>&lt;Ret&gt;</dt><dd>enter the group</dd>
-<dt>g</dt><dd>check for news</dd>
-<dt>q</dt><dd>quit</dd>
-<dt>c</dt><dd>catchup: mark all unread articles in the group under cursor as read</dd>
-<dt>C</dt><dd>catchup: mark all <del>unread</del> articles in the group under cursor as read</dd>
-<dt>m</dt><dd>create a new message</dd>
-<dt>a</dt><dd>create a new post</dd>
-<dt>^</dt><dd>enter server buffer</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org2aa681f" class="outline-4">
-<h4 id="org2aa681f"><span class="section-number-4">1.1.3</span> Topic</h4>
-<div class="outline-text-4" id="text-1-1-3">
-<dl class="org-dl">
-<dt>t</dt><dd>toggle topic minor mode. Topic mode group subscriptions into categories.</dd>
-<dt>T n (gnus-topic-create-topic)</dt><dd>create a new topic</dd>
-<dt>T &lt;Del&gt; (gnus-topic-delete)</dt><dd>delete topic under cursor</dd>
-<dt>T m (gnus-topic-move-group)</dt><dd>move the group under cursor to a topic</dd>
-<dt>T h (gnus-topic-hide-topic)</dt><dd></dd>
-
-<dt>T s (gnus-topic-show-topic)</dt><dd></dd>
-</dl>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org8d9b6b3" class="outline-3">
-<h3 id="org8d9b6b3"><span class="section-number-3">1.2</span> In Article (Summary) buffer</h3>
-<div class="outline-text-3" id="text-1-2">
-</div>
-<div id="outline-container-orgea59781" class="outline-4">
-<h4 id="orgea59781"><span class="section-number-4">1.2.1</span> Navigating</h4>
-<div class="outline-text-4" id="text-1-2-1">
-<dl class="org-dl">
-<dt>&lt;RET&gt;</dt><dd>view article under cursor</dd>
-<dt>n</dt><dd>next unread article</dd>
-<dt>p</dt><dd>previous unread article</dd>
-<dt>N</dt><dd>next article</dd>
-<dt>P</dt><dd>previous article</dd>
-<dt>&lt;SPC&gt;</dt><dd>scroll down, move to next unread article when at bottom</dd>
-<dt>&lt;DEL&gt;</dt><dd>scroll up, but will not move article</dd>
-<dt>^</dt><dd>fetch parent article</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org0214fe4" class="outline-4">
-<h4 id="org0214fe4"><span class="section-number-4">1.2.2</span> Replying</h4>
-<div class="outline-text-4" id="text-1-2-2">
-<dl class="org-dl">
-<dt>F</dt><dd>follow-up to group and cite the article</dd>
-<dt>f</dt><dd>follow-up to group without citing the article</dd>
-<dt>R</dt><dd>reply by mail and cite the article</dd>
-<dt>r</dt><dd>reply by mail without cite the article</dd>
-<dt>m</dt><dd>new mail</dd>
-<dt>a</dt><dd>new post</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org2def8b5" class="outline-4">
-<h4 id="org2def8b5"><span class="section-number-4">1.2.3</span> Management</h4>
-<div class="outline-text-4" id="text-1-2-3">
-<dl class="org-dl">
-<dt>c</dt><dd>catchup ALL in the buffer</dd>
-<dt>T T</dt><dd>toggle threading (flat style or thread style)</dd>
-<dt>t</dt><dd>toggle all headers (a lot of MIME information)</dd>
-<dt>TODO L</dt><dd>create low score</dd>
-<dt>TODO I</dt><dd>create high score</dd>
-<dt>!</dt><dd>mark as important</dd>
-<dt>?</dt><dd>mark as dormant</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgeb728bf" class="outline-4">
-<h4 id="orgeb728bf"><span class="section-number-4">1.2.4</span> Marking</h4>
-<div class="outline-text-4" id="text-1-2-4">
-</div>
-<div id="outline-container-org32bb5cd" class="outline-5">
-<h5 id="org32bb5cd"><span class="section-number-5">1.2.4.1</span> Unread</h5>
-<div class="outline-text-5" id="text-1-2-4-1">
-<dl class="org-dl">
-<dt>!</dt><dd>ticked. This means important, and will always show</dd>
-<dt>?</dt><dd>dormant. This will show up whenever there are follow-ups.</dd>
-<dt>space</dt><dd>unread at all</dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-org31215f2" class="outline-5">
-<h5 id="org31215f2"><span class="section-number-5">1.2.4.2</span> Read</h5>
-<div class="outline-text-5" id="text-1-2-4-2">
-<dl class="org-dl">
-<dt>r</dt><dd>marked as read by <code>d</code></dd>
-<dt>R</dt><dd>actually read</dd>
-<dt>O</dt><dd>old. Marked as read in previous sessions.</dd>
-<dt>Y</dt><dd>having a too level score (computed by emacs by rules, e.g. when
-you mark an article as read while didn't really read it, the
-related ones are marked like this)</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org42b53b6" class="outline-5">
-<h5 id="org42b53b6"><span class="section-number-5">1.2.4.3</span> Operation</h5>
-<div class="outline-text-5" id="text-1-2-4-3">
-<dl class="org-dl">
-<dt>!</dt><dd></dd>
-
-<dt>?</dt><dd></dd>
-
-<dt>d</dt><dd>mark as read</dd>
-<dt>/ o</dt><dd>gnus-summary-insert-old-articles, show all read articles</dd>
-<dt>M-u</dt><dd>gnus-summary-clear-mark-forward</dd>
-<dt>V R</dt><dd>gnus-summary-rescore</dd>
-</dl>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgfb3c853" class="outline-3">
-<h3 id="orgfb3c853"><span class="section-number-3">1.3</span> In a message buffer</h3>
-<div class="outline-text-3" id="text-1-3">
-<dl class="org-dl">
-<dt>C-c C-c</dt><dd>send</dd>
-<dt>C-c C-d</dt><dd>save as draft</dd>
-<dt>C-c C-k</dt><dd>kill</dd>
-<dt>C-c C-m f</dt><dd>attach file</dd>
-</dl>
-</div>
-</div>
-</div>
-
-
 <div id="outline-container-org1145f52" class="outline-2">
-<h2 id="org1145f52"><span class="section-number-2">2</span> Gmail Setup</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org1145f52"><span class="section-number-2">1</span> Gmail Setup</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 Add the credential information to <code>~/.authinfo</code>
 </p>
 
 <pre class="example">
-machine imap.gmail.com login &lt;username&gt; password &lt;password&gt; port imaps
+machine imap.gmail.com login &lt;username&gt; password &lt;password&gt; port 993
 machine smtp.gmail.com login &lt;username&gt; password &lt;password&gt; port 587
 </pre>
 
@@ -508,10 +295,235 @@ Add the following into <code>.gnus</code>
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org2280d6f" class="outline-2">
+<h2 id="org2280d6f"><span class="section-number-2">2</span> gmane news group setting</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #a020f0;">setq</span> gnus-default-nntp-server <span style="color: #8b2252;">"news.gmane.org"</span>)
+(<span style="color: #a020f0;">setq</span> gnus-select-method '(nntp <span style="color: #8b2252;">"news.gmane.org"</span>))
+(<span style="color: #a020f0;">setq</span> gnus-use-adaptive-scoring t)
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb25e30d" class="outline-2">
+<h2 id="orgb25e30d"><span class="section-number-2">3</span> Usage</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Inside emacs, run <code>gnus</code> command. This brings the <code>*Group*</code>
+buffer. You will see the list of groups, use <code>&lt;spc&gt;</code> or <code>&lt;enter&gt;</code> to
+enter the group. As usual, <code>g</code> to refresh. <code>q</code> for quit.
+</p>
+
+<p>
+In general in all buffers, the important keybindings are: <code>c</code> for
+catch up current item, <code>n</code> and <code>p</code> for next or previous <b>unread</b>
+articles <code>N</code> and <code>P</code> for actually next and previous article, <code>m</code> for
+create new message, <code>a</code> for creating new post, <code>r</code> for reply without
+cite, <code>R</code> for reply with cite, <code>t</code> for toggle some mode.
+</p>
+</div>
+
+
+<div id="outline-container-org2a85033" class="outline-3">
+<h3 id="org2a85033"><span class="section-number-3">3.1</span> Group Buffer:</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Finding the groups
+</p>
+<ul class="org-ul">
+<li><code>gnus-group-browse-foreign-server</code> (<code>B</code>): use <code>nntp</code> as back-end and
+<code>news.gmane.org</code> as address.</li>
+<li><code>gnus-group-list-active (A A)</code>: List all groups that are available
+from the server(s).</li>
+<li><code>gnus-group-unsubscribe-current-group (u)</code>: toggle subscription of
+the group</li>
+<li><b><code>gnus-group-list-groups (l)</code></b>: list only subscribed ones with
+unread articles</li>
+<li><b><code>gnus-group-list-all-groups (L)</code></b>: show all subscribed groups</li>
+<li><code>gnus-group-make-rss-group (G R)</code>: paste the rss feed url to add RSS
+feeds</li>
+<li><code>gnus-group-jump-to-group (j)</code>: jump to a group by entering name,
+this works for non-listing groups.</li>
+</ul>
+
+<p>
+Management
+</p>
+<ul class="org-ul">
+<li><code>gnus-group-catchup-current (c)</code>: mark all unread articles in the
+group under cursor as read</li>
+<li><code>gnus-group-catchup-current-all (C)</code>: mark all <del>unread</del> articles in
+the group under cursor as read</li>
+<li><code>gnus-group-mail (m)</code>: create a new message</li>
+<li><code>gnus-group-post-news (a)</code>: create a new post</li>
+<li><code>gnus-group-enter-server-mode (^)</code>: enter server buffer</li>
+</ul>
+
+
+<p>
+Topic mode group subscriptions into categories.
+</p>
+<ul class="org-ul">
+<li><code>gnus-topic-mode (t)</code>: toggle topic minor mode.</li>
+<li><code>gnus-topic-create-topic (T n)</code>: create a new topic</li>
+<li><code>gnus-topic-delete (T &lt;Del&gt;)</code>: delete topic under cursor</li>
+<li><code>gnus-topic-move-group (T m)</code>: move the group under cursor to a
+topic</li>
+<li><code>gnus-topic-hide-topic (T h)</code>:</li>
+<li><code>gnus-topic-show-topic (T s)</code>:</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org0b6f33b" class="outline-3">
+<h3 id="org0b6f33b"><span class="section-number-3">3.2</span> Summary and Article buffer</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+This will list all the mails. <code>&lt;RET&gt;</code> to enter a specific mail.  The
+following commands work in both buffers.
+</p>
+
+<ul class="org-ul">
+<li><code>gnus-summary-next-unread-article (n)</code>: next unread article</li>
+<li><code>gnus-summary-prev-unread-article (p)</code>: previous unread article</li>
+<li><code>gnus-summary-next-article (N)</code>: next article</li>
+<li><code>gnus-summary-prev-article (P)</code>: previous article</li>
+<li><code>gnus-summary-next-page (&lt;SPC&gt;)</code>: scroll down, move to next unread
+article when at bottom</li>
+<li><code>gnus-summary-prev-page (&lt;DEL&gt; or &lt;BACKSPACE&gt;)</code>: scroll up, but will
+not move article</li>
+<li><code>gnus-summary-refer-parent-article (^)</code>: fetch parent article</li>
+</ul>
+
+<p>
+Replying
+</p>
+<ul class="org-ul">
+<li><code>gnus-summary-followup-with-original (F)</code>: follow-up to group and
+cite the article</li>
+<li><code>gnus-summary-followup (f)</code>: follow-up to group without citing the
+article</li>
+<li><code>gnus-summary-reply-with-original (R)</code>: reply by mail and cite the
+article</li>
+<li><code>gnus-summary-reply-with-original (r)</code>: reply by mail without cite
+the article</li>
+<li><code>message-forward-show-mml (C-c C-f)</code>: forward to another person</li>
+<li><code>gnus-summary-mail-other-window (m)</code>: new mail</li>
+<li><code>gnus-summary-post-news (a)</code>: new post</li>
+</ul>
+
+<p>
+Management
+</p>
+<ul class="org-ul">
+<li><code>gnus-summary-catchup-and-exit (c)</code>: catchup ALL in the buffer</li>
+<li><code>gnus-summary-toggle-header (t)</code>: toggle all headers (a lot of MIME
+information)</li>
+<li><b><code>gnus-summary-toggle-threads (T T)</code></b>: toggle threading (flat style
+or thread style)</li>
+<li><b><code>gnus-summary-insert-old-articles (/ o)</code></b>: show all read articles</li>
+<li><code>gnus-summary-rescore (V R)</code>: recompute the score. Score is computed
+by emacs rules. This can be explicitly set, or affected by some
+operations. For example, when you mark an article as read while
+didn't really read it, the related ones are marked like this.</li>
+<li><code>gnus-sticky-article (A S)</code>: normally the article and summary buffer
+is reused, that means you cannot put two mails side-by-side. This
+command make the current article buffer un-reusable for doing that.</li>
+</ul>
+
+<p>
+Scores are computed for each article, for the sake of making important
+ones stand out.
+</p>
+<ul class="org-ul">
+<li><code>gnus-summary-lower-score (L)</code>: create low score</li>
+<li><code>gnus-summary-increase-score (I)</code>: create high score</li>
+</ul>
+
+<p>
+Article will have marks to indicate the status of them. The followings
+are read marks:
+</p>
+<ul class="org-ul">
+<li><code>r</code>: marked as read by <code>d</code> command</li>
+<li><code>R</code>: actually been read</li>
+<li><code>O</code>: stands for old, marked as read in previous session</li>
+<li><code>Y</code>: having a too low score</li>
+<li><code>C</code>: marked as catchup</li>
+</ul>
+
+<p>
+Other marks:
+</p>
+<ul class="org-ul">
+<li><code>!</code>: tick, i.e. important, and will always show</li>
+<li><code>?</code>: dormant for now. This will show up whenever there are
+follow-ups.</li>
+<li><code>A</code>: this article has been replied or followed-up by
+me. <code>gnus-replied-mark</code>, this variable has a default value of 65,
+the ASCII for "A".</li>
+<li><code>F</code>: this article has been forwarded</li>
+<li><code>*</code>: this article is stored in cache</li>
+<li><code>S</code>: this article is saved</li>
+<li><code>#</code>: the process mark. This is similar to <code>m</code> in dired: you select
+some articles, and process them at the same time, using some
+commands.</li>
+<li><code>.</code>: gnus-unseen-mark, this article hasn't been seen before by the
+user. What does this mean??</li>
+</ul>
+
+<p>
+The following commands interact with marks
+</p>
+<ul class="org-ul">
+<li><code>gnus-summary-clear-mark-forward (M c)</code>: clear mark</li>
+<li><code>gnus-summary-mark-as-read-forward (d)</code>: mark as read.</li>
+<li><code>gnus-summary-tick-article-forward (!)</code>: mark as important.</li>
+<li><code>gnus-summary-mark-as-dormant (?)</code>: mark as dormant.</li>
+<li><code>gnus-summary-set-bookmark (M b)</code>: set a bookmark in the <b>current
+article</b>. This seems to be a position inside a long article. Gnus
+will jump to this bookmark the next time it encounters the article.</li>
+<li><code>gnus-summary-remove-bookmark (M B)</code>: remove the bookmark from
+current article.</li>
+<li><code>gnus-summary-mark-as-processable (#)</code>: mark the current article the
+process mark</li>
+<li><code>gnus-summary-unmark-as-processable (M-#)</code>: remove the process mark</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0733422" class="outline-3">
+<h3 id="org0733422"><span class="section-number-3">3.3</span> Message buffer</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+This is pretty standard: <code>C-c C-c</code> for send, <code>C-c C-k</code> for kill. What
+is not standard though is <code>C-c C-d</code> for draft, <code>C-c C-m f</code> to attach
+file.
+</p>
+
+<p>
+During editing a message, you can just save it normally, and it will
+be in the draft group. The next time you enter draft, type <code>D e</code>
+(<code>gnus-draft-edit-message</code>) in draft summary buffer, you will resume
+to editing. Rejected articles will also be in draft group.
+</p>
+
+<p>
+There are some commands for jumping around the buffer, and edit the
+headers.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2017-12-17 Sun 13:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
