@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-17 Sun 13:55 -->
+<!-- 2017-12-20 Wed 21:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gnus</title>
@@ -239,9 +239,10 @@ for the JavaScript code in this tag.
 <li><a href="#org2280d6f">2. gmane news group setting</a></li>
 <li><a href="#orgb25e30d">3. Usage</a>
 <ul>
-<li><a href="#org2a85033">3.1. Group Buffer:</a></li>
-<li><a href="#org0b6f33b">3.2. Summary and Article buffer</a></li>
-<li><a href="#org0733422">3.3. Message buffer</a></li>
+<li><a href="#orgf562cd2">3.1. Server buffer</a></li>
+<li><a href="#org2a85033">3.2. Group Buffer:</a></li>
+<li><a href="#org0b6f33b">3.3. Summary and Article buffer</a></li>
+<li><a href="#org0733422">3.4. Message buffer</a></li>
 </ul>
 </li>
 </ul>
@@ -263,6 +264,14 @@ Add the credential information to <code>~/.authinfo</code>
 <pre class="example">
 machine imap.gmail.com login &lt;username&gt; password &lt;password&gt; port 993
 machine smtp.gmail.com login &lt;username&gt; password &lt;password&gt; port 587
+</pre>
+
+<p>
+To configure multiple IMAP client for gnus:
+</p>
+<pre class="example">
+machine gmail login XXX@gmail.com password &lt;PASSWORD&gt; port 993
+machine cymail login XXX@iastate.edu password &lt;PASSWORD&gt; port 993
 </pre>
 
 <p>
@@ -327,10 +336,25 @@ cite, <code>R</code> for reply with cite, <code>t</code> for toggle some mode.
 </p>
 </div>
 
+<div id="outline-container-orgf562cd2" class="outline-3">
+<h3 id="orgf562cd2"><span class="section-number-3">3.1</span> Server buffer</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+From group buffer, type <code>^</code> to enter server buffer. Use <code>&lt;space&gt;</code> (NOT
+<code>&lt;enter&gt;</code>!) to browse the groups of it, and subscribe via <code>u</code>. To
+unsubscribe, type <code>u</code> again. Actually after unsubscribe, the group
+still shows up in the group buffer, with <code>U</code> mark. To <i>really</i> remove
+it, use <code>C-k</code> (<code>gnus-group-kill-group</code>) on it <i>in the group
+buffer</i>. Oh, just noticed this is just kill-line command, so you can
+yank it back via <code>C-y</code> (<code>gnus-group-yank-group</code>). Likewise, kill a
+region also works as expect.
+</p>
+</div>
+</div>
 
 <div id="outline-container-org2a85033" class="outline-3">
-<h3 id="org2a85033"><span class="section-number-3">3.1</span> Group Buffer:</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org2a85033"><span class="section-number-3">3.2</span> Group Buffer:</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 Finding the groups
 </p>
@@ -365,24 +389,58 @@ the group under cursor as read</li>
 
 
 <p>
-Topic mode group subscriptions into categories.
+Since we like organizing, there's a topic mode, enabled by <code>t</code>. After
+that, you will have a bunch of command prefixed with <code>T</code>. Topic mode
+group subscriptions into categories.
 </p>
+
 <ul class="org-ul">
 <li><code>gnus-topic-mode (t)</code>: toggle topic minor mode.</li>
 <li><code>gnus-topic-create-topic (T n)</code>: create a new topic</li>
+<li><code>gnus-topic-indent (&lt;TAB&gt;)</code>: indent current topic</li>
+<li><code>gnus-topic-unindent (M-&lt;TAB&gt;)</code>: unindent</li>
 <li><code>gnus-topic-delete (T &lt;Del&gt;)</code>: delete topic under cursor</li>
+</ul>
+
+<p>
+You generally just kill (C-k) and yank (C-y) to organize the groups
+into specific topics. UPDATE: Don't use C-k C-y, it seems to cause
+bug, that cannot save the configuration. Use the following instead.
+</p>
+
+<ul class="org-ul">
 <li><code>gnus-topic-move-group (T m)</code>: move the group under cursor to a
 topic</li>
+</ul>
+
+<p>
+When topic mode is enabled, &lt;enter&gt; and &lt;space&gt; on a topic line will
+fold or unfold it. So you don't really need the following commands.
+</p>
+<ul class="org-ul">
 <li><code>gnus-topic-hide-topic (T h)</code>:</li>
 <li><code>gnus-topic-show-topic (T s)</code>:</li>
 </ul>
+
+<p>
+Groups can be combined into virtual groups. This is very helpful for
+reading emails. For gmail, the inbox will not show <b>my</b> interactions,
+that is in <code>Sent Mail</code>. So on Group buffer, create a virtual group by
+<code>gnus-group-make-empty-virtual (G V)</code> and edit it via
+<code>gnus-group-edit-group-method (M-e)</code> with regular expression like
+this:
+</p>
+
+<pre class="example">
+(nnvirtual "nnimap\\+cymail:INBOX\\|nnimap\\+cymail:.*/Sent Mail")
+</pre>
 </div>
 </div>
 
 
 <div id="outline-container-org0b6f33b" class="outline-3">
-<h3 id="org0b6f33b"><span class="section-number-3">3.2</span> Summary and Article buffer</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org0b6f33b"><span class="section-number-3">3.3</span> Summary and Article buffer</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 This will list all the mails. <code>&lt;RET&gt;</code> to enter a specific mail.  The
 following commands work in both buffers.
@@ -397,7 +455,8 @@ following commands work in both buffers.
 article when at bottom</li>
 <li><code>gnus-summary-prev-page (&lt;DEL&gt; or &lt;BACKSPACE&gt;)</code>: scroll up, but will
 not move article</li>
-<li><code>gnus-summary-refer-parent-article (^)</code>: fetch parent article</li>
+<li><code>gnus-summary-expand-window (=)</code>: this expand the summary buffer,
+very handy (instead of switch to summary and C-x 1).</li>
 </ul>
 
 <p>
@@ -424,8 +483,6 @@ Management
 <li><code>gnus-summary-catchup-and-exit (c)</code>: catchup ALL in the buffer</li>
 <li><code>gnus-summary-toggle-header (t)</code>: toggle all headers (a lot of MIME
 information)</li>
-<li><b><code>gnus-summary-toggle-threads (T T)</code></b>: toggle threading (flat style
-or thread style)</li>
 <li><b><code>gnus-summary-insert-old-articles (/ o)</code></b>: show all read articles</li>
 <li><code>gnus-summary-rescore (V R)</code>: recompute the score. Score is computed
 by emacs rules. This can be explicitly set, or affected by some
@@ -434,6 +491,18 @@ didn't really read it, the related ones are marked like this.</li>
 <li><code>gnus-sticky-article (A S)</code>: normally the article and summary buffer
 is reused, that means you cannot put two mails side-by-side. This
 command make the current article buffer un-reusable for doing that.</li>
+</ul>
+
+<p>
+Threading
+</p>
+<ul class="org-ul">
+<li><b><code>gnus-summary-toggle-threads (T T)</code></b>: toggle threading (flat style
+or thread style)</li>
+<li><b><code>gnus-summary-refer-thread (A T)</code></b>: display the full thread</li>
+<li><b><code>gnus-summary-refer-parent-article (^)</code></b>: fetch parent article</li>
+<li><code>gnus-summary-top-thread (T o)</code>: go to the top of this thread</li>
+<li><code>gnus-summary-kill-thread (T k)</code>: mark whole thread as read</li>
 </ul>
 
 <p>
@@ -498,8 +567,8 @@ process mark</li>
 </div>
 
 <div id="outline-container-org0733422" class="outline-3">
-<h3 id="org0733422"><span class="section-number-3">3.3</span> Message buffer</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org0733422"><span class="section-number-3">3.4</span> Message buffer</h3>
+<div class="outline-text-3" id="text-3-4">
 <p>
 This is pretty standard: <code>C-c C-c</code> for send, <code>C-c C-k</code> for kill. What
 is not standard though is <code>C-c C-d</code> for draft, <code>C-c C-m f</code> to attach
@@ -523,7 +592,7 @@ headers.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-17 Sun 13:55</p>
+<p class="date">Created: 2017-12-20 Wed 21:17</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
