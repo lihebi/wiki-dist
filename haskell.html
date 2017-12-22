@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-20 Wed 23:23 -->
+<!-- 2017-12-22 Fri 17:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Haskell</title>
@@ -235,35 +235,49 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org52255ef">1. Reference</a></li>
-<li><a href="#orgdf8dd65">2. Tmp</a>
+<li><a href="#org52255ef">1. Reference</a>
 <ul>
-<li><a href="#org95880fd">2.1. <span class="todo TODO">TODO</span> Happy parser</a></li>
-<li><a href="#orge1846d3">2.2. <span class="todo TODO">TODO</span> Parsec Parser</a></li>
-<li><a href="#org3f5c9e2">2.3. Syntactic Sugar</a></li>
-<li><a href="#orga95e68a">2.4. strictness</a></li>
-<li><a href="#org2f46502">2.5. Notations</a></li>
+<li><a href="#org95880fd">1.1. <span class="todo TODO">TODO</span> Happy parser</a></li>
+<li><a href="#orge1846d3">1.2. <span class="todo TODO">TODO</span> Parsec Parser</a></li>
 </ul>
 </li>
-<li><a href="#org65112f1">3. GHC</a></li>
-<li><a href="#org19e6c26">4. Monad</a>
+<li><a href="#org733691a">2. Concept</a>
 <ul>
-<li><a href="#org7259989">4.1. Three Components of monad</a></li>
-<li><a href="#orga8fcaf0">4.2. Type constructor</a></li>
-<li><a href="#org578d690">4.3. Using class</a></li>
-<li><a href="#orgd280916">4.4. the monad laws</a></li>
-<li><a href="#org1edbc61">4.5. A different expression of Monad Laws</a></li>
-<li><a href="#org76b59fb">4.6. One Way Monad</a></li>
+<li><a href="#orga95e68a">2.1. strictness</a></li>
 </ul>
 </li>
-<li><a href="#org145ce0f">5. <span class="todo TODO">TODO</span> IO</a></li>
-<li><a href="#orge5d2d3b">6. Type</a></li>
-<li><a href="#orgd205ab5">7. <span class="todo TODO">TODO</span> Type classes</a></li>
-<li><a href="#org4087fa6">8. <span class="todo TODO">TODO</span> Pattern Matching</a></li>
-<li><a href="#org1d8ffcb">9. <span class="todo TODO">TODO</span> Cabal</a></li>
-<li><a href="#org7855c38">10. <span class="todo TODO">TODO</span> Learn Haskell</a>
+<li><a href="#org78d00b6">3. Lexical</a>
 <ul>
-<li><a href="#org9a5fbe3">10.1. <span class="todo TODO">TODO</span> Typeclasses of Haskell comparing to C++</a></li>
+<li><a href="#orgba3494f">3.1. Names</a></li>
+<li><a href="#org26495da">3.2. Comment</a></li>
+<li><a href="#org00f3b93">3.3. layout</a></li>
+</ul>
+</li>
+<li><a href="#orgee4e42d">4. Expression</a></li>
+<li><a href="#orgdf8dd65">5. Tmp</a>
+<ul>
+<li><a href="#org3f5c9e2">5.1. Syntactic Sugar</a></li>
+<li><a href="#org2f46502">5.2. Notations</a></li>
+</ul>
+</li>
+<li><a href="#org19e6c26">6. Monad</a>
+<ul>
+<li><a href="#org7259989">6.1. Three Components of monad</a></li>
+<li><a href="#orga8fcaf0">6.2. Type constructor</a></li>
+<li><a href="#org578d690">6.3. Using class</a></li>
+<li><a href="#orgd280916">6.4. the monad laws</a></li>
+<li><a href="#org1edbc61">6.5. A different expression of Monad Laws</a></li>
+<li><a href="#org76b59fb">6.6. One Way Monad</a></li>
+</ul>
+</li>
+<li><a href="#org145ce0f">7. <span class="todo TODO">TODO</span> IO</a></li>
+<li><a href="#orge5d2d3b">8. Type</a></li>
+<li><a href="#orgd205ab5">9. <span class="todo TODO">TODO</span> Type classes</a></li>
+<li><a href="#org4087fa6">10. <span class="todo TODO">TODO</span> Pattern Matching</a></li>
+<li><a href="#org1d8ffcb">11. <span class="todo TODO">TODO</span> Cabal</a></li>
+<li><a href="#org7855c38">12. <span class="todo TODO">TODO</span> Learn Haskell</a>
+<ul>
+<li><a href="#org9a5fbe3">12.1. <span class="todo TODO">TODO</span> Typeclasses of Haskell comparing to C++</a></li>
 </ul>
 </li>
 </ul>
@@ -274,40 +288,30 @@ for the JavaScript code in this tag.
 <h2 id="org52255ef"><span class="section-number-2">1</span> Reference</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>Haskell wiki: <a href="https://wiki.haskell.org">https://wiki.haskell.org</a></li>
-<li>Haskell wiki book: <a href="https://en.wikibooks.org/wiki/Haskell">https://en.wikibooks.org/wiki/Haskell</a></li>
+<li class="on"><code>[X]</code> Haskell wiki: <a href="https://wiki.haskell.org">https://wiki.haskell.org</a></li>
+<li class="on"><code>[X]</code> Haskell wiki book: <a href="https://en.wikibooks.org/wiki/Haskell">https://en.wikibooks.org/wiki/Haskell</a></li>
 <li>Write yourself a scheme: <a href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours">https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours</a></li>
-<li>The tutorial: <a href="https://www.haskell.org/tutorial/index.html">https://www.haskell.org/tutorial/index.html</a></li>
+<li class="on"><code>[X]</code> The tutorial: <a href="https://www.haskell.org/tutorial/index.html">https://www.haskell.org/tutorial/index.html</a></li>
 <li>language specification: <a href="https://wiki.haskell.org/Language_and_library_specification">https://wiki.haskell.org/Language_and_library_specification</a></li>
+<li>GHC: <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/">https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/</a></li>
 </ul>
 </div>
-</div>
 
-<div id="outline-container-orgdf8dd65" class="outline-2">
-<h2 id="orgdf8dd65"><span class="section-number-2">2</span> Tmp</h2>
-<div class="outline-text-2" id="text-2">
-</div>
 <div id="outline-container-org95880fd" class="outline-3">
-<h3 id="org95880fd"><span class="section-number-3">2.1</span> <span class="todo TODO">TODO</span> Happy parser</h3>
+<h3 id="org95880fd"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Happy parser</h3>
 </div>
 <div id="outline-container-orge1846d3" class="outline-3">
-<h3 id="orge1846d3"><span class="section-number-3">2.2</span> <span class="todo TODO">TODO</span> Parsec Parser</h3>
-</div>
-<div id="outline-container-org3f5c9e2" class="outline-3">
-<h3 id="org3f5c9e2"><span class="section-number-3">2.3</span> Syntactic Sugar</h3>
-<div class="outline-text-3" id="text-2-3">
-<pre class="example">
-x `elem` xs = elem x xs
-`elem` xs = flip elem xs
-[1,2,3] = (1:2:3:[])
-do x &lt;- f; g x = f &gt;&gt;= (\x -&gt; g x)
-</pre>
+<h3 id="orge1846d3"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Parsec Parser</h3>
 </div>
 </div>
 
+<div id="outline-container-org733691a" class="outline-2">
+<h2 id="org733691a"><span class="section-number-2">2</span> Concept</h2>
+<div class="outline-text-2" id="text-2">
+</div>
 <div id="outline-container-orga95e68a" class="outline-3">
-<h3 id="orga95e68a"><span class="section-number-3">2.4</span> strictness</h3>
-<div class="outline-text-3" id="text-2-4">
+<h3 id="orga95e68a"><span class="section-number-3">2.1</span> strictness</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 In a strict language, the arguments to a function are always evaluated
 before it is invoked.  In a non-strict language, the arguments are not
@@ -322,32 +326,260 @@ Scheme is strict, while Haskell is non-strict.
 </p>
 </div>
 </div>
-<div id="outline-container-org2f46502" class="outline-3">
-<h3 id="org2f46502"><span class="section-number-3">2.5</span> Notations</h3>
-<div class="outline-text-3" id="text-2-5">
-<p>
-In <code>5 :: Integer</code>, <code>::</code> reads "has type".
-</p>
-</div>
-</div>
 </div>
 
-<div id="outline-container-org65112f1" class="outline-2">
-<h2 id="org65112f1"><span class="section-number-2">3</span> GHC</h2>
+<div id="outline-container-org78d00b6" class="outline-2">
+<h2 id="org78d00b6"><span class="section-number-2">3</span> Lexical</h2>
 <div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgba3494f" class="outline-3">
+<h3 id="orgba3494f"><span class="section-number-3">3.1</span> Names</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
-<a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/">https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/</a>
+There are six kinds of names:
+</p>
+<ul class="org-ul">
+<li>(value) variables</li>
+<li>(value) constructors</li>
+<li>type variables</li>
+<li>type constructors</li>
+<li>type classes</li>
+<li>module names</li>
+</ul>
+
+<p>
+There are two constraints on naming:
+</p>
+<ul class="org-ul">
+<li>lower-case vs upper-case
+<ul class="org-ul">
+<li>variables and type variables must begin with <b>lowercase</b> letter or
+underscore</li>
+<li>other 4 kinds of names must begin with <b>uppercase</b> letter</li>
+</ul></li>
+<li>in the same scope, <b>type constructor and type class</b> must not be the
+same</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org26495da" class="outline-3">
+<h3 id="org26495da"><span class="section-number-3">3.2</span> Comment</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Pretty flexible, but just use
+</p>
+<ul class="org-ul">
+<li><code>--</code> for line comment</li>
+<li><code>{- XXX -}</code> for block comment</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org00f3b93" class="outline-3">
+<h3 id="org00f3b93"><span class="section-number-3">3.3</span> layout</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Haskell support two style of programming, possibly mixed: using
+explicit braces and semicolons, or use indention. The rule is pretty
+straight forward.
 </p>
 
 <p>
-REPL
+The layout rule takes effect whenever <b>the open brace is omitted</b>
+after keywords <b><code>where</code></b>, <b><code>let</code></b>, <b><code>do</code></b>, <b><code>of</code></b>. If it is not
+omitted, nothing happens, the indention will not matter at all. The
+indention of the next lexeme is remembered, and <b>the omitted open
+brace is inserted</b>. In the subsequent lines:
 </p>
+<ul class="org-ul">
+<li>if the indention is larger, nothing inserted, i.e. it is same as
+writing on the previous line</li>
+<li>if the indention is the same, a semicolon is inserted</li>
+<li>if the indention is smaller, a close brace is inserted, and the
+layout rule ends</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgee4e42d" class="outline-2">
+<h2 id="orgee4e42d"><span class="section-number-2">4</span> Expression</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+conditional
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">if</span> e1 <span style="color: #a020f0;">then</span> e2 <span style="color: #a020f0;">else</span> e3
+<span style="color: #a020f0;">case</span> e1 <span style="color: #a020f0;">of</span> { <span style="color: #228b22;">True</span> <span style="color: #a0522d;">-&gt;</span> e2; <span style="color: #228b22;">False</span> <span style="color: #a0522d;">-&gt;</span> e3}
+</pre>
+</div>
+
+<p>
+List
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">[e1,e2,<span style="color: #a0522d;">...</span>,ek]
+e1<span style="color: #0000ff;">:</span>(e2<span style="color: #228b22;">:</span>(<span style="color: #a0522d;">...</span>(ek<span style="color: #228b22;">:[]</span>)))
+</pre>
+</div>
+
+<p>
+Tuple
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(e1,<span style="color: #a0522d;">...</span>,ek)
+</pre>
+</div>
+
+<p>
+enumerations (note the <code>..</code> is an operator)
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">[e1<span style="color: #a0522d;">..</span>]
+[e1,e2<span style="color: #a0522d;">..</span>]
+[e1<span style="color: #a0522d;">..</span>e3]
+[e1,e2<span style="color: #a0522d;">..</span>e3]
+</pre>
+</div>
+
+<p>
+list comprehension: Each of q<sub>i</sub> is a qualifier, can have three
+forms. These qualifiers are <b>nested</b>. The first is pattern matching
+that matches <code>pat</code> against a <b>list expression</b> (thus called
+<i>generator</i>), the second create local bindings, the third a boolean
+guard. Pattern matching creates lambda bound, while let creates
+lexical bounds.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">[e <span style="color: #a0522d;">|</span> q1,<span style="color: #a0522d;">...</span>,qn]
+</pre>
+</div>
+
+<pre class="example">
+pat &lt;- exp
+let decls
+exp
+</pre>
+
+<p>
+Let expression introduces a nested, lexically-scoped
+mutually-recursive (letrec) list of <i>declarations</i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">let</span> {d1;<span style="color: #a0522d;">...</span>;dn} <span style="color: #a020f0;">in</span> e
+</pre>
+</div>
+
+<p>
+case expression matches <code>e</code> against a list of patches. But if a
+pattern matched, the body is not a single expression, but seems to be
+another round of matching. Each match is a list of guard expression
+separated by vertical bar (note <b>the first vertical bar is
+mandatory</b>). Each guard expression is a list of actual guards. Only if
+all the actual guards succeed, the guard expression succeeds. The
+corresponding expression is the result. Seems that the top-level
+patterns and the match guards have the same semantic, i.e. if one
+fail, try the next one.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">case</span> e <span style="color: #a020f0;">of</span> {p1 match1; <span style="color: #a0522d;">...</span> ; pn matchn}
+<span style="color: #0000ff;">match</span> <span style="color: #0000ff;">::=</span> <span style="color: #a0522d;">|</span> gs1 <span style="color: #a0522d;">-&gt;</span> e1 <span style="color: #a0522d;">|</span> gs2 <span style="color: #a0522d;">-&gt;</span> e2 <span style="color: #a0522d;">|</span> <span style="color: #a0522d;">...</span>
+<span style="color: #0000ff;">gs</span> <span style="color: #0000ff;">::=</span> guard1, guard2, <span style="color: #a0522d;">...</span>
+<span style="color: #0000ff;">guard</span> <span style="color: #0000ff;">::=</span> p <span style="color: #a0522d;">&lt;-</span> e
+<span style="color: #0000ff;">guard</span> <span style="color: #0000ff;">::=</span> <span style="color: #a020f0;">let</span> decls
+<span style="color: #0000ff;">guard</span> <span style="color: #0000ff;">::=</span> boolean guard
+</pre>
+</div>
+
+<p>
+do expression seems to be exclusively used in monad.
+</p>
+
+<p>
+Expression type-signature is a notation for human only. The compiler
+does not need to know it, because it infers the type signature. Of
+course the compiler will complain if they do not match. Thus, the
+expression with type-signature simply evaluates to the expression.
+</p>
+
+<p>
+The declared type may be more specific than the principal type derived
+from exp, but <b>it is an error that the declared type is more
+general</b>. But, it seems that, if we declare a more general type
+signature <b>before</b> the use of the type (thus before the inference), it
+is OK.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">exp</span> <span style="color: #a0522d;">::</span> [context <span style="color: #a0522d;">=&gt;</span>] <span style="color: #a020f0;">type</span>
+</pre>
+</div>
+
+<p>
+Pattern matching match pattern against values, and construct bounds.
+</p>
+
+<ol class="org-ol">
+<li>matching <code>var</code> against a value <code>v</code> always succeed, and bounds <code>var</code> to <code>v</code></li>
+<li>matching <code>~apat</code> against a value <code>v</code> always succeed. This is called
+a irrefutable pattern, means I force it to match, don't give me
+error. The error will occur when the matched bindings are
+evaluated.</li>
+<li>wildcard pattern <code>_</code> against any value always succeed</li>
+<li>matching <code>con pat</code> where <code>con</code> is a type constructor (defined by
+<code>newtype</code>), the value must also be <code>con v</code> to succeed</li>
+<li>matching <code>con pat1 ... patn</code> where <code>con</code> is a data constructor
+(defined by <code>data</code>), the value must also be <code>con v1 ... vn</code> with
+the same constructor to succeed. The variables are bound.</li>
+<li class="off"><code>[&#xa0;]</code> fields</li>
+<li>matching numeric, character, or string literal will only succeed if
+the value is that literal.</li>
+<li>match <code>var@apat</code> will basically match <code>apat</code> against <code>v</code>, but
+introduce additional bound <code>var</code> for the whole <code>v</code>.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgdf8dd65" class="outline-2">
+<h2 id="orgdf8dd65"><span class="section-number-2">5</span> Tmp</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org3f5c9e2" class="outline-3">
+<h3 id="org3f5c9e2"><span class="section-number-3">5.1</span> Syntactic Sugar</h3>
+<div class="outline-text-3" id="text-5-1">
+<pre class="example">
+x `elem` xs = elem x xs
+`elem` xs = flip elem xs
+[1,2,3] = (1:2:3:[])
+do x &lt;- f; g x = f &gt;&gt;= (\x -&gt; g x)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2f46502" class="outline-3">
+<h3 id="org2f46502"><span class="section-number-3">5.2</span> Notations</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Functions are defined by equations (<code>=</code>). E.g.
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">inc</span> n <span style="color: #a0522d;">=</span> n <span style="color: #a0522d;">+</span> 1
+</pre>
+</div>
+
+<p>
+This is a <i>declaration</i>.
+</p>
+</div>
 </div>
 </div>
 
 <div id="outline-container-org19e6c26" class="outline-2">
-<h2 id="org19e6c26"><span class="section-number-2">4</span> Monad</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org19e6c26"><span class="section-number-2">6</span> Monad</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 A monad is a way to structure computations in terms of values and
 sequences of computations using those values.
@@ -362,8 +594,8 @@ computations into more complex computations.
 </div>
 
 <div id="outline-container-org7259989" class="outline-3">
-<h3 id="org7259989"><span class="section-number-3">4.1</span> Three Components of monad</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org7259989"><span class="section-number-3">6.1</span> Three Components of monad</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 A monad is <b>a type constructor</b>, a function called <b><code>return</code></b>, and a
 combinator function called <b>bind</b> or <code>&gt;&gt;=</code>. These three elements work
@@ -381,8 +613,8 @@ complex computations of that type.
 </div>
 
 <div id="outline-container-orga8fcaf0" class="outline-3">
-<h3 id="orga8fcaf0"><span class="section-number-3">4.2</span> Type constructor</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="orga8fcaf0"><span class="section-number-3">6.2</span> Type constructor</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 A type constructor is a parameterized type definition used with
 polymorphic types.
@@ -391,8 +623,8 @@ polymorphic types.
 </div>
 
 <div id="outline-container-org578d690" class="outline-3">
-<h3 id="org578d690"><span class="section-number-3">4.3</span> Using class</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="org578d690"><span class="section-number-3">6.3</span> Using class</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 To define a monad, you basically need the three components. You can do
 it from scratch, but a better idea is through the use of class
@@ -444,8 +676,8 @@ So the full version should be
 
 
 <div id="outline-container-orgd280916" class="outline-3">
-<h3 id="orgd280916"><span class="section-number-3">4.4</span> the monad laws</h3>
-<div class="outline-text-3" id="text-4-4">
+<h3 id="orgd280916"><span class="section-number-3">6.4</span> the monad laws</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 All instances of Monad should obey the following equations, called
 <i>Monad Laws</i>:
@@ -475,8 +707,8 @@ The compiler, however, does not check these laws.
 </div>
 
 <div id="outline-container-org1edbc61" class="outline-3">
-<h3 id="org1edbc61"><span class="section-number-3">4.5</span> A different expression of Monad Laws</h3>
-<div class="outline-text-3" id="text-4-5">
+<h3 id="org1edbc61"><span class="section-number-3">6.5</span> A different expression of Monad Laws</h3>
+<div class="outline-text-3" id="text-6-5">
 <ol class="org-ol">
 <li>create a description of a computation that will produce
 (a.k.a. "return") a given Haskell value, and</li>
@@ -498,8 +730,8 @@ process itself.</li>
 
 
 <div id="outline-container-org76b59fb" class="outline-3">
-<h3 id="org76b59fb"><span class="section-number-3">4.6</span> One Way Monad</h3>
-<div class="outline-text-3" id="text-4-6">
+<h3 id="org76b59fb"><span class="section-number-3">6.6</span> One Way Monad</h3>
+<div class="outline-text-3" id="text-6-6">
 <p>
 The IO monad is a familiar example of a one-way monad in
 Haskell. Because you can't escape from the IO monad, it is impossible
@@ -523,18 +755,18 @@ the program.
 </div>
 
 <div id="outline-container-org145ce0f" class="outline-2">
-<h2 id="org145ce0f"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> IO</h2>
+<h2 id="org145ce0f"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> IO</h2>
 </div>
 
 
 <div id="outline-container-orge5d2d3b" class="outline-2">
-<h2 id="orge5d2d3b"><span class="section-number-2">6</span> Type</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="orge5d2d3b"><span class="section-number-2">8</span> Type</h2>
+<div class="outline-text-2" id="text-8">
 <p>
-<i>polymorphic types</i>: <code>[a]</code> denotes the family of types, for each type
-a, the type "list of a". Identifiers such as a above are called <i>type
-variables</i>, and are uncapitalized to distinguish them from specific
-types such as <code>Int</code>.
+<i>polymorphic types</i>: <code>(forall a)[a]</code> denotes the family of types, for
+each type a, the type "list of a". Identifiers such as a above are
+called <i>type variables</i>, and are uncapitalized to distinguish them
+from specific types such as <code>Int</code>.
 </p>
 
 <p>
@@ -560,8 +792,8 @@ types by universally quantifying them.
 </div>
 
 <div id="outline-container-orgd205ab5" class="outline-2">
-<h2 id="orgd205ab5"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> Type classes</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgd205ab5"><span class="section-number-2">9</span> <span class="todo TODO">TODO</span> Type classes</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 This is <i>ad hoc polymorphism</i>. Compared to <i>parametric polymorphism</i>,
 it quantifies over some smaller set of types, e.g. those that can be
@@ -632,13 +864,13 @@ Haskell also supports multiple inheritance.
 </div>
 
 <div id="outline-container-org4087fa6" class="outline-2">
-<h2 id="org4087fa6"><span class="section-number-2">8</span> <span class="todo TODO">TODO</span> Pattern Matching</h2>
+<h2 id="org4087fa6"><span class="section-number-2">10</span> <span class="todo TODO">TODO</span> Pattern Matching</h2>
 </div>
 
 
 <div id="outline-container-org1d8ffcb" class="outline-2">
-<h2 id="org1d8ffcb"><span class="section-number-2">9</span> <span class="todo TODO">TODO</span> Cabal</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org1d8ffcb"><span class="section-number-2">11</span> <span class="todo TODO">TODO</span> Cabal</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 <a href="https://www.haskell.org/cabal/">https://www.haskell.org/cabal/</a>
 </p>
@@ -652,12 +884,12 @@ Package management.
 
 
 <div id="outline-container-org7855c38" class="outline-2">
-<h2 id="org7855c38"><span class="section-number-2">10</span> <span class="todo TODO">TODO</span> Learn Haskell</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="org7855c38"><span class="section-number-2">12</span> <span class="todo TODO">TODO</span> Learn Haskell</h2>
+<div class="outline-text-2" id="text-12">
 </div>
 <div id="outline-container-org9a5fbe3" class="outline-3">
-<h3 id="org9a5fbe3"><span class="section-number-3">10.1</span> <span class="todo TODO">TODO</span> Typeclasses of Haskell comparing to C++</h3>
-<div class="outline-text-3" id="text-10-1">
+<h3 id="org9a5fbe3"><span class="section-number-3">12.1</span> <span class="todo TODO">TODO</span> Typeclasses of Haskell comparing to C++</h3>
+<div class="outline-text-3" id="text-12-1">
 <p>
 <a href="http://www.michaelburge.us/2017/10/15/haskell-typeclasses-vs-cpp-classes.html">http://www.michaelburge.us/2017/10/15/haskell-typeclasses-vs-cpp-classes.html</a>
 </p>
@@ -667,7 +899,7 @@ Package management.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-20 Wed 23:23</p>
+<p class="date">Created: 2017-12-22 Fri 17:19</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
