@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-22 Fri 17:19 -->
+<!-- 2017-12-23 Sat 14:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Haskell</title>
@@ -227,6 +227,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -239,6 +261,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org95880fd">1.1. <span class="todo TODO">TODO</span> Happy parser</a></li>
 <li><a href="#orge1846d3">1.2. <span class="todo TODO">TODO</span> Parsec Parser</a></li>
+<li><a href="#org1d8ffcb">1.3. <span class="todo TODO">TODO</span> Cabal</a></li>
 </ul>
 </li>
 <li><a href="#org733691a">2. Concept</a>
@@ -254,10 +277,11 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgee4e42d">4. Expression</a></li>
-<li><a href="#orgdf8dd65">5. Tmp</a>
+<li><a href="#org85598ad">5. Declaration</a>
 <ul>
-<li><a href="#org3f5c9e2">5.1. Syntactic Sugar</a></li>
-<li><a href="#org2f46502">5.2. Notations</a></li>
+<li><a href="#org6ed5149">5.1. Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</a></li>
+<li><a href="#org7e18e67">5.2. Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</a></li>
+<li><a href="#org31c4e29">5.3. nested declarations</a></li>
 </ul>
 </li>
 <li><a href="#org19e6c26">6. Monad</a>
@@ -268,16 +292,6 @@ for the JavaScript code in this tag.
 <li><a href="#orgd280916">6.4. the monad laws</a></li>
 <li><a href="#org1edbc61">6.5. A different expression of Monad Laws</a></li>
 <li><a href="#org76b59fb">6.6. One Way Monad</a></li>
-</ul>
-</li>
-<li><a href="#org145ce0f">7. <span class="todo TODO">TODO</span> IO</a></li>
-<li><a href="#orge5d2d3b">8. Type</a></li>
-<li><a href="#orgd205ab5">9. <span class="todo TODO">TODO</span> Type classes</a></li>
-<li><a href="#org4087fa6">10. <span class="todo TODO">TODO</span> Pattern Matching</a></li>
-<li><a href="#org1d8ffcb">11. <span class="todo TODO">TODO</span> Cabal</a></li>
-<li><a href="#org7855c38">12. <span class="todo TODO">TODO</span> Learn Haskell</a>
-<ul>
-<li><a href="#org9a5fbe3">12.1. <span class="todo TODO">TODO</span> Typeclasses of Haskell comparing to C++</a></li>
 </ul>
 </li>
 </ul>
@@ -292,7 +306,7 @@ for the JavaScript code in this tag.
 <li class="on"><code>[X]</code> Haskell wiki book: <a href="https://en.wikibooks.org/wiki/Haskell">https://en.wikibooks.org/wiki/Haskell</a></li>
 <li>Write yourself a scheme: <a href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours">https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours</a></li>
 <li class="on"><code>[X]</code> The tutorial: <a href="https://www.haskell.org/tutorial/index.html">https://www.haskell.org/tutorial/index.html</a></li>
-<li>language specification: <a href="https://wiki.haskell.org/Language_and_library_specification">https://wiki.haskell.org/Language_and_library_specification</a></li>
+<li class="on"><code>[X]</code> language specification: <a href="https://wiki.haskell.org/Language_and_library_specification">https://wiki.haskell.org/Language_and_library_specification</a></li>
 <li>GHC: <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/">https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/</a></li>
 </ul>
 </div>
@@ -302,6 +316,18 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-orge1846d3" class="outline-3">
 <h3 id="orge1846d3"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Parsec Parser</h3>
+</div>
+<div id="outline-container-org1d8ffcb" class="outline-3">
+<h3 id="org1d8ffcb"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> Cabal</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<a href="https://www.haskell.org/cabal/">https://www.haskell.org/cabal/</a>
+</p>
+
+<p>
+Package management.
+</p>
+</div>
 </div>
 </div>
 
@@ -495,8 +521,12 @@ fail, try the next one.
 </div>
 
 <p>
-do expression seems to be exclusively used in monad.
+do expression seems to be exclusively used in monad. It is a syntax
+sugar of <i>bind</i> operation.
 </p>
+<pre class="example">
+do x &lt;- f; g x = f &gt;&gt;= (\x -&gt; g x)
+</pre>
 
 <p>
 Expression type-signature is a notation for human only. The compiler
@@ -543,36 +573,237 @@ introduce additional bound <code>var</code> for the whole <code>v</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-orgdf8dd65" class="outline-2">
-<h2 id="orgdf8dd65"><span class="section-number-2">5</span> Tmp</h2>
+<div id="outline-container-org85598ad" class="outline-2">
+<h2 id="org85598ad"><span class="section-number-2">5</span> Declaration</h2>
 <div class="outline-text-2" id="text-5">
-</div>
-<div id="outline-container-org3f5c9e2" class="outline-3">
-<h3 id="org3f5c9e2"><span class="section-number-3">5.1</span> Syntactic Sugar</h3>
-<div class="outline-text-3" id="text-5-1">
-<pre class="example">
-x `elem` xs = elem x xs
-`elem` xs = flip elem xs
-[1,2,3] = (1:2:3:[])
-do x &lt;- f; g x = f &gt;&gt;= (\x -&gt; g x)
-</pre>
-</div>
+<p>
+Actually there are two categories of declarations: type and
+binding. So first we need to figure out what is type in Haskell.
+</p>
+
+<p>
+There are two <i>kinds</i> of types, namely <code>*</code> and <code>*-&gt;*</code>. In Haskell, a
+type variable is assumed to be universally qualified, i.e. \(a
+\rightarrow a\) means \(\forall a . a \rightarrow a\).
+</p>
+
+<p>
+Type context indicates the membership of a type variable to some type
+classes. The context is often written as <code>cx =&gt; t</code>.
+</p>
+
+<p>
+The type that best describe an expression is its <i>principal type</i>.
+</p>
 </div>
 
-<div id="outline-container-org2f46502" class="outline-3">
-<h3 id="org2f46502"><span class="section-number-3">5.2</span> Notations</h3>
-<div class="outline-text-3" id="text-5-2">
+
+<div id="outline-container-org6ed5149" class="outline-3">
+<h3 id="org6ed5149"><span class="section-number-3">5.1</span> Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
-Functions are defined by equations (<code>=</code>). E.g.
+This is called <i>polymorphic types</i>: <code>(forall a)[a]</code> denotes the family
+of types, for each type a, the type "list of a". Identifiers such as a
+above are called <i>type variables</i>, and are uncapitalized to
+distinguish them from specific types such as <code>Int</code>.  This is called
+<i>parametric polymorphism</i>, useful to define families of types by
+universally quantifying them.
+</p>
+
+<p>
+<code>data</code> declares an algebraic datatype.  The following declares a new
+<i>type constructor</i> T, with zero or more <i>data constructors</i> (or just
+<i>constructor</i>) K1 to Kn.
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #0000ff;">inc</span> n <span style="color: #a0522d;">=</span> n <span style="color: #a0522d;">+</span> 1
+<pre class="src src-haskell"><span style="color: #a020f0;">data</span> cx <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">T</span> u1 <span style="color: #a0522d;">...</span> uk <span style="color: #a0522d;">=</span> <span style="color: #228b22;">K1</span> t <span style="color: #a0522d;">...</span> t <span style="color: #a0522d;">|</span> <span style="color: #a0522d;">...</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">Kn</span> t <span style="color: #a0522d;">...</span> t
 </pre>
 </div>
 
 <p>
-This is a <i>declaration</i>.
+<code>type</code> introduces a new type that is equivalent to the old one. This
+is called <i>Type Synonym</i>.
 </p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">type</span> <span style="color: #228b22;">T</span> u1 <span style="color: #a0522d;">...</span> uk <span style="color: #a0522d;">=</span> t
+</pre>
+</div>
+
+<p>
+<code>newtype</code> introduces a new type whose representation is the same as
+old one. This seems very similar to type synonyms. But this is called
+<i>renaming</i>. It is introduced by the form
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">newtype</span> cx <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">T</span> u1 <span style="color: #a0522d;">...</span> uk <span style="color: #a0522d;">=</span> <span style="color: #228b22;">N</span> t
+</pre>
+</div>
+
+<p>
+The difference:
+</p>
+<ul class="org-ul">
+<li><code>newtype</code> <b>creates a distinct type</b> that must be explicitly coerced
+to or from the original type</li>
+<li><code>newtype</code> can be used to define recursive types.</li>
+<li>New instance can be defined for a <code>newtype</code>, but may not be defined
+for a type synonym.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7e18e67" class="outline-3">
+<h3 id="org7e18e67"><span class="section-number-3">5.2</span> Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+This is <i>ad hoc polymorphism</i>. Compared to <i>parametric polymorphism</i>,
+it quantifies over some smaller set of types, e.g. those that can be
+compared for equality.  It seems that type classes are defining some
+constrained set of types for some type, e.g. a subset of Integers.  It
+defines not a type, but rather expresses a constraint on a type. The
+constraint is called a <i>context</i>. The context is placed at the front
+of type expressions.
+</p>
+
+<p>
+The <code>class</code> declares a new <i>type class</i> (or just <i>class</i>). It will
+together define a set of methods that all instance of this class must
+support. You have two ways to define the instance relationship:
+through an explicit <code>instance</code> declaration, or use <code>deriving</code> to embed
+it into the <code>class</code> declaration.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">class</span> cx <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">C</span> u <span style="color: #a020f0;">where</span>
+  op <span style="color: #a0522d;">::</span> cx <span style="color: #a0522d;">=&gt;</span> t <span style="color: #b22222;">-- </span><span style="color: #b22222;">cdecl 1</span>
+  <span style="color: #a020f0;">infixr</span> 7 'op' <span style="color: #b22222;">-- </span><span style="color: #b22222;">cdecl 2</span>
+  op <span style="color: #a0522d;">=</span> <span style="color: #a0522d;">...</span> <span style="color: #b22222;">-- </span><span style="color: #b22222;">cdecl 3</span>
+</pre>
+</div>
+
+<p>
+This introduces a class named C, with super class from <code>cx</code>. As shown
+in the example, there are three kinds of decls. First is a method
+declaration. This only declares the type signature of the method.
+</p>
+
+<p>
+Second is a <i>fixity declaration</i>. It has the following grammar, with
+integer be 0 to 9, where 9 is the highest precedence. I'm not sure why
+op needs to be quoted (or is it a quote?) though.
+</p>
+
+<p>
+The third declaration is a default class method for any of the method
+declared.
+</p>
+
+<p>
+Finally, a <code>instance</code> introduce an instance T of a class C. T is a
+type constructor, and cannot be a type synonym. This is called a <i>C-T
+instance declaration</i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">instance</span> cx <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">C</span> (<span style="color: #228b22;">T</span> u1 <span style="color: #a0522d;">...</span> uk) <span style="color: #a020f0;">where</span> {d}
+</pre>
+</div>
+
+<p>
+Since <code>instance</code> only declares the relationship, the type T still
+needs to be defined. It is also possible to declare the instance
+relationship together with the declaration of type. Specifically
+<code>newtype</code> and <code>data</code> can have an optional <code>deriving</code> sub-form for
+that. Omitting it is equivalent to writing an empty deriving instance
+<code>deriving ()</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">data</span> <span style="color: #0000ff;">...</span> <span style="color: #a020f0;">deriving</span> <span style="color: #228b22;">C</span>
+<span style="color: #a020f0;">newtype</span> <span style="color: #0000ff;">...</span> <span style="color: #a020f0;">deriving</span> <span style="color: #228b22;">C</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org31c4e29" class="outline-3">
+<h3 id="org31c4e29"><span class="section-number-3">5.3</span> nested declarations</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+This type of declaration denotes those that can be nested inside <code>let</code>
+or <code>where</code>.
+</p>
+
+<p>
+first is type signature declaration
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">var1, <span style="color: #a0522d;">...</span>, varn <span style="color: #a0522d;">::</span> cx <span style="color: #a0522d;">=&gt;</span> t
+</pre>
+</div>
+
+<p>
+Then the fixity declaration
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #a020f0;">infixl</span> <span style="color: #a0522d;">|</span> <span style="color: #a020f0;">infixr</span> <span style="color: #a0522d;">|</span> <span style="color: #a020f0;">infix</span>) [integer] ops
+</pre>
+</div>
+
+<p>
+function binding is a list of bindings. They are used to match
+different patterns of parameters.  Each match is very similar to the
+match in <code>case</code> expression, but instead use <code>=</code> instead of <code>-&gt;</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">foo</span> p1 <span style="color: #a0522d;">...</span> pn match
+<span style="color: #0000ff;">foo</span> p1 <span style="color: #a0522d;">...</span> pn match
+<span style="color: #a0522d;">...</span>
+<span style="color: #0000ff;">match</span> <span style="color: #0000ff;">::=</span> <span style="color: #a0522d;">|</span> gs1 <span style="color: #a0522d;">=</span> e1 <span style="color: #a0522d;">|</span> gs2 <span style="color: #a0522d;">=</span> e2 <span style="color: #a0522d;">|</span> <span style="color: #a0522d;">...</span>
+<span style="color: #0000ff;">gs</span> <span style="color: #0000ff;">::=</span> guard1, guard2, <span style="color: #a0522d;">...</span>
+<span style="color: #0000ff;">guard</span> <span style="color: #0000ff;">::=</span> p <span style="color: #a0522d;">&lt;-</span> e
+<span style="color: #0000ff;">guard</span> <span style="color: #0000ff;">::=</span> <span style="color: #a020f0;">let</span> decls
+<span style="color: #0000ff;">guard</span> <span style="color: #0000ff;">::=</span> boolean guard
+</pre>
+</div>
+
+<p>
+Basically, it is semantically equivalent to this case statement:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">x</span> <span style="color: #a0522d;">=</span> <span style="color: #a0522d;">\</span>x1, <span style="color: #a0522d;">...</span>, xk <span style="color: #a0522d;">-&gt;</span> <span style="color: #a020f0;">case</span> (x1, <span style="color: #a0522d;">...</span>, xk) <span style="color: #a020f0;">of</span>
+    p1 <span style="color: #a0522d;">...</span> pn match
+    p1 <span style="color: #a0522d;">...</span> pn match
+</pre>
+</div>
+
+<p>
+Finally, we have pattern binding decl. The form can be:
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #b22222;">-- </span><span style="color: #b22222;">simple form</span>
+<span style="color: #0000ff;">p</span> <span style="color: #a0522d;">=</span> e
+<span style="color: #b22222;">-- </span><span style="color: #b22222;">general form</span>
+<span style="color: #0000ff;">p</span> <span style="color: #0000ff;">|</span> gs1 <span style="color: #a0522d;">=</span> e1
+  <span style="color: #a0522d;">|</span> gs2 <span style="color: #a0522d;">=</span> e2
+  <span style="color: #a0522d;">...</span>
+</pre>
+</div>
+
+<p>
+This is semantically equivalent to
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">=</span> <span style="color: #a020f0;">let</span> decls <span style="color: #a020f0;">in</span>
+    <span style="color: #a020f0;">case</span> <span style="color: #228b22;">()</span> <span style="color: #a020f0;">of</span>
+      <span style="color: #228b22;">()</span> <span style="color: #a0522d;">|</span> gs1 <span style="color: #a0522d;">-&gt;</span> e1
+      <span style="color: #228b22;">()</span> <span style="color: #a0522d;">|</span> gs2 <span style="color: #a0522d;">-&gt;</span> e2
+      <span style="color: #a0522d;">...</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -753,153 +984,10 @@ the program.
 </div>
 </div>
 </div>
-
-<div id="outline-container-org145ce0f" class="outline-2">
-<h2 id="org145ce0f"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> IO</h2>
-</div>
-
-
-<div id="outline-container-orge5d2d3b" class="outline-2">
-<h2 id="orge5d2d3b"><span class="section-number-2">8</span> Type</h2>
-<div class="outline-text-2" id="text-8">
-<p>
-<i>polymorphic types</i>: <code>(forall a)[a]</code> denotes the family of types, for
-each type a, the type "list of a". Identifiers such as a above are
-called <i>type variables</i>, and are uncapitalized to distinguish them
-from specific types such as <code>Int</code>.
-</p>
-
-<p>
-User can define type by using <code>data</code> declaration. e.g.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">data</span> <span style="color: #228b22;">Bool</span> <span style="color: #a0522d;">=</span> <span style="color: #228b22;">False</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">True</span>
-</pre>
-</div>
-
-<p>
-The defined type Bool has exactly two <b>values</b>: True and False. <code>Bool</code>
-is a <i>type constructor</i>, <code>True</code> and <code>False</code> are <i>data constructors</i>,
-or just <i>constructors</i> for short.
-</p>
-
-<p>
-This is called <i>parametric polymorphism</i>, useful to define families of
-types by universally quantifying them.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd205ab5" class="outline-2">
-<h2 id="orgd205ab5"><span class="section-number-2">9</span> <span class="todo TODO">TODO</span> Type classes</h2>
-<div class="outline-text-2" id="text-9">
-<p>
-This is <i>ad hoc polymorphism</i>. Compared to <i>parametric polymorphism</i>,
-it quantifies over some smaller set of types, e.g. those that can be
-compared for equality.
-</p>
-
-<p>
-It seems that type classes are defining some constrained set of types
-for some type, e.g. a subset of Integers.
-</p>
-
-<p>
-Take an example:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Eq</span> a <span style="color: #a020f0;">where</span> 
-  (<span style="color: #a0522d;">==</span>)                  <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
-</pre>
-</div>
-
-<p>
-This reads: "a type a is an instance of the class Eq if there is an
-(overloaded) operation ==, of the appropriate type, defined on it."
-</p>
-
-<p>
-The defined type class <code>Eq</code> is not a type, but rather expresses a
-constraint on a type. The constraint is called a <i>context</i>. The
-context is placed at the front of type expressions. This creates the
-following effect:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #0000ff;">==</span>)                    <span style="color: #a0522d;">::</span> (<span style="color: #228b22;">Eq</span> a) <span style="color: #a0522d;">=&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
-</pre>
-</div>
-
-<p>
-Which reads: "For every type <code>a</code> that is <b>an instance of</b> the class
-Eq, == has type a-&gt;a-&gt;Bool".
-</p>
-
-<p>
-Haskell also support class inheritance:
-</p>
-<div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">class</span>  (<span style="color: #228b22;">Eq</span> a) <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">Ord</span> a  <span style="color: #a020f0;">where</span>
-  (<span style="color: #a0522d;">&lt;</span>), (<span style="color: #a0522d;">&lt;=</span>), (<span style="color: #a0522d;">&gt;=</span>), (<span style="color: #a0522d;">&gt;</span>)  <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
-  max, min              <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a
-</pre>
-</div>
-
-<p>
-We defined class <code>Ord</code> which inherits all of the operations of <code>Eq</code>,
-but it has some more. Similarly, we say <code>Eq</code> is <i>superclass</i> of <code>Ord</code>,
-and <code>Ord</code> is <i>subclass</i> of <code>Eq</code>.
-</p>
-
-<p>
-Haskell also supports multiple inheritance.
-</p>
-<div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">class</span> (<span style="color: #228b22;">Eq</span> a, <span style="color: #228b22;">Show</span> a) <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">C</span> a <span style="color: #a020f0;">where</span> <span style="color: #a0522d;">...</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org4087fa6" class="outline-2">
-<h2 id="org4087fa6"><span class="section-number-2">10</span> <span class="todo TODO">TODO</span> Pattern Matching</h2>
-</div>
-
-
-<div id="outline-container-org1d8ffcb" class="outline-2">
-<h2 id="org1d8ffcb"><span class="section-number-2">11</span> <span class="todo TODO">TODO</span> Cabal</h2>
-<div class="outline-text-2" id="text-11">
-<p>
-<a href="https://www.haskell.org/cabal/">https://www.haskell.org/cabal/</a>
-</p>
-
-<p>
-Package management.
-</p>
-</div>
-</div>
-
-
-
-<div id="outline-container-org7855c38" class="outline-2">
-<h2 id="org7855c38"><span class="section-number-2">12</span> <span class="todo TODO">TODO</span> Learn Haskell</h2>
-<div class="outline-text-2" id="text-12">
-</div>
-<div id="outline-container-org9a5fbe3" class="outline-3">
-<h3 id="org9a5fbe3"><span class="section-number-3">12.1</span> <span class="todo TODO">TODO</span> Typeclasses of Haskell comparing to C++</h3>
-<div class="outline-text-3" id="text-12-1">
-<p>
-<a href="http://www.michaelburge.us/2017/10/15/haskell-typeclasses-vs-cpp-classes.html">http://www.michaelburge.us/2017/10/15/haskell-typeclasses-vs-cpp-classes.html</a>
-</p>
-</div>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-22 Fri 17:19</p>
+<p class="date">Created: 2017-12-23 Sat 14:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
