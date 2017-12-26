@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2017-12-26 Tue 03:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lisp Index Page</title>
@@ -236,6 +236,7 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgb6601d9">1. Lisp-1 vs. Lisp-2</a></li>
+<li><a href="#org06e371f">2. fold &amp; unfold</a></li>
 </ul>
 </div>
 </div>
@@ -262,10 +263,42 @@ Lisp-2 only have one universal namespace.
 </p>
 </div>
 </div>
+
+
+<div id="outline-container-org06e371f" class="outline-2">
+<h2 id="org06e371f"><span class="section-number-2">2</span> fold &amp; unfold</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+In academic functional programming literature, folds are often called
+catamorphisms, unfolds are often called anamorphisms, and the
+combinations of the two are often called hylomorphisms. They're
+interesting because any for-each loop can be represented as a
+catamorphism. To convert from a loop to a foldl, package up all
+mutable variables in the loop into a data structure (records work well
+for this, but you can also use an algebraic data type or a list). The
+initial state becomes the accumulator; the loop body becomes a
+function with the loop variables as its first argument and the
+iteration variable as its second; and the list becomes, well, the
+list. The result of the fold function is the new state of all the
+mutable variables.
+</p>
+
+<p>
+Similarly, every for-loop (without early exits) can be represented as
+a hylomorphism. The initialization, termination, and step conditions
+of a for-loop define an anamorphism that builds up a list of values
+for the iteration variable to take. Then, you can treat that as a
+for-each loop and use a catamorphism to break it down into whatever
+state you wish to modify.
+</p>
+</blockquote>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2017-12-26 Tue 03:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
