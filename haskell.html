@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-26 Tue 03:05 -->
+<!-- 2017-12-26 Tue 17:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Haskell</title>
@@ -257,100 +257,53 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org52255ef">1. Reference</a>
+<li><a href="#org733691a">1. Concept</a>
 <ul>
-<li><a href="#orga32c53e">1.1. <span class="todo TODO">TODO</span> Parsers</a></li>
-<li><a href="#org1d8ffcb">1.2. <span class="todo TODO">TODO</span> Cabal</a></li>
+<li><a href="#orga95e68a">1.1. strictness</a></li>
 </ul>
 </li>
-<li><a href="#org733691a">2. Concept</a>
+<li><a href="#org78d00b6">2. Lexical</a>
 <ul>
-<li><a href="#orga95e68a">2.1. strictness</a></li>
+<li><a href="#orgba3494f">2.1. Names</a></li>
+<li><a href="#org26495da">2.2. Comment</a></li>
+<li><a href="#org00f3b93">2.3. layout</a></li>
 </ul>
 </li>
-<li><a href="#org78d00b6">3. Lexical</a>
+<li><a href="#orgee4e42d">3. Expression</a></li>
+<li><a href="#org85598ad">4. Declaration</a>
 <ul>
-<li><a href="#orgba3494f">3.1. Names</a></li>
-<li><a href="#org26495da">3.2. Comment</a></li>
-<li><a href="#org00f3b93">3.3. layout</a></li>
+<li><a href="#org6ed5149">4.1. Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</a></li>
+<li><a href="#org7e18e67">4.2. Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</a></li>
+<li><a href="#org31c4e29">4.3. nested declarations</a></li>
 </ul>
 </li>
-<li><a href="#orgee4e42d">4. Expression</a></li>
-<li><a href="#org85598ad">5. Declaration</a>
+<li><a href="#orga318661">5. Predefined classes</a></li>
+<li><a href="#org19e6c26">6. Monad</a>
 <ul>
-<li><a href="#org6ed5149">5.1. Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</a></li>
-<li><a href="#org7e18e67">5.2. Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</a></li>
-<li><a href="#org31c4e29">5.3. nested declarations</a></li>
+<li><a href="#org7259989">6.1. Three Components of monad</a></li>
+<li><a href="#orga8fcaf0">6.2. Type constructor</a></li>
+<li><a href="#org578d690">6.3. Using class</a></li>
+<li><a href="#orgd280916">6.4. the monad laws</a></li>
+<li><a href="#org1edbc61">6.5. A different expression of Monad Laws</a></li>
+<li><a href="#org76b59fb">6.6. One Way Monad</a></li>
 </ul>
 </li>
-<li><a href="#orga318661">6. Predefined classes</a></li>
-<li><a href="#org19e6c26">7. Monad</a>
+<li><a href="#org52255ef">7. Reference</a>
 <ul>
-<li><a href="#org7259989">7.1. Three Components of monad</a></li>
-<li><a href="#orga8fcaf0">7.2. Type constructor</a></li>
-<li><a href="#org578d690">7.3. Using class</a></li>
-<li><a href="#orgd280916">7.4. the monad laws</a></li>
-<li><a href="#org1edbc61">7.5. A different expression of Monad Laws</a></li>
-<li><a href="#org76b59fb">7.6. One Way Monad</a></li>
+<li><a href="#orga32c53e">7.1. Parsers</a></li>
 </ul>
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-org52255ef" class="outline-2">
-<h2 id="org52255ef"><span class="section-number-2">1</span> Reference</h2>
-<div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li class="on"><code>[X]</code> Haskell wiki: <a href="https://wiki.haskell.org">https://wiki.haskell.org</a></li>
-<li class="on"><code>[X]</code> Haskell wiki book: <a href="https://en.wikibooks.org/wiki/Haskell">https://en.wikibooks.org/wiki/Haskell</a></li>
-<li class="on"><code>[X]</code> Write yourself a scheme: <a href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours">https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours</a></li>
-<li class="on"><code>[X]</code> The tutorial: <a href="https://www.haskell.org/tutorial/index.html">https://www.haskell.org/tutorial/index.html</a></li>
-<li class="on"><code>[X]</code> language specification: <a href="https://wiki.haskell.org/Language_and_library_specification">https://wiki.haskell.org/Language_and_library_specification</a></li>
-<li class="on"><code>[X]</code> GHC: <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/">https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/</a></li>
-</ul>
-</div>
-
-<div id="outline-container-orga32c53e" class="outline-3">
-<h3 id="orga32c53e"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Parsers</h3>
-<div class="outline-text-3" id="text-1-1">
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> Parsec Parser: <a href="https://hackage.haskell.org/package/parsec">https://hackage.haskell.org/package/parsec</a>
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> megaparsec: This is a fork of parsec. <a href="https://github.com/mrkkrp/megaparsec">https://github.com/mrkkrp/megaparsec</a></li>
-</ul></li>
-<li class="off"><code>[&#xa0;]</code> Happy parser: <a href="https://www.haskell.org/happy/">https://www.haskell.org/happy/</a></li>
-<li class="off"><code>[&#xa0;]</code> Alex: <a href="https://www.haskell.org/alex/">https://www.haskell.org/alex/</a></li>
-<li class="off"><code>[&#xa0;]</code> Earley: believe it or not, this is a new one. <a href="https://github.com/ollef/Earley">https://github.com/ollef/Earley</a></li>
-<li>attoparsec: another combinator, but seems not feature
-rich. <a href="https://github.com/bos/attoparsec">https://github.com/bos/attoparsec</a></li>
-<li>trifecta: this is yet another combinator. But seems to be out of
-date and buggy? <a href="https://github.com/ekmett/trifecta/">https://github.com/ekmett/trifecta/</a></li>
-<li>parsers: also combinator. <a href="https://hackage.haskell.org/package/parsers">https://hackage.haskell.org/package/parsers</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org1d8ffcb" class="outline-3">
-<h3 id="org1d8ffcb"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Cabal</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-<a href="https://www.haskell.org/cabal/">https://www.haskell.org/cabal/</a>
-</p>
-
-<p>
-Package management.
-</p>
-</div>
 </div>
 </div>
 
 <div id="outline-container-org733691a" class="outline-2">
-<h2 id="org733691a"><span class="section-number-2">2</span> Concept</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org733691a"><span class="section-number-2">1</span> Concept</h2>
+<div class="outline-text-2" id="text-1">
 </div>
 <div id="outline-container-orga95e68a" class="outline-3">
-<h3 id="orga95e68a"><span class="section-number-3">2.1</span> strictness</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="orga95e68a"><span class="section-number-3">1.1</span> strictness</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 In a strict language, the arguments to a function are always evaluated
 before it is invoked.  In a non-strict language, the arguments are not
@@ -368,12 +321,12 @@ Scheme is strict, while Haskell is non-strict.
 </div>
 
 <div id="outline-container-org78d00b6" class="outline-2">
-<h2 id="org78d00b6"><span class="section-number-2">3</span> Lexical</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org78d00b6"><span class="section-number-2">2</span> Lexical</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-orgba3494f" class="outline-3">
-<h3 id="orgba3494f"><span class="section-number-3">3.1</span> Names</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="orgba3494f"><span class="section-number-3">2.1</span> Names</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 There are six kinds of names:
 </p>
@@ -402,8 +355,8 @@ same</li>
 </div>
 </div>
 <div id="outline-container-org26495da" class="outline-3">
-<h3 id="org26495da"><span class="section-number-3">3.2</span> Comment</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org26495da"><span class="section-number-3">2.2</span> Comment</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 Pretty flexible, but just use
 </p>
@@ -414,8 +367,8 @@ Pretty flexible, but just use
 </div>
 </div>
 <div id="outline-container-org00f3b93" class="outline-3">
-<h3 id="org00f3b93"><span class="section-number-3">3.3</span> layout</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org00f3b93"><span class="section-number-3">2.3</span> layout</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 Haskell support two style of programming, possibly mixed: using
 explicit braces and semicolons, or use indention. The rule is pretty
@@ -442,8 +395,8 @@ layout rule ends</li>
 
 
 <div id="outline-container-orgee4e42d" class="outline-2">
-<h2 id="orgee4e42d"><span class="section-number-2">4</span> Expression</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orgee4e42d"><span class="section-number-2">3</span> Expression</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 conditional
 </p>
@@ -583,12 +536,21 @@ the value is that literal.</li>
 <li>match <code>var@apat</code> will basically match <code>apat</code> against <code>v</code>, but
 introduce additional bound <code>var</code> for the whole <code>v</code>.</li>
 </ol>
+
+<blockquote>
+<p>
+Pattern matching is a way of destructuring an algebraic data type,
+selecting a code clause based on its constructor and then binding the
+components to variables.
+</p>
+</blockquote>
 </div>
 </div>
 
+
 <div id="outline-container-org85598ad" class="outline-2">
-<h2 id="org85598ad"><span class="section-number-2">5</span> Declaration</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org85598ad"><span class="section-number-2">4</span> Declaration</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Actually there are two categories of declarations: type and
 binding. So first we need to figure out what is type in Haskell.
@@ -612,8 +574,8 @@ The type that best describe an expression is its <i>principal type</i>.
 
 
 <div id="outline-container-org6ed5149" class="outline-3">
-<h3 id="org6ed5149"><span class="section-number-3">5.1</span> Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="org6ed5149"><span class="section-number-3">4.1</span> Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 This is called <i>polymorphic types</i>: <code>(forall a)[a]</code> denotes the family
 of types, for each type a, the type "list of a". Identifiers such as a
@@ -667,8 +629,8 @@ for a type synonym.</li>
 </div>
 
 <div id="outline-container-org7e18e67" class="outline-3">
-<h3 id="org7e18e67"><span class="section-number-3">5.2</span> Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="org7e18e67"><span class="section-number-3">4.2</span> Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 This is <i>ad hoc polymorphism</i>. Compared to <i>parametric polymorphism</i>,
 it quantifies over some smaller set of types, e.g. those that can be
@@ -741,8 +703,8 @@ that. Omitting it is equivalent to writing an empty deriving instance
 </div>
 
 <div id="outline-container-org31c4e29" class="outline-3">
-<h3 id="org31c4e29"><span class="section-number-3">5.3</span> nested declarations</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="org31c4e29"><span class="section-number-3">4.3</span> nested declarations</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 This type of declaration denotes those that can be nested inside <code>let</code>
 or <code>where</code>.
@@ -823,8 +785,8 @@ This is semantically equivalent to
 
 
 <div id="outline-container-orga318661" class="outline-2">
-<h2 id="orga318661"><span class="section-number-2">6</span> Predefined classes</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="orga318661"><span class="section-number-2">5</span> Predefined classes</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Here just literally copy the definition of those types.
 </p>
@@ -939,8 +901,8 @@ class  Monad m  where
 </div>
 
 <div id="outline-container-org19e6c26" class="outline-2">
-<h2 id="org19e6c26"><span class="section-number-2">7</span> Monad</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org19e6c26"><span class="section-number-2">6</span> Monad</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 A monad is a way to structure computations in terms of values and
 sequences of computations using those values.
@@ -952,11 +914,20 @@ It is useful to think of a monad as a strategy for combining
 computations into more complex computations.
 </p>
 </blockquote>
+
+<blockquote>
+<p>
+In general, use &gt;&gt; if the actions don't return a value, &gt;&gt;= if you'll
+be immediately passing that value into the next action, and
+do-notation otherwise.
+</p>
+</blockquote>
 </div>
 
+
 <div id="outline-container-org7259989" class="outline-3">
-<h3 id="org7259989"><span class="section-number-3">7.1</span> Three Components of monad</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org7259989"><span class="section-number-3">6.1</span> Three Components of monad</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 A monad is <b>a type constructor</b>, a function called <b><code>return</code></b>, and a
 combinator function called <b>bind</b> or <code>&gt;&gt;=</code>. These three elements work
@@ -974,8 +945,8 @@ complex computations of that type.
 </div>
 
 <div id="outline-container-orga8fcaf0" class="outline-3">
-<h3 id="orga8fcaf0"><span class="section-number-3">7.2</span> Type constructor</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="orga8fcaf0"><span class="section-number-3">6.2</span> Type constructor</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 A type constructor is a parameterized type definition used with
 polymorphic types.
@@ -984,8 +955,8 @@ polymorphic types.
 </div>
 
 <div id="outline-container-org578d690" class="outline-3">
-<h3 id="org578d690"><span class="section-number-3">7.3</span> Using class</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="org578d690"><span class="section-number-3">6.3</span> Using class</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 To define a monad, you basically need the three components. You can do
 it from scratch, but a better idea is through the use of class
@@ -1035,8 +1006,8 @@ So the full version should be
 </div>
 
 <div id="outline-container-orgd280916" class="outline-3">
-<h3 id="orgd280916"><span class="section-number-3">7.4</span> the monad laws</h3>
-<div class="outline-text-3" id="text-7-4">
+<h3 id="orgd280916"><span class="section-number-3">6.4</span> the monad laws</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 All instances of Monad should obey the following equations, called
 <i>Monad Laws</i>:
@@ -1066,8 +1037,8 @@ The compiler, however, does not check these laws.
 </div>
 
 <div id="outline-container-org1edbc61" class="outline-3">
-<h3 id="org1edbc61"><span class="section-number-3">7.5</span> A different expression of Monad Laws</h3>
-<div class="outline-text-3" id="text-7-5">
+<h3 id="org1edbc61"><span class="section-number-3">6.5</span> A different expression of Monad Laws</h3>
+<div class="outline-text-3" id="text-6-5">
 <ol class="org-ol">
 <li>create a description of a computation that will produce
 (a.k.a. "return") a given Haskell value, and</li>
@@ -1089,8 +1060,8 @@ process itself.</li>
 
 
 <div id="outline-container-org76b59fb" class="outline-3">
-<h3 id="org76b59fb"><span class="section-number-3">7.6</span> One Way Monad</h3>
-<div class="outline-text-3" id="text-7-6">
+<h3 id="org76b59fb"><span class="section-number-3">6.6</span> One Way Monad</h3>
+<div class="outline-text-3" id="text-6-6">
 <p>
 The IO monad is a familiar example of a one-way monad in
 Haskell. Because you can't escape from the IO monad, it is impossible
@@ -1112,10 +1083,45 @@ the program.
 </div>
 </div>
 </div>
+
+<div id="outline-container-org52255ef" class="outline-2">
+<h2 id="org52255ef"><span class="section-number-2">7</span> Reference</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li class="on"><code>[X]</code> Haskell wiki: <a href="https://wiki.haskell.org">https://wiki.haskell.org</a></li>
+<li class="on"><code>[X]</code> Haskell wiki book: <a href="https://en.wikibooks.org/wiki/Haskell">https://en.wikibooks.org/wiki/Haskell</a></li>
+<li class="on"><code>[X]</code> Write yourself a scheme: <a href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours">https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours</a></li>
+<li class="on"><code>[X]</code> The tutorial: <a href="https://www.haskell.org/tutorial/index.html">https://www.haskell.org/tutorial/index.html</a></li>
+<li class="on"><code>[X]</code> language specification: <a href="https://wiki.haskell.org/Language_and_library_specification">https://wiki.haskell.org/Language_and_library_specification</a></li>
+<li class="on"><code>[X]</code> GHC: <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/">https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/</a></li>
+<li class="on"><code>[X]</code> Cabal: package management <a href="https://www.haskell.org/cabal/">https://www.haskell.org/cabal/</a></li>
+</ul>
+</div>
+
+<div id="outline-container-orga32c53e" class="outline-3">
+<h3 id="orga32c53e"><span class="section-number-3">7.1</span> Parsers</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li class="on"><code>[X]</code> Parsec Parser: <a href="https://hackage.haskell.org/package/parsec">https://hackage.haskell.org/package/parsec</a>
+<ul class="org-ul">
+<li class="on"><code>[X]</code> megaparsec: This is a fork of parsec <a href="https://hackage.haskell.org/package/megaparsec">https://hackage.haskell.org/package/megaparsec</a></li>
+</ul></li>
+<li class="on"><code>[X]</code> Happy parser: <a href="https://www.haskell.org/happy/">https://www.haskell.org/happy/</a></li>
+<li class="on"><code>[X]</code> Alex: <a href="https://www.haskell.org/alex/">https://www.haskell.org/alex/</a></li>
+<li class="on"><code>[X]</code> Earley: believe it or not, this is a new one. <a href="https://hackage.haskell.org/package/Earley">https://hackage.haskell.org/package/Earley</a></li>
+<li>attoparsec: another combinator, but seems not feature
+rich. <a href="https://github.com/bos/attoparsec">https://github.com/bos/attoparsec</a></li>
+<li>trifecta: this is yet another combinator. But seems to be out of
+date and buggy? <a href="https://github.com/ekmett/trifecta/">https://github.com/ekmett/trifecta/</a></li>
+<li>parsers: also combinator. <a href="https://hackage.haskell.org/package/parsers">https://hackage.haskell.org/package/parsers</a></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-26 Tue 03:05</p>
+<p class="date">Created: 2017-12-26 Tue 17:43</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
