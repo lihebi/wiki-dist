@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-12-29 Fri 22:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meta Language</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hebi Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Meta Language</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org11bdbb9">1. General Concepts</a>
+<ul>
+<li><a href="#org8667286">1.1. Algebraic data type</a></li>
+</ul>
+</li>
+<li><a href="#orgb8cb39b">2. Standard ML</a>
+<ul>
+<li><a href="#org1bec8e7">2.1. Reference</a></li>
+<li><a href="#orgf17a217">2.2. Binding</a></li>
+<li><a href="#orgc65cae5">2.3. Function</a></li>
+<li><a href="#org5b95961">2.4. Product Type</a></li>
+<li><a href="#org681c58c">2.5. Pattern Matching</a></li>
+<li><a href="#org74df675">2.6. Case</a></li>
+<li><a href="#org235cee0">2.7. Recursive Function</a></li>
+<li><a href="#org86e6d59">2.8. Type inference</a></li>
+<li><a href="#org6aa0053">2.9. list</a></li>
+<li><a href="#orge7ee677">2.10. Concrete data type</a></li>
+<li><a href="#orgea53fd2">2.11. Mutable Storage</a></li>
+<li><a href="#org0ab176a">2.12. IO</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+ML language stands for <i>Meta Language</i>, rooted in Lisp, commonly known
+as "Lisp with types".  It is <b>impure, eager evaluation</b> language.
+<i>Caml</i> stands for <i>Categorical Abstract Machine Language</i>.
+</p>
+
+
+<div id="outline-container-org11bdbb9" class="outline-2">
+<h2 id="org11bdbb9"><span class="section-number-2">1</span> General Concepts</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org8667286" class="outline-3">
+<h3 id="org8667286"><span class="section-number-3">1.1</span> Algebraic data type</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Algebraic data type, is a kind of composite type. There are two common
+classes: <i>product types</i> and <i>sum types</i>. Product type is like
+structure in C, with many <i>fields</i>. Sum type is like union in C, can
+hold either one kind of value, but not both. Thus it is also called
+<i>union types</i> or <i>variant types</i>.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb8cb39b" class="outline-2">
+<h2 id="orgb8cb39b"><span class="section-number-2">2</span> Standard ML</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1bec8e7" class="outline-3">
+<h3 id="org1bec8e7"><span class="section-number-3">2.1</span> Reference</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><a href="https://www.smlnj.org/">https://www.smlnj.org/</a></li>
+<li><a href="http://sml-family.org/">http://sml-family.org/</a></li>
+<li>Harper's book on SML: <a class='org-ref-reference' href="#1997-Book-Harper-Programming">1997-Book-Harper-Programming</a></li>
+<li>Functional Data Structure: <a class='org-ref-reference' href="#1999-Book-Okasaki-Purely">1999-Book-Okasaki-Purely</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgf17a217" class="outline-3">
+<h3 id="orgf17a217"><span class="section-number-3">2.2</span> Binding</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+ML is static lexical scoping.  A type binding looks like this.  Here,
+tycon means type constructor, typ means type expression. A type
+binding expression can establish multiple bindings at the same time.
+</p>
+<pre class="example">
+type tycon1 = typ1
+and ...
+and tyconn = typn
+</pre>
+
+<p>
+A variable binding is very similar.
+</p>
+<pre class="example">
+val var1 : typ1 = exp1
+and ...
+and varn : typn = expn
+</pre>
+
+<p>
+Multiple (2+) bindings writing sequentially, optionally separated by a
+semicolon, forms a <i>declaration</i>.
+</p>
+
+<p>
+A <code>let</code> binding or <code>local</code> binding creates local scoping. The <code>dec</code>
+here is a declaration. The binding is only in scope in the evaluation
+of <code>exp</code>. The <code>local</code> expression just means the bindings of <code>dec</code> is
+visible in evaluating of <code>dec'</code>. But what's the use-case??
+</p>
+
+<pre class="example">
+let dec in exp end
+local dec in dec' end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc65cae5" class="outline-3">
+<h3 id="orgc65cae5"><span class="section-number-3">2.3</span> Function</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+A <i>function expression</i>, or <i>lambda expression</i>, is of form:
+</p>
+
+<pre class="example">
+fn var : typ =&gt; exp
+</pre>
+
+<p>
+It seems that ML also is curried, and function application is written
+as <code>(function param)</code>. The above definition is anonymous, we can bind
+it to a variable:
+</p>
+
+<pre class="example">
+var foo : real -&gt; real =
+  fn x : real =&gt; x
+</pre>
+
+<p>
+There's a syntax sugar for this
+</p>
+<pre class="example">
+fun foo (x:real):real = x
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5b95961" class="outline-3">
+<h3 id="org5b95961"><span class="section-number-3">2.4</span> Product Type</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+The type of a <i>tuple</i> is <code>typ1*typ2*...*typn</code>, while the value is
+<code>(val1,val2,...,valn)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org681c58c" class="outline-3">
+<h3 id="org681c58c"><span class="section-number-3">2.5</span> Pattern Matching</h3>
+<div class="outline-text-3" id="text-2-5">
+<pre class="example">
+val pat = exp
+</pre>
+
+<p>
+Within the pattern
+</p>
+<ul class="org-ul">
+<li>a variable pattern is of form <code>var:typ</code></li>
+<li>a tuple pattern is of form <code>(pat1,...,patn)</code></li>
+<li>a wildcard pattern is of form <code>_</code></li>
+</ul>
+
+<p>
+Instead of using position to refer to a field in tuple, a record type
+is introduced. The type is of form
+</p>
+<pre class="example">
+{lab1:typ1, ..., labn:typn}
+</pre>
+
+<p>
+While the value is
+</p>
+<pre class="example">
+{lab1=val1,...,labn=valn}
+</pre>
+
+<p>
+ML can take pattern matching to function parameters too. When
+declaring function like this, it will apply pattern matching on the
+parameters and establish bindings.
+</p>
+
+<pre class="example">
+fn pat =&gt; exp
+</pre>
+
+<p>
+The corresponding syntax sugar (<code>fun</code> notation)
+</p>
+<pre class="example">
+fun foo (x:read, y:real):real*real = x
+</pre>
+
+<p>
+Note that, thanks to using pat as the function signature, we can now
+accept multiple parameters, and provide multiple results!
+</p>
+
+<p>
+There's also a syntax sugar, called <i>sharp notation</i>, to retrieve
+components from tuple based on either location (<code>#i</code>), or field
+(<code>#foo</code>). Note that these are functions that have signature of
+<code>typ1*...*typn -&gt; typi</code>. The use of sharp notation is <b>strongly
+discouraged</b> though, due to lack of readability.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org74df675" class="outline-3">
+<h3 id="org74df675"><span class="section-number-3">2.6</span> Case</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+The forms of all values of a tuple type must be the same, this is
+called <i>Homogeneous Types</i>. Otherwise, it is called <i>Heterogeneous
+Type</i>.  This is useful to declare a <i>Clausal Function</i> expression.
+</p>
+
+<pre class="example">
+fn pat1 =&gt; exp1
+ | pat2 =&gt; exp2
+ | ...
+ | patn =&gt; expn
+</pre>
+
+<p>
+each pat=&gt;exp is called a <i>clause</i>, or a <i>rule</i>. If any of the pattern
+match the supplied parameters, the function will have a specific
+type. Note that the type of the function can be different upon
+different parameters, thus it is called <i>Heterogeneous Type</i>. In a
+word, <i>Heterogeneous Type</i> is introduced by the alternation
+symbol. The function also has a corresponding <code>fun</code> notation:
+</p>
+
+<pre class="example">
+fun foo 0 = 0
+  | foo (x:int) = x
+</pre>
+
+<p>
+The <code>case</code> seems to be a syntax sugar for the clausal function
+expression (it is the general case in Haskell).
+</p>
+
+<pre class="example">
+case exp
+  of pat1 =&gt; exp1
+   | ...
+   | patn =&gt; expn
+</pre>
+
+<p>
+is short for the function application:
+</p>
+<pre class="example">
+(fn pat1 =&gt; exp1
+  | ...
+  | patn =&gt; expn) exp
+</pre>
+
+<p>
+As some example, the negation function <code>not</code> is defined as
+</p>
+<pre class="example">
+fun not true = false
+  | not false = true
+</pre>
+
+<p>
+conditional expression
+</p>
+<pre class="example">
+if exp then exp1 else exp2
+</pre>
+
+<p>
+if short hand for
+</p>
+<pre class="example">
+case exp
+  of true =&gt; exp1
+   | false =&gt; exp2
+</pre>
+
+<p>
+The <code>andalso</code> and <code>orelse</code> is defined as
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">exp1 <span style="color: #a020f0;">andalso</span> exp2
+<span style="color: #a020f0;">if</span> exp1 <span style="color: #a020f0;">then</span> exp2 <span style="color: #a020f0;">else</span> false
+exp1 <span style="color: #a020f0;">orelse</span> exp2
+<span style="color: #a020f0;">if</span> exp1 <span style="color: #a020f0;">then</span> true <span style="color: #a020f0;">else</span> exp2
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org235cee0" class="outline-3">
+<h3 id="org235cee0"><span class="section-number-3">2.7</span> Recursive Function</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+In ML, only functions can be recursively defined. This is because it
+is eagerly evaluated. Haskell can define even recursive values, thanks
+to its lazy evaluation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">val</span> <span style="color: #a020f0;">rec</span> <span style="color: #a0522d;">var</span>:typ = fnexp
+</pre>
+</div>
+
+<p>
+The keyword <code>rec</code> indicates this is a recursive binding, and the name
+<code>var</code> can be used in the right-hand side to refer to itself. The <code>fun</code>
+notation simply does not require the <code>rec</code> keyword.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">foo</span> 0 = 1
+  | foo (n:int) = n * foo (n-1)
+</pre>
+</div>
+
+<p>
+The type checking for recursive function is done inductively,
+i.e. assume nth-iteration is correct, check (n+1)-th iteration is also
+correct.
+</p>
+
+<p>
+SML supports <i>mutually recursive</i> definition, i.e. foo calls bar, bar
+calls foo, by connecting them together. The <code>and</code> is must.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">even</span> 0 = true
+  | even n = odd (n-1)
+<span style="color: #a020f0;">and</span> <span style="color: #0000ff;">odd</span> 0 = false
+  | odd n = even (n-1)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org86e6d59" class="outline-3">
+<h3 id="org86e6d59"><span class="section-number-3">2.8</span> Type inference</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+Like in Haskell, although the language is strongly typed, you most
+likely will not write it yourself. The type system is so good that it
+can most likely inference for you. In addition, it does a better job
+in that, it will infer the most general, i.e. <i>principal type</i>, for
+you. The prototypical example is the identity function, <code>fn x=&gt;x</code>. <code>x</code>
+here can be of any type. This function is said to be <i>polymorphic</i>,
+the pattern captured here is called a <i>type scheme</i>, expressed by
+<i>type variable</i>. In this case, the type scheme is <code>a-&gt;a</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org6aa0053" class="outline-3">
+<h3 id="org6aa0053"><span class="section-number-3">2.9</span> list</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+The type is written as <code>typ list</code>, and the values of this type is a
+list of values of type <code>typ</code>. It is defined inductively.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">val</span> <span style="color: #a0522d;">nil</span> : typ list
+<span style="color: #a020f0;">val</span> (<span style="color: #a020f0;">op</span> ::) : typ * typ lsit -&gt; typ list
+</pre>
+</div>
+
+<p>
+The notation <code>(op ::)</code> tells that, here, <code>::</code> is an operator function,
+rather than the one used in <i>list notation</i>.
+</p>
+
+<p>
+So, a value of <code>typ list</code> can be
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">val1 :: val2 :: ... :: valn :: nil
+</pre>
+</div>
+
+<p>
+The <i>list notation</i> is also available as you expect
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">[val1, val2, ..., valn]
+</pre>
+</div>
+
+<p>
+Of course, list supports pattern matching, too.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">length</span> nil = 0
+  | length (_::t) = 1 + length t
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7ee677" class="outline-3">
+<h3 id="orge7ee677"><span class="section-number-3">2.10</span> Concrete data type</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+Concrete data type corresponds to the <code>data</code> expression in Haskell.
+The <code>suite</code> is called <i>type constructor</i>, and each of <code>Spades</code>,
+<code>Diamonds</code>, <code>Clubs</code> are <i>value constructor</i>. In particular, the value
+constructors accepts no parameter, thus called <i>nullary value
+constructor</i>. They are constants.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">datatype</span> <span style="font-weight: bold;">suite</span> = Spades | Diamonds | Clubs
+</pre>
+</div>
+
+<p>
+You can have type variables, and define other type of value
+constructors, using <code>of</code> keyword. <code>SOME</code> here is a <i>unary value
+constructor</i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">datatype</span> 'a <span style="font-weight: bold;">option</span> = NONE | SOME <span style="color: #a020f0;">of</span> 'a
+</pre>
+</div>
+
+<p>
+The data constructor can also be recursive.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">datatype</span> 'a <span style="font-weight: bold;">tree</span> =
+         Empty |
+         Node <span style="color: #a020f0;">of</span> 'a tree * 'a * 'a tree
+</pre>
+</div>
+
+<p>
+Another canonical example is in pattern matching
+</p>
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">datatype</span> <span style="font-weight: bold;">expr</span> =
+         Numeral <span style="color: #a020f0;">of</span> int |
+         Plus <span style="color: #a020f0;">of</span> expr * expr |
+         Times <span style="color: #a020f0;">of</span> expr * expr
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">eval</span> (Numeral n) = Numeral n 
+  | eval (Plus (e1, e2)) =
+    <span style="color: #a020f0;">let</span>
+        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n1</span> = eval e1
+        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n2</span> = eval e2
+    <span style="color: #a020f0;">in</span>
+        Numeral (n1+n2)
+    <span style="color: #a020f0;">end</span>
+  | eval (Times (e1, e2)) =
+    <span style="color: #a020f0;">let</span>
+        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n1</span> = eval e1
+        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n2</span> = eval e2
+    <span style="color: #a020f0;">in</span>
+        Numeral (n1*n2)
+    <span style="color: #a020f0;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgea53fd2" class="outline-3">
+<h3 id="orgea53fd2"><span class="section-number-3">2.11</span> Mutable Storage</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+A <i>reference</i> indicates a mutable storage. It is created by <code>ref</code>, read
+by <code>!</code>, assign by <code>:=</code>. The type <code>typ ref</code> is similar to <code>typ list</code>,
+and is the reference to the storage of type <code>typ</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">ref</span>      : typ -&gt; typ ref
+<span style="color: #a020f0;">fun</span> (<span style="color: #a020f0;">op</span> !)   : typ ref -&gt; typ
+<span style="color: #a020f0;">fun</span> (<span style="color: #a020f0;">op</span> :=)  : typ ref * typ -&gt; unit
+</pre>
+</div>
+
+<p>
+To define a function accepting a <code>typ ref</code>, you can use <i>ref
+pattern</i>. The semantic is that, the function accept a reference, whose
+content matches the pattern. The <code>!</code> function itself is defined as:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">fun</span> ! (ref a) = a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0ab176a" class="outline-3">
+<h3 id="org0ab176a"><span class="section-number-3">2.12</span> IO</h3>
+<div class="outline-text-3" id="text-2-12">
+<p>
+The types <code>instream</code>, <code>outstream</code>. The common IO port: <code>stdIn</code>,
+<code>stdOut</code>, <code>stdErr</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">inputLine</span> : instream -&gt; string
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">print</span>     : string -&gt; unit
+<span style="color: #b22222;">(* </span><span style="color: #b22222;">blocking read </span><span style="color: #b22222;">*)</span>
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">input</span> : instream -&gt; string
+<span style="color: #b22222;">(* </span><span style="color: #b22222;">test whether input would block </span><span style="color: #b22222;">*)</span>
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">canInput</span> : instream * int -&gt; int option
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">output</span>    : outstream * string -&gt; unit
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">flushOut</span>  : outstream -&gt; unit
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">endOfStream</span> : instream -&gt; bool
+
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">openIn</span> : string -&gt; instream
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">openout</span> : string -&gt; outstream
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">closeIn</span> : instream -&gt; unit
+<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">closeOut</span> : outstream -&gt; unit
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Hebi Li</p>
+<p class="date">Created: 2017-12-29 Fri 22:45</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
