@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-29 Fri 22:45 -->
+<!-- 2018-01-02 Tue 00:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Meta Language</title>
@@ -265,7 +265,6 @@ as "Lisp with types".  It is <b>impure, eager evaluation</b> language.
 <i>Caml</i> stands for <i>Categorical Abstract Machine Language</i>.
 </p>
 
-
 <div id="outline-container-org11bdbb9" class="outline-2">
 <h2 id="org11bdbb9"><span class="section-number-2">1</span> General Concepts</h2>
 <div class="outline-text-2" id="text-1">
@@ -384,6 +383,7 @@ The type of a <i>tuple</i> is <code>typ1*typ2*...*typn</code>, while the value i
 </p>
 </div>
 </div>
+
 <div id="outline-container-org681c58c" class="outline-3">
 <h3 id="org681c58c"><span class="section-number-3">2.5</span> Pattern Matching</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -526,10 +526,10 @@ case exp
 The <code>andalso</code> and <code>orelse</code> is defined as
 </p>
 <div class="org-src-container">
-<pre class="src src-sml">exp1 <span style="color: #a020f0;">andalso</span> exp2
-<span style="color: #a020f0;">if</span> exp1 <span style="color: #a020f0;">then</span> exp2 <span style="color: #a020f0;">else</span> false
-exp1 <span style="color: #a020f0;">orelse</span> exp2
-<span style="color: #a020f0;">if</span> exp1 <span style="color: #a020f0;">then</span> true <span style="color: #a020f0;">else</span> exp2
+<pre class="src src-sml">  exp1 <span style="color: #a020f0;">andalso</span> exp2
+  <span style="color: #a020f0;">if</span> exp1 <span style="color: #a020f0;">then</span> exp2 <span style="color: #a020f0;">else</span> false
+  exp1 <span style="color: #a020f0;">orelse</span> exp2
+  <span style="color: #a020f0;">if</span> exp1 <span style="color: #a020f0;">then</span> true <span style="color: #a020f0;">else</span> exp2
 </pre>
 </div>
 </div>
@@ -675,9 +675,9 @@ The data constructor can also be recursive.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #a020f0;">datatype</span> 'a <span style="font-weight: bold;">tree</span> =
-         Empty |
-         Node <span style="color: #a020f0;">of</span> 'a tree * 'a * 'a tree
+<pre class="src src-sml">  <span style="color: #a020f0;">datatype</span> 'a <span style="font-weight: bold;">tree</span> =
+           Empty |
+           Node <span style="color: #a020f0;">of</span> 'a tree * 'a * 'a tree
 </pre>
 </div>
 
@@ -685,25 +685,25 @@ The data constructor can also be recursive.
 Another canonical example is in pattern matching
 </p>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #a020f0;">datatype</span> <span style="font-weight: bold;">expr</span> =
-         Numeral <span style="color: #a020f0;">of</span> int |
-         Plus <span style="color: #a020f0;">of</span> expr * expr |
-         Times <span style="color: #a020f0;">of</span> expr * expr
-<span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">eval</span> (Numeral n) = Numeral n 
-  | eval (Plus (e1, e2)) =
-    <span style="color: #a020f0;">let</span>
-        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n1</span> = eval e1
-        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n2</span> = eval e2
-    <span style="color: #a020f0;">in</span>
-        Numeral (n1+n2)
-    <span style="color: #a020f0;">end</span>
-  | eval (Times (e1, e2)) =
-    <span style="color: #a020f0;">let</span>
-        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n1</span> = eval e1
-        <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n2</span> = eval e2
-    <span style="color: #a020f0;">in</span>
-        Numeral (n1*n2)
-    <span style="color: #a020f0;">end</span>
+<pre class="src src-sml">  <span style="color: #a020f0;">datatype</span> <span style="font-weight: bold;">expr</span> =
+           Numeral <span style="color: #a020f0;">of</span> int |
+           Plus <span style="color: #a020f0;">of</span> expr * expr |
+           Times <span style="color: #a020f0;">of</span> expr * expr
+  <span style="color: #a020f0;">fun</span> <span style="color: #0000ff;">eval</span> (Numeral n) = Numeral n 
+    | eval (Plus (e1, e2)) =
+      <span style="color: #a020f0;">let</span>
+          <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n1</span> = eval e1
+          <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n2</span> = eval e2
+      <span style="color: #a020f0;">in</span>
+          Numeral (n1+n2)
+      <span style="color: #a020f0;">end</span>
+    | eval (Times (e1, e2)) =
+      <span style="color: #a020f0;">let</span>
+          <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n1</span> = eval e1
+          <span style="color: #a020f0;">val</span> Numeral <span style="color: #a0522d;">n2</span> = eval e2
+      <span style="color: #a020f0;">in</span>
+          Numeral (n1*n2)
+      <span style="color: #a020f0;">end</span>
 </pre>
 </div>
 </div>
@@ -769,7 +769,7 @@ The types <code>instream</code>, <code>outstream</code>. The common IO port: <co
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-29 Fri 22:45</p>
+<p class="date">Created: 2018-01-02 Tue 00:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

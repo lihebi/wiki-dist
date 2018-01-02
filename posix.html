@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2018-01-02 Tue 00:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>POSIX</title>
@@ -235,26 +235,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge69af37">1. Regular Expression</a>
+<li><a href="#org1d2b7be">1. Tmp</a></li>
+<li><a href="#orge69af37">2. Regular Expression</a>
 <ul>
-<li><a href="#org817db9e">1.1. Definition</a></li>
-<li><a href="#org3e8b705">1.2. Basic Regular Expressions (BRE)</a>
+<li><a href="#org817db9e">2.1. Definition</a></li>
+<li><a href="#org3e8b705">2.2. Basic Regular Expressions (BRE)</a>
 <ul>
-<li><a href="#org0632bb1">1.2.1. Bracket Expression</a></li>
-<li><a href="#orgdc88a4b">1.2.2. Matching Multiple Characters</a></li>
-<li><a href="#org7d42811">1.2.3. Precedence</a></li>
+<li><a href="#org0632bb1">2.2.1. Bracket Expression</a></li>
+<li><a href="#orgdc88a4b">2.2.2. Matching Multiple Characters</a></li>
+<li><a href="#org7d42811">2.2.3. Precedence</a></li>
 </ul>
 </li>
-<li><a href="#orge69018f">1.3. Extended Regular Expressions (ERE)</a></li>
+<li><a href="#orge69018f">2.3. Extended Regular Expressions (ERE)</a></li>
 </ul>
 </li>
-<li><a href="#org2f60615">2. pThread</a>
+<li><a href="#org2f60615">3. pThread</a>
 <ul>
-<li><a href="#org5be30e7">2.1. Create threads</a></li>
-<li><a href="#orgffd18cc">2.2. Join and Detach</a></li>
+<li><a href="#org5be30e7">3.1. Create threads</a></li>
+<li><a href="#orgffd18cc">3.2. Join and Detach</a></li>
 </ul>
 </li>
-<li><a href="#org413a297">3. std::thread</a></li>
+<li><a href="#org413a297">4. std::thread</a></li>
 </ul>
 </div>
 </div>
@@ -285,14 +286,31 @@ section 9 regular expression. This definition is used by many shell
 utilities such as awk.
 </p>
 
+<div id="outline-container-org1d2b7be" class="outline-2">
+<h2 id="org1d2b7be"><span class="section-number-2">1</span> Tmp</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+sleep
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;unistd.h&gt;</span>
+<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">sleep</span>(<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">seconds</span>); <span style="color: #b22222;">// </span><span style="color: #b22222;">seconds</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">usleep</span>(<span style="color: #228b22;">useconds_t</span> <span style="color: #a0522d;">useconds</span>); <span style="color: #b22222;">// </span><span style="color: #b22222;">microseconds</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">nanosleep</span>(<span style="color: #a020f0;">const</span> <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timespec</span> *<span style="color: #a0522d;">rqtp</span>, <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">timespec</span> *<span style="color: #a0522d;">rmtp</span>);
+</pre>
+</div>
+</div>
+</div>
+
+
 
 <div id="outline-container-orge69af37" class="outline-2">
-<h2 id="orge69af37"><span class="section-number-2">1</span> Regular Expression</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orge69af37"><span class="section-number-2">2</span> Regular Expression</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org817db9e" class="outline-3">
-<h3 id="org817db9e"><span class="section-number-3">1.1</span> Definition</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org817db9e"><span class="section-number-3">2.1</span> Definition</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 The search for a matching starts at the beginning of string, and stops
 when the <i>first</i> sequence matching is found. If the pattern can match
@@ -313,8 +331,8 @@ The end of the string should be a NUL. Some utilities use &lt;newline&gt;.
 </div>
 
 <div id="outline-container-org3e8b705" class="outline-3">
-<h3 id="org3e8b705"><span class="section-number-3">1.2</span> Basic Regular Expressions (BRE)</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org3e8b705"><span class="section-number-3">2.2</span> Basic Regular Expressions (BRE)</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 Special characters
 </p>
@@ -342,8 +360,8 @@ Special characters
 </ul>
 </div>
 <div id="outline-container-org0632bb1" class="outline-4">
-<h4 id="org0632bb1"><span class="section-number-4">1.2.1</span> Bracket Expression</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<h4 id="org0632bb1"><span class="section-number-4">2.2.1</span> Bracket Expression</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <p>
 [^]&#x2026;[:alnum:]..1-8.-]
 </p>
@@ -366,8 +384,8 @@ list, a.k.a. matches any character except these.</li>
 </div>
 
 <div id="outline-container-orgdc88a4b" class="outline-4">
-<h4 id="orgdc88a4b"><span class="section-number-4">1.2.2</span> Matching Multiple Characters</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<h4 id="orgdc88a4b"><span class="section-number-4">2.2.2</span> Matching Multiple Characters</h4>
+<div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li><code>*</code></li>
 <li><code>\(\)</code> is used. It can be arbitrarily nested.</li>
@@ -379,8 +397,8 @@ matched by N-th sub-expression, it can be empty.</li>
 </div>
 
 <div id="outline-container-org7d42811" class="outline-4">
-<h4 id="org7d42811"><span class="section-number-4">1.2.3</span> Precedence</h4>
-<div class="outline-text-4" id="text-1-2-3">
+<h4 id="org7d42811"><span class="section-number-4">2.2.3</span> Precedence</h4>
+<div class="outline-text-4" id="text-2-2-3">
 <p>
 From high to low:
 </p>
@@ -400,8 +418,8 @@ From high to low:
 
 
 <div id="outline-container-orge69018f" class="outline-3">
-<h3 id="orge69018f"><span class="section-number-3">1.3</span> Extended Regular Expressions (ERE)</h3>
-<div class="outline-text-3" id="text-1-3">
+<h3 id="orge69018f"><span class="section-number-3">2.3</span> Extended Regular Expressions (ERE)</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li><code>()</code> are special</li>
 <li><code>+?{</code> are special</li>
@@ -416,8 +434,8 @@ Note that no word begin in the standard.
 </div>
 
 <div id="outline-container-org2f60615" class="outline-2">
-<h2 id="org2f60615"><span class="section-number-2">2</span> pThread</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org2f60615"><span class="section-number-2">3</span> pThread</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;pthread.h&gt;</span>
 pthread_create (thread, attr, start_routine, arg)
@@ -429,8 +447,8 @@ pthread_detach (threadid)
 </div>
 
 <div id="outline-container-org5be30e7" class="outline-3">
-<h3 id="org5be30e7"><span class="section-number-3">2.1</span> Create threads</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org5be30e7"><span class="section-number-3">3.1</span> Create threads</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 If main() finishes before the threads it has created, and exits with
 pthread<sub>exit</sub>(), the other threads will continue to execute. Otherwise,
@@ -438,80 +456,80 @@ they will be automatically terminated when main() finishes.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">NUM_THREADS</span>     5
+<pre class="src src-cpp"><span style="color: #483d8b;">  #define</span> <span style="color: #a0522d;">NUM_THREADS</span>     5
 
-<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">thread_data</span>{
-  <span style="color: #228b22;">int</span>  <span style="color: #a0522d;">thread_id</span>;
-  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">message</span>;
-};
+  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">thread_data</span>{
+    <span style="color: #228b22;">int</span>  <span style="color: #a0522d;">thread_id</span>;
+    <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">message</span>;
+  };
 
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
-  <span style="color: #228b22;">pthread_t</span> <span style="color: #a0522d;">threads</span>[NUM_THREADS];
-  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">thread_data</span> <span style="color: #a0522d;">td</span>[NUM_THREADS];
+  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
+    <span style="color: #228b22;">pthread_t</span> <span style="color: #a0522d;">threads</span>[NUM_THREADS];
+    <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">thread_data</span> <span style="color: #a0522d;">td</span>[NUM_THREADS];
 
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rc</span>;
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rc</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
 
-  <span style="color: #a020f0;">for</span>( i=0; i &lt; NUM_THREADS; i++ ){
-    td[i].thread_id = i;
-    td[i].message = <span style="color: #8b2252;">"This is message"</span>;
-    rc = pthread_create(&amp;threads[i], <span style="color: #008b8b;">NULL</span>, PrintHello, (<span style="color: #228b22;">void</span> *)&amp;td[i]);
-    <span style="color: #a020f0;">if</span> (rc){
-      cout &lt;&lt; <span style="color: #8b2252;">"Error:unable to create thread,"</span> &lt;&lt; rc &lt;&lt; endl;
-      exit(-1);
+    <span style="color: #a020f0;">for</span>( i=0; i &lt; NUM_THREADS; i++ ){
+      td[i].thread_id = i;
+      td[i].message = <span style="color: #8b2252;">"This is message"</span>;
+      rc = pthread_create(&amp;threads[i], <span style="color: #008b8b;">NULL</span>, PrintHello, (<span style="color: #228b22;">void</span> *)&amp;td[i]);
+      <span style="color: #a020f0;">if</span> (rc){
+        cout &lt;&lt; <span style="color: #8b2252;">"Error:unable to create thread,"</span> &lt;&lt; rc &lt;&lt; endl;
+        exit(-1);
+      }
     }
+    pthread_exit(<span style="color: #008b8b;">NULL</span>);
   }
-  pthread_exit(<span style="color: #008b8b;">NULL</span>);
-}
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-orgffd18cc" class="outline-3">
-<h3 id="orgffd18cc"><span class="section-number-3">2.2</span> Join and Detach</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="orgffd18cc"><span class="section-number-3">3.2</span> Join and Detach</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span> () {
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rc</span>;
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+<pre class="src src-cpp">  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span> () {
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rc</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+        
+    <span style="color: #228b22;">pthread_t</span> <span style="color: #a0522d;">threads</span>[NUM_THREADS];
+    <span style="color: #228b22;">pthread_attr_t</span> <span style="color: #a0522d;">attr</span>;
+    <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">status</span>;
 
-  <span style="color: #228b22;">pthread_t</span> <span style="color: #a0522d;">threads</span>[NUM_THREADS];
-  <span style="color: #228b22;">pthread_attr_t</span> <span style="color: #a0522d;">attr</span>;
-  <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">status</span>;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Initialize and set thread joinable</span>
+    pthread_attr_init(&amp;attr);
+    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);
 
-  <span style="color: #b22222;">// </span><span style="color: #b22222;">Initialize and set thread joinable</span>
-  pthread_attr_init(&amp;attr);
-  pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);
-
-  <span style="color: #a020f0;">for</span>( i=0; i &lt; NUM_THREADS; i++ ){
-    cout &lt;&lt; <span style="color: #8b2252;">"main() : creating thread, "</span> &lt;&lt; i &lt;&lt; endl;
-    rc = pthread_create(&amp;threads[i], &amp;attr, wait, (<span style="color: #228b22;">void</span> *)i );
-
-    <span style="color: #a020f0;">if</span> (rc){
-      cout &lt;&lt; <span style="color: #8b2252;">"Error:unable to create thread,"</span> &lt;&lt; rc &lt;&lt; endl;
-      exit(-1);
-    }
-  }
-
-  <span style="color: #b22222;">// </span><span style="color: #b22222;">free attribute and wait for the other threads</span>
-  pthread_attr_destroy(&amp;attr);
-
-  <span style="color: #a020f0;">for</span>( i=0; i &lt; NUM_THREADS; i++ ){
-    rc = pthread_join(threads[i], &amp;status);
-
-    <span style="color: #a020f0;">if</span> (rc){
-      cout &lt;&lt; <span style="color: #8b2252;">"Error:unable to join,"</span> &lt;&lt; rc &lt;&lt; endl;
-      exit(-1);
+    <span style="color: #a020f0;">for</span>( i=0; i &lt; NUM_THREADS; i++ ){
+      cout &lt;&lt; <span style="color: #8b2252;">"main() : creating thread, "</span> &lt;&lt; i &lt;&lt; endl;
+      rc = pthread_create(&amp;threads[i], &amp;attr, wait, (<span style="color: #228b22;">void</span> *)i );
+                
+      <span style="color: #a020f0;">if</span> (rc){
+        cout &lt;&lt; <span style="color: #8b2252;">"Error:unable to create thread,"</span> &lt;&lt; rc &lt;&lt; endl;
+        exit(-1);
+      }
     }
 
-    cout &lt;&lt; <span style="color: #8b2252;">"Main: completed thread id :"</span> &lt;&lt; i ;
-    cout &lt;&lt; <span style="color: #8b2252;">"  exiting with status :"</span> &lt;&lt; status &lt;&lt; endl;
-  }
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">free attribute and wait for the other threads</span>
+    pthread_attr_destroy(&amp;attr);
+        
+    <span style="color: #a020f0;">for</span>( i=0; i &lt; NUM_THREADS; i++ ){
+      rc = pthread_join(threads[i], &amp;status);
+                
+      <span style="color: #a020f0;">if</span> (rc){
+        cout &lt;&lt; <span style="color: #8b2252;">"Error:unable to join,"</span> &lt;&lt; rc &lt;&lt; endl;
+        exit(-1);
+      }
+                
+      cout &lt;&lt; <span style="color: #8b2252;">"Main: completed thread id :"</span> &lt;&lt; i ;
+      cout &lt;&lt; <span style="color: #8b2252;">"  exiting with status :"</span> &lt;&lt; status &lt;&lt; endl;
+    }
 
-  cout &lt;&lt; <span style="color: #8b2252;">"Main: program exiting."</span> &lt;&lt; endl;
-  pthread_exit(<span style="color: #008b8b;">NULL</span>);
-}
+    cout &lt;&lt; <span style="color: #8b2252;">"Main: program exiting."</span> &lt;&lt; endl;
+    pthread_exit(<span style="color: #008b8b;">NULL</span>);
+  }
 </pre>
 </div>
 </div>
@@ -519,12 +537,12 @@ they will be automatically terminated when main() finishes.
 </div>
 
 <div id="outline-container-org413a297" class="outline-2">
-<h2 id="org413a297"><span class="section-number-2">3</span> std::thread</h2>
+<h2 id="org413a297"><span class="section-number-2">4</span> std::thread</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2018-01-02 Tue 00:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

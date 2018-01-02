@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2018-01-02 Tue 00:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure</title>
@@ -235,84 +235,477 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4abf402">1. clojure.core</a>
+<li><a href="#org7b5030c">1. Emacs</a>
 <ul>
-<li><a href="#orgeb57154">1.1. Namespace</a></li>
+<li><a href="#org4d92492">1.1. Eval</a></li>
+<li><a href="#orgf21eac9">1.2. Navigation</a></li>
+<li><a href="#org65591cb">1.3. Doc</a></li>
+<li><a href="#org9921a59">1.4. Tests</a></li>
 </ul>
 </li>
-<li><a href="#org75d60d7">2. Type</a>
+<li><a href="#org32d543e">2. Lein</a></li>
+<li><a href="#org1e7bd27">3. A first try</a>
 <ul>
-<li><a href="#org7614a2b">2.1. Number</a>
+<li><a href="#org3fb37f6">3.1. Setup</a></li>
+<li><a href="#org75d60d7">3.2. Type</a></li>
+<li><a href="#orgbfe5b10">3.3. Function</a></li>
+<li><a href="#org2b7829c">3.4. Macro</a></li>
+<li><a href="#org8dc0c99">3.5. State</a>
 <ul>
-<li><a href="#org7e7e751">2.1.1. Arithmetic</a></li>
-<li><a href="#org1d9a43f">2.1.2. Compare</a></li>
-<li><a href="#org6b5df2e">2.1.3. Bitwise</a></li>
-<li><a href="#org02f24ac">2.1.4. Cast</a></li>
-<li><a href="#org091881d">2.1.5. Predicate</a></li>
-<li><a href="#org80a7909">2.1.6. Random</a></li>
+<li><a href="#orgef42888">3.5.1. delay</a></li>
+<li><a href="#org9e9e5d2">3.5.2. Future</a>
+<ul>
+<li><a href="#orgbefc269">3.5.2.1. Atom</a></li>
+<li><a href="#org75123b0">3.5.2.2. Ref</a></li>
 </ul>
 </li>
-<li><a href="#org9ebc27b">2.2. symbols &amp; keywords</a></li>
-<li><a href="#org3287d57">2.3. String</a>
+<li><a href="#org8630497">3.5.3. Promise</a></li>
+</ul>
+</li>
+<li><a href="#orgf7ceb97">3.6. <span class="todo TODO">TODO</span> Logistics</a></li>
+<li><a href="#org8459329">3.7. <span class="todo TODO">TODO</span> Modeling</a></li>
+<li><a href="#orgc4d2dc6">3.8. <span class="todo TODO">TODO</span> Debugging</a></li>
+</ul>
+</li>
+<li><a href="#org4abf402">4. clojure.core</a>
 <ul>
-<li><a href="#org8c6fb06">2.3.1. Use</a></li>
-<li><a href="#orgb3fc35d">2.3.2. Regex</a></li>
-<li><a href="#orgc250f1f">2.3.3. Letter</a></li>
-<li><a href="#org30971a8">2.3.4. trim</a></li>
-<li><a href="#org757ec2d">2.3.5. Predicate</a></li>
-<li><a href="#org615c733">2.3.6. characters</a></li>
+<li><a href="#orgeb57154">4.1. Namespace</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org94f4dcc">3. Collections</a>
+<li><a href="#orge0e47aa">5. Type</a>
 <ul>
-<li><a href="#orge23ecd3">3.1. Collection</a>
+<li><a href="#org7614a2b">5.1. Number</a>
 <ul>
-<li><a href="#orgf2c702e">3.1.1. Generic</a></li>
-<li><a href="#orgc4bf7e0">3.1.2. ops</a></li>
-<li><a href="#orgcd6ba4e">3.1.3. Predicates</a></li>
-<li><a href="#org90fa8d8">3.1.4. Capabilities</a></li>
+<li><a href="#org7e7e751">5.1.1. Arithmetic</a></li>
+<li><a href="#org1d9a43f">5.1.2. Compare</a></li>
+<li><a href="#org6b5df2e">5.1.3. Bitwise</a></li>
+<li><a href="#org02f24ac">5.1.4. Cast</a></li>
+<li><a href="#org757ec2d">5.1.5. Predicate</a></li>
+<li><a href="#org80a7909">5.1.6. Random</a></li>
 </ul>
 </li>
-<li><a href="#org2ff70e6">3.2. List</a></li>
-<li><a href="#orge550d99">3.3. Vector</a>
+<li><a href="#org9ebc27b">5.2. symbols &amp; keywords</a></li>
+<li><a href="#org3287d57">5.3. String</a>
 <ul>
-<li><a href="#org55fedf3">3.3.1. Create</a></li>
-<li><a href="#org5f2fcc8">3.3.2. Examine</a></li>
+<li><a href="#org8c6fb06">5.3.1. Use</a></li>
+<li><a href="#orgb3fc35d">5.3.2. Regex</a></li>
+<li><a href="#orgc250f1f">5.3.3. Letter</a></li>
+<li><a href="#org30971a8">5.3.4. trim</a></li>
+<li><a href="#orgff0a398">5.3.5. Predicate</a></li>
+<li><a href="#org615c733">5.3.6. characters</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#org94f4dcc">6. Collections</a>
+<ul>
+<li><a href="#orge23ecd3">6.1. Collection</a>
+<ul>
+<li><a href="#orgf2c702e">6.1.1. Generic</a></li>
+<li><a href="#orgc4bf7e0">6.1.2. ops</a></li>
+<li><a href="#orgcd6ba4e">6.1.3. Predicates</a></li>
+<li><a href="#org90fa8d8">6.1.4. Capabilities</a></li>
+</ul>
+</li>
+<li><a href="#org2ff70e6">6.2. List</a></li>
+<li><a href="#orge550d99">6.3. Vector</a>
+<ul>
+<li><a href="#org55fedf3">6.3.1. Create</a></li>
+<li><a href="#org5f2fcc8">6.3.2. Examine</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9996cab">7. Reference</a></li>
 </ul>
 </div>
 </div>
+
+<div id="outline-container-org7b5030c" class="outline-2">
+<h2 id="org7b5030c"><span class="section-number-2">1</span> Emacs</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-The documen for clojure is terrible. I like the scheme and common-lisp
-document better. I simply want to read a well sectioned document containing all things.
+It is called cider
 </p>
 <ul class="org-ul">
-<li>the reference is part, not all</li>
-<li>the library API is not ordered at all</li>
-<li>the official cheatsheet contains duplicated items here and there</li>
-<li>the un-official manuals and cheatsheet are not complete</li>
+<li><a href="https://github.com/clojure-emacs/cider">https://github.com/clojure-emacs/cider</a></li>
+<li><a href="https://cider.readthedocs.io/en/latest/">https://cider.readthedocs.io/en/latest/</a></li>
 </ul>
 
 <p>
-Suspend the interest for clojure for now.
+First, `lein new hello-world` to create a hello-world project.
 </p>
 
-<ul class="org-ul">
-<li>The <a href="clojure-other.html">old clojure page</a></li>
-<li>the <a href="clojure-tools.html">tools</a> for clojure</li>
+<p>
+Navigate emacs to one of the files or the directory inside the project
+and call `cider-jack-in`.
+</p>
+</div>
 
-<li><a href="https://clojure.github.io/">https://clojure.github.io/</a> is the API reference, in alphabet order</li>
+<div id="outline-container-org4d92492" class="outline-3">
+<h3 id="org4d92492"><span class="section-number-3">1.1</span> Eval</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>cider-eval-last-sexp (C-x C-e)</li>
+<li>cider-eval-defun-at-point (C-M-x)</li>
+<li>cider-interrupt: interrupt pending evaluation</li>
+<li>cider-macroexpand-1 (C-c C-m)</li>
+<li>cider-load-buffer</li>
+<li>cider-refresh: reload all modified files</li>
+<li>cider-inspect (C-c M-i)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf21eac9" class="outline-3">
+<h3 id="orgf21eac9"><span class="section-number-3">1.2</span> Navigation</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>cider-switch-to-repl-buffer (C-c C-z)</li>
+<li>cider-quit</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org65591cb" class="outline-3">
+<h3 id="org65591cb"><span class="section-number-3">1.3</span> Doc</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>cider-doc (C-c C-d C-d)</li>
+<li>cider-javadoc (C-c C-d C-j): display in browser</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9921a59" class="outline-3">
+<h3 id="org9921a59"><span class="section-number-3">1.4</span> Tests</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>cider-test-run-test: run test at point</li>
+<li>cider-test-rerun-test: rerun the last test</li>
+<li>cider-test-run-project-tests</li>
+<li>cider-test-rerun-failed-tests</li>
+<li>cider-test-show-report</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org32d543e" class="outline-2">
+<h2 id="org32d543e"><span class="section-number-2">2</span> Lein</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+lein new hello-world
+cd hello-world
+lein deps # install deps
+lein repl # start repl
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1e7bd27" class="outline-2">
+<h2 id="org1e7bd27"><span class="section-number-2">3</span> A first try</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org3fb37f6" class="outline-3">
+<h3 id="org3fb37f6"><span class="section-number-3">3.1</span> Setup</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+First, install clojure and lein2.
+</p>
+
+<p>
+To start a new project:
+</p>
+<pre class="example">
+lein new myproj
+cd myproj
+lein repl
+</pre>
+
+
+<p>
+This will install dependencies and enter repl.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org75d60d7" class="outline-3">
+<h3 id="org75d60d7"><span class="section-number-3">3.2</span> Type</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Since clojure sits on top of JVM, the type seems to be the same, and
+you can get the type of something by the function <code>type</code>.
+</p>
+
+<pre class="example">
+user=&gt; (type 3)
+;; java.lang.Long
+user=&gt; (type :cat)
+clojure.lang.Keyword
+</pre>
+
+<p>
+A list of types
+</p>
+<dl class="org-dl">
+<dt>java.lang.Long</dt><dd>(type 3)</dd>
+<dt>clojure.lang.BigInt</dt><dd>(type 5N)</dd>
+<dt>java.lang.Integer</dt><dd>(type (int 0))</dd>
+<dt>java.lang.Short</dt><dd>(type (short 0))</dd>
+<dt>java.lang.Byte</dt><dd>(type (byte 0))</dd>
+<dt>java.lang.Double</dt><dd>(type 1.23)</dd>
+<dt>java.lang.Float</dt><dd>(type (float 1.23))</dd>
+<dt>java.lang.String</dt><dd>(type "cat")</dd>
+<dt>clojure.lang.Symbol</dt><dd>(class 'str)</dd>
+<dt>clojure.lang.Keyword</dt><dd>(type :cat)</dd>
+<dt>clojure.lang.PersistentList</dt><dd>(type '(1 2 3))</dd>
+<dt>clojure.lang.PersistentVector</dt><dd>(type [1 2 3])</dd>
+<dt>clojure.lang.PersistentHashSet</dt><dd>#{:a :b :c}</dd>
+<dt>clojure.lang.PersistentArrayMap</dt><dd>{:name "mittens" :weight 9 :color "black"}</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgbfe5b10" class="outline-3">
+<h3 id="orgbfe5b10"><span class="section-number-3">3.3</span> Function</h3>
+<div class="outline-text-3" id="text-3-3">
+<dl class="org-dl">
+<dt>let</dt><dd></dd>
+
+<dt>fn</dt><dd>lambda function</dd>
+<dt>def</dt><dd>symbol</dd>
+<dt>defn</dt><dd>define a named function</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org2b7829c" class="outline-3">
+<h3 id="org2b7829c"><span class="section-number-3">3.4</span> Macro</h3>
+<div class="outline-text-3" id="text-3-4">
+<dl class="org-dl">
+<dt>defmacro</dt><dd></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org8dc0c99" class="outline-3">
+<h3 id="org8dc0c99"><span class="section-number-3">3.5</span> State</h3>
+<div class="outline-text-3" id="text-3-5">
+</div>
+<div id="outline-container-orgef42888" class="outline-4">
+<h4 id="orgef42888"><span class="section-number-4">3.5.1</span> delay</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+Basically this is an abstraction of function: define a function will
+not evaluate function body. So delay works similar: the call to delay
+returns an Delay Object, which can be called on by <code>deref</code> to evaluate
+the body.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(def later (fn [] (prn "Adding") (+ 1 2)))
+(later) ;; =&gt; print output
+
+(def later (delay (prn "Adding") (+ 1 2)))
+(deref later) ;; =&gt; print output
+</pre>
+</div>
+
+<p>
+The difference between a delay and a function:
+</p>
+<ul class="org-ul">
+<li>function evaluate every time it is called</li>
+<li>delays only evaluate their expressions once. They remember their
+value, after the first evaluation, and return it for every
+successive deref.</li>
 </ul>
 
+<p>
+The delay opeartor: <code>@later</code> is equivalent to <code>(deref later)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org9e9e5d2" class="outline-4">
+<h4 id="org9e9e5d2"><span class="section-number-4">3.5.2</span> Future</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+This is for parallel.
+</p>
+
+<blockquote>
+<p>
+I don’t need the result of evaluating these expressions yet, but I’d
+like it later. Could you start working on it in the meantime?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(def x (future (prn "hi") (+ 1 2)))
+(deref x) ;; =&gt; 3
+</pre>
+</div>
+
+<p>
+The body of future is executed in a <b>new thread</b> in parallel! Deref it
+will get the value of the <b>last</b> expression.  Like delays, the
+expressions are only evaluated once.
+</p>
+</div>
+
+<div id="outline-container-orgbefc269" class="outline-5">
+<h5 id="orgbefc269"><span class="section-number-5">3.5.2.1</span> Atom</h5>
+<div class="outline-text-5" id="text-3-5-2-1">
+<p>
+The parallel program brings thread-safe problem: modify something at
+the same time in different threads. Clojure has a <code>atom</code> function to
+protect a data and ensure its thread-safety.
+</p>
+
+<p>
+Use <code>reset!</code> to set value of atom, and use <code>swap!</code> to update.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(def xs #{})
+(dotimes [i 10] (future (def xs (conj xs i))))
+user=&gt; xs ;; =&gt; #{1 4 5 7}
+
+(def xs (atom #{}))
+(dotimes [i 10] (future (swap! xs conj i)))
+user=&gt; @xs ;; =&gt; #{0 1 2 3 4 5 6 7 8 9}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75123b0" class="outline-5">
+<h5 id="org75123b0"><span class="section-number-5">3.5.2.2</span> Ref</h5>
+<div class="outline-text-5" id="text-3-5-2-2">
+<p>
+Atom is linearizable, but not serializable: it does not guarantee
+orders. Ref is serializable.
+</p>
+
+<p>
+Use <code>ref-set</code> to set value of a ref, and use <code>alter</code> to update. They
+must be in a <code>dosync</code> block, and the block order is guaranteed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (def x (ref 0))
+user=&gt; (def y (ref 0))
+user=&gt; (dosync
+         (ref-set x 1)
+         (ref-set y 2))
+2
+user=&gt; [@x @y]
+[1 2]
+
+user=&gt; (def x (ref 1))
+user=&gt; (def y (ref 2))
+user=&gt; (dosync
+         (alter x + 2)
+         (alter y inc))
+3
+user=&gt; [@x @y]
+[3 3]
+</pre>
+</div>
+
+<p>
+If some of the refs do not need order, you can boost the program by
+release that, using <code>commute</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (dosync
+         (commute x + 2)
+         (commute y inc))
+</pre>
+</div>
+
+<p>
+Finally, you can use <code>ensure</code> to update one ref using another,
+guaranteeing order.
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">user=&gt; (dosync
+         (alter x + (ensure y)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8630497" class="outline-4">
+<h4 id="org8630497"><span class="section-number-4">3.5.3</span> Promise</h4>
+<div class="outline-text-4" id="text-3-5-3">
+<blockquote>
+<p>
+Delays defer evaluation, and futures parallelize it. What if we wanted
+to defer something we dont even have yet? To hand someone an empty box
+and, later, before they open it, sneak in and replacing its contents
+with an actual gift?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(def box (promise))
+(deref box) ;; empty
+(deliver box :live-scorpiojns!)
+(deref box) ;; =&gt; live-scorpiojns!
+(deliver box :puppy) ;; =&gt; nil
+(deref box) ;; =&gt; live-scorpiojns!
+</pre>
+</div>
+
+<p>
+Some highlights:
+</p>
+<ul class="org-ul">
+<li>box contains nothing initially</li>
+<li>can be delivered</li>
+<li>cannot be re-delivered</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf7ceb97" class="outline-3">
+<h3 id="orgf7ceb97"><span class="section-number-3">3.6</span> <span class="todo TODO">TODO</span> Logistics</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+<a href="https://aphyr.com/posts/311-clojure-from-the-ground-up-logistics">https://aphyr.com/posts/311-clojure-from-the-ground-up-logistics</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8459329" class="outline-3">
+<h3 id="org8459329"><span class="section-number-3">3.7</span> <span class="todo TODO">TODO</span> Modeling</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+<a href="https://aphyr.com/posts/312-clojure-from-the-ground-up-modeling">https://aphyr.com/posts/312-clojure-from-the-ground-up-modeling</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4d2dc6" class="outline-3">
+<h3 id="orgc4d2dc6"><span class="section-number-3">3.8</span> <span class="todo TODO">TODO</span> Debugging</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+<a href="https://aphyr.com/posts/319-clojure-from-the-ground-up-debugging">https://aphyr.com/posts/319-clojure-from-the-ground-up-debugging</a>
+</p>
+</div>
+</div>
+</div>
 
 <div id="outline-container-org4abf402" class="outline-2">
-<h2 id="org4abf402"><span class="section-number-2">1</span> clojure.core</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org4abf402"><span class="section-number-2">4</span> clojure.core</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><code>*in*</code></li>
 <li><code>*out*</code></li>
@@ -324,8 +717,8 @@ Suspend the interest for clojure for now.
 
 
 <div id="outline-container-orgeb57154" class="outline-3">
-<h3 id="orgeb57154"><span class="section-number-3">1.1</span> Namespace</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgeb57154"><span class="section-number-3">4.1</span> Namespace</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 Namespaces are maps that map name to var. Namespace is seperated by
 dot, similar to java. The recommended format: <code>org.lib.funcgroup</code>.
@@ -391,17 +784,17 @@ same namespace: <code>[java.util.concurrent Executors TimeUnit]</code></li>
 </div>
 </div>
 
-<div id="outline-container-org75d60d7" class="outline-2">
-<h2 id="org75d60d7"><span class="section-number-2">2</span> Type</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orge0e47aa" class="outline-2">
+<h2 id="orge0e47aa"><span class="section-number-2">5</span> Type</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org7614a2b" class="outline-3">
-<h3 id="org7614a2b"><span class="section-number-3">2.1</span> Number</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org7614a2b"><span class="section-number-3">5.1</span> Number</h3>
+<div class="outline-text-3" id="text-5-1">
 </div>
 <div id="outline-container-org7e7e751" class="outline-4">
-<h4 id="org7e7e751"><span class="section-number-4">2.1.1</span> Arithmetic</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<h4 id="org7e7e751"><span class="section-number-4">5.1.1</span> Arithmetic</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>+-*/</li>
 <li>quot</li>
@@ -417,8 +810,8 @@ same namespace: <code>[java.util.concurrent Executors TimeUnit]</code></li>
 </div>
 
 <div id="outline-container-org1d9a43f" class="outline-4">
-<h4 id="org1d9a43f"><span class="section-number-4">2.1.2</span> Compare</h4>
-<div class="outline-text-4" id="text-2-1-2">
+<h4 id="org1d9a43f"><span class="section-number-4">5.1.2</span> Compare</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <ul class="org-ul">
 <li>=</li>
 <li>==</li>
@@ -429,8 +822,8 @@ same namespace: <code>[java.util.concurrent Executors TimeUnit]</code></li>
 </div>
 
 <div id="outline-container-org6b5df2e" class="outline-4">
-<h4 id="org6b5df2e"><span class="section-number-4">2.1.3</span> Bitwise</h4>
-<div class="outline-text-4" id="text-2-1-3">
+<h4 id="org6b5df2e"><span class="section-number-4">5.1.3</span> Bitwise</h4>
+<div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li>bit-and</li>
 <li>bit-or</li>
@@ -447,8 +840,8 @@ same namespace: <code>[java.util.concurrent Executors TimeUnit]</code></li>
 </div>
 
 <div id="outline-container-org02f24ac" class="outline-4">
-<h4 id="org02f24ac"><span class="section-number-4">2.1.4</span> Cast</h4>
-<div class="outline-text-4" id="text-2-1-4">
+<h4 id="org02f24ac"><span class="section-number-4">5.1.4</span> Cast</h4>
+<div class="outline-text-4" id="text-5-1-4">
 <ul class="org-ul">
 <li>byte</li>
 <li>short</li>
@@ -463,9 +856,9 @@ same namespace: <code>[java.util.concurrent Executors TimeUnit]</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org091881d" class="outline-4">
-<h4 id="org091881d"><span class="section-number-4">2.1.5</span> Predicate</h4>
-<div class="outline-text-4" id="text-2-1-5">
+<div id="outline-container-org757ec2d" class="outline-4">
+<h4 id="org757ec2d"><span class="section-number-4">5.1.5</span> Predicate</h4>
+<div class="outline-text-4" id="text-5-1-5">
 <ul class="org-ul">
 <li>nil?</li>
 <li>identical?</li>
@@ -490,8 +883,8 @@ Other
 </div>
 </div>
 <div id="outline-container-org80a7909" class="outline-4">
-<h4 id="org80a7909"><span class="section-number-4">2.1.6</span> Random</h4>
-<div class="outline-text-4" id="text-2-1-6">
+<h4 id="org80a7909"><span class="section-number-4">5.1.6</span> Random</h4>
+<div class="outline-text-4" id="text-5-1-6">
 <ul class="org-ul">
 <li>rand</li>
 <li>rand-int</li>
@@ -502,8 +895,8 @@ Other
 
 
 <div id="outline-container-org9ebc27b" class="outline-3">
-<h3 id="org9ebc27b"><span class="section-number-3">2.2</span> symbols &amp; keywords</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="org9ebc27b"><span class="section-number-3">5.2</span> symbols &amp; keywords</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-ns</code>
 </p>
@@ -512,12 +905,12 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 
 
 <div id="outline-container-org3287d57" class="outline-3">
-<h3 id="org3287d57"><span class="section-number-3">2.3</span> String</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="org3287d57"><span class="section-number-3">5.3</span> String</h3>
+<div class="outline-text-3" id="text-5-3">
 </div>
 <div id="outline-container-org8c6fb06" class="outline-4">
-<h4 id="org8c6fb06"><span class="section-number-4">2.3.1</span> Use</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<h4 id="org8c6fb06"><span class="section-number-4">5.3.1</span> Use</h4>
+<div class="outline-text-4" id="text-5-3-1">
 <ul class="org-ul">
 <li>count</li>
 <li>get</li>
@@ -536,8 +929,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgb3fc35d" class="outline-4">
-<h4 id="orgb3fc35d"><span class="section-number-4">2.3.2</span> Regex</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<h4 id="orgb3fc35d"><span class="section-number-4">5.3.2</span> Regex</h4>
+<div class="outline-text-4" id="text-5-3-2">
 <ul class="org-ul">
 <li>#"pattern"</li>
 <li>re-find</li>
@@ -553,8 +946,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgc250f1f" class="outline-4">
-<h4 id="orgc250f1f"><span class="section-number-4">2.3.3</span> Letter</h4>
-<div class="outline-text-4" id="text-2-3-3">
+<h4 id="orgc250f1f"><span class="section-number-4">5.3.3</span> Letter</h4>
+<div class="outline-text-4" id="text-5-3-3">
 <ul class="org-ul">
 <li>capitalize</li>
 <li>lower-case</li>
@@ -563,8 +956,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org30971a8" class="outline-4">
-<h4 id="org30971a8"><span class="section-number-4">2.3.4</span> trim</h4>
-<div class="outline-text-4" id="text-2-3-4">
+<h4 id="org30971a8"><span class="section-number-4">5.3.4</span> trim</h4>
+<div class="outline-text-4" id="text-5-3-4">
 <ul class="org-ul">
 <li>trim</li>
 <li>trim-newline</li>
@@ -573,9 +966,9 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </ul>
 </div>
 </div>
-<div id="outline-container-org757ec2d" class="outline-4">
-<h4 id="org757ec2d"><span class="section-number-4">2.3.5</span> Predicate</h4>
-<div class="outline-text-4" id="text-2-3-5">
+<div id="outline-container-orgff0a398" class="outline-4">
+<h4 id="orgff0a398"><span class="section-number-4">5.3.5</span> Predicate</h4>
+<div class="outline-text-4" id="text-5-3-5">
 <ul class="org-ul">
 <li>string?</li>
 <li>blank?</li>
@@ -586,8 +979,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org615c733" class="outline-4">
-<h4 id="org615c733"><span class="section-number-4">2.3.6</span> characters</h4>
-<div class="outline-text-4" id="text-2-3-6">
+<h4 id="org615c733"><span class="section-number-4">5.3.6</span> characters</h4>
+<div class="outline-text-4" id="text-5-3-6">
 <ul class="org-ul">
 <li>literals: <code>\a</code> <code>\newline</code></li>
 <li>char</li>
@@ -602,16 +995,16 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 
 
 <div id="outline-container-org94f4dcc" class="outline-2">
-<h2 id="org94f4dcc"><span class="section-number-2">3</span> Collections</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org94f4dcc"><span class="section-number-2">6</span> Collections</h2>
+<div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-orge23ecd3" class="outline-3">
-<h3 id="orge23ecd3"><span class="section-number-3">3.1</span> Collection</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="orge23ecd3"><span class="section-number-3">6.1</span> Collection</h3>
+<div class="outline-text-3" id="text-6-1">
 </div>
 <div id="outline-container-orgf2c702e" class="outline-4">
-<h4 id="orgf2c702e"><span class="section-number-4">3.1.1</span> Generic</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<h4 id="orgf2c702e"><span class="section-number-4">6.1.1</span> Generic</h4>
+<div class="outline-text-4" id="text-6-1-1">
 <ul class="org-ul">
 <li>count</li>
 <li>empty</li>
@@ -620,8 +1013,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgc4bf7e0" class="outline-4">
-<h4 id="orgc4bf7e0"><span class="section-number-4">3.1.2</span> ops</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<h4 id="orgc4bf7e0"><span class="section-number-4">6.1.2</span> ops</h4>
+<div class="outline-text-4" id="text-6-1-2">
 <ul class="org-ul">
 <li>into</li>
 <li>conj</li>
@@ -633,8 +1026,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-orgcd6ba4e" class="outline-4">
-<h4 id="orgcd6ba4e"><span class="section-number-4">3.1.3</span> Predicates</h4>
-<div class="outline-text-4" id="text-3-1-3">
+<h4 id="orgcd6ba4e"><span class="section-number-4">6.1.3</span> Predicates</h4>
+<div class="outline-text-4" id="text-6-1-3">
 <ul class="org-ul">
 <li>distince?</li>
 <li>empty?</li>
@@ -646,8 +1039,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org90fa8d8" class="outline-4">
-<h4 id="org90fa8d8"><span class="section-number-4">3.1.4</span> Capabilities</h4>
-<div class="outline-text-4" id="text-3-1-4">
+<h4 id="org90fa8d8"><span class="section-number-4">6.1.4</span> Capabilities</h4>
+<div class="outline-text-4" id="text-6-1-4">
 <ul class="org-ul">
 <li>sequential?</li>
 <li>associative?</li>
@@ -667,8 +1060,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org2ff70e6" class="outline-3">
-<h3 id="org2ff70e6"><span class="section-number-3">3.2</span> List</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org2ff70e6"><span class="section-number-3">6.2</span> List</h3>
+<div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>list</li>
 <li>list*</li>
@@ -686,12 +1079,12 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 
 <div id="outline-container-orge550d99" class="outline-3">
-<h3 id="orge550d99"><span class="section-number-3">3.3</span> Vector</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="orge550d99"><span class="section-number-3">6.3</span> Vector</h3>
+<div class="outline-text-3" id="text-6-3">
 </div>
 <div id="outline-container-org55fedf3" class="outline-4">
-<h4 id="org55fedf3"><span class="section-number-4">3.3.1</span> Create</h4>
-<div class="outline-text-4" id="text-3-3-1">
+<h4 id="org55fedf3"><span class="section-number-4">6.3.1</span> Create</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <ul class="org-ul">
 <li><code>[ ]</code></li>
 <li>vector</li>
@@ -704,8 +1097,8 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 <div id="outline-container-org5f2fcc8" class="outline-4">
-<h4 id="org5f2fcc8"><span class="section-number-4">3.3.2</span> Examine</h4>
-<div class="outline-text-4" id="text-3-3-2">
+<h4 id="org5f2fcc8"><span class="section-number-4">6.3.2</span> Examine</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <ul class="org-ul">
 <li>nth</li>
 <li>get</li>
@@ -715,10 +1108,33 @@ literals for keywords: <code>:kw</code>, <code>:my.ns/kw</code>, <code>::in-cur-
 </div>
 </div>
 </div>
+
+
+
+<div id="outline-container-org9996cab" class="outline-2">
+<h2 id="org9996cab"><span class="section-number-2">7</span> Reference</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><a href="https://clojure.github.io/">https://clojure.github.io/</a> is the API reference, in alphabet order</li>
+</ul>
+
+<p>
+Some interesting projects:
+</p>
+<ul class="org-ul">
+<li><a href="supercollider.html">SuperCollider</a> is a server and a language for music synthesizing.</li>
+<li><a href="overtone.html">Overtone</a> offers a <i>clojure</i> wrapper and emacs environment for the SuperCollider backend.</li>
+<li><a href="https://github.com/ring-clojure/ring">https://github.com/ring-clojure/ring</a></li>
+<li><a href="http://liquidz.github.io/">http://liquidz.github.io/</a></li>
+<li><a href="https://github.com/liquidz/misaki">https://github.com/liquidz/misaki</a></li>
+<li><a href="http://nakkaya.com/">http://nakkaya.com/</a></li>
+</ul>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2018-01-02 Tue 00:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

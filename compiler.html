@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-29 Fri 01:34 -->
+<!-- 2018-01-02 Tue 00:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler</title>
@@ -328,6 +328,7 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#org31de83c">9. Samples</a></li>
+<li><a href="#orge773faa">10. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -392,15 +393,15 @@ The parser repeatedly executes three options:
 </ul>
 
 <pre class="example">
-procedure PREDICTOR((A → α•B, i), j, grammar)
-  for each (B → γ) in GRAMMAR-RULES-FOR(B, grammar) do
-    ADD-TO-SET((B → •γ, j), chart[ j])
-procedure SCANNER((A → α•B, i), j)
-  if B ⊂ PARTS-OF-SPEECH(word[j]) then
-    ADD-TO-SET((B → word[j], i), chart[j + 1])
-procedure COMPLETER((B → γ•, j), k)
-  for each (A → α•Bβ, i) in chart[j] do
-    ADD-TO-SET((A → αB•β, i), chart[k])
+  procedure PREDICTOR((A → α•B, i), j, grammar)
+    for each (B → γ) in GRAMMAR-RULES-FOR(B, grammar) do
+      ADD-TO-SET((B → •γ, j), chart[ j])
+  procedure SCANNER((A → α•B, i), j)
+    if B ⊂ PARTS-OF-SPEECH(word[j]) then
+      ADD-TO-SET((B → word[j], i), chart[j + 1])
+  procedure COMPLETER((B → γ•, j), k)
+    for each (A → α•Bβ, i) in chart[j] do
+      ADD-TO-SET((A → αB•β, i), chart[k])
 </pre>
 </div>
 </div>
@@ -1135,18 +1136,18 @@ Give right associativity:
 One more way to resolve this is to slightly modify the grammar:
 </p>
 <pre class="example">
-statement = ...
-   | selection-statement
+  statement = ...
+     | selection-statement
 
-statement-with-else = ...
-   | selection-statement-with-else
+  statement-with-else = ...
+     | selection-statement-with-else
 
-selection-statement = ...
-   | IF ( expression ) statement
-   | IF ( expression ) statement-with-else ELSE statement
+  selection-statement = ...
+     | IF ( expression ) statement
+     | IF ( expression ) statement-with-else ELSE statement
 
-selection-statement-with-else = ...
-   | IF ( expression ) statement-with-else ELSE statement-with-else
+  selection-statement-with-else = ...
+     | IF ( expression ) statement-with-else ELSE statement-with-else
 </pre>
 </div>
 </div>
@@ -1270,19 +1271,19 @@ The algorithm can be written as:
 </p>
 
 <pre class="example">
-while (true) {
-  s = stack.top;
-  a = next input;
-  if (ACTION(s,a) = shift t) {
-    stack.push(t)
-    advance(a)
-  } else if (ACTION(s,a) = reduce A to beta) {
-    stack.pop(len(beta));
-    t = stack.top
-    stack.push(GOTO(t,A))
-    output production A-&gt;beta
-  } else if (ACTION=accept | error) {}
-}
+  while (true) {
+    s = stack.top;
+    a = next input;
+    if (ACTION(s,a) = shift t) {
+      stack.push(t)
+      advance(a)
+    } else if (ACTION(s,a) = reduce A to beta) {
+      stack.pop(len(beta));
+      t = stack.top
+      stack.push(GOTO(t,A))
+      output production A-&gt;beta
+    } else if (ACTION=accept | error) {}
+  }
 </pre>
 
 <p>
@@ -1498,6 +1499,18 @@ A Commercial Parser Front end:
 </div>
 </div>
 </div>
+
+<div id="outline-container-orge773faa" class="outline-2">
+<h2 id="orge773faa"><span class="section-number-2">10</span> Reference</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>A recursive descent parser generator in Common Lisp:
+<a href="http://www.informatimago.com/develop/lisp/com/informatimago/small-cl-pgms/rdp/">http://www.informatimago.com/develop/lisp/com/informatimago/small-cl-pgms/rdp/</a></li>
+<li>cl-python: A python compiler in Common Lisp. This is VERY good.
+<a href="https://github.com/metawilm/cl-python">https://github.com/metawilm/cl-python</a></li>
+</ul>
+</div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
@@ -1535,7 +1548,7 @@ A Commercial Parser Front end:
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-29 Fri 01:34</p>
+<p class="date">Created: 2018-01-02 Tue 00:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
