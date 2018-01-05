@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-14 Thu 19:45 -->
+<!-- 2018-01-04 Thu 17:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket</title>
@@ -298,6 +298,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgd9ce219">19.1.1. General operation</a></li>
 <li><a href="#orgbc2f837">19.1.2. File IO</a></li>
 <li><a href="#orgb24f37b">19.1.3. String IO</a></li>
+<li><a href="#org05ac548">19.1.4. Extra</a></li>
 </ul>
 </li>
 <li><a href="#org2a972f3">19.2. Reading</a></li>
@@ -352,9 +353,9 @@ Within the body, <code>proc-id</code> is bound to the procedure itself.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">fac</span> ([<span style="color: #a0522d;">n</span> <span style="color: #2e8b57;">10</span>])
-  (<span style="color: #a020f0;">if</span> (<span style="color: #483d8b;">zero?</span> n) <span style="color: #2e8b57;">1</span>
-      (<span style="color: #483d8b;">*</span> n (fac (<span style="color: #483d8b;">sub1</span> n)))))
+<pre class="src src-racket">  (<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">fac</span> ([<span style="color: #a0522d;">n</span> <span style="color: #2e8b57;">10</span>])
+    (<span style="color: #a020f0;">if</span> (<span style="color: #483d8b;">zero?</span> n) <span style="color: #2e8b57;">1</span>
+        (<span style="color: #483d8b;">*</span> n (fac (<span style="color: #483d8b;">sub1</span> n)))))
 </pre>
 </div>
 </div>
@@ -417,11 +418,11 @@ Where name is the file name.
 <a href="http://www.greghendershott.com/2015/07/keyword-structs-revisited.html">http://www.greghendershott.com/2015/07/keyword-structs-revisited.html</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">begin-for-syntax</span>
-  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">syntax-&gt;keyword</span> (<span style="color: #483d8b;">compose1</span>
-                           <span style="color: #483d8b;">string-&gt;keyword</span>
-                           <span style="color: #483d8b;">symbol-&gt;string</span>
-                           <span style="color: #483d8b;">syntax-&gt;datum</span>)))
+<pre class="src src-racket">  (<span style="color: #a020f0;">begin-for-syntax</span>
+    (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">syntax-&gt;keyword</span> (<span style="color: #483d8b;">compose1</span>
+                             <span style="color: #483d8b;">string-&gt;keyword</span>
+                             <span style="color: #483d8b;">symbol-&gt;string</span>
+                             <span style="color: #483d8b;">syntax-&gt;datum</span>)))
 </pre>
 </div>
 </div>
@@ -435,9 +436,9 @@ The syntax:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #483d8b;">match</span> val-expr clause <span style="color: #a020f0;">...</span>)
+<pre class="src src-racket">  (<span style="color: #483d8b;">match</span> val-expr clause <span style="color: #a020f0;">...</span>)
 
-clause <span style="color: #483d8b;">=</span> [pat [<span style="color: #cd0000;">#:when</span> cond-expr] body ...+]
+  clause <span style="color: #483d8b;">=</span> [pat [<span style="color: #cd0000;">#:when</span> cond-expr] body ...+]
 </pre>
 </div>
 <p>
@@ -539,14 +540,14 @@ form does not use syntax-rules, but use syntax-case directly.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">foo</span>
-  (<span style="color: #a020f0;">syntax-rules</span> ()
-    ((<span style="color: #a020f0;">_</span> a <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">printf</span> <span style="color: #8b2252;">"~a\n"</span> (<span style="color: #483d8b;">list</span> a <span style="color: #a020f0;">...</span>)))))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
-(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">foo</span> stx)
-  (<span style="color: #a020f0;">syntax-case</span> stx ()
-    (<span style="color: #a020f0;">_</span> a <span style="color: #a020f0;">...</span>)
-    #'(<span style="color: #483d8b;">printf</span> <span style="color: #8b2252;">"~a\n"</span> (<span style="color: #483d8b;">list</span> a <span style="color: #a020f0;">...</span>))))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">foo</span>
+    (<span style="color: #a020f0;">syntax-rules</span> ()
+      ((<span style="color: #a020f0;">_</span> a <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">printf</span> <span style="color: #8b2252;">"~a\n"</span> (<span style="color: #483d8b;">list</span> a <span style="color: #a020f0;">...</span>)))))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
+  (<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">foo</span> stx)
+    (<span style="color: #a020f0;">syntax-case</span> stx ()
+      (<span style="color: #a020f0;">_</span> a <span style="color: #a020f0;">...</span>)
+      #'(<span style="color: #483d8b;">printf</span> <span style="color: #8b2252;">"~a\n"</span> (<span style="color: #483d8b;">list</span> a <span style="color: #a020f0;">...</span>))))
 </pre>
 </div>
 
@@ -562,8 +563,8 @@ object as a result.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">syntax-case</span> stx-expr (literal-id <span style="color: #a020f0;">...</span>)
-  [pattern result-expr] <span style="color: #a020f0;">...</span>)
+<pre class="src src-racket">  (<span style="color: #a020f0;">syntax-case</span> stx-expr (literal-id <span style="color: #a020f0;">...</span>)
+    [pattern result-expr] <span style="color: #a020f0;">...</span>)
 </pre>
 </div>
 
@@ -573,10 +574,10 @@ executed, and the return value should be a syntax object.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">foo</span> stx)
-  (<span style="color: #a020f0;">syntax-case</span> stx ()
-    [(<span style="color: #a020f0;">_</span> a b c)
-     #'(<span style="color: #a020f0;">if</span> a b c)]))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">foo</span> stx)
+    (<span style="color: #a020f0;">syntax-case</span> stx ()
+      [(<span style="color: #a020f0;">_</span> a b c)
+       #'(<span style="color: #a020f0;">if</span> a b c)]))
 </pre>
 </div>
 
@@ -598,12 +599,12 @@ need not be quoted by <code>syntax</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">syntax-rules</span> (literal-id <span style="color: #a020f0;">...</span>)
-  [(id . pattern) template] <span style="color: #a020f0;">...</span>)
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
-(<span style="color: #a020f0;">lambda</span> (stx)
-  (<span style="color: #a020f0;">syntax-case</span> stx (literal-id <span style="color: #a020f0;">...</span>)
-    [(generated-id . pattern) (<span style="color: #483d8b;">syntax-protect</span> #<span style="color: #2e8b57;">'template</span>)] <span style="color: #a020f0;">...</span>))
+<pre class="src src-racket">  (<span style="color: #a020f0;">syntax-rules</span> (literal-id <span style="color: #a020f0;">...</span>)
+    [(id . pattern) template] <span style="color: #a020f0;">...</span>)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
+  (<span style="color: #a020f0;">lambda</span> (stx)
+    (<span style="color: #a020f0;">syntax-case</span> stx (literal-id <span style="color: #a020f0;">...</span>)
+      [(generated-id . pattern) (<span style="color: #483d8b;">syntax-protect</span> #<span style="color: #2e8b57;">'template</span>)] <span style="color: #a020f0;">...</span>))
 </pre>
 </div>
 
@@ -617,19 +618,19 @@ be replaced by the actual form.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">id</span> . pattern) template)
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
-(<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
-  (<span style="color: #a020f0;">syntax-rules</span> ()
-    [(id . pattern) template]))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">id</span> . pattern) template)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;=&gt;</span>
+  (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
+    (<span style="color: #a020f0;">syntax-rules</span> ()
+      [(id . pattern) template]))
 </pre>
 </div>
 <p>
 This is so constrained. The following is equivalent to the above:
 </p>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">foo</span> a b c)
-  (<span style="color: #a020f0;">if</span> a b c))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">foo</span> a b c)
+    (<span style="color: #a020f0;">if</span> a b c))
 </pre>
 </div>
 
@@ -723,12 +724,12 @@ Should generate
 The test code:
 </p>
 <div class="org-src-container">
-<pre class="src src-racket">(define-cbr (<span style="color: #0000ff;">f</span> a b)
-  (swap a b))
+<pre class="src src-racket">  (define-cbr (<span style="color: #0000ff;">f</span> a b)
+    (swap a b))
 
-(<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">x</span> <span style="color: #2e8b57;">1</span>] [<span style="color: #a0522d;">y</span> <span style="color: #2e8b57;">2</span>])
-  (f x y)
-  (<span style="color: #483d8b;">list</span> x y))
+  (<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">x</span> <span style="color: #2e8b57;">1</span>] [<span style="color: #a0522d;">y</span> <span style="color: #2e8b57;">2</span>])
+    (f x y)
+    (<span style="color: #483d8b;">list</span> x y))
 </pre>
 </div>
 
@@ -736,39 +737,39 @@ The test code:
 The actual implementation:
 </p>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">define-get/put-id</span> <span style="color: #a0522d;">id</span> get put!)
-  (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
-    (<span style="color: #483d8b;">make-set!-transformer</span>
-     (<span style="color: #a020f0;">lambda</span> (stx)
-       (<span style="color: #a020f0;">syntax-case</span> stx (<span style="color: #a020f0;">set!</span>)
-         [id (<span style="color: #483d8b;">identifier?</span> (<span style="color: #a020f0;">syntax</span> id)) (<span style="color: #a020f0;">syntax</span> (get))]
-         [(<span style="color: #a020f0;">set!</span> id e) (<span style="color: #a020f0;">syntax</span> (put! e))])))))
-
-(<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">define-cbr</span> (id arg <span style="color: #a020f0;">...</span>) body)
-  (<span style="color: #a020f0;">begin</span>
+<pre class="src src-racket">  (<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">define-get/put-id</span> <span style="color: #a0522d;">id</span> get put!)
     (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
-      (<span style="color: #a020f0;">syntax-rules</span> ()
-        [(id actual (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>))
-         (do-f (<span style="color: #a020f0;">lambda</span> () actual)
-               (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>)
-               (<span style="color: #a020f0;">lambda</span> (v)
-                 (<span style="color: #a020f0;">set!</span> actual v))
-               (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>))]))
-    (define-for-cbr <span style="color: #a0522d;">do-f</span> (arg <span style="color: #a020f0;">...</span>)
-      () <span style="color: #b22222;">; </span><span style="color: #b22222;">explained below...</span>
-      body)))
+      (<span style="color: #483d8b;">make-set!-transformer</span>
+       (<span style="color: #a020f0;">lambda</span> (stx)
+         (<span style="color: #a020f0;">syntax-case</span> stx (<span style="color: #a020f0;">set!</span>)
+           [id (<span style="color: #483d8b;">identifier?</span> (<span style="color: #a020f0;">syntax</span> id)) (<span style="color: #a020f0;">syntax</span> (get))]
+           [(<span style="color: #a020f0;">set!</span> id e) (<span style="color: #a020f0;">syntax</span> (put! e))])))))
 
-(<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">define-for-cbr</span>
-  (<span style="color: #a020f0;">syntax-rules</span> ()
-    [(define-for-cbr <span style="color: #a0522d;">do-f</span> (id0 id <span style="color: #a020f0;">...</span>)
-       (gens <span style="color: #a020f0;">...</span>) body)
-     (define-for-cbr <span style="color: #a0522d;">do-f</span> (id <span style="color: #a020f0;">...</span>)
-       (gens <span style="color: #a020f0;">...</span> (id0 get put)) body)]
-    [(define-for-cbr <span style="color: #a0522d;">do-f</span> ()
-       ((id get put) <span style="color: #a020f0;">...</span>) body)
-     (<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get <span style="color: #a020f0;">...</span> put <span style="color: #a020f0;">...</span>)
-       (define-get/put-id <span style="color: #a0522d;">id</span> get put) <span style="color: #a020f0;">...</span>
-       body)]))
+  (<span style="color: #a020f0;">define-syntax-rule</span> (<span style="color: #0000ff;">define-cbr</span> (id arg <span style="color: #a020f0;">...</span>) body)
+    (<span style="color: #a020f0;">begin</span>
+      (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">id</span>
+        (<span style="color: #a020f0;">syntax-rules</span> ()
+          [(id actual (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>))
+           (do-f (<span style="color: #a020f0;">lambda</span> () actual)
+                 (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>)
+                 (<span style="color: #a020f0;">lambda</span> (v)
+                   (<span style="color: #a020f0;">set!</span> actual v))
+                 (<span style="color: #a020f0;">...</span> <span style="color: #a020f0;">...</span>))]))
+      (define-for-cbr <span style="color: #a0522d;">do-f</span> (arg <span style="color: #a020f0;">...</span>)
+        () <span style="color: #b22222;">; </span><span style="color: #b22222;">explained below...</span>
+        body)))
+
+  (<span style="color: #a020f0;">define-syntax</span> <span style="color: #a0522d;">define-for-cbr</span>
+    (<span style="color: #a020f0;">syntax-rules</span> ()
+      [(define-for-cbr <span style="color: #a0522d;">do-f</span> (id0 id <span style="color: #a020f0;">...</span>)
+         (gens <span style="color: #a020f0;">...</span>) body)
+       (define-for-cbr <span style="color: #a0522d;">do-f</span> (id <span style="color: #a020f0;">...</span>)
+         (gens <span style="color: #a020f0;">...</span> (id0 get put)) body)]
+      [(define-for-cbr <span style="color: #a0522d;">do-f</span> ()
+         ((id get put) <span style="color: #a020f0;">...</span>) body)
+       (<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get <span style="color: #a020f0;">...</span> put <span style="color: #a020f0;">...</span>)
+         (define-get/put-id <span style="color: #a0522d;">id</span> get put) <span style="color: #a020f0;">...</span>
+         body)]))
 </pre>
 </div>
 
@@ -777,14 +778,14 @@ The define-for-cbr is pretty tricky, the following <code>with-syntax</code> is
 better:
 </p>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">define-for-cbr</span> <span style="color: #a0522d;">stx</span>)
-  (<span style="color: #a020f0;">syntax-case</span> stx ()
-    [(<span style="color: #a020f0;">_</span> do-f (id <span style="color: #a020f0;">...</span>) body)
-     (<span style="color: #a020f0;">with-syntax</span> ([(get <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">generate-temporaries</span> #'(id <span style="color: #a020f0;">...</span>))]
-                   [(put <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">generate-temporaries</span> #'(id <span style="color: #a020f0;">...</span>))])
-       #'(<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get <span style="color: #a020f0;">...</span> put <span style="color: #a020f0;">...</span>)
-           (define-get/put-id <span style="color: #a0522d;">id</span> get put) <span style="color: #a020f0;">...</span>
-           body))]))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">define-for-cbr</span> <span style="color: #a0522d;">stx</span>)
+    (<span style="color: #a020f0;">syntax-case</span> stx ()
+      [(<span style="color: #a020f0;">_</span> do-f (id <span style="color: #a020f0;">...</span>) body)
+       (<span style="color: #a020f0;">with-syntax</span> ([(get <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">generate-temporaries</span> #'(id <span style="color: #a020f0;">...</span>))]
+                     [(put <span style="color: #a020f0;">...</span>) (<span style="color: #483d8b;">generate-temporaries</span> #'(id <span style="color: #a020f0;">...</span>))])
+         #'(<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">do-f</span> get <span style="color: #a020f0;">...</span> put <span style="color: #a020f0;">...</span>)
+             (define-get/put-id <span style="color: #a0522d;">id</span> get put) <span style="color: #a020f0;">...</span>
+             body))]))
 </pre>
 </div>
 </div>
@@ -929,12 +930,12 @@ matters.
 </p>
 
 <pre class="example">
-(define (head args) body ...+)
-args = arg ... | arg ... . rest-id
-arg = arg-id
-    | [arg-id default-expr]
-    | keyword arg-id
-    | keyword [arg-id default-expr]
+  (define (head args) body ...+)
+  args = arg ... | arg ... . rest-id
+  arg = arg-id
+      | [arg-id default-expr]
+      | keyword arg-id
+      | keyword [arg-id default-expr]
 </pre>
 
 <p>
@@ -975,11 +976,11 @@ restricts this to exactly one value.
 </ul>
 
 <pre class="example">
-(cond cond-clause ...)
-cond-clause = [test-expr then-body ...+]
-            | [else then-body ...+]
-            | [test-expr =&gt; proc-expr]
-            | [test-expr]
+  (cond cond-clause ...)
+  cond-clause = [test-expr then-body ...+]
+              | [else then-body ...+]
+              | [test-expr =&gt; proc-expr]
+              | [test-expr]
 </pre>
 
 <ul class="org-ul">
@@ -1027,7 +1028,7 @@ The reading syntax of characters starts with <code>#\</code>, with following
 forms
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="2" cellspacing="2" cellpadding="6" rules="groups" frame="border">
 
 
 <colgroup>
@@ -1332,8 +1333,8 @@ function.</li>
 evaluates to <code>#t</code> and <code>#f</code> respectively. It is the same as</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #483d8b;">values</span> (<span style="color: #483d8b;">filter</span> <span style="color: #483d8b;">pred</span> lst)
-        (<span style="color: #483d8b;">filter</span> (<span style="color: #483d8b;">negate</span> <span style="color: #483d8b;">pred</span>) lst))
+<pre class="src src-racket">  (<span style="color: #483d8b;">values</span> (<span style="color: #483d8b;">filter</span> <span style="color: #483d8b;">pred</span> lst)
+          (<span style="color: #483d8b;">filter</span> (<span style="color: #483d8b;">negate</span> <span style="color: #483d8b;">pred</span>) lst))
 </pre>
 </div>
 
@@ -1445,7 +1446,7 @@ Constructing sequences
 <li><code>in-lines [in=(current-input-port)]</code></li>
 <li><code>in-hash</code></li>
 <li><code>in-hash-keys</code>, <code>in-hash-values</code>, <code>in-hash-pairs</code></li>
-<li><code>in-directory [dir use-dir?]</code>: It is depth first. The path are
+<li><b><code>in-directory [dir use-dir?]</code></b>: It is depth first. The path are
 built, not individual components. If <code>dir</code> is not given, use current
 dir. If use-dir? <code>with signature (path? . -&gt; any/c)</code> is given, it
 acts like as a filter of the results</li>
@@ -1610,11 +1611,11 @@ For now, I only care about how to handle exceptions. To do that:
 <li>with-handlers ([pred-expr handler-expr] &#x2026;) body &#x2026;+</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">with-handlers</span> ([<span style="color: #483d8b;">exn:fail:syntax?</span>
-                 (<span style="color: #a020f0;">&#955;</span> (e) (<span style="color: #483d8b;">displayln</span> <span style="color: #8b2252;">"got a syntax error"</span>))]
-                [<span style="color: #483d8b;">exn:fail?</span>
-                 (<span style="color: #a020f0;">&#955;</span> (e) (<span style="color: #483d8b;">displayln</span> <span style="color: #8b2252;">"fallback clause"</span>))])
-  (<span style="color: #483d8b;">raise-syntax-error</span> <span style="color: #2e8b57;">#f</span> <span style="color: #8b2252;">"a syntax error"</span>))
+<pre class="src src-racket">  (<span style="color: #a020f0;">with-handlers</span> ([<span style="color: #483d8b;">exn:fail:syntax?</span>
+                   (<span style="color: #a020f0;">&#955;</span> (e) (<span style="color: #483d8b;">displayln</span> <span style="color: #8b2252;">"got a syntax error"</span>))]
+                  [<span style="color: #483d8b;">exn:fail?</span>
+                   (<span style="color: #a020f0;">&#955;</span> (e) (<span style="color: #483d8b;">displayln</span> <span style="color: #8b2252;">"fallback clause"</span>))])
+    (<span style="color: #483d8b;">raise-syntax-error</span> <span style="color: #2e8b57;">#f</span> <span style="color: #8b2252;">"a syntax error"</span>))
 </pre>
 </div>
 
@@ -1792,7 +1793,28 @@ be used with the above method, specifically the out should be
 </ul>
 </div>
 </div>
+
+<div id="outline-container-org05ac548" class="outline-4">
+<h4 id="org05ac548"><span class="section-number-4">19.1.4</span> Extra</h4>
+<div class="outline-text-4" id="text-19-1-4">
+<p>
+Requires <code>racket/port</code>. This is actually the most commonly used
+helpers. All of these have bytes counterparts.
+</p>
+
+<ul class="org-ul">
+<li><b><code>port-&gt;string</code></b></li>
+<li><code>port-&gt;lines</code></li>
+<li><code>display-lines</code></li>
+<li><code>call-with-output-string proc</code>: proc: <code>(output-port? . -&gt; . any)</code></li>
+<li><code>with-output-to-string proc</code>: proc is <code>(-&gt; any)</code></li>
+<li><code>call-with-input-string str proc</code>: proc: <code>(input-port? . -&gt; . any)</code></li>
+<li><code>with-input-from-string str proc</code>: proc is <code>(-&gt; any)</code></li>
+</ul>
 </div>
+</div>
+</div>
+
 
 
 <div id="outline-container-org2a972f3" class="outline-3">
@@ -1952,11 +1974,11 @@ more often than <code>normalize-path</code>.</li>
 <li><b><code>directory-exists?</code></b></li>
 <li><code>make-directory</code></li>
 <li><code>delete-directory</code></li>
-<li><code>directory-list [path #:build build?]</code>: list of all files or
+<li><b><code>directory-list [path #:build build?]</code></b>: list of all files or
 directories in <code>path</code>. path defaults to current directory, while
 build? defaults to <code>#f</code>. If <code>#:build</code> is <code>#t</code>, each of the results
 are built with prefix <code>path</code>. Note that this is not recursive, for
-that, use the sequence generator <code>in-directory</code>.</li>
+that, use the <b>sequence generator <code>in-directory</code></b>.</li>
 </ul>
 
 <p>
@@ -2160,30 +2182,30 @@ A typical command line parser looks like this. It typically:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">verbose-mode</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #2e8b57;">#f</span>))
-(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">profiling-on</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #2e8b57;">#f</span>))
-(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">optimize-level</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #2e8b57;">0</span>))
-(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">link-flags</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #483d8b;">null</span>))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">verbose-mode</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #2e8b57;">#f</span>))
+  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">profiling-on</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #2e8b57;">#f</span>))
+  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">optimize-level</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #2e8b57;">0</span>))
+  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">link-flags</span> (<span style="color: #483d8b;">make-parameter</span> <span style="color: #483d8b;">null</span>))
 
-(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">file-to-compile</span>
-  (<span style="color: #483d8b;">command-line</span>
-   <span style="color: #cd0000;">#:program</span> <span style="color: #8b2252;">"compiler"</span>
-   <span style="color: #cd0000;">#:once-each</span>
-   [(<span style="color: #8b2252;">"-v"</span> <span style="color: #8b2252;">"--verbose"</span>) <span style="color: #8b2252;">"Compile with verbose messages"</span>
-                       (verbose-mode <span style="color: #2e8b57;">#t</span>)]
-   [(<span style="color: #8b2252;">"-p"</span> <span style="color: #8b2252;">"--profile"</span>) <span style="color: #8b2252;">"Compile with profiling"</span>
-                       (profiling-on <span style="color: #2e8b57;">#t</span>)]
-   <span style="color: #cd0000;">#:once-any</span>
-   [(<span style="color: #8b2252;">"-o"</span> <span style="color: #8b2252;">"--optimize-1"</span>) <span style="color: #8b2252;">"Compile with optimization level 1"</span>
-                          (optimize-level <span style="color: #2e8b57;">1</span>)]
-   [(<span style="color: #8b2252;">"--optimize-2"</span>) (<span style="color: #8b2252;">"Compile with optimization level 2,"</span>
-                      <span style="color: #8b2252;">"which includes all of level 1"</span>)
-                     (optimize-level <span style="color: #2e8b57;">2</span>)]
-   <span style="color: #cd0000;">#:multi</span>
-   [(<span style="color: #8b2252;">"-l"</span> <span style="color: #8b2252;">"--link-flags"</span>) lf
-                          <span style="color: #8b2252;">"Add a flag"</span>
-                          (link-flags (<span style="color: #483d8b;">cons</span> lf (link-flags)))]
-   <span style="color: #cd0000;">#:args</span> (filename) filename))
+  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">file-to-compile</span>
+    (<span style="color: #483d8b;">command-line</span>
+     <span style="color: #cd0000;">#:program</span> <span style="color: #8b2252;">"compiler"</span>
+     <span style="color: #cd0000;">#:once-each</span>
+     [(<span style="color: #8b2252;">"-v"</span> <span style="color: #8b2252;">"--verbose"</span>) <span style="color: #8b2252;">"Compile with verbose messages"</span>
+                         (verbose-mode <span style="color: #2e8b57;">#t</span>)]
+     [(<span style="color: #8b2252;">"-p"</span> <span style="color: #8b2252;">"--profile"</span>) <span style="color: #8b2252;">"Compile with profiling"</span>
+                         (profiling-on <span style="color: #2e8b57;">#t</span>)]
+     <span style="color: #cd0000;">#:once-any</span>
+     [(<span style="color: #8b2252;">"-o"</span> <span style="color: #8b2252;">"--optimize-1"</span>) <span style="color: #8b2252;">"Compile with optimization level 1"</span>
+                            (optimize-level <span style="color: #2e8b57;">1</span>)]
+     [(<span style="color: #8b2252;">"--optimize-2"</span>) (<span style="color: #8b2252;">"Compile with optimization level 2,"</span>
+                        <span style="color: #8b2252;">"which includes all of level 1"</span>)
+                       (optimize-level <span style="color: #2e8b57;">2</span>)]
+     <span style="color: #cd0000;">#:multi</span>
+     [(<span style="color: #8b2252;">"-l"</span> <span style="color: #8b2252;">"--link-flags"</span>) lf
+                            <span style="color: #8b2252;">"Add a flag"</span>
+                            (link-flags (<span style="color: #483d8b;">cons</span> lf (link-flags)))]
+     <span style="color: #cd0000;">#:args</span> (filename) filename))
 </pre>
 </div>
 </div>
@@ -2203,16 +2225,16 @@ Browsers are declared in sendurl.rkt, with
 </p>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">all-unix-browsers</span>
-  '(
-    firefox
-    google-chrome
-    galeon
-    opera
-    mozilla
-    konqueror
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">...</span>
-    ))
+<pre class="src src-racket">  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">all-unix-browsers</span>
+    '(
+      firefox
+      google-chrome
+      galeon
+      opera
+      mozilla
+      konqueror
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">...</span>
+      ))
 </pre>
 </div>
 
@@ -2246,29 +2268,29 @@ order for it to work, install <code>racket-doc</code> package.
 <h2 id="orgb3966a5"><span class="section-number-2">22</span> Logger</h2>
 <div class="outline-text-2" id="text-22">
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">lg</span> (<span style="color: #483d8b;">make-logger</span>))
-(<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">rc</span> (<span style="color: #483d8b;">make-log-receiver</span> lg <span style="color: #2e8b57;">'debug</span>))
-(<span style="color: #483d8b;">current-logger</span> lg)
-(<span style="color: #483d8b;">void</span>
- (<span style="color: #483d8b;">thread</span>
-  (<span style="color: #a020f0;">lambda</span> () (<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">loop</span> ()
-               (<span style="color: #483d8b;">print</span> (<span style="color: #483d8b;">sync</span> rc))
-               (loop)))))
-(<span style="color: #a020f0;">log-error</span> <span style="color: #8b2252;">"error"</span>)
-(<span style="color: #a020f0;">log-fatal</span> <span style="color: #8b2252;">"fatal"</span>)
-(<span style="color: #a020f0;">log-debug</span> <span style="color: #8b2252;">"just a debug"</span>)
+<pre class="src src-racket">  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">lg</span> (<span style="color: #483d8b;">make-logger</span>))
+  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">rc</span> (<span style="color: #483d8b;">make-log-receiver</span> lg <span style="color: #2e8b57;">'debug</span>))
+  (<span style="color: #483d8b;">current-logger</span> lg)
+  (<span style="color: #483d8b;">void</span>
+   (<span style="color: #483d8b;">thread</span>
+    (<span style="color: #a020f0;">lambda</span> () (<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">loop</span> ()
+                 (<span style="color: #483d8b;">print</span> (<span style="color: #483d8b;">sync</span> rc))
+                 (loop)))))
+  (<span style="color: #a020f0;">log-error</span> <span style="color: #8b2252;">"error"</span>)
+  (<span style="color: #a020f0;">log-fatal</span> <span style="color: #8b2252;">"fatal"</span>)
+  (<span style="color: #a020f0;">log-debug</span> <span style="color: #8b2252;">"just a debug"</span>)
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-racket">(<span style="color: #a020f0;">require</span> racket/logging)
-(<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">my-log</span> (<span style="color: #483d8b;">open-output-string</span>)])
-  (with-logging-to-port my-log
-    (<span style="color: #a020f0;">lambda</span> ()
-      (<span style="color: #a020f0;">log-warning</span> <span style="color: #8b2252;">"Warning World!"</span>)
-      (<span style="color: #483d8b;">+</span> <span style="color: #2e8b57;">2</span> <span style="color: #2e8b57;">2</span>))
-    <span style="color: #2e8b57;">'warning</span>)
-  (<span style="color: #483d8b;">get-output-string</span> my-log))
+<pre class="src src-racket">  (<span style="color: #a020f0;">require</span> racket/logging)
+  (<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">my-log</span> (<span style="color: #483d8b;">open-output-string</span>)])
+    (with-logging-to-port my-log
+      (<span style="color: #a020f0;">lambda</span> ()
+        (<span style="color: #a020f0;">log-warning</span> <span style="color: #8b2252;">"Warning World!"</span>)
+        (<span style="color: #483d8b;">+</span> <span style="color: #2e8b57;">2</span> <span style="color: #2e8b57;">2</span>))
+      <span style="color: #2e8b57;">'warning</span>)
+    (<span style="color: #483d8b;">get-output-string</span> my-log))
 </pre>
 </div>
 </div>
@@ -2276,7 +2298,7 @@ order for it to work, install <code>racket-doc</code> package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-14 Thu 19:45</p>
+<p class="date">Created: 2018-01-04 Thu 17:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

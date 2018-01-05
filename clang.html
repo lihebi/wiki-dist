@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-01 Mon 18:27 -->
+<!-- 2018-01-04 Thu 21:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clang</title>
@@ -270,7 +270,8 @@ for the JavaScript code in this tag.
 <li><a href="#org9c488f4">4.6. Clang AST</a></li>
 </ul>
 </li>
-<li><a href="#orgc56f65c">5. Reference</a></li>
+<li><a href="#orgf83aa6e">5. Lexer</a></li>
+<li><a href="#orgc56f65c">6. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -1227,11 +1228,70 @@ cast. For example
 </div>
 </div>
 
+<div id="outline-container-orgf83aa6e" class="outline-2">
+<h2 id="orgf83aa6e"><span class="section-number-2">5</span> Lexer</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Use lexer when you want to get the token level information, such as
+raw source code.
+</p>
+
+<p>
+The <code>getExpansionLocation</code> family can support macro, otherwise you
+will get a location in the macro definition file.
+</p>
+
+<p>
+There's a class called <code>Rewriter</code>. It is used like this. However, this
+will have bug when generating a <code>TypedefNameDecl</code>, resulting in part
+of seemingly binary data. It might cause other problems.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">  <span style="color: #228b22;">Rewriter</span> <span style="color: #a0522d;">rewriter</span>;
+  rewriter.setSourceMgr(src_mgr, LangOptions());
+  <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">str</span> = rewriter.getRewrittenText(range);
+</pre>
+</div>
+
+<p>
+The most reliable way is to use Lexer. It has a static method
+getSourceText that generate text from a <code>CharSourceRange</code>. You can get
+<code>CharSourceRange</code> from <code>SourceRange</code> using <code>getCharRange</code> method, no
+problem. However, note that clang has two concepts of source range:
+the token source range and the character source range. Token source
+range is typically used in AST, and meant to be the <b>start of
+token</b>. So a typical source range in AST's perspective will be the
+beginning locations of the begin and end token. When converting this
+directly to char source range, you are guaranteed to miss the last
+token. The correct way is to first convert the end location to <i>the
+end of the token</i>, using <code>getLocForEndOfToken</code>. Be careful that don't
+call this twice.
+</p>
+
+<p>
+The Lexer provides a method <code>getAsCharRange</code> that seems to want to do
+exactly this. There is probably a clang bug though. In
+<code>Lexer::getAsCharRange</code>, the <code>getLocForEndOfToken</code> is called, but when
+constructing <code>CharSourceRange</code>, the end is adjusted by
+<code>getLocWithOffset(-1)</code>, and cause the getSourceText to miss one
+character.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">end = <span style="color: #008b8b;">Lexer</span>::getLocForEndOfToken(end, 0, mgr, LangOptions());
+<span style="color: #228b22;">CharSourceRange</span> <span style="color: #a0522d;">char_range</span> = <span style="color: #008b8b;">CharSourceRange</span>::getCharRange(begin, end);
+<span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">text</span> = <span style="color: #008b8b;">Lexer</span>::getSourceText(char_range, mgr, LangOptions());
+</pre>
+</div>
+</div>
+</div>
+
 
 
 <div id="outline-container-orgc56f65c" class="outline-2">
-<h2 id="orgc56f65c"><span class="section-number-2">5</span> Reference</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgc56f65c"><span class="section-number-2">6</span> Reference</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>A article as tutorial:
 <a href="http://bastian.rieck.ru/blog/posts/2016/baby_steps_libclang_function_extents/">http://bastian.rieck.ru/blog/posts/2016/baby_steps_libclang_function_extents/</a></li>
@@ -1242,7 +1302,7 @@ cast. For example
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-01 Mon 18:27</p>
+<p class="date">Created: 2018-01-04 Thu 21:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-02 Tue 00:07 -->
+<!-- 2018-01-04 Thu 21:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>clang Backup file</title>
@@ -256,7 +256,6 @@ for the JavaScript code in this tag.
 <li><a href="#orgb2a3cd8">3.5. Location</a></li>
 </ul>
 </li>
-<li><a href="#org2930bb9">4. clang::Rewriter</a></li>
 </ul>
 </div>
 </div>
@@ -630,59 +629,10 @@ FileEntry *getFileEntry();
 </div>
 </div>
 </div>
-
-
-
-
-<div id="outline-container-org2930bb9" class="outline-2">
-<h2 id="org2930bb9"><span class="section-number-2">4</span> clang::Rewriter</h2>
-<div class="outline-text-2" id="text-4">
-<div class="org-src-container">
-<pre class="src src-C++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"clang/Rewrite/Core/Rewriter.h"</span>
-
-SourceManager &amp;getSourceMgr();
-<span style="color: #228b22;">void</span> <span style="color: #0000ff;">setSourceMgr</span>(<span style="color: #228b22;">SourceManager</span> &amp;<span style="color: #a0522d;">SM</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">LangOptions</span> &amp;<span style="color: #a0522d;">LO</span>);
-
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">getRangeSize</span>(<span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">range</span>);
-<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #0000ff;">getRewrittenText</span>(<span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">range</span>);
-
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">InsertText</span>(<span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">loc</span>, <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">str</span>, <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">InsertAfter</span>=<span style="color: #008b8b;">true</span>, <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">indentNewLines</span>=<span style="color: #008b8b;">false</span>);
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">InsertTextAfter</span>(<span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">loc</span>, <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">str</span>);
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">InsertTextAfterToken</span>(<span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">loc</span>, <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">str</span>);
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">InsertTextBefore</span>(<span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">loc</span>, <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">str</span>);
-
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">RemoveText</span>(<span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">start</span>, <span style="color: #228b22;">unsigned</span> <span style="color: #a0522d;">length</span>);
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">RemoveText</span>(<span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">range</span>);
-
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">ReplaceText</span>(<span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">start</span>, <span style="color: #228b22;">unsigned</span> <span style="color: #a0522d;">OrigLength</span>, <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">NewStr</span>);
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">ReplaceText</span>(<span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">range</span>, <span style="color: #228b22;">StringRef</span> <span style="color: #a0522d;">NewStr</span>);
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">ReplaceText</span>(<span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">range</span>, <span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">replacementRange</span>);
-
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">IncreaseIndentation</span>(<span style="color: #228b22;">SourceRange</span> <span style="color: #a0522d;">range</span>, <span style="color: #228b22;">SourceLocation</span> <span style="color: #a0522d;">parentIndent</span>);
-
-RewriteBuffer &amp;getEditBuffer(<span style="color: #228b22;">FileID</span> <span style="color: #a0522d;">FID</span>);
-<span style="color: #a020f0;">const</span> <span style="color: #228b22;">RewriteBuffer</span> *<span style="color: #0000ff;">getRewriteBufferFor</span>(<span style="color: #228b22;">FileID</span> <span style="color: #a0522d;">FID</span>) <span style="color: #a020f0;">const</span>;
-
-<span style="color: #228b22;">buffer_iterator</span> <span style="color: #0000ff;">buffer_begin</span>();
-<span style="color: #228b22;">buffer_iterator</span> <span style="color: #0000ff;">buffer_end</span>();
-<span style="color: #228b22;">bool</span> <span style="color: #0000ff;">overwriteChangedFiles</span>();
-</pre>
-</div>
-
-<p>
-Usage example
-</p>
-<div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">Rewriter</span> <span style="color: #a0522d;">rewriter</span>;
-rewriter.setSourceMgr(source_manager, )
-</pre>
-</div>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-02 Tue 00:07</p>
+<p class="date">Created: 2018-01-04 Thu 21:28</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
