@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2018-01-23 Tue 03:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Lisp</title>
@@ -227,6 +227,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -235,123 +257,77 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org19ce833">1. Evaluation</a>
+<li><a href="#org31c0f34">1. IO</a></li>
+<li><a href="#orge0abffd">2. Symbol</a></li>
+<li><a href="#org2f19359">3. Regular Expression</a></li>
+<li><a href="#org6dd43c3">4. Lisp Common Sense</a></li>
+<li><a href="#orgc58295e">5. string</a></li>
+<li><a href="#orgb037d0c">6. list</a></li>
+<li><a href="#org938cb04">7. Sequence</a></li>
+<li><a href="#org55247f0">8. Hash Table</a></li>
+<li><a href="#org87f4032">9. Function</a></li>
+<li><a href="#org3d94999">10. Macro</a></li>
+<li><a href="#org4cead25">11. Control Structure</a></li>
+<li><a href="#orge38c6f7">12. Packages</a>
 <ul>
-<li><a href="#orgaeb7437">1.1. quoting</a></li>
-<li><a href="#org35513ac">1.2. backquoting</a></li>
+<li><a href="#org5e2c5f3">12.1. Dash.el</a></li>
+<li><a href="#org4b8d423">12.2. s.el</a></li>
+<li><a href="#org2b9accc">12.3. cl-lib.el loop</a>
+<ul>
+<li><a href="#org51218d1">12.3.1. general loop form</a></li>
+<li><a href="#org66827e4">12.3.2. for clauses</a></li>
+<li><a href="#orgf70bcaa">12.3.3. iteration clauses</a></li>
+<li><a href="#org35c6f56">12.3.4. accumulation clauses</a></li>
+<li><a href="#org5e0850d">12.3.5. Other clauses</a></li>
 </ul>
 </li>
-<li><a href="#org9662e7f">2. Basic</a>
-<ul>
-<li><a href="#orgdfacd40">2.1. Interactive</a></li>
-<li><a href="#orge0abffd">2.2. Symbol</a>
-<ul>
-<li><a href="#org83a3fb6">2.2.1. property list</a></li>
-<li><a href="#orga2ef4df">2.2.2. Variable</a></li>
+<li><a href="#org3df4ce1">12.4. cl-lib other</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org2f19359">3. Regular Expression</a>
+<li><a href="#orgb615c53">13. Debugging</a>
 <ul>
-<li><a href="#org1c6537b">3.1. syntax</a>
+<li><a href="#org62a0926">13.1. lisp debugger</a></li>
+<li><a href="#orge4b0794">13.2. Edebug</a>
 <ul>
-<li><a href="#orgc61c9ed">3.1.1. basics</a></li>
-<li><a href="#org33dc8a3">3.1.2. Character classes</a></li>
-<li><a href="#orgdb504f2">3.1.3. Backslash</a></li>
-<li><a href="#orgc8949bb">3.1.4. Syntax code</a></li>
-</ul>
-</li>
-<li><a href="#orgcb458ba">3.2. constructing</a></li>
-<li><a href="#orgdf6ca3a">3.3. Searching</a></li>
-</ul>
-</li>
-<li><a href="#org80defb8">4. Type</a>
-<ul>
-<li><a href="#org6de2d7d">4.1. number</a></li>
-<li><a href="#orgc58295e">4.2. string</a></li>
-<li><a href="#orgafaf6b8">4.3. cons cell</a></li>
-<li><a href="#orgb037d0c">4.4. list</a>
-<ul>
-<li><a href="#orgc9c913c">4.4.1. construct</a></li>
-<li><a href="#orgac4555f">4.4.2. access</a></li>
-<li><a href="#org1507bc2">4.4.3. modify</a></li>
-</ul>
-</li>
-<li><a href="#org2f45a6f">4.5. set</a></li>
-<li><a href="#org50057c5">4.6. association list</a></li>
-<li><a href="#orgd1aaefa">4.7. property list</a></li>
-<li><a href="#orgf23c374">4.8. sequence</a></li>
-<li><a href="#org7c6ff59">4.9. array</a>
-<ul>
-<li><a href="#orge38a571">4.9.1. constructing</a></li>
-<li><a href="#org90bfae4">4.9.2. accessing</a></li>
-</ul>
-</li>
-<li><a href="#org92dcaf9">4.10. hash table</a></li>
-</ul>
-</li>
-<li><a href="#org87f4032">5. Function</a>
-<ul>
-<li><a href="#org0318ddf">5.1. define</a></li>
-<li><a href="#orge0eb70d">5.2. Calling</a></li>
-<li><a href="#orgd3d5575">5.3. Mapping family</a></li>
-<li><a href="#orgdfcc417">5.4. Anonymous functions</a></li>
-<li><a href="#org3d94999">5.5. Macro</a></li>
-</ul>
-</li>
-<li><a href="#org4cead25">6. Control Structure</a>
-<ul>
-<li><a href="#orgd37f2df">6.1. Sequential</a></li>
-<li><a href="#orgeaa3c67">6.2. Conditional</a>
-<ul>
-<li><a href="#orgf2a7af9">6.2.1. logical computation</a></li>
-</ul>
-</li>
-<li><a href="#org464f275">6.3. Loop</a></li>
-</ul>
-</li>
-<li><a href="#orge38c6f7">7. Packages</a>
-<ul>
-<li><a href="#org5e2c5f3">7.1. Dash.el</a></li>
-<li><a href="#org4b8d423">7.2. s.el</a></li>
-<li><a href="#org2b9accc">7.3. cl-lib.el loop</a>
-<ul>
-<li><a href="#org51218d1">7.3.1. general loop form</a></li>
-<li><a href="#org66827e4">7.3.2. for clauses</a></li>
-<li><a href="#orgf70bcaa">7.3.3. iteration clauses</a></li>
-<li><a href="#org35c6f56">7.3.4. accumulation clauses</a></li>
-<li><a href="#org5e0850d">7.3.5. Other clauses</a></li>
-</ul>
-</li>
-<li><a href="#org3df4ce1">7.4. cl-lib other</a></li>
-</ul>
-</li>
-<li><a href="#orgb615c53">8. Debugging</a>
-<ul>
-<li><a href="#org62a0926">8.1. lisp debugger</a></li>
-<li><a href="#orge4b0794">8.2. Edebug</a>
-<ul>
-<li><a href="#org2159625">8.2.1. breakpoints</a></li>
-<li><a href="#org1ec747a">8.2.2. Moving of point</a></li>
-<li><a href="#org7bb1cde">8.2.3. executions</a></li>
-<li><a href="#org0262793">8.2.4. evaluation</a></li>
-<li><a href="#org6e4b4f3">8.2.5. other commands</a></li>
+<li><a href="#org2159625">13.2.1. breakpoints</a></li>
+<li><a href="#org1ec747a">13.2.2. Moving of point</a></li>
+<li><a href="#org7bb1cde">13.2.3. executions</a></li>
+<li><a href="#org0262793">13.2.4. evaluation</a></li>
+<li><a href="#org6e4b4f3">13.2.5. other commands</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd819a38">9. Unit Testing</a>
+<li><a href="#orgd819a38">14. Unit Testing</a>
 <ul>
-<li><a href="#orgba8fd8d">9.1. Write test</a></li>
-<li><a href="#orgc341a7e">9.2. Run test</a></li>
+<li><a href="#orgba8fd8d">14.1. Write test</a></li>
+<li><a href="#orgc341a7e">14.2. Run test</a></li>
 </ul>
 </li>
-<li><a href="#org2bb9304">10. Some random code snippets</a>
+<li><a href="#org2bb9304">15. Some random code snippets</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org80cbf49">10.0.1. Url retrieval</a></li>
+<li><a href="#org80cbf49">15.0.1. Url retrieval</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgbedcb62">16. Emacs Related</a>
+<ul>
+<li><a href="#org81d33c6">16.1. Buffer</a></li>
+<li><a href="#orgd89cb25">16.2. Position</a></li>
+<li><a href="#org516c848">16.3. Marker</a></li>
+<li><a href="#org44a118f">16.4. Process</a></li>
+<li><a href="#orge81d0d8">16.5. File System Related</a>
+<ul>
+<li><a href="#orgb51903b">16.5.1. Traversing</a></li>
+<li><a href="#orgca2f2bd">16.5.2. Predicates</a></li>
+</ul>
+</li>
+<li><a href="#org4de1294">16.6. Other</a>
+<ul>
+<li><a href="#org8d96921">16.6.1. make-obsolete-variable</a></li>
 </ul>
 </li>
 </ul>
@@ -359,168 +335,103 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+<p>
+In emacs lisp intro, the Robert J. Chassell quoted the following.
+</p>
+
 <blockquote>
 <p>
-The names CAR and CDR derive from the history of Lisp.  The original
-Lisp implementation ran on an IBM 704 computer which divided words into
-two parts, called the “address” part and the “decrement”; CAR was an
-instruction to extract the contents of the address part of a register,
-and CDR an instruction to extract the contents of the decrement.  By
-contrast, “cons cells” are named for the function ‘cons’ that creates
-them, which in turn was named for its purpose, the construction of
-cells.
+I prefer to learn from reference manuals.  I “dive into” each
+paragraph, and “come up for air” between paragraphs.
+</p>
+
+<p>
+When I get to the end of a paragraph, I assume that that subject is
+done, finished, that I know everything I need (with the possible
+exception of the case when the next paragraph starts talking about it
+in more detail).  I expect that a well written reference manual will
+not have a lot of redundancy, and that it will have excellent pointers
+to the (one) place where the information I want is.
 </p>
 </blockquote>
-<div id="outline-container-org19ce833" class="outline-2">
-<h2 id="org19ce833"><span class="section-number-2">1</span> Evaluation</h2>
+
+<div id="outline-container-org31c0f34" class="outline-2">
+<h2 id="org31c0f34"><span class="section-number-2">1</span> IO</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The read and evaluate is <i>seperate</i>. For example, <code>(1 2 3)</code> is a list, and can be read by lisp interpreter as an object: a list.
-But try to evalute it in emacs results in error. It is not because emacs cannot read it.
-It can, but it tries to evaluate it using a list form, which checks the car of list and treat it as a function. Of course '1' is not a function.
+<code>princ</code> is for human, it print object without quotes. <code>print</code> is the
+most verbose, print quotes and newlines. <code>prin1</code> omit the newlines.
+If you just evaluate the print, the result is the object being
+printing, so the echo area will have two copy of the object.
 </p>
 
 <p>
-There's a form called <i>self-evaluating form</i>. It evaluate to itself.
-For example, the number, the string, evaluates to itself.
-</p>
-</div>
-
-<div id="outline-container-orgaeb7437" class="outline-3">
-<h3 id="orgaeb7437"><span class="section-number-3">1.1</span> quoting</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-From the elisp info page:
-</p>
-<blockquote>
-<p>
-The special form ‘quote’ returns its single argument, as written,
-without evaluating it.  This provides a way to include constant symbols
-and lists, which are not self-evaluating objects, in a program.  (It is
-not necessary to quote self-evaluating objects such as numbers, strings,
-and vectors.)
-</p>
-</blockquote>
-
-<p>
-The expression <code>\'print</code> means read it without evaluation. So the following expression makes sense:
-</p>
-<div class="org-src-container">
-<pre class="src src-elisp">(eval (list 'prin1 '1))
-</pre>
-</div>
-
-<p>
-Note that <code>(quote x)</code> and <code>'x</code> are equivalent.
+<code>message</code> accepts only string, and used inclusively on echo area.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org35513ac" class="outline-3">
-<h3 id="org35513ac"><span class="section-number-3">1.2</span> backquoting</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-It is identical to quoting except that it allows to evaluate part of the object.
-The special marker <code>,</code> can be used:
-</p>
 
-<div class="org-src-container">
-<pre class="src src-elisp">`(a list of ,(+ 2 3) elements)
-<span style="color: #b22222;">; </span><span style="color: #b22222;">-&gt; (a list of 5 elements)</span>
-</pre>
-</div>
-
-<p>
-If the partial evaluation returns a list, but you want to <b>splice</b> it with some other elements into a list, you can do it neatly with <code>,@</code>:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">setq</span> some-list '(2 3))
-`(1 ,@some-list 4 ,@some-list)
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">-&gt; (1 2 3 4 2 3)</span>
-</pre>
-</div>
-
-<p>
-Without this feature, you have to write some hard to understand code:
-</p>
-<div class="org-src-container">
-<pre class="src src-elisp">(cons 1 (append some-list '(4) some-list))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">-&gt; (1 2 3 4 2 3)</span>
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org9662e7f" class="outline-2">
-<h2 id="org9662e7f"><span class="section-number-2">2</span> Basic</h2>
+<div id="outline-container-orge0abffd" class="outline-2">
+<h2 id="orge0abffd"><span class="section-number-2">2</span> Symbol</h2>
 <div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgdfacd40" class="outline-3">
-<h3 id="orgdfacd40"><span class="section-number-3">2.1</span> Interactive</h3>
-<div class="outline-text-3" id="text-2-1">
-<dl class="org-dl">
-<dt><code>print</code></dt><dd>print the object in quotes, with a newline before and after it</dd>
-<dt><code>prin1</code></dt><dd>print the object in quotes without newlines</dd>
-<dt><code>princ</code></dt><dd>print the object without quotes, without newlines</dd>
-<dt>(no term)</dt><dd><code>message</code></dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orge0abffd" class="outline-3">
-<h3 id="orge0abffd"><span class="section-number-3">2.2</span> Symbol</h3>
-<div class="outline-text-3" id="text-2-2">
-<ul class="org-ul">
-<li>defvar</li>
-<li>defun</li>
-<li>defmacro</li>
-</ul>
-
 <p>
-A symbol can <i>not</i> be both a function and macro, but it can be a variable and a function at the same time.
-</p>
-</div>
-
-<div id="outline-container-org83a3fb6" class="outline-4">
-<h4 id="org83a3fb6"><span class="section-number-4">2.2.1</span> property list</h4>
-<div class="outline-text-4" id="text-2-2-1">
-<p>
-A symbol can have a property list &#x2026;
-</p>
-<dl class="org-dl">
-<dt><code>get symbol property</code></dt><dd></dd>
-
-<dt><code>put symbol property value</code></dt><dd></dd>
-
-<dt><code>symbol-plist symbol</code></dt><dd>return the p-list</dd>
-<dt><code>setplist symbol plist</code></dt><dd></dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-orga2ef4df" class="outline-4">
-<h4 id="orga2ef4df"><span class="section-number-4">2.2.2</span> Variable</h4>
-<div class="outline-text-4" id="text-2-2-2">
-<p>
-Dynamic binding: in the defun, we can refer to free variable. When calling the defun in different environment, it will get the variable from them.
-This is used by default.
+Since elisp is lisp-1, a symbol can be both variable and a function at
+the same time.  Macros and functions use the same namespace.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">x</span> -99)
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">getx</span> () x)
-(<span style="color: #a020f0;">let</span> ((x 1)) (getx)) <span style="color: #b22222;">; </span><span style="color: #b22222;">-&gt; 1</span>
-(getx) <span style="color: #b22222;">; </span><span style="color: #b22222;">-&gt; -99</span>
-</pre>
-</div>
+<p>
+Elisp use nil in three ways: the symbol, the logical false, and the
+empty list.
+</p>
 
 <p>
-Lexical is also introduced as optional feature.
+Elisp also has <code>#'</code>, but instead of syntax, it is the read syntax of
+quoting for function, i.e. <code>function</code>.
 </p>
-</div>
-</div>
+
+<p>
+Elisp by default uses <b>dynamic binding</b> and dynamic extent for local
+variables. This means, the variable refers to the most recent local
+binding, and a binding exists all the way as long as the binding form
+is executing (e.g. body of let). <code>setq</code> works on the most recent
+binding.
+</p>
+
+<p>
+Thus, when using a local dynamic binding, always make sure (by
+yourself, unfortunately) the variable is bound. When really using
+global variable, <b>declare</b> it at the top, via <code>defvar</code> and
+<code>defconst</code>. <code>defvar</code> will initialize the variable if it is originally
+<i>void</i>, while <code>defconst</code> will unconditionally initialize it. Other
+than that, there's no difference, the compiler will not complain if
+you changed the constant. The variable will be marked as "special",
+meaning that it will always have dynamic binding.  There's a third way
+to create global binding, the <code>defcustom</code>. It is used to create
+<i>customizable variable</i>, also called <i>user option</i>. It is special in
+that, it is shown in customize interface, and the <code>defcustom</code> will
+specify how it should be displayed, and what values to take.
+</p>
+
+<p>
+On the other hand, lexical scope establish lexical binding, and has
+indefinite extent. This means the variable has to refer to a binding
+that is lexical written in scope. The binding is available even
+outside the execution of the binding form, and construct a closure.
+To enable lexical binding, you have to set buffer-local variable
+<code>lexical-binding</code> to non-nil. Even after this, special variables are
+still dynamic binding.
+</p>
+
+<p>
+Emacs supports another binding, called buffer-local binding. As name
+suggests, the binding is in effect when that buffer is the current
+buffer, and goes out of effect when it is not. This is most useful in
+major modes. Two ways can make buffer-local
+variable. <code>make-local-variable</code> set the variable to local to current
+buffer, while <code>make-variable-buffer-local</code> set a variable buffer-local
+in all buffers.
+</p>
 </div>
 </div>
 
@@ -528,836 +439,320 @@ Lexical is also introduced as optional feature.
 <div id="outline-container-org2f19359" class="outline-2">
 <h2 id="org2f19359"><span class="section-number-2">3</span> Regular Expression</h2>
 <div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org1c6537b" class="outline-3">
-<h3 id="org1c6537b"><span class="section-number-3">3.1</span> syntax</h3>
-<div class="outline-text-3" id="text-3-1">
-</div>
-<div id="outline-container-orgc61c9ed" class="outline-4">
-<h4 id="orgc61c9ed"><span class="section-number-4">3.1.1</span> basics</h4>
-<div class="outline-text-4" id="text-3-1-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">symbol</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>.</code></td>
-<td class="org-left">match anything except a newline</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>*</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>+</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>?</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>*?</code>, <code>+?</code>, <code>??</code></td>
-<td class="org-left">non-greedy, match the smallest part</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[]</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[^]</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>^</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>$</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-org33dc8a3" class="outline-4">
-<h4 id="org33dc8a3"><span class="section-number-4">3.1.2</span> Character classes</h4>
-<div class="outline-text-4" id="text-3-1-2">
 <p>
-Use the double <code>[[]]</code> form. E.g. <code>[[:ascii:]]</code>, and also the negative writes <code>[^[:ascii:]]</code>.
+You can use basic <code>.*+?</code>, as well as non-greedy counter part <code>*?</code>,
+<code>+?</code>, <code>??</code>.
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">symbol</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>ascii</code></td>
-<td class="org-left">0-127</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>alnum</code></td>
-<td class="org-left">letter or digit</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>alpha</code></td>
-<td class="org-left">letter</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>blank</code></td>
-<td class="org-left">space and tab</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>cntrl</code></td>
-<td class="org-left">ASCII control char</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>digit</code></td>
-<td class="org-left">0-9</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>lower</code></td>
-<td class="org-left">lower-case</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>upper</code></td>
-<td class="org-left">upper-case</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>punct</code></td>
-<td class="org-left">punctuation</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>space</code></td>
-<td class="org-left">whitespace</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>word</code></td>
-<td class="org-left"><code>\w</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-orgdb504f2" class="outline-4">
-<h4 id="orgdb504f2"><span class="section-number-4">3.1.3</span> Backslash</h4>
-<div class="outline-text-4" id="text-3-1-3">
 <p>
-Backslash is also used in elisp read syntax. So when you want one <code>\</code> in the string, you need to write double.
+Bracket is special in elisp regex. Character classes can be used
+inside <code>[]</code>. E.g. <code>[[:ascii:]]</code>.  Possible values include
 </p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">symbol</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>\1</code> (pipe)</td>
-<td class="org-left">either one of two expressions. Can be used in capturing group</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\{\}</code></td>
-<td class="org-left"><code>{}</code> counter part</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\(\)</code></td>
-<td class="org-left">capturing group</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\(?:\)</code></td>
-<td class="org-left">non-capturing group</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\(?NUM:\)</code></td>
-<td class="org-left">numbered capturing group.. If conflict numbers, last one will win</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\DIGIT</code></td>
-<td class="org-left">back reference</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>\w</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\W</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\b</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\B</code></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-orgc8949bb" class="outline-4">
-<h4 id="orgc8949bb"><span class="section-number-4">3.1.4</span> Syntax code</h4>
-<div class="outline-text-4" id="text-3-1-4">
-<p>
-<code>\sCODE</code> can be used to refer to any character "whose syntax is CODE".
-<code>\SCODE</code> is the negative form.
-See the "Syntax Class Table" chapter of elisp manual for details.
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">symbol</th>
-<th scope="col" class="org-left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>\s-</code></td>
-<td class="org-left">whitespace</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\s[space]</code></td>
-<td class="org-left">whitespace</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\sw</code></td>
-<td class="org-left"><code>\w</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>\s.</code></td>
-<td class="org-left">punctuation</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgcb458ba" class="outline-3">
-<h3 id="orgcb458ba"><span class="section-number-3">3.2</span> constructing</h3>
-<div class="outline-text-3" id="text-3-2">
-<dl class="org-dl">
-<dt><code>regexp-quote string</code></dt><dd>return a regular expression, whose only exact match is string.
-<code>(regexp-quote "^The cat$")</code> returns <code>"\\^The cat\\$"</code>. It is useful for example:</dd>
-</dl>
-
-<div class="org-src-container">
-<pre class="src src-elisp">(re-search-forward
- (concat <span style="color: #8b2252;">"\\s-"</span> (regexp-quote string) <span style="color: #8b2252;">"\\s-"</span>))
-</pre>
-</div>
-
-<dl class="org-dl">
-<dt><code>regexp-opt strings</code></dt><dd>return an <i>efficient</i> regular expression, that will matches any of the strings supplied.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgdf6ca3a" class="outline-3">
-<h3 id="orgdf6ca3a"><span class="section-number-3">3.3</span> Searching</h3>
-<div class="outline-text-3" id="text-3-3">
-<dl class="org-dl">
-<dt><code>re-search-forward regexp</code></dt><dd></dd>
-
-<dt><code>re-search-backward regexp</code></dt><dd></dd>
-
-<dt><code>string-match regexp string</code></dt><dd>returns the index of the start of the first match. It will set the <i>Match Data</i></dd>
-<dt><code>string-match-p regexp string</code></dt><dd>same as <code>string-match</code> except it does not modify <i>Match Data</i>.</dd>
-</dl>
+<ul class="org-ul">
+<li>ascii: 0-127</li>
+<li>alnum: letter or digit</li>
+<li>alpha: letter</li>
+<li>blank: space and tab</li>
+<li>digit: 0-9</li>
+<li>lower: lower case</li>
+<li>upper</li>
+<li>punct</li>
+<li>space: white space</li>
+<li>word: same as <code>\w</code></li>
+</ul>
 
 <p>
-accessing the match data
+Parenthesis and braces are not special, thus can be used
+literally. When using for grouping, they need to be escaped for
+capturing, otherwise it is literal. Non-capturing group is also
+supported by <code>\(?:\)</code>. <code>\1</code> for back reference.
 </p>
-<dl class="org-dl">
-<dt><code>match-string count</code></dt><dd>count is the index, with 0 to the the entire match</dd>
-<dt><code>match-beginning count</code></dt><dd>return the beginning index of the match</dd>
-<dt><code>match-end count</code></dt><dd></dd>
-</dl>
 
 <p>
-replacing
+Back slash some code has special meanings. e.g. <code>\w</code> <code>\b</code>. The
+uppercase is negation.
 </p>
-<dl class="org-dl">
-<dt><code>replace-regexp-in-string regexp rep string</code></dt><dd>return a modified copy. replace all of matches.</dd>
-</dl>
-</div>
+<ul class="org-ul">
+<li><code>\w</code>: word</li>
+<li><code>\b</code>:</li>
+<li><code>\s-</code>: whitespace</li>
+<li><code>\sw</code>: \w</li>
+<li><code>\s.</code>: punctuation</li>
+</ul>
+
+<p>
+When constructing regexp that match string literals, you can use
+<code>regexp-quote</code> and <code>regexp-opt</code> to avoid getting specially
+interpreted. <code>regexp-quote</code> returns a regular expression, whose only
+exact match is string. <code>regexp-opt</code> returns an <i>efficient</i> regular
+expression, that will matches any of the strings supplied.
+</p>
+
+<p>
+The mostly used functions are <code>re-search-forward</code> and backward. It
+search in the buffer. You can also search in a string by
+<code>string-match</code> or <code>string-match-p</code>. They will set <i>match data</i>.  
+</p>
+
+<p>
+After search, you can retrieve the previous match data by
+<code>match-string</code> and <code>match-string-no-property</code> (for clean string). You
+can also use <code>match-beginning</code> and <code>match-end</code> to get the position of
+the match instead of content.
+</p>
+
+<p>
+Finally, <code>replace-regexp-in-string</code> replaces all matches in a string.
+</p>
 </div>
 </div>
 
-<div id="outline-container-org80defb8" class="outline-2">
-<h2 id="org80defb8"><span class="section-number-2">4</span> Type</h2>
+<div id="outline-container-org6dd43c3" class="outline-2">
+<h2 id="org6dd43c3"><span class="section-number-2">4</span> Lisp Common Sense</h2>
 <div class="outline-text-2" id="text-4">
-<dl class="org-dl">
-<dt><code>(eq OBJ1 OBJ2)</code></dt><dd>Return t if the two args are the same Lisp object. It is faster than <code>equal</code>.</dd>
-<dt><code>(equal O1 O2)</code></dt><dd>Return t if two Lisp objects have similar structure and contents. So it does <i>comparison only</i>.</dd>
-<dt><code>(=)</code></dt><dd>true if all arguments are equal. Only works for numbers</dd>
-<dt><code>(string=)</code></dt><dd>compare two strings</dd>
-</dl>
-</div>
-<div id="outline-container-org6de2d7d" class="outline-3">
-<h3 id="org6de2d7d"><span class="section-number-3">4.1</span> number</h3>
-<div class="outline-text-3" id="text-4-1">
-<dl class="org-dl">
-<dt><code>(expt 2 8)</code></dt><dd>2<sup>8</sup></dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgc58295e" class="outline-3">
-<h3 id="orgc58295e"><span class="section-number-3">4.2</span> string</h3>
-<div class="outline-text-3" id="text-4-2">
-<dl class="org-dl">
-<dt><code>make-string count character</code></dt><dd>make string by duplicating characters</dd>
-<dt><code>substring string start &amp;optional end</code></dt><dd>substring</dd>
-<dt><code>concat &amp;rest sequences</code></dt><dd></dd>
-
-<dt><code>split-string string &amp;optional separators</code></dt><dd><code>split-string-default-separators</code> is <code>"[ \f\t\n\r\v]+"</code></dd>
-</dl>
-
 <p>
-conversion:
-</p>
-<dl class="org-dl">
-<dt><code>number-to-string number</code></dt><dd></dd>
-
-<dt><code>string-to-number string</code></dt><dd></dd>
-
-<dt><code>char-to-string character</code></dt><dd></dd>
-
-<dt><code>string-to-char string</code></dt><dd>returns the first character in string</dd>
-</dl>
-
-<p>
-case:
-</p>
-<dl class="org-dl">
-<dt><code>downcase string-or-char</code></dt><dd></dd>
-
-<dt><code>upcase string-or-char</code></dt><dd></dd>
-
-<dt><code>capitalize string-to-char</code></dt><dd></dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgafaf6b8" class="outline-3">
-<h3 id="orgafaf6b8"><span class="section-number-3">4.3</span> cons cell</h3>
-<div class="outline-text-3" id="text-4-3">
-<p>
-This is a pair of slots, each of them can hold anything.
-A list is a list of cons cells, in which each cdr is the "address" next list.
+<code>eq</code>, <code>equal</code>, <code>=</code> are available.
 </p>
 
 <p>
-A <i>dotted pair notation</i> is a more general syntax of a cons cell.
-It is written as <code>(A . B)</code>.
-It is more general because the cdr can also hold anything.
-As an example, <code>(1 2 3)</code> is the same as <code>(1 . (2 . (3 . nil)))</code>.
+Numeric function:
+</p>
+<ul class="org-ul">
+<li>comparison: <code>max</code>, <code>min</code>, <code>abs</code></li>
+<li>rounding: <code>truncate</code>, <code>floor</code>, <code>ceiling</code>, <code>round</code></li>
+<li>arithmetic: <code>%</code>, <code>mod</code></li>
+<li>bit-wise: <code>lsh</code>, <code>ash</code>, <code>logand</code>, <code>logior</code>, <code>logxor</code>, <code>lognot</code></li>
+<li>math: <code>expt</code>, <code>exp</code>, <code>sin</code>, <code>cos</code>, <code>log</code>, <code>sqrt</code></li>
+<li>random: <code>random</code></li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc58295e" class="outline-2">
+<h2 id="orgc58295e"><span class="section-number-2">5</span> string</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Creating string by <code>make-string</code>. Most likely we are creating from
+existing strings, e.g. <code>substring</code>, <code>concat</code>, <code>split-string</code>.  String
+are compared using <code>string=</code>, <code>string&lt;</code> (no <code>string&gt;</code>?).  Converted by
+<code>number-to-string</code>, <code>string-to-number</code>, and casing operations
+<code>downcase</code>, <code>upcase</code>, <code>capitalize</code>.
+</p>
+
+<p>
+Of course, the most powerful string construction function is
+formating, with <code>foramt</code>, and <code>format-message</code>. The format string
+follows C style though, using <code>%s</code> as printed representation
+(<code>princ</code>), <code>%S</code> for <code>prin1</code>, <code>%c</code> for character, 
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb037d0c" class="outline-3">
-<h3 id="orgb037d0c"><span class="section-number-3">4.4</span> list</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgb037d0c" class="outline-2">
+<h2 id="orgb037d0c"><span class="section-number-2">6</span> list</h2>
+<div class="outline-text-2" id="text-6">
 <p>
-If the CDR of a list’s last cons cell is some value other than ‘nil’,
-we call the structure a "dotted list",
-since its printed representation would use dotted pair notation.
+List is defined as the last cdr to be <code>nil</code>.  If the last is not nil,
+it is called <i>dotted list</i> instead of <i>improper list</i>.
 </p>
-</div>
 
-<div id="outline-container-orgc9c913c" class="outline-4">
-<h4 id="orgc9c913c"><span class="section-number-4">4.4.1</span> construct</h4>
-<div class="outline-text-4" id="text-4-4-1">
-<dl class="org-dl">
-<dt><code>cons obj1 obj2</code></dt><dd>if obj2 is a list, this is called "cons obj1 onto the list"</dd>
-<dt><code>list &amp;rest OBJECTS</code></dt><dd>create a list</dd>
-<dt><code>make-list length obj</code></dt><dd>make a list of length, in which each cell holds the <i>same</i> object (<code>eq</code>)</dd>
-<dt><code>append &amp;rest SEQUENCES</code></dt><dd>concatenate some lists into one list.
-The last one is usually a list, all arguments except the last one are copied.
-If want to force copy everything, add a <code>nil</code> as the last of append.</dd>
-<dt><code>reverse list</code></dt><dd>reverse the list by copying</dd>
-<dt><code>number-sequence from to</code></dt><dd>the list of <code>[from,to]</code>, inclusive</dd>
-</dl>
-</div>
-</div>
+<ul class="org-ul">
+<li>append: the interesting part is, all arguments except the last one
+are copied.  If you want to force copy the last one as well, add a
+<code>nil</code> as the last of append.</li>
+<li>reverse</li>
+</ul>
 
-<div id="outline-container-orgac4555f" class="outline-4">
-<h4 id="orgac4555f"><span class="section-number-4">4.4.2</span> access</h4>
-<div class="outline-text-4" id="text-4-4-2">
-<dl class="org-dl">
-<dt><code>car</code></dt><dd></dd>
+<p>
+list generation:
+</p>
+<ul class="org-ul">
+<li>number-sequence: inclusive from a to b</li>
+</ul>
 
-<dt><code>cdr</code></dt><dd></dd>
+<p>
+Apart from <code>car</code> and <code>cdr</code>, elisp has <code>car-safe</code> and <code>cdr-safe</code>, that,
+if the argument is not a cons cell, return nil.  <code>nth</code>, <code>nthcdr</code>,
+<code>last</code> are available.
+</p>
 
-<dt><code>car-safe</code></dt><dd></dd>
-
-<dt><code>cdr-safe</code></dt><dd></dd>
-
-<dt><code>pop</code></dt><dd>return the cdr of the list, and also remove it from the list</dd>
-<dt><code>nth n list</code></dt><dd>get the nth element, starting from 0</dd>
-<dt><code>nthcdr n list</code></dt><dd>execute cdr n times</dd>
-<dt><code>last list</code></dt><dd></dd>
-
-<dt><code>length</code></dt><dd></dd>
-
-
-<dt><code>caar</code></dt><dd>car car, 11</dd>
-<dt><code>card</code></dt><dd>car cdr, 12</dd>
-<dt><code>cdar</code></dt><dd>cdr car, 21</dd>
-<dt><code>cddr</code></dt><dd>cdr cdr, 22</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org1507bc2" class="outline-4">
-<h4 id="org1507bc2"><span class="section-number-4">4.4.3</span> modify</h4>
-<div class="outline-text-4" id="text-4-4-3">
 <p>
 <i>destructive</i> means the cdr of the cons cells are modified.
 </p>
 
-<dl class="org-dl">
-<dt><code>push element listname</code></dt><dd>like cons it onto the list, but save it as listname, i.e. modify the variable</dd>
-<dt><code>add-to-list symbol element</code></dt><dd>cons element onto the list if it is not there.
-So the following is equivalent: <code>(add-to-list 'var value)</code> and <code>(or (member value var) (setq var (cons value var)))</code></dd>
-<dt><code>setcar cons obj</code></dt><dd></dd>
-
-<dt><code>setcdr cons obj</code></dt><dd></dd>
-
-<dt><code>sort list predicate</code></dt><dd>this rearrange the cdrs of the list, so, <i>destructive</i>!
-Examples:</dd>
-</dl>
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">setq</span> nums '(1 3 2 6 5 4 0))
-(sort nums '&lt;) <span style="color: #b22222;">; </span><span style="color: #b22222;">accending</span>
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org2f45a6f" class="outline-3">
-<h3 id="org2f45a6f"><span class="section-number-3">4.5</span> set</h3>
-<div class="outline-text-3" id="text-4-5">
 <p>
-We use list as set, by ignoring the order &#x2026;
-<code>append</code> to combine two set, then <code>delete-dups</code> to remove duplication &#x2026;
+<code>pop</code> and <code>push</code> is destructive. <code>pop</code> will return the car of the
+list. <code>push</code> is the counter part for <code>cons</code> onto the
+list. <code>add-to-list</code> only adds if the element is not there
+already. There are also very bare-bone functions <code>setcar</code> and
+<code>setcdr</code>. Note that <code>sort</code> is also destructive.
 </p>
 
-<dl class="org-dl">
-<dt><code>memq obj list</code></dt><dd>whether obj is a member of list, using <code>eq</code></dd>
-<dt><code>delq obj list</code></dt><dd>destructively remove all elements <code>eq</code> to obj.</dd>
-<dt><code>rmq obj list</code></dt><dd>return a copy of list with all obj removed</dd>
-<dt><code>member</code></dt><dd><code>equal</code> counter-part</dd>
-<dt><code>member-ignore-case</code></dt><dd>for string</dd>
-<dt><code>delete</code></dt><dd><code>equal</code> counter-part</dd>
-<dt><code>remove</code></dt><dd><code>equal</code> counter-part</dd>
-<dt><code>delete-dups</code></dt><dd>use <code>equal</code></dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-org50057c5" class="outline-3">
-<h3 id="org50057c5"><span class="section-number-3">4.6</span> association list</h3>
-<div class="outline-text-3" id="text-4-6">
 <p>
-This is a special list, each element is a key-value pair.
-</p>
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">setq</span> alist-of-colors
-  '((rose . red) (lily . white) (buttercup . yellow)))
-</pre>
-</div>
-
-<dl class="org-dl">
-<dt><code>assoc KEY aLIST</code></dt><dd>the first element of LIST whose car <code>equal</code> KEY.</dd>
-<dt><code>rassoc value alist</code></dt><dd>compare the cdrs instead of cars</dd>
-<dt><code>assq KEY aLIST</code></dt><dd>the first element of LIST whose car <code>eq</code> KEY.</dd>
-<dt><code>rassq</code></dt><dd><code>eq</code> counter-part</dd>
-
-<dt><code>copy-alist alist</code></dt><dd>two-level deep copy</dd>
-<dt><code>assq-delete-all key alist</code></dt><dd>delete all elements whose car <code>eq</code> key</dd>
-<dt><code>rassq-delete-all value alist</code></dt><dd>cdr counter-part</dd>
-<dt><code>(assoc-string KEY LIST &amp;optional CASE-FOLD)</code></dt><dd><code>assoc</code> for string. if <code>CASE-FOLD</code> is <code>non-nil</code>, case is ignored.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgd1aaefa" class="outline-3">
-<h3 id="orgd1aaefa"><span class="section-number-3">4.7</span> property list</h3>
-<div class="outline-text-3" id="text-4-7">
-<p>
-It is a flat list. The odd elements are property name, and the even elements are values.
-</p>
-<div class="org-src-container">
-<pre class="src src-elisp">(pine cones numbers (1 2 3) color <span style="color: #8b2252;">"blue"</span>)
-</pre>
-</div>
-
-<p>
-It can be structured as
+List can be, of course, used as set. <code>member</code> does predicate, <code>remove</code>
+removes item from set, <code>delete</code> destructively removes. They use
+<code>equal</code>, but have <code>eq</code> counter parts obviously. Finally, <code>delete-dups</code>
+remove duplication.
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">property</th>
-<th scope="col" class="org-left">value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">pine</td>
-<td class="org-left">cones</td>
-</tr>
-
-<tr>
-<td class="org-left">numbers</td>
-<td class="org-left">(1 2 3)</td>
-</tr>
-
-<tr>
-<td class="org-left">color</td>
-<td class="org-left">"blue"</td>
-</tr>
-</tbody>
-</table>
-
 <p>
-The property names <i>must</i> be unique.
-The order of the "pairs" does not matter.
+Association list is same as scheme, a list of pairs. <code>assoc</code> can be
+used to retrieve by <code>car</code>, while <code>rassoc</code> retrieve by <code>cdr</code>.
 </p>
 
-<dl class="org-dl">
-<dt><code>plist-get plist property</code></dt><dd></dd>
-
-<dt><code>plist-put plist property value</code></dt><dd></dd>
-
-<dt><code>lax-plist-get</code></dt><dd><code>equal</code> counterpart</dd>
-<dt><code>lax-plist-put</code></dt><dd><code>equal</code> counterpart</dd>
-<dt><code>plist-member plist property</code></dt><dd>this is useful because it can distinguish the missing property and the property with value "nil"</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgf23c374" class="outline-3">
-<h3 id="orgf23c374"><span class="section-number-3">4.8</span> sequence</h3>
-<div class="outline-text-3" id="text-4-8">
-<pre class="example">
- _____________________________________________
-|                                             |
-|          Sequence                           |
-|  ______   ________________________________  |
-| |      | |                                | |
-| | List | |             Array              | |
-| |      | |    ________       ________     | |
-| |______| |   |        |     |        |    | |
-|          |   | Vector |     | String |    | |
-|          |   |________|     |________|    | |
-|          |  ____________   _____________  | |
-|          | |            | |             | | |
-|          | | Char-table | | Bool-vector | | |
-|          | |____________| |_____________| | |
-|          |________________________________| |
-|_____________________________________________|
-
-</pre>
-
-<dl class="org-dl">
-<dt><code>length sequence</code></dt><dd></dd>
-
-<dt><code>elt sequence index</code></dt><dd>returns the element of SEQUENCE at index</dd>
-<dt><code>copy-sequence seq</code></dt><dd>the sequence is new, but the elements are not.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org7c6ff59" class="outline-3">
-<h3 id="org7c6ff59"><span class="section-number-3">4.9</span> array</h3>
-<div class="outline-text-3" id="text-4-9">
 <p>
-It is fixed length sequence.
+Property list is a flat list. The odd elements are property name, and
+the even elements are values.  The property names <i>must</i> be unique.
+The order of the "pairs" does not matter. <code>plist-get</code> and <code>plist-put</code>
+modify the list. <code>plist-member</code> is useful because it can distinguish
+the missing property and the property with value "nil"
 </p>
-</div>
-<div id="outline-container-orge38a571" class="outline-4">
-<h4 id="orge38a571"><span class="section-number-4">4.9.1</span> constructing</h4>
-<div class="outline-text-4" id="text-4-9-1">
-<dl class="org-dl">
-<dt><code>make-vector length object</code></dt><dd>create vector</dd>
-<dt><code>vector &amp;rest objects</code></dt><dd>create vector</dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-org90bfae4" class="outline-4">
-<h4 id="org90bfae4"><span class="section-number-4">4.9.2</span> accessing</h4>
-<div class="outline-text-4" id="text-4-9-2">
-<dl class="org-dl">
-<dt><code>aref array index</code></dt><dd>getter</dd>
-<dt><code>aset array index object</code></dt><dd>setter</dd>
-</dl>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org92dcaf9" class="outline-3">
-<h3 id="org92dcaf9"><span class="section-number-3">4.10</span> hash table</h3>
-<div class="outline-text-3" id="text-4-10">
-<p>
-construct
-</p>
-<dl class="org-dl">
-<dt><code>(make-hash-table)</code></dt><dd></dd>
-</dl>
 
 <p>
-access
+A symbol can have a property list. It has a simpler syntax, <code>get</code> and
+<code>put</code> with the symbol as argument. <code>symbol-plist</code> can retrieve the
+plist from symbol, <code>setplist</code> gives a plist to a symbol.
 </p>
-<dl class="org-dl">
-<dt><code>gethash key table</code></dt><dd></dd>
+</div>
+</div>
 
-<dt><code>puthash key value table</code></dt><dd></dd>
-
-<dt><code>remhash key table</code></dt><dd>remove</dd>
-<dt><code>clrhash table</code></dt><dd>remove all</dd>
-<dt><code>maphash function table</code></dt><dd>call function once for each of the element in table. The function should accept two arguments: key and value</dd>
-</dl>
+<div id="outline-container-org938cb04" class="outline-2">
+<h2 id="org938cb04"><span class="section-number-2">7</span> Sequence</h2>
+<div class="outline-text-2" id="text-7">
 <p>
-other
+Sequence is more general than list, specifically it also covers array.
+<code>elt</code> is used to retrieve from sequence by position. <code>copy-sequence</code>
+creates new sequence, but the elements are not copied.
 </p>
-<dl class="org-dl">
-<dt><code>hash-table-count table</code></dt><dd>return number of entries</dd>
-</dl>
-</div>
+
+<p>
+Array is fixed length sequence, can be vector or string. <code>make-vector</code>
+or <code>vector</code> constructs vector, and <code>aref</code> and <code>aset</code> access it.
+</p>
 </div>
 </div>
 
+<div id="outline-container-org55247f0" class="outline-2">
+<h2 id="org55247f0"><span class="section-number-2">8</span> Hash Table</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<code>make-hash-table</code> constructs a table, and access by <code>gethash</code>,
+<code>puthash</code>, <code>remhash</code>, <code>clrhash</code>. Hash table can be counted by
+<code>hash-table-count</code> instead of <code>length</code>, iterated by <code>maphash</code> instead
+of <code>map</code>.
+</p>
+</div>
+</div>
 
 <div id="outline-container-org87f4032" class="outline-2">
-<h2 id="org87f4032"><span class="section-number-2">5</span> Function</h2>
-<div class="outline-text-2" id="text-5">
-</div>
-<div id="outline-container-org0318ddf" class="outline-3">
-<h3 id="org0318ddf"><span class="section-number-3">5.1</span> define</h3>
-<div class="outline-text-3" id="text-5-1">
-<dl class="org-dl">
-<dt><code>defun name args body ...</code></dt><dd></dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orge0eb70d" class="outline-3">
-<h3 id="orge0eb70d"><span class="section-number-3">5.2</span> Calling</h3>
-<div class="outline-text-3" id="text-5-2">
+<h2 id="org87f4032"><span class="section-number-2">9</span> Function</h2>
+<div class="outline-text-2" id="text-9">
 <p>
-Usually put the function name as the car of the list will call it.
-If you want to <b>compute which function to execute</b> at runtime, use <code>funcall</code>:
-If you want to <b>compute the arguments</b> at runtime, use <code>apply</code>:
+Functions are defined by following.  To specify optional argument, use
+<code>&amp;optional</code> before all optional arguments. Collect rest arguments by
+putting <code>&amp;rest</code> before the <b>final</b> argument.  A lambda expression
+evaluates to a function object.
 </p>
 
-<dl class="org-dl">
-<dt><code>funcall function &amp;rest arguments</code></dt><dd></dd>
+<pre class="example">
+(defun name (var ...) body ...)
+(lambda (arg ...) body ...)
+(required-var ...
+   [&amp;optional op-var ...]
+   [&amp;rest rest-var])
+</pre>
 
-<dt><code>apply function &amp;rest arguments</code></dt><dd>same as <code>funcall</code>, but the <i>last</i> of arguments is a list, and will be expanded into many arguments instead of a list.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgd3d5575" class="outline-3">
-<h3 id="orgd3d5575"><span class="section-number-3">5.3</span> Mapping family</h3>
-<div class="outline-text-3" id="text-5-3">
-<dl class="org-dl">
-<dt><code>mapcar function sequence</code></dt><dd>execute function on each element of sequence, and return the list of results.</dd>
-<dt><code>mapc function sequence</code></dt><dd>same as <code>mapcar</code> except it returns the <code>sequence</code>, with the intention to collect side effect.</dd>
-<dt><code>mapconcat function sequence separator</code></dt><dd>execute function on elements of sequence. The results must be strings, and will be concatenated and returned.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-orgdfcc417" class="outline-3">
-<h3 id="orgdfcc417"><span class="section-number-3">5.4</span> Anonymous functions</h3>
-<div class="outline-text-3" id="text-5-4">
 <p>
-It has three forms:
+<code>apply</code> append the arguments into a list, and call the function with
+the splice of list as arguments. The last argument must be a
+list. <code>funcall</code> just call with the rest arguments.
 </p>
-<dl class="org-dl">
-<dt><code>lambda args body...</code></dt><dd></dd>
 
-<dt><code>function function-object</code></dt><dd>returns the function without evaluating it. It is the "quote" for function</dd>
-<dt><code>#'</code></dt><dd>this is the read syntax for the above <code>function</code> special form. You see, it is indeed the "quote" for the function.</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-org3d94999" class="outline-3">
-<h3 id="org3d94999"><span class="section-number-3">5.5</span> Macro</h3>
-<div class="outline-text-3" id="text-5-5">
 <p>
-Macro does not evaluate its arguments. It put the arguments <i>as is</i> and put them into the macro body to form an expression.
-The expression is then evaluated for result.
+<code>mapcar</code> is the typical map, return the list. <code>mapc</code> is used for side
+effect. <code>mapconcat</code> is a shorthand for concatenate the result as a
+string.
 </p>
-<dl class="org-dl">
-<dt><code>defmacro name args body...</code></dt><dd></dd>
-</dl>
+
+
+<p>
+A function with <code>(interactive)</code> is a <i>command</i>, i.e. it can be
+executed with M-x. This apply to both defun and lambda. Although
+interactive is often used without argument, it can actually do very
+interesting staff. It basically defines what kind of arguments the
+user should provide to the command. Most likely, it is a multi-line
+string containing key code of what kind of values to expect, and
+prompt string. The numeric prefix argument "p" is just one of them,
+and it can differentiate <code>C-u</code> prefix of the command.
+</p>
 </div>
+</div>
+
+
+<div id="outline-container-org3d94999" class="outline-2">
+<h2 id="org3d94999"><span class="section-number-2">10</span> Macro</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<code>defmacro name (args) body...</code>
+</p>
+
+<p>
+The macro is very simple: leave the arguments <i>as is</i> and put them
+into the macro body to form an expression. The expression is then
+evaluated for result.
+</p>
 </div>
 </div>
 
 <div id="outline-container-org4cead25" class="outline-2">
-<h2 id="org4cead25"><span class="section-number-2">6</span> Control Structure</h2>
-<div class="outline-text-2" id="text-6">
-</div>
-<div id="outline-container-orgd37f2df" class="outline-3">
-<h3 id="orgd37f2df"><span class="section-number-3">6.1</span> Sequential</h3>
-<div class="outline-text-3" id="text-6-1">
-<dl class="org-dl">
-<dt><code>progn forms...</code></dt><dd>return the result of final form</dd>
-<dt><code>prog1 form1 forms...</code></dt><dd>return the result of form1</dd>
-<dt><code>prog2 form1 form2 forms...</code></dt><dd>return the result of form2</dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-orgeaa3c67" class="outline-3">
-<h3 id="orgeaa3c67"><span class="section-number-3">6.2</span> Conditional</h3>
-<div class="outline-text-3" id="text-6-2">
-<dl class="org-dl">
-<dt><code>if condition then-form else-forms...</code></dt><dd></dd>
+<h2 id="org4cead25"><span class="section-number-2">11</span> Control Structure</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Sequential structure has <code>progn</code>, <code>prog1</code>, <code>prog2</code>.
+</p>
 
-<dt><code>when condition then-forms...</code></dt><dd></dd>
+<p>
+<code>if</code>, <code>when</code>, <code>unless</code>, <code>not</code>, <code>and</code>, <code>or</code> are common.
+</p>
 
-<dt><code>unless condition forms...</code></dt><dd></dd>
+<p>
+<code>cond</code> takes the following form
+</p>
+<pre class="example">
+(cond (condition body ...) ...)
+</pre>
 
-<dt><code>cond clause...</code></dt><dd>the clause must be a list: <code>(condition body-forms...)</code>.
-It is not exactly the "case" statement, because the condition is evaluted to true or false.
-Any remaining forms are <i>ignored</i>.</dd>
-<dt><code>pcase EXP BRANCH1 BRANCH2 BRANCH3...</code></dt><dd>this is more like the "case" statement. The EXP is first evaluted and compare with the car of each branches.
-The branch must be of the form <code>(UPATTERN BODY-FORMS...)</code>.</dd>
-</dl>
-</div>
+<p>
+<code>pcase</code> takes
+</p>
+<pre class="example">
+(pcase exp (pat code ...) ...)
+</pre>
 
-<div id="outline-container-orgf2a7af9" class="outline-4">
-<h4 id="orgf2a7af9"><span class="section-number-4">6.2.1</span> logical computation</h4>
-<div class="outline-text-4" id="text-6-2-1">
-<ul class="org-ul">
-<li><code>not</code></li>
-<li><code>and</code></li>
-<li><code>or</code></li>
-</ul>
-</div>
-</div>
-</div>
+<p>
+Loops takes follows. There's no mention what is the return of
+while. <code>dolist</code> does return the value of result, defaults to
+nil. <code>dotimes</code> bind var to <code>[0,count)</code>.
+</p>
 
-<div id="outline-container-org464f275" class="outline-3">
-<h3 id="org464f275"><span class="section-number-3">6.3</span> Loop</h3>
-<div class="outline-text-3" id="text-6-3">
-<dl class="org-dl">
-<dt><code>while condition forms...</code></dt><dd></dd>
-
-<dt><code>dolist (var list [result]) body...</code></dt><dd>execute body for each element of list, with the bound of var to the current element and result for return.</dd>
-<dt><code>dotimes (var count [result]) body...</code></dt><dd>execute body for each index of <code>[0,count)</code>, with var bound to the index, and result bound for return.</dd>
-</dl>
+<pre class="example">
+(while condition forms ...)
+(dolist (var list [result]) body ...)
+(dotimes (var count [result]) body ...)
+</pre>
 </div>
 </div>
-</div>
-
 
 
 <div id="outline-container-orge38c6f7" class="outline-2">
-<h2 id="orge38c6f7"><span class="section-number-2">7</span> Packages</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orge38c6f7"><span class="section-number-2">12</span> Packages</h2>
+<div class="outline-text-2" id="text-12">
 </div>
 <div id="outline-container-org5e2c5f3" class="outline-3">
-<h3 id="org5e2c5f3"><span class="section-number-3">7.1</span> Dash.el</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org5e2c5f3"><span class="section-number-3">12.1</span> Dash.el</h3>
+<div class="outline-text-3" id="text-12-1">
 <p>
 <a href="https://github.com/magnars/dash.el">https://github.com/magnars/dash.el</a>
 </p>
@@ -1372,13 +767,13 @@ This is a collection of list libraries.
 the anaphoric form with double dashes executed with <code>it</code> exposed as the list item. 
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">normal version</span>
-(-map (<span style="color: #a020f0;">lambda</span> (n) (* n n)) '(1 2 3 4))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">also works for defun, of course</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">square</span> (n) (* n n))
-(-map 'square '(1 2 3 4))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">anaphoric version</span>
-(<span style="color: #a020f0;">--map</span> (* it it) '(1 2 3 4))
+<pre class="src src-elisp"> <span style="color: #b22222;">;; </span><span style="color: #b22222;">normal version</span>
+ (-map (<span style="color: #a020f0;">lambda</span> (n) (* n n)) '(1 2 3 4))
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">also works for defun, of course</span>
+ (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">square</span> (n) (* n n))
+ (-map 'square '(1 2 3 4))
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">anaphoric version</span>
+ (<span style="color: #a020f0;">--map</span> (* it it) '(1 2 3 4))
 </pre>
 </div></li>
 
@@ -1389,8 +784,8 @@ the anaphoric form with double dashes executed with <code>it</code> exposed as t
 </div>
 
 <div id="outline-container-org4b8d423" class="outline-3">
-<h3 id="org4b8d423"><span class="section-number-3">7.2</span> s.el</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="org4b8d423"><span class="section-number-3">12.2</span> s.el</h3>
+<div class="outline-text-3" id="text-12-2">
 <p>
 <a href="https://github.com/magnars/s.el">https://github.com/magnars/s.el</a>
 </p>
@@ -1402,8 +797,8 @@ The string manipulation library
 </div>
 
 <div id="outline-container-org2b9accc" class="outline-3">
-<h3 id="org2b9accc"><span class="section-number-3">7.3</span> cl-lib.el loop</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="org2b9accc"><span class="section-number-3">12.3</span> cl-lib.el loop</h3>
+<div class="outline-text-3" id="text-12-3">
 <p>
 This package ports many common lisp facilities into elisp,
 most importantly, the loop facility.
@@ -1412,8 +807,8 @@ So this section, at least for now, focus on <code>cl-loop</code>.
 </div>
 
 <div id="outline-container-org51218d1" class="outline-4">
-<h4 id="org51218d1"><span class="section-number-4">7.3.1</span> general loop form</h4>
-<div class="outline-text-4" id="text-7-3-1">
+<h4 id="org51218d1"><span class="section-number-4">12.3.1</span> general loop form</h4>
+<div class="outline-text-4" id="text-12-3-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">cl-loop</span> clauses...)
 </pre>
@@ -1428,8 +823,8 @@ The clauses can be:
 </div>
 </div>
 <div id="outline-container-org66827e4" class="outline-4">
-<h4 id="org66827e4"><span class="section-number-4">7.3.2</span> for clauses</h4>
-<div class="outline-text-4" id="text-7-3-2">
+<h4 id="org66827e4"><span class="section-number-4">12.3.2</span> for clauses</h4>
+<div class="outline-text-4" id="text-12-3-2">
 <dl class="org-dl">
 <dt><code>for VAR from FROM to TO by STEP</code></dt><dd><ul class="org-ul">
 <li><code>FROM</code> defaults to 0. <code>STEP</code> must be positive and default to 1.</li>
@@ -1449,8 +844,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 
 <div id="outline-container-orgf70bcaa" class="outline-4">
-<h4 id="orgf70bcaa"><span class="section-number-4">7.3.3</span> iteration clauses</h4>
-<div class="outline-text-4" id="text-7-3-3">
+<h4 id="orgf70bcaa"><span class="section-number-4">12.3.3</span> iteration clauses</h4>
+<div class="outline-text-4" id="text-12-3-3">
 <dl class="org-dl">
 <dt><code>repeat integer</code></dt><dd>repeat the loop how many times</dd>
 <dt><code>while condition</code></dt><dd>stops the loop when the condition becomes nil</dd>
@@ -1463,8 +858,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 
 <div id="outline-container-org35c6f56" class="outline-4">
-<h4 id="org35c6f56"><span class="section-number-4">7.3.4</span> accumulation clauses</h4>
-<div class="outline-text-4" id="text-7-3-4">
+<h4 id="org35c6f56"><span class="section-number-4">12.3.4</span> accumulation clauses</h4>
+<div class="outline-text-4" id="text-12-3-4">
 <dl class="org-dl">
 <dt><code>collect form</code></dt><dd>collect into a list and return the list in the end</dd>
 <dt><code>append form</code></dt><dd>collect the lists into a list by appending, and return it in the end</dd>
@@ -1478,8 +873,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 
 <div id="outline-container-org5e0850d" class="outline-4">
-<h4 id="org5e0850d"><span class="section-number-4">7.3.5</span> Other clauses</h4>
-<div class="outline-text-4" id="text-7-3-5">
+<h4 id="org5e0850d"><span class="section-number-4">12.3.5</span> Other clauses</h4>
+<div class="outline-text-4" id="text-12-3-5">
 <dl class="org-dl">
 <dt><code>with var = value</code></dt><dd>set the value one-time at the beginning of the loop.
 Often used as return variable.
@@ -1499,8 +894,8 @@ Often used as return variable.
 </div>
 
 <div id="outline-container-org3df4ce1" class="outline-3">
-<h3 id="org3df4ce1"><span class="section-number-3">7.4</span> cl-lib other</h3>
-<div class="outline-text-3" id="text-7-4">
+<h3 id="org3df4ce1"><span class="section-number-3">12.4</span> cl-lib other</h3>
+<div class="outline-text-3" id="text-12-4">
 <p>
 Of course, cl-lib provides much more than just loops &#x2026;
 </p>
@@ -1512,12 +907,12 @@ Of course, cl-lib provides much more than just loops &#x2026;
 </div>
 
 <div id="outline-container-orgb615c53" class="outline-2">
-<h2 id="orgb615c53"><span class="section-number-2">8</span> Debugging</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="orgb615c53"><span class="section-number-2">13</span> Debugging</h2>
+<div class="outline-text-2" id="text-13">
 </div>
 <div id="outline-container-org62a0926" class="outline-3">
-<h3 id="org62a0926"><span class="section-number-3">8.1</span> lisp debugger</h3>
-<div class="outline-text-3" id="text-8-1">
+<h3 id="org62a0926"><span class="section-number-3">13.1</span> lisp debugger</h3>
+<div class="outline-text-3" id="text-13-1">
 <p>
 The simplest debugger is called <code>lisp debugger</code>.
 You can turn on the <code>debug-or-error</code> flag,
@@ -1537,8 +932,8 @@ In the debugger buffer, the following commands are available:
 </div>
 </div>
 <div id="outline-container-orge4b0794" class="outline-3">
-<h3 id="orge4b0794"><span class="section-number-3">8.2</span> Edebug</h3>
-<div class="outline-text-3" id="text-8-2">
+<h3 id="orge4b0794"><span class="section-number-3">13.2</span> Edebug</h3>
+<div class="outline-text-3" id="text-13-2">
 <p>
 For this to work, first you need to instrument the code.
 You can instrument the defun by <code>C-u C-M-x</code>.
@@ -1557,8 +952,8 @@ The <i>stop points</i> are
 </div>
 
 <div id="outline-container-org2159625" class="outline-4">
-<h4 id="org2159625"><span class="section-number-4">8.2.1</span> breakpoints</h4>
-<div class="outline-text-4" id="text-8-2-1">
+<h4 id="org2159625"><span class="section-number-4">13.2.1</span> breakpoints</h4>
+<div class="outline-text-4" id="text-13-2-1">
 <dl class="org-dl">
 <dt><code>b</code></dt><dd>set a breakpoint</dd>
 <dt><code>u</code></dt><dd>unset a breakpoint</dd>
@@ -1572,8 +967,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 
 <div id="outline-container-org1ec747a" class="outline-4">
-<h4 id="org1ec747a"><span class="section-number-4">8.2.2</span> Moving of point</h4>
-<div class="outline-text-4" id="text-8-2-2">
+<h4 id="org1ec747a"><span class="section-number-4">13.2.2</span> Moving of point</h4>
+<div class="outline-text-4" id="text-13-2-2">
 <dl class="org-dl">
 <dt><code>B</code></dt><dd>move point to the next breakpoint</dd>
 <dt><code>w</code></dt><dd>move point back to the current stop point</dd>
@@ -1582,8 +977,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 
 <div id="outline-container-org7bb1cde" class="outline-4">
-<h4 id="org7bb1cde"><span class="section-number-4">8.2.3</span> executions</h4>
-<div class="outline-text-4" id="text-8-2-3">
+<h4 id="org7bb1cde"><span class="section-number-4">13.2.3</span> executions</h4>
+<div class="outline-text-4" id="text-13-2-3">
 <dl class="org-dl">
 <dt><code>&lt;SPC&gt;</code></dt><dd>run to next stop point</dd>
 <dt><code>g</code></dt><dd>execute until next breakpoint</dd>
@@ -1604,8 +999,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 <div id="outline-container-org0262793" class="outline-4">
-<h4 id="org0262793"><span class="section-number-4">8.2.4</span> evaluation</h4>
-<div class="outline-text-4" id="text-8-2-4">
+<h4 id="org0262793"><span class="section-number-4">13.2.4</span> evaluation</h4>
+<div class="outline-text-4" id="text-13-2-4">
 <dl class="org-dl">
 <dt><code>e EXP</code></dt><dd>evaluate a prompt expression</dd>
 <dt><code>C-x C-e</code></dt><dd>evaluate an expression at point</dd>
@@ -1614,8 +1009,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 
 <div id="outline-container-org6e4b4f3" class="outline-4">
-<h4 id="org6e4b4f3"><span class="section-number-4">8.2.5</span> other commands</h4>
-<div class="outline-text-4" id="text-8-2-5">
+<h4 id="org6e4b4f3"><span class="section-number-4">13.2.5</span> other commands</h4>
+<div class="outline-text-4" id="text-13-2-5">
 <dl class="org-dl">
 <dt><code>?</code></dt><dd>show help</dd>
 <dt><code>r</code></dt><dd>redisplay the most recent sexp result</dd>
@@ -1629,16 +1024,16 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 
 
 <div id="outline-container-orgd819a38" class="outline-2">
-<h2 id="orgd819a38"><span class="section-number-2">9</span> Unit Testing</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="orgd819a38"><span class="section-number-2">14</span> Unit Testing</h2>
+<div class="outline-text-2" id="text-14">
 <p>
 Use <code>ert</code> for unit testing.
 </p>
 </div>
 
 <div id="outline-container-orgba8fd8d" class="outline-3">
-<h3 id="orgba8fd8d"><span class="section-number-3">9.1</span> Write test</h3>
-<div class="outline-text-3" id="text-9-1">
+<h3 id="orgba8fd8d"><span class="section-number-3">14.1</span> Write test</h3>
+<div class="outline-text-3" id="text-14-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">ert-deftest</span> <span style="color: #0000ff;">addition-test</span>()
   <span style="color: #8b2252;">"Outline docstring."</span>
@@ -1680,8 +1075,8 @@ skip test
 </div>
 
 <div id="outline-container-orgc341a7e" class="outline-3">
-<h3 id="orgc341a7e"><span class="section-number-3">9.2</span> Run test</h3>
-<div class="outline-text-3" id="text-9-2">
+<h3 id="orgc341a7e"><span class="section-number-3">14.2</span> Run test</h3>
+<div class="outline-text-3" id="text-14-2">
 <p>
 <code>M-x ert</code> will run it. The selector of test accept some more fancy staff like regular expression matching.
 But in the case of scratch testing, I need to evaluate the deftest and then call <code>ert</code>.
@@ -1712,8 +1107,8 @@ Also, select test by this:
 </div>
 
 <div id="outline-container-org2bb9304" class="outline-2">
-<h2 id="org2bb9304"><span class="section-number-2">10</span> Some random code snippets</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="org2bb9304"><span class="section-number-2">15</span> Some random code snippets</h2>
+<div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 <pre class="src src-elisp">(cl-prettyprint (font-family-list)) <span style="color: #b22222;">;; </span><span style="color: #b22222;">see all font family available on this system</span>
 </pre>
@@ -1721,19 +1116,349 @@ Also, select test by this:
 </div>
 
 <div id="outline-container-org80cbf49" class="outline-4">
-<h4 id="org80cbf49"><span class="section-number-4">10.0.1</span> Url retrieval</h4>
-<div class="outline-text-4" id="text-10-0-1">
+<h4 id="org80cbf49"><span class="section-number-4">15.0.1</span> Url retrieval</h4>
+<div class="outline-text-4" id="text-15-0-1">
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">with-current-buffer</span> (url-retrieve-synchronously <span style="color: #8b2252;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span>)
-  (goto-char (point-min))
-  (kill-ring-save (point-min) (point-max))
-  )
-(<span style="color: #a020f0;">let</span> ((framed-url (match-string 1)))
-  (<span style="color: #a020f0;">with-current-buffer</span> (url-retrieve-synchronously framed-url)
+<pre class="src src-elisp">  (<span style="color: #a020f0;">with-current-buffer</span> (url-retrieve-synchronously <span style="color: #8b2252;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span>)
     (goto-char (point-min))
-    (<span style="color: #a020f0;">when</span> (re-search-forward <span style="color: #8b2252;">"&lt;frame src=\"</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">http[[:ascii:]]*?</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">\""</span>)
-      (match-string 1))))
+    (kill-ring-save (point-min) (point-max))
+    )
+  (<span style="color: #a020f0;">let</span> ((framed-url (match-string 1)))
+    (<span style="color: #a020f0;">with-current-buffer</span> (url-retrieve-synchronously framed-url)
+      (goto-char (point-min))
+      (<span style="color: #a020f0;">when</span> (re-search-forward <span style="color: #8b2252;">"&lt;frame src=\"</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">http[[:ascii:]]*?</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">\""</span>)
+        (match-string 1))))
 </pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgbedcb62" class="outline-2">
+<h2 id="orgbedcb62"><span class="section-number-2">16</span> Emacs Related</h2>
+<div class="outline-text-2" id="text-16">
+</div>
+<div id="outline-container-org81d33c6" class="outline-3">
+<h3 id="org81d33c6"><span class="section-number-3">16.1</span> Buffer</h3>
+<div class="outline-text-3" id="text-16-1">
+<ul class="org-ul">
+<li><code>with-temp-buffer</code>
+<code>(with-temp-buffer &amp;rest BODY)</code> Create a temporary buffer, and evaluate BODY there like <code>progn</code>.</li>
+
+<li><code>(insert-file-contents FILENAME &amp;optional VISIT BEG END REPLACE)</code>: Insert contents of file FILENAME after point.</li>
+<li><code>(secure-hash ALGORITHM OBJECT &amp;optional START END BINARY)</code>: the object can be a buffer.
+This can be used to compare if a file has changed.</li>
+<li><code>(current-buffer)</code>: Return the current buffer as a Lisp object.</li>
+<li><code>(message FORMAT-STRING &amp;rest ARGS)</code>: Display a message at the bottom of the screen.</li>
+</ul>
+
+<p>
+There will be many buffers in an Emacs session, and the
+<code>current-buffer</code> returns the current one, which is the default target
+for most commands. When you want to make something interesting to some
+other buffer, you will need to <code>set-buffer</code> to set that buffer
+current. You will likely want to switch back to the original buffer
+after those operations, for that, don't use <code>set-buffer</code> to set back,
+because it is not error-safe. Instead, use <code>save-current-buffer</code>, or
+better <code>with-current-buffer</code>. <code>with-temp-buffer</code> don't need a provided
+buffer object, but creates a temporary one. The temporary buffer will
+be killed at the end of execution of body. All of these 3 form does
+not display the buffer, just make it current.
+</p>
+
+<p>
+A buffer has a name, retrieved by <code>buffer-name</code>. The name can be set
+using <code>rename-buffer</code>. Buffers can be obtained by name via
+<code>get-buffer</code>.  Buffers are also likely to be associated with a file,
+and the non-directory file name is <code>buffer-file-name</code>. You can also
+get the buffer using the file name via <code>get-file-buffer</code>. Since it
+just the filename, there must be multiple ones, and this function
+returns the first.
+</p>
+
+<p>
+To create a buffer, use <code>get-buffer-create</code>, which returns the new
+buffer, or an existing buffer. It does not make that buffer current.
+Create a new unique buffer name by <code>generate-new-buffer-name</code>. It is
+not typically directly used though. The function <code>generate-new-buffer</code>
+uses that function to generate new name (by post-fixing &lt;N&gt;), if the
+provided name is in use.
+</p>
+
+<p>
+Obtain all the live buffers using <code>buffer-list</code>. The order of list
+matters. The newly created buffer is added to the end of list, the
+current displayed buffer moves to the front. When a buffer is buried,
+it is moved to the end. <code>other-buffer</code> returns the first in the list
+that is not current one. <code>last-buffer</code> returns the last (end) in the
+list. <code>bury-buffer</code> and <code>unbury-buffer</code> moves a buffer to the end and
+switch buffer to the last buffer respectively. A buffer is killed by
+<code>kill-buffer</code>, in which case it is removed from the list.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd89cb25" class="outline-3">
+<h3 id="orgd89cb25"><span class="section-number-3">16.2</span> Position</h3>
+<div class="outline-text-3" id="text-16-2">
+<p>
+A position is the index in a buffer. There of course will be a
+character before and one after the position. When we say "at
+position", we mean after position. Position in a buffer starts from 1,
+while position in a string starts from 0.
+</p>
+
+<p>
+The point is the current cursor position. <code>point</code> returns the current
+point, <code>point-min</code> and <code>point-max</code> returns the beginning and end
+point.
+</p>
+
+<p>
+There are many commands to move point. <code>goto-char</code> moves by position,
+and all other commands build upon it. I'm omitting the opposite
+version, e.g. forward v.s. backward, up v.s. down., beginning v.s. end
+</p>
+<ul class="org-ul">
+<li>moves by characters: <code>forward-char</code></li>
+<li>moves by word: <code>forward-word</code></li>
+<li>buffer: <code>beginning-of-buffer</code> moves to <code>point-min</code></li>
+<li>line: <code>beginning-of-line</code> and <code>end-of-line</code>, <code>forward-line</code> and
+<code>backward-line</code></li>
+<li>screen: you can also count the current vertical screen lines, and
+move the corresponding lines accordingly.</li>
+<li>balanced expression: <code>forward-list</code>, <code>up-list</code>, <code>forward-sexp</code>,
+<code>end-of-defun</code></li>
+<li>skipping: <code>skip-chars-forward</code> skips over a list of chars
+represented by a pattern string. It is like regular expression, but
+is put implicitly inside brackets. Thus you can use for example
+<code>"a-zA-Z"</code>.</li>
+</ul>
+
+<p>
+It is useful to temporarily move to some position, do some tasks, and
+move back. It is called <i>execursion</i>, and is done via
+<code>save-execursion</code>.
+</p>
+
+<p>
+Narrowing works with two positions. <code>narrow-to-region</code> does the
+narrowing, and <code>widen</code> undoes it. This creates the following effects:
+</p>
+<ol class="org-ol">
+<li>determine the accessible portion of the buffer, but don't alter the
+position of the actual buffer.</li>
+<li>The point cannot move outside the positions</li>
+<li>no texts outside are displayed</li>
+<li>most (?) functions refuse to operate on outside text</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-org516c848" class="outline-3">
+<h3 id="org516c848"><span class="section-number-3">16.3</span> Marker</h3>
+<div class="outline-text-3" id="text-16-3">
+<p>
+A marker has two component: the buffer it is in, and the position in
+the buffer. They can be retrieved by <code>marker-position</code> and
+<code>marker-buffer</code>.
+</p>
+
+<p>
+The position is updated automatically when the text changes. The
+invariant is the surrounding two characters. The updating of marker
+position takes time, especially there are a lot of them. Thus, remove
+the marker if you know you won't use if any more.
+</p>
+
+<p>
+You can make a marker by 4 functions, which differs only its initial
+point. <code>make-marker</code>, <code>point-marker</code>, <code>point-min-marker</code>,
+<code>point-max-marker</code>. You can also <code>copy-markder</code> from existing one. A
+marker can be moved by <code>set-marker</code>.
+</p>
+
+<p>
+There's one special marker, designated <i>the mark</i>, <b>whose position</b> is
+returned by <code>mark</code>. To return the actual marker, use <code>mark-marker</code>,
+but this is dangerous, try to avoid it. The mark is mainly used to
+provide a default region for a command. The text between point and the
+mark is called <i>the region</i>. The beginning and end of it can be
+obtained by <code>region-beginning</code> and <code>region-end</code>. When using
+<code>(interactive)</code> to define a command, the <code>"r"</code> code will give the
+command two numeric values as the (point) and the mark, the smaller
+first. This region is used for most region based command by
+default.
+</p>
+
+<p>
+Some command will set the mark, and when it does this, it will
+typically save the old mark on the <i>mark ring</i>.  <code>set-mark</code> set the
+position of the mark, but it is not commonly used, because it discard
+the previous mark. Instead, <code>push-mark</code> and <code>pop-mark</code> handles the
+mark ring automatically.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org44a118f" class="outline-3">
+<h3 id="org44a118f"><span class="section-number-3">16.4</span> Process</h3>
+<div class="outline-text-3" id="text-16-4">
+<p>
+Elisp can create async or sync processes. There are three primitives
+to create subprocess: <code>make-process</code> for async, <code>call-process</code> and
+<code>call-process-region</code> for sync. All others are built upon them.
+</p>
+
+<p>
+To get a list of current live async processes, use
+<code>list-processes</code>. This seems to be for display purpose, and
+<code>process-list</code> seems to return process objects. You can also get
+process by its name via <code>get-process</code>. Process information can be
+retrieved by <code>process-command</code>, <code>process-id</code>, <code>process-name</code>,
+<code>process-status</code>, <code>process-live-p</code>, <code>process-type</code>,
+<code>process-exit-status</code>.
+</p>
+
+<p>
+You also want to communicate with the subprocess: either send input,
+receive output, or send signals. To send string as input, use
+<code>process-send-string</code>, <code>process-send-region</code>, <code>process-send-eof</code>. To
+send signals, use <code>interrupt-process</code>, <code>kill-process</code>, <code>quit-process</code>,
+<code>stop-process</code>, <code>continue-process</code>, or the general one
+<code>signal-process</code>.
+</p>
+
+<p>
+The output of a subprocess is inserted into a associated buffer,
+called the <i>process buffer</i>. This buffer serves two purposes: receive
+the output, and kill the process by kill the buffer. <code>process-buffer</code>
+returns the buffer with a particular process, and <code>get-buffer-process</code>
+returns the process object associated with the buffer. The position to
+insert is determined by the process mark, which is always set to the
+end of the buffer. You can set process buffer by <code>set-process-buffer</code>.
+</p>
+
+<p>
+Network connection is also represented by a process object, but it is
+not a child process, has no process id, cannot be killed or sent
+signal. You can only send and receive data, or close the
+connection. <code>make-network-process</code> creates network connection. It
+seems to be a primitive, able to create TCP, UDP, or a
+server. Alternatively, <code>open-network-stream</code> creates TCP specifically.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge81d0d8" class="outline-3">
+<h3 id="orge81d0d8"><span class="section-number-3">16.5</span> File System Related</h3>
+<div class="outline-text-3" id="text-16-5">
+</div>
+<div id="outline-container-orgb51903b" class="outline-4">
+<h4 id="orgb51903b"><span class="section-number-4">16.5.1</span> Traversing</h4>
+<div class="outline-text-4" id="text-16-5-1">
+<div class="org-src-container">
+<pre class="src src-elisp">(directory-files DIRECTORY <span style="color: #228b22;">&amp;optional</span> FULL MATCH NOSORT)
+</pre>
+</div>
+
+<p>
+Return a list of names of files in DIRECTORY.
+</p>
+
+<p>
+Usage example:
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(bib-files (directory-files bib-dir t <span style="color: #8b2252;">".*\.bib$"</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgca2f2bd" class="outline-4">
+<h4 id="orgca2f2bd"><span class="section-number-4">16.5.2</span> Predicates</h4>
+<div class="outline-text-4" id="text-16-5-2">
+<p>
+<code>directory-files</code> will throw error if the directory does not exist.
+So a safe way is to check if the directory exists first.
+This predicate does this:
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(file-exists-p FILENAME)
+</pre>
+</div>
+<p>
+Directory is also a file.
+</p>
+
+<p>
+Other predicates includes:
+</p>
+<pre class="example">
+file-readable-p
+file-executable-p
+file-writable-p
+file-accessible-directory-p
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4de1294" class="outline-3">
+<h3 id="org4de1294"><span class="section-number-3">16.6</span> Other</h3>
+<div class="outline-text-3" id="text-16-6">
+<ul class="org-ul">
+<li><code>(defalias SYMBOL DEFINITION &amp;optional DOCSTRING)</code>: Set SYMBOL's function definition to DEFINITION.
+E.g. <code>(defalias 'helm-bibtex-get-value 'bibtex-completion-get-value)</code>,
+serves as a temporary patch for <code>helm-bibtex</code> update its API to <code>bibtex-completion</code></li>
+</ul>
+</div>
+
+<div id="outline-container-org8d96921" class="outline-4">
+<h4 id="org8d96921"><span class="section-number-4">16.6.1</span> make-obsolete-variable</h4>
+<div class="outline-text-4" id="text-16-6-1">
+<p>
+<code>(make-obsolete-variable OBSOLETE-NAME CURRENT-NAME WHEN &amp;optional ACCESS-TYPE)</code>
+</p>
+
+<p>
+Make the byte-compiler warn that OBSOLETE-NAME is obsolete.
+</p>
+
+<p>
+<code>helm-bibte</code> used it when it refactored the "helm" part off into a module,
+to support different backend other than <code>helm</code>.
+As a result, most <code>helm-bibtex-</code> prefixes are changed to <code>bibtex-completion-</code> ones.
+But they want the end user's configuration will not break,
+and at the same time warn them to update to the new name.
+Here's the code, and the last line is what actually uses the function.
+The actual effect is the user's configuration will be marked as warning,
+the mini-buffer will describe the obsolete detail.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">  (<span style="color: #a020f0;">cl-loop</span>
+   for var in '(<span style="color: #8b2252;">"bibliography"</span> <span style="color: #8b2252;">"library-path"</span> <span style="color: #8b2252;">"pdf-open-function"</span>
+                <span style="color: #8b2252;">"pdf-symbol"</span> <span style="color: #8b2252;">"format-citation-functions"</span> <span style="color: #8b2252;">"notes-path"</span>
+                <span style="color: #8b2252;">"notes-template-multiple-files"</span>
+                <span style="color: #8b2252;">"notes-template-one-file"</span> <span style="color: #8b2252;">"notes-key-pattern"</span>
+                <span style="color: #8b2252;">"notes-extension"</span> <span style="color: #8b2252;">"notes-symbol"</span> <span style="color: #8b2252;">"fallback-options"</span>
+                <span style="color: #8b2252;">"browser-function"</span> <span style="color: #8b2252;">"additional-search-fields"</span>
+                <span style="color: #8b2252;">"no-export-fields"</span> <span style="color: #8b2252;">"cite-commands"</span>
+                <span style="color: #8b2252;">"cite-default-command"</span>
+                <span style="color: #8b2252;">"cite-prompt-for-optional-arguments"</span>
+                <span style="color: #8b2252;">"cite-default-as-initial-input"</span> <span style="color: #8b2252;">"pdf-field"</span>)
+   for oldvar = (intern (concat <span style="color: #8b2252;">"helm-bibtex-"</span> var))
+   for newvar = (intern (concat <span style="color: #8b2252;">"bibtex-completion-"</span> var))
+   do
+   (<span style="color: #a020f0;">defvaralias</span> <span style="color: #a0522d;">newvar</span> oldvar)
+   (make-obsolete-variable oldvar newvar <span style="color: #8b2252;">"2016-03-20"</span>))
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1741,7 +1466,7 @@ Also, select test by this:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2018-01-23 Tue 03:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

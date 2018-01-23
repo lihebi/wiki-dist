@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
+<!-- 2018-01-23 Tue 03:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
@@ -235,29 +235,238 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org586546c">1. Configuration</a></li>
-<li><a href="#org6df6d28">2. Usage Tips</a></li>
-<li><a href="#org7483d1a">3. Individual tools</a>
+<li><a href="#org8a5b956">1. Server</a></li>
+<li><a href="#org586546c">2. Configuration</a></li>
+<li><a href="#org6df6d28">3. Usage Tips</a></li>
+<li><a href="#org7483d1a">4. Individual tools</a>
 <ul>
-<li><a href="#org5963621">3.1. git-bisect</a>
+<li><a href="#org5963621">4.1. git-bisect</a>
 <ul>
-<li><a href="#org2f5cfb2">3.1.1. start</a></li>
-<li><a href="#org956fc6f">3.1.2. answer the question</a></li>
-<li><a href="#orgb489f04">3.1.3. multiple good</a></li>
-<li><a href="#orge28c740">3.1.4. run script</a></li>
-<li><a href="#orgb6fbd0c">3.1.5. Some work flows</a></li>
+<li><a href="#org2f5cfb2">4.1.1. start</a></li>
+<li><a href="#org956fc6f">4.1.2. answer the question</a></li>
+<li><a href="#orgb489f04">4.1.3. multiple good</a></li>
+<li><a href="#orge28c740">4.1.4. run script</a></li>
+<li><a href="#orgb6fbd0c">4.1.5. Some work flows</a></li>
 </ul>
 </li>
-<li><a href="#org25536e0">3.2. git-blame</a></li>
+<li><a href="#org25536e0">4.2. git-blame</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org586546c" class="outline-2">
-<h2 id="org586546c"><span class="section-number-2">1</span> Configuration</h2>
+<div id="outline-container-org8a5b956" class="outline-2">
+<h2 id="org8a5b956"><span class="section-number-2">1</span> Server</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+There are several protocols. The smart HTTP protocol seems to be the
+way to go, because it supports both anonymous and authentication.
+</p>
+
+<p>
+But local and SSH is easy. For local, you can just clone using the
+<code>/abs/path/to/file</code> as URL. For ssh, use
+<code>user@server:/path/to/proj.git</code>.
+</p>
+
+<p>
+Now let me talk about setting up smart HTTP with lighttpd and cgit.
+</p>
+
+<p>
+in <code>/etc/lighttpd/lighttpd.conf</code>
+</p>
+
+<pre class="example">
+server.port             = 80
+server.username         = "http"
+server.groupname        = "http"
+
+server.document-root    = "/srv/http"
+
+server.modules += ( "mod_auth", "mod_cgi", "mod_alias", "mod_setenv" )
+
+alias.url += ( "/git" =&gt; "/usr/lib/git-core/git-http-backend" )
+$HTTP["url"] =~ "^/git" {
+  cgi.assign = ("" =&gt; "")
+  setenv.add-environment = (
+  "GIT_PROJECT_ROOT" =&gt; "/srv/git",
+  "GIT_HTTP_EXPORT_ALL" =&gt; ""
+  )
+}
+$HTTP["querystring"] =~ "service=git-receive-pack" {
+        include "git-auth.conf"
+}
+$HTTP["url"] =~ "^/git/.*/git-receive-pack$" {
+        include "git-auth.conf"
+}
+
+# alias.url += ( "/cgit" =&gt; "/usr/share/webapps/cgit/cgit.cgi" )                                           
+# alias.url += ( "/cgit" =&gt; "/usr/lib/cgit/cgit.cgi" )                                                     
+url.redirect += ("^/$" =&gt; "/cgit/")
+$HTTP["url"] =~ "^/cgit" {
+    server.document-root = "/usr/share/webapps"
+    server.indexfiles = ("cgit.cgi")
+    cgi.assign = ("cgit.cgi" =&gt; "")
+    mimetype.assign = ( ".css" =&gt; "text/css" )
+}
+</pre>
+
+<p>
+<code>/etc/lighttpd/git-auth.conf</code>
+</p>
+
+<pre class="example">
+auth.require = (
+        "/" =&gt; (
+                "method" =&gt; "basic",
+                "realm" =&gt; "Git Access",
+                "require" =&gt; "valid-user"
+               )
+)
+
+auth.backend = "plain"
+auth.backend.plain.userfile = "/etc/lighttpd-plain.user"
+</pre>
+
+<p>
+In <code>/etc/lighttpd-plain.user</code>
+</p>
+<pre class="example">
+hebi:myplainpassword
+</pre>
+
+<p>
+My <code>/etc/cgitrc</code>:
+</p>
+<pre class="example">
+#
+# cgit config
+#
+
+# css=/cgit.css
+# logo=/cgit.png
+
+# Following lines work with the above Apache config
+#css=/cgit-css/cgit.css
+#logo=/cgit-css/cgit.png
+
+# Following lines work with the above Lighttpd config
+css=/cgit/cgit.css
+logo=/cgit/cgit.png
+
+# if you do not want that webcrawler (like google) index your site
+robots=noindex, nofollow
+
+# if cgit messes up links, use a virtual-root. For example has cgit.example.org/ this value:
+# virtual-root=/cgit
+
+
+# Include some more info about example.com on the index page
+# root-readme=/var/www/htdocs/about.html
+root-readme=/srv/http/index.html
+
+#
+# List of repositories.
+# This list could be kept in a different file (e.g. '/etc/cgitrepos')
+# and included like this:
+#   include=/etc/cgitrepos
+#
+
+clone-url=http://git.lihebi.com/git/$CGIT_REPO_URL.git
+readme=:README.org
+readme=:README.md
+readme=:readme.md
+readme=:README.mkd
+readme=:readme.mkd
+readme=:README.rst
+readme=:readme.rst
+readme=:README.html
+readme=:readme.html
+readme=:README.htm                                                                             
+readme=:readme.htm                                                                             
+readme=:README.txt                                                                             
+readme=:readme.txt                                                                             
+readme=:README                                                                                 
+readme=:readme
+
+section=hebi
+
+repo.url=hebicc
+repo.path=/srv/git/hebicc.git
+repo.desc=Hebi CC
+
+repo.url=cgit/hebicc
+repo.path=/srv/git/hebicc.git
+repo.desc=Hebi CC
+
+repo.url=test
+repo.path=/srv/git/test.git
+repo.desc=Test
+
+repo.url=pdf
+repo.path=/srv/git/pdf.git
+repo.desc=pdf
+
+
+# The next repositories will be displayed under the 'extras' heading
+section=extras
+
+
+repo.url=baz
+repo.path=/pub/git/baz.git
+repo.desc=a set of extensions for bar users
+
+repo.url=wiz
+repo.path=/pub/git/wiz.git
+repo.desc=the wizard of foo
+
+
+repo.url=foo
+repo.path=/pub/git/foo.git
+repo.desc=the master foo repository
+repo.owner=fooman@example.com
+repo.readme=info/web/about.html
+
+# Add some mirrored repositories
+section=mirrors
+
+repo.url=git
+repo.path=/pub/git/git.git
+repo.desc=the dscm
+
+# For a non-bare repository
+# repo.url=MyOtherRepo
+# repo.path=/srv/git/MyOtherRepo/.git
+# repo.desc=That's my other git repository
+
+# scan-path=/srv/git/
+</pre>
+
+<p>
+The <code>/srv/git</code> must be of group <code>http</code>, and the group write mask must
+be set for push.
+</p>
+
+
+<p>
+I can clone via <code>http://git.lihebi.com/git/repo.git</code>. The cgit page is
+at <code>http://git.lihebi.com/cgit</code>.
+</p>
+
+<p>
+In practice, I cannot push a lot of pdf files, it seems to be the
+problem of lighttpd configuration for max body size, but haven't look
+into that yet. Cloning does not have such problem though.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org586546c" class="outline-2">
+<h2 id="org586546c"><span class="section-number-2">2</span> Configuration</h2>
+<div class="outline-text-2" id="text-2">
 <pre class="example">
 git config --global user.email 'xxx@xxx'
 git config --global user.name 'xxx'
@@ -268,8 +477,8 @@ git config --global credential.helper 'cache --timeout=3600' # set in sec
 </div>
 
 <div id="outline-container-org6df6d28" class="outline-2">
-<h2 id="org6df6d28"><span class="section-number-2">2</span> Usage Tips</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org6df6d28"><span class="section-number-2">3</span> Usage Tips</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 show the diff together when inspecting log
 </p>
@@ -280,12 +489,12 @@ git lg -p
 </div>
 
 <div id="outline-container-org7483d1a" class="outline-2">
-<h2 id="org7483d1a"><span class="section-number-2">3</span> Individual tools</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org7483d1a"><span class="section-number-2">4</span> Individual tools</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org5963621" class="outline-3">
-<h3 id="org5963621"><span class="section-number-3">3.1</span> git-bisect</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org5963621"><span class="section-number-3">4.1</span> git-bisect</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 This command uses a binary search algorithm to find which commit in your project's history introduced a bug.
 </p>
@@ -298,29 +507,29 @@ This command uses a binary search algorithm to find which commit in your project
 </div>
 
 <div id="outline-container-org2f5cfb2" class="outline-4">
-<h4 id="org2f5cfb2"><span class="section-number-4">3.1.1</span> start</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<h4 id="org2f5cfb2"><span class="section-number-4">4.1.1</span> start</h4>
+<div class="outline-text-4" id="text-4-1-1">
 <pre class="example">
-$ git bisect start
-$ git bisect bad                 # Current version is bad
-$ git bisect good v2.6.13-rc2    # v2.6.13-rc2 is known to be good
+  $ git bisect start
+  $ git bisect bad                 # Current version is bad
+  $ git bisect good v2.6.13-rc2    # v2.6.13-rc2 is known to be good
 </pre>
 </div>
 </div>
 <div id="outline-container-org956fc6f" class="outline-4">
-<h4 id="org956fc6f"><span class="section-number-4">3.1.2</span> answer the question</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<h4 id="org956fc6f"><span class="section-number-4">4.1.2</span> answer the question</h4>
+<div class="outline-text-4" id="text-4-1-2">
 <p>
 Each time testing a commit, answer the question by:
 </p>
 <pre class="example">
-$ git bisect good # or bad
+  $ git bisect good # or bad
 </pre>
 </div>
 </div>
 <div id="outline-container-orgb489f04" class="outline-4">
-<h4 id="orgb489f04"><span class="section-number-4">3.1.3</span> multiple good</h4>
-<div class="outline-text-4" id="text-3-1-3">
+<h4 id="orgb489f04"><span class="section-number-4">4.1.3</span> multiple good</h4>
+<div class="outline-text-4" id="text-4-1-3">
 <p>
 If you know beforehand more than one good commit,
 you can narrow the bisect space down by specifying all of the good commits immediately after the bad commit when issuing the bisect start command
@@ -331,33 +540,33 @@ you can narrow the bisect space down by specifying all of the good commits immed
 <li>v2.6.20-rc4 and v2.6.20-rc1 are good</li>
 </ul>
 <pre class="example">
-$ git bisect start v2.6.20-rc6 v2.6.20-rc4 v2.6.20-rc1 --
+  $ git bisect start v2.6.20-rc6 v2.6.20-rc4 v2.6.20-rc1 --
 </pre>
 </div>
 </div>
 <div id="outline-container-orge28c740" class="outline-4">
-<h4 id="orge28c740"><span class="section-number-4">3.1.4</span> run script</h4>
-<div class="outline-text-4" id="text-3-1-4">
+<h4 id="orge28c740"><span class="section-number-4">4.1.4</span> run script</h4>
+<div class="outline-text-4" id="text-4-1-4">
 <p>
 If you have a script that can tell if the current source code is good or bad, you can bisect by issuing the command:
 </p>
 <pre class="example">
-$ git bisect run my_script arguments
+  $ git bisect run my_script arguments
 </pre>
 </div>
 </div>
 
 <div id="outline-container-orgb6fbd0c" class="outline-4">
-<h4 id="orgb6fbd0c"><span class="section-number-4">3.1.5</span> Some work flows</h4>
-<div class="outline-text-4" id="text-3-1-5">
+<h4 id="orgb6fbd0c"><span class="section-number-4">4.1.5</span> Some work flows</h4>
+<div class="outline-text-4" id="text-4-1-5">
 <p>
 Automatically bisect a broken build between v1.2 and HEAD:
 In this case, only find the one that cause compile failure.
 </p>
 <pre class="example">
-$ git bisect start HEAD v1.2 --      # HEAD is bad, v1.2 is good
-$ git bisect run make                # "make" builds the app
-$ git bisect reset                   # quit the bisect session
+  $ git bisect start HEAD v1.2 --      # HEAD is bad, v1.2 is good
+  $ git bisect run make                # "make" builds the app
+  $ git bisect reset                   # quit the bisect session
 </pre>
 
 
@@ -366,9 +575,9 @@ Automatically bisect a test failure between origin and HEAD:
 This time, use the <code>make test</code> work flow
 </p>
 <pre class="example">
-$ git bisect start HEAD origin --    # HEAD is bad, origin is good
-$ git bisect run make test           # "make test" builds and tests
-$ git bisect reset                   # quit the bisect session
+  $ git bisect start HEAD origin --    # HEAD is bad, origin is good
+  $ git bisect run make test           # "make test" builds and tests
+  $ git bisect reset                   # quit the bisect session
 </pre>
 
 <p>
@@ -376,21 +585,21 @@ Automatically bisect a broken test case:
 Use a custom script.
 </p>
 <pre class="example">
-$ cat ~/test.sh
-#!/bin/sh
-make || exit 125                     # this skips broken builds
-~/check_test_case.sh                 # does the test case pass?
-$ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
-$ git bisect run ~/test.sh
-$ git bisect reset                   # quit the bisect session
+  $ cat ~/test.sh
+  #!/bin/sh
+  make || exit 125                     # this skips broken builds
+  ~/check_test_case.sh                 # does the test case pass?
+  $ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
+  $ git bisect run ~/test.sh
+  $ git bisect reset                   # quit the bisect session
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-org25536e0" class="outline-3">
-<h3 id="org25536e0"><span class="section-number-3">3.2</span> git-blame</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org25536e0"><span class="section-number-3">4.2</span> git-blame</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 Annotates each line in the given file with information from the revision which last modified the line.
 </p>
@@ -400,7 +609,7 @@ Annotates each line in the given file with information from the revision which l
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
+<p class="date">Created: 2018-01-23 Tue 03:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

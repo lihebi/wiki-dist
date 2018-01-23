@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-04 Thu 17:03 -->
+<!-- 2018-01-11 Thu 21:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket</title>
@@ -257,79 +257,99 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8b3fede">1. Basic</a>
+<li><a href="#org339692c">1. <span class="todo TODO">TODO</span> racket blog</a></li>
+<li><a href="#org8b3fede">2. Basic</a>
 <ul>
-<li><a href="#org71d24ac">1.1. Local binding</a></li>
-<li><a href="#org82da514">1.2. require</a></li>
+<li><a href="#org71d24ac">2.1. Local binding</a></li>
+<li><a href="#org82da514">2.2. require</a></li>
 </ul>
 </li>
-<li><a href="#org2b499b1">2. Black Magic</a></li>
-<li><a href="#orgf6515f8">3. Pattern Matching (racket/match)</a></li>
-<li><a href="#org63256da">4. Macros</a>
+<li><a href="#org2b499b1">3. Black Magic</a></li>
+<li><a href="#orgf6515f8">4. Pattern Matching (racket/match)</a></li>
+<li><a href="#org63256da">5. Macros</a>
 <ul>
-<li><a href="#org2fc1956">4.1. Reader</a></li>
-<li><a href="#org4291dea">4.2. Syntax Model</a></li>
+<li><a href="#org2fc1956">5.1. Reader</a></li>
+<li><a href="#org4291dea">5.2. Syntax Model</a></li>
+<li><a href="#orgb05e7be">5.3. Hygienic</a></li>
 </ul>
 </li>
-<li><a href="#orgd045bcf">5. rackunit</a></li>
-<li><a href="#org8397554">6. Numbers</a></li>
-<li><a href="#org158e7be">7. Procedure</a></li>
-<li><a href="#org0005847">8. Control Structure</a></li>
-<li><a href="#org91f05de">9. String</a></li>
-<li><a href="#org9a40ce4">10. Regular Expression</a></li>
-<li><a href="#orgdb7c3dc">11. Pair, List, Vector</a></li>
-<li><a href="#org19a435c">12. Hash Tables</a></li>
-<li><a href="#org16701c6">13. Sequence</a></li>
-<li><a href="#org9cdf570">14. Hash set (use racket/set)</a></li>
-<li><a href="#org5b6037a">15. structure</a>
+<li><a href="#orgc96f740">6. Rackunit</a></li>
+<li><a href="#org8397554">7. Numbers</a></li>
+<li><a href="#org158e7be">8. Procedure</a></li>
+<li><a href="#org0005847">9. Control Structure</a></li>
+<li><a href="#org91f05de">10. String</a></li>
+<li><a href="#org9a40ce4">11. Regular Expression</a></li>
+<li><a href="#orgdb7c3dc">12. Pair, List, Vector</a></li>
+<li><a href="#org19a435c">13. Hash Tables</a></li>
+<li><a href="#org16701c6">14. Sequence</a></li>
+<li><a href="#org9cdf570">15. Hash set (use racket/set)</a></li>
+<li><a href="#org5b6037a">16. structure</a>
 <ul>
-<li><a href="#org722af7d">15.1. Field options</a></li>
-<li><a href="#orgbddccdf">15.2. Subtyping</a></li>
-<li><a href="#orgddd64de">15.3. Structure options</a></li>
+<li><a href="#org722af7d">16.1. Field options</a></li>
+<li><a href="#orgbddccdf">16.2. Subtyping</a></li>
+<li><a href="#orgddd64de">16.3. Structure options</a></li>
+<li><a href="#orgb7a044e">16.4. Generic Interface</a></li>
 </ul>
 </li>
-<li><a href="#org36d43a3">16. Multiple Values</a></li>
-<li><a href="#orgc612c95">17. Exception</a></li>
-<li><a href="#org1cc8a8b">18. Concurrency</a></li>
-<li><a href="#orgfa10b39">19. IO</a>
+<li><a href="#org36d43a3">17. Multiple Values</a></li>
+<li><a href="#orgc612c95">18. Exception</a></li>
+<li><a href="#org1cc8a8b">19. Concurrency</a></li>
+<li><a href="#orgfa10b39">20. IO</a>
 <ul>
-<li><a href="#orgf60f9f8">19.1. ports</a>
+<li><a href="#orgf60f9f8">20.1. ports</a>
 <ul>
-<li><a href="#orgd9ce219">19.1.1. General operation</a></li>
-<li><a href="#orgbc2f837">19.1.2. File IO</a></li>
-<li><a href="#orgb24f37b">19.1.3. String IO</a></li>
-<li><a href="#org05ac548">19.1.4. Extra</a></li>
+<li><a href="#orgd9ce219">20.1.1. General operation</a></li>
+<li><a href="#orgbc2f837">20.1.2. File IO</a></li>
+<li><a href="#orgb24f37b">20.1.3. String IO</a></li>
+<li><a href="#org05ac548">20.1.4. Extra</a></li>
 </ul>
 </li>
-<li><a href="#org2a972f3">19.2. Reading</a></li>
-<li><a href="#orgc2fe799">19.3. Writing</a></li>
+<li><a href="#org2a972f3">20.2. Reading</a></li>
+<li><a href="#orgc2fe799">20.3. Writing</a></li>
 </ul>
 </li>
-<li><a href="#org3466238">20. OS</a>
+<li><a href="#org3466238">21. OS</a>
 <ul>
-<li><a href="#orgba4c159">20.1. Path</a></li>
-<li><a href="#org2d5d391">20.2. File System</a></li>
-<li><a href="#org89feec4">20.3. Networking</a></li>
-<li><a href="#org2f9069a">20.4. Processes</a></li>
-<li><a href="#orgaf9fe97">20.5. CMD parsing (racket/cmdline)</a></li>
+<li><a href="#orgba4c159">21.1. Path</a></li>
+<li><a href="#org2d5d391">21.2. File System</a></li>
+<li><a href="#org89feec4">21.3. Networking</a></li>
+<li><a href="#org2f9069a">21.4. Processes</a></li>
+<li><a href="#orgaf9fe97">21.5. CMD parsing (racket/cmdline)</a></li>
 </ul>
 </li>
-<li><a href="#org35f0870">21. Trouble shooting</a>
+<li><a href="#org35f0870">22. Trouble shooting</a>
 <ul>
-<li><a href="#org41fe74d">21.1. racket cannot find browsers</a></li>
+<li><a href="#org41fe74d">22.1. racket cannot find browsers</a></li>
 </ul>
 </li>
-<li><a href="#orgb3966a5">22. Logger</a></li>
+<li><a href="#orgb3966a5">23. Logger</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8b3fede" class="outline-2">
-<h2 id="org8b3fede"><span class="section-number-2">1</span> Basic</h2>
+<p>
+A separate <a href="racket-lib.html">racket-lib</a> file describes some interesting libraries.
+</p>
+
+<div id="outline-container-org339692c" class="outline-2">
+<h2 id="org339692c"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> racket blog</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+A lot of good reading, a good way to pass time.
+</p>
+
+<p>
+<a href="http://blog.racket-lang.org/index.html">http://blog.racket-lang.org/index.html</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8b3fede" class="outline-2">
+<h2 id="org8b3fede"><span class="section-number-2">2</span> Basic</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org71d24ac" class="outline-3">
-<h3 id="org71d24ac"><span class="section-number-3">1.1</span> Local binding</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org71d24ac"><span class="section-number-3">2.1</span> Local binding</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 The local binding is established by <code>let</code> family. Apart from normal
 <code>let</code>, racket has a second form, known as <b>named let</b>.
@@ -362,8 +382,8 @@ Within the body, <code>proc-id</code> is bound to the procedure itself.
 </div>
 
 <div id="outline-container-org82da514" class="outline-3">
-<h3 id="org82da514"><span class="section-number-3">1.2</span> require</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org82da514"><span class="section-number-3">2.2</span> require</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 <code>require</code> introduces bindings. It can only be used in two context, the
 top-level context, or the module context (in which it introduce module
@@ -412,8 +432,8 @@ Where name is the file name.
 
 
 <div id="outline-container-org2b499b1" class="outline-2">
-<h2 id="org2b499b1"><span class="section-number-2">2</span> Black Magic</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org2b499b1"><span class="section-number-2">3</span> Black Magic</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 <a href="http://www.greghendershott.com/2015/07/keyword-structs-revisited.html">http://www.greghendershott.com/2015/07/keyword-structs-revisited.html</a>
 </p>
@@ -429,8 +449,8 @@ Where name is the file name.
 </div>
 
 <div id="outline-container-orgf6515f8" class="outline-2">
-<h2 id="orgf6515f8"><span class="section-number-2">3</span> Pattern Matching (racket/match)</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgf6515f8"><span class="section-number-2">4</span> Pattern Matching (racket/match)</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 The syntax:
 </p>
@@ -505,8 +525,8 @@ There are some syntax sugar for matching:
 </div>
 
 <div id="outline-container-org63256da" class="outline-2">
-<h2 id="org63256da"><span class="section-number-2">4</span> Macros</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org63256da"><span class="section-number-2">5</span> Macros</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Matthias Felleisen boils down macros into three main categories:
 </p>
@@ -648,8 +668,8 @@ able to bind pattern variables.
 </div>
 
 <div id="outline-container-org2fc1956" class="outline-3">
-<h3 id="org2fc1956"><span class="section-number-3">4.1</span> Reader</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org2fc1956"><span class="section-number-3">5.1</span> Reader</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 To understand how macro works, we need to know how the reader handles
 the program.
@@ -675,8 +695,8 @@ complex structure, the print format is not intuitive.</li>
 </div>
 </div>
 <div id="outline-container-org4291dea" class="outline-3">
-<h3 id="org4291dea"><span class="section-number-3">4.2</span> Syntax Model</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org4291dea"><span class="section-number-3">5.2</span> Syntax Model</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 A <i>syntax object</i> is a simple racket value + scope set + phase level.
 </p>
@@ -790,16 +810,81 @@ better:
 </div>
 </div>
 </div>
+
+
+<div id="outline-container-orgb05e7be" class="outline-3">
+<h3 id="orgb05e7be"><span class="section-number-3">5.3</span> Hygienic</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+A very good writing about syntax-case, and how to (NOT) write
+non-hygienic macros.
+<a href="http://blog.racket-lang.org/2011/04/writing-syntax-case-macros.html">http://blog.racket-lang.org/2011/04/writing-syntax-case-macros.html</a>
+</p>
+
+
+<ul class="org-ul">
+<li>a syntax object is a plain datum with some lexical context
+information</li>
+<li><code>syntax-&gt;datum</code> accepts one syntax object, and return the raw list</li>
+<li><code>datum-&gt;syntax</code> accepts one context syntax object to donor its
+context, and a plain datum to be converted.</li>
+<li>scheme macro is hygienic, i.e.
+<ol class="org-ol">
+<li>if it inserts a binding, it will be renamed through its lexical
+scope</li>
+<li>if it refers a free variable, it refers to the one in scope in
+which <b>the definition of the macro</b> happens.</li>
+</ol></li>
+</ul>
+
+<p>
+Thus, to break the hygienic
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">while</span> stx)
+  (<span style="color: #a020f0;">syntax-case</span> stx ()
+    [(<span style="color: #a020f0;">_</span> test body <span style="color: #a020f0;">...</span>)
+     (<span style="color: #a020f0;">syntax-case</span> (<span style="color: #483d8b;">datum-&gt;syntax</span> stx <span style="color: #2e8b57;">'it</span>) ()
+       [it #'(<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">loop</span> ()
+               (<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">it</span> test])
+                 (<span style="color: #a020f0;">when</span> it
+                   body <span style="color: #a020f0;">...</span>
+                   (loop))))])]))
+
+</pre>
+</div>
+
+<p>
+or using <code>with-syntax</code> to bind pattern variable:
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">define-syntax</span> (<span style="color: #0000ff;">while</span> stx)
+  (<span style="color: #a020f0;">syntax-case</span> stx ()
+    [(<span style="color: #a020f0;">_</span> test body <span style="color: #a020f0;">...</span>)
+     (<span style="color: #a020f0;">with-syntax</span> ([it (<span style="color: #483d8b;">datum-&gt;syntax</span> stx <span style="color: #2e8b57;">'it</span>)])
+       #'(<span style="color: #a020f0;">let</span> <span style="color: #0000ff;">loop</span> ()
+           (<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">it</span> test])
+             (<span style="color: #a020f0;">when</span> it
+               body <span style="color: #a020f0;">...</span>
+               (loop)))))]))
+</pre>
+</div>
+
+<p>
+This is primarily used to introduce a binding that is visible to the
+outside world. It seems that <i>syntax parameters</i> can do that better.
+</p>
+</div>
+</div>
 </div>
 
 
 
 
-
-
-<div id="outline-container-orgd045bcf" class="outline-2">
-<h2 id="orgd045bcf"><span class="section-number-2">5</span> rackunit</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgc96f740" class="outline-2">
+<h2 id="orgc96f740"><span class="section-number-2">6</span> Rackunit</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 Since racket has the <code>test</code> module concept, there needs no unit test
 framework. However, it seems that <code>rackunit</code> provides some
@@ -870,8 +955,8 @@ to select tests. Create a suite using <code>(test-suite name-expr test
 </div>
 
 <div id="outline-container-org8397554" class="outline-2">
-<h2 id="org8397554"><span class="section-number-2">6</span> Numbers</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org8397554"><span class="section-number-2">7</span> Numbers</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><code>/</code>: provide the fraction if given two numbers, not to round it.</li>
 <li><code>quotient n m</code>: <code>(truncate (/ n m))</code></li>
@@ -921,8 +1006,8 @@ With <code>racket/random</code>:
 </div>
 
 <div id="outline-container-org158e7be" class="outline-2">
-<h2 id="org158e7be"><span class="section-number-2">7</span> Procedure</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org158e7be"><span class="section-number-2">8</span> Procedure</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 The <code>define</code> keyword can be used to bind a id to a variable, but most
 likely you are binding a procedure. So the syntax for arguments
@@ -968,8 +1053,8 @@ restricts this to exactly one value.
 
 
 <div id="outline-container-org0005847" class="outline-2">
-<h2 id="org0005847"><span class="section-number-2">8</span> Control Structure</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org0005847"><span class="section-number-2">9</span> Control Structure</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><code>if</code></li>
 <li><code>(cond [test-expr then-body ...+] ...)</code></li>
@@ -1021,8 +1106,8 @@ different return values.</li>
 </div>
 
 <div id="outline-container-org91f05de" class="outline-2">
-<h2 id="org91f05de"><span class="section-number-2">9</span> String</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org91f05de"><span class="section-number-2">10</span> String</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 The reading syntax of characters starts with <code>#\</code>, with following
 forms
@@ -1203,8 +1288,8 @@ Byte string
 </div>
 
 <div id="outline-container-org9a40ce4" class="outline-2">
-<h2 id="org9a40ce4"><span class="section-number-2">10</span> Regular Expression</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="org9a40ce4"><span class="section-number-2">11</span> Regular Expression</h2>
+<div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li><code>#rx"xxx"</code>: regular expression</li>
 <li><code>#px"xxx"</code>: perl regular expression</li>
@@ -1267,8 +1352,8 @@ success</li>
 </div>
 
 <div id="outline-container-orgdb7c3dc" class="outline-2">
-<h2 id="orgdb7c3dc"><span class="section-number-2">11</span> Pair, List, Vector</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="orgdb7c3dc"><span class="section-number-2">12</span> Pair, List, Vector</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 The variants tradition:
 </p>
@@ -1401,8 +1486,8 @@ From <code>racket/vector</code>:
 </div>
 
 <div id="outline-container-org19a435c" class="outline-2">
-<h2 id="org19a435c"><span class="section-number-2">12</span> Hash Tables</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org19a435c"><span class="section-number-2">13</span> Hash Tables</h2>
+<div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li><code>(hash key val ... ...)</code></li>
 <li><code>hash-set hash key v</code></li>
@@ -1423,8 +1508,8 @@ From <code>racket/vector</code>:
 </div>
 
 <div id="outline-container-org16701c6" class="outline-2">
-<h2 id="org16701c6"><span class="section-number-2">13</span> Sequence</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="org16701c6"><span class="section-number-2">14</span> Sequence</h2>
+<div class="outline-text-2" id="text-14">
 <p>
 Sequence is designed to be used with <code>for</code>. Not only list and vectors
 are sequence, hash table is also sequence. Dictionary and set are also
@@ -1455,8 +1540,8 @@ acts like as a filter of the results</li>
 </div>
 
 <div id="outline-container-org9cdf570" class="outline-2">
-<h2 id="org9cdf570"><span class="section-number-2">14</span> Hash set (use racket/set)</h2>
-<div class="outline-text-2" id="text-14">
+<h2 id="org9cdf570"><span class="section-number-2">15</span> Hash set (use racket/set)</h2>
+<div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li><code>set v ...</code>: construct a hash set</li>
 <li><code>list-&gt;set lst</code>: construct from list</li>
@@ -1484,8 +1569,8 @@ acts like as a filter of the results</li>
 
 
 <div id="outline-container-org5b6037a" class="outline-2">
-<h2 id="org5b6037a"><span class="section-number-2">15</span> structure</h2>
-<div class="outline-text-2" id="text-15">
+<h2 id="org5b6037a"><span class="section-number-2">16</span> structure</h2>
+<div class="outline-text-2" id="text-16">
 <pre class="example">
 struct id maybe-super (field ...) struct-option ...
 field = field-id | [field-id field-option ...]
@@ -1506,8 +1591,8 @@ the provided id:
 </div>
 
 <div id="outline-container-org722af7d" class="outline-3">
-<h3 id="org722af7d"><span class="section-number-3">15.1</span> Field options</h3>
-<div class="outline-text-3" id="text-15-1">
+<h3 id="org722af7d"><span class="section-number-3">16.1</span> Field options</h3>
+<div class="outline-text-3" id="text-16-1">
 <p>
 There are two available field options:
 </p>
@@ -1524,8 +1609,8 @@ fields. Specify both results in syntax error.</li>
 </div>
 
 <div id="outline-container-orgbddccdf" class="outline-3">
-<h3 id="orgbddccdf"><span class="section-number-3">15.2</span> Subtyping</h3>
-<div class="outline-text-3" id="text-15-2">
+<h3 id="orgbddccdf"><span class="section-number-3">16.2</span> Subtyping</h3>
+<div class="outline-text-3" id="text-16-2">
 <p>
 You can specify super class in <b>one</b> of two ways: maybe-super or via
 <code>#:super</code> option. Specify both results in syntax error.  Subtype will
@@ -1535,8 +1620,8 @@ inherit fields, when initialize, initialize those parent fields first.
 </div>
 
 <div id="outline-container-orgddd64de" class="outline-3">
-<h3 id="orgddd64de"><span class="section-number-3">15.3</span> Structure options</h3>
-<div class="outline-text-3" id="text-15-3">
+<h3 id="orgddd64de"><span class="section-number-3">16.3</span> Structure options</h3>
+<div class="outline-text-3" id="text-16-3">
 <ul class="org-ul">
 <li><code>#:mutable</code>: same as set <code>#:mutable</code> for all fields</li>
 <li><code>#:super</code>: same as set maybe-super</li>
@@ -1586,11 +1671,90 @@ Other
 </ul>
 </div>
 </div>
+
+<div id="outline-container-orgb7a044e" class="outline-3">
+<h3 id="orgb7a044e"><span class="section-number-3">16.4</span> Generic Interface</h3>
+<div class="outline-text-3" id="text-16-4">
+<p>
+require <code>racket/generic</code>.
+</p>
+
+<p>
+First define the interface.
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(define-generics <span style="color: #a0522d;">printable</span>
+  (gen-print printable port)
+  (gen-port-print port printable)
+  (gen-print* printable [port] <span style="color: #cd0000;">#:width</span> width <span style="color: #cd0000;">#:height</span> height))
+</pre>
 </div>
 
+<p>
+We are defining a generic id called <code>printable</code>. The <code>gen:printable</code>
+will be the transformer binding used when defining the structure. The
+followings are the methods that are supposed to be defined. Note:
+there must be a <code>printable</code> literally in each of these methods. It
+does not matter which position, but this particular position should be
+kept as the variable in your actual definition. The arguments are
+nothing new, including optional variable, default values, as well as
+keyword arguments.
+</p>
+
+<p>
+Define the structure. To declare that this structure satisfies a
+generic interface, specify it in <code>#:methods</code>. It accepts two values:
+<code>gen:name</code>, and <code>method-defs</code>. You can supply multiple <code>#:methods</code> of
+course. Each of the def is a define of the function, very normal. Note
+that the variable that corresponds to the <code>printable</code>, by position, is
+the data object. Since there cannot be duplicate arguments, you cannot
+use this twice (this of course is not likely what you want).
+</p>
+
+<p>
+There's a <code>define/generic</code> that has a fixed form of two arguments,
+<code>local-id</code> and <code>method-id</code>. The latter can only be one of these
+generic method. It is the form used to create a binding. Using just
+define cannot create this, because <code>gen-print</code> will not be in
+scope. And <code>define/generic</code> can only be used here. And interestingly
+inside a generic function, the <code>gen-print</code> is in scope, and can be
+bound by a <code>let</code> expression (why??).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket">(<span style="color: #a020f0;">struct</span> num (v)
+  <span style="color: #cd0000;">#:methods</span> gen:printable
+  [(define/generic <span style="color: #a0522d;">alias</span> gen-print)
+   (define/generic <span style="color: #a0522d;">alias2</span> gen-print*)
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">(define alias3 gen-print)</span>
+   (<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">gen-print</span> n port)
+     (<span style="color: #483d8b;">fprintf</span> port <span style="color: #8b2252;">"Num: ~a"</span> (num-v n)))
+   (<span style="color: #a020f0;">define</span> (<span style="color: #0000ff;">gen-port-print</span> port n)
+     (<span style="color: #a020f0;">let</span> ([<span style="color: #a0522d;">alias2</span> gen-print]) 
+       (gen-print n port)
+       (alias n port)
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">(alias2 n)</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">(alias3 n port)</span>
+       ))])
+</pre>
+</div>
+
+<p>
+Use like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-racket">(gen-port-print (<span style="color: #483d8b;">current-output-port</span>) (num <span style="color: #2e8b57;">8</span>) )
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
 <div id="outline-container-org36d43a3" class="outline-2">
-<h2 id="org36d43a3"><span class="section-number-2">16</span> Multiple Values</h2>
-<div class="outline-text-2" id="text-16">
+<h2 id="org36d43a3"><span class="section-number-2">17</span> Multiple Values</h2>
+<div class="outline-text-2" id="text-17">
 <p>
 values produce multiple values value, to consume that, typically use
 <code>let-values</code>, <code>let*-values</code>, <code>define-values</code>. Also, binding forms that
@@ -1600,8 +1764,8 @@ can destruct values can also be used.
 </div>
 
 <div id="outline-container-orgc612c95" class="outline-2">
-<h2 id="orgc612c95"><span class="section-number-2">17</span> Exception</h2>
-<div class="outline-text-2" id="text-17">
+<h2 id="orgc612c95"><span class="section-number-2">18</span> Exception</h2>
+<div class="outline-text-2" id="text-18">
 <p>
 For now, I only care about how to handle exceptions. To do that:
 </p>
@@ -1653,8 +1817,8 @@ To raise an exception, you can use:
 </div>
 
 <div id="outline-container-org1cc8a8b" class="outline-2">
-<h2 id="org1cc8a8b"><span class="section-number-2">18</span> Concurrency</h2>
-<div class="outline-text-2" id="text-18">
+<h2 id="org1cc8a8b"><span class="section-number-2">19</span> Concurrency</h2>
+<div class="outline-text-2" id="text-19">
 <p>
 Comparison
 </p>
@@ -1733,16 +1897,16 @@ Places can only communicate through place channels.
 </div>
 
 <div id="outline-container-orgfa10b39" class="outline-2">
-<h2 id="orgfa10b39"><span class="section-number-2">19</span> IO</h2>
-<div class="outline-text-2" id="text-19">
+<h2 id="orgfa10b39"><span class="section-number-2">20</span> IO</h2>
+<div class="outline-text-2" id="text-20">
 </div>
 <div id="outline-container-orgf60f9f8" class="outline-3">
-<h3 id="orgf60f9f8"><span class="section-number-3">19.1</span> ports</h3>
-<div class="outline-text-3" id="text-19-1">
+<h3 id="orgf60f9f8"><span class="section-number-3">20.1</span> ports</h3>
+<div class="outline-text-3" id="text-20-1">
 </div>
 <div id="outline-container-orgd9ce219" class="outline-4">
-<h4 id="orgd9ce219"><span class="section-number-4">19.1.1</span> General operation</h4>
-<div class="outline-text-4" id="text-19-1-1">
+<h4 id="orgd9ce219"><span class="section-number-4">20.1.1</span> General operation</h4>
+<div class="outline-text-4" id="text-20-1-1">
 <ul class="org-ul">
 <li><code>eof</code>: global variable</li>
 <li><code>eof-object?</code></li>
@@ -1757,8 +1921,8 @@ the port to be flushed immediately</li>
 </div>
 
 <div id="outline-container-orgbc2f837" class="outline-4">
-<h4 id="orgbc2f837"><span class="section-number-4">19.1.2</span> File IO</h4>
-<div class="outline-text-4" id="text-19-1-2">
+<h4 id="orgbc2f837"><span class="section-number-4">20.1.2</span> File IO</h4>
+<div class="outline-text-4" id="text-20-1-2">
 <ul class="org-ul">
 <li><code>open-input-file path [#:mode flag]</code>: return an input port. mode can
 be <code>'binary</code> or <code>'text</code></li>
@@ -1782,8 +1946,8 @@ when thunk returns.</li>
 </div>
 
 <div id="outline-container-orgb24f37b" class="outline-4">
-<h4 id="orgb24f37b"><span class="section-number-4">19.1.3</span> String IO</h4>
-<div class="outline-text-4" id="text-19-1-3">
+<h4 id="orgb24f37b"><span class="section-number-4">20.1.3</span> String IO</h4>
+<div class="outline-text-4" id="text-20-1-3">
 <ul class="org-ul">
 <li><code>open-input-string str</code>: create a string port using str</li>
 <li><code>open-output-string</code>: create a output string port</li>
@@ -1795,8 +1959,8 @@ be used with the above method, specifically the out should be
 </div>
 
 <div id="outline-container-org05ac548" class="outline-4">
-<h4 id="org05ac548"><span class="section-number-4">19.1.4</span> Extra</h4>
-<div class="outline-text-4" id="text-19-1-4">
+<h4 id="org05ac548"><span class="section-number-4">20.1.4</span> Extra</h4>
+<div class="outline-text-4" id="text-20-1-4">
 <p>
 Requires <code>racket/port</code>. This is actually the most commonly used
 helpers. All of these have bytes counterparts.
@@ -1818,8 +1982,8 @@ helpers. All of these have bytes counterparts.
 
 
 <div id="outline-container-org2a972f3" class="outline-3">
-<h3 id="org2a972f3"><span class="section-number-3">19.2</span> Reading</h3>
-<div class="outline-text-3" id="text-19-2">
+<h3 id="org2a972f3"><span class="section-number-3">20.2</span> Reading</h3>
+<div class="outline-text-3" id="text-20-2">
 <ul class="org-ul">
 <li><code>read-char</code></li>
 <li><code>read-byte</code></li>
@@ -1833,8 +1997,8 @@ source-location information</li>
 </div>
 
 <div id="outline-container-orgc2fe799" class="outline-3">
-<h3 id="orgc2fe799"><span class="section-number-3">19.3</span> Writing</h3>
-<div class="outline-text-3" id="text-19-3">
+<h3 id="orgc2fe799"><span class="section-number-3">20.3</span> Writing</h3>
+<div class="outline-text-3" id="text-20-3">
 <ul class="org-ul">
 <li><code>write-char</code></li>
 <li><code>write-byte</code></li>
@@ -1880,8 +2044,8 @@ with <code>racket/pretty</code>
 
 
 <div id="outline-container-org3466238" class="outline-2">
-<h2 id="org3466238"><span class="section-number-2">20</span> OS</h2>
-<div class="outline-text-2" id="text-20">
+<h2 id="org3466238"><span class="section-number-2">21</span> OS</h2>
+<div class="outline-text-2" id="text-21">
 <ul class="org-ul">
 <li><code>(getenv name)</code></li>
 <li><code>(putenv name value)</code></li>
@@ -1896,8 +2060,8 @@ In <code>racket/os</code>
 </ul>
 </div>
 <div id="outline-container-orgba4c159" class="outline-3">
-<h3 id="orgba4c159"><span class="section-number-3">20.1</span> Path</h3>
-<div class="outline-text-3" id="text-20-1">
+<h3 id="orgba4c159"><span class="section-number-3">21.1</span> Path</h3>
+<div class="outline-text-3" id="text-21-1">
 <ul class="org-ul">
 <li><code>string-&gt;path</code></li>
 <li><code>path-&gt;string</code></li>
@@ -1953,8 +2117,8 @@ more often than <code>normalize-path</code>.</li>
 </div>
 </div>
 <div id="outline-container-org2d5d391" class="outline-3">
-<h3 id="org2d5d391"><span class="section-number-3">20.2</span> File System</h3>
-<div class="outline-text-3" id="text-20-2">
+<h3 id="org2d5d391"><span class="section-number-3">21.2</span> File System</h3>
+<div class="outline-text-3" id="text-21-2">
 <ul class="org-ul">
 <li><code>find-system-path kind</code>, where kind is
 <ul class="org-ul">
@@ -2019,8 +2183,8 @@ create it, and return path.
 </div>
 
 <div id="outline-container-org89feec4" class="outline-3">
-<h3 id="org89feec4"><span class="section-number-3">20.3</span> Networking</h3>
-<div class="outline-text-3" id="text-20-3">
+<h3 id="org89feec4"><span class="section-number-3">21.3</span> Networking</h3>
+<div class="outline-text-3" id="text-21-3">
 <p>
 I'm not going to dig deep on this because I don't use it. Just listing
 available functions. Needs require 
@@ -2053,8 +2217,8 @@ UDP (<code>racket/udp</code>)
 </div>
 
 <div id="outline-container-org2f9069a" class="outline-3">
-<h3 id="org2f9069a"><span class="section-number-3">20.4</span> Processes</h3>
-<div class="outline-text-3" id="text-20-4">
+<h3 id="org2f9069a"><span class="section-number-3">21.4</span> Processes</h3>
+<div class="outline-text-3" id="text-21-4">
 <ul class="org-ul">
 <li><code>subprocess stdout stdin stderr cmd arg ...</code>
 <ul class="org-ul">
@@ -2110,8 +2274,8 @@ returned).</li>
 </div>
 
 <div id="outline-container-orgaf9fe97" class="outline-3">
-<h3 id="orgaf9fe97"><span class="section-number-3">20.5</span> CMD parsing (racket/cmdline)</h3>
-<div class="outline-text-3" id="text-20-5">
+<h3 id="orgaf9fe97"><span class="section-number-3">21.5</span> CMD parsing (racket/cmdline)</h3>
+<div class="outline-text-3" id="text-21-5">
 <p>
 The <code>command-line</code> macro actually parse the command line. The
 <code>current-command-line-arguments</code> is actually a parameter that returns
@@ -2214,12 +2378,12 @@ A typical command line parser looks like this. It typically:
 
 
 <div id="outline-container-org35f0870" class="outline-2">
-<h2 id="org35f0870"><span class="section-number-2">21</span> Trouble shooting</h2>
-<div class="outline-text-2" id="text-21">
+<h2 id="org35f0870"><span class="section-number-2">22</span> Trouble shooting</h2>
+<div class="outline-text-2" id="text-22">
 </div>
 <div id="outline-container-org41fe74d" class="outline-3">
-<h3 id="org41fe74d"><span class="section-number-3">21.1</span> racket cannot find browsers</h3>
-<div class="outline-text-3" id="text-21-1">
+<h3 id="org41fe74d"><span class="section-number-3">22.1</span> racket cannot find browsers</h3>
+<div class="outline-text-3" id="text-22-1">
 <p>
 Browsers are declared in sendurl.rkt, with
 </p>
@@ -2265,8 +2429,8 @@ order for it to work, install <code>racket-doc</code> package.
 
 
 <div id="outline-container-orgb3966a5" class="outline-2">
-<h2 id="orgb3966a5"><span class="section-number-2">22</span> Logger</h2>
-<div class="outline-text-2" id="text-22">
+<h2 id="orgb3966a5"><span class="section-number-2">23</span> Logger</h2>
+<div class="outline-text-2" id="text-23">
 <div class="org-src-container">
 <pre class="src src-racket">  (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">lg</span> (<span style="color: #483d8b;">make-logger</span>))
   (<span style="color: #a020f0;">define</span> <span style="color: #a0522d;">rc</span> (<span style="color: #483d8b;">make-log-receiver</span> lg <span style="color: #2e8b57;">'debug</span>))
@@ -2298,7 +2462,7 @@ order for it to work, install <code>racket-doc</code> package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-04 Thu 17:03</p>
+<p class="date">Created: 2018-01-11 Thu 21:39</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
