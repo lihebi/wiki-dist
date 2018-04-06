@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dynamic Programming</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,28 +233,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga713ff2">1. One dimension</a>
+<li><a href="#org76d95e5">1. One dimension</a>
 <ul>
-<li><a href="#org704d6ce">1.1. Define sub-problems</a></li>
-<li><a href="#org56a83ca">1.2. Recurrence formula</a></li>
+<li><a href="#orgdb21675">1.1. Define sub-problems</a></li>
+<li><a href="#org7afba7c">1.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgea33c6a">2. Two Dimensions</a>
+<li><a href="#orgcc9d2a1">2. Two Dimensions</a>
 <ul>
-<li><a href="#org29ba7c2">2.1. Define sub-problems</a></li>
-<li><a href="#orgd616d8b">2.2. Recurrence formula</a></li>
+<li><a href="#org856e6c4">2.1. Define sub-problems</a></li>
+<li><a href="#orga0d1d03">2.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgbb3fcfc">3. Interval DP</a>
+<li><a href="#orgc847027">3. Interval DP</a>
 <ul>
-<li><a href="#org37b4487">3.1. Define sub-problem</a></li>
-<li><a href="#org0b83686">3.2. Recurrence formula</a></li>
+<li><a href="#org2898cab">3.1. Define sub-problem</a></li>
+<li><a href="#orgc924c19">3.2. Recurrence formula</a></li>
 </ul>
 </li>
-<li><a href="#orgd24b475">4. Tree DP</a>
+<li><a href="#org9291d27">4. Tree DP</a>
 <ul>
-<li><a href="#org9c0b14a">4.1. Define</a></li>
-<li><a href="#orgc84cfe3">4.2. Recurrence</a></li>
+<li><a href="#org45f9925">4.1. Define</a></li>
+<li><a href="#org5296e10">4.2. Recurrence</a></li>
 </ul>
 </li>
 </ul>
@@ -266,16 +264,16 @@ for the JavaScript code in this tag.
 Solve problem by breaking down into simpler sub-problems.
 </p>
 
-<div id="outline-container-orga713ff2" class="outline-2">
-<h2 id="orga713ff2"><span class="section-number-2">1</span> One dimension</h2>
+<div id="outline-container-org76d95e5" class="outline-2">
+<h2 id="org76d95e5"><span class="section-number-2">1</span> One dimension</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given n, find the number of different ways to write n as the sum of 1,3,4
 </p>
 </div>
 
-<div id="outline-container-org704d6ce" class="outline-3">
-<h3 id="org704d6ce"><span class="section-number-3">1.1</span> Define sub-problems</h3>
+<div id="outline-container-orgdb21675" class="outline-3">
+<h3 id="orgdb21675"><span class="section-number-3">1.1</span> Define sub-problems</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
@@ -283,8 +281,8 @@ D<sub>n</sub> is the number of ways to write n as sum of 1,3,4
 </div>
 </div>
 
-<div id="outline-container-org56a83ca" class="outline-3">
-<h3 id="org56a83ca"><span class="section-number-3">1.2</span> Recurrence formula</h3>
+<div id="outline-container-org7afba7c" class="outline-3">
+<h3 id="org7afba7c"><span class="section-number-3">1.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
@@ -293,16 +291,16 @@ D<sub>n</sub> = D<sub>n-1</sub> + D<sub>n-3</sub> + D<sub>n-4</sub>
 </div>
 </div>
 
-<div id="outline-container-orgea33c6a" class="outline-2">
-<h2 id="orgea33c6a"><span class="section-number-2">2</span> Two Dimensions</h2>
+<div id="outline-container-orgcc9d2a1" class="outline-2">
+<h2 id="orgcc9d2a1"><span class="section-number-2">2</span> Two Dimensions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Given two string x and y, find the length of longest common sub-sequence.
 </p>
 </div>
 
-<div id="outline-container-org29ba7c2" class="outline-3">
-<h3 id="org29ba7c2"><span class="section-number-3">2.1</span> Define sub-problems</h3>
+<div id="outline-container-org856e6c4" class="outline-3">
+<h3 id="org856e6c4"><span class="section-number-3">2.1</span> Define sub-problems</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
@@ -310,8 +308,8 @@ D<sub>ij</sub> is the length for x<sub>i..i</sub> and y<sub>1..j</sub>
 </div>
 </div>
 
-<div id="outline-container-orgd616d8b" class="outline-3">
-<h3 id="orgd616d8b"><span class="section-number-3">2.2</span> Recurrence formula</h3>
+<div id="outline-container-orga0d1d03" class="outline-3">
+<h3 id="orga0d1d03"><span class="section-number-3">2.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 D<sub>ij</sub> =
@@ -324,8 +322,8 @@ D<sub>ij</sub> =
 </div>
 </div>
 
-<div id="outline-container-orgbb3fcfc" class="outline-2">
-<h2 id="orgbb3fcfc"><span class="section-number-2">3</span> Interval DP</h2>
+<div id="outline-container-orgc847027" class="outline-2">
+<h2 id="orgc847027"><span class="section-number-2">3</span> Interval DP</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Given a string x=x<sub>1..n</sub>,
@@ -333,8 +331,8 @@ find the minimum number of characters that need to be inserted to make it a pali
 </p>
 </div>
 
-<div id="outline-container-org37b4487" class="outline-3">
-<h3 id="org37b4487"><span class="section-number-3">3.1</span> Define sub-problem</h3>
+<div id="outline-container-org2898cab" class="outline-3">
+<h3 id="org2898cab"><span class="section-number-3">3.1</span> Define sub-problem</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 D<sub>i,j</sub> be the minimum number of characters.
@@ -342,8 +340,8 @@ D<sub>i,j</sub> be the minimum number of characters.
 </div>
 </div>
 
-<div id="outline-container-org0b83686" class="outline-3">
-<h3 id="org0b83686"><span class="section-number-3">3.2</span> Recurrence formula</h3>
+<div id="outline-container-orgc924c19" class="outline-3">
+<h3 id="orgc924c19"><span class="section-number-3">3.2</span> Recurrence formula</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 say y<sub>1..k</sub> is the palindrome for x<sub>i..j</sub>,
@@ -361,16 +359,16 @@ D<sub>ij</sub> =
 </div>
 </div>
 
-<div id="outline-container-orgd24b475" class="outline-2">
-<h2 id="orgd24b475"><span class="section-number-2">4</span> Tree DP</h2>
+<div id="outline-container-org9291d27" class="outline-2">
+<h2 id="org9291d27"><span class="section-number-2">4</span> Tree DP</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Given a tree, color nodes black as many as possible without coloring two adjacent nodes.
 </p>
 </div>
 
-<div id="outline-container-org9c0b14a" class="outline-3">
-<h3 id="org9c0b14a"><span class="section-number-3">4.1</span> Define</h3>
+<div id="outline-container-org45f9925" class="outline-3">
+<h3 id="org45f9925"><span class="section-number-3">4.1</span> Define</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>B(r) as the maximum nodes if the (root) node r is colored black.</li>
@@ -379,8 +377,8 @@ Given a tree, color nodes black as many as possible without coloring two adjacen
 </div>
 </div>
 
-<div id="outline-container-orgc84cfe3" class="outline-3">
-<h3 id="orgc84cfe3"><span class="section-number-3">4.2</span> Recurrence</h3>
+<div id="outline-container-org5296e10" class="outline-3">
+<h3 id="org5296e10"><span class="section-number-3">4.2</span> Recurrence</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>B(v) = 1 + &sum;<sub>children</sub> W(c)</li>
@@ -391,9 +389,7 @@ Given a tree, color nodes black as many as possible without coloring two adjacen
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

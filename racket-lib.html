@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-21 Sun 17:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Racket Libraries</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,31 +233,45 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc60fc36">1. Drawing libraries</a></li>
-<li><a href="#org44fc6ea">2. graph</a></li>
-<li><a href="#orgaf9e949">3. 2htdp/image</a>
+<li><a href="#orgcbe63af">1. Drawing libraries</a></li>
+<li><a href="#org0bae887">2. pict-lib</a>
 <ul>
-<li><a href="#org1053cf2">3.1. Common Concepts</a></li>
-<li><a href="#orgf5c6597">3.2. basic shape</a></li>
-<li><a href="#org5e71dbc">3.3. Overlay</a></li>
-<li><a href="#org201271f">3.4. scene</a></li>
-<li><a href="#orgf124d4b">3.5. transform</a></li>
-<li><a href="#org9688399">3.6. bitmap</a></li>
-<li><a href="#orgd705742">3.7. properties</a></li>
+<li><a href="#org3200347">2.1. Constructors</a>
+<ul>
+<li><a href="#org384ebf3">2.1.1. More constructors</a></li>
 </ul>
 </li>
-<li><a href="#org733ffbb">4. Networking</a>
+<li><a href="#org7cfeb01">2.2. Combiners</a></li>
+<li><a href="#org98472ee">2.3. Adjusters</a></li>
+<li><a href="#orgd2f8bc2">2.4. Bounding box</a></li>
+<li><a href="#orgf4db4ca">2.5. Pict finder</a></li>
+<li><a href="#org02cf3d8">2.6. Tree layout</a></li>
+</ul>
+</li>
+<li><a href="#orgcf28dea">3. graph</a></li>
+<li><a href="#org05fdca2">4. 2htdp/image</a>
 <ul>
-<li><a href="#orgc07b1be">4.1. HTML parsing</a></li>
-<li><a href="#orgb7dc101">4.2. URL &amp; HTTP</a></li>
+<li><a href="#org0c1f5de">4.1. Common Concepts</a></li>
+<li><a href="#orgd8e29e9">4.2. basic shape</a></li>
+<li><a href="#org7ec4afb">4.3. Overlay</a></li>
+<li><a href="#org65f744d">4.4. scene</a></li>
+<li><a href="#orge74edb7">4.5. transform</a></li>
+<li><a href="#orgcb77f2a">4.6. bitmap</a></li>
+<li><a href="#org417165c">4.7. properties</a></li>
+</ul>
+</li>
+<li><a href="#orgc5b074a">5. Networking</a>
+<ul>
+<li><a href="#org3877b76">5.1. HTML parsing</a></li>
+<li><a href="#org2f11c37">5.2. URL &amp; HTTP</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc60fc36" class="outline-2">
-<h2 id="orgc60fc36"><span class="section-number-2">1</span> Drawing libraries</h2>
+<div id="outline-container-orgcbe63af" class="outline-2">
+<h2 id="orgcbe63af"><span class="section-number-2">1</span> Drawing libraries</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>metapict: <a href="https://github.com/soegaard/metapict">https://github.com/soegaard/metapict</a></li>
@@ -276,9 +288,200 @@ slideshow</li>
 </div>
 </div>
 
-<div id="outline-container-org44fc6ea" class="outline-2">
-<h2 id="org44fc6ea"><span class="section-number-2">2</span> graph</h2>
+<div id="outline-container-org0bae887" class="outline-2">
+<h2 id="org0bae887"><span class="section-number-2">2</span> pict-lib</h2>
 <div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3200347" class="outline-3">
+<h3 id="org3200347"><span class="section-number-3">2.1</span> Constructors</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>text</li>
+<li>hline, vline</li>
+<li>frame</li>
+<li>ellipse, circle, filled-ellipse, disk</li>
+<li>rectangle, filled-rectangle</li>
+<li>rounded-rectangle</li>
+<li>filled-rounded-rectangle</li>
+<li>bitmap: read a bitmap image</li>
+<li>arrow, arrowhead</li>
+</ul>
+
+<p>
+Use pin to create lines connecting picts
+</p>
+<ul class="org-ul">
+<li>pin-line, pin-arrow-line, pin-arrows-line: add lines onto a pict. It
+finds positions in the src and dst picts, and can set angle to
+create curve</li>
+</ul>
+</div>
+
+
+<div id="outline-container-org384ebf3" class="outline-4">
+<h4 id="org384ebf3"><span class="section-number-4">2.1.1</span> More constructors</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>cloud</li>
+<li>file-icon</li>
+<li>standard-fish</li>
+<li>jack-o-lantern</li>
+<li>angel-wing</li>
+<li>desktop-machine</li>
+<li>thermometer</li>
+<li>face, face*</li>
+</ul>
+
+<p>
+Balloon annotation
+</p>
+
+<ul class="org-ul">
+<li>wrap-balloon</li>
+<li>pin-wrap-balloon</li>
+<li>pin-balloon</li>
+<li>balloon</li>
+<li>filled-flash</li>
+<li>outline-flash</li>
+</ul>
+
+<p>
+code
+</p>
+<ul class="org-ul">
+<li>typeset-code</li>
+<li>code</li>
+<li>define-code</li>
+<li>code-align: align code with pict</li>
+<li>codeblock-pict: a block of code, seems to respect #lang option
+inside the code string, to decide lexer</li>
+</ul>
+
+<p>
+code parameters
+</p>
+<ul class="org-ul">
+<li>current-code-font</li>
+<li>current-code-tt</li>
+<li>current-code-line-sep</li>
+<li>current-comment-color</li>
+<li>current-keyword-color</li>
+<li>current-id-color</li>
+<li>current-literal-color</li>
+<li>current-const-color</li>
+<li>current-base-color</li>
+<li>current-reader-forms: this should be able to define language</li>
+<li>current-keyword-list</li>
+<li>current-const-list</li>
+<li>current-literal-list</li>
+<li>code-colorize-enabled</li>
+<li>code-italic-underscore-enabled</li>
+<li>code-scripts-enabled</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org7cfeb01" class="outline-3">
+<h3 id="org7cfeb01"><span class="section-number-3">2.2</span> Combiners</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>various of append
+<ul class="org-ul">
+<li>syntax: v and h, then alignment</li>
+<li>vl, vc, vr, ht, htl, hc, hbl, hb</li>
+<li>v and h for vertical and horizontal</li>
+<li>t,b for top, bottom</li>
+<li>l,c,r for left, center, right</li>
+</ul></li>
+<li>superimpose
+<ul class="org-ul">
+<li>Syntax: horizontal alignment, vertical alignment</li>
+<li>lt,ltl,lc,lbl,lb,ct,ctl,cc,cbl,cb,rt,rtl,rc,rbl,rb</li>
+<li>l,c,r for left, center, and right</li>
+<li>t,b for top and bottom</li>
+</ul></li>
+<li>pin
+<ul class="org-ul">
+<li>pin-over</li>
+<li>pin-under</li>
+</ul></li>
+<li>table</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org98472ee" class="outline-3">
+<h3 id="org98472ee"><span class="section-number-3">2.3</span> Adjusters</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>scale, scale-to-fit, scale/improve-new-text</li>
+<li>rotate</li>
+<li>ghost: does not draw (invisible), but use the size</li>
+<li>cellophane: make is semi-transparent</li>
+<li>clip, inset/clip</li>
+<li>freeze: to bitmap</li>
+</ul>
+
+<p>
+The followings can be used to specify parameters
+</p>
+<ul class="org-ul">
+<li>linewidth</li>
+<li>linestyle</li>
+<li>colorize</li>
+<li>black-and-white</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd2f8bc2" class="outline-3">
+<h3 id="orgd2f8bc2"><span class="section-number-3">2.4</span> Bounding box</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>inset</li>
+<li>clip-decent</li>
+<li>lift-above-baseline</li>
+<li>drop-below-ascent</li>
+<li>baseless</li>
+<li>refocus: focus on the top most sub-pict</li>
+<li>panorama: enclose all sub-picts</li>
+<li>use-last, use-last*</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf4db4ca" class="outline-3">
+<h3 id="orgf4db4ca"><span class="section-number-3">2.5</span> Pict finder</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>with -find suffix
+<ul class="org-ul">
+<li>lt,ltl,lc,lbl,lb,ct,ctl,cc,cbl,cb,rt,rtl,rc,rbl,rb</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org02cf3d8" class="outline-3">
+<h3 id="org02cf3d8"><span class="section-number-3">2.6</span> Tree layout</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+tree-layout creates a layout containing edges. The layout can be
+rendered to pict by
+</p>
+<ul class="org-ul">
+<li>naive-layered (seems to be good)</li>
+<li>binary-tidier</li>
+<li>hv-alternating</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf28dea" class="outline-2">
+<h2 id="orgcf28dea"><span class="section-number-2">3</span> graph</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 This is a generic graphic library.  graph is defined through a generic
 interface <code>gen:graph</code>, supporting the following methods:
@@ -329,9 +532,9 @@ dot format. It cannot output a <code>pict</code>.
 </div>
 
 
-<div id="outline-container-orgaf9e949" class="outline-2">
-<h2 id="orgaf9e949"><span class="section-number-2">3</span> 2htdp/image</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org05fdca2" class="outline-2">
+<h2 id="org05fdca2"><span class="section-number-2">4</span> 2htdp/image</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 This is teachpack of How to design program version 2.  It provides
 several basic images, rotation, scale, flip, overlay.
@@ -346,9 +549,9 @@ Other interesting packages in this pack:
 </div>
 
 
-<div id="outline-container-org1053cf2" class="outline-3">
-<h3 id="org1053cf2"><span class="section-number-3">3.1</span> Common Concepts</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org0c1f5de" class="outline-3">
+<h3 id="org0c1f5de"><span class="section-number-3">4.1</span> Common Concepts</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 The length is measured in terms of pixels, angle means degree. When
 using names, both string and symbol are acceptable, and
@@ -415,9 +618,9 @@ And retrieve pinhole by
 </div>
 
 
-<div id="outline-container-orgf5c6597" class="outline-3">
-<h3 id="orgf5c6597"><span class="section-number-3">3.2</span> basic shape</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgd8e29e9" class="outline-3">
+<h3 id="orgd8e29e9"><span class="section-number-3">4.2</span> basic shape</h3>
+<div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>shape
 <ul class="org-ul">
@@ -473,9 +676,9 @@ including
 </div>
 
 
-<div id="outline-container-org5e71dbc" class="outline-3">
-<h3 id="org5e71dbc"><span class="section-number-3">3.3</span> Overlay</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org7ec4afb" class="outline-3">
+<h3 id="org7ec4afb"><span class="section-number-3">4.3</span> Overlay</h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li><code>overlay</code> accepts a sequence of images, with the first being on
 top. Images are aligned on their center.</li>
@@ -507,9 +710,9 @@ on their centers</li>
 </div>
 
 
-<div id="outline-container-org201271f" class="outline-3">
-<h3 id="org201271f"><span class="section-number-3">3.4</span> scene</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org65f744d" class="outline-3">
+<h3 id="org65f744d"><span class="section-number-3">4.4</span> scene</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 Typically you place images on a scene. If an image is placed (using
 those place functions) or add lines (using scene+XXX) on scene, it is
@@ -530,9 +733,9 @@ top-left corner of scene</li>
 </div>
 </div>
 
-<div id="outline-container-orgf124d4b" class="outline-3">
-<h3 id="orgf124d4b"><span class="section-number-3">3.5</span> transform</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-orge74edb7" class="outline-3">
+<h3 id="orge74edb7"><span class="section-number-3">4.5</span> transform</h3>
+<div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li><code>rotate angle image</code></li>
 <li><code>scale factor image</code></li>
@@ -550,9 +753,9 @@ bounding box is still rectangle.</li>
 </div>
 
 
-<div id="outline-container-org9688399" class="outline-3">
-<h3 id="org9688399"><span class="section-number-3">3.6</span> bitmap</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-orgcb77f2a" class="outline-3">
+<h3 id="orgcb77f2a"><span class="section-number-3">4.6</span> bitmap</h3>
+<div class="outline-text-3" id="text-4-6">
 <p>
 You can load a bit map file by <code>(bitmap filename)</code>, or <code>(bitmap/url
 url)</code> to download from web. For a vector image you created in racket,
@@ -569,9 +772,9 @@ Finally, you can save image to file by
 </div>
 </div>
 
-<div id="outline-container-orgd705742" class="outline-3">
-<h3 id="orgd705742"><span class="section-number-3">3.7</span> properties</h3>
-<div class="outline-text-3" id="text-3-7">
+<div id="outline-container-org417165c" class="outline-3">
+<h3 id="org417165c"><span class="section-number-3">4.7</span> properties</h3>
+<div class="outline-text-3" id="text-4-7">
 <ul class="org-ul">
 <li>image-width</li>
 <li>image-height</li>
@@ -582,13 +785,13 @@ Finally, you can save image to file by
 </div>
 
 
-<div id="outline-container-org733ffbb" class="outline-2">
-<h2 id="org733ffbb"><span class="section-number-2">4</span> Networking</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgc5b074a" class="outline-2">
+<h2 id="orgc5b074a"><span class="section-number-2">5</span> Networking</h2>
+<div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgc07b1be" class="outline-3">
-<h3 id="orgc07b1be"><span class="section-number-3">4.1</span> HTML parsing</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org3877b76" class="outline-3">
+<h3 id="org3877b76"><span class="section-number-3">5.1</span> HTML parsing</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 The package is <code>html-parsing</code>. It has only one function, <code>html-&gt;xexp</code>.
 </p>
@@ -626,9 +829,9 @@ it. So if you want to parse it again, construct it by <code>`(*TOP* ,x)</code></
 </div>
 </div>
 
-<div id="outline-container-orgb7dc101" class="outline-3">
-<h3 id="orgb7dc101"><span class="section-number-3">4.2</span> URL &amp; HTTP</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org2f11c37" class="outline-3">
+<h3 id="org2f11c37"><span class="section-number-3">5.2</span> URL &amp; HTTP</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 require the package <code>net/url</code> (needs install) and
 <code>net/url-string</code>. First, construct a url by <code>string-&gt;url</code>, then, open
@@ -652,9 +855,7 @@ e.g. <code>get-pure-port</code>.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-21 Sun 17:56</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

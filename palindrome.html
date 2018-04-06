@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Palindrome</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,12 +233,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7615a75">1. 132. Palindrome Partitioning II</a></li>
+<li><a href="#org3565a00">1. 132. Palindrome Partitioning II</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7615a75" class="outline-2">
-<h2 id="org7615a75"><span class="section-number-2">1</span> 132. Palindrome Partitioning II</h2>
+<div id="outline-container-org3565a00" class="outline-2">
+<h2 id="org3565a00"><span class="section-number-2">1</span> 132. Palindrome Partitioning II</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 First, construct a Palindrome table.
@@ -315,15 +313,15 @@ The algorithm is O(n<sup>2</sup>), but I have to use arrays instead of set to ma
 This is a modification of another computing of Pal table. It is still slow due to use of set.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">vector</span>&lt;<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">unordered_set</span>&lt;<span style="color: #228b22;">int</span>&gt; &gt; <span style="color: #0000ff;">inv_pal</span>(size);
+<pre class="src src-C++">    <span style="color: #228b22;">vector</span>&lt;<span style="color: #008b8b;">std</span>::<span style="color: #228b22;">unordered_set</span>&lt;<span style="color: #228b22;">int</span>&gt; &gt; <span style="color: #0000ff;">inv_pal</span>(size);
 
-<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=size-1;i&gt;=0;i--) {
-  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span>=i;j&lt;size;j++) {
-    <span style="color: #a020f0;">if</span> (s[i] == s[j] &amp;&amp; (j-i&lt;2 || inv_pal[i+1].count(j-1) == 1)) {
-      inv_pal[i].insert(j);
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=size-1;i&gt;=0;i--) {
+      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span>=i;j&lt;size;j++) {
+        <span style="color: #a020f0;">if</span> (s[i] == s[j] &amp;&amp; (j-i&lt;2 || inv_pal[i+1].count(j-1) == 1)) {
+          inv_pal[i].insert(j);
+        }
+      }
     }
-  }
-}
 </pre>
 </div>
 
@@ -391,9 +389,7 @@ Finally this one using the original algorithm but using arrays is fast.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

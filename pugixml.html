@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pugixml</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,42 +233,42 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfa3a618">1. load</a>
+<li><a href="#orgd76b965">1. load</a>
 <ul>
-<li><a href="#org6713d38">1.1. parse result</a></li>
-<li><a href="#orga763cf7">1.2. parse options</a></li>
-<li><a href="#org30b847c">1.3. Load</a>
+<li><a href="#org3b668a3">1.1. parse result</a></li>
+<li><a href="#orgac302c6">1.2. parse options</a></li>
+<li><a href="#orgaac1442">1.3. Load</a>
 <ul>
-<li><a href="#org23117d4">1.3.1. from file</a></li>
-<li><a href="#orgcfcd57b">1.3.2. from memory</a></li>
-<li><a href="#orgc289e71">1.3.3. from IO streams</a></li>
+<li><a href="#orga27d853">1.3.1. from file</a></li>
+<li><a href="#orge423728">1.3.2. from memory</a></li>
+<li><a href="#org218a4bc">1.3.3. from IO streams</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2726f98">2. read</a></li>
-<li><a href="#org042b1e6">3. modify</a>
+<li><a href="#org7b90e88">2. read</a></li>
+<li><a href="#org7b33d90">3. modify</a>
 <ul>
-<li><a href="#orgca04ee7">3.1. set</a></li>
-<li><a href="#org3a49775">3.2. add/remove</a></li>
-<li><a href="#org6dae279">3.3. clone</a></li>
-<li><a href="#orgd6bd311">3.4. move node</a></li>
+<li><a href="#orga47d8c1">3.1. set</a></li>
+<li><a href="#org571e5ab">3.2. add/remove</a></li>
+<li><a href="#org8582cc7">3.3. clone</a></li>
+<li><a href="#orgd1adeff">3.4. move node</a></li>
 </ul>
 </li>
-<li><a href="#org6c775e4">4. traversal</a>
+<li><a href="#org85f7e02">4. traversal</a>
 <ul>
-<li><a href="#org03d3bca">4.1. range based loop(C++11)</a></li>
-<li><a href="#orgd8cc86f">4.2. iterators</a></li>
-<li><a href="#orgff3c5e5">4.3. xml<sub>tree</sub><sub>walker</sub></a></li>
-<li><a href="#org89d4616">4.4. simple path</a></li>
+<li><a href="#org29edffd">4.1. range based loop(C++11)</a></li>
+<li><a href="#org1268676">4.2. iterators</a></li>
+<li><a href="#org915db94">4.3. xml<sub>tree</sub><sub>walker</sub></a></li>
+<li><a href="#org783c759">4.4. simple path</a></li>
 </ul>
 </li>
-<li><a href="#orgb993c4b">5. xpath</a>
+<li><a href="#org4672b5d">5. xpath</a>
 <ul>
-<li><a href="#orga31b3ff">5.1. types</a></li>
-<li><a href="#orgb32b952">5.2. query</a>
+<li><a href="#org0330fcd">5.1. types</a></li>
+<li><a href="#orgf5e5ba3">5.2. query</a>
 <ul>
-<li><a href="#orga42325c">5.2.1. precompiled query</a></li>
+<li><a href="#org48e335a">5.2.1. precompiled query</a></li>
 </ul>
 </li>
 </ul>
@@ -283,12 +281,12 @@ This is some frequently used APIs and functionalities I used.
 For a complete reference, refer to <a href="http://pugixml.org">http://pugixml.org</a>.
 </p>
 
-<div id="outline-container-orgfa3a618" class="outline-2">
-<h2 id="orgfa3a618"><span class="section-number-2">1</span> load</h2>
+<div id="outline-container-orgd76b965" class="outline-2">
+<h2 id="orgd76b965"><span class="section-number-2">1</span> load</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org6713d38" class="outline-3">
-<h3 id="org6713d38"><span class="section-number-3">1.1</span> parse result</h3>
+<div id="outline-container-org3b668a3" class="outline-3">
+<h3 id="org3b668a3"><span class="section-number-3">1.1</span> parse result</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #a020f0;">struct</span> <span style="color: #228b22;">xml_parse_result</span> {
@@ -314,8 +312,8 @@ xml<sub>parse</sub><sub>status</sub>
 </div>
 </div>
 
-<div id="outline-container-orga763cf7" class="outline-3">
-<h3 id="orga763cf7"><span class="section-number-3">1.2</span> parse options</h3>
+<div id="outline-container-orgac302c6" class="outline-3">
+<h3 id="orgac302c6"><span class="section-number-3">1.2</span> parse options</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The usual bitwise arithmetics: `mask | flag` and `mask &amp; ~flag`.
@@ -332,12 +330,12 @@ The usual bitwise arithmetics: `mask | flag` and `mask &amp; ~flag`.
 </div>
 
 
-<div id="outline-container-org30b847c" class="outline-3">
-<h3 id="org30b847c"><span class="section-number-3">1.3</span> Load</h3>
+<div id="outline-container-orgaac1442" class="outline-3">
+<h3 id="orgaac1442"><span class="section-number-3">1.3</span> Load</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org23117d4" class="outline-4">
-<h4 id="org23117d4"><span class="section-number-4">1.3.1</span> from file</h4>
+<div id="outline-container-orga27d853" class="outline-4">
+<h4 id="orga27d853"><span class="section-number-4">1.3.1</span> from file</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 API:
@@ -364,8 +362,8 @@ pugi::xml_parse_result result = doc.load_file(<span style="color: #8b2252;">"tre
 </div>
 </div>
 
-<div id="outline-container-orgcfcd57b" class="outline-4">
-<h4 id="orgcfcd57b"><span class="section-number-4">1.3.2</span> from memory</h4>
+<div id="outline-container-orge423728" class="outline-4">
+<h4 id="orge423728"><span class="section-number-4">1.3.2</span> from memory</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 API:
@@ -403,8 +401,8 @@ pugi::xml_parse_result result = doc.load_string(<span style="color: #8b2252;">"&
 </div>
 </div>
 
-<div id="outline-container-orgc289e71" class="outline-4">
-<h4 id="orgc289e71"><span class="section-number-4">1.3.3</span> from IO streams</h4>
+<div id="outline-container-org218a4bc" class="outline-4">
+<h4 id="org218a4bc"><span class="section-number-4">1.3.3</span> from IO streams</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 API:
@@ -433,8 +431,8 @@ pugi::xml_parse_result result = doc.load(stream);
 </div>
 </div>
 
-<div id="outline-container-org2726f98" class="outline-2">
-<h2 id="org2726f98"><span class="section-number-2">2</span> read</h2>
+<div id="outline-container-org7b90e88" class="outline-2">
+<h2 id="org7b90e88"><span class="section-number-2">2</span> read</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 if some node doesn't have name or value,
@@ -536,12 +534,12 @@ xml_text&amp; xml_text::operator=(<span style="color: #228b22;">unsigned</span> 
 </div>
 </div>
 </div>
-<div id="outline-container-org042b1e6" class="outline-2">
-<h2 id="org042b1e6"><span class="section-number-2">3</span> modify</h2>
+<div id="outline-container-org7b33d90" class="outline-2">
+<h2 id="org7b33d90"><span class="section-number-2">3</span> modify</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgca04ee7" class="outline-3">
-<h3 id="orgca04ee7"><span class="section-number-3">3.1</span> set</h3>
+<div id="outline-container-orga47d8c1" class="outline-3">
+<h3 id="orga47d8c1"><span class="section-number-3">3.1</span> set</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #228b22;">bool</span> <span style="color: #0000ff;">xml_node</span>::set_name(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">char_t</span>* <span style="color: #a0522d;">rhs</span>);
@@ -575,8 +573,8 @@ xml_attribute&amp; xml_attribute::operator=(<span style="color: #228b22;">unsign
 </div>
 </div>
 </div>
-<div id="outline-container-org3a49775" class="outline-3">
-<h3 id="org3a49775"><span class="section-number-3">3.2</span> add/remove</h3>
+<div id="outline-container-org571e5ab" class="outline-3">
+<h3 id="org571e5ab"><span class="section-number-3">3.2</span> add/remove</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 node:
@@ -641,8 +639,8 @@ node.append_child(<span style="color: #008b8b;">pugi</span>::node_pcdata).set_va
 </div>
 </div>
 
-<div id="outline-container-org6dae279" class="outline-3">
-<h3 id="org6dae279"><span class="section-number-3">3.3</span> clone</h3>
+<div id="outline-container-org8582cc7" class="outline-3">
+<h3 id="org8582cc7"><span class="section-number-3">3.3</span> clone</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 node:
@@ -676,8 +674,8 @@ attr:
 </div>
 </div>
 
-<div id="outline-container-orgd6bd311" class="outline-3">
-<h3 id="orgd6bd311"><span class="section-number-3">3.4</span> move node</h3>
+<div id="outline-container-orgd1adeff" class="outline-3">
+<h3 id="orgd1adeff"><span class="section-number-3">3.4</span> move node</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 copy the node and remove the origin.
@@ -697,8 +695,8 @@ The following API avoid that.
 </div>
 
 
-<div id="outline-container-org6c775e4" class="outline-2">
-<h2 id="org6c775e4"><span class="section-number-2">4</span> traversal</h2>
+<div id="outline-container-org85f7e02" class="outline-2">
+<h2 id="org85f7e02"><span class="section-number-2">4</span> traversal</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 node:
@@ -747,8 +745,8 @@ Attributes do not have a link to their parent nodes because of memory consumptio
 </p>
 </div>
 
-<div id="outline-container-org03d3bca" class="outline-3">
-<h3 id="org03d3bca"><span class="section-number-3">4.1</span> range based loop(C++11)</h3>
+<div id="outline-container-org29edffd" class="outline-3">
+<h3 id="org29edffd"><span class="section-number-3">4.1</span> range based loop(C++11)</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-C">implementation-defined-type xml_node::children() <span style="color: #a020f0;">const</span>;
@@ -770,8 +768,8 @@ example
 </div>
 </div>
 
-<div id="outline-container-orgd8cc86f" class="outline-3">
-<h3 id="orgd8cc86f"><span class="section-number-3">4.2</span> iterators</h3>
+<div id="outline-container-org1268676" class="outline-3">
+<h3 id="org1268676"><span class="section-number-3">4.2</span> iterators</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 API:
@@ -804,8 +802,8 @@ example
 </div>
 </div>
 
-<div id="outline-container-orgff3c5e5" class="outline-3">
-<h3 id="orgff3c5e5"><span class="section-number-3">4.3</span> xml<sub>tree</sub><sub>walker</sub></h3>
+<div id="outline-container-org915db94" class="outline-3">
+<h3 id="org915db94"><span class="section-number-3">4.3</span> xml<sub>tree</sub><sub>walker</sub></h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 API:
@@ -852,8 +850,8 @@ doc.traverse(walker);
 </div>
 </div>
 
-<div id="outline-container-org89d4616" class="outline-3">
-<h3 id="org89d4616"><span class="section-number-3">4.4</span> simple path</h3>
+<div id="outline-container-org783c759" class="outline-3">
+<h3 id="org783c759"><span class="section-number-3">4.4</span> simple path</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #228b22;">string_t</span> <span style="color: #0000ff;">xml_node</span>::path(<span style="color: #228b22;">char_t</span> <span style="color: #a0522d;">delimiter</span> = <span style="color: #8b2252;">'/'</span>) <span style="color: #a020f0;">const</span>;
@@ -871,12 +869,12 @@ path can be relative or absolute(start with delimiter).
 </div>
 </div>
 
-<div id="outline-container-orgb993c4b" class="outline-2">
-<h2 id="orgb993c4b"><span class="section-number-2">5</span> xpath</h2>
+<div id="outline-container-org4672b5d" class="outline-2">
+<h2 id="org4672b5d"><span class="section-number-2">5</span> xpath</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orga31b3ff" class="outline-3">
-<h3 id="orga31b3ff"><span class="section-number-3">5.1</span> types</h3>
+<div id="outline-container-org0330fcd" class="outline-3">
+<h3 id="org0330fcd"><span class="section-number-3">5.1</span> types</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 `xpath<sub>node</sub>` can be either a node or an attribute.
@@ -903,8 +901,8 @@ path can be relative or absolute(start with delimiter).
 </div>
 </div>
 
-<div id="outline-container-orgb32b952" class="outline-3">
-<h3 id="orgb32b952"><span class="section-number-3">5.2</span> query</h3>
+<div id="outline-container-orgf5e5ba3" class="outline-3">
+<h3 id="orgf5e5ba3"><span class="section-number-3">5.2</span> query</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">equal to select_nodes().first()</span>
@@ -923,8 +921,8 @@ path can be relative or absolute(start with delimiter).
 </div>
 </div>
 
-<div id="outline-container-orga42325c" class="outline-4">
-<h4 id="orga42325c"><span class="section-number-4">5.2.1</span> precompiled query</h4>
+<div id="outline-container-org48e335a" class="outline-4">
+<h4 id="org48e335a"><span class="section-number-4">5.2.1</span> precompiled query</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 constructor:
@@ -958,9 +956,7 @@ API:
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

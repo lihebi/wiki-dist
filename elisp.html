@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-23 Tue 03:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Lisp</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -257,77 +255,77 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org31c0f34">1. IO</a></li>
-<li><a href="#orge0abffd">2. Symbol</a></li>
-<li><a href="#org2f19359">3. Regular Expression</a></li>
-<li><a href="#org6dd43c3">4. Lisp Common Sense</a></li>
-<li><a href="#orgc58295e">5. string</a></li>
-<li><a href="#orgb037d0c">6. list</a></li>
-<li><a href="#org938cb04">7. Sequence</a></li>
-<li><a href="#org55247f0">8. Hash Table</a></li>
-<li><a href="#org87f4032">9. Function</a></li>
-<li><a href="#org3d94999">10. Macro</a></li>
-<li><a href="#org4cead25">11. Control Structure</a></li>
-<li><a href="#orge38c6f7">12. Packages</a>
+<li><a href="#orgb11dee2">1. IO</a></li>
+<li><a href="#org5076e25">2. Symbol</a></li>
+<li><a href="#orgbf53ae9">3. Regular Expression</a></li>
+<li><a href="#org0e1bf3f">4. Lisp Common Sense</a></li>
+<li><a href="#org3940f63">5. string</a></li>
+<li><a href="#org9c338d9">6. list</a></li>
+<li><a href="#org10148a3">7. Sequence</a></li>
+<li><a href="#org5bba225">8. Hash Table</a></li>
+<li><a href="#org39a42f1">9. Function</a></li>
+<li><a href="#orga3e3aca">10. Macro</a></li>
+<li><a href="#orga278ce9">11. Control Structure</a></li>
+<li><a href="#orgc0aeb23">12. Packages</a>
 <ul>
-<li><a href="#org5e2c5f3">12.1. Dash.el</a></li>
-<li><a href="#org4b8d423">12.2. s.el</a></li>
-<li><a href="#org2b9accc">12.3. cl-lib.el loop</a>
+<li><a href="#org2c176a3">12.1. Dash.el</a></li>
+<li><a href="#orgcf1040b">12.2. s.el</a></li>
+<li><a href="#orgec7f050">12.3. cl-lib.el loop</a>
 <ul>
-<li><a href="#org51218d1">12.3.1. general loop form</a></li>
-<li><a href="#org66827e4">12.3.2. for clauses</a></li>
-<li><a href="#orgf70bcaa">12.3.3. iteration clauses</a></li>
-<li><a href="#org35c6f56">12.3.4. accumulation clauses</a></li>
-<li><a href="#org5e0850d">12.3.5. Other clauses</a></li>
+<li><a href="#orgccb91ad">12.3.1. general loop form</a></li>
+<li><a href="#org28b5eff">12.3.2. for clauses</a></li>
+<li><a href="#orga57d5b6">12.3.3. iteration clauses</a></li>
+<li><a href="#orgf1eed06">12.3.4. accumulation clauses</a></li>
+<li><a href="#org1dfb3c8">12.3.5. Other clauses</a></li>
 </ul>
 </li>
-<li><a href="#org3df4ce1">12.4. cl-lib other</a></li>
+<li><a href="#org54a50e5">12.4. cl-lib other</a></li>
 </ul>
 </li>
-<li><a href="#orgb615c53">13. Debugging</a>
+<li><a href="#orgb50c1af">13. Debugging</a>
 <ul>
-<li><a href="#org62a0926">13.1. lisp debugger</a></li>
-<li><a href="#orge4b0794">13.2. Edebug</a>
+<li><a href="#org85c16f9">13.1. lisp debugger</a></li>
+<li><a href="#org13657f1">13.2. Edebug</a>
 <ul>
-<li><a href="#org2159625">13.2.1. breakpoints</a></li>
-<li><a href="#org1ec747a">13.2.2. Moving of point</a></li>
-<li><a href="#org7bb1cde">13.2.3. executions</a></li>
-<li><a href="#org0262793">13.2.4. evaluation</a></li>
-<li><a href="#org6e4b4f3">13.2.5. other commands</a></li>
+<li><a href="#org6838791">13.2.1. breakpoints</a></li>
+<li><a href="#org000dae8">13.2.2. Moving of point</a></li>
+<li><a href="#orgae2f745">13.2.3. executions</a></li>
+<li><a href="#org33d8288">13.2.4. evaluation</a></li>
+<li><a href="#org8ca296f">13.2.5. other commands</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd819a38">14. Unit Testing</a>
+<li><a href="#org14c076c">14. Unit Testing</a>
 <ul>
-<li><a href="#orgba8fd8d">14.1. Write test</a></li>
-<li><a href="#orgc341a7e">14.2. Run test</a></li>
+<li><a href="#org5c50738">14.1. Write test</a></li>
+<li><a href="#org4fa16a7">14.2. Run test</a></li>
 </ul>
 </li>
-<li><a href="#org2bb9304">15. Some random code snippets</a>
+<li><a href="#org1bd76ca">15. Some random code snippets</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org80cbf49">15.0.1. Url retrieval</a></li>
+<li><a href="#org7b9c5e3">15.0.1. Url retrieval</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgbedcb62">16. Emacs Related</a>
+<li><a href="#org3eaa348">16. Emacs Related</a>
 <ul>
-<li><a href="#org81d33c6">16.1. Buffer</a></li>
-<li><a href="#orgd89cb25">16.2. Position</a></li>
-<li><a href="#org516c848">16.3. Marker</a></li>
-<li><a href="#org44a118f">16.4. Process</a></li>
-<li><a href="#orge81d0d8">16.5. File System Related</a>
+<li><a href="#org00c0f6b">16.1. Buffer</a></li>
+<li><a href="#org9a1f4e6">16.2. Position</a></li>
+<li><a href="#org1396dfd">16.3. Marker</a></li>
+<li><a href="#orgb709107">16.4. Process</a></li>
+<li><a href="#orgf77ec99">16.5. File System Related</a>
 <ul>
-<li><a href="#orgb51903b">16.5.1. Traversing</a></li>
-<li><a href="#orgca2f2bd">16.5.2. Predicates</a></li>
+<li><a href="#orgb108acd">16.5.1. Traversing</a></li>
+<li><a href="#orgdce1c29">16.5.2. Predicates</a></li>
 </ul>
 </li>
-<li><a href="#org4de1294">16.6. Other</a>
+<li><a href="#org4546a8f">16.6. Other</a>
 <ul>
-<li><a href="#org8d96921">16.6.1. make-obsolete-variable</a></li>
+<li><a href="#org458e637">16.6.1. make-obsolete-variable</a></li>
 </ul>
 </li>
 </ul>
@@ -355,8 +353,8 @@ to the (one) place where the information I want is.
 </p>
 </blockquote>
 
-<div id="outline-container-org31c0f34" class="outline-2">
-<h2 id="org31c0f34"><span class="section-number-2">1</span> IO</h2>
+<div id="outline-container-orgb11dee2" class="outline-2">
+<h2 id="orgb11dee2"><span class="section-number-2">1</span> IO</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>princ</code> is for human, it print object without quotes. <code>print</code> is the
@@ -372,8 +370,8 @@ printing, so the echo area will have two copy of the object.
 </div>
 
 
-<div id="outline-container-orge0abffd" class="outline-2">
-<h2 id="orge0abffd"><span class="section-number-2">2</span> Symbol</h2>
+<div id="outline-container-org5076e25" class="outline-2">
+<h2 id="org5076e25"><span class="section-number-2">2</span> Symbol</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Since elisp is lisp-1, a symbol can be both variable and a function at
@@ -436,8 +434,8 @@ in all buffers.
 </div>
 
 
-<div id="outline-container-org2f19359" class="outline-2">
-<h2 id="org2f19359"><span class="section-number-2">3</span> Regular Expression</h2>
+<div id="outline-container-orgbf53ae9" class="outline-2">
+<h2 id="orgbf53ae9"><span class="section-number-2">3</span> Regular Expression</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 You can use basic <code>.*+?</code>, as well as non-greedy counter part <code>*?</code>,
@@ -507,8 +505,8 @@ Finally, <code>replace-regexp-in-string</code> replaces all matches in a string.
 </div>
 </div>
 
-<div id="outline-container-org6dd43c3" class="outline-2">
-<h2 id="org6dd43c3"><span class="section-number-2">4</span> Lisp Common Sense</h2>
+<div id="outline-container-org0e1bf3f" class="outline-2">
+<h2 id="org0e1bf3f"><span class="section-number-2">4</span> Lisp Common Sense</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <code>eq</code>, <code>equal</code>, <code>=</code> are available.
@@ -530,8 +528,8 @@ Numeric function:
 
 
 
-<div id="outline-container-orgc58295e" class="outline-2">
-<h2 id="orgc58295e"><span class="section-number-2">5</span> string</h2>
+<div id="outline-container-org3940f63" class="outline-2">
+<h2 id="org3940f63"><span class="section-number-2">5</span> string</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Creating string by <code>make-string</code>. Most likely we are creating from
@@ -550,8 +548,8 @@ follows C style though, using <code>%s</code> as printed representation
 </div>
 </div>
 
-<div id="outline-container-orgb037d0c" class="outline-2">
-<h2 id="orgb037d0c"><span class="section-number-2">6</span> list</h2>
+<div id="outline-container-org9c338d9" class="outline-2">
+<h2 id="org9c338d9"><span class="section-number-2">6</span> list</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 List is defined as the last cdr to be <code>nil</code>.  If the last is not nil,
@@ -618,8 +616,8 @@ plist from symbol, <code>setplist</code> gives a plist to a symbol.
 </div>
 </div>
 
-<div id="outline-container-org938cb04" class="outline-2">
-<h2 id="org938cb04"><span class="section-number-2">7</span> Sequence</h2>
+<div id="outline-container-org10148a3" class="outline-2">
+<h2 id="org10148a3"><span class="section-number-2">7</span> Sequence</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Sequence is more general than list, specifically it also covers array.
@@ -634,8 +632,8 @@ or <code>vector</code> constructs vector, and <code>aref</code> and <code>aset</
 </div>
 </div>
 
-<div id="outline-container-org55247f0" class="outline-2">
-<h2 id="org55247f0"><span class="section-number-2">8</span> Hash Table</h2>
+<div id="outline-container-org5bba225" class="outline-2">
+<h2 id="org5bba225"><span class="section-number-2">8</span> Hash Table</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 <code>make-hash-table</code> constructs a table, and access by <code>gethash</code>,
@@ -646,8 +644,8 @@ of <code>map</code>.
 </div>
 </div>
 
-<div id="outline-container-org87f4032" class="outline-2">
-<h2 id="org87f4032"><span class="section-number-2">9</span> Function</h2>
+<div id="outline-container-org39a42f1" class="outline-2">
+<h2 id="org39a42f1"><span class="section-number-2">9</span> Function</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Functions are defined by following.  To specify optional argument, use
@@ -691,8 +689,8 @@ and it can differentiate <code>C-u</code> prefix of the command.
 </div>
 
 
-<div id="outline-container-org3d94999" class="outline-2">
-<h2 id="org3d94999"><span class="section-number-2">10</span> Macro</h2>
+<div id="outline-container-orga3e3aca" class="outline-2">
+<h2 id="orga3e3aca"><span class="section-number-2">10</span> Macro</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 <code>defmacro name (args) body...</code>
@@ -706,8 +704,8 @@ evaluated for result.
 </div>
 </div>
 
-<div id="outline-container-org4cead25" class="outline-2">
-<h2 id="org4cead25"><span class="section-number-2">11</span> Control Structure</h2>
+<div id="outline-container-orga278ce9" class="outline-2">
+<h2 id="orga278ce9"><span class="section-number-2">11</span> Control Structure</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Sequential structure has <code>progn</code>, <code>prog1</code>, <code>prog2</code>.
@@ -746,12 +744,12 @@ nil. <code>dotimes</code> bind var to <code>[0,count)</code>.
 </div>
 
 
-<div id="outline-container-orge38c6f7" class="outline-2">
-<h2 id="orge38c6f7"><span class="section-number-2">12</span> Packages</h2>
+<div id="outline-container-orgc0aeb23" class="outline-2">
+<h2 id="orgc0aeb23"><span class="section-number-2">12</span> Packages</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-org5e2c5f3" class="outline-3">
-<h3 id="org5e2c5f3"><span class="section-number-3">12.1</span> Dash.el</h3>
+<div id="outline-container-org2c176a3" class="outline-3">
+<h3 id="org2c176a3"><span class="section-number-3">12.1</span> Dash.el</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 <a href="https://github.com/magnars/dash.el">https://github.com/magnars/dash.el</a>
@@ -783,8 +781,8 @@ the anaphoric form with double dashes executed with <code>it</code> exposed as t
 </div>
 </div>
 
-<div id="outline-container-org4b8d423" class="outline-3">
-<h3 id="org4b8d423"><span class="section-number-3">12.2</span> s.el</h3>
+<div id="outline-container-orgcf1040b" class="outline-3">
+<h3 id="orgcf1040b"><span class="section-number-3">12.2</span> s.el</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 <a href="https://github.com/magnars/s.el">https://github.com/magnars/s.el</a>
@@ -796,8 +794,8 @@ The string manipulation library
 </div>
 </div>
 
-<div id="outline-container-org2b9accc" class="outline-3">
-<h3 id="org2b9accc"><span class="section-number-3">12.3</span> cl-lib.el loop</h3>
+<div id="outline-container-orgec7f050" class="outline-3">
+<h3 id="orgec7f050"><span class="section-number-3">12.3</span> cl-lib.el loop</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 This package ports many common lisp facilities into elisp,
@@ -806,8 +804,8 @@ So this section, at least for now, focus on <code>cl-loop</code>.
 </p>
 </div>
 
-<div id="outline-container-org51218d1" class="outline-4">
-<h4 id="org51218d1"><span class="section-number-4">12.3.1</span> general loop form</h4>
+<div id="outline-container-orgccb91ad" class="outline-4">
+<h4 id="orgccb91ad"><span class="section-number-4">12.3.1</span> general loop form</h4>
 <div class="outline-text-4" id="text-12-3-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">cl-loop</span> clauses...)
@@ -822,8 +820,8 @@ The clauses can be:
 </ul>
 </div>
 </div>
-<div id="outline-container-org66827e4" class="outline-4">
-<h4 id="org66827e4"><span class="section-number-4">12.3.2</span> for clauses</h4>
+<div id="outline-container-org28b5eff" class="outline-4">
+<h4 id="org28b5eff"><span class="section-number-4">12.3.2</span> for clauses</h4>
 <div class="outline-text-4" id="text-12-3-2">
 <dl class="org-dl">
 <dt><code>for VAR from FROM to TO by STEP</code></dt><dd><ul class="org-ul">
@@ -843,8 +841,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-orgf70bcaa" class="outline-4">
-<h4 id="orgf70bcaa"><span class="section-number-4">12.3.3</span> iteration clauses</h4>
+<div id="outline-container-orga57d5b6" class="outline-4">
+<h4 id="orga57d5b6"><span class="section-number-4">12.3.3</span> iteration clauses</h4>
 <div class="outline-text-4" id="text-12-3-3">
 <dl class="org-dl">
 <dt><code>repeat integer</code></dt><dd>repeat the loop how many times</dd>
@@ -857,8 +855,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-org35c6f56" class="outline-4">
-<h4 id="org35c6f56"><span class="section-number-4">12.3.4</span> accumulation clauses</h4>
+<div id="outline-container-orgf1eed06" class="outline-4">
+<h4 id="orgf1eed06"><span class="section-number-4">12.3.4</span> accumulation clauses</h4>
 <div class="outline-text-4" id="text-12-3-4">
 <dl class="org-dl">
 <dt><code>collect form</code></dt><dd>collect into a list and return the list in the end</dd>
@@ -872,8 +870,8 @@ The <code>VAR</code> is bound to <code>EXPR1</code> initially, and will be set b
 </div>
 </div>
 
-<div id="outline-container-org5e0850d" class="outline-4">
-<h4 id="org5e0850d"><span class="section-number-4">12.3.5</span> Other clauses</h4>
+<div id="outline-container-org1dfb3c8" class="outline-4">
+<h4 id="org1dfb3c8"><span class="section-number-4">12.3.5</span> Other clauses</h4>
 <div class="outline-text-4" id="text-12-3-5">
 <dl class="org-dl">
 <dt><code>with var = value</code></dt><dd>set the value one-time at the beginning of the loop.
@@ -893,8 +891,8 @@ Often used as return variable.
 </div>
 </div>
 
-<div id="outline-container-org3df4ce1" class="outline-3">
-<h3 id="org3df4ce1"><span class="section-number-3">12.4</span> cl-lib other</h3>
+<div id="outline-container-org54a50e5" class="outline-3">
+<h3 id="org54a50e5"><span class="section-number-3">12.4</span> cl-lib other</h3>
 <div class="outline-text-3" id="text-12-4">
 <p>
 Of course, cl-lib provides much more than just loops &#x2026;
@@ -906,12 +904,12 @@ Of course, cl-lib provides much more than just loops &#x2026;
 </div>
 </div>
 
-<div id="outline-container-orgb615c53" class="outline-2">
-<h2 id="orgb615c53"><span class="section-number-2">13</span> Debugging</h2>
+<div id="outline-container-orgb50c1af" class="outline-2">
+<h2 id="orgb50c1af"><span class="section-number-2">13</span> Debugging</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org62a0926" class="outline-3">
-<h3 id="org62a0926"><span class="section-number-3">13.1</span> lisp debugger</h3>
+<div id="outline-container-org85c16f9" class="outline-3">
+<h3 id="org85c16f9"><span class="section-number-3">13.1</span> lisp debugger</h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 The simplest debugger is called <code>lisp debugger</code>.
@@ -931,8 +929,8 @@ In the debugger buffer, the following commands are available:
 </dl>
 </div>
 </div>
-<div id="outline-container-orge4b0794" class="outline-3">
-<h3 id="orge4b0794"><span class="section-number-3">13.2</span> Edebug</h3>
+<div id="outline-container-org13657f1" class="outline-3">
+<h3 id="org13657f1"><span class="section-number-3">13.2</span> Edebug</h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 For this to work, first you need to instrument the code.
@@ -951,8 +949,8 @@ The <i>stop points</i> are
 </ul>
 </div>
 
-<div id="outline-container-org2159625" class="outline-4">
-<h4 id="org2159625"><span class="section-number-4">13.2.1</span> breakpoints</h4>
+<div id="outline-container-org6838791" class="outline-4">
+<h4 id="org6838791"><span class="section-number-4">13.2.1</span> breakpoints</h4>
 <div class="outline-text-4" id="text-13-2-1">
 <dl class="org-dl">
 <dt><code>b</code></dt><dd>set a breakpoint</dd>
@@ -966,8 +964,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 
-<div id="outline-container-org1ec747a" class="outline-4">
-<h4 id="org1ec747a"><span class="section-number-4">13.2.2</span> Moving of point</h4>
+<div id="outline-container-org000dae8" class="outline-4">
+<h4 id="org000dae8"><span class="section-number-4">13.2.2</span> Moving of point</h4>
 <div class="outline-text-4" id="text-13-2-2">
 <dl class="org-dl">
 <dt><code>B</code></dt><dd>move point to the next breakpoint</dd>
@@ -976,8 +974,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 
-<div id="outline-container-org7bb1cde" class="outline-4">
-<h4 id="org7bb1cde"><span class="section-number-4">13.2.3</span> executions</h4>
+<div id="outline-container-orgae2f745" class="outline-4">
+<h4 id="orgae2f745"><span class="section-number-4">13.2.3</span> executions</h4>
 <div class="outline-text-4" id="text-13-2-3">
 <dl class="org-dl">
 <dt><code>&lt;SPC&gt;</code></dt><dd>run to next stop point</dd>
@@ -998,8 +996,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </dl>
 </div>
 </div>
-<div id="outline-container-org0262793" class="outline-4">
-<h4 id="org0262793"><span class="section-number-4">13.2.4</span> evaluation</h4>
+<div id="outline-container-org33d8288" class="outline-4">
+<h4 id="org33d8288"><span class="section-number-4">13.2.4</span> evaluation</h4>
 <div class="outline-text-4" id="text-13-2-4">
 <dl class="org-dl">
 <dt><code>e EXP</code></dt><dd>evaluate a prompt expression</dd>
@@ -1008,8 +1006,8 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 </div>
 </div>
 
-<div id="outline-container-org6e4b4f3" class="outline-4">
-<h4 id="org6e4b4f3"><span class="section-number-4">13.2.5</span> other commands</h4>
+<div id="outline-container-org8ca296f" class="outline-4">
+<h4 id="org8ca296f"><span class="section-number-4">13.2.5</span> other commands</h4>
 <div class="outline-text-4" id="text-13-2-5">
 <dl class="org-dl">
 <dt><code>?</code></dt><dd>show help</dd>
@@ -1023,16 +1021,16 @@ You can also set the <i>source breakpoints</i>, by adding <code>(edebug)</code>.
 
 
 
-<div id="outline-container-orgd819a38" class="outline-2">
-<h2 id="orgd819a38"><span class="section-number-2">14</span> Unit Testing</h2>
+<div id="outline-container-org14c076c" class="outline-2">
+<h2 id="org14c076c"><span class="section-number-2">14</span> Unit Testing</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 Use <code>ert</code> for unit testing.
 </p>
 </div>
 
-<div id="outline-container-orgba8fd8d" class="outline-3">
-<h3 id="orgba8fd8d"><span class="section-number-3">14.1</span> Write test</h3>
+<div id="outline-container-org5c50738" class="outline-3">
+<h3 id="org5c50738"><span class="section-number-3">14.1</span> Write test</h3>
 <div class="outline-text-3" id="text-14-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">ert-deftest</span> <span style="color: #0000ff;">addition-test</span>()
@@ -1074,8 +1072,8 @@ skip test
 </div>
 </div>
 
-<div id="outline-container-orgc341a7e" class="outline-3">
-<h3 id="orgc341a7e"><span class="section-number-3">14.2</span> Run test</h3>
+<div id="outline-container-org4fa16a7" class="outline-3">
+<h3 id="org4fa16a7"><span class="section-number-3">14.2</span> Run test</h3>
 <div class="outline-text-3" id="text-14-2">
 <p>
 <code>M-x ert</code> will run it. The selector of test accept some more fancy staff like regular expression matching.
@@ -1106,8 +1104,8 @@ Also, select test by this:
 </div>
 </div>
 
-<div id="outline-container-org2bb9304" class="outline-2">
-<h2 id="org2bb9304"><span class="section-number-2">15</span> Some random code snippets</h2>
+<div id="outline-container-org1bd76ca" class="outline-2">
+<h2 id="org1bd76ca"><span class="section-number-2">15</span> Some random code snippets</h2>
 <div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 <pre class="src src-elisp">(cl-prettyprint (font-family-list)) <span style="color: #b22222;">;; </span><span style="color: #b22222;">see all font family available on this system</span>
@@ -1115,8 +1113,8 @@ Also, select test by this:
 </div>
 </div>
 
-<div id="outline-container-org80cbf49" class="outline-4">
-<h4 id="org80cbf49"><span class="section-number-4">15.0.1</span> Url retrieval</h4>
+<div id="outline-container-org7b9c5e3" class="outline-4">
+<h4 id="org7b9c5e3"><span class="section-number-4">15.0.1</span> Url retrieval</h4>
 <div class="outline-text-4" id="text-15-0-1">
 <div class="org-src-container">
 <pre class="src src-elisp">  (<span style="color: #a020f0;">with-current-buffer</span> (url-retrieve-synchronously <span style="color: #8b2252;">"http://scholar.google.com/scholar?q=segmented symbolic analysis"</span>)
@@ -1135,12 +1133,12 @@ Also, select test by this:
 </div>
 
 
-<div id="outline-container-orgbedcb62" class="outline-2">
-<h2 id="orgbedcb62"><span class="section-number-2">16</span> Emacs Related</h2>
+<div id="outline-container-org3eaa348" class="outline-2">
+<h2 id="org3eaa348"><span class="section-number-2">16</span> Emacs Related</h2>
 <div class="outline-text-2" id="text-16">
 </div>
-<div id="outline-container-org81d33c6" class="outline-3">
-<h3 id="org81d33c6"><span class="section-number-3">16.1</span> Buffer</h3>
+<div id="outline-container-org00c0f6b" class="outline-3">
+<h3 id="org00c0f6b"><span class="section-number-3">16.1</span> Buffer</h3>
 <div class="outline-text-3" id="text-16-1">
 <ul class="org-ul">
 <li><code>with-temp-buffer</code>
@@ -1199,8 +1197,8 @@ switch buffer to the last buffer respectively. A buffer is killed by
 </div>
 </div>
 
-<div id="outline-container-orgd89cb25" class="outline-3">
-<h3 id="orgd89cb25"><span class="section-number-3">16.2</span> Position</h3>
+<div id="outline-container-org9a1f4e6" class="outline-3">
+<h3 id="org9a1f4e6"><span class="section-number-3">16.2</span> Position</h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 A position is the index in a buffer. There of course will be a
@@ -1257,8 +1255,8 @@ position of the actual buffer.</li>
 </div>
 
 
-<div id="outline-container-org516c848" class="outline-3">
-<h3 id="org516c848"><span class="section-number-3">16.3</span> Marker</h3>
+<div id="outline-container-org1396dfd" class="outline-3">
+<h3 id="org1396dfd"><span class="section-number-3">16.3</span> Marker</h3>
 <div class="outline-text-3" id="text-16-3">
 <p>
 A marker has two component: the buffer it is in, and the position in
@@ -1303,8 +1301,8 @@ mark ring automatically.
 </div>
 </div>
 
-<div id="outline-container-org44a118f" class="outline-3">
-<h3 id="org44a118f"><span class="section-number-3">16.4</span> Process</h3>
+<div id="outline-container-orgb709107" class="outline-3">
+<h3 id="orgb709107"><span class="section-number-3">16.4</span> Process</h3>
 <div class="outline-text-3" id="text-16-4">
 <p>
 Elisp can create async or sync processes. There are three primitives
@@ -1353,12 +1351,12 @@ server. Alternatively, <code>open-network-stream</code> creates TCP specifically
 </div>
 
 
-<div id="outline-container-orge81d0d8" class="outline-3">
-<h3 id="orge81d0d8"><span class="section-number-3">16.5</span> File System Related</h3>
+<div id="outline-container-orgf77ec99" class="outline-3">
+<h3 id="orgf77ec99"><span class="section-number-3">16.5</span> File System Related</h3>
 <div class="outline-text-3" id="text-16-5">
 </div>
-<div id="outline-container-orgb51903b" class="outline-4">
-<h4 id="orgb51903b"><span class="section-number-4">16.5.1</span> Traversing</h4>
+<div id="outline-container-orgb108acd" class="outline-4">
+<h4 id="orgb108acd"><span class="section-number-4">16.5.1</span> Traversing</h4>
 <div class="outline-text-4" id="text-16-5-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(directory-files DIRECTORY <span style="color: #228b22;">&amp;optional</span> FULL MATCH NOSORT)
@@ -1379,8 +1377,8 @@ Usage example:
 </div>
 </div>
 
-<div id="outline-container-orgca2f2bd" class="outline-4">
-<h4 id="orgca2f2bd"><span class="section-number-4">16.5.2</span> Predicates</h4>
+<div id="outline-container-orgdce1c29" class="outline-4">
+<h4 id="orgdce1c29"><span class="section-number-4">16.5.2</span> Predicates</h4>
 <div class="outline-text-4" id="text-16-5-2">
 <p>
 <code>directory-files</code> will throw error if the directory does not exist.
@@ -1408,8 +1406,8 @@ file-accessible-directory-p
 </div>
 </div>
 
-<div id="outline-container-org4de1294" class="outline-3">
-<h3 id="org4de1294"><span class="section-number-3">16.6</span> Other</h3>
+<div id="outline-container-org4546a8f" class="outline-3">
+<h3 id="org4546a8f"><span class="section-number-3">16.6</span> Other</h3>
 <div class="outline-text-3" id="text-16-6">
 <ul class="org-ul">
 <li><code>(defalias SYMBOL DEFINITION &amp;optional DOCSTRING)</code>: Set SYMBOL's function definition to DEFINITION.
@@ -1418,8 +1416,8 @@ serves as a temporary patch for <code>helm-bibtex</code> update its API to <code
 </ul>
 </div>
 
-<div id="outline-container-org8d96921" class="outline-4">
-<h4 id="org8d96921"><span class="section-number-4">16.6.1</span> make-obsolete-variable</h4>
+<div id="outline-container-org458e637" class="outline-4">
+<h4 id="org458e637"><span class="section-number-4">16.6.1</span> make-obsolete-variable</h4>
 <div class="outline-text-4" id="text-16-6-1">
 <p>
 <code>(make-obsolete-variable OBSOLETE-NAME CURRENT-NAME WHEN &amp;optional ACCESS-TYPE)</code>
@@ -1465,9 +1463,7 @@ the mini-buffer will describe the obsolete detail.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-23 Tue 03:04</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,61 +233,61 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga240503">1. Common Strategy &amp; Algorithms</a></li>
-<li><a href="#orge2299dc">2. New</a>
+<li><a href="#org29fd465">1. Common Strategy &amp; Algorithms</a></li>
+<li><a href="#org1be5f3b">2. New</a>
 <ul>
-<li><a href="#org7daf38a">2.1. 1 [Easy] Two Sum</a></li>
-<li><a href="#orgc6892a1">2.2. 128 [Hard] Longest Consecutive Sequence</a></li>
-<li><a href="#orgba9ef7b">2.3. 448 [Easy] Find All Numbers Disappeared in an Array</a></li>
+<li><a href="#org9cd057d">2.1. 1 [Easy] Two Sum</a></li>
+<li><a href="#orgebd3b50">2.2. 128 [Hard] Longest Consecutive Sequence</a></li>
+<li><a href="#org50e4fbe">2.3. 448 [Easy] Find All Numbers Disappeared in an Array</a></li>
 </ul>
 </li>
-<li><a href="#org2f300f8">3. Some snippet</a></li>
-<li><a href="#org96301de">4. Some links</a></li>
-<li><a href="#org0d01cc7">5. General Tips</a>
+<li><a href="#orgeb40c16">3. Some snippet</a></li>
+<li><a href="#org38a1b3c">4. Some links</a></li>
+<li><a href="#org0bf5bb2">5. General Tips</a>
 <ul>
-<li><a href="#org5ca1f17">5.1. GCD</a></li>
+<li><a href="#org34b4832">5.1. GCD</a></li>
 </ul>
 </li>
-<li><a href="#orgf95da8c">6. Data Structures</a>
+<li><a href="#org0e23761">6. Data Structures</a>
 <ul>
-<li><a href="#org8c106b0">6.1. Trie</a></li>
+<li><a href="#org2ce81fe">6.1. Trie</a></li>
 </ul>
 </li>
-<li><a href="#org333b714">7. Famous Problems and Algorithms</a>
+<li><a href="#org68148c1">7. Famous Problems and Algorithms</a>
 <ul>
-<li><a href="#orgefdc74d">7.1. Maximum subarray problem and Kadane's algorithm</a></li>
-<li><a href="#org170a6c4">7.2. longest increasing sub-sequence(LIS)</a></li>
-<li><a href="#org8e2d703">7.3. Dynamic Programming</a>
+<li><a href="#org769d844">7.1. Maximum subarray problem and Kadane's algorithm</a></li>
+<li><a href="#orge363013">7.2. longest increasing sub-sequence(LIS)</a></li>
+<li><a href="#org8744e7c">7.3. Dynamic Programming</a>
 <ul>
-<li><a href="#orgf915e3e">7.3.1. Apply to LIS</a></li>
+<li><a href="#orge1eb852">7.3.1. Apply to LIS</a></li>
 </ul>
 </li>
-<li><a href="#org50fe96f">7.4. Patience sorting</a>
+<li><a href="#org1da7dd3">7.4. Patience sorting</a>
 <ul>
-<li><a href="#org4be4cac">7.4.1. The sort algorithm</a></li>
-<li><a href="#orgfaf2c82">7.4.2. Apply to LIS problem</a></li>
-<li><a href="#orgd1a16fa">7.4.3. LIS problem another understanding</a></li>
+<li><a href="#orgb11c906">7.4.1. The sort algorithm</a></li>
+<li><a href="#org1ff59c3">7.4.2. Apply to LIS problem</a></li>
+<li><a href="#org5922145">7.4.3. LIS problem another understanding</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org70d9fb3">8. Problems</a>
+<li><a href="#org8dee168">8. Problems</a>
 <ul>
-<li><a href="#org0e4701e">8.1. 363. Max Sum of Rectangle No Larger Than K</a></li>
-<li><a href="#org379107a">8.2. 65. valid number</a></li>
-<li><a href="#orge75f5a2">8.3. 44. Wildcard Matching (NEEDS REVISIT!!!)</a></li>
-<li><a href="#org5c8fc6d">8.4. 4. Median of Two Sorted Arrays</a></li>
-<li><a href="#org27abd5c">8.5. last remaining (contest 2)</a></li>
-<li><a href="#orga9e4e57">8.6. longest subsequence with at least k repeat / without any repeat</a></li>
+<li><a href="#org7d0d869">8.1. 363. Max Sum of Rectangle No Larger Than K</a></li>
+<li><a href="#orgdd572bd">8.2. 65. valid number</a></li>
+<li><a href="#org58b890c">8.3. 44. Wildcard Matching (NEEDS REVISIT!!!)</a></li>
+<li><a href="#orgfab57ae">8.4. 4. Median of Two Sorted Arrays</a></li>
+<li><a href="#orgb1de9d7">8.5. last remaining (contest 2)</a></li>
+<li><a href="#orgb384017">8.6. longest subsequence with at least k repeat / without any repeat</a></li>
 </ul>
 </li>
-<li><a href="#orgac37e2f">9. 400. Nth Digit</a></li>
+<li><a href="#org09ead80">9. 400. Nth Digit</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga240503" class="outline-2">
-<h2 id="orga240503"><span class="section-number-2">1</span> Common Strategy &amp; Algorithms</h2>
+<div id="outline-container-org29fd465" class="outline-2">
+<h2 id="org29fd465"><span class="section-number-2">1</span> Common Strategy &amp; Algorithms</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Divide and conquer</li>
@@ -303,12 +301,12 @@ for the JavaScript code in this tag.
 
 
 
-<div id="outline-container-orge2299dc" class="outline-2">
-<h2 id="orge2299dc"><span class="section-number-2">2</span> New</h2>
+<div id="outline-container-org1be5f3b" class="outline-2">
+<h2 id="org1be5f3b"><span class="section-number-2">2</span> New</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org7daf38a" class="outline-3">
-<h3 id="org7daf38a"><span class="section-number-3">2.1</span> 1 [Easy] Two Sum</h3>
+<div id="outline-container-org9cd057d" class="outline-3">
+<h3 id="org9cd057d"><span class="section-number-3">2.1</span> 1 [Easy] Two Sum</h3>
 <div class="outline-text-3" id="text-2-1">
 <blockquote>
 <p>
@@ -323,20 +321,20 @@ visited ones.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">twoSum</span>(<span style="color: #a020f0;">self</span>, nums, target):
-    <span style="color: #a0522d;">buf_dict</span> = {}
-    <span style="color: #a020f0;">for</span> i <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(0,<span style="color: #483d8b;">len</span>(nums)):
-        <span style="color: #a020f0;">if</span> nums[i] <span style="color: #a020f0;">in</span> buf_dict:
-            <span style="color: #a020f0;">return</span> [buf_dict[nums[i]], i]
-        <span style="color: #a020f0;">else</span>:
-            buf_dict[target-nums[i]] = i <span style="color: #b22222;"># </span><span style="color: #ff0000;">(HEBI: target-num)</span>
+<pre class="src src-python">  <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">twoSum</span>(<span style="color: #a020f0;">self</span>, nums, target):
+      <span style="color: #a0522d;">buf_dict</span> = {}
+      <span style="color: #a020f0;">for</span> i <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(0,<span style="color: #483d8b;">len</span>(nums)):
+          <span style="color: #a020f0;">if</span> nums[i] <span style="color: #a020f0;">in</span> buf_dict:
+              <span style="color: #a020f0;">return</span> [buf_dict[nums[i]], i]
+          <span style="color: #a020f0;">else</span>:
+              buf_dict[target-nums[i]] = i <span style="color: #b22222;"># </span><span style="color: #ff0000;">(HEBI: target-num)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc6892a1" class="outline-3">
-<h3 id="orgc6892a1"><span class="section-number-3">2.2</span> 128 [Hard] Longest Consecutive Sequence</h3>
+<div id="outline-container-orgebd3b50" class="outline-3">
+<h3 id="orgebd3b50"><span class="section-number-3">2.2</span> 128 [Hard] Longest Consecutive Sequence</h3>
 <div class="outline-text-3" id="text-2-2">
 <blockquote>
 <p>
@@ -349,29 +347,29 @@ Record only the border value.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">longestConsecutive</span>(<span style="color: #a020f0;">self</span>, nums):
-    <span style="color: #a0522d;">ret</span> = 0
-    <span style="color: #a0522d;">mydict</span>={}
-    <span style="color: #a020f0;">for</span> num <span style="color: #a020f0;">in</span> nums:
-        <span style="color: #a020f0;">if</span> num <span style="color: #a020f0;">in</span> mydict:
-            <span style="color: #a020f0;">pass</span>
-        <span style="color: #a020f0;">else</span>:
-            <span style="color: #a0522d;">left</span> = mydict[num-1] <span style="color: #a020f0;">if</span> num-1 <span style="color: #a020f0;">in</span> mydict <span style="color: #a020f0;">else</span> 0
-            <span style="color: #a0522d;">right</span> = mydict[num+1] <span style="color: #a020f0;">if</span> num+1 <span style="color: #a020f0;">in</span> mydict <span style="color: #a020f0;">else</span> 0
-            <span style="color: #a0522d;">length</span> = left + right + 1
-            <span style="color: #a0522d;">mydict</span>[num] = length
-            <span style="color: #b22222;"># </span><span style="color: #ff0000;">(HEBI: important! Do not update the immediate, but the far-most one, because that is the edge)</span>
-            <span style="color: #a0522d;">mydict</span>[num-left] = length
-            <span style="color: #a0522d;">mydict</span>[num+right] = length
-            <span style="color: #a0522d;">ret</span> = length <span style="color: #a020f0;">if</span> length &gt; ret <span style="color: #a020f0;">else</span> ret
-    <span style="color: #a020f0;">return</span> ret
+<pre class="src src-python">  <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">longestConsecutive</span>(<span style="color: #a020f0;">self</span>, nums):
+      <span style="color: #a0522d;">ret</span> = 0
+      <span style="color: #a0522d;">mydict</span>={}
+      <span style="color: #a020f0;">for</span> num <span style="color: #a020f0;">in</span> nums:
+          <span style="color: #a020f0;">if</span> num <span style="color: #a020f0;">in</span> mydict:
+              <span style="color: #a020f0;">pass</span>
+          <span style="color: #a020f0;">else</span>:
+              <span style="color: #a0522d;">left</span> = mydict[num-1] <span style="color: #a020f0;">if</span> num-1 <span style="color: #a020f0;">in</span> mydict <span style="color: #a020f0;">else</span> 0
+              <span style="color: #a0522d;">right</span> = mydict[num+1] <span style="color: #a020f0;">if</span> num+1 <span style="color: #a020f0;">in</span> mydict <span style="color: #a020f0;">else</span> 0
+              <span style="color: #a0522d;">length</span> = left + right + 1
+              <span style="color: #a0522d;">mydict</span>[num] = length
+              <span style="color: #b22222;"># </span><span style="color: #ff0000;">(HEBI: important! Do not update the immediate, but the far-most one, because that is the edge)</span>
+              <span style="color: #a0522d;">mydict</span>[num-left] = length
+              <span style="color: #a0522d;">mydict</span>[num+right] = length
+              <span style="color: #a0522d;">ret</span> = length <span style="color: #a020f0;">if</span> length &gt; ret <span style="color: #a020f0;">else</span> ret
+      <span style="color: #a020f0;">return</span> ret
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgba9ef7b" class="outline-3">
-<h3 id="orgba9ef7b"><span class="section-number-3">2.3</span> 448 [Easy] Find All Numbers Disappeared in an Array</h3>
+<div id="outline-container-org50e4fbe" class="outline-3">
+<h3 id="org50e4fbe"><span class="section-number-3">2.3</span> 448 [Easy] Find All Numbers Disappeared in an Array</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span>(<span style="color: #483d8b;">object</span>):
@@ -404,8 +402,8 @@ Record only the border value.
 </div>
 </div>
 
-<div id="outline-container-org2f300f8" class="outline-2">
-<h2 id="org2f300f8"><span class="section-number-2">3</span> Some snippet</h2>
+<div id="outline-container-orgeb40c16" class="outline-2">
+<h2 id="orgeb40c16"><span class="section-number-2">3</span> Some snippet</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #b22222;">/**</span>
@@ -424,8 +422,8 @@ Record only the border value.
 </div>
 </div>
 
-<div id="outline-container-org96301de" class="outline-2">
-<h2 id="org96301de"><span class="section-number-2">4</span> Some links</h2>
+<div id="outline-container-org38a1b3c" class="outline-2">
+<h2 id="org38a1b3c"><span class="section-number-2">4</span> Some links</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="dp.html">DP</a></li>
@@ -434,8 +432,8 @@ Record only the border value.
 </div>
 </div>
 
-<div id="outline-container-org0d01cc7" class="outline-2">
-<h2 id="org0d01cc7"><span class="section-number-2">5</span> General Tips</h2>
+<div id="outline-container-org0bf5bb2" class="outline-2">
+<h2 id="org0bf5bb2"><span class="section-number-2">5</span> General Tips</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;climits&gt;</span>
@@ -455,31 +453,31 @@ To get a smaller iterator, use <code>upper_bound</code> and decrease it (after c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">pre_it</span> = m_data.upper_bound(val);
-<span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">next_it</span> = pre_it;
-<span style="color: #228b22;">int</span> <span style="color: #a0522d;">pre_low</span>, <span style="color: #a0522d;">pre_high</span>;
-<span style="color: #228b22;">int</span> <span style="color: #a0522d;">next_low</span>, <span style="color: #a0522d;">next_high</span>;
-<span style="color: #a020f0;">if</span> (pre_it == m_data.end()) {
-  next_low = INT_MAX;
-  next_high = INT_MAX;
- } <span style="color: #a020f0;">else</span> {
-  next_low = next_it-&gt;first;
-  next_high = next_it-&gt;second;
- }
-<span style="color: #a020f0;">if</span> (pre_it == m_data.begin()) {
-  pre_low = INT_MIN;
-  pre_high = INT_MIN;
- } <span style="color: #a020f0;">else</span> {
-  pre_it--;
-  pre_low = pre_it-&gt;first;
-  pre_high = pre_it-&gt;second;
- }
+<pre class="src src-cpp">  <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">pre_it</span> = m_data.upper_bound(val);
+  <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">next_it</span> = pre_it;
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">pre_low</span>, <span style="color: #a0522d;">pre_high</span>;
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">next_low</span>, <span style="color: #a0522d;">next_high</span>;
+  <span style="color: #a020f0;">if</span> (pre_it == m_data.end()) {
+    next_low = INT_MAX;
+    next_high = INT_MAX;
+   } <span style="color: #a020f0;">else</span> {
+    next_low = next_it-&gt;first;
+    next_high = next_it-&gt;second;
+   }
+  <span style="color: #a020f0;">if</span> (pre_it == m_data.begin()) {
+    pre_low = INT_MIN;
+    pre_high = INT_MIN;
+   } <span style="color: #a020f0;">else</span> {
+    pre_it--;
+    pre_low = pre_it-&gt;first;
+    pre_high = pre_it-&gt;second;
+   }
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org5ca1f17" class="outline-3">
-<h3 id="org5ca1f17"><span class="section-number-3">5.1</span> GCD</h3>
+<div id="outline-container-org34b4832" class="outline-3">
+<h3 id="org34b4832"><span class="section-number-3">5.1</span> GCD</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>swap</li>
@@ -487,20 +485,20 @@ To get a smaller iterator, use <code>upper_bound</code> and decrease it (after c
 <li>When divide it, make sure it is not 0!</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">GCD</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>) {
-  <span style="color: #a020f0;">if</span> (x &gt; y) <span style="color: #008b8b;">std</span>::swap(x,y);
-  <span style="color: #a020f0;">if</span> (x == 0) <span style="color: #a020f0;">return</span> y;
-  <span style="color: #a020f0;">return</span> GCD(y%x, x);
-}
-
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">gcd</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>) {
-  <span style="color: #a020f0;">while</span> (b) {
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a%b;
-    a = b;
-    b = r;
+<pre class="src src-C++">  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">GCD</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>) {
+    <span style="color: #a020f0;">if</span> (x &gt; y) <span style="color: #008b8b;">std</span>::swap(x,y);
+    <span style="color: #a020f0;">if</span> (x == 0) <span style="color: #a020f0;">return</span> y;
+    <span style="color: #a020f0;">return</span> GCD(y%x, x);
   }
-  <span style="color: #a020f0;">return</span> a;
-}
+
+  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">gcd</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>) {
+    <span style="color: #a020f0;">while</span> (b) {
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a%b;
+      a = b;
+      b = r;
+    }
+    <span style="color: #a020f0;">return</span> a;
+  }
 </pre>
 </div>
 
@@ -516,12 +514,12 @@ Be careful, <code>a%b</code> follows the sign of a:
 </div>
 </div>
 
-<div id="outline-container-orgf95da8c" class="outline-2">
-<h2 id="orgf95da8c"><span class="section-number-2">6</span> Data Structures</h2>
+<div id="outline-container-org0e23761" class="outline-2">
+<h2 id="org0e23761"><span class="section-number-2">6</span> Data Structures</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org8c106b0" class="outline-3">
-<h3 id="org8c106b0"><span class="section-number-3">6.1</span> Trie</h3>
+<div id="outline-container-org2ce81fe" class="outline-3">
+<h3 id="org2ce81fe"><span class="section-number-3">6.1</span> Trie</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 Prefix tree.
@@ -532,12 +530,12 @@ Prefix tree.
 
 
 
-<div id="outline-container-org333b714" class="outline-2">
-<h2 id="org333b714"><span class="section-number-2">7</span> Famous Problems and Algorithms</h2>
+<div id="outline-container-org68148c1" class="outline-2">
+<h2 id="org68148c1"><span class="section-number-2">7</span> Famous Problems and Algorithms</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgefdc74d" class="outline-3">
-<h3 id="orgefdc74d"><span class="section-number-3">7.1</span> Maximum subarray problem and Kadane's algorithm</h3>
+<div id="outline-container-org769d844" class="outline-3">
+<h3 id="org769d844"><span class="section-number-3">7.1</span> Maximum subarray problem and Kadane's algorithm</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 Problem: finding the contiguous subarray within a one-dimensional array of numbers which has the largest sum
@@ -571,32 +569,32 @@ or if 0 is not a predefined return value:
 </div>
 </div>
 
-<div id="outline-container-org170a6c4" class="outline-3">
-<h3 id="org170a6c4"><span class="section-number-3">7.2</span> longest increasing sub-sequence(LIS)</h3>
+<div id="outline-container-orge363013" class="outline-3">
+<h3 id="orge363013"><span class="section-number-3">7.2</span> longest increasing sub-sequence(LIS)</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 Find the longest increasing sub-sequence.
 <code>O(n^2)</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">sol_nn</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; &amp;<span style="color: #a0522d;">nums</span>) {
-  <span style="color: #a020f0;">if</span> (nums.size() == 0) <span style="color: #a020f0;">return</span> 0;
-  <span style="color: #a020f0;">if</span> (nums.size() == 1) <span style="color: #a020f0;">return</span> 1;
-  <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #0000ff;">dp</span>(nums.size(), 1);
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">size</span> = nums.size();
-  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=1;i&lt;size;i++) {
-    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span>=0;j&lt;i;j++) {
-      <span style="color: #a020f0;">if</span> (nums[i] &gt; nums[j]) {
-        dp[i] = <span style="color: #008b8b;">std</span>::max(dp[i], dp[j] + 1);
+<pre class="src src-C++">  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">sol_nn</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; &amp;<span style="color: #a0522d;">nums</span>) {
+    <span style="color: #a020f0;">if</span> (nums.size() == 0) <span style="color: #a020f0;">return</span> 0;
+    <span style="color: #a020f0;">if</span> (nums.size() == 1) <span style="color: #a020f0;">return</span> 1;
+    <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #0000ff;">dp</span>(nums.size(), 1);
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">size</span> = nums.size();
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=1;i&lt;size;i++) {
+      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span>=0;j&lt;i;j++) {
+        <span style="color: #a020f0;">if</span> (nums[i] &gt; nums[j]) {
+          dp[i] = <span style="color: #008b8b;">std</span>::max(dp[i], dp[j] + 1);
+        }
       }
     }
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ret</span> = 1;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=0;i&lt;size;i++) {
+      ret = <span style="color: #008b8b;">std</span>::max(ret, dp[i]);
+    }
+    <span style="color: #a020f0;">return</span> ret;
   }
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ret</span> = 1;
-  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=0;i&lt;size;i++) {
-    ret = <span style="color: #008b8b;">std</span>::max(ret, dp[i]);
-  }
-  <span style="color: #a020f0;">return</span> ret;
-}
 </pre>
 </div>
 
@@ -604,27 +602,27 @@ Find the longest increasing sub-sequence.
 <code>O(nlog(n))</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">sol_nlogn</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; &amp;<span style="color: #a0522d;">nums</span>) {
-  <span style="color: #a020f0;">if</span> (nums.empty()) <span style="color: #a020f0;">return</span> 0;
-  <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">list</span>;
-  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">num</span> : nums) {
-    <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">it</span> = lower_bound(list.begin(), list.end(), num);
-    <span style="color: #a020f0;">if</span> (it == list.end()) {
-      list.push_back(num);
-    } <span style="color: #a020f0;">else</span> {
-      *it = num;
+<pre class="src src-C++">  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">sol_nlogn</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; &amp;<span style="color: #a0522d;">nums</span>) {
+    <span style="color: #a020f0;">if</span> (nums.empty()) <span style="color: #a020f0;">return</span> 0;
+    <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">list</span>;
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">num</span> : nums) {
+      <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">it</span> = lower_bound(list.begin(), list.end(), num);
+      <span style="color: #a020f0;">if</span> (it == list.end()) {
+        list.push_back(num);
+      } <span style="color: #a020f0;">else</span> {
+        *it = num;
+      }
     }
+    <span style="color: #a020f0;">return</span> list.size();
   }
-  <span style="color: #a020f0;">return</span> list.size();
-}
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org8e2d703" class="outline-3">
-<h3 id="org8e2d703"><span class="section-number-3">7.3</span> Dynamic Programming</h3>
+<div id="outline-container-org8744e7c" class="outline-3">
+<h3 id="org8744e7c"><span class="section-number-3">7.3</span> Dynamic Programming</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 Solving a complex problem by breaking it down into a collection of simpler subproblems,
@@ -643,8 +641,8 @@ There're generally just two ways for DP:
 </ul>
 </div>
 
-<div id="outline-container-orgf915e3e" class="outline-4">
-<h4 id="orgf915e3e"><span class="section-number-4">7.3.1</span> Apply to LIS</h4>
+<div id="outline-container-orge1eb852" class="outline-4">
+<h4 id="orge1eb852"><span class="section-number-4">7.3.1</span> Apply to LIS</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <p>
 The length of the LIS ending in the current element is the length of the LIS ending in the smaller one + 1.
@@ -654,12 +652,12 @@ The length of the LIS ending in the current element is the length of the LIS end
 </div>
 
 
-<div id="outline-container-org50fe96f" class="outline-3">
-<h3 id="org50fe96f"><span class="section-number-3">7.4</span> Patience sorting</h3>
+<div id="outline-container-org1da7dd3" class="outline-3">
+<h3 id="org1da7dd3"><span class="section-number-3">7.4</span> Patience sorting</h3>
 <div class="outline-text-3" id="text-7-4">
 </div>
-<div id="outline-container-org4be4cac" class="outline-4">
-<h4 id="org4be4cac"><span class="section-number-4">7.4.1</span> The sort algorithm</h4>
+<div id="outline-container-orgb11c906" class="outline-4">
+<h4 id="orgb11c906"><span class="section-number-4">7.4.1</span> The sort algorithm</h4>
 <div class="outline-text-4" id="text-7-4-1">
 <p>
 The algorithm derives from  patience card game.
@@ -680,8 +678,8 @@ clearly the complexity is <code>O(nlogn)</code>.
 </div>
 </div>
 
-<div id="outline-container-orgfaf2c82" class="outline-4">
-<h4 id="orgfaf2c82"><span class="section-number-4">7.4.2</span> Apply to LIS problem</h4>
+<div id="outline-container-org1ff59c3" class="outline-4">
+<h4 id="org1ff59c3"><span class="section-number-4">7.4.2</span> Apply to LIS problem</h4>
 <div class="outline-text-4" id="text-7-4-2">
 <p>
 First, execute the sorting algorithm as described above.
@@ -694,8 +692,8 @@ its reverse is an answer to the longest increasing subsequence algorithm.
 </div>
 </div>
 
-<div id="outline-container-orgd1a16fa" class="outline-4">
-<h4 id="orgd1a16fa"><span class="section-number-4">7.4.3</span> LIS problem another understanding</h4>
+<div id="outline-container-org5922145" class="outline-4">
+<h4 id="org5922145"><span class="section-number-4">7.4.3</span> LIS problem another understanding</h4>
 <div class="outline-text-4" id="text-7-4-3">
 <p>
 Keep a set of active lists for the longest.
@@ -722,12 +720,12 @@ e.g. 58364129
 </div>
 </div>
 
-<div id="outline-container-org70d9fb3" class="outline-2">
-<h2 id="org70d9fb3"><span class="section-number-2">8</span> Problems</h2>
+<div id="outline-container-org8dee168" class="outline-2">
+<h2 id="org8dee168"><span class="section-number-2">8</span> Problems</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org0e4701e" class="outline-3">
-<h3 id="org0e4701e"><span class="section-number-3">8.1</span> 363. Max Sum of Rectangle No Larger Than K</h3>
+<div id="outline-container-org7d0d869" class="outline-3">
+<h3 id="org7d0d869"><span class="section-number-3">8.1</span> 363. Max Sum of Rectangle No Larger Than K</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>If we want to switch row and column of a matrix if col is larger than row, simply
@@ -745,40 +743,40 @@ Thus the problem matters for each one is larger.</li>
 
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">maxSumSubmatrix</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; &gt;&amp; <span style="color: #a0522d;">matrix</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">k</span>) {
-  <span style="color: #a020f0;">if</span> (matrix.size() == 0) <span style="color: #a020f0;">return</span> 0;
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">row</span> = matrix.size();
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">col</span> = matrix[0].size();
-  <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">row_large</span> = <span style="color: #008b8b;">true</span>;
-  <span style="color: #a020f0;">if</span> (row &gt; col) {
-    row_large = <span style="color: #008b8b;">true</span>;
-  } <span style="color: #a020f0;">else</span> {
-    row_large = <span style="color: #008b8b;">false</span>;
-    <span style="color: #008b8b;">std</span>::swap(row, col);
-  }
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ret</span> = INT_MIN;
+<pre class="src src-C++">  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">maxSumSubmatrix</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; &gt;&amp; <span style="color: #a0522d;">matrix</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">k</span>) {
+    <span style="color: #a020f0;">if</span> (matrix.size() == 0) <span style="color: #a020f0;">return</span> 0;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">row</span> = matrix.size();
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">col</span> = matrix[0].size();
+    <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">row_large</span> = <span style="color: #008b8b;">true</span>;
+    <span style="color: #a020f0;">if</span> (row &gt; col) {
+      row_large = <span style="color: #008b8b;">true</span>;
+    } <span style="color: #a020f0;">else</span> {
+      row_large = <span style="color: #008b8b;">false</span>;
+      <span style="color: #008b8b;">std</span>::swap(row, col);
+    }
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ret</span> = INT_MIN;
 
-  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span>=0;c&lt;col;c++) {
-    <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">temp</span>(row, 0);
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">sums.insert(0);</span>
-    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=c;i&gt;=0;i--) {
-      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
-      <span style="color: #228b22;">set</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">sums</span>;
-      sums.insert(0);
-      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span>=0;r&lt;row;r++) {
-        temp[r] += row_large ? matrix[r][i] : matrix[i][r];
-        sum += temp[r];
-        <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">it</span> = sums.lower_bound(sum - k);
-        <span style="color: #a020f0;">if</span> (it != sums.end()) {
-          <span style="color: #228b22;">int</span> <span style="color: #a0522d;">res</span> = sum - *it;
-          ret = <span style="color: #008b8b;">std</span>::max(ret, res);
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span>=0;c&lt;col;c++) {
+      <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">temp</span>(row, 0);
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">sums.insert(0);</span>
+      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=c;i&gt;=0;i--) {
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+        <span style="color: #228b22;">set</span>&lt;<span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">sums</span>;
+        sums.insert(0);
+        <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span>=0;r&lt;row;r++) {
+          temp[r] += row_large ? matrix[r][i] : matrix[i][r];
+          sum += temp[r];
+          <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">it</span> = sums.lower_bound(sum - k);
+          <span style="color: #a020f0;">if</span> (it != sums.end()) {
+            <span style="color: #228b22;">int</span> <span style="color: #a0522d;">res</span> = sum - *it;
+            ret = <span style="color: #008b8b;">std</span>::max(ret, res);
+          }
+          sums.insert(sum);
         }
-        sums.insert(sum);
       }
     }
+    <span style="color: #a020f0;">return</span> ret;
   }
-  <span style="color: #a020f0;">return</span> ret;
-}
 </pre>
 </div>
 </div>
@@ -786,59 +784,59 @@ Thus the problem matters for each one is larger.</li>
 
 
 
-<div id="outline-container-org379107a" class="outline-3">
-<h3 id="org379107a"><span class="section-number-3">8.2</span> 65. valid number</h3>
+<div id="outline-container-orgdd572bd" class="outline-3">
+<h3 id="orgdd572bd"><span class="section-number-3">8.2</span> 65. valid number</h3>
 <div class="outline-text-3" id="text-8-2">
 <pre class="example">
-EXPECT_TRUE(s.isNumber("+.8"));
-EXPECT_TRUE(s.isNumber(".1"));
-EXPECT_TRUE(s.isNumber("-5.3"));
+  EXPECT_TRUE(s.isNumber("+.8"));
+  EXPECT_TRUE(s.isNumber(".1"));
+  EXPECT_TRUE(s.isNumber("-5.3"));
 
-EXPECT_FALSE(s.isNumber(". 1"));
-EXPECT_FALSE(s.isNumber("4e+"));
-EXPECT_FALSE(s.isNumber("6e6.5"));
+  EXPECT_FALSE(s.isNumber(". 1"));
+  EXPECT_FALSE(s.isNumber("4e+"));
+  EXPECT_FALSE(s.isNumber("6e6.5"));
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-orge75f5a2" class="outline-3">
-<h3 id="orge75f5a2"><span class="section-number-3">8.3</span> 44. Wildcard Matching (NEEDS REVISIT!!!)</h3>
+<div id="outline-container-org58b890c" class="outline-3">
+<h3 id="org58b890c"><span class="section-number-3">8.3</span> 44. Wildcard Matching (NEEDS REVISIT!!!)</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 The recursive one is too cost:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isMatch</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">p</span>) {
-  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">pattern</span> = p;
-  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">str</span> = s;
-  <span style="color: #a020f0;">if</span> (p.empty()) {
-    <span style="color: #a020f0;">if</span> (s.empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
-    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-  } <span style="color: #a020f0;">else</span> {
-    <span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = *p.begin();
-    p = p.substr(1);
-    <span style="color: #a020f0;">if</span> (c == <span style="color: #8b2252;">'?'</span>) {
-      <span style="color: #a020f0;">if</span> (s.empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-      s = s.substr(1);
-      <span style="color: #a020f0;">return</span> isMatch(s, p);
-    } <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (c == <span style="color: #8b2252;">'*'</span>) {
-      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=0;i&lt;=(<span style="color: #228b22;">int</span>)s.size();i++) {
-        <span style="color: #a020f0;">if</span> (isMatch(s.substr(i), p)) {
-          <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
-        }
-      }
-      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+<pre class="src src-C++">  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isMatch</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">p</span>) {
+    <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">pattern</span> = p;
+    <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">string</span> <span style="color: #a0522d;">str</span> = s;
+    <span style="color: #a020f0;">if</span> (p.empty()) {
+      <span style="color: #a020f0;">if</span> (s.empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
+      <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
     } <span style="color: #a020f0;">else</span> {
-      <span style="color: #a020f0;">if</span> (s.empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-      <span style="color: #a020f0;">if</span> (s[0] != c) {
+      <span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = *p.begin();
+      p = p.substr(1);
+      <span style="color: #a020f0;">if</span> (c == <span style="color: #8b2252;">'?'</span>) {
+        <span style="color: #a020f0;">if</span> (s.empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+        s = s.substr(1);
+        <span style="color: #a020f0;">return</span> isMatch(s, p);
+      } <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (c == <span style="color: #8b2252;">'*'</span>) {
+        <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=0;i&lt;=(<span style="color: #228b22;">int</span>)s.size();i++) {
+          <span style="color: #a020f0;">if</span> (isMatch(s.substr(i), p)) {
+            <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">true</span>;
+          }
+        }
         <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+      } <span style="color: #a020f0;">else</span> {
+        <span style="color: #a020f0;">if</span> (s.empty()) <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+        <span style="color: #a020f0;">if</span> (s[0] != c) {
+          <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+        }
+        s = s.substr(1);
+        <span style="color: #a020f0;">return</span> isMatch(s, p);
       }
-      s = s.substr(1);
-      <span style="color: #a020f0;">return</span> isMatch(s, p);
     }
   }
-}
 </pre>
 </div>
 
@@ -846,63 +844,63 @@ The recursive one is too cost:
 This one does not have that problem, and is linear.
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isMatch</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">s</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">p</span>) {
-  <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">star</span>=<span style="color: #008b8b;">NULL</span>;
-  <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">ss</span>=s; 
-  <span style="color: #a020f0;">while</span> (*s){
-    <span style="color: #a020f0;">if</span> ((*p==<span style="color: #8b2252;">'?'</span>)||(*p==*s)){s++;p++;<span style="color: #a020f0;">continue</span>;}
-    <span style="color: #a020f0;">if</span> (*p==<span style="color: #8b2252;">'*'</span>){star=p++; ss=s;<span style="color: #a020f0;">continue</span>;}
-    <span style="color: #a020f0;">if</span> (star){ p = star+1; s=++ss;<span style="color: #a020f0;">continue</span>;}
-    <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+<pre class="src src-C">  <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">isMatch</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">s</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">p</span>) {
+    <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">star</span>=<span style="color: #008b8b;">NULL</span>;
+    <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">ss</span>=s; 
+    <span style="color: #a020f0;">while</span> (*s){
+      <span style="color: #a020f0;">if</span> ((*p==<span style="color: #8b2252;">'?'</span>)||(*p==*s)){s++;p++;<span style="color: #a020f0;">continue</span>;}
+      <span style="color: #a020f0;">if</span> (*p==<span style="color: #8b2252;">'*'</span>){star=p++; ss=s;<span style="color: #a020f0;">continue</span>;}
+      <span style="color: #a020f0;">if</span> (star){ p = star+1; s=++ss;<span style="color: #a020f0;">continue</span>;}
+      <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
+    }
+    <span style="color: #a020f0;">while</span> (*p==<span style="color: #8b2252;">'*'</span>){p++;}
+    <span style="color: #a020f0;">return</span> !*p;
   }
-  <span style="color: #a020f0;">while</span> (*p==<span style="color: #8b2252;">'*'</span>){p++;}
-  <span style="color: #a020f0;">return</span> !*p;
-}
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5c8fc6d" class="outline-3">
-<h3 id="org5c8fc6d"><span class="section-number-3">8.4</span> 4. Median of Two Sorted Arrays</h3>
+<div id="outline-container-orgfab57ae" class="outline-3">
+<h3 id="orgfab57ae"><span class="section-number-3">8.4</span> 4. Median of Two Sorted Arrays</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 If want a log complexity, set up <code>(min, max)</code> and keep update them.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">double</span> <span style="color: #0000ff;">findMedianSortedArrays</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt;&amp; <span style="color: #a0522d;">nums1</span>, <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt;&amp; <span style="color: #a0522d;">nums2</span>) {
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">m</span> = nums1.size(), <span style="color: #a0522d;">n</span> = nums2.size();
-  <span style="color: #a020f0;">if</span> (m &gt; n) <span style="color: #a020f0;">return</span> findMedianSortedArrays(nums2, nums1);
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>, <span style="color: #a0522d;">j</span>, <span style="color: #a0522d;">imin</span> = 0, <span style="color: #a0522d;">imax</span> = m, <span style="color: #a0522d;">half</span> = (m + n + 1) / 2;
-  <span style="color: #a020f0;">while</span> (imin &lt;= imax) {
-    i = (imin + imax) / 2;
-    j = half - i;
-    <span style="color: #a020f0;">if</span> (i &gt; 0 &amp;&amp; <span style="color: #228b22;">j</span> &lt; n &amp;&amp; nums1[i - 1] &gt; nums2[j]) imax = i - 1;
-    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (j &gt; 0 &amp;&amp; <span style="color: #228b22;">i</span> &lt; m &amp;&amp; nums2[j - 1] &gt; nums1[i]) imin = i + 1;
-    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">break</span>;
+<pre class="src src-C++">  <span style="color: #228b22;">double</span> <span style="color: #0000ff;">findMedianSortedArrays</span>(<span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt;&amp; <span style="color: #a0522d;">nums1</span>, <span style="color: #228b22;">vector</span>&lt;<span style="color: #228b22;">int</span>&gt;&amp; <span style="color: #a0522d;">nums2</span>) {
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">m</span> = nums1.size(), <span style="color: #a0522d;">n</span> = nums2.size();
+    <span style="color: #a020f0;">if</span> (m &gt; n) <span style="color: #a020f0;">return</span> findMedianSortedArrays(nums2, nums1);
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>, <span style="color: #a0522d;">j</span>, <span style="color: #a0522d;">imin</span> = 0, <span style="color: #a0522d;">imax</span> = m, <span style="color: #a0522d;">half</span> = (m + n + 1) / 2;
+    <span style="color: #a020f0;">while</span> (imin &lt;= imax) {
+      i = (imin + imax) / 2;
+      j = half - i;
+      <span style="color: #a020f0;">if</span> (i &gt; 0 &amp;&amp; <span style="color: #228b22;">j</span> &lt; n &amp;&amp; nums1[i - 1] &gt; nums2[j]) imax = i - 1;
+      <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (j &gt; 0 &amp;&amp; <span style="color: #228b22;">i</span> &lt; m &amp;&amp; nums2[j - 1] &gt; nums1[i]) imin = i + 1;
+      <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">break</span>;
+    }
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">num1</span>;
+    <span style="color: #a020f0;">if</span> (i == 0) num1 = nums2[j - 1];
+    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (j == 0) num1 = nums1[i - 1]; 
+    <span style="color: #a020f0;">else</span> num1 = <span style="color: #008b8b;">std</span>::max(nums1[i - 1], nums2[j - 1]);
+    
+    <span style="color: #a020f0;">if</span> ((m + n) &amp; 1) <span style="color: #a020f0;">return</span> num1;
+    
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">num2</span>;
+    <span style="color: #a020f0;">if</span> (i == m) num2 = nums2[j];
+    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (j == n) num2 = nums1[i];
+    <span style="color: #a020f0;">else</span> num2 = <span style="color: #008b8b;">std</span>::min(nums1[i], nums2[j]);
+    
+    <span style="color: #a020f0;">return</span> (num1 + num2) / 2.0;
   }
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">num1</span>;
-  <span style="color: #a020f0;">if</span> (i == 0) num1 = nums2[j - 1];
-  <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (j == 0) num1 = nums1[i - 1]; 
-  <span style="color: #a020f0;">else</span> num1 = <span style="color: #008b8b;">std</span>::max(nums1[i - 1], nums2[j - 1]);
-
-  <span style="color: #a020f0;">if</span> ((m + n) &amp; 1) <span style="color: #a020f0;">return</span> num1;
-
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">num2</span>;
-  <span style="color: #a020f0;">if</span> (i == m) num2 = nums2[j];
-  <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (j == n) num2 = nums1[i];
-  <span style="color: #a020f0;">else</span> num2 = <span style="color: #008b8b;">std</span>::min(nums1[i], nums2[j]);
-
-  <span style="color: #a020f0;">return</span> (num1 + num2) / 2.0;
-}
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org27abd5c" class="outline-3">
-<h3 id="org27abd5c"><span class="section-number-3">8.5</span> last remaining (contest 2)</h3>
+<div id="outline-container-orgb1de9d7" class="outline-3">
+<h3 id="orgb1de9d7"><span class="section-number-3">8.5</span> last remaining (contest 2)</h3>
 <div class="outline-text-3" id="text-8-5">
 <ul class="org-ul">
 <li>Move head, record step</li>
@@ -910,35 +908,35 @@ If want a log complexity, set up <code>(min, max)</code> and keep update them.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">lastRemaining</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>) {
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">head</span> = 1;
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">step</span> = 1;
-  <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">left</span> = <span style="color: #008b8b;">true</span>;
-  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">remaining</span> = n;
-  <span style="color: #a020f0;">while</span> (remaining &gt; 1) {
-    <span style="color: #a020f0;">if</span> (left) {
-      left = <span style="color: #008b8b;">false</span>;
-      head = head + step;
-      step &lt;&lt;=1;
-      remaining &gt;&gt;= 1;
-    } <span style="color: #a020f0;">else</span> {
-      left = <span style="color: #008b8b;">true</span>;
-      <span style="color: #a020f0;">if</span> (remaining % 2 == 1) {
-        head += step;
+<pre class="src src-C++">  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">lastRemaining</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>) {
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">head</span> = 1;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">step</span> = 1;
+    <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">left</span> = <span style="color: #008b8b;">true</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">remaining</span> = n;
+    <span style="color: #a020f0;">while</span> (remaining &gt; 1) {
+      <span style="color: #a020f0;">if</span> (left) {
+        left = <span style="color: #008b8b;">false</span>;
+        head = head + step;
+        step &lt;&lt;=1;
+        remaining &gt;&gt;= 1;
+      } <span style="color: #a020f0;">else</span> {
+        left = <span style="color: #008b8b;">true</span>;
+        <span style="color: #a020f0;">if</span> (remaining % 2 == 1) {
+          head += step;
+        }
+        step &lt;&lt;= 1;
+        remaining &gt;&gt;= 1;
       }
-      step &lt;&lt;= 1;
-      remaining &gt;&gt;= 1;
     }
+    <span style="color: #a020f0;">return</span> head;
   }
-  <span style="color: #a020f0;">return</span> head;
-}
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga9e4e57" class="outline-3">
-<h3 id="orga9e4e57"><span class="section-number-3">8.6</span> longest subsequence with at least k repeat / without any repeat</h3>
+<div id="outline-container-orgb384017" class="outline-3">
+<h3 id="orgb384017"><span class="section-number-3">8.6</span> longest subsequence with at least k repeat / without any repeat</h3>
 <div class="outline-text-3" id="text-8-6">
 <p>
 Given a string s, find the longest subsequence that
@@ -958,44 +956,44 @@ Note:
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span> {
-<span style="color: #a020f0;">public</span>:
-  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">longestSubstring</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">k</span>) {
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">calculate the frequency of each character</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">if all &gt; k, good</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">otherwise, split the string by all that is less than k</span>
-    <span style="color: #a020f0;">return</span> recur(s, k, 0, s.size());
-  }
+<pre class="src src-C++">  <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span> {
+  <span style="color: #a020f0;">public</span>:
+    <span style="color: #228b22;">int</span> <span style="color: #0000ff;">longestSubstring</span>(<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">k</span>) {
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">calculate the frequency of each character</span>
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">if all &gt; k, good</span>
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">otherwise, split the string by all that is less than k</span>
+      <span style="color: #a020f0;">return</span> recur(s, k, 0, s.size());
+    }
 
-  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">recur</span>(<span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">s</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">k</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">min</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">max</span>) {
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ret</span> = 0;
-    <span style="color: #228b22;">map</span>&lt;<span style="color: #228b22;">char</span>, <span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">m</span>;
-    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=min;i&lt;max;i++) {
-      m[s[i]]++;
-    }
-    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">split</span>;
-    <span style="color: #a020f0;">for</span> (<span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">mi</span> : m) {
-      <span style="color: #a020f0;">if</span> (mi.second &lt; k) {
-        split += mi.first;
+    <span style="color: #228b22;">int</span> <span style="color: #0000ff;">recur</span>(<span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">s</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">k</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">min</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">max</span>) {
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ret</span> = 0;
+      <span style="color: #228b22;">map</span>&lt;<span style="color: #228b22;">char</span>, <span style="color: #228b22;">int</span>&gt; <span style="color: #a0522d;">m</span>;
+      <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=min;i&lt;max;i++) {
+        m[s[i]]++;
       }
-    }
-    <span style="color: #a020f0;">if</span> (split.empty()) <span style="color: #a020f0;">return</span> max - min;
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">do split</span>
-    <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">idx</span> = min;
-    <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">last_idx</span> = min;
-    idx = s.find_first_of(split, last_idx);
-    <span style="color: #a020f0;">while</span> (idx != <span style="color: #008b8b;">string</span>::npos &amp;&amp; idx &lt; max) {
-      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">tmp</span> = recur(s, k, last_idx, idx);
-      ret = <span style="color: #008b8b;">std</span>::<span style="color: #0000ff;">max</span>(ret, tmp);
-      last_idx = idx+1;
+      <span style="color: #228b22;">string</span> <span style="color: #a0522d;">split</span>;
+      <span style="color: #a020f0;">for</span> (<span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">mi</span> : m) {
+        <span style="color: #a020f0;">if</span> (mi.second &lt; k) {
+          split += mi.first;
+        }
+      }
+      <span style="color: #a020f0;">if</span> (split.empty()) <span style="color: #a020f0;">return</span> max - min;
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">do split</span>
+      <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">idx</span> = min;
+      <span style="color: #228b22;">size_t</span> <span style="color: #a0522d;">last_idx</span> = min;
       idx = s.find_first_of(split, last_idx);
+      <span style="color: #a020f0;">while</span> (idx != <span style="color: #008b8b;">string</span>::npos &amp;&amp; idx &lt; max) {
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">tmp</span> = recur(s, k, last_idx, idx);
+        ret = <span style="color: #008b8b;">std</span>::<span style="color: #0000ff;">max</span>(ret, tmp);
+        last_idx = idx+1;
+        idx = s.find_first_of(split, last_idx);
+      }
+      <span style="color: #228b22;">string</span> <span style="color: #a0522d;">sub</span> = s.substr(last_idx);
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">tmp</span> = recur(s, k, last_idx, <span style="color: #228b22;">max</span>);
+      ret = <span style="color: #008b8b;">std</span>::<span style="color: #0000ff;">max</span>(ret, tmp);
+      <span style="color: #a020f0;">return</span> ret;
     }
-    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">sub</span> = s.substr(last_idx);
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">tmp</span> = recur(s, k, last_idx, <span style="color: #228b22;">max</span>);
-    ret = <span style="color: #008b8b;">std</span>::<span style="color: #0000ff;">max</span>(ret, tmp);
-    <span style="color: #a020f0;">return</span> ret;
-  }
-};
+  };
 </pre>
 </div>
 
@@ -1010,81 +1008,81 @@ If we found a character visited before that index, simply update that only.
 </div>
 </div>
 
-<div id="outline-container-orgac37e2f" class="outline-2">
-<h2 id="orgac37e2f"><span class="section-number-2">9</span> 400. Nth Digit</h2>
+<div id="outline-container-org09ead80" class="outline-2">
+<h2 id="org09ead80"><span class="section-number-2">9</span> 400. Nth Digit</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b22222;">/**</span>
-<span style="color: #b22222;"> *</span>
-<span style="color: #b22222;"> 1 - 9 : 9</span>
-<span style="color: #b22222;"> 10 - 99 : 2 * 90</span>
-<span style="color: #b22222;"> 100 - 999 : 3 * 900</span>
-<span style="color: #b22222;"> 1000 - 9999: 4 * 90000</span>
-<span style="color: #b22222;">*/</span>
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span> {
-<span style="color: #a020f0;">public</span>:
-  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">findNthDigit</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">nn</span>) {
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">n</span> = nn;
-    <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;<span style="color: #228b22;">long</span>, <span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">p</span> = get_lvl(n);
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">lvl</span> = p.first;
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">remaining</span> = p.second;
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">base</span> = get_base(lvl);
+<pre class="src src-C++">  <span style="color: #b22222;">/**</span>
+<span style="color: #b22222;">   *</span>
+<span style="color: #b22222;">   1 - 9 : 9</span>
+<span style="color: #b22222;">   10 - 99 : 2 * 90</span>
+<span style="color: #b22222;">   100 - 999 : 3 * 900</span>
+<span style="color: #b22222;">   1000 - 9999: 4 * 90000</span>
+<span style="color: #b22222;">  */</span>
+  <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Solution</span> {
+  <span style="color: #a020f0;">public</span>:
+    <span style="color: #228b22;">int</span> <span style="color: #0000ff;">findNthDigit</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">nn</span>) {
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">n</span> = nn;
+      <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;<span style="color: #228b22;">long</span>, <span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">p</span> = get_lvl(n);
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">lvl</span> = p.first;
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">remaining</span> = p.second;
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">base</span> = get_base(lvl);
 
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">num</span> = remaining / lvl + base - 1;
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">offset</span> = remaining % lvl;
-    <span style="color: #a020f0;">if</span> (offset != 0) {
-      num++;
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">num</span> = remaining / lvl + base - 1;
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">offset</span> = remaining % lvl;
+      <span style="color: #a020f0;">if</span> (offset != 0) {
+        num++;
+      }
+      <span style="color: #a020f0;">if</span> (offset != 0) {
+        offset = lvl + 1 - offset;
+      }
+      <span style="color: #a020f0;">return</span> get_digit(num, offset);
     }
-    <span style="color: #a020f0;">if</span> (offset != 0) {
-      offset = lvl + 1 - offset;
-    }
-    <span style="color: #a020f0;">return</span> get_digit(num, offset);
-  }
 
-  <span style="color: #228b22;">long</span> <span style="color: #0000ff;">get_digit</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">num</span>, <span style="color: #228b22;">long</span> <span style="color: #a0522d;">offset</span>) {
-    <span style="color: #a020f0;">while</span> (--offset&gt;0) {
-      num /= 10;
+    <span style="color: #228b22;">long</span> <span style="color: #0000ff;">get_digit</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">num</span>, <span style="color: #228b22;">long</span> <span style="color: #a0522d;">offset</span>) {
+      <span style="color: #a020f0;">while</span> (--offset&gt;0) {
+        num /= 10;
+      }
+      <span style="color: #a020f0;">return</span> num % 10;
     }
-    <span style="color: #a020f0;">return</span> num % 10;
-  }
 
-  <span style="color: #b22222;">/**</span>
-<span style="color: #b22222;">   * Get base number (100..)</span>
-<span style="color: #b22222;">   */</span>
-  <span style="color: #228b22;">long</span> <span style="color: #0000ff;">get_base</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">cat</span>) {
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">ret</span>=1;
-    <span style="color: #a020f0;">while</span> (--cat&gt;0) {
-      ret *= 10;
+    <span style="color: #b22222;">/**</span>
+<span style="color: #b22222;">     * Get base number (100..)</span>
+<span style="color: #b22222;">     */</span>
+    <span style="color: #228b22;">long</span> <span style="color: #0000ff;">get_base</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">cat</span>) {
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">ret</span>=1;
+      <span style="color: #a020f0;">while</span> (--cat&gt;0) {
+        ret *= 10;
+      }
+      <span style="color: #a020f0;">return</span> ret;
     }
-    <span style="color: #a020f0;">return</span> ret;
-  }
 
-  <span style="color: #b22222;">/**</span>
-<span style="color: #b22222;">   * find the lvl it belongs, start from 1</span>
-<span style="color: #b22222;">   * @return (lvl, remaining)</span>
-<span style="color: #b22222;">   */</span>
-  <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;<span style="color: #228b22;">long</span>, <span style="color: #228b22;">long</span>&gt; <span style="color: #0000ff;">get_lvl</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">n</span>) {
-    <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;<span style="color: #228b22;">long</span>, <span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">p</span> = {1,0};
-    <span style="color: #a020f0;">while</span> (n &gt; 0) {
-      n -= get_total(p.first);
-      p.first++;
+    <span style="color: #b22222;">/**</span>
+<span style="color: #b22222;">     * find the lvl it belongs, start from 1</span>
+<span style="color: #b22222;">     * @return (lvl, remaining)</span>
+<span style="color: #b22222;">     */</span>
+    <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;<span style="color: #228b22;">long</span>, <span style="color: #228b22;">long</span>&gt; <span style="color: #0000ff;">get_lvl</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">n</span>) {
+      <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">pair</span>&lt;<span style="color: #228b22;">long</span>, <span style="color: #228b22;">long</span>&gt; <span style="color: #a0522d;">p</span> = {1,0};
+      <span style="color: #a020f0;">while</span> (n &gt; 0) {
+        n -= get_total(p.first);
+        p.first++;
+      }
+      p.first--;
+      p.second = n + get_total(p.first);
+      <span style="color: #a020f0;">return</span> p;
     }
-    p.first--;
-    p.second = n + get_total(p.first);
-    <span style="color: #a020f0;">return</span> p;
-  }
 
-  <span style="color: #b22222;">/**</span>
-<span style="color: #b22222;">   * get the total num of lvl level</span>
-<span style="color: #b22222;">   */</span>
-  <span style="color: #228b22;">long</span> <span style="color: #0000ff;">get_total</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">level</span>) {
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">ret</span>=level * 9;
-    <span style="color: #a020f0;">while</span> (--level&gt;0) {
-      ret *= 10;
+    <span style="color: #b22222;">/**</span>
+<span style="color: #b22222;">     * get the total num of lvl level</span>
+<span style="color: #b22222;">     */</span>
+    <span style="color: #228b22;">long</span> <span style="color: #0000ff;">get_total</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">level</span>) {
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">ret</span>=level * 9;
+      <span style="color: #a020f0;">while</span> (--level&gt;0) {
+        ret *= 10;
+      }
+      <span style="color: #a020f0;">return</span> ret;
     }
-    <span style="color: #a020f0;">return</span> ret;
-  }
-};
+  };
 </pre>
 </div>
 
@@ -1093,22 +1091,22 @@ neat solution:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">findNthDigit</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>) {
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">len</span> = 1;
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">count</span> = 9;
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">start</span> = 1;
+<pre class="src src-java">  <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">findNthDigit</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>) {
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">len</span> = 1;
+      <span style="color: #228b22;">long</span> <span style="color: #a0522d;">count</span> = 9;
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">start</span> = 1;
 
-    <span style="color: #a020f0;">while</span> (n &gt; len * count) {
-        n -= len * count;
-        len += 1;
-        count *= 10;
-        start *= 10;
-    }
+      <span style="color: #a020f0;">while</span> (n &gt; len * count) {
+          n -= len * count;
+          len += 1;
+          count *= 10;
+          start *= 10;
+      }
 
-    start += (n - 1) / len;
-    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span> = Integer.toString(start);
-    <span style="color: #a020f0;">return</span> Character.getNumericValue(s.charAt((n - 1) % len));
-}
+      start += (n - 1) / len;
+      <span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span> = Integer.toString(start);
+      <span style="color: #a020f0;">return</span> Character.getNumericValue(s.charAt((n - 1) % len));
+  }
 
 </pre>
 </div>
@@ -1116,9 +1114,7 @@ neat solution:
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-26 Tue 17:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Haskell</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -257,52 +255,52 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org733691a">1. Concept</a>
+<li><a href="#orgf6b2e33">1. Concept</a>
 <ul>
-<li><a href="#orga95e68a">1.1. strictness</a></li>
+<li><a href="#org2194831">1.1. strictness</a></li>
 </ul>
 </li>
-<li><a href="#org78d00b6">2. Lexical</a>
+<li><a href="#org36421ab">2. Lexical</a>
 <ul>
-<li><a href="#orgba3494f">2.1. Names</a></li>
-<li><a href="#org26495da">2.2. Comment</a></li>
-<li><a href="#org00f3b93">2.3. layout</a></li>
+<li><a href="#org9083644">2.1. Names</a></li>
+<li><a href="#org8058f70">2.2. Comment</a></li>
+<li><a href="#orgb27672f">2.3. layout</a></li>
 </ul>
 </li>
-<li><a href="#orgee4e42d">3. Expression</a></li>
-<li><a href="#org85598ad">4. Declaration</a>
+<li><a href="#org9be9966">3. Expression</a></li>
+<li><a href="#orgea9da98">4. Declaration</a>
 <ul>
-<li><a href="#org6ed5149">4.1. Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</a></li>
-<li><a href="#org7e18e67">4.2. Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</a></li>
-<li><a href="#org31c4e29">4.3. nested declarations</a></li>
+<li><a href="#org023418b">4.1. Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</a></li>
+<li><a href="#org6a1a7e3">4.2. Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</a></li>
+<li><a href="#org341103b">4.3. nested declarations</a></li>
 </ul>
 </li>
-<li><a href="#orga318661">5. Predefined classes</a></li>
-<li><a href="#org19e6c26">6. Monad</a>
+<li><a href="#orgc9703c8">5. Predefined classes</a></li>
+<li><a href="#org05d7966">6. Monad</a>
 <ul>
-<li><a href="#org7259989">6.1. Three Components of monad</a></li>
-<li><a href="#orga8fcaf0">6.2. Type constructor</a></li>
-<li><a href="#org578d690">6.3. Using class</a></li>
-<li><a href="#orgd280916">6.4. the monad laws</a></li>
-<li><a href="#org1edbc61">6.5. A different expression of Monad Laws</a></li>
-<li><a href="#org76b59fb">6.6. One Way Monad</a></li>
+<li><a href="#orgc0c5ef5">6.1. Three Components of monad</a></li>
+<li><a href="#org0807381">6.2. Type constructor</a></li>
+<li><a href="#orgdc6e00e">6.3. Using class</a></li>
+<li><a href="#orgd2aa00d">6.4. the monad laws</a></li>
+<li><a href="#org2e71a33">6.5. A different expression of Monad Laws</a></li>
+<li><a href="#orgd28032f">6.6. One Way Monad</a></li>
 </ul>
 </li>
-<li><a href="#org52255ef">7. Reference</a>
+<li><a href="#org92b4318">7. Reference</a>
 <ul>
-<li><a href="#orga32c53e">7.1. Parsers</a></li>
+<li><a href="#orgef4c4e4">7.1. Parsers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org733691a" class="outline-2">
-<h2 id="org733691a"><span class="section-number-2">1</span> Concept</h2>
+<div id="outline-container-orgf6b2e33" class="outline-2">
+<h2 id="orgf6b2e33"><span class="section-number-2">1</span> Concept</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga95e68a" class="outline-3">
-<h3 id="orga95e68a"><span class="section-number-3">1.1</span> strictness</h3>
+<div id="outline-container-org2194831" class="outline-3">
+<h3 id="org2194831"><span class="section-number-3">1.1</span> strictness</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 In a strict language, the arguments to a function are always evaluated
@@ -320,12 +318,12 @@ Scheme is strict, while Haskell is non-strict.
 </div>
 </div>
 
-<div id="outline-container-org78d00b6" class="outline-2">
-<h2 id="org78d00b6"><span class="section-number-2">2</span> Lexical</h2>
+<div id="outline-container-org36421ab" class="outline-2">
+<h2 id="org36421ab"><span class="section-number-2">2</span> Lexical</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgba3494f" class="outline-3">
-<h3 id="orgba3494f"><span class="section-number-3">2.1</span> Names</h3>
+<div id="outline-container-org9083644" class="outline-3">
+<h3 id="org9083644"><span class="section-number-3">2.1</span> Names</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 There are six kinds of names:
@@ -354,8 +352,8 @@ same</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org26495da" class="outline-3">
-<h3 id="org26495da"><span class="section-number-3">2.2</span> Comment</h3>
+<div id="outline-container-org8058f70" class="outline-3">
+<h3 id="org8058f70"><span class="section-number-3">2.2</span> Comment</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Pretty flexible, but just use
@@ -366,8 +364,8 @@ Pretty flexible, but just use
 </ul>
 </div>
 </div>
-<div id="outline-container-org00f3b93" class="outline-3">
-<h3 id="org00f3b93"><span class="section-number-3">2.3</span> layout</h3>
+<div id="outline-container-orgb27672f" class="outline-3">
+<h3 id="orgb27672f"><span class="section-number-3">2.3</span> layout</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Haskell support two style of programming, possibly mixed: using
@@ -394,8 +392,8 @@ layout rule ends</li>
 </div>
 
 
-<div id="outline-container-orgee4e42d" class="outline-2">
-<h2 id="orgee4e42d"><span class="section-number-2">3</span> Expression</h2>
+<div id="outline-container-org9be9966" class="outline-2">
+<h2 id="org9be9966"><span class="section-number-2">3</span> Expression</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 conditional
@@ -548,8 +546,8 @@ components to variables.
 </div>
 
 
-<div id="outline-container-org85598ad" class="outline-2">
-<h2 id="org85598ad"><span class="section-number-2">4</span> Declaration</h2>
+<div id="outline-container-orgea9da98" class="outline-2">
+<h2 id="orgea9da98"><span class="section-number-2">4</span> Declaration</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Actually there are two categories of declarations: type and
@@ -573,8 +571,8 @@ The type that best describe an expression is its <i>principal type</i>.
 </div>
 
 
-<div id="outline-container-org6ed5149" class="outline-3">
-<h3 id="org6ed5149"><span class="section-number-3">4.1</span> Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</h3>
+<div id="outline-container-org023418b" class="outline-3">
+<h3 id="org023418b"><span class="section-number-3">4.1</span> Data Types (<code>type</code>, <code>newtype</code>, <code>data</code>)</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 This is called <i>polymorphic types</i>: <code>(forall a)[a]</code> denotes the family
@@ -628,8 +626,8 @@ for a type synonym.</li>
 </div>
 </div>
 
-<div id="outline-container-org7e18e67" class="outline-3">
-<h3 id="org7e18e67"><span class="section-number-3">4.2</span> Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</h3>
+<div id="outline-container-org6a1a7e3" class="outline-3">
+<h3 id="org6a1a7e3"><span class="section-number-3">4.2</span> Type Classes (<code>class</code>, <code>instance</code>, <code>default</code>)</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 This is <i>ad hoc polymorphism</i>. Compared to <i>parametric polymorphism</i>,
@@ -702,8 +700,8 @@ that. Omitting it is equivalent to writing an empty deriving instance
 </div>
 </div>
 
-<div id="outline-container-org31c4e29" class="outline-3">
-<h3 id="org31c4e29"><span class="section-number-3">4.3</span> nested declarations</h3>
+<div id="outline-container-org341103b" class="outline-3">
+<h3 id="org341103b"><span class="section-number-3">4.3</span> nested declarations</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 This type of declaration denotes those that can be nested inside <code>let</code>
@@ -784,8 +782,8 @@ This is semantically equivalent to
 </div>
 
 
-<div id="outline-container-orga318661" class="outline-2">
-<h2 id="orga318661"><span class="section-number-2">5</span> Predefined classes</h2>
+<div id="outline-container-orgc9703c8" class="outline-2">
+<h2 id="orgc9703c8"><span class="section-number-2">5</span> Predefined classes</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Here just literally copy the definition of those types.
@@ -795,21 +793,21 @@ Here just literally copy the definition of those types.
 Basic types
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #b22222;">-- </span><span style="color: #b22222;">bool</span>
-<span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Bool</span>  <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">False</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">True</span> <span style="color: #a020f0;">deriving</span>
-                             (<span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>, <span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Enum</span>, <span style="color: #228b22;">Bounded</span>)
-<span style="color: #b22222;">-- </span><span style="color: #b22222;">string</span>
-<span style="color: #a020f0;">type</span>  <span style="color: #228b22;">String</span>  <span style="color: #a0522d;">=</span>  [<span style="color: #228b22;">Char</span>]
-<span style="color: #b22222;">-- </span><span style="color: #b22222;">list</span>
-<span style="color: #a020f0;">data</span>  [a]  <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">[]</span> <span style="color: #a0522d;">|</span> a <span style="color: #228b22;">:</span> [a]  <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>)
-<span style="color: #b22222;">-- </span><span style="color: #b22222;">unit</span>
-<span style="color: #a020f0;">data</span>  <span style="color: #228b22;">()</span> <span style="color: #a0522d;">=</span> <span style="color: #228b22;">()</span> <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Bounded</span>, <span style="color: #228b22;">Enum</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
-<span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Maybe</span> a     <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">Nothing</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">Just</span> a  <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
-<span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Either</span> a b  <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">Left</span> a <span style="color: #a0522d;">|</span> <span style="color: #228b22;">Right</span> b  <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
-<span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Ordering</span>    <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">LT</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">EQ</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">GT</span> <span style="color: #a020f0;">deriving</span>
-                                  (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Bounded</span>, <span style="color: #228b22;">Enum</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
-<span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Bounded</span> a  <span style="color: #a020f0;">where</span>
-    minBound, maxBound <span style="color: #a0522d;">::</span> a
+<pre class="src src-haskell">  <span style="color: #b22222;">-- </span><span style="color: #b22222;">bool</span>
+  <span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Bool</span>  <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">False</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">True</span> <span style="color: #a020f0;">deriving</span>
+                               (<span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>, <span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Enum</span>, <span style="color: #228b22;">Bounded</span>)
+  <span style="color: #b22222;">-- </span><span style="color: #b22222;">string</span>
+  <span style="color: #a020f0;">type</span>  <span style="color: #228b22;">String</span>  <span style="color: #a0522d;">=</span>  [<span style="color: #228b22;">Char</span>]
+  <span style="color: #b22222;">-- </span><span style="color: #b22222;">list</span>
+  <span style="color: #a020f0;">data</span>  [a]  <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">[]</span> <span style="color: #a0522d;">|</span> a <span style="color: #228b22;">:</span> [a]  <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>)
+  <span style="color: #b22222;">-- </span><span style="color: #b22222;">unit</span>
+  <span style="color: #a020f0;">data</span>  <span style="color: #228b22;">()</span> <span style="color: #a0522d;">=</span> <span style="color: #228b22;">()</span> <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Bounded</span>, <span style="color: #228b22;">Enum</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
+  <span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Maybe</span> a     <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">Nothing</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">Just</span> a  <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
+  <span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Either</span> a b  <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">Left</span> a <span style="color: #a0522d;">|</span> <span style="color: #228b22;">Right</span> b  <span style="color: #a020f0;">deriving</span> (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
+  <span style="color: #a020f0;">data</span>  <span style="color: #228b22;">Ordering</span>    <span style="color: #a0522d;">=</span>  <span style="color: #228b22;">LT</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">EQ</span> <span style="color: #a0522d;">|</span> <span style="color: #228b22;">GT</span> <span style="color: #a020f0;">deriving</span>
+                                    (<span style="color: #228b22;">Eq</span>, <span style="color: #228b22;">Ord</span>, <span style="color: #228b22;">Bounded</span>, <span style="color: #228b22;">Enum</span>, <span style="color: #228b22;">Read</span>, <span style="color: #228b22;">Show</span>)
+  <span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Bounded</span> a  <span style="color: #a020f0;">where</span>
+      minBound, maxBound <span style="color: #a0522d;">::</span> a
 </pre>
 </div>
 
@@ -817,29 +815,29 @@ Basic types
 Eq is pretty canonical
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Eq</span> a  <span style="color: #a020f0;">where</span>
-      (<span style="color: #a0522d;">==</span>), (<span style="color: #a0522d;">/=</span>)  <span style="color: #a0522d;">::</span>  a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
-      x <span style="color: #a0522d;">/=</span> y  <span style="color: #a0522d;">=</span> not (x <span style="color: #a0522d;">==</span> y)
-      x <span style="color: #a0522d;">==</span> y  <span style="color: #a0522d;">=</span> not (x <span style="color: #a0522d;">/=</span> y)
-<span style="color: #a020f0;">class</span>  (<span style="color: #228b22;">Eq</span> a) <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">Ord</span> a  <span style="color: #a020f0;">where</span>
-   compare              <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Ordering</span>
-   (<span style="color: #a0522d;">&lt;</span>), (<span style="color: #a0522d;">&lt;=</span>), (<span style="color: #a0522d;">&gt;=</span>), (<span style="color: #a0522d;">&gt;</span>) <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
-   max, min             <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a
+<pre class="src src-haskell">  <span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Eq</span> a  <span style="color: #a020f0;">where</span>
+        (<span style="color: #a0522d;">==</span>), (<span style="color: #a0522d;">/=</span>)  <span style="color: #a0522d;">::</span>  a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
+        x <span style="color: #a0522d;">/=</span> y  <span style="color: #a0522d;">=</span> not (x <span style="color: #a0522d;">==</span> y)
+        x <span style="color: #a0522d;">==</span> y  <span style="color: #a0522d;">=</span> not (x <span style="color: #a0522d;">/=</span> y)
+  <span style="color: #a020f0;">class</span>  (<span style="color: #228b22;">Eq</span> a) <span style="color: #a0522d;">=&gt;</span> <span style="color: #228b22;">Ord</span> a  <span style="color: #a020f0;">where</span>
+     compare              <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Ordering</span>
+     (<span style="color: #a0522d;">&lt;</span>), (<span style="color: #a0522d;">&lt;=</span>), (<span style="color: #a0522d;">&gt;=</span>), (<span style="color: #a0522d;">&gt;</span>) <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
+     max, min             <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a
 
-   compare x y <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">==</span> y    <span style="color: #a0522d;">=</span> <span style="color: #228b22;">EQ</span>
-               <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">&lt;=</span> y    <span style="color: #a0522d;">=</span> <span style="color: #228b22;">LT</span>
-               <span style="color: #a0522d;">|</span> otherwise <span style="color: #a0522d;">=</span> <span style="color: #228b22;">GT</span>
+     compare x y <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">==</span> y    <span style="color: #a0522d;">=</span> <span style="color: #228b22;">EQ</span>
+                 <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">&lt;=</span> y    <span style="color: #a0522d;">=</span> <span style="color: #228b22;">LT</span>
+                 <span style="color: #a0522d;">|</span> otherwise <span style="color: #a0522d;">=</span> <span style="color: #228b22;">GT</span>
 
-   x <span style="color: #a0522d;">&lt;=</span> y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">/=</span> <span style="color: #228b22;">GT</span>
-   x <span style="color: #a0522d;">&lt;</span>  y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">==</span> <span style="color: #228b22;">LT</span>
-   x <span style="color: #a0522d;">&gt;=</span> y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">/=</span> <span style="color: #228b22;">LT</span>
-   x <span style="color: #a0522d;">&gt;</span>  y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">==</span> <span style="color: #228b22;">GT</span>
+     x <span style="color: #a0522d;">&lt;=</span> y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">/=</span> <span style="color: #228b22;">GT</span>
+     x <span style="color: #a0522d;">&lt;</span>  y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">==</span> <span style="color: #228b22;">LT</span>
+     x <span style="color: #a0522d;">&gt;=</span> y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">/=</span> <span style="color: #228b22;">LT</span>
+     x <span style="color: #a0522d;">&gt;</span>  y  <span style="color: #a0522d;">=</span> compare x y <span style="color: #a0522d;">==</span> <span style="color: #228b22;">GT</span>
 
-   <span style="color: #b22222;">-- </span><span style="color: #b22222;">Note that (min x y, max x y) = (x,y) or (y,x)</span>
-   max x y <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">&lt;=</span> y    <span style="color: #a0522d;">=</span>  y
-           <span style="color: #a0522d;">|</span> otherwise <span style="color: #a0522d;">=</span>  x
-   min x y <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">&lt;=</span> y    <span style="color: #a0522d;">=</span>  x
-           <span style="color: #a0522d;">|</span> otherwise <span style="color: #a0522d;">=</span>  y
+     <span style="color: #b22222;">-- </span><span style="color: #b22222;">Note that (min x y, max x y) = (x,y) or (y,x)</span>
+     max x y <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">&lt;=</span> y    <span style="color: #a0522d;">=</span>  y
+             <span style="color: #a0522d;">|</span> otherwise <span style="color: #a0522d;">=</span>  x
+     min x y <span style="color: #a0522d;">|</span> x <span style="color: #a0522d;">&lt;=</span> y    <span style="color: #a0522d;">=</span>  x
+             <span style="color: #a0522d;">|</span> otherwise <span style="color: #a0522d;">=</span>  y
 </pre>
 </div>
 
@@ -847,22 +845,22 @@ Eq is pretty canonical
 Read and Show
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">type</span>  <span style="color: #228b22;">ReadS</span> a <span style="color: #a0522d;">=</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">-&gt;</span> [(a,<span style="color: #228b22;">String</span>)]
-<span style="color: #a020f0;">type</span>  <span style="color: #228b22;">ShowS</span>   <span style="color: #a0522d;">=</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">String</span>
+<pre class="src src-haskell">  <span style="color: #a020f0;">type</span>  <span style="color: #228b22;">ReadS</span> a <span style="color: #a0522d;">=</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">-&gt;</span> [(a,<span style="color: #228b22;">String</span>)]
+  <span style="color: #a020f0;">type</span>  <span style="color: #228b22;">ShowS</span>   <span style="color: #a0522d;">=</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">String</span>
 
-<span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Read</span> a  <span style="color: #a020f0;">where</span>
-    readsPrec <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Int</span> <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">ReadS</span> a
-    readList  <span style="color: #a0522d;">::</span> <span style="color: #228b22;">ReadS</span> [a]
-    <span style="color: #b22222;">-- </span><span style="color: #b22222;">... default decl for readList given in Prelude</span>
+  <span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Read</span> a  <span style="color: #a020f0;">where</span>
+      readsPrec <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Int</span> <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">ReadS</span> a
+      readList  <span style="color: #a0522d;">::</span> <span style="color: #228b22;">ReadS</span> [a]
+      <span style="color: #b22222;">-- </span><span style="color: #b22222;">... default decl for readList given in Prelude</span>
 
-<span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Show</span> a  <span style="color: #a020f0;">where</span>
-    showsPrec <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Int</span> <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">ShowS</span>
-    show      <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">String</span>
-    showList  <span style="color: #a0522d;">::</span> [a] <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">ShowS</span>
+  <span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Show</span> a  <span style="color: #a020f0;">where</span>
+      showsPrec <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Int</span> <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">ShowS</span>
+      show      <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">String</span>
+      showList  <span style="color: #a0522d;">::</span> [a] <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">ShowS</span>
 
-    showsPrec <span style="color: #a020f0;">_</span> x s   <span style="color: #a0522d;">=</span> show x <span style="color: #a0522d;">++</span> s
-    show x            <span style="color: #a0522d;">=</span> showsPrec 0 x <span style="color: #8b2252;">""</span>
-    <span style="color: #b22222;">-- </span><span style="color: #b22222;">... default decl for showList given in Prelude</span>
+      showsPrec <span style="color: #a020f0;">_</span> x s   <span style="color: #a0522d;">=</span> show x <span style="color: #a0522d;">++</span> s
+      show x            <span style="color: #a0522d;">=</span> showsPrec 0 x <span style="color: #8b2252;">""</span>
+      <span style="color: #b22222;">-- </span><span style="color: #b22222;">... default decl for showList given in Prelude</span>
 </pre>
 </div>
 
@@ -871,14 +869,14 @@ Enumerator is a classical example of laziness
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Enum</span> a  <span style="color: #a020f0;">where</span>
-    succ, pred     <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a
-    toEnum         <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Int</span> <span style="color: #a0522d;">-&gt;</span> a
-    fromEnum       <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Int</span>
-    enumFrom       <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> [a]            <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n..]</span>
-    enumFromThen   <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> [a]       <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n,n'..]</span>
-    enumFromTo     <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> [a]       <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n..m]</span>
-    enumFromThenTo <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> [a]  <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n,n'..m]</span>
+<pre class="src src-haskell">  <span style="color: #a020f0;">class</span>  <span style="color: #228b22;">Enum</span> a  <span style="color: #a020f0;">where</span>
+      succ, pred     <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a
+      toEnum         <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Int</span> <span style="color: #a0522d;">-&gt;</span> a
+      fromEnum       <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Int</span>
+      enumFrom       <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> [a]            <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n..]</span>
+      enumFromThen   <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> [a]       <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n,n'..]</span>
+      enumFromTo     <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> [a]       <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n..m]</span>
+      enumFromThenTo <span style="color: #a0522d;">::</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> [a]  <span style="color: #b22222;">-- </span><span style="color: #b22222;">[n,n'..m]</span>
 </pre>
 </div>
 
@@ -886,22 +884,22 @@ Enumerator is a classical example of laziness
 Of course we have the Monad:
 </p>
 <pre class="example">
-class  Functor f  where
-    fmap    :: (a -&gt; b) -&gt; f a -&gt; f b
-class  Monad m  where
-    (&gt;&gt;=)   :: m a -&gt; (a -&gt; m b) -&gt; m b
-    (&gt;&gt;)    :: m a -&gt; m b -&gt; m b
-    return  :: a -&gt; m a
-    fail    :: String -&gt; m a
+  class  Functor f  where
+      fmap    :: (a -&gt; b) -&gt; f a -&gt; f b
+  class  Monad m  where
+      (&gt;&gt;=)   :: m a -&gt; (a -&gt; m b) -&gt; m b
+      (&gt;&gt;)    :: m a -&gt; m b -&gt; m b
+      return  :: a -&gt; m a
+      fail    :: String -&gt; m a
 
-    m &gt;&gt; k  =  m &gt;&gt;= \_ -&gt; k
-    fail s  = error s
+      m &gt;&gt; k  =  m &gt;&gt;= \_ -&gt; k
+      fail s  = error s
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org19e6c26" class="outline-2">
-<h2 id="org19e6c26"><span class="section-number-2">6</span> Monad</h2>
+<div id="outline-container-org05d7966" class="outline-2">
+<h2 id="org05d7966"><span class="section-number-2">6</span> Monad</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 A monad is a way to structure computations in terms of values and
@@ -925,8 +923,8 @@ do-notation otherwise.
 </div>
 
 
-<div id="outline-container-org7259989" class="outline-3">
-<h3 id="org7259989"><span class="section-number-3">6.1</span> Three Components of monad</h3>
+<div id="outline-container-orgc0c5ef5" class="outline-3">
+<h3 id="orgc0c5ef5"><span class="section-number-3">6.1</span> Three Components of monad</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 A monad is <b>a type constructor</b>, a function called <b><code>return</code></b>, and a
@@ -944,8 +942,8 @@ complex computations of that type.
 </div>
 </div>
 
-<div id="outline-container-orga8fcaf0" class="outline-3">
-<h3 id="orga8fcaf0"><span class="section-number-3">6.2</span> Type constructor</h3>
+<div id="outline-container-org0807381" class="outline-3">
+<h3 id="org0807381"><span class="section-number-3">6.2</span> Type constructor</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 A type constructor is a parameterized type definition used with
@@ -954,8 +952,8 @@ polymorphic types.
 </div>
 </div>
 
-<div id="outline-container-org578d690" class="outline-3">
-<h3 id="org578d690"><span class="section-number-3">6.3</span> Using class</h3>
+<div id="outline-container-orgdc6e00e" class="outline-3">
+<h3 id="orgdc6e00e"><span class="section-number-3">6.3</span> Using class</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 To define a monad, you basically need the three components. You can do
@@ -986,8 +984,8 @@ It is defined in terms of &gt;&gt;=:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #0000ff;">&gt;&gt;</span>) <span style="color: #a0522d;">::</span> m a <span style="color: #a0522d;">-&gt;</span> m b <span style="color: #a0522d;">-&gt;</span> m b
-m <span style="color: #0000ff;">&gt;&gt;</span> k <span style="color: #a0522d;">=</span> m <span style="color: #a0522d;">&gt;&gt;=</span> (<span style="color: #a0522d;">\</span><span style="color: #a020f0;">_</span> <span style="color: #a0522d;">-&gt;</span> k)
+<pre class="src src-haskell">  (<span style="color: #a0522d;">&gt;&gt;</span>) <span style="color: #a0522d;">::</span> m a <span style="color: #a0522d;">-&gt;</span> m b <span style="color: #a0522d;">-&gt;</span> m b
+  m <span style="color: #a0522d;">&gt;&gt;</span> k <span style="color: #a0522d;">=</span> m <span style="color: #a0522d;">&gt;&gt;=</span> (<span style="color: #a0522d;">\</span><span style="color: #a020f0;">_</span> <span style="color: #a0522d;">-&gt;</span> k)
 </pre>
 </div>
 
@@ -995,18 +993,18 @@ m <span style="color: #0000ff;">&gt;&gt;</span> k <span style="color: #a0522d;">
 So the full version should be
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Monad</span> m <span style="color: #a020f0;">where</span>
-  (<span style="color: #a0522d;">&gt;&gt;=</span>)  <span style="color: #a0522d;">::</span> m a <span style="color: #a0522d;">-&gt;</span> (  a <span style="color: #a0522d;">-&gt;</span> m b) <span style="color: #a0522d;">-&gt;</span> m b
-  (<span style="color: #a0522d;">&gt;&gt;</span>)   <span style="color: #a0522d;">::</span> m a <span style="color: #a0522d;">-&gt;</span>  m b         <span style="color: #a0522d;">-&gt;</span> m b
-  return <span style="color: #a0522d;">::</span>   a                 <span style="color: #a0522d;">-&gt;</span> m a
-  fail   <span style="color: #a0522d;">::</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">-&gt;</span> m a
+<pre class="src src-haskell">  <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Monad</span> m <span style="color: #a020f0;">where</span>
+    (<span style="color: #a0522d;">&gt;&gt;=</span>)  <span style="color: #a0522d;">::</span> m a <span style="color: #a0522d;">-&gt;</span> (  a <span style="color: #a0522d;">-&gt;</span> m b) <span style="color: #a0522d;">-&gt;</span> m b
+    (<span style="color: #a0522d;">&gt;&gt;</span>)   <span style="color: #a0522d;">::</span> m a <span style="color: #a0522d;">-&gt;</span>  m b         <span style="color: #a0522d;">-&gt;</span> m b
+    return <span style="color: #a0522d;">::</span>   a                 <span style="color: #a0522d;">-&gt;</span> m a
+    fail   <span style="color: #a0522d;">::</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">-&gt;</span> m a
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd280916" class="outline-3">
-<h3 id="orgd280916"><span class="section-number-3">6.4</span> the monad laws</h3>
+<div id="outline-container-orgd2aa00d" class="outline-3">
+<h3 id="orgd2aa00d"><span class="section-number-3">6.4</span> the monad laws</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 All instances of Monad should obey the following equations, called
@@ -1036,8 +1034,8 @@ The compiler, however, does not check these laws.
 </div>
 </div>
 
-<div id="outline-container-org1edbc61" class="outline-3">
-<h3 id="org1edbc61"><span class="section-number-3">6.5</span> A different expression of Monad Laws</h3>
+<div id="outline-container-org2e71a33" class="outline-3">
+<h3 id="org2e71a33"><span class="section-number-3">6.5</span> A different expression of Monad Laws</h3>
 <div class="outline-text-3" id="text-6-5">
 <ol class="org-ol">
 <li>create a description of a computation that will produce
@@ -1059,8 +1057,8 @@ process itself.</li>
 </div>
 
 
-<div id="outline-container-org76b59fb" class="outline-3">
-<h3 id="org76b59fb"><span class="section-number-3">6.6</span> One Way Monad</h3>
+<div id="outline-container-orgd28032f" class="outline-3">
+<h3 id="orgd28032f"><span class="section-number-3">6.6</span> One Way Monad</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 The IO monad is a familiar example of a one-way monad in
@@ -1084,8 +1082,8 @@ the program.
 </div>
 </div>
 
-<div id="outline-container-org52255ef" class="outline-2">
-<h2 id="org52255ef"><span class="section-number-2">7</span> Reference</h2>
+<div id="outline-container-org92b4318" class="outline-2">
+<h2 id="org92b4318"><span class="section-number-2">7</span> Reference</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li class="on"><code>[X]</code> Haskell wiki: <a href="https://wiki.haskell.org">https://wiki.haskell.org</a></li>
@@ -1098,8 +1096,8 @@ the program.
 </ul>
 </div>
 
-<div id="outline-container-orga32c53e" class="outline-3">
-<h3 id="orga32c53e"><span class="section-number-3">7.1</span> Parsers</h3>
+<div id="outline-container-orgef4c4e4" class="outline-3">
+<h3 id="orgef4c4e4"><span class="section-number-3">7.1</span> Parsers</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li class="on"><code>[X]</code> Parsec Parser: <a href="https://hackage.haskell.org/package/parsec">https://hackage.haskell.org/package/parsec</a>
@@ -1120,9 +1118,7 @@ date and buggy? <a href="https://github.com/ekmett/trifecta/">https://github.com
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-26 Tue 17:43</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

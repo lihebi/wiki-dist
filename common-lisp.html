@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Common Lisp</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -257,98 +255,98 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org448d352">1. Emacs Support</a>
+<li><a href="#orgcec6674">1. Emacs Support</a>
 <ul>
-<li><a href="#orgd05d294">1.1. lisp-mode</a></li>
-<li><a href="#org7872f93">1.2. lisp go-to-def</a></li>
-<li><a href="#orgcb2ff24">1.3. <span class="todo TODO">TODO</span> eldoc</a></li>
-<li><a href="#orge0d5bcc">1.4. <span class="todo TODO">TODO</span> slime-mode</a></li>
-<li><a href="#org501da85">1.5. paredit</a></li>
+<li><a href="#orgf38bd5e">1.1. lisp-mode</a></li>
+<li><a href="#org0b42d02">1.2. lisp go-to-def</a></li>
+<li><a href="#org430f6d2">1.3. <span class="todo TODO">TODO</span> eldoc</a></li>
+<li><a href="#org30ca14d">1.4. <span class="todo TODO">TODO</span> slime-mode</a></li>
+<li><a href="#org7539c3d">1.5. paredit</a></li>
 </ul>
 </li>
-<li><a href="#org8aedeaa">2. List</a></li>
-<li><a href="#orga7cd331">3. Sequence</a></li>
-<li><a href="#orga1400ec">4. String</a></li>
-<li><a href="#org2511e14">5. Array</a></li>
-<li><a href="#orgf64ca11">6. Structure</a></li>
-<li><a href="#orgfd26efe">7. Hash Table</a></li>
-<li><a href="#orgdf2c60e">8. Symbols &amp; Variables</a>
+<li><a href="#org71f413d">2. List</a></li>
+<li><a href="#org47abf46">3. Sequence</a></li>
+<li><a href="#orgd5c9333">4. String</a></li>
+<li><a href="#orgabc4ce3">5. Array</a></li>
+<li><a href="#orgb8b1870">6. Structure</a></li>
+<li><a href="#org031caa8">7. Hash Table</a></li>
+<li><a href="#org24c99c9">8. Symbols &amp; Variables</a>
 <ul>
-<li><a href="#org6ce7f65">8.1. Equality</a></li>
+<li><a href="#org092bed1">8.1. Equality</a></li>
 </ul>
 </li>
-<li><a href="#org380b14e">9. Type</a></li>
-<li><a href="#orgdefa877">10. Numbers</a></li>
-<li><a href="#org11d50ff">11. Function</a>
+<li><a href="#org4a9d311">9. Type</a></li>
+<li><a href="#org02db3ca">10. Numbers</a></li>
+<li><a href="#orgfa6b06f">11. Function</a>
 <ul>
-<li><a href="#org8158fb9">11.1. Defun and Lambda Expression</a></li>
+<li><a href="#orgafe31c5">11.1. Defun and Lambda Expression</a></li>
 </ul>
 </li>
-<li><a href="#org69a6977">12. Macro</a></li>
-<li><a href="#orgf4494b5">13. Evaluation</a></li>
-<li><a href="#orgb76bdd6">14. Exception</a></li>
-<li><a href="#org4240c2c">15. Control Structure</a>
+<li><a href="#org48b4ed6">12. Macro</a></li>
+<li><a href="#orgebe1551">13. Evaluation</a></li>
+<li><a href="#org40d588c">14. Exception</a></li>
+<li><a href="#org5217fa0">15. Control Structure</a>
 <ul>
-<li><a href="#org8df4a29">15.1. Sequential</a></li>
-<li><a href="#org0c269c1">15.2. Conditional</a></li>
-<li><a href="#org18ee2ce">15.3. Iteration</a>
+<li><a href="#org01d4f22">15.1. Sequential</a></li>
+<li><a href="#orgd6ca483">15.2. Conditional</a></li>
+<li><a href="#org15849ac">15.3. Iteration</a>
 <ul>
-<li><a href="#orgb31fe1e">15.3.1. Append to a list</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org226d2eb">16. Loop Facility</a>
-<ul>
-<li><a href="#orgbf6e02a">16.1. Loop Clauses</a></li>
-<li><a href="#org726c97a">16.2. Loop Syntax</a></li>
-<li><a href="#org9833d76">16.3. Iteration Control (for, as, repeat)</a></li>
-<li><a href="#org1ad5a2e">16.4. End Test Control (always, never, thereis, until, while)</a></li>
-<li><a href="#orgd0f9d94">16.5. Value Accumulation</a></li>
-<li><a href="#org58a783e">16.6. Variable Initialization (with)</a></li>
-<li><a href="#org855763b">16.7. Conditional Execution (if, when, unless)</a></li>
-<li><a href="#org0e67ea2">16.8. Unconditional Execution (do, return)</a></li>
-<li><a href="#org8a1360b">16.9. Misc (named, initially, finally)</a></li>
-<li><a href="#org64b2e79">16.10. Destructure</a></li>
-</ul>
-</li>
-<li><a href="#org6de1901">17. Input/Output</a></li>
-<li><a href="#orgcf30250">18. Package</a>
-<ul>
-<li><a href="#org0c94398">18.1. Modules</a></li>
-</ul>
-</li>
-<li><a href="#orgf15e9c2">19. Common Lisp Object System</a>
-<ul>
-<li><a href="#orgae6c97b">19.1. <span class="todo TODO">TODO</span> Concept</a></li>
-<li><a href="#org98a4fe1">19.2. Functions</a></li>
-</ul>
-</li>
-<li><a href="#org2800dd8">20. ASDF (Another System Definition Facility)</a>
-<ul>
-<li><a href="#orgc0a5e4a">20.1. Load ASDF</a></li>
-<li><a href="#orgb862684">20.2. Load System</a></li>
-<li><a href="#org5f3be64">20.3. Build System</a></li>
-</ul>
-</li>
-<li><a href="#orgac45299">21. Appendix</a>
-<ul>
-<li><a href="#org5084803">21.1. Installation</a>
-<ul>
-<li><a href="#org89cb53d">21.1.1. quicklisp</a></li>
-<li><a href="#orgeba97e9">21.1.2. packages</a></li>
-<li><a href="#org18d440e">21.1.3. org babel</a></li>
-<li><a href="#orgfc0c10a">21.1.4. Slime</a>
-<ul>
-<li><a href="#org90ad877">21.1.4.1. Commands</a></li>
+<li><a href="#orgc2f96d1">15.3.1. Append to a list</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org637c990">21.2. Practical Common Lisp</a>
+<li><a href="#org6289d87">16. Loop Facility</a>
 <ul>
-<li><a href="#org49320b6">21.2.1. CD database</a></li>
-<li><a href="#orgb6b22aa">21.2.2. Unit Test Framework</a></li>
+<li><a href="#org0eb9222">16.1. Loop Clauses</a></li>
+<li><a href="#org34ae614">16.2. Loop Syntax</a></li>
+<li><a href="#org4795a26">16.3. Iteration Control (for, as, repeat)</a></li>
+<li><a href="#orgca1d8cb">16.4. End Test Control (always, never, thereis, until, while)</a></li>
+<li><a href="#org52c7d54">16.5. Value Accumulation</a></li>
+<li><a href="#org8621f02">16.6. Variable Initialization (with)</a></li>
+<li><a href="#orgcfa87d0">16.7. Conditional Execution (if, when, unless)</a></li>
+<li><a href="#org791f009">16.8. Unconditional Execution (do, return)</a></li>
+<li><a href="#orgdeb12b9">16.9. Misc (named, initially, finally)</a></li>
+<li><a href="#org1c7986b">16.10. Destructure</a></li>
+</ul>
+</li>
+<li><a href="#org18800d7">17. Input/Output</a></li>
+<li><a href="#org473ec8e">18. Package</a>
+<ul>
+<li><a href="#orgd12736d">18.1. Modules</a></li>
+</ul>
+</li>
+<li><a href="#org6c48551">19. Common Lisp Object System</a>
+<ul>
+<li><a href="#org0155830">19.1. <span class="todo TODO">TODO</span> Concept</a></li>
+<li><a href="#orge2cedaf">19.2. Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgfb887fa">20. ASDF (Another System Definition Facility)</a>
+<ul>
+<li><a href="#org13061dd">20.1. Load ASDF</a></li>
+<li><a href="#orgb45bacd">20.2. Load System</a></li>
+<li><a href="#org9438a73">20.3. Build System</a></li>
+</ul>
+</li>
+<li><a href="#org02f8aa4">21. Appendix</a>
+<ul>
+<li><a href="#org15ffb56">21.1. Installation</a>
+<ul>
+<li><a href="#org55ef193">21.1.1. quicklisp</a></li>
+<li><a href="#orgc6cbcaa">21.1.2. packages</a></li>
+<li><a href="#org1cc67d1">21.1.3. org babel</a></li>
+<li><a href="#orgfa10881">21.1.4. Slime</a>
+<ul>
+<li><a href="#org97cdaf7">21.1.4.1. Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc3c5b83">21.2. Practical Common Lisp</a>
+<ul>
+<li><a href="#org011c82a">21.2.1. CD database</a></li>
+<li><a href="#orgc9424ec">21.2.2. Unit Test Framework</a></li>
 </ul>
 </li>
 </ul>
@@ -358,12 +356,12 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org448d352" class="outline-2">
-<h2 id="org448d352"><span class="section-number-2">1</span> Emacs Support</h2>
+<div id="outline-container-orgcec6674" class="outline-2">
+<h2 id="orgcec6674"><span class="section-number-2">1</span> Emacs Support</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgd05d294" class="outline-3">
-<h3 id="orgd05d294"><span class="section-number-3">1.1</span> lisp-mode</h3>
+<div id="outline-container-orgf38bd5e" class="outline-3">
+<h3 id="orgf38bd5e"><span class="section-number-3">1.1</span> lisp-mode</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>indent-sexp (C-M-q)</li>
@@ -375,8 +373,8 @@ transpose, point will be after the two sexps</li>
 </div>
 </div>
 
-<div id="outline-container-org7872f93" class="outline-3">
-<h3 id="org7872f93"><span class="section-number-3">1.2</span> lisp go-to-def</h3>
+<div id="outline-container-org0b42d02" class="outline-3">
+<h3 id="org0b42d02"><span class="section-number-3">1.2</span> lisp go-to-def</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>xref-find-definitions (M-.)</li>
@@ -388,12 +386,12 @@ These are supported via general progmodes
 </p>
 </div>
 </div>
-<div id="outline-container-orgcb2ff24" class="outline-3">
-<h3 id="orgcb2ff24"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> eldoc</h3>
+<div id="outline-container-org430f6d2" class="outline-3">
+<h3 id="org430f6d2"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> eldoc</h3>
 </div>
 
-<div id="outline-container-orge0d5bcc" class="outline-3">
-<h3 id="orge0d5bcc"><span class="section-number-3">1.4</span> <span class="todo TODO">TODO</span> slime-mode</h3>
+<div id="outline-container-org30ca14d" class="outline-3">
+<h3 id="org30ca14d"><span class="section-number-3">1.4</span> <span class="todo TODO">TODO</span> slime-mode</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 This is minor mode. All the commands are prefixed with slime
@@ -429,8 +427,8 @@ go back from a definition.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org501da85" class="outline-3">
-<h3 id="org501da85"><span class="section-number-3">1.5</span> paredit</h3>
+<div id="outline-container-org7539c3d" class="outline-3">
+<h3 id="org7539c3d"><span class="section-number-3">1.5</span> paredit</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 I'm going to use this instead of newer and seemingly fancier
@@ -513,8 +511,8 @@ Split and join
 
 
 
-<div id="outline-container-org8aedeaa" class="outline-2">
-<h2 id="org8aedeaa"><span class="section-number-2">2</span> List</h2>
+<div id="outline-container-org71f413d" class="outline-2">
+<h2 id="org71f413d"><span class="section-number-2">2</span> List</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The function <code>cons</code> builds lists. If second argument is a list, it
@@ -640,8 +638,8 @@ variables. It cna be used to bind into tree structures.
 
 
 
-<div id="outline-container-orga7cd331" class="outline-2">
-<h2 id="orga7cd331"><span class="section-number-2">3</span> Sequence</h2>
+<div id="outline-container-org47abf46" class="outline-2">
+<h2 id="org47abf46"><span class="section-number-2">3</span> Sequence</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Sequence contains both lists and vectors. To tell what kind of
@@ -689,8 +687,8 @@ the previous result in the next computation.
 </div>
 </div>
 
-<div id="outline-container-orga1400ec" class="outline-2">
-<h2 id="orga1400ec"><span class="section-number-2">4</span> String</h2>
+<div id="outline-container-orgd5c9333" class="outline-2">
+<h2 id="orgd5c9333"><span class="section-number-2">4</span> String</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A string is a specialized vector (one-dimensional array) whose
@@ -725,8 +723,8 @@ conversion can be done by <code>string-upcase</code>, <code>string-downcase</cod
 </div>
 
 
-<div id="outline-container-org2511e14" class="outline-2">
-<h2 id="org2511e14"><span class="section-number-2">5</span> Array</h2>
+<div id="outline-container-orgabc4ce3" class="outline-2">
+<h2 id="orgabc4ce3"><span class="section-number-2">5</span> Array</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Array can be general array, holding arbitrary object types; it can
@@ -768,8 +766,8 @@ supported via <code>bit</code>, <code>sbit</code>, <code>bit-and</code>, <code>b
 </div>
 </div>
 
-<div id="outline-container-orgf64ca11" class="outline-2">
-<h2 id="orgf64ca11"><span class="section-number-2">6</span> Structure</h2>
+<div id="outline-container-orgb8b1870" class="outline-2">
+<h2 id="orgb8b1870"><span class="section-number-2">6</span> Structure</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Macro <code>(defstruct point x y)</code> will also define <code>make-point</code>,
@@ -778,8 +776,8 @@ Macro <code>(defstruct point x y)</code> will also define <code>make-point</code
 </div>
 </div>
 
-<div id="outline-container-orgfd26efe" class="outline-2">
-<h2 id="orgfd26efe"><span class="section-number-2">7</span> Hash Table</h2>
+<div id="outline-container-org031caa8" class="outline-2">
+<h2 id="org031caa8"><span class="section-number-2">7</span> Hash Table</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 This is a map. <code>make-hash-table</code> creates a hash-table. The test
@@ -801,8 +799,8 @@ the table by <code>clrhash</code>.  To iterate through a hash table, use
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf2c60e" class="outline-2">
-<h2 id="orgdf2c60e"><span class="section-number-2">8</span> Symbols &amp; Variables</h2>
+<div id="outline-container-org24c99c9" class="outline-2">
+<h2 id="org24c99c9"><span class="section-number-2">8</span> Symbols &amp; Variables</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Lisp is case-insensitive. The program will be converted to upper case
@@ -909,16 +907,16 @@ percent of the use cases are <code>PUSH/NREVERSE</code> and <code>SETF/DELETE</c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">upto</span> (max)
-  (<span style="color: #a020f0;">let</span> ((result nil))
-    (<span style="color: #a020f0;">dotimes</span> (i max)
-      (push i result))
-    (nreverse result)))
+<pre class="src src-lisp"> (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">upto</span> (max)
+   (<span style="color: #a020f0;">let</span> ((result nil))
+     (<span style="color: #a020f0;">dotimes</span> (i max)
+       (push i result))
+     (nreverse result)))
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(setf foo (delete nil foo))
+<pre class="src src-lisp"> (setf foo (delete nil foo))
 </pre>
 </div>
 
@@ -928,17 +926,17 @@ to assign it back to the variable.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">*list*</span> (list 4 3 2 1))
-(sort *list* #'&lt;) <span style="color: #b22222;">;; </span><span style="color: #b22222;">(1 2 3 4)</span>
-*list* <span style="color: #b22222;">;; </span><span style="color: #b22222;">(4)</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">so shoud use:</span>
-(setf *list* (sort *list* #'&lt;))
+<pre class="src src-lisp"> (<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">*list*</span> (list 4 3 2 1))
+ (sort *list* #'&lt;) <span style="color: #b22222;">;; </span><span style="color: #b22222;">(1 2 3 4)</span>
+ *list* <span style="color: #b22222;">;; </span><span style="color: #b22222;">(4)</span>
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">so shoud use:</span>
+ (setf *list* (sort *list* #'&lt;))
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6ce7f65" class="outline-3">
-<h3 id="org6ce7f65"><span class="section-number-3">8.1</span> Equality</h3>
+<div id="outline-container-org092bed1" class="outline-3">
+<h3 id="org092bed1"><span class="section-number-3">8.1</span> Equality</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 The reason Lisp has no pointer is that every value is conceptually a
@@ -966,8 +964,8 @@ equal case-insensitively. NEVER use this.</li>
 </div>
 </div>
 
-<div id="outline-container-org380b14e" class="outline-2">
-<h2 id="org380b14e"><span class="section-number-2">9</span> Type</h2>
+<div id="outline-container-org4a9d311" class="outline-2">
+<h2 id="org4a9d311"><span class="section-number-2">9</span> Type</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Common Lisp is strong typed, but the type is associated with objects,
@@ -1003,8 +1001,8 @@ remember, documenting here.
 </div>
 </div>
 
-<div id="outline-container-orgdefa877" class="outline-2">
-<h2 id="orgdefa877"><span class="section-number-2">10</span> Numbers</h2>
+<div id="outline-container-org02db3ca" class="outline-2">
+<h2 id="org02db3ca"><span class="section-number-2">10</span> Numbers</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Numbers can use read form, e.g. <code>#b010101</code>, <code>#xaf08</code>. Predicates such
@@ -1061,8 +1059,8 @@ general function that accept many operations that cover all above.
 </div>
 
 
-<div id="outline-container-org11d50ff" class="outline-2">
-<h2 id="org11d50ff"><span class="section-number-2">11</span> Function</h2>
+<div id="outline-container-orgfa6b06f" class="outline-2">
+<h2 id="orgfa6b06f"><span class="section-number-2">11</span> Function</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 The predicate <code>fboundp</code> tells whether there's a function with a given
@@ -1075,22 +1073,22 @@ obtained by <code>#'</code>.
 </p>
 </div>
 
-<div id="outline-container-org8158fb9" class="outline-3">
-<h3 id="org8158fb9"><span class="section-number-3">11.1</span> Defun and Lambda Expression</h3>
+<div id="outline-container-orgafe31c5" class="outline-3">
+<h3 id="orgafe31c5"><span class="section-number-3">11.1</span> Defun and Lambda Expression</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 <code>defun</code> is a macro.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">name</span> (a b
-             <span style="color: #228b22;">&amp;optional</span> op1
-               (op2 def-value)
-               (op3 def-value op3-supplied-p)
-             <span style="color: #228b22;">&amp;rest</span> rests
-             <span style="color: #228b22;">&amp;key</span> k1
-               (k2 def-value k2-supplied-p)
-               ((<span style="color: #483d8b;">:kkkkk3</span> k3) def-value k3-supplied-p))
-  (body-forms))
+<pre class="src src-lisp">     (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">name</span> (a b
+                  <span style="color: #228b22;">&amp;optional</span> op1
+                    (op2 def-value)
+                    (op3 def-value op3-supplied-p)
+                  <span style="color: #228b22;">&amp;rest</span> rests
+                  <span style="color: #228b22;">&amp;key</span> k1
+                    (k2 def-value k2-supplied-p)
+                    ((<span style="color: #483d8b;">:kkkkk3</span> k3) def-value k3-supplied-p))
+       (body-forms))
 </pre>
 </div>
 
@@ -1098,9 +1096,9 @@ obtained by <code>#'</code>.
 lambda expression shares the same structures.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #a020f0;">lambda</span>
-    (a b <span style="color: #228b22;">&amp;optional</span> op1 <span style="color: #228b22;">&amp;rest</span> rests <span style="color: #228b22;">&amp;key</span> k1)
-  (body))
+<pre class="src src-lisp">  (<span style="color: #a020f0;">lambda</span>
+      (a b <span style="color: #228b22;">&amp;optional</span> op1 <span style="color: #228b22;">&amp;rest</span> rests <span style="color: #228b22;">&amp;key</span> k1)
+    (body))
 </pre>
 </div>
 
@@ -1146,8 +1144,8 @@ differently, so <code>lambda</code> is no longer necessary.
 </div>
 </div>
 
-<div id="outline-container-org69a6977" class="outline-2">
-<h2 id="org69a6977"><span class="section-number-2">12</span> Macro</h2>
+<div id="outline-container-org48b4ed6" class="outline-2">
+<h2 id="org48b4ed6"><span class="section-number-2">12</span> Macro</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Macro is designed to abstract away common syntactic patterns.
@@ -1182,18 +1180,18 @@ you want to use the variable.</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">mymac</span> (param)
-  (<span style="color: #a020f0;">let</span> ((name (gensym)))
-    `(<span style="color: #a020f0;">let</span> ((,name ,param))
-       ,name)))
+<pre class="src src-lisp">  (<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">mymac</span> (param)
+    (<span style="color: #a020f0;">let</span> ((name (gensym)))
+      `(<span style="color: #a020f0;">let</span> ((,name ,param))
+         ,name)))
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgf4494b5" class="outline-2">
-<h2 id="orgf4494b5"><span class="section-number-2">13</span> Evaluation</h2>
+<div id="outline-container-orgebe1551" class="outline-2">
+<h2 id="orgebe1551"><span class="section-number-2">13</span> Evaluation</h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>eval form: evaluate form in the current dynamic environment and a
@@ -1271,8 +1269,8 @@ that is used in defmacro.
 </div>
 </div>
 
-<div id="outline-container-orgb76bdd6" class="outline-2">
-<h2 id="orgb76bdd6"><span class="section-number-2">14</span> Exception</h2>
+<div id="outline-container-org40d588c" class="outline-2">
+<h2 id="org40d588c"><span class="section-number-2">14</span> Exception</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 A <code>catch</code> expression takes a tag, which can be any kind of object,
@@ -1290,12 +1288,12 @@ the lisp error handler.
 
 
 
-<div id="outline-container-org4240c2c" class="outline-2">
-<h2 id="org4240c2c"><span class="section-number-2">15</span> Control Structure</h2>
+<div id="outline-container-org5217fa0" class="outline-2">
+<h2 id="org5217fa0"><span class="section-number-2">15</span> Control Structure</h2>
 <div class="outline-text-2" id="text-15">
 </div>
-<div id="outline-container-org8df4a29" class="outline-3">
-<h3 id="org8df4a29"><span class="section-number-3">15.1</span> Sequential</h3>
+<div id="outline-container-org01d4f22" class="outline-3">
+<h3 id="org01d4f22"><span class="section-number-3">15.1</span> Sequential</h3>
 <div class="outline-text-3" id="text-15-1">
 <ul class="org-ul">
 <li>progn</li>
@@ -1305,8 +1303,8 @@ the lisp error handler.
 </div>
 </div>
 
-<div id="outline-container-org0c269c1" class="outline-3">
-<h3 id="org0c269c1"><span class="section-number-3">15.2</span> Conditional</h3>
+<div id="outline-container-orgd6ca483" class="outline-3">
+<h3 id="orgd6ca483"><span class="section-number-3">15.2</span> Conditional</h3>
 <div class="outline-text-3" id="text-15-2">
 <div class="org-src-container">
 <pre class="src src-lisp">(<span style="color: #a020f0;">if</span> condition then-form [else-form])
@@ -1330,24 +1328,24 @@ simple conditional evaluation. For example,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
-(and x (setf y t))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
-(<span style="color: #a020f0;">when</span> x
-  (setf y t))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
-(or x (setf y t))
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
-(<span style="color: #a020f0;">unless</span> x
-  (setf y t))
+<pre class="src src-lisp">  <span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
+  (and x (setf y t))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
+  (<span style="color: #a020f0;">when</span> x
+    (setf y t))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">use</span>
+  (or x (setf y t))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">instead of</span>
+  (<span style="color: #a020f0;">unless</span> x
+    (setf y t))
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org18ee2ce" class="outline-3">
-<h3 id="org18ee2ce"><span class="section-number-3">15.3</span> Iteration</h3>
+<div id="outline-container-org15849ac" class="outline-3">
+<h3 id="org15849ac"><span class="section-number-3">15.3</span> Iteration</h3>
 <div class="outline-text-3" id="text-15-3">
 <div class="org-src-container">
 <pre class="src src-lisp">(<span style="color: #a020f0;">dolist</span> (var list-form) body-form*)
@@ -1367,8 +1365,8 @@ the var-def is <code>(var init-form step-form)</code>. For example:
 </div>
 
 
-<div id="outline-container-orgb31fe1e" class="outline-4">
-<h4 id="orgb31fe1e"><span class="section-number-4">15.3.1</span> Append to a list</h4>
+<div id="outline-container-orgc2f96d1" class="outline-4">
+<h4 id="orgc2f96d1"><span class="section-number-4">15.3.1</span> Append to a list</h4>
 <div class="outline-text-4" id="text-15-3-1">
 <p>
 Remember that append copies its arguments.  Avoid using append
@@ -1401,7 +1399,7 @@ Better:
 Best:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(<span style="color: #a020f0;">loop</span> for x in list collect x)
+<pre class="src src-lisp">  (<span style="color: #a020f0;">loop</span> for x in list collect x)
 </pre>
 </div>
 </div>
@@ -1409,8 +1407,8 @@ Best:
 </div>
 </div>
 
-<div id="outline-container-org226d2eb" class="outline-2">
-<h2 id="org226d2eb"><span class="section-number-2">16</span> Loop Facility</h2>
+<div id="outline-container-org6289d87" class="outline-2">
+<h2 id="org6289d87"><span class="section-number-2">16</span> Loop Facility</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 <i>Loop keywords</i> are not true common lisp keywords. They are symbols
@@ -1433,8 +1431,8 @@ All variables are initialized in the loop prologue.
 </p>
 </div>
 
-<div id="outline-container-orgbf6e02a" class="outline-3">
-<h3 id="orgbf6e02a"><span class="section-number-3">16.1</span> Loop Clauses</h3>
+<div id="outline-container-org0eb9222" class="outline-3">
+<h3 id="org0eb9222"><span class="section-number-3">16.1</span> Loop Clauses</h3>
 <div class="outline-text-3" id="text-16-1">
 <p>
 Inside the loop is the loop clauses.
@@ -1507,8 +1505,8 @@ Miscellaneous
 </ul>
 </div>
 </div>
-<div id="outline-container-org726c97a" class="outline-3">
-<h3 id="org726c97a"><span class="section-number-3">16.2</span> Loop Syntax</h3>
+<div id="outline-container-org34ae614" class="outline-3">
+<h3 id="org34ae614"><span class="section-number-3">16.2</span> Loop Syntax</h3>
 <div class="outline-text-3" id="text-16-2">
 <pre class="example">
 loop ::= (loop [named name] {variables}* {main}*)
@@ -1533,8 +1531,8 @@ initial-final ::= initially | finally
 </div>
 </div>
 
-<div id="outline-container-org9833d76" class="outline-3">
-<h3 id="org9833d76"><span class="section-number-3">16.3</span> Iteration Control (for, as, repeat)</h3>
+<div id="outline-container-org4795a26" class="outline-3">
+<h3 id="org4795a26"><span class="section-number-3">16.3</span> Iteration Control (for, as, repeat)</h3>
 <div class="outline-text-3" id="text-16-3">
 <p>
 for and as are exctly the same.
@@ -1635,8 +1633,8 @@ repeat the body (expr) times.
 </div>
 </div>
 
-<div id="outline-container-org1ad5a2e" class="outline-3">
-<h3 id="org1ad5a2e"><span class="section-number-3">16.4</span> End Test Control (always, never, thereis, until, while)</h3>
+<div id="outline-container-orgca1d8cb" class="outline-3">
+<h3 id="orgca1d8cb"><span class="section-number-3">16.4</span> End Test Control (always, never, thereis, until, while)</h3>
 <div class="outline-text-3" id="text-16-4">
 <p>
 always, never, thereis change the return value, so
@@ -1662,8 +1660,8 @@ if so, otherwise return t</li>
 </div>
 </div>
 
-<div id="outline-container-orgd0f9d94" class="outline-3">
-<h3 id="orgd0f9d94"><span class="section-number-3">16.5</span> Value Accumulation</h3>
+<div id="outline-container-org52c7d54" class="outline-3">
+<h3 id="org52c7d54"><span class="section-number-3">16.5</span> Value Accumulation</h3>
 <div class="outline-text-3" id="text-16-5">
 <ul class="org-ul">
 <li>multiple accumulation can be used if they operate the same type,
@@ -1702,8 +1700,8 @@ Clauses: all of them have <code>xxx expr [into var]</code> format
 </ul>
 </div>
 </div>
-<div id="outline-container-org58a783e" class="outline-3">
-<h3 id="org58a783e"><span class="section-number-3">16.6</span> Variable Initialization (with)</h3>
+<div id="outline-container-org8621f02" class="outline-3">
+<h3 id="org8621f02"><span class="section-number-3">16.6</span> Variable Initialization (with)</h3>
 <div class="outline-text-3" id="text-16-6">
 <pre class="example">
 with var [= expr] {and var [= expr]}*
@@ -1715,8 +1713,8 @@ with var [= expr] {and var [= expr]}*
 </ul>
 </div>
 </div>
-<div id="outline-container-org855763b" class="outline-3">
-<h3 id="org855763b"><span class="section-number-3">16.7</span> Conditional Execution (if, when, unless)</h3>
+<div id="outline-container-orgcfa87d0" class="outline-3">
+<h3 id="orgcfa87d0"><span class="section-number-3">16.7</span> Conditional Execution (if, when, unless)</h3>
 <div class="outline-text-3" id="text-16-7">
 <p>
 They all have the same signature:
@@ -1740,8 +1738,8 @@ keyword marks the end. This is useful in compound clauses.</li>
 </div>
 </div>
 
-<div id="outline-container-org0e67ea2" class="outline-3">
-<h3 id="org0e67ea2"><span class="section-number-3">16.8</span> Unconditional Execution (do, return)</h3>
+<div id="outline-container-org791f009" class="outline-3">
+<h3 id="org791f009"><span class="section-number-3">16.8</span> Unconditional Execution (do, return)</h3>
 <div class="outline-text-3" id="text-16-8">
 <ul class="org-ul">
 <li>do {expr}*: execute sequentially</li>
@@ -1750,8 +1748,8 @@ keyword marks the end. This is useful in compound clauses.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a1360b" class="outline-3">
-<h3 id="org8a1360b"><span class="section-number-3">16.9</span> Misc (named, initially, finally)</h3>
+<div id="outline-container-orgdeb12b9" class="outline-3">
+<h3 id="orgdeb12b9"><span class="section-number-3">16.9</span> Misc (named, initially, finally)</h3>
 <div class="outline-text-3" id="text-16-9">
 <ul class="org-ul">
 <li>named: name a loop so that we can use return-from</li>
@@ -1762,8 +1760,8 @@ collected into one place inside <code>progn</code> in the order they present.</l
 </ul>
 </div>
 </div>
-<div id="outline-container-org64b2e79" class="outline-3">
-<h3 id="org64b2e79"><span class="section-number-3">16.10</span> Destructure</h3>
+<div id="outline-container-org1c7986b" class="outline-3">
+<h3 id="org1c7986b"><span class="section-number-3">16.10</span> Destructure</h3>
 <div class="outline-text-3" id="text-16-10">
 <p>
 bind result to a list of variables. This can be used in <code>for</code> and
@@ -1783,8 +1781,8 @@ value</li>
 
 
 
-<div id="outline-container-org6de1901" class="outline-2">
-<h2 id="org6de1901"><span class="section-number-2">17</span> Input/Output</h2>
+<div id="outline-container-org18800d7" class="outline-2">
+<h2 id="org18800d7"><span class="section-number-2">17</span> Input/Output</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 These input/output operations perform on streams.  Streams are lisp
@@ -1855,8 +1853,8 @@ In case you only have a string, it is convenient to use
 </div>
 
 
-<div id="outline-container-orgcf30250" class="outline-2">
-<h2 id="orgcf30250"><span class="section-number-2">18</span> Package</h2>
+<div id="outline-container-org473ec8e" class="outline-2">
+<h2 id="org473ec8e"><span class="section-number-2">18</span> Package</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 This is used to solve name conflict.
@@ -1894,8 +1892,8 @@ This is used to solve name conflict.
 </ul>
 </div>
 
-<div id="outline-container-org0c94398" class="outline-3">
-<h3 id="org0c94398"><span class="section-number-3">18.1</span> Modules</h3>
+<div id="outline-container-orgd12736d" class="outline-3">
+<h3 id="orgd12736d"><span class="section-number-3">18.1</span> Modules</h3>
 <div class="outline-text-3" id="text-18-1">
 <p>
 A module is a subsystem. It consists of one or more packages. It may
@@ -1913,15 +1911,15 @@ be loaded from one or more files.
 
 
 
-<div id="outline-container-orgf15e9c2" class="outline-2">
-<h2 id="orgf15e9c2"><span class="section-number-2">19</span> Common Lisp Object System</h2>
+<div id="outline-container-org6c48551" class="outline-2">
+<h2 id="org6c48551"><span class="section-number-2">19</span> Common Lisp Object System</h2>
 <div class="outline-text-2" id="text-19">
 </div>
-<div id="outline-container-orgae6c97b" class="outline-3">
-<h3 id="orgae6c97b"><span class="section-number-3">19.1</span> <span class="todo TODO">TODO</span> Concept</h3>
+<div id="outline-container-org0155830" class="outline-3">
+<h3 id="org0155830"><span class="section-number-3">19.1</span> <span class="todo TODO">TODO</span> Concept</h3>
 </div>
-<div id="outline-container-org98a4fe1" class="outline-3">
-<h3 id="org98a4fe1"><span class="section-number-3">19.2</span> Functions</h3>
+<div id="outline-container-orge2cedaf" class="outline-3">
+<h3 id="orge2cedaf"><span class="section-number-3">19.2</span> Functions</h3>
 <div class="outline-text-3" id="text-19-2">
 <ul class="org-ul">
 <li>add-method</li>
@@ -1973,15 +1971,15 @@ be loaded from one or more files.
 </div>
 
 
-<div id="outline-container-org2800dd8" class="outline-2">
-<h2 id="org2800dd8"><span class="section-number-2">20</span> ASDF (Another System Definition Facility)</h2>
+<div id="outline-container-orgfb887fa" class="outline-2">
+<h2 id="orgfb887fa"><span class="section-number-2">20</span> ASDF (Another System Definition Facility)</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 <a href="https://common-lisp.net/project/asdf/asdf.html">https://common-lisp.net/project/asdf/asdf.html</a>
 </p>
 </div>
-<div id="outline-container-orgc0a5e4a" class="outline-3">
-<h3 id="orgc0a5e4a"><span class="section-number-3">20.1</span> Load ASDF</h3>
+<div id="outline-container-org13061dd" class="outline-3">
+<h3 id="org13061dd"><span class="section-number-3">20.1</span> Load ASDF</h3>
 <div class="outline-text-3" id="text-20-1">
 <p>
 ASDF should come along with lisp implementations.
@@ -2010,8 +2008,8 @@ However, quicklisp should already configured the load path.
 </div>
 </div>
 
-<div id="outline-container-orgb862684" class="outline-3">
-<h3 id="orgb862684"><span class="section-number-3">20.2</span> Load System</h3>
+<div id="outline-container-orgb45bacd" class="outline-3">
+<h3 id="orgb45bacd"><span class="section-number-3">20.2</span> Load System</h3>
 <div class="outline-text-3" id="text-20-2">
 <ul class="org-ul">
 <li><code>(require "asdf")</code></li>
@@ -2036,8 +2034,8 @@ Some functions:
 </div>
 </div>
 
-<div id="outline-container-org5f3be64" class="outline-3">
-<h3 id="org5f3be64"><span class="section-number-3">20.3</span> Build System</h3>
+<div id="outline-container-org9438a73" class="outline-3">
+<h3 id="org9438a73"><span class="section-number-3">20.3</span> Build System</h3>
 <div class="outline-text-3" id="text-20-3">
 <ul class="org-ul">
 <li><code>(require "asdf")</code></li>
@@ -2055,54 +2053,54 @@ The system is specified using <code>defsystem</code> syntax. An example
 (hello-lisp.asd):
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">Usual Lisp comments are allowed </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">here</span>
-(defsystem <span style="color: #8b2252;">"hello-lisp"</span>
-    <span style="color: #483d8b;">:description</span> <span style="color: #8b2252;">"hello-lisp: a sample Lisp system."</span>
-    <span style="color: #483d8b;">:version</span> <span style="color: #8b2252;">"0.0.1"</span>
-    <span style="color: #483d8b;">:author</span> <span style="color: #8b2252;">"Joe User <a href="mailto:joe%40example.com">&lt;joe@example.com&gt;</a>"</span>
-    <span style="color: #483d8b;">:licence</span> <span style="color: #8b2252;">"Public Domain"</span>
-    <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"optima.ppcre"</span> <span style="color: #8b2252;">"command-line-arguments"</span>)
-    <span style="color: #483d8b;">:components</span> ((<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"packages"</span>)
-                 (<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"macros"</span> <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"packages"</span>))
-                 (<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"hello"</span> <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"macros"</span>))))
+<pre class="src src-lisp">  <span style="color: #b22222;">;; </span><span style="color: #b22222;">Usual Lisp comments are allowed </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">here</span>
+  (defsystem <span style="color: #8b2252;">"hello-lisp"</span>
+      <span style="color: #483d8b;">:description</span> <span style="color: #8b2252;">"hello-lisp: a sample Lisp system."</span>
+      <span style="color: #483d8b;">:version</span> <span style="color: #8b2252;">"0.0.1"</span>
+      <span style="color: #483d8b;">:author</span> <span style="color: #8b2252;">"Joe User <a href="mailto:joe%40example.com">&lt;joe@example.com&gt;</a>"</span>
+      <span style="color: #483d8b;">:licence</span> <span style="color: #8b2252;">"Public Domain"</span>
+      <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"optima.ppcre"</span> <span style="color: #8b2252;">"command-line-arguments"</span>)
+      <span style="color: #483d8b;">:components</span> ((<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"packages"</span>)
+                   (<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"macros"</span> <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"packages"</span>))
+                   (<span style="color: #483d8b;">:file</span> <span style="color: #8b2252;">"hello"</span> <span style="color: #483d8b;">:depends-on</span> (<span style="color: #8b2252;">"macros"</span>))))
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgac45299" class="outline-2">
-<h2 id="orgac45299"><span class="section-number-2">21</span> Appendix</h2>
+<div id="outline-container-org02f8aa4" class="outline-2">
+<h2 id="org02f8aa4"><span class="section-number-2">21</span> Appendix</h2>
 <div class="outline-text-2" id="text-21">
 </div>
-<div id="outline-container-org5084803" class="outline-3">
-<h3 id="org5084803"><span class="section-number-3">21.1</span> Installation</h3>
+<div id="outline-container-org15ffb56" class="outline-3">
+<h3 id="org15ffb56"><span class="section-number-3">21.1</span> Installation</h3>
 <div class="outline-text-3" id="text-21-1">
 </div>
-<div id="outline-container-org89cb53d" class="outline-4">
-<h4 id="org89cb53d"><span class="section-number-4">21.1.1</span> quicklisp</h4>
+<div id="outline-container-org55ef193" class="outline-4">
+<h4 id="org55ef193"><span class="section-number-4">21.1.1</span> quicklisp</h4>
 <div class="outline-text-4" id="text-21-1-1">
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">sbcl --load /path/to/quicklisp.lisp</span>
-(load <span style="color: #8b2252;">"/path/to/quicklisp.lisp"</span>)
-(quicklisp-quickstart:install)
+<pre class="src src-lisp"> <span style="color: #b22222;">;; </span><span style="color: #b22222;">sbcl --load /path/to/quicklisp.lisp</span>
+ (load <span style="color: #8b2252;">"/path/to/quicklisp.lisp"</span>)
+ (quicklisp-quickstart:install)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">setting up</span>
-(load <span style="color: #8b2252;">"~/quicklisp/setup.lisp"</span>)
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">load quicklisp when you start lisp</span>
-(ql:add-to-init-file)
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">setting up</span>
+ (load <span style="color: #8b2252;">"~/quicklisp/setup.lisp"</span>)
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">load quicklisp when you start lisp</span>
+ (ql:add-to-init-file)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">install/remove a software</span>
-(ql:quickload <span style="color: #8b2252;">"clx-truetype"</span>)
-(ql:uninstall <span style="color: #8b2252;">"clx-truetype"</span>)
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">install/remove a software</span>
+ (ql:quickload <span style="color: #8b2252;">"clx-truetype"</span>)
+ (ql:uninstall <span style="color: #8b2252;">"clx-truetype"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">query installed packages</span>
-(ql:system-apropos <span style="color: #8b2252;">"substring"</span>)
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">query installed packages</span>
+ (ql:system-apropos <span style="color: #8b2252;">"substring"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">updating all packages</span>
-(ql:update-all-dists)
-<span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">update</span><span style="color: #b22222;"> quicklisp itself</span>
-(ql:update-client)
+ <span style="color: #b22222;">;; </span><span style="color: #b22222;">updating all packages</span>
+ (ql:update-all-dists)
+ <span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">update</span><span style="color: #b22222;"> quicklisp itself</span>
+ (ql:update-client)
 </pre>
 </div>
 
@@ -2122,8 +2120,8 @@ A list of packages used:
 </dl>
 </div>
 </div>
-<div id="outline-container-orgeba97e9" class="outline-4">
-<h4 id="orgeba97e9"><span class="section-number-4">21.1.2</span> packages</h4>
+<div id="outline-container-orgc6cbcaa" class="outline-4">
+<h4 id="orgc6cbcaa"><span class="section-number-4">21.1.2</span> packages</h4>
 <div class="outline-text-4" id="text-21-1-2">
 <ul class="org-ul">
 <li><code>cl-quicklisp</code></li>
@@ -2133,22 +2131,22 @@ A list of packages used:
 
 
 
-<div id="outline-container-org18d440e" class="outline-4">
-<h4 id="org18d440e"><span class="section-number-4">21.1.3</span> org babel</h4>
+<div id="outline-container-org1cc67d1" class="outline-4">
+<h4 id="org1cc67d1"><span class="section-number-4">21.1.3</span> org babel</h4>
 <div class="outline-text-4" id="text-21-1-3">
 <p>
 first, start <code>M-x slime</code>, then you can evaluate this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgfb04fed">(princ message)
+<pre class="src src-lisp" id="org161411a">   (princ message)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfc0c10a" class="outline-4">
-<h4 id="orgfc0c10a"><span class="section-number-4">21.1.4</span> Slime</h4>
+<div id="outline-container-orgfa10881" class="outline-4">
+<h4 id="orgfa10881"><span class="section-number-4">21.1.4</span> Slime</h4>
 <div class="outline-text-4" id="text-21-1-4">
 <ul class="org-ul">
 <li>slime (emacs IDE)</li>
@@ -2160,35 +2158,35 @@ first, start <code>M-x slime</code>, then you can evaluate this:
 In emacs: start slime
 </p>
 <pre class="example">
-CL-USER&gt; (load "/path/to/quicklisp.lisp")
-CL-USER&gt; ;; follow screen command to install
-CL-USER&gt; (load "~/quicklisp/setup.lisp") ;; load it
+ CL-USER&gt; (load "/path/to/quicklisp.lisp")
+ CL-USER&gt; ;; follow screen command to install
+ CL-USER&gt; (load "~/quicklisp/setup.lisp") ;; load it
 
-CL-USER&gt; (ql:add-to-init-file) ;; add to sbcl's init file
+ CL-USER&gt; (ql:add-to-init-file) ;; add to sbcl's init file
 
-CL-USER&gt; (ql:quickload "clx-truetype") ;; download this package. Packages will be put into "~/quicklisp/xxx/dist"
+ CL-USER&gt; (ql:quickload "clx-truetype") ;; download this package. Packages will be put into "~/quicklisp/xxx/dist"
 
-CL-USER&gt; (ql:update-all-dists) ;; update
-CL-USER&gt; (ql:update-client) ;; update quicklisp itself
+ CL-USER&gt; (ql:update-all-dists) ;; update
+ CL-USER&gt; (ql:update-client) ;; update quicklisp itself
 </pre>
 
 <p>
 The staff added into <code>.sbclrc</code>:
 </p>
 <pre class="example">
-;;; The following lines added by ql:add-to-init-file:
-#-quicklisp
-(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-(user-homedir-pathname))))
-(when (probe-file quicklisp-init)
-(load quicklisp-init)))
+   ;;; The following lines added by ql:add-to-init-file:
+   #-quicklisp
+   (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+   (user-homedir-pathname))))
+   (when (probe-file quicklisp-init)
+   (load quicklisp-init)))
 </pre>
 </div>
 
-<div id="outline-container-org90ad877" class="outline-5">
-<h5 id="org90ad877"><span class="section-number-5">21.1.4.1</span> Commands</h5>
+<div id="outline-container-org97cdaf7" class="outline-5">
+<h5 id="org97cdaf7"><span class="section-number-5">21.1.4.1</span> Commands</h5>
 <div class="outline-text-5" id="text-21-1-4-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table border="2" cellspacing="2" cellpadding="6" rules="groups" frame="border">
 
 
 <colgroup>
@@ -2231,262 +2229,262 @@ In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <c
 
 
 
-<div id="outline-container-org637c990" class="outline-3">
-<h3 id="org637c990"><span class="section-number-3">21.2</span> Practical Common Lisp</h3>
+<div id="outline-container-orgc3c5b83" class="outline-3">
+<h3 id="orgc3c5b83"><span class="section-number-3">21.2</span> Practical Common Lisp</h3>
 <div class="outline-text-3" id="text-21-2">
 <p>
 <a href="http://www.gigamonkeys.com/book/">http://www.gigamonkeys.com/book/</a>
 </p>
 </div>
-<div id="outline-container-org49320b6" class="outline-4">
-<h4 id="org49320b6"><span class="section-number-4">21.2.1</span> CD database</h4>
+<div id="outline-container-org011c82a" class="outline-4">
+<h4 id="org011c82a"><span class="section-number-4">21.2.1</span> CD database</h4>
 <div class="outline-text-4" id="text-21-2-1">
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hello world, testing environment)</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">hello-world</span> ()
-  (format t <span style="color: #8b2252;">"Hello, world!"</span>))
+<pre class="src src-lisp">   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hello world, testing environment)</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">hello-world</span> ()
+     (format t <span style="color: #8b2252;">"Hello, world!"</span>))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">this function makes the cd</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-cd</span> (title artist rating ripped)
-  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the list created is a property list. The :key is the key, and followed by the value)</span>
-  (list <span style="color: #483d8b;">:title</span> title <span style="color: #483d8b;">:artist</span> artist <span style="color: #483d8b;">:rating</span> rating <span style="color: #483d8b;">:ripped</span> ripped))
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">this function makes the cd</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-cd</span> (title artist rating ripped)
+     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the list created is a property list. The :key is the key, and followed by the value)</span>
+     (list <span style="color: #483d8b;">:title</span> title <span style="color: #483d8b;">:artist</span> artist <span style="color: #483d8b;">:rating</span> rating <span style="color: #483d8b;">:ripped</span> ripped))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">make a cd record</span>
-(make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t)
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">make a cd record</span>
+   (make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t)
 
-<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the *xx* is the convention for a global variable)</span>
-(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*db*</span> nil)
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: the *xx* is the convention for a global variable)</span>
+   (<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*db*</span> nil)
 
-<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: The push will push the cd onto the global *db*)</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-record</span> (cd) (push cd *db*))
-
-
-
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">add some records to the database</span>
-(add-record (make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t))
-(add-record (make-cd <span style="color: #8b2252;">"Fly"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 8 t))
-(add-record (make-cd <span style="color: #8b2252;">"Home"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 9 t))
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: The push will push the cd onto the global *db*)</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-record</span> (cd) (push cd *db*))
 
 
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db</span> ()
-  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: dolist)</span>
-  (<span style="color: #a020f0;">dolist</span> (cd *db*)
-    <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: format)</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">the first is the output stream, with t as standard output</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">It will work for both keyword and value</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~t is for tabulating. ~10t means emit enough spaces to move to the tenth column</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~{ and ~} will make format: 1. require the next argument to be a list 2. consume the elements of the list for each ~a inside them</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">~% emit a new line</span>
-    (format t <span style="color: #8b2252;">"~{~a:~10t~a~%~}~%"</span> cd)))
 
-<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: note: the above function can use format to iterate the whole *db* list)</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db-2</span> ()
-  (format t <span style="color: #8b2252;">"~{~{~a:~10t~a~%~}~%~}"</span> *db*))
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">add some records to the database</span>
+   (add-record (make-cd <span style="color: #8b2252;">"Roses"</span> <span style="color: #8b2252;">"Kathy Mattea"</span> 7 t))
+   (add-record (make-cd <span style="color: #8b2252;">"Fly"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 8 t))
+   (add-record (make-cd <span style="color: #8b2252;">"Home"</span> <span style="color: #8b2252;">"Dixie Chicks"</span> 9 t))
 
 
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-read</span> (prompt)
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">the *query-io* is a global variable that contains the input stream connected to the terminal</span>
-  (format *query-io* <span style="color: #8b2252;">"~a: "</span> prompt)
-  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: flush)</span>
-  (force-output *query-io*)
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">read-line will read the string without the trailing newline</span>
-  (read-line *query-io*))
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db</span> ()
+     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: dolist)</span>
+     (<span style="color: #a020f0;">dolist</span> (cd *db*)
+       <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: format)</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">the first is the output stream, with t as standard output</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">It will work for both keyword and value</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">~t is for tabulating. ~10t means emit enough spaces to move to the tenth column</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">~{ and ~} will make format: 1. require the next argument to be a list 2. consume the elements of the list for each ~a inside them</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">~% emit a new line</span>
+       (format t <span style="color: #8b2252;">"~{~a:~10t~a~%~}~%"</span> cd)))
 
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-for-cd</span> ()
-  (make-cd
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">read a string</span>
-   (prompt-read <span style="color: #8b2252;">"Title"</span>)
-   (prompt-read <span style="color: #8b2252;">"Artist"</span>)
-   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: parse the string to int)</span>
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">if nil, the parse-integer will emit error. :junk-allowed t will make it silent</span>
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">the surrounding "or" will make a default value of 0 instead of nil</span>
-   (or (parse-integer (prompt-read <span style="color: #8b2252;">"Rating"</span>) <span style="color: #483d8b;">:junk-allowed</span> t) 0)
-   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: y-or-n-p)</span><span style="color: #b22222;"> is a builtin function. It is very robust, in the sense that it will reopen the prompt if answer is not yY or nN.</span>
-   (y-or-n-p <span style="color: #8b2252;">"Ripped [y/n]: "</span>)))
-
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-cds</span> ()
-  (<span style="color: #a020f0;">loop</span> (add-record (prompt-for-cd))
-     <span style="color: #b22222;">;; </span><span style="color: #b22222;">this loop will end if the another query is answered as n</span>
-     (<span style="color: #a020f0;">if</span> (not (y-or-n-p <span style="color: #8b2252;">"Another? [y/n]: "</span>)) (<span style="color: #a020f0;">return</span>))))
-
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">save-db</span> (filename)
-  <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: open the file and store the stream)</span><span style="color: #b22222;"> as variable "out"</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">filename is the filename string</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">direction defaults to :input, so if want output, need to specify</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">if-exists, overwrite it</span>
-  (<span style="color: #a020f0;">with-open-file</span> (out filename
-                       <span style="color: #483d8b;">:direction</span> <span style="color: #483d8b;">:output</span>
-                       <span style="color: #483d8b;">:if-exists</span> <span style="color: #483d8b;">:supersede</span>)
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">this is used to ensures that certain variables that affect the behavior of print are set to their standard values.</span>
-    <span style="color: #b22222;">;; </span><span style="color: #b22222;">be sure to use the same macro when reading the data back</span>
-    (<span style="color: #a020f0;">with-standard-io-syntax</span>
-      <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: directly print the *db* to the stream)</span>
-      <span style="color: #b22222;">;; </span><span style="color: #b22222;">lisp will print the object out in the form that it can be read back</span>
-      (print *db* out))))
-
-<span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">now</span><span style="color: #b22222;"> you can save it</span>
-(save-db <span style="color: #8b2252;">"~/my-cds.db"</span>)
-
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">load the db back</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">load-db</span> (filename)
-  (<span style="color: #a020f0;">with-open-file</span> (in filename)
-    (<span style="color: #a020f0;">with-standard-io-syntax</span>
-      <span style="color: #b22222;">;; </span><span style="color: #b22222;">use read to </span><span style="color: #ff0000;">(HEBI: read everything from the stream in)</span>
-      <span style="color: #b22222;">;; </span><span style="color: #b22222;">use </span><span style="color: #ff0000;">(HEBI: setf)</span><span style="color: #b22222;"> to set result of the read to the *db* variable</span>
-      (setf *db* (read in)))))
-
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">query</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select-by-artist</span> (artist)
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">make a copy of *db* by removing if not the predicate, and return that copy</span>
-  (remove-if-not
-   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: getf can get the value of a plist by the key)</span>
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">#' is the quote for function</span>
-   #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist))
-   *db*))
-
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select</span> (selector-fn)
-  (remove-if-not selector-fn *db*))
-
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">artist-selector</span> (artist)
-  #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist)))
-
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">use this by:</span>
-(select (artist-selector <span style="color: #8b2252;">"Dixie Chicks"</span>))
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: note: the above function can use format to iterate the whole *db* list)</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dump-db-2</span> ()
+     (format t <span style="color: #8b2252;">"~{~{~a:~10t~a~%~}~%~}"</span> *db*))
 
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">keyword argument, can be called by (func :key value)</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">default value using (var default)</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">(var default var-p) var-p is used to check whether the argument is supplied or not</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
-  #'(<span style="color: #a020f0;">lambda</span> (cd)
-      (and
-       (<span style="color: #a020f0;">if</span> title    (equal (getf cd <span style="color: #483d8b;">:title</span>)  title)  t)
-       (<span style="color: #a020f0;">if</span> artist   (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist) t)
-       (<span style="color: #a020f0;">if</span> rating   (equal (getf cd <span style="color: #483d8b;">:rating</span>) rating) t)
-       (<span style="color: #a020f0;">if</span> ripped-p (equal (getf cd <span style="color: #483d8b;">:ripped</span>) ripped) t))))
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-read</span> (prompt)
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">the *query-io* is a global variable that contains the input stream connected to the terminal</span>
+     (format *query-io* <span style="color: #8b2252;">"~a: "</span> prompt)
+     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: flush)</span>
+     (force-output *query-io*)
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">read-line will read the string without the trailing newline</span>
+     (read-line *query-io*))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">use by:</span>
-(select (where <span style="color: #483d8b;">:rating</span> 10 <span style="color: #483d8b;">:ripped</span> nil))
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">prompt-for-cd</span> ()
+     (make-cd
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">read a string</span>
+      (prompt-read <span style="color: #8b2252;">"Title"</span>)
+      (prompt-read <span style="color: #8b2252;">"Artist"</span>)
+      <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: parse the string to int)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">if nil, the parse-integer will emit error. :junk-allowed t will make it silent</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">the surrounding "or" will make a default value of 0 instead of nil</span>
+      (or (parse-integer (prompt-read <span style="color: #8b2252;">"Rating"</span>) <span style="color: #483d8b;">:junk-allowed</span> t) 0)
+      <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: y-or-n-p)</span><span style="color: #b22222;"> is a builtin function. It is very robust, in the sense that it will reopen the prompt if answer is not yY or nN.</span>
+      (y-or-n-p <span style="color: #8b2252;">"Ripped [y/n]: "</span>)))
 
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">update</span> (selector-fn <span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
-  (setf *db*
-        <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: mapcar)</span><span style="color: #b22222;"> apply the function to each element of the list, and return the list of results</span>
-        (mapcar
-         #'(<span style="color: #a020f0;">lambda</span> (row)
-             (<span style="color: #a020f0;">when</span> (funcall selector-fn row)
-               <span style="color: #b22222;">;; </span><span style="color: #b22222;">this (setf (getf) xx) staff is magic. setf has nothing to do with getf</span>
-               (<span style="color: #a020f0;">if</span> title    (setf (getf row <span style="color: #483d8b;">:title</span>) title))
-               (<span style="color: #a020f0;">if</span> artist   (setf (getf row <span style="color: #483d8b;">:artist</span>) artist))
-               (<span style="color: #a020f0;">if</span> rating   (setf (getf row <span style="color: #483d8b;">:rating</span>) rating))
-               (<span style="color: #a020f0;">if</span> ripped-p (setf (getf row <span style="color: #483d8b;">:ripped</span>) ripped)))
-             row) <span style="color: #ff0000; font-weight: bold;">*db*)))</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">add-cds</span> ()
+     (<span style="color: #a020f0;">loop</span> (add-record (prompt-for-cd))
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">this loop will end if the another query is answered as n</span>
+        (<span style="color: #a020f0;">if</span> (not (y-or-n-p <span style="color: #8b2252;">"Another? [y/n]: "</span>)) (<span style="color: #a020f0;">return</span>))))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">this can be called:</span>
-(update (where <span style="color: #483d8b;">:artist</span> <span style="color: #8b2252;">"Dixie Chicks"</span>) <span style="color: #483d8b;">:rating</span> 11)
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">save-db</span> (filename)
+     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: open the file and store the stream)</span><span style="color: #b22222;"> as variable "out"</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">filename is the filename string</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">direction defaults to :input, so if want output, need to specify</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">if-exists, overwrite it</span>
+     (<span style="color: #a020f0;">with-open-file</span> (out filename
+                          <span style="color: #483d8b;">:direction</span> <span style="color: #483d8b;">:output</span>
+                          <span style="color: #483d8b;">:if-exists</span> <span style="color: #483d8b;">:supersede</span>)
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">this is used to ensures that certain variables that affect the behavior of print are set to their standard values.</span>
+       <span style="color: #b22222;">;; </span><span style="color: #b22222;">be sure to use the same macro when reading the data back</span>
+       (<span style="color: #a020f0;">with-standard-io-syntax</span>
+         <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: directly print the *db* to the stream)</span>
+         <span style="color: #b22222;">;; </span><span style="color: #b22222;">lisp will print the object out in the form that it can be read back</span>
+         (print *db* out))))
 
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">delete-rows</span> (selector-fn)
-  (setf *db* (remove-if selector-fn *db*)))
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000; background-color: #ffffff; font-weight: bold;">now</span><span style="color: #b22222;"> you can save it</span>
+   (save-db <span style="color: #8b2252;">"~/my-cds.db"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">OK, refactoring time</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Problems for where:</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">the if ... checking inside "and" is almosts the same, that's duplicate code</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">for the querys that do not have other fields, we don't want to check those fields, to avoid overhead</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">load the db back</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">load-db</span> (filename)
+     (<span style="color: #a020f0;">with-open-file</span> (in filename)
+       (<span style="color: #a020f0;">with-standard-io-syntax</span>
+         <span style="color: #b22222;">;; </span><span style="color: #b22222;">use read to </span><span style="color: #ff0000;">(HEBI: read everything from the stream in)</span>
+         <span style="color: #b22222;">;; </span><span style="color: #b22222;">use </span><span style="color: #ff0000;">(HEBI: setf)</span><span style="color: #b22222;"> to set result of the read to the *db* variable</span>
+         (setf *db* (read in)))))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">The solution is the MACRO, the code generator of lisp</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">query</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select-by-artist</span> (artist)
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">make a copy of *db* by removing if not the predicate, and return that copy</span>
+     (remove-if-not
+      <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: getf can get the value of a plist by the key)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">#' is the quote for function</span>
+      #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist))
+      *db*))
 
-<span style="color: #b22222;">;;; </span><span style="color: #ff0000;">(HEBI: Macros, all kinds of quoting)</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparison-expr</span> (field value)
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">' will leave the expression unevaluated.</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">` will do the same thing, and it can do one more: can evaluate part of it</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">, before a subexpression will evalute that</span>
-  `(equal (getf cd ,field) ,value))
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">select</span> (selector-fn)
+     (remove-if-not selector-fn *db*))
 
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparisons-list</span> (fields)
-  (<span style="color: #a020f0;">loop</span> while fields
-     <span style="color: #b22222;">;; </span><span style="color: #b22222;">using loop facility, make comparison expr for all the fields</span>
-     <span style="color: #b22222;">;; </span><span style="color: #b22222;">pop will pop the first of the list</span>
-     collecting (make-comparison-expr (pop fields) (pop fields))))
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">artist-selector</span> (artist)
+     #'(<span style="color: #a020f0;">lambda</span> (cd) (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist)))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">wrap comparison expr into and clause</span>
-(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;rest</span> clauses)
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">,@() will evaluate the subexpression, and splice the resulting list into the surrounding list</span>
-  `#'(<span style="color: #a020f0;">lambda</span> (cd) (and ,@(make-comparisons-list clauses))))
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">use this by:</span>
+   (select (artist-selector <span style="color: #8b2252;">"Dixie Chicks"</span>))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">this can check what this macro expanded to</span>
-(macroexpand-1 '(where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Final test:</span>
-(select (where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t))
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">keyword argument, can be called by (func :key value)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">default value using (var default)</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">(var default var-p) var-p is used to check whether the argument is supplied or not</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
+     #'(<span style="color: #a020f0;">lambda</span> (cd)
+         (and
+          (<span style="color: #a020f0;">if</span> title    (equal (getf cd <span style="color: #483d8b;">:title</span>)  title)  t)
+          (<span style="color: #a020f0;">if</span> artist   (equal (getf cd <span style="color: #483d8b;">:artist</span>) artist) t)
+          (<span style="color: #a020f0;">if</span> rating   (equal (getf cd <span style="color: #483d8b;">:rating</span>) rating) t)
+          (<span style="color: #a020f0;">if</span> ripped-p (equal (getf cd <span style="color: #483d8b;">:ripped</span>) ripped) t))))
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">use by:</span>
+   (select (where <span style="color: #483d8b;">:rating</span> 10 <span style="color: #483d8b;">:ripped</span> nil))
+
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">update</span> (selector-fn <span style="color: #228b22;">&amp;key</span> title artist rating (ripped nil ripped-p))
+     (setf *db*
+           <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: mapcar)</span><span style="color: #b22222;"> apply the function to each element of the list, and return the list of results</span>
+           (mapcar
+            #'(<span style="color: #a020f0;">lambda</span> (row)
+                (<span style="color: #a020f0;">when</span> (funcall selector-fn row)
+                  <span style="color: #b22222;">;; </span><span style="color: #b22222;">this (setf (getf) xx) staff is magic. setf has nothing to do with getf</span>
+                  (<span style="color: #a020f0;">if</span> title    (setf (getf row <span style="color: #483d8b;">:title</span>) title))
+                  (<span style="color: #a020f0;">if</span> artist   (setf (getf row <span style="color: #483d8b;">:artist</span>) artist))
+                  (<span style="color: #a020f0;">if</span> rating   (setf (getf row <span style="color: #483d8b;">:rating</span>) rating))
+                  (<span style="color: #a020f0;">if</span> ripped-p (setf (getf row <span style="color: #483d8b;">:ripped</span>) ripped)))
+                row) <span style="color: #ff0000; font-weight: bold;">*db*)))</span>
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">this can be called:</span>
+   (update (where <span style="color: #483d8b;">:artist</span> <span style="color: #8b2252;">"Dixie Chicks"</span>) <span style="color: #483d8b;">:rating</span> 11)
+
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">delete-rows</span> (selector-fn)
+     (setf *db* (remove-if selector-fn *db*)))
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">OK, refactoring time</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">Problems for where:</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">the if ... checking inside "and" is almosts the same, that's duplicate code</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">for the querys that do not have other fields, we don't want to check those fields, to avoid overhead</span>
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">The solution is the MACRO, the code generator of lisp</span>
+
+   <span style="color: #b22222;">;;; </span><span style="color: #ff0000;">(HEBI: Macros, all kinds of quoting)</span>
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparison-expr</span> (field value)
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">' will leave the expression unevaluated.</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">` will do the same thing, and it can do one more: can evaluate part of it</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">, before a subexpression will evalute that</span>
+     `(equal (getf cd ,field) ,value))
+
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-comparisons-list</span> (fields)
+     (<span style="color: #a020f0;">loop</span> while fields
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">using loop facility, make comparison expr for all the fields</span>
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">pop will pop the first of the list</span>
+        collecting (make-comparison-expr (pop fields) (pop fields))))
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">wrap comparison expr into and clause</span>
+   (<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">where</span> (<span style="color: #228b22;">&amp;rest</span> clauses)
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">,@() will evaluate the subexpression, and splice the resulting list into the surrounding list</span>
+     `#'(<span style="color: #a020f0;">lambda</span> (cd) (and ,@(make-comparisons-list clauses))))
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">this can check what this macro expanded to</span>
+   (macroexpand-1 '(where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t))
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">Final test:</span>
+   (select (where <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Give Us a Break"</span> <span style="color: #483d8b;">:ripped</span> t))
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgb6b22aa" class="outline-4">
-<h4 id="orgb6b22aa"><span class="section-number-4">21.2.2</span> Unit Test Framework</h4>
+<div id="outline-container-orgc9424ec" class="outline-4">
+<h4 id="orgc9424ec"><span class="section-number-4">21.2.2</span> Unit Test Framework</h4>
 <div class="outline-text-4" id="text-21-2-2">
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">the design goal of a unit test framework:</span>
+<pre class="src src-lisp">   <span style="color: #b22222;">;; </span><span style="color: #b22222;">the design goal of a unit test framework:</span>
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to add new test</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to run tests</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to track down test failures</span>
-
-
-<span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: report test name)</span>
-(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">deftest</span> (name parameters <span style="color: #228b22;">&amp;body</span> body)
-  <span style="color: #8b2252;">"Define a test function. Within a test function we can call</span>
-<span style="color: #8b2252;">   other test functions or use 'check' to run individual test</span>
-<span style="color: #8b2252;">   cases."</span>
-  `(<span style="color: #a020f0;">defun</span> ,name ,parameters
-     <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hierarchy test name report)</span>
-    (<span style="color: #a020f0;">let</span> ((*test-name* (append *test-name* (list ',name))))
-      ,@body)))
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to add new test</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to run tests</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">- easy to track down test failures</span>
 
 
-(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">with-gensyms</span> ((<span style="color: #228b22;">&amp;rest</span> names) <span style="color: #228b22;">&amp;body</span> body)
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">gensym generate a unique symbol name that the reader has never seen</span>
-  <span style="color: #b22222;">;; </span><span style="color: #b22222;">the reason to use such unique name is to avoid leaking of information</span>
-  `(<span style="color: #a020f0;">let</span> ,(<span style="color: #a020f0;">loop</span> for n in names collect `(,n (gensym)))
-     ,@body))
-
-(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*test-name*</span> nil)
-
-
-(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">combine-results</span> (<span style="color: #228b22;">&amp;body</span> forms)
-  <span style="color: #8b2252;">"Combine the results (as booleans) of evaluating 'forms' in order."</span>
-  (<span style="color: #a020f0;">with-gensyms</span> (result)
-    `(<span style="color: #a020f0;">let</span> ((,result t))
-      ,@(<span style="color: #a020f0;">loop</span> for f in forms collect `(<span style="color: #a020f0;">unless</span> ,f (setf ,result nil)))
-      ,result)))
-
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">this will generate</span>
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">(let ((result t))</span>
-<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (foo) (setf result nil))</span>
-<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (bar) (setf result nil))</span>
-<span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (baz) (setf result nil))</span>
-<span style="color: #b22222;">;;   </span><span style="color: #b22222;">result)</span>
-
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">report-result</span> (result form)
-  <span style="color: #8b2252;">"Report the results of a single test case. Called by 'check'."</span>
-  (format t <span style="color: #8b2252;">"~:[FAIL~;pass~] ... ~a: ~a~%"</span> result *test-name* form)
-  result)
+   <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: report test name)</span>
+   (<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">deftest</span> (name parameters <span style="color: #228b22;">&amp;body</span> body)
+     <span style="color: #8b2252;">"Define a test function. Within a test function we can call</span>
+<span style="color: #8b2252;">      other test functions or use 'check' to run individual test</span>
+<span style="color: #8b2252;">      cases."</span>
+     `(<span style="color: #a020f0;">defun</span> ,name ,parameters
+        <span style="color: #b22222;">;; </span><span style="color: #ff0000;">(HEBI: hierarchy test name report)</span>
+       (<span style="color: #a020f0;">let</span> ((*test-name* (append *test-name* (list ',name))))
+         ,@body)))
 
 
-(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">check</span> (<span style="color: #228b22;">&amp;body</span> forms)
-  <span style="color: #8b2252;">"Run each expression in 'forms' as a test case."</span>
-  `(combine-results
-    ,@(<span style="color: #a020f0;">loop</span> for f in forms collect `(report-result ,f ',f))))
+   (<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">with-gensyms</span> ((<span style="color: #228b22;">&amp;rest</span> names) <span style="color: #228b22;">&amp;body</span> body)
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">gensym generate a unique symbol name that the reader has never seen</span>
+     <span style="color: #b22222;">;; </span><span style="color: #b22222;">the reason to use such unique name is to avoid leaking of information</span>
+     `(<span style="color: #a020f0;">let</span> ,(<span style="color: #a020f0;">loop</span> for n in names collect `(,n (gensym)))
+        ,@body))
+
+   (<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*test-name*</span> nil)
 
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">usage example:</span>
-(deftest test-+ ()
-  (check
-    (= (+ 1 2) 3)
-    (= (+ 1 2 3) 6)
-    (= (+ -1 -3) -4)))
+   (<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">combine-results</span> (<span style="color: #228b22;">&amp;body</span> forms)
+     <span style="color: #8b2252;">"Combine the results (as booleans) of evaluating 'forms' in order."</span>
+     (<span style="color: #a020f0;">with-gensyms</span> (result)
+       `(<span style="color: #a020f0;">let</span> ((,result t))
+         ,@(<span style="color: #a020f0;">loop</span> for f in forms collect `(<span style="color: #a020f0;">unless</span> ,f (setf ,result nil)))
+         ,result)))
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">this will generate</span>
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">(let ((result t))</span>
+   <span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (foo) (setf result nil))</span>
+   <span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (bar) (setf result nil))</span>
+   <span style="color: #b22222;">;;   </span><span style="color: #b22222;">(unless (baz) (setf result nil))</span>
+   <span style="color: #b22222;">;;   </span><span style="color: #b22222;">result)</span>
+
+   (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">report-result</span> (result form)
+     <span style="color: #8b2252;">"Report the results of a single test case. Called by 'check'."</span>
+     (format t <span style="color: #8b2252;">"~:[FAIL~;pass~] ... ~a: ~a~%"</span> result *test-name* form)
+     result)
+
+
+   (<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">check</span> (<span style="color: #228b22;">&amp;body</span> forms)
+     <span style="color: #8b2252;">"Run each expression in 'forms' as a test case."</span>
+     `(combine-results
+       ,@(<span style="color: #a020f0;">loop</span> for f in forms collect `(report-result ,f ',f))))
+
+
+   <span style="color: #b22222;">;; </span><span style="color: #b22222;">usage example:</span>
+   (deftest test-+ ()
+     (check
+       (= (+ 1 2) 3)
+       (= (+ 1 2 3) 6)
+       (= (+ -1 -3) -4)))
 </pre>
 </div>
 </div>
@@ -2495,9 +2493,7 @@ In a buffer of mode <code>lisp</code>, <code>C-c C-c</code> will evaluate the <c
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

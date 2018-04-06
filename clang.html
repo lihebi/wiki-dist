@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-04 Thu 21:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clang</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,49 +233,49 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org90426bd">1. Use As Command</a></li>
-<li><a href="#orgc12ea34">2. Project Setup</a>
+<li><a href="#org45cc623">1. Use As Command</a></li>
+<li><a href="#orge53c6ad">2. Project Setup</a>
 <ul>
-<li><a href="#orge0a26a0">2.1. Compilation Database</a></li>
+<li><a href="#org4c92e6b">2.1. Compilation Database</a></li>
 </ul>
 </li>
-<li><a href="#org39282d8">3. libclang</a>
+<li><a href="#orgb66061e">3. libclang</a>
 <ul>
-<li><a href="#org8ca982f">3.1. Source Location</a></li>
-<li><a href="#org35c1ee2">3.2. Translation unit manipulation</a></li>
-<li><a href="#org22978f2">3.3. Token manipulation</a></li>
-<li><a href="#org17b68fd">3.4. Cursors</a>
+<li><a href="#orgd377b06">3.1. Source Location</a></li>
+<li><a href="#org3ff2a37">3.2. Translation unit manipulation</a></li>
+<li><a href="#org50dfa91">3.3. Token manipulation</a></li>
+<li><a href="#org4c30922">3.4. Cursors</a>
 <ul>
-<li><a href="#orgbd68d63">3.4.1. Traversing</a></li>
-<li><a href="#org1b069f4">3.4.2. type information</a></li>
-<li><a href="#orgd0805e7">3.4.3. manipulation</a></li>
+<li><a href="#org74f1516">3.4.1. Traversing</a></li>
+<li><a href="#org9a8c3b4">3.4.2. type information</a></li>
+<li><a href="#org681dcd8">3.4.3. manipulation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5fa16ea">4. LibTooling</a>
+<li><a href="#orgc5f050e">4. LibTooling</a>
 <ul>
-<li><a href="#org878c314">4.1. In-memory code parsing</a></li>
-<li><a href="#org9d6d8a5">4.2. On-disk code parsing</a></li>
-<li><a href="#org23b44c8">4.3. Command Line</a></li>
-<li><a href="#org16f676f">4.4. FrontendAction</a></li>
-<li><a href="#org7b51575">4.5. Type</a>
+<li><a href="#orgda71197">4.1. In-memory code parsing</a></li>
+<li><a href="#org79cb28e">4.2. On-disk code parsing</a></li>
+<li><a href="#org49b90d7">4.3. Command Line</a></li>
+<li><a href="#org292aa71">4.4. FrontendAction</a></li>
+<li><a href="#org118da6c">4.5. Type</a>
 <ul>
-<li><a href="#orgf2299ce">4.5.1. canonical type</a></li>
-<li><a href="#org8d9a079">4.5.2. QualType</a></li>
+<li><a href="#orgc498626">4.5.1. canonical type</a></li>
+<li><a href="#org233f914">4.5.2. QualType</a></li>
 </ul>
 </li>
-<li><a href="#org9c488f4">4.6. Clang AST</a></li>
+<li><a href="#orga30dd50">4.6. Clang AST</a></li>
 </ul>
 </li>
-<li><a href="#orgf83aa6e">5. Lexer</a></li>
-<li><a href="#orgc56f65c">6. Reference</a></li>
+<li><a href="#org1fed6a7">5. Lexer</a></li>
+<li><a href="#org83f0197">6. Reference</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org90426bd" class="outline-2">
-<h2 id="org90426bd"><span class="section-number-2">1</span> Use As Command</h2>
+<div id="outline-container-org45cc623" class="outline-2">
+<h2 id="org45cc623"><span class="section-number-2">1</span> Use As Command</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt><code>-ast-dump</code></dt><dd>dump ast</dd>
@@ -294,8 +292,8 @@ clang-check a.cc -ast-dump -ast-dump-filter=StdStringA --
 </div>
 </div>
 
-<div id="outline-container-orgc12ea34" class="outline-2">
-<h2 id="orgc12ea34"><span class="section-number-2">2</span> Project Setup</h2>
+<div id="outline-container-orge53c6ad" class="outline-2">
+<h2 id="orge53c6ad"><span class="section-number-2">2</span> Project Setup</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This mainly talks about CMake configuration.
@@ -319,8 +317,8 @@ This mainly talks about CMake configuration.
 </div>
 
 
-<div id="outline-container-orge0a26a0" class="outline-3">
-<h3 id="orge0a26a0"><span class="section-number-3">2.1</span> Compilation Database</h3>
+<div id="outline-container-org4c92e6b" class="outline-3">
+<h3 id="org4c92e6b"><span class="section-number-3">2.1</span> Compilation Database</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 To create a <code>compilation_commands.json</code> from a Makefile, use
@@ -348,8 +346,8 @@ database from the folder.
 </div>
 
 
-<div id="outline-container-org39282d8" class="outline-2">
-<h2 id="org39282d8"><span class="section-number-2">3</span> libclang</h2>
+<div id="outline-container-orgb66061e" class="outline-2">
+<h2 id="orgb66061e"><span class="section-number-2">3</span> libclang</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The document is simply the doxygen page:
@@ -367,8 +365,8 @@ AST into a plain text file, right?
 </div>
 
 
-<div id="outline-container-org8ca982f" class="outline-3">
-<h3 id="org8ca982f"><span class="section-number-3">3.1</span> Source Location</h3>
+<div id="outline-container-orgd377b06" class="outline-3">
+<h3 id="orgd377b06"><span class="section-number-3">3.1</span> Source Location</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 In this stage, there are three important classes: the cursor and the
@@ -450,8 +448,8 @@ line,column pairs. It is done through pretty strange methods.
 </div>
 </div>
 
-<div id="outline-container-org35c1ee2" class="outline-3">
-<h3 id="org35c1ee2"><span class="section-number-3">3.2</span> Translation unit manipulation</h3>
+<div id="outline-container-org3ff2a37" class="outline-3">
+<h3 id="org3ff2a37"><span class="section-number-3">3.2</span> Translation unit manipulation</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 When using libclang, the first thing is to parse the file, i.e. create
@@ -509,8 +507,8 @@ libclang supports reading Compilation Database.
 </div>
 
 
-<div id="outline-container-org22978f2" class="outline-3">
-<h3 id="org22978f2"><span class="section-number-3">3.3</span> Token manipulation</h3>
+<div id="outline-container-org50dfa91" class="outline-3">
+<h3 id="org50dfa91"><span class="section-number-3">3.3</span> Token manipulation</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 You can get tokens from translation unit. The text and kind of token
@@ -527,12 +525,12 @@ is available.
 </div>
 </div>
 
-<div id="outline-container-org17b68fd" class="outline-3">
-<h3 id="org17b68fd"><span class="section-number-3">3.4</span> Cursors</h3>
+<div id="outline-container-org4c30922" class="outline-3">
+<h3 id="org4c30922"><span class="section-number-3">3.4</span> Cursors</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-orgbd68d63" class="outline-4">
-<h4 id="orgbd68d63"><span class="section-number-4">3.4.1</span> Traversing</h4>
+<div id="outline-container-org74f1516" class="outline-4">
+<h4 id="org74f1516"><span class="section-number-4">3.4.1</span> Traversing</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #228b22;">unsigned</span> <span style="color: #0000ff;">clang_visitChildren</span> (<span style="color: #228b22;">CXCursor</span> <span style="color: #a0522d;">parent</span>, <span style="color: #228b22;">CXCursorVisitor</span> <span style="color: #a0522d;">visitor</span>, <span style="color: #228b22;">CXClientData</span> <span style="color: #a0522d;">client_data</span>)
@@ -556,8 +554,8 @@ expression level, for example). The result can have three values:
 </div>
 
 
-<div id="outline-container-org1b069f4" class="outline-4">
-<h4 id="org1b069f4"><span class="section-number-4">3.4.2</span> type information</h4>
+<div id="outline-container-org9a8c3b4" class="outline-4">
+<h4 id="org9a8c3b4"><span class="section-number-4">3.4.2</span> type information</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 These are the type (e.g. float, typedef) for the a cursor. Important
@@ -593,8 +591,8 @@ ones include (prefixed with <code>CXType_</code>): <code>Void</code>, <code>Bool
 </div>
 
 
-<div id="outline-container-orgd0805e7" class="outline-4">
-<h4 id="orgd0805e7"><span class="section-number-4">3.4.3</span> manipulation</h4>
+<div id="outline-container-org681dcd8" class="outline-4">
+<h4 id="org681dcd8"><span class="section-number-4">3.4.3</span> manipulation</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <div class="org-src-container">
 <pre class="src src-haskell"><span style="color: #0000ff;">clang_getTranslationUnitCursor</span> <span style="color: #a0522d;">::</span> (<span style="color: #228b22;">CXTranslationUnit</span>) <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">CXCursor</span>
@@ -619,12 +617,12 @@ ones include (prefixed with <code>CXType_</code>): <code>Void</code>, <code>Bool
 </div>
 </div>
 
-<div id="outline-container-org5fa16ea" class="outline-2">
-<h2 id="org5fa16ea"><span class="section-number-2">4</span> LibTooling</h2>
+<div id="outline-container-orgc5f050e" class="outline-2">
+<h2 id="orgc5f050e"><span class="section-number-2">4</span> LibTooling</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org878c314" class="outline-3">
-<h3 id="org878c314"><span class="section-number-3">4.1</span> In-memory code parsing</h3>
+<div id="outline-container-orgda71197" class="outline-3">
+<h3 id="orgda71197"><span class="section-number-3">4.1</span> In-memory code parsing</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 LIbTooling can be used to parse code in memory or disk. The in-memory
@@ -645,8 +643,8 @@ and an action. The function has several variations.
 </div>
 
 
-<div id="outline-container-org9d6d8a5" class="outline-3">
-<h3 id="org9d6d8a5"><span class="section-number-3">4.2</span> On-disk code parsing</h3>
+<div id="outline-container-org79cb28e" class="outline-3">
+<h3 id="org79cb28e"><span class="section-number-3">4.2</span> On-disk code parsing</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 The real tool building of LibTooling starts by creating an instance of
@@ -663,8 +661,8 @@ parameters. The tool can than run any number of actions called
 </div>
 </div>
 
-<div id="outline-container-org23b44c8" class="outline-3">
-<h3 id="org23b44c8"><span class="section-number-3">4.3</span> Command Line</h3>
+<div id="outline-container-org49b90d7" class="outline-3">
+<h3 id="org49b90d7"><span class="section-number-3">4.3</span> Command Line</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Compilation database is supported. In general, a compilation data base
@@ -703,8 +701,8 @@ compile all the files in the project.
 </div>
 </div>
 
-<div id="outline-container-org16f676f" class="outline-3">
-<h3 id="org16f676f"><span class="section-number-3">4.4</span> FrontendAction</h3>
+<div id="outline-container-org292aa71" class="outline-3">
+<h3 id="org292aa71"><span class="section-number-3">4.4</span> FrontendAction</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 The Tool would run on some front-end action.  <code>FrontendAction</code>
@@ -740,8 +738,8 @@ be a pre-order traversal. Calling a method to change to post-order.
 </div>
 </div>
 
-<div id="outline-container-org7b51575" class="outline-3">
-<h3 id="org7b51575"><span class="section-number-3">4.5</span> Type</h3>
+<div id="outline-container-org118da6c" class="outline-3">
+<h3 id="org118da6c"><span class="section-number-3">4.5</span> Type</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 The raw type will be whatever appeared in the source code. If a type
@@ -750,8 +748,8 @@ not record the pointer information.
 </p>
 </div>
 
-<div id="outline-container-orgf2299ce" class="outline-4">
-<h4 id="orgf2299ce"><span class="section-number-4">4.5.1</span> canonical type</h4>
+<div id="outline-container-orgc498626" class="outline-4">
+<h4 id="orgc498626"><span class="section-number-4">4.5.1</span> canonical type</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <p>
 Every instance of type has a canonical type pointer.
@@ -772,8 +770,8 @@ canonical. So use help functions instead:
 </div>
 </div>
 
-<div id="outline-container-org8d9a079" class="outline-4">
-<h4 id="org8d9a079"><span class="section-number-4">4.5.2</span> QualType</h4>
+<div id="outline-container-org233f914" class="outline-4">
+<h4 id="org233f914"><span class="section-number-4">4.5.2</span> QualType</h4>
 <div class="outline-text-4" id="text-4-5-2">
 <p>
 The type and its qualifiers (const, volatile, restrict) are
@@ -827,8 +825,8 @@ volatile const int.
 </div>
 
 
-<div id="outline-container-org9c488f4" class="outline-3">
-<h3 id="org9c488f4"><span class="section-number-3">4.6</span> Clang AST</h3>
+<div id="outline-container-orga30dd50" class="outline-3">
+<h3 id="orga30dd50"><span class="section-number-3">4.6</span> Clang AST</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Declarations contains two parts, the <code>Decl</code> class, and the
@@ -1228,8 +1226,8 @@ cast. For example
 </div>
 </div>
 
-<div id="outline-container-orgf83aa6e" class="outline-2">
-<h2 id="orgf83aa6e"><span class="section-number-2">5</span> Lexer</h2>
+<div id="outline-container-org1fed6a7" class="outline-2">
+<h2 id="org1fed6a7"><span class="section-number-2">5</span> Lexer</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Use lexer when you want to get the token level information, such as
@@ -1289,8 +1287,8 @@ character.
 
 
 
-<div id="outline-container-orgc56f65c" class="outline-2">
-<h2 id="orgc56f65c"><span class="section-number-2">6</span> Reference</h2>
+<div id="outline-container-org83f0197" class="outline-2">
+<h2 id="org83f0197"><span class="section-number-2">6</span> Reference</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>A article as tutorial:
@@ -1301,9 +1299,7 @@ character.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-04 Thu 21:28</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

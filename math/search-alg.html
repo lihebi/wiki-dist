@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Search Algorithm</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,40 +233,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7fda2b6">1. Meta heuristic</a>
+<li><a href="#org7aee8ed">1. Meta heuristic</a>
 <ul>
-<li><a href="#orgea73d17">1.1. local search-based metaheuristic (single solution)</a>
+<li><a href="#orga25a894">1.1. local search-based metaheuristic (single solution)</a>
 <ul>
-<li><a href="#org55a7e3c">1.1.1. simulated annealing(SA)</a></li>
-<li><a href="#orgb67d847">1.1.2. tabu search(TS)</a></li>
-<li><a href="#orgf50c836">1.1.3. iterated local search(ILS)</a></li>
-<li><a href="#org5631a15">1.1.4. guided local search(GLS)</a></li>
-<li><a href="#orge02fc6f">1.1.5. variable neighborhood search(VNS)</a></li>
+<li><a href="#org76d649a">1.1.1. simulated annealing(SA)</a></li>
+<li><a href="#org5f3366d">1.1.2. tabu search(TS)</a></li>
+<li><a href="#org8d51e59">1.1.3. iterated local search(ILS)</a></li>
+<li><a href="#org85e88d6">1.1.4. guided local search(GLS)</a></li>
+<li><a href="#orgfbaf6fe">1.1.5. variable neighborhood search(VNS)</a></li>
 </ul>
 </li>
-<li><a href="#orgc3a0e48">1.2. population-based metaheuristics</a>
+<li><a href="#org16bf7d0">1.2. population-based metaheuristics</a>
 <ul>
-<li><a href="#org1e2f3c4">1.2.1. ant colony optimization</a></li>
-<li><a href="#orgf1baf2b">1.2.2. evolutionary computation</a></li>
-<li><a href="#orgdcaa587">1.2.3. particle swarm optimization(PSO)</a></li>
-<li><a href="#orgf199b71">1.2.4. genetic algorithms</a></li>
+<li><a href="#org36061ce">1.2.1. ant colony optimization</a></li>
+<li><a href="#org6fc993a">1.2.2. evolutionary computation</a></li>
+<li><a href="#orgf885e01">1.2.3. particle swarm optimization(PSO)</a></li>
+<li><a href="#org9d88999">1.2.4. genetic algorithms</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9c172de">2. global search</a></li>
-<li><a href="#orgc1cdb8b">3. local search</a>
+<li><a href="#org77669be">2. global search</a></li>
+<li><a href="#orgc672d60">3. local search</a>
 <ul>
-<li><a href="#org846bd51">3.1. hill climbing</a></li>
-<li><a href="#orgdde24e4">3.2. gradient descent</a></li>
+<li><a href="#orgc9dd360">3.1. hill climbing</a></li>
+<li><a href="#orgf190dfa">3.2. gradient descent</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7fda2b6" class="outline-2">
-<h2 id="org7fda2b6"><span class="section-number-2">1</span> Meta heuristic</h2>
+<div id="outline-container-org7aee8ed" class="outline-2">
+<h2 id="org7aee8ed"><span class="section-number-2">1</span> Meta heuristic</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In computer science and mathematical optimization,
@@ -289,16 +287,16 @@ another big paper: <a href="file:///home/hebi/smartscholar/paper-ma-towards-meme
 </p>
 </div>
 
-<div id="outline-container-orgea73d17" class="outline-3">
-<h3 id="orgea73d17"><span class="section-number-3">1.1</span> local search-based metaheuristic (single solution)</h3>
+<div id="outline-container-orga25a894" class="outline-3">
+<h3 id="orga25a894"><span class="section-number-3">1.1</span> local search-based metaheuristic (single solution)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Meta heuristics are proposed to help local search.
 </p>
 </div>
 
-<div id="outline-container-org55a7e3c" class="outline-4">
-<h4 id="org55a7e3c"><span class="section-number-4">1.1.1</span> simulated annealing(SA)</h4>
+<div id="outline-container-org76d649a" class="outline-4">
+<h4 id="org76d649a"><span class="section-number-4">1.1.1</span> simulated annealing(SA)</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 Accepting worse solutions is a fundamental property of metaheuristics
@@ -320,8 +318,8 @@ But this is not required.
 </div>
 </div>
 
-<div id="outline-container-orgb67d847" class="outline-4">
-<h4 id="orgb67d847"><span class="section-number-4">1.1.2</span> tabu search(TS)</h4>
+<div id="outline-container-org5f3366d" class="outline-4">
+<h4 id="org5f3366d"><span class="section-number-4">1.1.2</span> tabu search(TS)</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 <i>Tabu</i> is a word from Polynesia,
@@ -335,8 +333,8 @@ to discourage the search from coming back to previously-visited solutions.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf50c836" class="outline-4">
-<h4 id="orgf50c836"><span class="section-number-4">1.1.3</span> iterated local search(ILS)</h4>
+<div id="outline-container-org8d51e59" class="outline-4">
+<h4 id="org8d51e59"><span class="section-number-4">1.1.3</span> iterated local search(ILS)</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 Tackle the same problem: local search stuck in local optimal.
@@ -350,8 +348,8 @@ Produce better and better starting points for local search.
 </div>
 </div>
 
-<div id="outline-container-org5631a15" class="outline-4">
-<h4 id="org5631a15"><span class="section-number-4">1.1.4</span> guided local search(GLS)</h4>
+<div id="outline-container-org85e88d6" class="outline-4">
+<h4 id="org85e88d6"><span class="section-number-4">1.1.4</span> guided local search(GLS)</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 Guided Local Search builds up penalties during a search.
@@ -365,8 +363,8 @@ The key is in the way that the objective function is modified.
 </div>
 </div>
 
-<div id="outline-container-orge02fc6f" class="outline-4">
-<h4 id="orge02fc6f"><span class="section-number-4">1.1.5</span> variable neighborhood search(VNS)</h4>
+<div id="outline-container-orgfbaf6fe" class="outline-4">
+<h4 id="orgfbaf6fe"><span class="section-number-4">1.1.5</span> variable neighborhood search(VNS)</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <p>
 firstly, descent to find a local optimum and finally,
@@ -376,35 +374,35 @@ a perturbation phase to get out of the corresponding valley.
 </div>
 </div>
 
-<div id="outline-container-orgc3a0e48" class="outline-3">
-<h3 id="orgc3a0e48"><span class="section-number-3">1.2</span> population-based metaheuristics</h3>
+<div id="outline-container-org16bf7d0" class="outline-3">
+<h3 id="org16bf7d0"><span class="section-number-3">1.2</span> population-based metaheuristics</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org1e2f3c4" class="outline-4">
-<h4 id="org1e2f3c4"><span class="section-number-4">1.2.1</span> ant colony optimization</h4>
+<div id="outline-container-org36061ce" class="outline-4">
+<h4 id="org36061ce"><span class="section-number-4">1.2.1</span> ant colony optimization</h4>
 </div>
-<div id="outline-container-orgf1baf2b" class="outline-4">
-<h4 id="orgf1baf2b"><span class="section-number-4">1.2.2</span> evolutionary computation</h4>
+<div id="outline-container-org6fc993a" class="outline-4">
+<h4 id="org6fc993a"><span class="section-number-4">1.2.2</span> evolutionary computation</h4>
 </div>
-<div id="outline-container-orgdcaa587" class="outline-4">
-<h4 id="orgdcaa587"><span class="section-number-4">1.2.3</span> particle swarm optimization(PSO)</h4>
+<div id="outline-container-orgf885e01" class="outline-4">
+<h4 id="orgf885e01"><span class="section-number-4">1.2.3</span> particle swarm optimization(PSO)</h4>
 </div>
-<div id="outline-container-orgf199b71" class="outline-4">
-<h4 id="orgf199b71"><span class="section-number-4">1.2.4</span> genetic algorithms</h4>
+<div id="outline-container-org9d88999" class="outline-4">
+<h4 id="org9d88999"><span class="section-number-4">1.2.4</span> genetic algorithms</h4>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org9c172de" class="outline-2">
-<h2 id="org9c172de"><span class="section-number-2">2</span> global search</h2>
+<div id="outline-container-org77669be" class="outline-2">
+<h2 id="org77669be"><span class="section-number-2">2</span> global search</h2>
 </div>
-<div id="outline-container-orgc1cdb8b" class="outline-2">
-<h2 id="orgc1cdb8b"><span class="section-number-2">3</span> local search</h2>
+<div id="outline-container-orgc672d60" class="outline-2">
+<h2 id="orgc672d60"><span class="section-number-2">3</span> local search</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org846bd51" class="outline-3">
-<h3 id="org846bd51"><span class="section-number-3">3.1</span> hill climbing</h3>
+<div id="outline-container-orgc9dd360" class="outline-3">
+<h3 id="orgc9dd360"><span class="section-number-3">3.1</span> hill climbing</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Find an initial solution, which is much worse than optimal one.
@@ -415,15 +413,13 @@ Repeat until no better can be found.
 </div>
 </div>
 
-<div id="outline-container-orgdde24e4" class="outline-3">
-<h3 id="orgdde24e4"><span class="section-number-3">3.2</span> gradient descent</h3>
+<div id="outline-container-orgf190dfa" class="outline-3">
+<h3 id="orgf190dfa"><span class="section-number-3">3.2</span> gradient descent</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

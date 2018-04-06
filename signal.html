@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Unix Signal Handling</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,52 +233,52 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org170b3a1">1. Ordinary signal handling</a></li>
-<li><a href="#orgbfb1292">2. SIGSEGV handling</a>
+<li><a href="#orge449cec">1. Ordinary signal handling</a></li>
+<li><a href="#org6327842">2. SIGSEGV handling</a>
 <ul>
-<li><a href="#orgae83579">2.1. Motivation</a></li>
-<li><a href="#orgebbd8e5">2.2. a new stack</a></li>
-<li><a href="#org27f9b25">2.3. libsigsegv</a></li>
+<li><a href="#org6f45901">2.1. Motivation</a></li>
+<li><a href="#org27bc92f">2.2. a new stack</a></li>
+<li><a href="#org769b84d">2.3. libsigsegv</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org170b3a1" class="outline-2">
-<h2 id="org170b3a1"><span class="section-number-2">1</span> Ordinary signal handling</h2>
+<div id="outline-container-orge449cec" class="outline-2">
+<h2 id="orge449cec"><span class="section-number-2">1</span> Ordinary signal handling</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The handling of ordinary signals are easy:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;signal.h&gt;</span>
-<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">my_handler</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">signum</span>) {
-  printf(<span style="color: #8b2252;">"received signal\n"</span>);
-}
+<pre class="src src-C"><span style="color: #483d8b;">  #include</span> <span style="color: #8b2252;">&lt;signal.h&gt;</span>
+  <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">my_handler</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">signum</span>) {
+    printf(<span style="color: #8b2252;">"received signal\n"</span>);
+  }
 
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
-  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sigaction</span> <span style="color: #a0522d;">sa</span>;
-  sa.sa_handler = my_handler;
-  sigemptyset(&amp;sa.sa_mask);
-  sa.sa_flags = SA_SIGINFO;
-  <span style="color: #b22222;">// </span><span style="color: #b22222;">this segv does not work</span>
-  sigaction(<span style="color: #a0522d;">SIGSEGV</span>, &amp;sa, <span style="color: #008b8b;">NULL</span>);
-  <span style="color: #b22222;">// </span><span style="color: #b22222;">this sigint will work</span>
-  sigaction(<span style="color: #a0522d;">SIGINT</span>, &amp;sa, <span style="color: #008b8b;">NULL</span>);
-}
+  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
+    <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sigaction</span> <span style="color: #a0522d;">sa</span>;
+    sa.sa_handler = my_handler;
+    sigemptyset(&amp;sa.sa_mask);
+    sa.sa_flags = SA_SIGINFO;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">this segv does not work</span>
+    sigaction(<span style="color: #a0522d;">SIGSEGV</span>, &amp;sa, <span style="color: #008b8b;">NULL</span>);
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">this sigint will work</span>
+    sigaction(<span style="color: #a0522d;">SIGINT</span>, &amp;sa, <span style="color: #008b8b;">NULL</span>);
+  }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbfb1292" class="outline-2">
-<h2 id="orgbfb1292"><span class="section-number-2">2</span> SIGSEGV handling</h2>
+<div id="outline-container-org6327842" class="outline-2">
+<h2 id="org6327842"><span class="section-number-2">2</span> SIGSEGV handling</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgae83579" class="outline-3">
-<h3 id="orgae83579"><span class="section-number-3">2.1</span> Motivation</h3>
+<div id="outline-container-org6f45901" class="outline-3">
+<h3 id="org6f45901"><span class="section-number-3">2.1</span> Motivation</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The reason that I want to handle the <code>SIGSEGV</code> is that I want to get the coverage from <code>gcov</code>.
@@ -290,12 +288,12 @@ I confirmed this can work for ordinary signal handling.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #b22222;">// </span><span style="color: #b22222;">declaring the prototype of gcov</span>
-<span style="color: #228b22;">void</span> <span style="color: #0000ff;">__gcov_flush</span>(<span style="color: #228b22;">void</span>);
+<pre class="src src-C">  <span style="color: #b22222;">// </span><span style="color: #b22222;">declaring the prototype of gcov</span>
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">__gcov_flush</span>(<span style="color: #228b22;">void</span>);
 
-<span style="color: #228b22;">void</span> <span style="color: #0000ff;">myhanlder</span>() {
-  __gcov_flush();
-}
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">myhanlder</span>() {
+    __gcov_flush();
+  }
 </pre>
 </div>
 
@@ -311,8 +309,8 @@ This possibly because the handler is running on a different stack.</li>
 </div>
 
 
-<div id="outline-container-orgebbd8e5" class="outline-3">
-<h3 id="orgebbd8e5"><span class="section-number-3">2.2</span> a new stack</h3>
+<div id="outline-container-org27bc92f" class="outline-3">
+<h3 id="org27bc92f"><span class="section-number-3">2.2</span> a new stack</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 However, handling the SIGSEGV is challenging.
@@ -333,32 +331,32 @@ Instead, we need to make a new stack and install the handler on that stack.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;signal.h&gt;</span>
-<span style="color: #228b22;">void</span> <span style="color: #0000ff;">sigsegv_handler</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">signum</span>, <span style="color: #228b22;">siginfo_t</span> *<span style="color: #a0522d;">info</span>, <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">data</span>) {
-  printf(<span style="color: #8b2252;">"Received signal finally\n"</span>);
-  exit(1);
-}
+<pre class="src src-C"><span style="color: #483d8b;">  #include</span> <span style="color: #8b2252;">&lt;signal.h&gt;</span>
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">sigsegv_handler</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">signum</span>, <span style="color: #228b22;">siginfo_t</span> *<span style="color: #a0522d;">info</span>, <span style="color: #228b22;">void</span> *<span style="color: #a0522d;">data</span>) {
+    printf(<span style="color: #8b2252;">"Received signal finally\n"</span>);
+    exit(1);
+  }
 
-<span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">SEGV_STACK_SIZE</span> BUFSIZ
+<span style="color: #483d8b;">  #define</span> <span style="color: #a0522d;">SEGV_STACK_SIZE</span> BUFSIZ
 
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
-  <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sigaction</span> <span style="color: #a0522d;">action</span>;
-  bzero(&amp;action, <span style="color: #a020f0;">sizeof</span>(action));
-  action.sa_flags = SA_SIGINFO|SA_STACK;
-  action.sa_sigaction = &amp;sigsegv_handler;
-  sigaction(<span style="color: #a0522d;">SIGSEGV</span>, &amp;action, <span style="color: #008b8b;">NULL</span>);
+  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
+    <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">sigaction</span> <span style="color: #a0522d;">action</span>;
+    bzero(&amp;action, <span style="color: #a020f0;">sizeof</span>(action));
+    action.sa_flags = SA_SIGINFO|SA_STACK;
+    action.sa_sigaction = &amp;sigsegv_handler;
+    sigaction(<span style="color: #a0522d;">SIGSEGV</span>, &amp;action, <span style="color: #008b8b;">NULL</span>);
 
 
-  <span style="color: #228b22;">stack_t</span> <span style="color: #a0522d;">segv_stack</span>;
-  segv_stack.ss_sp = valloc(SEGV_STACK_SIZE);
-  segv_stack.ss_flags = 0;
-  segv_stack.ss_size = SEGV_STACK_SIZE;
-  sigaltstack(&amp;segv_stack, <span style="color: #008b8b;">NULL</span>);
+    <span style="color: #228b22;">stack_t</span> <span style="color: #a0522d;">segv_stack</span>;
+    segv_stack.ss_sp = valloc(SEGV_STACK_SIZE);
+    segv_stack.ss_flags = 0;
+    segv_stack.ss_size = SEGV_STACK_SIZE;
+    sigaltstack(&amp;segv_stack, <span style="color: #008b8b;">NULL</span>);
 
-  <span style="color: #228b22;">char</span> <span style="color: #a0522d;">buf</span>[10];
-  <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">src</span> = <span style="color: #8b2252;">"super long string"</span>;
-  strcpy(buf, src);
-}
+    <span style="color: #228b22;">char</span> <span style="color: #a0522d;">buf</span>[10];
+    <span style="color: #228b22;">char</span> *<span style="color: #a0522d;">src</span> = <span style="color: #8b2252;">"super long string"</span>;
+    strcpy(buf, src);
+  }
 </pre>
 </div>
 </div>
@@ -366,8 +364,8 @@ Instead, we need to make a new stack and install the handler on that stack.
 
 
 
-<div id="outline-container-org27f9b25" class="outline-3">
-<h3 id="org27f9b25"><span class="section-number-3">2.3</span> libsigsegv</h3>
+<div id="outline-container-org769b84d" class="outline-3">
+<h3 id="org769b84d"><span class="section-number-3">2.3</span> libsigsegv</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 I also tried another library, the libsigsegv <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
@@ -376,21 +374,21 @@ The code lists here as a reference:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;signal.h&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;sigsegv.h&gt;</span>
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">handler</span> (<span style="color: #228b22;">void</span> *<span style="color: #a0522d;">fault_address</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">serious</span>) {
-  printf(<span style="color: #8b2252;">"Handler triggered.\n"</span>);
-  <span style="color: #a020f0;">return</span> 0;
-}
-<span style="color: #228b22;">void</span> <span style="color: #0000ff;">stackoverflow_handler</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">emergency</span>, <span style="color: #228b22;">stackoverflow_context_t</span> <span style="color: #a0522d;">scp</span>) {
-  printf(<span style="color: #8b2252;">"Handler received\n"</span>);
-}
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
-  <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">mystack</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">don't know how to use</span>
-  sigsegv_install_handler (&amp;handler);
-  stackoverflow_install_handler (&amp;stackoverflow_handler,
-                                 mystack, SIGSTKSZ);
-}
+<pre class="src src-C"><span style="color: #483d8b;">  #include</span> <span style="color: #8b2252;">&lt;signal.h&gt;</span>
+<span style="color: #483d8b;">  #include</span> <span style="color: #8b2252;">&lt;sigsegv.h&gt;</span>
+  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">handler</span> (<span style="color: #228b22;">void</span> *<span style="color: #a0522d;">fault_address</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">serious</span>) {
+    printf(<span style="color: #8b2252;">"Handler triggered.\n"</span>);
+    <span style="color: #a020f0;">return</span> 0;
+  }
+  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">stackoverflow_handler</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">emergency</span>, <span style="color: #228b22;">stackoverflow_context_t</span> <span style="color: #a0522d;">scp</span>) {
+    printf(<span style="color: #8b2252;">"Handler received\n"</span>);
+  }
+  <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
+    <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">mystack</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">don't know how to use</span>
+    sigsegv_install_handler (&amp;handler);
+    stackoverflow_install_handler (&amp;stackoverflow_handler,
+                                   mystack, SIGSTKSZ);
+  }
 </pre>
 </div>
 </div>
@@ -412,9 +410,7 @@ The code lists here as a reference:
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

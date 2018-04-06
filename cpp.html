@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-23 Tue 03:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -257,239 +255,239 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0a11a83">1. Emacs Rtags</a></li>
-<li><a href="#org5c6bd87">2. Tmp</a></li>
-<li><a href="#orgf5358e4">3. Cast</a>
+<li><a href="#orgedfa1d7">1. Emacs Rtags</a></li>
+<li><a href="#org8bcdba8">2. Tmp</a></li>
+<li><a href="#org76d5a43">3. Cast</a>
 <ul>
-<li><a href="#orgffe8496">3.1. In a word</a></li>
-<li><a href="#orgef8e1e0">3.2. C style cast: <b><b>DO NOT USE</b></b></a></li>
-<li><a href="#org6cd2863">3.3. Static Cast</a></li>
-<li><a href="#orgffedc40">3.4. Const Cast</a></li>
-<li><a href="#orgcc83157">3.5. Dynamic Cast</a></li>
-<li><a href="#org6f9c907">3.6. Reinterpret Cast</a></li>
-<li><a href="#org9e10d4e">3.7. C style cast</a></li>
+<li><a href="#orgda491c1">3.1. In a word</a></li>
+<li><a href="#orga63e44b">3.2. C style cast: <b><b>DO NOT USE</b></b></a></li>
+<li><a href="#org75618b7">3.3. Static Cast</a></li>
+<li><a href="#orgeed8cda">3.4. Const Cast</a></li>
+<li><a href="#org7b93eed">3.5. Dynamic Cast</a></li>
+<li><a href="#orga6eb351">3.6. Reinterpret Cast</a></li>
+<li><a href="#org9196490">3.7. C style cast</a></li>
 </ul>
 </li>
-<li><a href="#org51636ef">4. Idioms</a>
+<li><a href="#org2df802d">4. Idioms</a>
 <ul>
-<li><a href="#org5aa2bed">4.1. Curiously recurring template pattern (CRTP)</a>
+<li><a href="#org885abb0">4.1. Curiously recurring template pattern (CRTP)</a>
 <ul>
-<li><a href="#org405090e">4.1.1. Static Polymorphism</a></li>
-<li><a href="#orgb8ffa71">4.1.2. Object Counter</a></li>
-<li><a href="#orgd3e5aaa">4.1.3. Polymorphic Copy Construction</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org6be5ac5">5. extern</a></li>
-<li><a href="#org32b6a0f">6. Class</a>
-<ul>
-<li><a href="#orgfd6e791">6.1. Constructor</a>
-<ul>
-<li><a href="#org40b5689">6.1.1. auto-gen by compiler</a></li>
-<li><a href="#orgec49a48">6.1.2. explicitly disallow the auto-gen</a></li>
-<li><a href="#org18e1143">6.1.3. Copy Constructor &amp; Copy Assignment Operator</a></li>
-<li><a href="#orgeab5cea">6.1.4. Copy-and-swap Idiom</a></li>
-<li><a href="#org9741468">6.1.5. Move Constructor &amp; Move Assignment Opeartor</a></li>
-<li><a href="#org6af71f1">6.1.6. explicit constructor</a></li>
-<li><a href="#org01c0e59">6.1.7. initialization</a>
-<ul>
-<li><a href="#org42cf2f0">6.1.7.1. Default Constructor</a></li>
-<li><a href="#org3677ee7">6.1.7.2. initialization</a></li>
+<li><a href="#orgcb80bfe">4.1.1. Static Polymorphism</a></li>
+<li><a href="#org972510e">4.1.2. Object Counter</a></li>
+<li><a href="#org1a9a3d7">4.1.3. Polymorphic Copy Construction</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orge72fa94">6.2. virtual</a>
+<li><a href="#org99c12af">5. extern</a></li>
+<li><a href="#org8fb1824">6. Class</a>
 <ul>
-<li><a href="#org05cca76">6.2.1. Bottom Line</a></li>
-<li><a href="#orge945a3e">6.2.2. Description</a></li>
-<li><a href="#orga9151bb">6.2.3. Virtual vs. Non-Virtual</a></li>
-<li><a href="#org2537a4f">6.2.4. Virtual vs. Pure Virtual</a></li>
-</ul>
-</li>
-<li><a href="#org6f84711">6.3. Inheritance</a>
+<li><a href="#org5405203">6.1. Constructor</a>
 <ul>
-<li><a href="#org5d481d8">6.3.1. public inheritance</a></li>
-<li><a href="#org3649d9e">6.3.2. hide method</a></li>
-<li><a href="#orge60a7de">6.3.3. make it visible</a></li>
-</ul>
-</li>
-<li><a href="#orgcd94018">6.4. Overload</a></li>
-<li><a href="#orgb88a09a">6.5. Polymorphism</a>
+<li><a href="#org38292ec">6.1.1. auto-gen by compiler</a></li>
+<li><a href="#orgafe6ffc">6.1.2. explicitly disallow the auto-gen</a></li>
+<li><a href="#org048217b">6.1.3. Copy Constructor &amp; Copy Assignment Operator</a></li>
+<li><a href="#orgebae17a">6.1.4. Copy-and-swap Idiom</a></li>
+<li><a href="#org6f56b6e">6.1.5. Move Constructor &amp; Move Assignment Opeartor</a></li>
+<li><a href="#org3f028b9">6.1.6. explicit constructor</a></li>
+<li><a href="#org28a523a">6.1.7. initialization</a>
 <ul>
-<li><a href="#org9eb61e3">6.5.1. Static Polymorphism</a></li>
-</ul>
-</li>
-<li><a href="#orgd45e58a">6.6. non-member function</a>
-<ul>
-<li><a href="#org0f770dc">6.6.1. A common pattern</a></li>
-</ul>
-</li>
-<li><a href="#org62f4277">6.7. friendship</a>
-<ul>
-<li><a href="#org413ef8c">6.7.1. Friend function</a></li>
-<li><a href="#orgfa6e321">6.7.2. Friend Class</a></li>
-</ul>
-</li>
-<li><a href="#org29b2c79">6.8. Nested Class</a></li>
-</ul>
-</li>
-<li><a href="#orgbc2bbeb">7. Concept</a>
-<ul>
-<li><a href="#org8e01a4f">7.1. reference vs. value</a>
-<ul>
-<li><a href="#orga333701">7.1.1. Pass-by Problems</a></li>
-<li><a href="#org3e556fa">7.1.2. rvalue and lvalue</a>
-<ul>
-<li><a href="#org4f67920">7.1.2.1. lvalue</a></li>
-<li><a href="#org3e1a333">7.1.2.2. rvalue</a></li>
+<li><a href="#orgcfce421">6.1.7.1. Default Constructor</a></li>
+<li><a href="#orgd628b6b">6.1.7.2. initialization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9ac6d37">7.2. rvalue reference</a>
+<li><a href="#org64fcc09">6.2. virtual</a>
 <ul>
-<li><a href="#org3865575">7.2.1. The move semantic and swap</a></li>
-<li><a href="#orga075158">7.2.2. Perfect Forwarding</a></li>
-<li><a href="#org6b7f938">7.2.3. Other properties</a></li>
+<li><a href="#org1c0a0c4">6.2.1. Bottom Line</a></li>
+<li><a href="#org441618c">6.2.2. Description</a></li>
+<li><a href="#orgfd92632">6.2.3. Virtual vs. Non-Virtual</a></li>
+<li><a href="#org2e2a61c">6.2.4. Virtual vs. Pure Virtual</a></li>
 </ul>
 </li>
-<li><a href="#orgaeedf2c">7.3. lambda</a>
+<li><a href="#org9a9d894">6.3. Inheritance</a>
 <ul>
-<li><a href="#org70a0dca">7.3.1. syntax</a></li>
-<li><a href="#orga1f221b">7.3.2. Explanations</a></li>
+<li><a href="#org4b69e2e">6.3.1. public inheritance</a></li>
+<li><a href="#orgaed5ecd">6.3.2. hide method</a></li>
+<li><a href="#orgb6d9011">6.3.3. make it visible</a></li>
 </ul>
 </li>
-<li><a href="#org772da37">7.4. Smart Pointer</a></li>
-<li><a href="#orgdc709b2">7.5. Exception Handling</a>
+<li><a href="#org831b479">6.4. Overload</a></li>
+<li><a href="#org099fee4">6.5. Polymorphism</a>
 <ul>
-<li><a href="#org92a0c91">7.5.1. Exception specification</a></li>
+<li><a href="#orgdf44358">6.5.1. Static Polymorphism</a></li>
 </ul>
 </li>
-<li><a href="#orgae1b512">7.6. Template</a>
+<li><a href="#orgcc6279d">6.6. non-member function</a>
 <ul>
-<li><a href="#org0e1d6da">7.6.1. Template specialization</a></li>
-<li><a href="#orgccee536">7.6.2. Non-type parameter</a></li>
-<li><a href="#orgc92eda2">7.6.3. Template Implementation</a></li>
+<li><a href="#orgabc965b">6.6.1. A common pattern</a></li>
 </ul>
 </li>
+<li><a href="#org388129b">6.7. friendship</a>
+<ul>
+<li><a href="#org7313a71">6.7.1. Friend function</a></li>
+<li><a href="#org8c916da">6.7.2. Friend Class</a></li>
 </ul>
 </li>
-<li><a href="#org488b8ce">8. Library</a>
-<ul>
-<li><a href="#org35b2f06">8.1. Stream</a>
-<ul>
-<li><a href="#org19bb0cd">8.1.1. file stream</a>
-<ul>
-<li><a href="#orge1e270a">8.1.1.1. When to flush</a></li>
-<li><a href="#org55823ed">8.1.1.2. mode</a></li>
-<li><a href="#orgfa7c043">8.1.1.3. seek</a></li>
+<li><a href="#orgecf195d">6.8. Nested Class</a></li>
 </ul>
 </li>
-<li><a href="#orgbb3aca2">8.1.2. iostream</a></li>
-</ul>
-</li>
-<li><a href="#org6970485">8.2. String</a>
+<li><a href="#orgddff33f">7. Concept</a>
 <ul>
-<li><a href="#orgfba3aa2">8.2.1. Constructor</a></li>
-<li><a href="#org8197c73">8.2.2. operator=</a></li>
-<li><a href="#org0047869">8.2.3. handy routine</a>
+<li><a href="#orgd49039a">7.1. reference vs. value</a>
 <ul>
-<li><a href="#org10d253f">8.2.3.1. trim a string</a></li>
-<li><a href="#org51eae2e">8.2.3.2. split a string</a></li>
-<li><a href="#orgffb1a1c">8.2.3.3. better split string</a></li>
-</ul>
-</li>
-<li><a href="#org8e6f99c">8.2.4. member function</a>
+<li><a href="#org78aef00">7.1.1. Pass-by Problems</a></li>
+<li><a href="#org7d65300">7.1.2. rvalue and lvalue</a>
 <ul>
-<li><a href="#org308845c">8.2.4.1. iterator</a></li>
-<li><a href="#orge56e15c">8.2.4.2. capacity</a></li>
-<li><a href="#orgac53db0">8.2.4.3. access</a></li>
-<li><a href="#org7eaa897">8.2.4.4. mofifier</a></li>
-<li><a href="#org258e4c1">8.2.4.5. operation</a></li>
-</ul>
-</li>
-<li><a href="#org964df0a">8.2.5. non-member function</a>
-<ul>
-<li><a href="#org3db16eb">8.2.5.1. operator +</a></li>
-<li><a href="#orgd5e8717">8.2.5.2. rational</a></li>
-<li><a href="#org98aa031">8.2.5.3. &gt;&gt;</a></li>
-<li><a href="#orgef5155c">8.2.5.4. getline</a></li>
+<li><a href="#orgfaa17ab">7.1.2.1. lvalue</a></li>
+<li><a href="#orgfe9f72c">7.1.2.2. rvalue</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#org09dcc09">7.2. rvalue reference</a>
+<ul>
+<li><a href="#orgb5d0bf5">7.2.1. The move semantic and swap</a></li>
+<li><a href="#org4ce15d2">7.2.2. Perfect Forwarding</a></li>
+<li><a href="#org6457aa5">7.2.3. Other properties</a></li>
 </ul>
 </li>
-<li><a href="#org19e2039">9. Other</a>
+<li><a href="#orgcde9b32">7.3. lambda</a>
 <ul>
-<li><a href="#org94bd2aa">9.1. Tips</a>
-<ul>
-<li><a href="#orge70f358">9.1.1. function object</a></li>
-<li><a href="#orgf8b34e5">9.1.2. auto</a></li>
-<li><a href="#org530a977">9.1.3. at</a></li>
-<li><a href="#org926fbc8">9.1.4. decltype</a></li>
-<li><a href="#orgc68e75a">9.1.5. pair</a></li>
+<li><a href="#org99a226a">7.3.1. syntax</a></li>
+<li><a href="#org921ae9d">7.3.2. Explanations</a></li>
 </ul>
 </li>
-<li><a href="#orge401bc8">9.2. constant</a>
+<li><a href="#org9532ea9">7.4. Smart Pointer</a></li>
+<li><a href="#orgeb49be0">7.5. Exception Handling</a>
 <ul>
-<li><a href="#orge7f0f62">9.2.1. Rationale</a></li>
-<li><a href="#orgaeba231">9.2.2. How to use</a>
-<ul>
-<li><a href="#org4006170">9.2.2.1. const</a></li>
-<li><a href="#orgb1ef2a4">9.2.2.2. enums</a></li>
-<li><a href="#orgad7f489">9.2.2.3. inlines</a></li>
+<li><a href="#org33239f8">7.5.1. Exception specification</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#orga7d72ea">9.3. undefined behavior</a></li>
-<li><a href="#org5db824a">9.4. Best Practices</a>
+<li><a href="#orgc937771">7.6. Template</a>
 <ul>
-<li><a href="#org38fd0c2">9.4.1. compilation dependence</a>
-<ul>
-<li><a href="#orgd5b39e9">9.4.1.1. Forward-declaration doesn't work.</a></li>
-<li><a href="#org04877e1">9.4.1.2. Why Java don't have such problem?</a></li>
-<li><a href="#org946b47d">9.4.1.3. Solution 1: pimpl(Pointer to implementation)</a></li>
-<li><a href="#org4152c4b">9.4.1.4. Solution 2: Interface Class</a></li>
+<li><a href="#orgcf2eeb2">7.6.1. Template specialization</a></li>
+<li><a href="#orga510923">7.6.2. Non-type parameter</a></li>
+<li><a href="#org62cb721">7.6.3. Template Implementation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org67f4230">9.5. coding standards</a>
+<li><a href="#org3837a5c">8. Library</a>
 <ul>
-<li><a href="#org8ce6ff4">9.5.1. &lt;xxx&gt; and &lt;xxx.h&gt;</a></li>
-<li><a href="#org5767471">9.5.2. using</a></li>
-<li><a href="#orgb0bb65a">9.5.3. where to declare variables</a></li>
-<li><a href="#orge101b7e">9.5.4. some lint-like guidelines</a></li>
-<li><a href="#org5fc4da0">9.5.5. some crazy unix abbr</a></li>
+<li><a href="#orge4512b1">8.1. Stream</a>
+<ul>
+<li><a href="#org8e55cca">8.1.1. file stream</a>
+<ul>
+<li><a href="#org7e7302b">8.1.1.1. When to flush</a></li>
+<li><a href="#org6944ec0">8.1.1.2. mode</a></li>
+<li><a href="#orgde7adf6">8.1.1.3. seek</a></li>
+</ul>
+</li>
+<li><a href="#org3e9201a">8.1.2. iostream</a></li>
+</ul>
+</li>
+<li><a href="#org2708df0">8.2. String</a>
+<ul>
+<li><a href="#org758d896">8.2.1. Constructor</a></li>
+<li><a href="#orgefd4cf4">8.2.2. operator=</a></li>
+<li><a href="#orgf05bca3">8.2.3. handy routine</a>
+<ul>
+<li><a href="#orgf05fc2b">8.2.3.1. trim a string</a></li>
+<li><a href="#org3c46be9">8.2.3.2. split a string</a></li>
+<li><a href="#orgabefd6b">8.2.3.3. better split string</a></li>
+</ul>
+</li>
+<li><a href="#org3fa5e60">8.2.4. member function</a>
+<ul>
+<li><a href="#org6dd4d06">8.2.4.1. iterator</a></li>
+<li><a href="#orge0f7401">8.2.4.2. capacity</a></li>
+<li><a href="#orgcbbd4a0">8.2.4.3. access</a></li>
+<li><a href="#org99a9fbd">8.2.4.4. mofifier</a></li>
+<li><a href="#org462b0b3">8.2.4.5. operation</a></li>
+</ul>
+</li>
+<li><a href="#orge34650c">8.2.5. non-member function</a>
+<ul>
+<li><a href="#org42c3c41">8.2.5.1. operator +</a></li>
+<li><a href="#org19fbc89">8.2.5.2. rational</a></li>
+<li><a href="#org7f5d0df">8.2.5.3. &gt;&gt;</a></li>
+<li><a href="#orgacbdf72">8.2.5.4. getline</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org29cd5cc">10. C++ Standards</a>
+</ul>
+</li>
+<li><a href="#orgdfd343b">9. Other</a>
 <ul>
-<li><a href="#orgedeb9a1">10.1. C++11</a>
+<li><a href="#org42ad43c">9.1. Tips</a>
 <ul>
-<li><a href="#org6be8e02">10.1.1. Default and Delete</a></li>
+<li><a href="#orgbb513d1">9.1.1. function object</a></li>
+<li><a href="#org2dd9aed">9.1.2. auto</a></li>
+<li><a href="#org4ab3f02">9.1.3. at</a></li>
+<li><a href="#orgf7ada51">9.1.4. decltype</a></li>
+<li><a href="#orgda6fb30">9.1.5. pair</a></li>
+</ul>
+</li>
+<li><a href="#org749e154">9.2. constant</a>
+<ul>
+<li><a href="#org910f5b8">9.2.1. Rationale</a></li>
+<li><a href="#org00cecf0">9.2.2. How to use</a>
+<ul>
+<li><a href="#orgd8395a7">9.2.2.1. const</a></li>
+<li><a href="#org20ee944">9.2.2.2. enums</a></li>
+<li><a href="#orgc72beb3">9.2.2.3. inlines</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org797639e">11. Trouble Shooting</a>
+<li><a href="#org4a420a1">9.3. undefined behavior</a></li>
+<li><a href="#orgd77844f">9.4. Best Practices</a>
 <ul>
-<li><a href="#orgf964e7d">11.1. RTTI</a></li>
+<li><a href="#org35c73a6">9.4.1. compilation dependence</a>
+<ul>
+<li><a href="#org37f5c96">9.4.1.1. Forward-declaration doesn't work.</a></li>
+<li><a href="#orga51e8aa">9.4.1.2. Why Java don't have such problem?</a></li>
+<li><a href="#org15fdfcb">9.4.1.3. Solution 1: pimpl(Pointer to implementation)</a></li>
+<li><a href="#orgfa0e2af">9.4.1.4. Solution 2: Interface Class</a></li>
 </ul>
 </li>
-<li><a href="#org7874fac">12. Operator Precedence</a>
+</ul>
+</li>
+<li><a href="#orgd8c1531">9.5. coding standards</a>
 <ul>
-<li><a href="#org055ab0d">12.1. notes</a>
+<li><a href="#org117ee58">9.5.1. &lt;xxx&gt; and &lt;xxx.h&gt;</a></li>
+<li><a href="#orge5ef7be">9.5.2. using</a></li>
+<li><a href="#org2db0207">9.5.3. where to declare variables</a></li>
+<li><a href="#org1322ec5">9.5.4. some lint-like guidelines</a></li>
+<li><a href="#org20c5c8c">9.5.5. some crazy unix abbr</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3bbc6f8">10. C++ Standards</a>
 <ul>
-<li><a href="#org23e6168">12.1.1. For <code>?:</code></a></li>
-<li><a href="#org0bdc557">12.1.2. For C++</a></li>
-<li><a href="#org80fb135">12.1.3. In c++ table, the <code>?:</code> is also in 14 cell</a></li>
+<li><a href="#org9911ba4">10.1. C++11</a>
+<ul>
+<li><a href="#org1ccf096">10.1.1. Default and Delete</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org99cf552">11. Trouble Shooting</a>
+<ul>
+<li><a href="#org5e2a3e1">11.1. RTTI</a></li>
+</ul>
+</li>
+<li><a href="#org8cd9de4">12. Operator Precedence</a>
+<ul>
+<li><a href="#orgac3b789">12.1. notes</a>
+<ul>
+<li><a href="#org8c9253e">12.1.1. For <code>?:</code></a></li>
+<li><a href="#org5795cbf">12.1.2. For C++</a></li>
+<li><a href="#org435dc00">12.1.3. In c++ table, the <code>?:</code> is also in 14 cell</a></li>
 </ul>
 </li>
 </ul>
@@ -511,8 +509,8 @@ C.
 </blockquote>
 
 
-<div id="outline-container-org0a11a83" class="outline-2">
-<h2 id="org0a11a83"><span class="section-number-2">1</span> Emacs Rtags</h2>
+<div id="outline-container-orgedfa1d7" class="outline-2">
+<h2 id="orgedfa1d7"><span class="section-number-2">1</span> Emacs Rtags</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Install rtags by <code>rtags-install</code> with prompt location. Setup the PATH
@@ -527,8 +525,8 @@ back and forth.
 </div>
 
 
-<div id="outline-container-org5c6bd87" class="outline-2">
-<h2 id="org5c6bd87"><span class="section-number-2">2</span> Tmp</h2>
+<div id="outline-container-org8bcdba8" class="outline-2">
+<h2 id="org8bcdba8"><span class="section-number-2">2</span> Tmp</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>static member function</code>: can use <code>ClassName::function()</code> directly</li>
@@ -543,12 +541,12 @@ C file they are defined in.</li>
 </div>
 </div>
 
-<div id="outline-container-orgf5358e4" class="outline-2">
-<h2 id="orgf5358e4"><span class="section-number-2">3</span> Cast</h2>
+<div id="outline-container-org76d5a43" class="outline-2">
+<h2 id="org76d5a43"><span class="section-number-2">3</span> Cast</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgffe8496" class="outline-3">
-<h3 id="orgffe8496"><span class="section-number-3">3.1</span> In a word</h3>
+<div id="outline-container-orgda491c1" class="outline-3">
+<h3 id="orgda491c1"><span class="section-number-3">3.1</span> In a word</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><code>static_cast</code>: ordinary type conversions.</li>
@@ -560,12 +558,12 @@ Avoid this unless you are stuck using a const-incorrect API.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgef8e1e0" class="outline-3">
-<h3 id="orgef8e1e0"><span class="section-number-3">3.2</span> C style cast: <b><b>DO NOT USE</b></b></h3>
+<div id="outline-container-orga63e44b" class="outline-3">
+<h3 id="orga63e44b"><span class="section-number-3">3.2</span> C style cast: <b><b>DO NOT USE</b></b></h3>
 </div>
 
-<div id="outline-container-org6cd2863" class="outline-3">
-<h3 id="org6cd2863"><span class="section-number-3">3.3</span> Static Cast</h3>
+<div id="outline-container-org75618b7" class="outline-3">
+<h3 id="org75618b7"><span class="section-number-3">3.3</span> Static Cast</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <code>static_cast</code> is the first cast you should attempt to use.
@@ -588,8 +586,8 @@ and it is undefined behavior to <code>static_cast</code> down a hierarchy to a t
 </div>
 </div>
 
-<div id="outline-container-orgffedc40" class="outline-3">
-<h3 id="orgffedc40"><span class="section-number-3">3.4</span> Const Cast</h3>
+<div id="outline-container-orgeed8cda" class="outline-3">
+<h3 id="orgeed8cda"><span class="section-number-3">3.4</span> Const Cast</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <code>const_cast</code> can be used to remove or add const to a variable;
@@ -609,8 +607,8 @@ though that's less common.
 </div>
 </div>
 
-<div id="outline-container-orgcc83157" class="outline-3">
-<h3 id="orgcc83157"><span class="section-number-3">3.5</span> Dynamic Cast</h3>
+<div id="outline-container-org7b93eed" class="outline-3">
+<h3 id="org7b93eed"><span class="section-number-3">3.5</span> Dynamic Cast</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 <code>dynamic_cast</code> is almost exclusively used for handling polymorphism.
@@ -633,8 +631,8 @@ This is rarely an issue, however, as such forms of inheritance are rare.
 </div>
 </div>
 
-<div id="outline-container-org6f9c907" class="outline-3">
-<h3 id="org6f9c907"><span class="section-number-3">3.6</span> Reinterpret Cast</h3>
+<div id="outline-container-orga6eb351" class="outline-3">
+<h3 id="orga6eb351"><span class="section-number-3">3.6</span> Reinterpret Cast</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 <code>reinterpret_cast</code> is the most dangerous cast, and should be used very sparingly.
@@ -651,8 +649,8 @@ or storing data in the low bits of an aligned pointer.
 </div>
 </div>
 
-<div id="outline-container-org9e10d4e" class="outline-3">
-<h3 id="org9e10d4e"><span class="section-number-3">3.7</span> C style cast</h3>
+<div id="outline-container-org9196490" class="outline-3">
+<h3 id="org9196490"><span class="section-number-3">3.7</span> C style cast</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 C casts are casts using (type)object or type(object).
@@ -685,12 +683,12 @@ and in my mind is just another reason to avoid C-style casts.
 </div>
 </div>
 
-<div id="outline-container-org51636ef" class="outline-2">
-<h2 id="org51636ef"><span class="section-number-2">4</span> Idioms</h2>
+<div id="outline-container-org2df802d" class="outline-2">
+<h2 id="org2df802d"><span class="section-number-2">4</span> Idioms</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org5aa2bed" class="outline-3">
-<h3 id="org5aa2bed"><span class="section-number-3">4.1</span> Curiously recurring template pattern (CRTP)</h3>
+<div id="outline-container-org885abb0" class="outline-3">
+<h3 id="org885abb0"><span class="section-number-3">4.1</span> Curiously recurring template pattern (CRTP)</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 a class X derives from a class template instantiation using X itself
@@ -709,8 +707,8 @@ General form:
 </div>
 </div>
 
-<div id="outline-container-org405090e" class="outline-4">
-<h4 id="org405090e"><span class="section-number-4">4.1.1</span> Static Polymorphism</h4>
+<div id="outline-container-orgcb80bfe" class="outline-4">
+<h4 id="orgcb80bfe"><span class="section-number-4">4.1.1</span> Static Polymorphism</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 It can achieve effect of virtual function but without the cost of
@@ -735,8 +733,8 @@ dynamic polymorphism.
 </div>
 </div>
 
-<div id="outline-container-orgb8ffa71" class="outline-4">
-<h4 id="orgb8ffa71"><span class="section-number-4">4.1.2</span> Object Counter</h4>
+<div id="outline-container-org972510e" class="outline-4">
+<h4 id="org972510e"><span class="section-number-4">4.1.2</span> Object Counter</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 <code>counter&lt;X&gt;</code> and <code>counter&lt;Y&gt;</code> are different class, so the counters are
@@ -769,8 +767,8 @@ separate for X and Y.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd3e5aaa" class="outline-4">
-<h4 id="orgd3e5aaa"><span class="section-number-4">4.1.3</span> Polymorphic Copy Construction</h4>
+<div id="outline-container-org1a9a3d7" class="outline-4">
+<h4 id="org1a9a3d7"><span class="section-number-4">4.1.3</span> Polymorphic Copy Construction</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 When using polymorphism, one sometimes needs to create copies of
@@ -805,8 +803,8 @@ avoid duplication in the derived class:
 </div>
 </div>
 
-<div id="outline-container-org6be5ac5" class="outline-2">
-<h2 id="org6be5ac5"><span class="section-number-2">5</span> extern</h2>
+<div id="outline-container-org99c12af" class="outline-2">
+<h2 id="org99c12af"><span class="section-number-2">5</span> extern</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #483d8b;">#ifdef</span> __cplusplus
@@ -834,16 +832,16 @@ By using this, during the linkage, the compiler will look for the original name,
 </div>
 
 
-<div id="outline-container-org32b6a0f" class="outline-2">
-<h2 id="org32b6a0f"><span class="section-number-2">6</span> Class</h2>
+<div id="outline-container-org8fb1824" class="outline-2">
+<h2 id="org8fb1824"><span class="section-number-2">6</span> Class</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgfd6e791" class="outline-3">
-<h3 id="orgfd6e791"><span class="section-number-3">6.1</span> Constructor</h3>
+<div id="outline-container-org5405203" class="outline-3">
+<h3 id="org5405203"><span class="section-number-3">6.1</span> Constructor</h3>
 <div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-org40b5689" class="outline-4">
-<h4 id="org40b5689"><span class="section-number-4">6.1.1</span> auto-gen by compiler</h4>
+<div id="outline-container-org38292ec" class="outline-4">
+<h4 id="org38292ec"><span class="section-number-4">6.1.1</span> auto-gen by compiler</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 If you don't write, the compiler will generate:
@@ -898,8 +896,8 @@ you must define it yourself.
 </div>
 </div>
 
-<div id="outline-container-orgec49a48" class="outline-4">
-<h4 id="orgec49a48"><span class="section-number-4">6.1.2</span> explicitly disallow the auto-gen</h4>
+<div id="outline-container-orgafe6ffc" class="outline-4">
+<h4 id="orgafe6ffc"><span class="section-number-4">6.1.2</span> explicitly disallow the auto-gen</h4>
 <div class="outline-text-4" id="text-6-1-2">
 <p>
 <i>link time solution</i>:
@@ -932,8 +930,8 @@ in other word you can't pass compilation.
 </div>
 </div>
 
-<div id="outline-container-org18e1143" class="outline-4">
-<h4 id="org18e1143"><span class="section-number-4">6.1.3</span> Copy Constructor &amp; Copy Assignment Operator</h4>
+<div id="outline-container-org048217b" class="outline-4">
+<h4 id="org048217b"><span class="section-number-4">6.1.3</span> Copy Constructor &amp; Copy Assignment Operator</h4>
 <div class="outline-text-4" id="text-6-1-3">
 <div class="org-src-container">
 <pre class="src src-C++">   <span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span> {
@@ -964,8 +962,8 @@ In particular, pass-by-value means "call the copy constructor".
 </div>
 </div>
 
-<div id="outline-container-orgeab5cea" class="outline-4">
-<h4 id="orgeab5cea"><span class="section-number-4">6.1.4</span> Copy-and-swap Idiom</h4>
+<div id="outline-container-orgebae17a" class="outline-4">
+<h4 id="orgebae17a"><span class="section-number-4">6.1.4</span> Copy-and-swap Idiom</h4>
 <div class="outline-text-4" id="text-6-1-4">
 <p>
 To create an exception safe implementation of overloaded assignment operator.
@@ -1047,8 +1045,8 @@ The code follows:
 </div>
 </div>
 
-<div id="outline-container-org9741468" class="outline-4">
-<h4 id="org9741468"><span class="section-number-4">6.1.5</span> Move Constructor &amp; Move Assignment Opeartor</h4>
+<div id="outline-container-org6f56b6e" class="outline-4">
+<h4 id="org6f56b6e"><span class="section-number-4">6.1.5</span> Move Constructor &amp; Move Assignment Opeartor</h4>
 <div class="outline-text-4" id="text-6-1-5">
 <p>
 Move constructor enables you to implement move semantics, which can significantly improve the performance of your applications.
@@ -1103,8 +1101,8 @@ Move Assignment Operator Example:
 </div>
 </div>
 
-<div id="outline-container-org6af71f1" class="outline-4">
-<h4 id="org6af71f1"><span class="section-number-4">6.1.6</span> explicit constructor</h4>
+<div id="outline-container-org3f028b9" class="outline-4">
+<h4 id="org3f028b9"><span class="section-number-4">6.1.6</span> explicit constructor</h4>
 <div class="outline-text-4" id="text-6-1-6">
 <p>
 The explicit prevents the class from being used to perform implicit type conversions,
@@ -1131,12 +1129,12 @@ for allowing a constructor to be used for implicit type conversions.
 </div>
 </div>
 
-<div id="outline-container-org01c0e59" class="outline-4">
-<h4 id="org01c0e59"><span class="section-number-4">6.1.7</span> initialization</h4>
+<div id="outline-container-org28a523a" class="outline-4">
+<h4 id="org28a523a"><span class="section-number-4">6.1.7</span> initialization</h4>
 <div class="outline-text-4" id="text-6-1-7">
 </div>
-<div id="outline-container-org42cf2f0" class="outline-5">
-<h5 id="org42cf2f0"><span class="section-number-5">6.1.7.1</span> Default Constructor</h5>
+<div id="outline-container-orgcfce421" class="outline-5">
+<h5 id="orgcfce421"><span class="section-number-5">6.1.7.1</span> Default Constructor</h5>
 <div class="outline-text-5" id="text-6-1-7-1">
 <p>
 One that can be called <i>without any arguments</i> is called <i>default constructor</i>.
@@ -1146,8 +1144,8 @@ when those data members are not on initialization list.
 </p>
 </div>
 </div>
-<div id="outline-container-org3677ee7" class="outline-5">
-<h5 id="org3677ee7"><span class="section-number-5">6.1.7.2</span> initialization</h5>
+<div id="outline-container-orgd628b6b" class="outline-5">
+<h5 id="orgd628b6b"><span class="section-number-5">6.1.7.2</span> initialization</h5>
 <div class="outline-text-5" id="text-6-1-7-2">
 <p>
 Data members that are const or references must be initialized; they cant be assigned.
@@ -1200,12 +1198,12 @@ Both the outputs are 9, so the initialization <code>a=8</code> is not called whe
 </div>
 </div>
 
-<div id="outline-container-orge72fa94" class="outline-3">
-<h3 id="orge72fa94"><span class="section-number-3">6.2</span> virtual</h3>
+<div id="outline-container-org64fcc09" class="outline-3">
+<h3 id="org64fcc09"><span class="section-number-3">6.2</span> virtual</h3>
 <div class="outline-text-3" id="text-6-2">
 </div>
-<div id="outline-container-org05cca76" class="outline-4">
-<h4 id="org05cca76"><span class="section-number-4">6.2.1</span> Bottom Line</h4>
+<div id="outline-container-org1c0a0c4" class="outline-4">
+<h4 id="org1c0a0c4"><span class="section-number-4">6.2.1</span> Bottom Line</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <ul class="org-ul">
 <li>polymorphic base classes should declare virtual destructors.
@@ -1218,8 +1216,8 @@ If a class has virtual functions, it should have virtual destructor</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge945a3e" class="outline-4">
-<h4 id="orge945a3e"><span class="section-number-4">6.2.2</span> Description</h4>
+<div id="outline-container-org441618c" class="outline-4">
+<h4 id="org441618c"><span class="section-number-4">6.2.2</span> Description</h4>
 <div class="outline-text-4" id="text-6-2-2">
 <p>
 <code>Factory Function</code>:
@@ -1270,8 +1268,8 @@ virtual functions never go down into the derived class.
 </div>
 </div>
 
-<div id="outline-container-orga9151bb" class="outline-4">
-<h4 id="orga9151bb"><span class="section-number-4">6.2.3</span> Virtual vs. Non-Virtual</h4>
+<div id="outline-container-orgfd92632" class="outline-4">
+<h4 id="orgfd92632"><span class="section-number-4">6.2.3</span> Virtual vs. Non-Virtual</h4>
 <div class="outline-text-4" id="text-6-2-3">
 <p>
 Without <code>virtual</code> you get <b><b>early binding</b></b>. Which implementation of the method is used gets decided at <b><b>compile time based on the type of the pointer that you call through</b></b>.
@@ -1306,8 +1304,8 @@ With <code>virtual</code> you get <b><b>late binding</b></b>. Which implementati
 </div>
 </div>
 
-<div id="outline-container-org2537a4f" class="outline-4">
-<h4 id="org2537a4f"><span class="section-number-4">6.2.4</span> Virtual vs. Pure Virtual</h4>
+<div id="outline-container-org2e2a61c" class="outline-4">
+<h4 id="org2e2a61c"><span class="section-number-4">6.2.4</span> Virtual vs. Pure Virtual</h4>
 <div class="outline-text-4" id="text-6-2-4">
 <ul class="org-ul">
 <li>virtual function <code>can</code> be overriden</li>
@@ -1317,12 +1315,12 @@ With <code>virtual</code> you get <b><b>late binding</b></b>. Which implementati
 </div>
 </div>
 
-<div id="outline-container-org6f84711" class="outline-3">
-<h3 id="org6f84711"><span class="section-number-3">6.3</span> Inheritance</h3>
+<div id="outline-container-org9a9d894" class="outline-3">
+<h3 id="org9a9d894"><span class="section-number-3">6.3</span> Inheritance</h3>
 <div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-org5d481d8" class="outline-4">
-<h4 id="org5d481d8"><span class="section-number-4">6.3.1</span> public inheritance</h4>
+<div id="outline-container-org4b69e2e" class="outline-4">
+<h4 id="org4b69e2e"><span class="section-number-4">6.3.1</span> public inheritance</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <p>
 "is-a" relation.
@@ -1341,8 +1339,8 @@ Composition means either "has-a" or "is-implementated-in-terms-of".
 </div>
 </div>
 
-<div id="outline-container-org3649d9e" class="outline-4">
-<h4 id="org3649d9e"><span class="section-number-4">6.3.2</span> hide method</h4>
+<div id="outline-container-orgaed5ecd" class="outline-4">
+<h4 id="orgaed5ecd"><span class="section-number-4">6.3.2</span> hide method</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Base</span> {
@@ -1380,8 +1378,8 @@ when you create a new derived class in a library or application framework.
 </div>
 </div>
 
-<div id="outline-container-orge60a7de" class="outline-4">
-<h4 id="orge60a7de"><span class="section-number-4">6.3.3</span> make it visible</h4>
+<div id="outline-container-orgb6d9011" class="outline-4">
+<h4 id="orgb6d9011"><span class="section-number-4">6.3.3</span> make it visible</h4>
 <div class="outline-text-4" id="text-6-3-3">
 <ul class="org-ul">
 <li><code>using</code> declarations</li>
@@ -1391,8 +1389,8 @@ when you create a new derived class in a library or application framework.
 </div>
 </div>
 
-<div id="outline-container-orgcd94018" class="outline-3">
-<h3 id="orgcd94018"><span class="section-number-3">6.4</span> Overload</h3>
+<div id="outline-container-org831b479" class="outline-3">
+<h3 id="org831b479"><span class="section-number-3">6.4</span> Overload</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 Same name but different signature.
@@ -1439,8 +1437,8 @@ Operator Overload
 </div>
 
 
-<div id="outline-container-orgb88a09a" class="outline-3">
-<h3 id="orgb88a09a"><span class="section-number-3">6.5</span> Polymorphism</h3>
+<div id="outline-container-org099fee4" class="outline-3">
+<h3 id="org099fee4"><span class="section-number-3">6.5</span> Polymorphism</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 It is the ability to redefine methods for derived classes.
@@ -1468,8 +1466,8 @@ It is the ability to redefine methods for derived classes.
 </div>
 </div>
 
-<div id="outline-container-org9eb61e3" class="outline-4">
-<h4 id="org9eb61e3"><span class="section-number-4">6.5.1</span> Static Polymorphism</h4>
+<div id="outline-container-orgdf44358" class="outline-4">
+<h4 id="orgdf44358"><span class="section-number-4">6.5.1</span> Static Polymorphism</h4>
 <div class="outline-text-4" id="text-6-5-1">
 <p>
  The <i>Curiously Recurring Template Pattern (CRTP)</i> is an idiom in C++ in which a class X derives from a class template instantiation using X itself as template argument<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
@@ -1506,8 +1504,8 @@ It is also known as <i>F-bound polymorphism</i>\cite{canning1989f}.
 </div>
 </div>
 
-<div id="outline-container-orgd45e58a" class="outline-3">
-<h3 id="orgd45e58a"><span class="section-number-3">6.6</span> non-member function</h3>
+<div id="outline-container-orgcc6279d" class="outline-3">
+<h3 id="orgcc6279d"><span class="section-number-3">6.6</span> non-member function</h3>
 <div class="outline-text-3" id="text-6-6">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">clearBrowser</span>(<span style="color: #228b22;">WebBrowser</span>&amp; <span style="color: #a0522d;">wb</span>) {
@@ -1532,8 +1530,8 @@ thus better encapsulate.
 </p>
 </div>
 
-<div id="outline-container-org0f770dc" class="outline-4">
-<h4 id="org0f770dc"><span class="section-number-4">6.6.1</span> A common pattern</h4>
+<div id="outline-container-orgabc965b" class="outline-4">
+<h4 id="orgabc965b"><span class="section-number-4">6.6.1</span> A common pattern</h4>
 <div class="outline-text-4" id="text-6-6-1">
 <p>
 Putting all convenience functions in multiple header files,
@@ -1567,12 +1565,12 @@ but one namespace.
 </div>
 </div>
 
-<div id="outline-container-org62f4277" class="outline-3">
-<h3 id="org62f4277"><span class="section-number-3">6.7</span> friendship</h3>
+<div id="outline-container-org388129b" class="outline-3">
+<h3 id="org388129b"><span class="section-number-3">6.7</span> friendship</h3>
 <div class="outline-text-3" id="text-6-7">
 </div>
-<div id="outline-container-org413ef8c" class="outline-4">
-<h4 id="org413ef8c"><span class="section-number-4">6.7.1</span> Friend function</h4>
+<div id="outline-container-org7313a71" class="outline-4">
+<h4 id="org7313a71"><span class="section-number-4">6.7.1</span> Friend function</h4>
 <div class="outline-text-4" id="text-6-7-1">
 <p>
 private and protected member cannot be accessed outside the class, except friends.
@@ -1595,8 +1593,8 @@ private and protected member cannot be accessed outside the class, except friend
 </div>
 </div>
 
-<div id="outline-container-orgfa6e321" class="outline-4">
-<h4 id="orgfa6e321"><span class="section-number-4">6.7.2</span> Friend Class</h4>
+<div id="outline-container-org8c916da" class="outline-4">
+<h4 id="org8c916da"><span class="section-number-4">6.7.2</span> Friend Class</h4>
 <div class="outline-text-4" id="text-6-7-2">
 <p>
 a class whose member functions can access private and protected member of another class.
@@ -1626,8 +1624,8 @@ a class whose member functions can access private and protected member of anothe
 </div>
 </div>
 
-<div id="outline-container-org29b2c79" class="outline-3">
-<h3 id="org29b2c79"><span class="section-number-3">6.8</span> Nested Class</h3>
+<div id="outline-container-orgecf195d" class="outline-3">
+<h3 id="orgecf195d"><span class="section-number-3">6.8</span> Nested Class</h3>
 <div class="outline-text-3" id="text-6-8">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #228b22;">class</span> <span style="color: #a0522d;">enclose</span> {
@@ -1648,12 +1646,12 @@ a class whose member functions can access private and protected member of anothe
 </div>
 
 
-<div id="outline-container-orgbc2bbeb" class="outline-2">
-<h2 id="orgbc2bbeb"><span class="section-number-2">7</span> Concept</h2>
+<div id="outline-container-orgddff33f" class="outline-2">
+<h2 id="orgddff33f"><span class="section-number-2">7</span> Concept</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org8e01a4f" class="outline-3">
-<h3 id="org8e01a4f"><span class="section-number-3">7.1</span> reference vs. value</h3>
+<div id="outline-container-orgd49039a" class="outline-3">
+<h3 id="orgd49039a"><span class="section-number-3">7.1</span> reference vs. value</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 A good writeup: <a href="http://thbecker.net/articles/rvalue_references/section_01.html">http://thbecker.net/articles/rvalue_references/section_01.html</a>
@@ -1680,8 +1678,8 @@ An rvalue is an expression that is not an lvalue.
 </blockquote>
 </div>
 
-<div id="outline-container-orga333701" class="outline-4">
-<h4 id="orga333701"><span class="section-number-4">7.1.1</span> Pass-by Problems</h4>
+<div id="outline-container-org78aef00" class="outline-4">
+<h4 id="org78aef00"><span class="section-number-4">7.1.1</span> Pass-by Problems</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <p>
 Pass-by-value has two problems.
@@ -1718,8 +1716,8 @@ When you return a heap variable, be careful. E.g. in a <code>operator*</code> me
 </p>
 </div>
 </div>
-<div id="outline-container-org3e556fa" class="outline-4">
-<h4 id="org3e556fa"><span class="section-number-4">7.1.2</span> rvalue and lvalue</h4>
+<div id="outline-container-org7d65300" class="outline-4">
+<h4 id="org7d65300"><span class="section-number-4">7.1.2</span> rvalue and lvalue</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <div class="org-src-container">
 <pre class="src src-text">     ______ ______
@@ -1732,8 +1730,8 @@ When you return a heap variable, be careful. E.g. in a <code>operator*</code> me
 </pre>
 </div>
 </div>
-<div id="outline-container-org4f67920" class="outline-5">
-<h5 id="org4f67920"><span class="section-number-5">7.1.2.1</span> lvalue</h5>
+<div id="outline-container-orgfaa17ab" class="outline-5">
+<h5 id="orgfaa17ab"><span class="section-number-5">7.1.2.1</span> lvalue</h5>
 <div class="outline-text-5" id="text-7-1-2-1">
 <p>
 An <i>lvalue</i> is an expression that identifies a non-temporary object or a non-member function.
@@ -1748,8 +1746,8 @@ A <i>glvalue</i> (~~generalized'' lvalue) is an lvalue or an xvalue.
 </p>
 </div>
 </div>
-<div id="outline-container-org3e1a333" class="outline-5">
-<h5 id="org3e1a333"><span class="section-number-5">7.1.2.2</span> rvalue</h5>
+<div id="outline-container-orgfe9f72c" class="outline-5">
+<h5 id="orgfe9f72c"><span class="section-number-5">7.1.2.2</span> rvalue</h5>
 <div class="outline-text-5" id="text-7-1-2-2">
 <p>
 An <i>rvalue</i> is an expression that is either a prvalue or an xvalue.
@@ -1757,7 +1755,7 @@ A <i>prvalue</i> (~~pure'' rvalue) is an rvalue that is not an xvalue.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgf9b45a7"></a>prvalue<br />
+<li><a id="org1f5f60a"></a>prvalue<br />
 <div class="outline-text-6" id="text-7-1-2-2-1">
 <p>
 A prvalue ("pure" rvalue) is an expression that identifies a temporary object (or a subobject thereof)
@@ -1769,7 +1767,7 @@ or is a value not associated with any object.
 </ul>
 </div>
 </li>
-<li><a id="org64d9cca"></a>xvalue<br />
+<li><a id="orgcfdbc38"></a>xvalue<br />
 <div class="outline-text-6" id="text-7-1-2-2-2">
 <p>
 An <code>xvalue</code> (an “eXpiring” value) also refers to an object, usually near the end of its lifetime (so that its resources may be moved, for example).
@@ -1783,8 +1781,8 @@ E.g. the result of calling a function whose return type is an rvalue reference i
 </div>
 </div>
 
-<div id="outline-container-org9ac6d37" class="outline-3">
-<h3 id="org9ac6d37"><span class="section-number-3">7.2</span> rvalue reference</h3>
+<div id="outline-container-org09dcc09" class="outline-3">
+<h3 id="org09dcc09"><span class="section-number-3">7.2</span> rvalue reference</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 C++11 introduce <i>ravlue reference</i> to enable <i>move semantic</i>.
@@ -1806,8 +1804,8 @@ We discuss perfect forwarding here.
 </p>
 </div>
 
-<div id="outline-container-org3865575" class="outline-4">
-<h4 id="org3865575"><span class="section-number-4">7.2.1</span> The move semantic and swap</h4>
+<div id="outline-container-orgb5d0bf5" class="outline-4">
+<h4 id="orgb5d0bf5"><span class="section-number-4">7.2.1</span> The move semantic and swap</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">class</span> <span style="color: #228b22;">T</span>&gt;
@@ -1837,8 +1835,8 @@ myvector.push_back (<span style="color: #008b8b;">std</span>::move(bar));
 </div>
 </div>
 
-<div id="outline-container-orga075158" class="outline-4">
-<h4 id="orga075158"><span class="section-number-4">7.2.2</span> Perfect Forwarding</h4>
+<div id="outline-container-org4ce15d2" class="outline-4">
+<h4 id="org4ce15d2"><span class="section-number-4">7.2.2</span> Perfect Forwarding</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <p>
 Perfect forwarding reduces the need for overloaded functions and helps avoid the forwarding problem.
@@ -1895,8 +1893,8 @@ std::forward function forwards the parameters of the factory function to the con
 </div>
 </div>
 
-<div id="outline-container-org6b7f938" class="outline-4">
-<h4 id="org6b7f938"><span class="section-number-4">7.2.3</span> Other properties</h4>
+<div id="outline-container-org6457aa5" class="outline-4">
+<h4 id="org6457aa5"><span class="section-number-4">7.2.3</span> Other properties</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <ul class="org-ul">
 <li>The compiler treats a named rvalue reference as an lvalue and an unnamed rvalue reference as an rvalue.</li>
@@ -1909,8 +1907,8 @@ For detail, refer to <a href="https://msdn.microsoft.com/en-us/library/dd293668.
 </div>
 </div>
 
-<div id="outline-container-orgaeedf2c" class="outline-3">
-<h3 id="orgaeedf2c"><span class="section-number-3">7.3</span> lambda</h3>
+<div id="outline-container-orgcde9b32" class="outline-3">
+<h3 id="orgcde9b32"><span class="section-number-3">7.3</span> lambda</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 Constructs a closure: an unnamed function object capable of capturing variables in scope.
@@ -1925,8 +1923,8 @@ reference:
 </ul>
 </div>
 
-<div id="outline-container-org70a0dca" class="outline-4">
-<h4 id="org70a0dca"><span class="section-number-4">7.3.1</span> syntax</h4>
+<div id="outline-container-org99a226a" class="outline-4">
+<h4 id="org99a226a"><span class="section-number-4">7.3.1</span> syntax</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <ul class="org-ul">
 <li>Full declaration:</li>
@@ -1983,8 +1981,8 @@ take no parameters.
 </div>
 </div>
 
-<div id="outline-container-orga1f221b" class="outline-4">
-<h4 id="orga1f221b"><span class="section-number-4">7.3.2</span> Explanations</h4>
+<div id="outline-container-org921ae9d" class="outline-4">
+<h4 id="org921ae9d"><span class="section-number-4">7.3.2</span> Explanations</h4>
 <div class="outline-text-4" id="text-7-3-2">
 <ul class="org-ul">
 <li><code>mutable</code>: allows body to modify the parameters captured by copy, and to call their non-const member functions</li>
@@ -2003,8 +2001,8 @@ take no parameters.
 </div>
 </div>
 
-<div id="outline-container-org772da37" class="outline-3">
-<h3 id="org772da37"><span class="section-number-3">7.4</span> Smart Pointer</h3>
+<div id="outline-container-org9532ea9" class="outline-3">
+<h3 id="org9532ea9"><span class="section-number-3">7.4</span> Smart Pointer</h3>
 <div class="outline-text-3" id="text-7-4">
 <dl class="org-dl">
 <dt><code>unique_ptr</code></dt><dd>cannot be copied</dd>
@@ -2042,8 +2040,8 @@ them would be a problem.
 </div>
 
 
-<div id="outline-container-orgdc709b2" class="outline-3">
-<h3 id="orgdc709b2"><span class="section-number-3">7.5</span> Exception Handling</h3>
+<div id="outline-container-orgeb49be0" class="outline-3">
+<h3 id="orgeb49be0"><span class="section-number-3">7.5</span> Exception Handling</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 C++ Exception is handled by try-catch clause.  Catch accept an
@@ -2078,8 +2076,8 @@ null-terminated string.
 </p>
 </div>
 
-<div id="outline-container-org92a0c91" class="outline-4">
-<h4 id="org92a0c91"><span class="section-number-4">7.5.1</span> Exception specification</h4>
+<div id="outline-container-org33239f8" class="outline-4">
+<h4 id="org33239f8"><span class="section-number-4">7.5.1</span> Exception specification</h4>
 <div class="outline-text-4" id="text-7-5-1">
 <p>
 This is deprecated. In the declaration of a function, you can add a
@@ -2112,12 +2110,12 @@ same as <code>noexcept(true)</code> but is deprecated.
 </div>
 
 
-<div id="outline-container-orgae1b512" class="outline-3">
-<h3 id="orgae1b512"><span class="section-number-3">7.6</span> Template</h3>
+<div id="outline-container-orgc937771" class="outline-3">
+<h3 id="orgc937771"><span class="section-number-3">7.6</span> Template</h3>
 <div class="outline-text-3" id="text-7-6">
 </div>
-<div id="outline-container-org0e1d6da" class="outline-4">
-<h4 id="org0e1d6da"><span class="section-number-4">7.6.1</span> Template specialization</h4>
+<div id="outline-container-orgcf2eeb2" class="outline-4">
+<h4 id="orgcf2eeb2"><span class="section-number-4">7.6.1</span> Template specialization</h4>
 <div class="outline-text-4" id="text-7-6-1">
 <p>
 Use when you want to define a different implementation for a template
@@ -2142,8 +2140,8 @@ So only have the second form is not valid.
 </div>
 </div>
 
-<div id="outline-container-orgccee536" class="outline-4">
-<h4 id="orgccee536"><span class="section-number-4">7.6.2</span> Non-type parameter</h4>
+<div id="outline-container-orga510923" class="outline-4">
+<h4 id="orga510923"><span class="section-number-4">7.6.2</span> Non-type parameter</h4>
 <div class="outline-text-4" id="text-7-6-2">
 <p>
 The parameter can not just be a type name, but also a regular type.
@@ -2180,8 +2178,8 @@ Then the following calls are equivalent:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc92eda2" class="outline-4">
-<h4 id="orgc92eda2"><span class="section-number-4">7.6.3</span> Template Implementation</h4>
+<div id="outline-container-org62cb721" class="outline-4">
+<h4 id="org62cb721"><span class="section-number-4">7.6.3</span> Template Implementation</h4>
 <div class="outline-text-4" id="text-7-6-3">
 <p>
 See <a href="https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl">https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl</a>
@@ -2275,16 +2273,16 @@ include <code>foo.cpp</code>
 </div>
 </div>
 
-<div id="outline-container-org488b8ce" class="outline-2">
-<h2 id="org488b8ce"><span class="section-number-2">8</span> Library</h2>
+<div id="outline-container-org3837a5c" class="outline-2">
+<h2 id="org3837a5c"><span class="section-number-2">8</span> Library</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org35b2f06" class="outline-3">
-<h3 id="org35b2f06"><span class="section-number-3">8.1</span> Stream</h3>
+<div id="outline-container-orge4512b1" class="outline-3">
+<h3 id="orge4512b1"><span class="section-number-3">8.1</span> Stream</h3>
 <div class="outline-text-3" id="text-8-1">
 </div>
-<div id="outline-container-org19bb0cd" class="outline-4">
-<h4 id="org19bb0cd"><span class="section-number-4">8.1.1</span> file stream</h4>
+<div id="outline-container-org8e55cca" class="outline-4">
+<h4 id="org8e55cca"><span class="section-number-4">8.1.1</span> file stream</h4>
 <div class="outline-text-4" id="text-8-1-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #483d8b;"> #include</span> <span style="color: #8b2252;">&lt;fstream&gt;</span>
@@ -2301,8 +2299,8 @@ include <code>foo.cpp</code>
 </div>
 </div>
 
-<div id="outline-container-orge1e270a" class="outline-5">
-<h5 id="orge1e270a"><span class="section-number-5">8.1.1.1</span> When to flush</h5>
+<div id="outline-container-org7e7302b" class="outline-5">
+<h5 id="org7e7302b"><span class="section-number-5">8.1.1.1</span> When to flush</h5>
 <div class="outline-text-5" id="text-8-1-1-1">
 <ul class="org-ul">
 <li><code>file.close()</code></li>
@@ -2313,8 +2311,8 @@ include <code>foo.cpp</code>
 </div>
 </div>
 
-<div id="outline-container-org55823ed" class="outline-5">
-<h5 id="org55823ed"><span class="section-number-5">8.1.1.2</span> mode</h5>
+<div id="outline-container-org6944ec0" class="outline-5">
+<h5 id="org6944ec0"><span class="section-number-5">8.1.1.2</span> mode</h5>
 <div class="outline-text-5" id="text-8-1-1-2">
 <p>
 open flag:
@@ -2430,8 +2428,8 @@ binary mode cannot use &gt;&gt;, &lt;&lt;, getline, but use
 </div>
 </div>
 
-<div id="outline-container-orgfa7c043" class="outline-5">
-<h5 id="orgfa7c043"><span class="section-number-5">8.1.1.3</span> seek</h5>
+<div id="outline-container-orgde7adf6" class="outline-5">
+<h5 id="orgde7adf6"><span class="section-number-5">8.1.1.3</span> seek</h5>
 <div class="outline-text-5" id="text-8-1-1-3">
 <ul class="org-ul">
 <li>tellg(): get <span class="underline">get position</span></li>
@@ -2481,8 +2479,8 @@ binary mode cannot use &gt;&gt;, &lt;&lt;, getline, but use
 </div>
 </div>
 
-<div id="outline-container-orgbb3aca2" class="outline-4">
-<h4 id="orgbb3aca2"><span class="section-number-4">8.1.2</span> iostream</h4>
+<div id="outline-container-org3e9201a" class="outline-4">
+<h4 id="org3e9201a"><span class="section-number-4">8.1.2</span> iostream</h4>
 <div class="outline-text-4" id="text-8-1-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #483d8b;"> #include</span> <span style="color: #8b2252;">&lt;iostream&gt;</span>
@@ -2524,12 +2522,12 @@ To add a validation process, we need to use stringstream:
 </div>
 </div>
 
-<div id="outline-container-org6970485" class="outline-3">
-<h3 id="org6970485"><span class="section-number-3">8.2</span> String</h3>
+<div id="outline-container-org2708df0" class="outline-3">
+<h3 id="org2708df0"><span class="section-number-3">8.2</span> String</h3>
 <div class="outline-text-3" id="text-8-2">
 </div>
-<div id="outline-container-orgfba3aa2" class="outline-4">
-<h4 id="orgfba3aa2"><span class="section-number-4">8.2.1</span> Constructor</h4>
+<div id="outline-container-org758d896" class="outline-4">
+<h4 id="org758d896"><span class="section-number-4">8.2.1</span> Constructor</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #b22222;">// </span><span style="color: #b22222;">default</span>
@@ -2552,8 +2550,8 @@ To add a validation process, we need to use stringstream:
 </div>
 </div>
 
-<div id="outline-container-org8197c73" class="outline-4">
-<h4 id="org8197c73"><span class="section-number-4">8.2.2</span> operator=</h4>
+<div id="outline-container-orgefd4cf4" class="outline-4">
+<h4 id="orgefd4cf4"><span class="section-number-4">8.2.2</span> operator=</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #b22222;">// </span><span style="color: #b22222;">string</span>
@@ -2567,12 +2565,12 @@ To add a validation process, we need to use stringstream:
 </div>
 </div>
 
-<div id="outline-container-org0047869" class="outline-4">
-<h4 id="org0047869"><span class="section-number-4">8.2.3</span> handy routine</h4>
+<div id="outline-container-orgf05bca3" class="outline-4">
+<h4 id="orgf05bca3"><span class="section-number-4">8.2.3</span> handy routine</h4>
 <div class="outline-text-4" id="text-8-2-3">
 </div>
-<div id="outline-container-org10d253f" class="outline-5">
-<h5 id="org10d253f"><span class="section-number-5">8.2.3.1</span> trim a string</h5>
+<div id="outline-container-orgf05fc2b" class="outline-5">
+<h5 id="orgf05fc2b"><span class="section-number-5">8.2.3.1</span> trim a string</h5>
 <div class="outline-text-5" id="text-8-2-3-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #483d8b;"> #include</span> <span style="color: #8b2252;">&lt;algorithm&gt;</span>
@@ -2601,8 +2599,8 @@ To add a validation process, we need to use stringstream:
 </div>
 </div>
 
-<div id="outline-container-org51eae2e" class="outline-5">
-<h5 id="org51eae2e"><span class="section-number-5">8.2.3.2</span> split a string</h5>
+<div id="outline-container-org3c46be9" class="outline-5">
+<h5 id="org3c46be9"><span class="section-number-5">8.2.3.2</span> split a string</h5>
 <div class="outline-text-5" id="text-8-2-3-2">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span>(<span style="color: #8b2252;">"Somewhere down the road"</span>);
@@ -2663,8 +2661,8 @@ More flexible version:
 </div>
 </div>
 
-<div id="outline-container-orgffb1a1c" class="outline-5">
-<h5 id="orgffb1a1c"><span class="section-number-5">8.2.3.3</span> better split string</h5>
+<div id="outline-container-orgabefd6b" class="outline-5">
+<h5 id="orgabefd6b"><span class="section-number-5">8.2.3.3</span> better split string</h5>
 <div class="outline-text-5" id="text-8-2-3-3">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #b22222;">// </span><span style="color: #b22222;">to std::cout</span>
@@ -2692,12 +2690,12 @@ More flexible version:
 </div>
 
 
-<div id="outline-container-org8e6f99c" class="outline-4">
-<h4 id="org8e6f99c"><span class="section-number-4">8.2.4</span> member function</h4>
+<div id="outline-container-org3fa5e60" class="outline-4">
+<h4 id="org3fa5e60"><span class="section-number-4">8.2.4</span> member function</h4>
 <div class="outline-text-4" id="text-8-2-4">
 </div>
-<div id="outline-container-org308845c" class="outline-5">
-<h5 id="org308845c"><span class="section-number-5">8.2.4.1</span> iterator</h5>
+<div id="outline-container-org6dd4d06" class="outline-5">
+<h5 id="org6dd4d06"><span class="section-number-5">8.2.4.1</span> iterator</h5>
 <div class="outline-text-5" id="text-8-2-4-1">
 <ul class="org-ul">
 <li>begin()</li>
@@ -2706,8 +2704,8 @@ More flexible version:
 </div>
 </div>
 
-<div id="outline-container-orge56e15c" class="outline-5">
-<h5 id="orge56e15c"><span class="section-number-5">8.2.4.2</span> capacity</h5>
+<div id="outline-container-orge0f7401" class="outline-5">
+<h5 id="orge0f7401"><span class="section-number-5">8.2.4.2</span> capacity</h5>
 <div class="outline-text-5" id="text-8-2-4-2">
 <ul class="org-ul">
 <li>size(): length of string</li>
@@ -2718,8 +2716,8 @@ More flexible version:
 </div>
 </div>
 
-<div id="outline-container-orgac53db0" class="outline-5">
-<h5 id="orgac53db0"><span class="section-number-5">8.2.4.3</span> access</h5>
+<div id="outline-container-orgcbbd4a0" class="outline-5">
+<h5 id="orgcbbd4a0"><span class="section-number-5">8.2.4.3</span> access</h5>
 <div class="outline-text-5" id="text-8-2-4-3">
 <ul class="org-ul">
 <li>operator[]</li>
@@ -2728,8 +2726,8 @@ More flexible version:
 </ul>
 </div>
 </div>
-<div id="outline-container-org7eaa897" class="outline-5">
-<h5 id="org7eaa897"><span class="section-number-5">8.2.4.4</span> mofifier</h5>
+<div id="outline-container-org99a9fbd" class="outline-5">
+<h5 id="org99a9fbd"><span class="section-number-5">8.2.4.4</span> mofifier</h5>
 <div class="outline-text-5" id="text-8-2-4-4">
 <ul class="org-ul">
 <li>operator+=</li>
@@ -2838,8 +2836,8 @@ More flexible version:
 </div>
 </div>
 
-<div id="outline-container-org258e4c1" class="outline-5">
-<h5 id="org258e4c1"><span class="section-number-5">8.2.4.5</span> operation</h5>
+<div id="outline-container-org462b0b3" class="outline-5">
+<h5 id="org462b0b3"><span class="section-number-5">8.2.4.5</span> operation</h5>
 <div class="outline-text-5" id="text-8-2-4-5">
 <ul class="org-ul">
 <li>c<sub>str</sub>(): A program <b><b>shall not alter</b></b> any of the characters in this sequence.</li>
@@ -2919,12 +2917,12 @@ return: 0, -, +
 </div>
 </div>
 
-<div id="outline-container-org964df0a" class="outline-4">
-<h4 id="org964df0a"><span class="section-number-4">8.2.5</span> non-member function</h4>
+<div id="outline-container-orge34650c" class="outline-4">
+<h4 id="orge34650c"><span class="section-number-4">8.2.5</span> non-member function</h4>
 <div class="outline-text-4" id="text-8-2-5">
 </div>
-<div id="outline-container-org3db16eb" class="outline-5">
-<h5 id="org3db16eb"><span class="section-number-5">8.2.5.1</span> operator +</h5>
+<div id="outline-container-org42c3c41" class="outline-5">
+<h5 id="org42c3c41"><span class="section-number-5">8.2.5.1</span> operator +</h5>
 <div class="outline-text-5" id="text-8-2-5-1">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #b22222;">// </span><span style="color: #b22222;">string</span>
@@ -2940,8 +2938,8 @@ return: 0, -, +
 </div>
 </div>
 
-<div id="outline-container-orgd5e8717" class="outline-5">
-<h5 id="orgd5e8717"><span class="section-number-5">8.2.5.2</span> rational</h5>
+<div id="outline-container-org19fbc89" class="outline-5">
+<h5 id="org19fbc89"><span class="section-number-5">8.2.5.2</span> rational</h5>
 <div class="outline-text-5" id="text-8-2-5-2">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #228b22;">bool</span> <span style="color: #a020f0;">operator</span><span style="color: #0000ff;">==</span> (<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span>&amp; <span style="color: #a0522d;">lhs</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span>&amp; <span style="color: #a0522d;">rhs</span>);
@@ -2967,8 +2965,8 @@ return: 0, -, +
 </div>
 </div>
 
-<div id="outline-container-org98aa031" class="outline-5">
-<h5 id="org98aa031"><span class="section-number-5">8.2.5.3</span> &gt;&gt;</h5>
+<div id="outline-container-org7f5d0df" class="outline-5">
+<h5 id="org7f5d0df"><span class="section-number-5">8.2.5.3</span> &gt;&gt;</h5>
 <div class="outline-text-5" id="text-8-2-5-3">
 <p>
 extract string from stream
@@ -2982,8 +2980,8 @@ extract string from stream
 </div>
 </div>
 
-<div id="outline-container-orgef5155c" class="outline-5">
-<h5 id="orgef5155c"><span class="section-number-5">8.2.5.4</span> getline</h5>
+<div id="outline-container-orgacbdf72" class="outline-5">
+<h5 id="orgacbdf72"><span class="section-number-5">8.2.5.4</span> getline</h5>
 <div class="outline-text-5" id="text-8-2-5-4">
 <p>
 get line from stream into string
@@ -3001,12 +2999,12 @@ get line from stream into string
 </div>
 
 
-<div id="outline-container-org19e2039" class="outline-2">
-<h2 id="org19e2039"><span class="section-number-2">9</span> Other</h2>
+<div id="outline-container-orgdfd343b" class="outline-2">
+<h2 id="orgdfd343b"><span class="section-number-2">9</span> Other</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org94bd2aa" class="outline-3">
-<h3 id="org94bd2aa"><span class="section-number-3">9.1</span> Tips</h3>
+<div id="outline-container-org42ad43c" class="outline-3">
+<h3 id="org42ad43c"><span class="section-number-3">9.1</span> Tips</h3>
 <div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li><code>main~函数的返回类型必须是 ~int</code></li>
@@ -3015,8 +3013,8 @@ get line from stream into string
 <li><code>./a.out &lt;infile &gt;outfile</code></li>
 </ul>
 </div>
-<div id="outline-container-orge70f358" class="outline-4">
-<h4 id="orge70f358"><span class="section-number-4">9.1.1</span> function object</h4>
+<div id="outline-container-orgbb513d1" class="outline-4">
+<h4 id="orgbb513d1"><span class="section-number-4">9.1.1</span> function object</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <p>
 Objects that act like functions.
@@ -3025,8 +3023,8 @@ Such objects come from classes that overload <code>operator()</code>.
 </div>
 </div>
 
-<div id="outline-container-orgf8b34e5" class="outline-4">
-<h4 id="orgf8b34e5"><span class="section-number-4">9.1.2</span> auto</h4>
+<div id="outline-container-org2dd9aed" class="outline-4">
+<h4 id="org2dd9aed"><span class="section-number-4">9.1.2</span> auto</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">g</span> = bind(f, a, b, _2, c, _1);
@@ -3038,8 +3036,8 @@ Such objects come from classes that overload <code>operator()</code>.
 </div>
 </div>
 
-<div id="outline-container-org530a977" class="outline-4">
-<h4 id="org530a977"><span class="section-number-4">9.1.3</span> at</h4>
+<div id="outline-container-org4ab3f02" class="outline-4">
+<h4 id="org4ab3f02"><span class="section-number-4">9.1.3</span> at</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <p>
 适用于 <code>string</code>, <code>vector</code>, <code>deque</code>, <code>array</code>
@@ -3051,8 +3049,8 @@ Such objects come from classes that overload <code>operator()</code>.
 </div>
 </div>
 
-<div id="outline-container-org926fbc8" class="outline-4">
-<h4 id="org926fbc8"><span class="section-number-4">9.1.4</span> decltype</h4>
+<div id="outline-container-orgf7ada51" class="outline-4">
+<h4 id="orgf7ada51"><span class="section-number-4">9.1.4</span> decltype</h4>
 <div class="outline-text-4" id="text-9-1-4">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #a020f0;">struct</span> <span style="color: #228b22;">A</span> {
@@ -3073,8 +3071,8 @@ Such objects come from classes that overload <code>operator()</code>.
 </div>
 </div>
 
-<div id="outline-container-orgc68e75a" class="outline-4">
-<h4 id="orgc68e75a"><span class="section-number-4">9.1.5</span> pair</h4>
+<div id="outline-container-orgda6fb30" class="outline-4">
+<h4 id="orgda6fb30"><span class="section-number-4">9.1.5</span> pair</h4>
 <div class="outline-text-4" id="text-9-1-5">
 <p>
 std::make<sub>pair</sub>
@@ -3112,16 +3110,16 @@ equals to:
 
 
 
-<div id="outline-container-orge401bc8" class="outline-3">
-<h3 id="orge401bc8"><span class="section-number-3">9.2</span> constant</h3>
+<div id="outline-container-org749e154" class="outline-3">
+<h3 id="org749e154"><span class="section-number-3">9.2</span> constant</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 Prefer <code>const</code>, <code>enum</code>, and <code>inline</code> to <code>#define</code>.
 </p>
 </div>
 
-<div id="outline-container-orge7f0f62" class="outline-4">
-<h4 id="orge7f0f62"><span class="section-number-4">9.2.1</span> Rationale</h4>
+<div id="outline-container-org910f5b8" class="outline-4">
+<h4 id="org910f5b8"><span class="section-number-4">9.2.1</span> Rationale</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <ol class="org-ol">
 <li>prefer the compiler to preprocessor,</li>
@@ -3137,12 +3135,12 @@ less optimization.
 </div>
 </div>
 
-<div id="outline-container-orgaeba231" class="outline-4">
-<h4 id="orgaeba231"><span class="section-number-4">9.2.2</span> How to use</h4>
+<div id="outline-container-org00cecf0" class="outline-4">
+<h4 id="org00cecf0"><span class="section-number-4">9.2.2</span> How to use</h4>
 <div class="outline-text-4" id="text-9-2-2">
 </div>
-<div id="outline-container-org4006170" class="outline-5">
-<h5 id="org4006170"><span class="section-number-5">9.2.2.1</span> const</h5>
+<div id="outline-container-orgd8395a7" class="outline-5">
+<h5 id="orgd8395a7"><span class="section-number-5">9.2.2.1</span> const</h5>
 <div class="outline-text-5" id="text-9-2-2-1">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #a020f0;">const</span> <span style="color: #228b22;">char</span>* <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"Hebi Li"</span>;
@@ -3156,7 +3154,7 @@ less optimization.
 </div>
 
 <ol class="org-ol">
-<li><a id="org4d47117"></a>data and pointer const<br />
+<li><a id="orgb67b1c9"></a>data and pointer const<br />
 <div class="outline-text-6" id="text-9-2-2-1-1">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #228b22;">char</span> <span style="color: #a0522d;">name</span>[] = <span style="color: #8b2252;">"Hebi Li"</span>;
@@ -3169,7 +3167,7 @@ less optimization.
 </div>
 </div>
 </li>
-<li><a id="orgbc5d9b6"></a>const return value of operator<br />
+<li><a id="org1584853"></a>const return value of operator<br />
 <div class="outline-text-6" id="text-9-2-2-1-2">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #a020f0;">const</span> <span style="color: #228b22;">A</span> <span style="color: #008b8b;">A</span>::<span style="color: #a020f0;">operator</span><span style="color: #0000ff;">*</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">A</span>&amp; <span style="color: #a0522d;">lhs</span>, <span style="color: #a020f0;">const</span> <span style="color: #228b22;">A</span>&amp; <span style="color: #a0522d;">rhs</span>);
@@ -3189,8 +3187,8 @@ less optimization.
 </div>
 
 
-<div id="outline-container-orgb1ef2a4" class="outline-5">
-<h5 id="orgb1ef2a4"><span class="section-number-5">9.2.2.2</span> enums</h5>
+<div id="outline-container-org20ee944" class="outline-5">
+<h5 id="org20ee944"><span class="section-number-5">9.2.2.2</span> enums</h5>
 <div class="outline-text-5" id="text-9-2-2-2">
 <p>
 Some compilers don't support to init value at definition,
@@ -3208,8 +3206,8 @@ In this case, use <span class="underline">enum hack</span>:
 </div>
 </div>
 
-<div id="outline-container-orgad7f489" class="outline-5">
-<h5 id="orgad7f489"><span class="section-number-5">9.2.2.3</span> inlines</h5>
+<div id="outline-container-orgc72beb3" class="outline-5">
+<h5 id="orgc72beb3"><span class="section-number-5">9.2.2.3</span> inlines</h5>
 <div class="outline-text-5" id="text-9-2-2-3">
 <p>
 replace
@@ -3246,8 +3244,8 @@ Because you need worry about the parenthesize for define:
 </div>
 </div>
 
-<div id="outline-container-orga7d72ea" class="outline-3">
-<h3 id="orga7d72ea"><span class="section-number-3">9.3</span> undefined behavior</h3>
+<div id="outline-container-org4a420a1" class="outline-3">
+<h3 id="org4a420a1"><span class="section-number-3">9.3</span> undefined behavior</h3>
 <div class="outline-text-3" id="text-9-3">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #228b22;">int</span> *<span style="color: #a0522d;">p</span> = 0; <span style="color: #b22222;">// </span><span style="color: #b22222;">null pointer</span>
@@ -3264,12 +3262,12 @@ They most come from pointer and address.
 </div>
 
 
-<div id="outline-container-org5db824a" class="outline-3">
-<h3 id="org5db824a"><span class="section-number-3">9.4</span> Best Practices</h3>
+<div id="outline-container-orgd77844f" class="outline-3">
+<h3 id="orgd77844f"><span class="section-number-3">9.4</span> Best Practices</h3>
 <div class="outline-text-3" id="text-9-4">
 </div>
-<div id="outline-container-org38fd0c2" class="outline-4">
-<h4 id="org38fd0c2"><span class="section-number-4">9.4.1</span> compilation dependence</h4>
+<div id="outline-container-org35c73a6" class="outline-4">
+<h4 id="org35c73a6"><span class="section-number-4">9.4.1</span> compilation dependence</h4>
 <div class="outline-text-4" id="text-9-4-1">
 <p>
 The change of a single class can lead to a large amount of file to recompile,
@@ -3282,8 +3280,8 @@ because:
 </ul>
 </div>
 
-<div id="outline-container-orgd5b39e9" class="outline-5">
-<h5 id="orgd5b39e9"><span class="section-number-5">9.4.1.1</span> Forward-declaration doesn't work.</h5>
+<div id="outline-container-org37f5c96" class="outline-5">
+<h5 id="org37f5c96"><span class="section-number-5">9.4.1.1</span> Forward-declaration doesn't work.</h5>
 <div class="outline-text-5" id="text-9-4-1-1">
 <div class="org-src-container">
 <pre class="src src-C++"> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>() {
@@ -3300,8 +3298,8 @@ compiler need to know the size.
 </div>
 </div>
 
-<div id="outline-container-org04877e1" class="outline-5">
-<h5 id="org04877e1"><span class="section-number-5">9.4.1.2</span> Why Java don't have such problem?</h5>
+<div id="outline-container-orga51e8aa" class="outline-5">
+<h5 id="orga51e8aa"><span class="section-number-5">9.4.1.2</span> Why Java don't have such problem?</h5>
 <div class="outline-text-5" id="text-9-4-1-2">
 <p>
 Java treat the above code as
@@ -3317,8 +3315,8 @@ Java treat the above code as
 </div>
 </div>
 
-<div id="outline-container-org946b47d" class="outline-5">
-<h5 id="org946b47d"><span class="section-number-5">9.4.1.3</span> Solution 1: pimpl(Pointer to implementation)</h5>
+<div id="outline-container-org15fdfcb" class="outline-5">
+<h5 id="org15fdfcb"><span class="section-number-5">9.4.1.3</span> Solution 1: pimpl(Pointer to implementation)</h5>
 <div class="outline-text-5" id="text-9-4-1-3">
 <p>
 In C++, we can of course play the
@@ -3361,7 +3359,7 @@ Classes that employ the pimpl idiom are often called Handle Classes.
 </div>
 
 <ol class="org-ol">
-<li><a id="orgb12ec02"></a>Example:<br />
+<li><a id="orge5593a1"></a>Example:<br />
 <div class="outline-text-6" id="text-9-4-1-3-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #483d8b;"> #include</span> <span style="color: #8b2252;">&lt;string&gt;</span>
@@ -3399,8 +3397,8 @@ Classes that employ the pimpl idiom are often called Handle Classes.
 </ol>
 </div>
 
-<div id="outline-container-org4152c4b" class="outline-5">
-<h5 id="org4152c4b"><span class="section-number-5">9.4.1.4</span> Solution 2: Interface Class</h5>
+<div id="outline-container-orgfa0e2af" class="outline-5">
+<h5 id="orgfa0e2af"><span class="section-number-5">9.4.1.4</span> Solution 2: Interface Class</h5>
 <div class="outline-text-5" id="text-9-4-1-4">
 <p>
 The implementation of non-virtual functions should be the same for all classes in a hierarchy,
@@ -3450,16 +3448,16 @@ Clients of interface class need not recompile unless the Interface class's inter
 </div>
 </div>
 </div>
-<div id="outline-container-org67f4230" class="outline-3">
-<h3 id="org67f4230"><span class="section-number-3">9.5</span> coding standards</h3>
+<div id="outline-container-orgd8c1531" class="outline-3">
+<h3 id="orgd8c1531"><span class="section-number-3">9.5</span> coding standards</h3>
 <div class="outline-text-3" id="text-9-5">
 <p>
 ref: <a href="https://isocpp.org/wiki/faq/coding-standards">https://isocpp.org/wiki/faq/coding-standards</a>
 </p>
 </div>
 
-<div id="outline-container-org8ce6ff4" class="outline-4">
-<h4 id="org8ce6ff4"><span class="section-number-4">9.5.1</span> &lt;xxx&gt; and &lt;xxx.h&gt;</h4>
+<div id="outline-container-org117ee58" class="outline-4">
+<h4 id="org117ee58"><span class="section-number-4">9.5.1</span> &lt;xxx&gt; and &lt;xxx.h&gt;</h4>
 <div class="outline-text-4" id="text-9-5-1">
 <p>
 C++ standard library is guaranteed to have 18 standard headers from C.
@@ -3473,8 +3471,8 @@ Two type of names: <code>&lt;cxxx&gt;</code> and <code>&lt;xxx.h&gt;</code>
 </div>
 </div>
 
-<div id="outline-container-org5767471" class="outline-4">
-<h4 id="org5767471"><span class="section-number-4">9.5.2</span> using</h4>
+<div id="outline-container-orge5ef7be" class="outline-4">
+<h4 id="orge5ef7be"><span class="section-number-4">9.5.2</span> using</h4>
 <div class="outline-text-4" id="text-9-5-2">
 <ul class="org-ul">
 <li>using-directive: <code>using namespace std;</code>. Do not use.</li>
@@ -3483,8 +3481,8 @@ Two type of names: <code>&lt;cxxx&gt;</code> and <code>&lt;xxx.h&gt;</code>
 </div>
 </div>
 
-<div id="outline-container-orgb0bb65a" class="outline-4">
-<h4 id="orgb0bb65a"><span class="section-number-4">9.5.3</span> where to declare variables</h4>
+<div id="outline-container-org2db0207" class="outline-4">
+<h4 id="org2db0207"><span class="section-number-4">9.5.3</span> where to declare variables</h4>
 <div class="outline-text-4" id="text-9-5-3">
 <p>
 Declare near the first use.
@@ -3499,8 +3497,8 @@ because performance.
 </div>
 </div>
 
-<div id="outline-container-orge101b7e" class="outline-4">
-<h4 id="orge101b7e"><span class="section-number-4">9.5.4</span> some lint-like guidelines</h4>
+<div id="outline-container-org1322ec5" class="outline-4">
+<h4 id="org1322ec5"><span class="section-number-4">9.5.4</span> some lint-like guidelines</h4>
 <div class="outline-text-4" id="text-9-5-4">
 <ul class="org-ul">
 <li>A class <code>Fred~’s assignment operator should return ~*this</code> as a <code>Fred&amp;</code> (allows chaining of assignments)</li>
@@ -3520,8 +3518,8 @@ because performance.
 </div>
 </div>
 
-<div id="outline-container-org5fc4da0" class="outline-4">
-<h4 id="org5fc4da0"><span class="section-number-4">9.5.5</span> some crazy unix abbr</h4>
+<div id="outline-container-org20c5c8c" class="outline-4">
+<h4 id="org20c5c8c"><span class="section-number-4">9.5.5</span> some crazy unix abbr</h4>
 <div class="outline-text-4" id="text-9-5-5">
 <p>
 <code>abbr evthng n sght, usng vry shrt idntfr nms</code>
@@ -3532,16 +3530,16 @@ because performance.
 </div>
 
 
-<div id="outline-container-org29cd5cc" class="outline-2">
-<h2 id="org29cd5cc"><span class="section-number-2">10</span> C++ Standards</h2>
+<div id="outline-container-org3bbc6f8" class="outline-2">
+<h2 id="org3bbc6f8"><span class="section-number-2">10</span> C++ Standards</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgedeb9a1" class="outline-3">
-<h3 id="orgedeb9a1"><span class="section-number-3">10.1</span> C++11</h3>
+<div id="outline-container-org9911ba4" class="outline-3">
+<h3 id="org9911ba4"><span class="section-number-3">10.1</span> C++11</h3>
 <div class="outline-text-3" id="text-10-1">
 </div>
-<div id="outline-container-org6be8e02" class="outline-4">
-<h4 id="org6be8e02"><span class="section-number-4">10.1.1</span> Default and Delete</h4>
+<div id="outline-container-org1ccf096" class="outline-4">
+<h4 id="org1ccf096"><span class="section-number-4">10.1.1</span> Default and Delete</h4>
 <div class="outline-text-4" id="text-10-1-1">
 <p>
 The common idiom of "prohibiting copying" can now be expressed directly:
@@ -3581,12 +3579,12 @@ Reference: <a href="http://www.stroustrup.com/C++11FAQ.html#default">http://www.
 </div>
 </div>
 
-<div id="outline-container-org797639e" class="outline-2">
-<h2 id="org797639e"><span class="section-number-2">11</span> Trouble Shooting</h2>
+<div id="outline-container-org99cf552" class="outline-2">
+<h2 id="org99cf552"><span class="section-number-2">11</span> Trouble Shooting</h2>
 <div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-orgf964e7d" class="outline-3">
-<h3 id="orgf964e7d"><span class="section-number-3">11.1</span> RTTI</h3>
+<div id="outline-container-org5e2a3e1" class="outline-3">
+<h3 id="org5e2a3e1"><span class="section-number-3">11.1</span> RTTI</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 use <code>-fno-rtti</code> to <b>NOT</b> use rtti. Otherwise error: undefined
@@ -3596,8 +3594,8 @@ reference to typeinfo for xxx.
 </div>
 </div>
 
-<div id="outline-container-org7874fac" class="outline-2">
-<h2 id="org7874fac"><span class="section-number-2">12</span> Operator Precedence</h2>
+<div id="outline-container-org8cd9de4" class="outline-2">
+<h2 id="org8cd9de4"><span class="section-number-2">12</span> Operator Precedence</h2>
 <div class="outline-text-2" id="text-12">
 <table border="2" cellspacing="2" cellpadding="6" rules="groups" frame="border">
 
@@ -3886,12 +3884,12 @@ reference to typeinfo for xxx.
 </table>
 </div>
 
-<div id="outline-container-org055ab0d" class="outline-3">
-<h3 id="org055ab0d"><span class="section-number-3">12.1</span> notes</h3>
+<div id="outline-container-orgac3b789" class="outline-3">
+<h3 id="orgac3b789"><span class="section-number-3">12.1</span> notes</h3>
 <div class="outline-text-3" id="text-12-1">
 </div>
-<div id="outline-container-org23e6168" class="outline-4">
-<h4 id="org23e6168"><span class="section-number-4">12.1.1</span> For <code>?:</code></h4>
+<div id="outline-container-org8c9253e" class="outline-4">
+<h4 id="org8c9253e"><span class="section-number-4">12.1.1</span> For <code>?:</code></h4>
 <div class="outline-text-4" id="text-12-1-1">
 <p>
 the middle of the conditional operator (between ? and :)
@@ -3899,8 +3897,8 @@ is parsed as if parenthesized: its precedence relative to <code>?:</code> is ign
 </p>
 </div>
 </div>
-<div id="outline-container-org0bdc557" class="outline-4">
-<h4 id="org0bdc557"><span class="section-number-4">12.1.2</span> For C++</h4>
+<div id="outline-container-org5795cbf" class="outline-4">
+<h4 id="org5795cbf"><span class="section-number-4">12.1.2</span> For C++</h4>
 <div class="outline-text-4" id="text-12-1-2">
 <p>
 The operand of sizeof can't be a C-style type cast:
@@ -3909,8 +3907,8 @@ but not <code>sizeof((int)*p)</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org80fb135" class="outline-4">
-<h4 id="org80fb135"><span class="section-number-4">12.1.3</span> In c++ table, the <code>?:</code> is also in 14 cell</h4>
+<div id="outline-container-org435dc00" class="outline-4">
+<h4 id="org435dc00"><span class="section-number-4">12.1.3</span> In c++ table, the <code>?:</code> is also in 14 cell</h4>
 </div>
 </div>
 </div>
@@ -3926,9 +3924,7 @@ but not <code>sizeof((int)*p)</code>.
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-23 Tue 03:04</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

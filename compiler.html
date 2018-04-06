@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-02 Tue 00:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -257,78 +255,78 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org48bdee1">1. Tmp</a>
+<li><a href="#org919d1d7">1. Tmp</a>
 <ul>
-<li><a href="#org13b70f9">1.1. CYK parser</a></li>
-<li><a href="#org39d2e35">1.2. Earley's algorithm</a></li>
+<li><a href="#org4936987">1.1. CYK parser</a></li>
+<li><a href="#org9690637">1.2. Earley's algorithm</a></li>
 </ul>
 </li>
-<li><a href="#orgc4d8827">2. GNU C Preprocessor</a>
+<li><a href="#orgb1b2045">2. GNU C Preprocessor</a>
 <ul>
-<li><a href="#orgf7f42d4">2.1. Invoking</a>
+<li><a href="#org0513aa0">2.1. Invoking</a>
 <ul>
-<li><a href="#org563fea2">2.1.1. <span class="todo TODO">TODO</span> The line control might be very useful for Helium</a></li>
-<li><a href="#org788285d">2.1.2. <span class="todo TODO">TODO</span> nostdinc, what is the standard?</a></li>
+<li><a href="#org6ea0540">2.1.1. <span class="todo TODO">TODO</span> The line control might be very useful for Helium</a></li>
+<li><a href="#orge2fb312">2.1.2. <span class="todo TODO">TODO</span> nostdinc, what is the standard?</a></li>
 </ul>
 </li>
-<li><a href="#org728441e">2.2. Macro</a></li>
+<li><a href="#org1c5090c">2.2. Macro</a></li>
 </ul>
 </li>
-<li><a href="#org8a64783">3. Chomsky Hierarchy</a>
+<li><a href="#orgdca7793">3. Chomsky Hierarchy</a>
 <ul>
-<li><a href="#org2c61208">3.1. Attribute grammar</a></li>
-<li><a href="#orgc4c1ddb">3.2. Affix grammar</a></li>
-<li><a href="#org07d5382">3.3. two-level grammar</a></li>
-<li><a href="#org7bb2c9d">3.4. Van Wijngaarden grammar</a></li>
-<li><a href="#org2269b64">3.5. Generalized LR parser</a></li>
-<li><a href="#org3561fdd">3.6. About C Grammar</a></li>
+<li><a href="#org9e652ad">3.1. Attribute grammar</a></li>
+<li><a href="#org753e199">3.2. Affix grammar</a></li>
+<li><a href="#orgf99259c">3.3. two-level grammar</a></li>
+<li><a href="#org5b4a7e7">3.4. Van Wijngaarden grammar</a></li>
+<li><a href="#orgb8ea5c4">3.5. Generalized LR parser</a></li>
+<li><a href="#orgfb70a17">3.6. About C Grammar</a></li>
 </ul>
 </li>
-<li><a href="#org465b2a5">4. Parser</a>
+<li><a href="#org2167776">4. Parser</a>
 <ul>
-<li><a href="#orgec22bcb">4.1. AST</a></li>
-<li><a href="#org811f2f7">4.2. <span class="todo TODO">TODO</span> Write/Fix the grammar</a>
+<li><a href="#org614b362">4.1. AST</a></li>
+<li><a href="#org555e3e7">4.2. <span class="todo TODO">TODO</span> Write/Fix the grammar</a>
 <ul>
-<li><a href="#org0bbe0ad">4.2.1. <span class="todo TODO">TODO</span> Ambiguity</a></li>
-<li><a href="#org1cdaaba">4.2.2. Left Recursion</a></li>
-<li><a href="#org6a50ab3">4.2.3. Left Factoring</a></li>
+<li><a href="#orgd7480ef">4.2.1. <span class="todo TODO">TODO</span> Ambiguity</a></li>
+<li><a href="#org9507520">4.2.2. Left Recursion</a></li>
+<li><a href="#org0169f9f">4.2.3. Left Factoring</a></li>
 </ul>
 </li>
-<li><a href="#orgb29a3d9">4.3. Top Down Parsing</a>
+<li><a href="#orgb11a135">4.3. Top Down Parsing</a>
 <ul>
-<li><a href="#org2a1eb40">4.3.1. <span class="todo TODO">TODO</span> LL(1)</a></li>
-<li><a href="#org9888422">4.3.2. Recursive Decent Parser v.s. LR Parser generator</a></li>
+<li><a href="#org16d6887">4.3.1. <span class="todo TODO">TODO</span> LL(1)</a></li>
+<li><a href="#orgbc2ddd4">4.3.2. Recursive Decent Parser v.s. LR Parser generator</a></li>
 </ul>
 </li>
-<li><a href="#org8da52da">4.4. Bottom Up Parsing</a>
+<li><a href="#orgd6c4b57">4.4. Bottom Up Parsing</a>
 <ul>
-<li><a href="#org824c2e3">4.4.1. shift-reduce parsing</a>
+<li><a href="#orga05800a">4.4.1. shift-reduce parsing</a>
 <ul>
-<li><a href="#orgfad3cc0">4.4.1.1. The dangling else problem</a></li>
+<li><a href="#orgeb54bbd">4.4.1.1. The dangling else problem</a></li>
 </ul>
 </li>
-<li><a href="#orgdc01e0d">4.4.2. LR(k) Parsing</a>
+<li><a href="#org6029a9e">4.4.2. LR(k) Parsing</a>
 <ul>
-<li><a href="#org1a11429">4.4.2.1. Simple LR Parsing (SLR)</a></li>
-<li><a href="#orgb80a362">4.4.2.2. LR(1)</a></li>
+<li><a href="#org8172c19">4.4.2.1. Simple LR Parsing (SLR)</a></li>
+<li><a href="#org8631215">4.4.2.2. LR(1)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd6eef91">5. Syntax Directed Translation</a></li>
-<li><a href="#org2ee913b">6. FIRST and FOLLOW</a></li>
-<li><a href="#orgf0b5063">7. Error Recovery</a></li>
-<li><a href="#orgd9f2d57">8. Tools</a>
+<li><a href="#org122f6f3">5. Syntax Directed Translation</a></li>
+<li><a href="#org9248d5a">6. FIRST and FOLLOW</a></li>
+<li><a href="#org77cc8ea">7. Error Recovery</a></li>
+<li><a href="#org8a94dcb">8. Tools</a>
 <ul>
-<li><a href="#org01b5a32">8.1. Elsa and Elkhound</a></li>
-<li><a href="#org4594cb3">8.2. Semantic Design Inc</a></li>
-<li><a href="#orgc447206">8.3. Parser generator</a></li>
+<li><a href="#org2f3233c">8.1. Elsa and Elkhound</a></li>
+<li><a href="#org9afe4c8">8.2. Semantic Design Inc</a></li>
+<li><a href="#org17b7eb5">8.3. Parser generator</a></li>
 </ul>
 </li>
-<li><a href="#org31de83c">9. Samples</a></li>
-<li><a href="#orge773faa">10. Reference</a></li>
+<li><a href="#orgcefe2e5">9. Samples</a></li>
+<li><a href="#org8cd9dc8">10. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -337,12 +335,12 @@ This file describe the general concept of a compiler. I'm going to
 relearn it in the hard way.
 </p>
 
-<div id="outline-container-org48bdee1" class="outline-2">
-<h2 id="org48bdee1"><span class="section-number-2">1</span> Tmp</h2>
+<div id="outline-container-org919d1d7" class="outline-2">
+<h2 id="org919d1d7"><span class="section-number-2">1</span> Tmp</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org13b70f9" class="outline-3">
-<h3 id="org13b70f9"><span class="section-number-3">1.1</span> CYK parser</h3>
+<div id="outline-container-org4936987" class="outline-3">
+<h3 id="org4936987"><span class="section-number-3">1.1</span> CYK parser</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 According to the length \(n\) of the program measured by tokens, it
@@ -359,8 +357,8 @@ a a b b
 </div>
 </div>
 
-<div id="outline-container-org39d2e35" class="outline-3">
-<h3 id="org39d2e35"><span class="section-number-3">1.2</span> Earley's algorithm</h3>
+<div id="outline-container-org9690637" class="outline-3">
+<h3 id="org9690637"><span class="section-number-3">1.2</span> Earley's algorithm</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Invented by Jay Earley, it is used to parse CFG. It can parse all CFG,
@@ -407,8 +405,8 @@ The parser repeatedly executes three options:
 </div>
 </div>
 
-<div id="outline-container-orgc4d8827" class="outline-2">
-<h2 id="orgc4d8827"><span class="section-number-2">2</span> GNU C Preprocessor</h2>
+<div id="outline-container-orgb1b2045" class="outline-2">
+<h2 id="orgb1b2045"><span class="section-number-2">2</span> GNU C Preprocessor</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The followings are done separately:
@@ -432,8 +430,8 @@ of them.
 </p>
 </div>
 
-<div id="outline-container-orgf7f42d4" class="outline-3">
-<h3 id="orgf7f42d4"><span class="section-number-3">2.1</span> Invoking</h3>
+<div id="outline-container-org0513aa0" class="outline-3">
+<h3 id="org0513aa0"><span class="section-number-3">2.1</span> Invoking</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><code>-C</code>: do not discard comments</li>
@@ -450,16 +448,16 @@ code dependencies</li>
 </ul>
 </div>
 
-<div id="outline-container-org563fea2" class="outline-4">
-<h4 id="org563fea2"><span class="section-number-4">2.1.1</span> <span class="todo TODO">TODO</span> The line control might be very useful for Helium</h4>
+<div id="outline-container-org6ea0540" class="outline-4">
+<h4 id="org6ea0540"><span class="section-number-4">2.1.1</span> <span class="todo TODO">TODO</span> The line control might be very useful for Helium</h4>
 </div>
-<div id="outline-container-org788285d" class="outline-4">
-<h4 id="org788285d"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> nostdinc, what is the standard?</h4>
+<div id="outline-container-orge2fb312" class="outline-4">
+<h4 id="orge2fb312"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> nostdinc, what is the standard?</h4>
 </div>
 </div>
 
-<div id="outline-container-org728441e" class="outline-3">
-<h3 id="org728441e"><span class="section-number-3">2.2</span> Macro</h3>
+<div id="outline-container-org1c5090c" class="outline-3">
+<h3 id="org1c5090c"><span class="section-number-3">2.2</span> Macro</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The simple form is a single identifier. The input is scanned
@@ -490,12 +488,12 @@ without any space.
 </div>
 </div>
 
-<div id="outline-container-org8a64783" class="outline-2">
-<h2 id="org8a64783"><span class="section-number-2">3</span> Chomsky Hierarchy</h2>
+<div id="outline-container-orgdca7793" class="outline-2">
+<h2 id="orgdca7793"><span class="section-number-2">3</span> Chomsky Hierarchy</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org2c61208" class="outline-3">
-<h3 id="org2c61208"><span class="section-number-3">3.1</span> Attribute grammar</h3>
+<div id="outline-container-org9e652ad" class="outline-3">
+<h3 id="org9e652ad"><span class="section-number-3">3.1</span> Attribute grammar</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The <b>evaluation</b> of the node will benefit from the attributes. It is
@@ -506,8 +504,8 @@ so I don't really think it is syntax related.
 </div>
 </div>
 
-<div id="outline-container-orgc4c1ddb" class="outline-3">
-<h3 id="orgc4c1ddb"><span class="section-number-3">3.2</span> Affix grammar</h3>
+<div id="outline-container-org753e199" class="outline-3">
+<h3 id="org753e199"><span class="section-number-3">3.2</span> Affix grammar</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 This seems to be synonyms of attribute grammar. Wikipedia has an
@@ -533,8 +531,8 @@ Verb + plural → help
 </div>
 
 
-<div id="outline-container-org07d5382" class="outline-3">
-<h3 id="org07d5382"><span class="section-number-3">3.3</span> two-level grammar</h3>
+<div id="outline-container-orgf99259c" class="outline-3">
+<h3 id="orgf99259c"><span class="section-number-3">3.3</span> two-level grammar</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Two level grammar is used to generate another formal grammar. This is
@@ -563,8 +561,8 @@ S ::= &lt;a^N&gt;&lt;b^N&gt;&lt;c^N&gt;
 </div>
 </div>
 
-<div id="outline-container-org7bb2c9d" class="outline-3">
-<h3 id="org7bb2c9d"><span class="section-number-3">3.4</span> Van Wijngaarden grammar</h3>
+<div id="outline-container-org5b4a7e7" class="outline-3">
+<h3 id="org5b4a7e7"><span class="section-number-3">3.4</span> Van Wijngaarden grammar</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 It is named by its inventor, and used in the language ALGOL 68. It is
@@ -607,8 +605,8 @@ value</code> is in-complete but instead <code>REF TYPE variable := TYPE value</c
 </div>
 
 
-<div id="outline-container-org2269b64" class="outline-3">
-<h3 id="org2269b64"><span class="section-number-3">3.5</span> Generalized LR parser</h3>
+<div id="outline-container-orgb8ea5c4" class="outline-3">
+<h3 id="orgb8ea5c4"><span class="section-number-3">3.5</span> Generalized LR parser</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 LR cannot handle nondeteministic and ambiguous grammars. GLR allows
@@ -620,8 +618,8 @@ merge into another (if they generate the same set of symbols).
 </div>
 </div>
 
-<div id="outline-container-org3561fdd" class="outline-3">
-<h3 id="org3561fdd"><span class="section-number-3">3.6</span> About C Grammar</h3>
+<div id="outline-container-orgfb70a17" class="outline-3">
+<h3 id="orgfb70a17"><span class="section-number-3">3.6</span> About C Grammar</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 This is a easily misunderstood problem.
@@ -750,8 +748,8 @@ is allowed to lookahead 1 token, and the token might be an identifier.
 
 
 
-<div id="outline-container-org465b2a5" class="outline-2">
-<h2 id="org465b2a5"><span class="section-number-2">4</span> Parser</h2>
+<div id="outline-container-org2167776" class="outline-2">
+<h2 id="org2167776"><span class="section-number-2">4</span> Parser</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Three category of parsers:
@@ -800,8 +798,8 @@ parentheses, begin-end, if-then-else.</li>
 </ul>
 </div>
 
-<div id="outline-container-orgec22bcb" class="outline-3">
-<h3 id="orgec22bcb"><span class="section-number-3">4.1</span> AST</h3>
+<div id="outline-container-org614b362" class="outline-3">
+<h3 id="org614b362"><span class="section-number-3">4.1</span> AST</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>In Syntax Tree, interior nodes represent programming constructs.</li>
@@ -899,15 +897,15 @@ A very good comparison on a lecture note <sup><a id="fnr.6" class="footref" href
 </p>
 </div>
 </div>
-<div id="outline-container-org811f2f7" class="outline-3">
-<h3 id="org811f2f7"><span class="section-number-3">4.2</span> <span class="todo TODO">TODO</span> Write/Fix the grammar</h3>
+<div id="outline-container-org555e3e7" class="outline-3">
+<h3 id="org555e3e7"><span class="section-number-3">4.2</span> <span class="todo TODO">TODO</span> Write/Fix the grammar</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org0bbe0ad" class="outline-4">
-<h4 id="org0bbe0ad"><span class="section-number-4">4.2.1</span> <span class="todo TODO">TODO</span> Ambiguity</h4>
+<div id="outline-container-orgd7480ef" class="outline-4">
+<h4 id="orgd7480ef"><span class="section-number-4">4.2.1</span> <span class="todo TODO">TODO</span> Ambiguity</h4>
 </div>
-<div id="outline-container-org1cdaaba" class="outline-4">
-<h4 id="org1cdaaba"><span class="section-number-4">4.2.2</span> Left Recursion</h4>
+<div id="outline-container-org9507520" class="outline-4">
+<h4 id="org9507520"><span class="section-number-4">4.2.2</span> Left Recursion</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 Top down parser cannot handle left recursion.
@@ -930,8 +928,8 @@ R ::= alpha | epsilon
 </div>
 </div>
 
-<div id="outline-container-org6a50ab3" class="outline-4">
-<h4 id="org6a50ab3"><span class="section-number-4">4.2.3</span> Left Factoring</h4>
+<div id="outline-container-org0169f9f" class="outline-4">
+<h4 id="org0169f9f"><span class="section-number-4">4.2.3</span> Left Factoring</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 a technique to rewrite production rule to achieve the effect that we
@@ -943,8 +941,8 @@ grammar more suitable for predictive or top-down parsing.
 </div>
 
 
-<div id="outline-container-orgb29a3d9" class="outline-3">
-<h3 id="orgb29a3d9"><span class="section-number-3">4.3</span> Top Down Parsing</h3>
+<div id="outline-container-orgb11a135" class="outline-3">
+<h3 id="orgb11a135"><span class="section-number-3">4.3</span> Top Down Parsing</h3>
 <div class="outline-text-3" id="text-4-3">
 <dl class="org-dl">
 <dt>Recusrive descent parsing</dt><dd><ul class="org-ul">
@@ -993,8 +991,8 @@ A without consuming any input.
 </p>
 </div>
 
-<div id="outline-container-org2a1eb40" class="outline-4">
-<h4 id="org2a1eb40"><span class="section-number-4">4.3.1</span> <span class="todo TODO">TODO</span> LL(1)</h4>
+<div id="outline-container-org16d6887" class="outline-4">
+<h4 id="org16d6887"><span class="section-number-4">4.3.1</span> <span class="todo TODO">TODO</span> LL(1)</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 What's the LL?
@@ -1023,8 +1021,8 @@ we use <i>non-recursive predictive parsing</i>.  Do not need recursive call
 </div>
 </div>
 
-<div id="outline-container-org9888422" class="outline-4">
-<h4 id="org9888422"><span class="section-number-4">4.3.2</span> Recursive Decent Parser v.s. LR Parser generator</h4>
+<div id="outline-container-orgbc2ddd4" class="outline-4">
+<h4 id="orgbc2ddd4"><span class="section-number-4">4.3.2</span> Recursive Decent Parser v.s. LR Parser generator</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 Well, In a word, this is actually important. See what the clang guys say <sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>
@@ -1048,8 +1046,8 @@ excellent diagnostics and error recovery.
 
 
 
-<div id="outline-container-org8da52da" class="outline-3">
-<h3 id="org8da52da"><span class="section-number-3">4.4</span> Bottom Up Parsing</h3>
+<div id="outline-container-orgd6c4b57" class="outline-3">
+<h3 id="orgd6c4b57"><span class="section-number-3">4.4</span> Bottom Up Parsing</h3>
 <div class="outline-text-3" id="text-4-4">
 <dl class="org-dl">
 <dt>shift-reduce parsing</dt><dd>a general style of bottom-up parsing</dd>
@@ -1068,8 +1066,8 @@ non-terminal. Thus the key decisions are:
 </ul>
 </div>
 
-<div id="outline-container-org824c2e3" class="outline-4">
-<h4 id="org824c2e3"><span class="section-number-4">4.4.1</span> shift-reduce parsing</h4>
+<div id="outline-container-orga05800a" class="outline-4">
+<h4 id="orga05800a"><span class="section-number-4">4.4.1</span> shift-reduce parsing</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 Think about a stack holding current string, and the input holding the rest input tokens.
@@ -1092,8 +1090,8 @@ Grammar that contains these conflicts are non-LR grammar.
 </p>
 </div>
 
-<div id="outline-container-orgfad3cc0" class="outline-5">
-<h5 id="orgfad3cc0"><span class="section-number-5">4.4.1.1</span> The dangling else problem</h5>
+<div id="outline-container-orgeb54bbd" class="outline-5">
+<h5 id="orgeb54bbd"><span class="section-number-5">4.4.1.1</span> The dangling else problem</h5>
 <div class="outline-text-5" id="text-4-4-1-1">
 <p>
 This is a canonical example for shift/reduce conflict. The C grammar
@@ -1154,8 +1152,8 @@ One more way to resolve this is to slightly modify the grammar:
 </div>
 
 
-<div id="outline-container-orgdc01e0d" class="outline-4">
-<h4 id="orgdc01e0d"><span class="section-number-4">4.4.2</span> LR(k) Parsing</h4>
+<div id="outline-container-org6029a9e" class="outline-4">
+<h4 id="org6029a9e"><span class="section-number-4">4.4.2</span> LR(k) Parsing</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <dl class="org-dl">
 <dt>L</dt><dd>left to right scanning</dd>
@@ -1188,8 +1186,8 @@ The drawback: hard to construct by hand.
 </p>
 </div>
 
-<div id="outline-container-org1a11429" class="outline-5">
-<h5 id="org1a11429"><span class="section-number-5">4.4.2.1</span> Simple LR Parsing (SLR)</h5>
+<div id="outline-container-org8172c19" class="outline-5">
+<h5 id="org8172c19"><span class="section-number-5">4.4.2.1</span> Simple LR Parsing (SLR)</h5>
 <div class="outline-text-5" id="text-4-4-2-1">
 <dl class="org-dl">
 <dt>LR(0) Item</dt><dd>each production rule will be written in a dot format:
@@ -1303,8 +1301,8 @@ in FOLLOW(A).</dd>
 </div>
 </div>
 
-<div id="outline-container-orgb80a362" class="outline-5">
-<h5 id="orgb80a362"><span class="section-number-5">4.4.2.2</span> LR(1)</h5>
+<div id="outline-container-org8631215" class="outline-5">
+<h5 id="org8631215"><span class="section-number-5">4.4.2.2</span> LR(1)</h5>
 <div class="outline-text-5" id="text-4-4-2-2">
 <p>
 So we now allow lookahead. By this we can handle more grammars than
@@ -1326,8 +1324,8 @@ parsing table is no bigger than SLR tables. The modern choice.</dd>
 
 
 
-<div id="outline-container-orgd6eef91" class="outline-2">
-<h2 id="orgd6eef91"><span class="section-number-2">5</span> Syntax Directed Translation</h2>
+<div id="outline-container-org122f6f3" class="outline-2">
+<h2 id="org122f6f3"><span class="section-number-2">5</span> Syntax Directed Translation</h2>
 <div class="outline-text-2" id="text-5">
 <dl class="org-dl">
 <dt>Syntax Directed Definition (SDD)</dt><dd>a context-free grammar together
@@ -1382,8 +1380,8 @@ evaluate in a pre-order traversal of the tree.</li>
 </div>
 </div>
 
-<div id="outline-container-org2ee913b" class="outline-2">
-<h2 id="org2ee913b"><span class="section-number-2">6</span> FIRST and FOLLOW</h2>
+<div id="outline-container-org9248d5a" class="outline-2">
+<h2 id="org9248d5a"><span class="section-number-2">6</span> FIRST and FOLLOW</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 The construction of <i>both</i> top-down and bottom-up parsers needs these
@@ -1400,8 +1398,8 @@ appear immediately to the right of A.</dd>
 </div>
 
 
-<div id="outline-container-orgf0b5063" class="outline-2">
-<h2 id="orgf0b5063"><span class="section-number-2">7</span> Error Recovery</h2>
+<div id="outline-container-org77cc8ea" class="outline-2">
+<h2 id="org77cc8ea"><span class="section-number-2">7</span> Error Recovery</h2>
 <div class="outline-text-2" id="text-7">
 <dl class="org-dl">
 <dt>panic-mode</dt><dd>discard input symbols until <i>synchronizing tokens</i> are
@@ -1420,12 +1418,12 @@ correction. (What are they??) [Dragon P196]</dd>
 
 
 
-<div id="outline-container-orgd9f2d57" class="outline-2">
-<h2 id="orgd9f2d57"><span class="section-number-2">8</span> Tools</h2>
+<div id="outline-container-org8a94dcb" class="outline-2">
+<h2 id="org8a94dcb"><span class="section-number-2">8</span> Tools</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org01b5a32" class="outline-3">
-<h3 id="org01b5a32"><span class="section-number-3">8.1</span> Elsa and Elkhound</h3>
+<div id="outline-container-org2f3233c" class="outline-3">
+<h3 id="org2f3233c"><span class="section-number-3">8.1</span> Elsa and Elkhound</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li><a href="http://www.scottmcpeak.com/elkhound/">http://www.scottmcpeak.com/elkhound/</a></li>
@@ -1459,8 +1457,8 @@ The downside, since it is more general, is slower performance.
 </div>
 </div>
 
-<div id="outline-container-org4594cb3" class="outline-3">
-<h3 id="org4594cb3"><span class="section-number-3">8.2</span> Semantic Design Inc</h3>
+<div id="outline-container-org9afe4c8" class="outline-3">
+<h3 id="org9afe4c8"><span class="section-number-3">8.2</span> Semantic Design Inc</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 A Commercial Parser Front end:
@@ -1471,8 +1469,8 @@ A Commercial Parser Front end:
 </div>
 </div>
 
-<div id="outline-container-orgc447206" class="outline-3">
-<h3 id="orgc447206"><span class="section-number-3">8.3</span> Parser generator</h3>
+<div id="outline-container-org17b7eb5" class="outline-3">
+<h3 id="org17b7eb5"><span class="section-number-3">8.3</span> Parser generator</h3>
 <div class="outline-text-3" id="text-8-3">
 <dl class="org-dl">
 <dt>yacc &amp; lex</dt><dd>generate LALR</dd>
@@ -1485,8 +1483,8 @@ A Commercial Parser Front end:
 
 
 
-<div id="outline-container-org31de83c" class="outline-2">
-<h2 id="org31de83c"><span class="section-number-2">9</span> Samples</h2>
+<div id="outline-container-orgcefe2e5" class="outline-2">
+<h2 id="orgcefe2e5"><span class="section-number-2">9</span> Samples</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 <pre class="src src-clang">int main() {
@@ -1500,8 +1498,8 @@ A Commercial Parser Front end:
 </div>
 </div>
 
-<div id="outline-container-orge773faa" class="outline-2">
-<h2 id="orge773faa"><span class="section-number-2">10</span> Reference</h2>
+<div id="outline-container-org8cd9dc8" class="outline-2">
+<h2 id="org8cd9dc8"><span class="section-number-2">10</span> Reference</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>A recursive descent parser generator in Common Lisp:
@@ -1547,9 +1545,7 @@ A Commercial Parser Front end:
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-02 Tue 00:07</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

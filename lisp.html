@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-01-21 Sun 17:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lisp Index Page</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,10 +233,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb6601d9">1. Lisp-1 vs. Lisp-2</a></li>
-<li><a href="#org06e371f">2. fold &amp; unfold</a></li>
-<li><a href="#orgc1d5595">3. Car &amp; Cdr</a></li>
-<li><a href="#org94aec7f">4. Reference</a></li>
+<li><a href="#orgc4905db">1. Why Lisp?</a></li>
+<li><a href="#org599156e">2. Lisp-1 vs. Lisp-2</a></li>
+<li><a href="#orga9d1b61">3. fold &amp; unfold</a></li>
+<li><a href="#org3db4094">4. Car &amp; Cdr</a></li>
+<li><a href="#orge82ea3e">5. The right thing vs. Worse is better </a></li>
+<li><a href="#org03af907">6. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -252,9 +252,42 @@ emacs lisp.
 </p>
 
 
-<div id="outline-container-orgb6601d9" class="outline-2">
-<h2 id="orgb6601d9"><span class="section-number-2">1</span> Lisp-1 vs. Lisp-2</h2>
+<div id="outline-container-orgc4905db" class="outline-2">
+<h2 id="orgc4905db"><span class="section-number-2">1</span> Why Lisp?</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+As Peter Norvig put in <a href="https://github.com/norvig/paip-lisp">Paradigms of Artificial Intelligence Programming</a>
+</p>
+
+<ul class="org-ul">
+<li>adapt the language to your prolem
+<ul class="org-ul">
+<li>you can make DSL for your specific topic</li>
+<li>support whatever programming style by just defining some macros</li>
+<li>the basic and universal data structure: list</li>
+</ul></li>
+<li>developing lisp is fast
+<ul class="org-ul">
+<li>dynamic, define function during running</li>
+<li>REPL</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>
+There is a myth that Lisp is "special-purpose" languages, while
+languages like Pascal and C are "general purpose". Actually, just the
+reverse is true.
+</p>
+</blockquote>
+</div>
+</div>
+
+
+
+<div id="outline-container-org599156e" class="outline-2">
+<h2 id="org599156e"><span class="section-number-2">2</span> Lisp-1 vs. Lisp-2</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 <a href="http://www.nhplace.com/kent/Papers/Technical-Issues.html">http://www.nhplace.com/kent/Papers/Technical-Issues.html</a>
 </p>
@@ -271,9 +304,9 @@ Lisp-1 includes Elisp, common lisp. All scheme are lisp-2.
 </div>
 
 
-<div id="outline-container-org06e371f" class="outline-2">
-<h2 id="org06e371f"><span class="section-number-2">2</span> fold &amp; unfold</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orga9d1b61" class="outline-2">
+<h2 id="orga9d1b61"><span class="section-number-2">3</span> fold &amp; unfold</h2>
+<div class="outline-text-2" id="text-3">
 <blockquote>
 <p>
 In academic functional programming literature, folds are often called
@@ -303,9 +336,9 @@ state you wish to modify.
 </div>
 
 
-<div id="outline-container-orgc1d5595" class="outline-2">
-<h2 id="orgc1d5595"><span class="section-number-2">3</span> Car &amp; Cdr</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org3db4094" class="outline-2">
+<h2 id="org3db4094"><span class="section-number-2">4</span> Car &amp; Cdr</h2>
+<div class="outline-text-2" id="text-4">
 <blockquote>
 <p>
 The names CAR and CDR derive from the history of Lisp.  The original
@@ -321,23 +354,70 @@ cells.
 </div>
 </div>
 
-<div id="outline-container-org94aec7f" class="outline-2">
-<h2 id="org94aec7f"><span class="section-number-2">4</span> Reference</h2>
-<div class="outline-text-2" id="text-4">
+
+<div id="outline-container-orge82ea3e" class="outline-2">
+<h2 id="orge82ea3e"><span class="section-number-2">5</span> The right thing vs. Worse is better <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
+<div class="outline-text-2" id="text-5">
+<p>
+These are two software design philosophies. The key different is:
+</p>
+<ul class="org-ul">
+<li>The right thing: interface should be simple</li>
+<li>Worse is better: implementation should be simple</li>
+</ul>
+
+<blockquote>
+<p>
+The worse-is-better philosophy means that implementation simplicity
+has highest priority, which means Unix and C are easy to port on such
+machines.
+</p>
+
+<p>
+Unix and C are the ultimate computer viruses.
+</p>
+
+<p>
+The code will be portable because it is written on top of a virus.
+</p>
+
+<p>
+The good news is that in 1995 we will have a good operating system and
+programming language; the bad news is that they will be Unix and C++.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org03af907" class="outline-2">
+<h2 id="org03af907"><span class="section-number-2">6</span> Reference</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Ron Garret: Why Lisp: <a href="http://blog.rongarret.info/2015/05/why-lisp.html">http://blog.rongarret.info/2015/05/why-lisp.html</a>
 <ul class="org-ul">
 <li>the idea is that, the power of lisp comes the the minimal syntax
 of representing the code</li>
 </ul></li>
+
+<li>Robert Strandh: what is wrong with lisp: <a href="http://metamodular.com/Essays/wrong.html">http://metamodular.com/Essays/wrong.html</a></li>
+<li>Kent Pitman on Genera vs. Emacs:
+<a href="https://groups.google.com/forum/?hl=en#!topic/comp.lang.lisp/XpvUwF2xKbk%5B101-125%5D">https://groups.google.com/forum/?hl=en#!topic/comp.lang.lisp/XpvUwF2xKbk[101-125]</a></li>
 </ul>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://www.dreamsongs.com/WIB.html">http://www.dreamsongs.com/WIB.html</a>
+</p></div></div>
+
+
 </div>
+</div></div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2018-01-21 Sun 17:56</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

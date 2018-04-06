@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tikz</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Hebi Li" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -180,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -235,104 +233,104 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org88ed4a4">1. Hacks</a></li>
-<li><a href="#orgac56761">2. FAQ</a></li>
-<li><a href="#orgbe91c22">3. Code Structure</a></li>
-<li><a href="#orgfc277df">4. Parameters (options)</a>
+<li><a href="#org2efcf39">1. Hacks</a></li>
+<li><a href="#orge4ed658">2. FAQ</a></li>
+<li><a href="#orgd743433">3. Code Structure</a></li>
+<li><a href="#org5335a87">4. Parameters (options)</a>
 <ul>
-<li><a href="#org2b0ccf3">4.1. Scope</a></li>
-<li><a href="#orgd41d2f5">4.2. Styles</a></li>
+<li><a href="#orga163ebb">4.1. Scope</a></li>
+<li><a href="#org3375af8">4.2. Styles</a></li>
 </ul>
 </li>
-<li><a href="#org80e34ec">5. Coordinates</a>
+<li><a href="#org78c3535">5. Coordinates</a>
 <ul>
-<li><a href="#orgefaf726">5.1. Intersection</a></li>
-<li><a href="#orgc2a9600">5.2. Relative position</a></li>
-<li><a href="#org4e93257">5.3. calc</a></li>
+<li><a href="#org3ad0b9a">5.1. Intersection</a></li>
+<li><a href="#orgfa74c21">5.2. Relative position</a></li>
+<li><a href="#org95c65c8">5.3. calc</a></li>
 </ul>
 </li>
-<li><a href="#org66b7f83">6. Path</a></li>
-<li><a href="#orgc9e0d48">7. Actions (on path)</a>
+<li><a href="#org0739fbe">6. Path</a></li>
+<li><a href="#orgf6937c4">7. Actions (on path)</a>
 <ul>
-<li><a href="#orgc122a22">7.1. Draw</a></li>
-<li><a href="#org894ab5b">7.2. Clip</a></li>
-<li><a href="#org9fc71e1">7.3. Bounding box</a></li>
+<li><a href="#orgb5b1b9b">7.1. Draw</a></li>
+<li><a href="#org28b2e7b">7.2. Clip</a></li>
+<li><a href="#org641a9e9">7.3. Bounding box</a></li>
 </ul>
 </li>
-<li><a href="#orgbdbdf89">8. Arrow</a>
+<li><a href="#org564e689">8. Arrow</a>
 <ul>
-<li><a href="#org3e7babe">8.1. <span class="todo TODO">TODO</span> Bending and flexing</a></li>
-<li><a href="#org66832fe">8.2. <span class="todo TODO">TODO</span> arrow tips</a></li>
+<li><a href="#org6f1bc06">8.1. <span class="todo TODO">TODO</span> Bending and flexing</a></li>
+<li><a href="#org4b8c800">8.2. <span class="todo TODO">TODO</span> arrow tips</a></li>
 </ul>
 </li>
-<li><a href="#orgfb9fcb6">9. Node</a>
+<li><a href="#orgff7048b">9. Node</a>
 <ul>
-<li><a href="#org5e5d53b">9.1. Options</a></li>
-<li><a href="#org4a9ae58">9.2. Foreach</a></li>
-<li><a href="#org99a826f">9.3. Style</a></li>
-<li><a href="#org6aeac7f">9.4. <span class="todo TODO">TODO</span> Multi-part node</a></li>
-<li><a href="#org05702c5">9.5. Node Text</a></li>
-<li><a href="#orged94304">9.6. Node Positioning</a>
+<li><a href="#orgb7a315b">9.1. Options</a></li>
+<li><a href="#org368c9cf">9.2. Foreach</a></li>
+<li><a href="#org48a4b91">9.3. Style</a></li>
+<li><a href="#orgf0cafa6">9.4. <span class="todo TODO">TODO</span> Multi-part node</a></li>
+<li><a href="#org1865617">9.5. Node Text</a></li>
+<li><a href="#org64f4512">9.6. Node Positioning</a>
 <ul>
-<li><a href="#orgc38bbc6">9.6.1. <span class="todo TODO">TODO</span> positioning</a></li>
+<li><a href="#org93cad3d">9.6.1. <span class="todo TODO">TODO</span> positioning</a></li>
 </ul>
 </li>
-<li><a href="#orge2b09d4">9.7. Fitting</a>
+<li><a href="#orge3cf0d7">9.7. Fitting</a>
 <ul>
-<li><a href="#orga5fce92">9.7.1. <span class="todo TODO">TODO</span> how to get several boxes to hold several things, but those boxes are of same size and aligned?</a></li>
+<li><a href="#org260f27e">9.7.1. <span class="todo TODO">TODO</span> how to get several boxes to hold several things, but those boxes are of same size and aligned?</a></li>
 </ul>
 </li>
-<li><a href="#org69b12c2">9.8. Place on a line</a></li>
-<li><a href="#org6b71914">9.9. Label &amp; Pin</a></li>
-<li><a href="#org41a8fe2">9.10. <span class="todo TODO">TODO</span> 17.12 Edge and from here</a></li>
+<li><a href="#org7aacd2e">9.8. Place on a line</a></li>
+<li><a href="#orgef3369b">9.9. Label &amp; Pin</a></li>
+<li><a href="#org0ae9af7">9.10. <span class="todo TODO">TODO</span> 17.12 Edge and from here</a></li>
 </ul>
 </li>
-<li><a href="#org154cc7f">10. Pic</a></li>
-<li><a href="#org2ece580">11. Graph</a>
+<li><a href="#org2c1c618">10. Pic</a></li>
+<li><a href="#org237311d">11. Graph</a>
 <ul>
-<li><a href="#org3de1de5">11.1. Specs</a>
+<li><a href="#org398818a">11.1. Specs</a>
 <ul>
-<li><a href="#orgca56ded">11.1.1. Group Spec</a></li>
-<li><a href="#org2e6845e">11.1.2. Node Spec</a></li>
+<li><a href="#orgebbe47c">11.1.1. Group Spec</a></li>
+<li><a href="#orgcc9d9fa">11.1.2. Node Spec</a></li>
 </ul>
 </li>
-<li><a href="#orgf3b447f">11.2. Edge</a></li>
-<li><a href="#orgb11aa37">11.3. Coloring</a></li>
-<li><a href="#org7518331">11.4. Node placement</a></li>
+<li><a href="#orgb893caf">11.2. Edge</a></li>
+<li><a href="#org264a2fc">11.3. Coloring</a></li>
+<li><a href="#orgd320931">11.4. Node placement</a></li>
 </ul>
 </li>
-<li><a href="#org49e5a6a">12. Tree</a>
+<li><a href="#orgee77a54">12. Tree</a>
 <ul>
-<li><a href="#orgfed98ed">12.1. Styling</a></li>
-<li><a href="#org2d48c07">12.2. Placement</a></li>
-<li><a href="#org8425f0b">12.3. forest</a></li>
+<li><a href="#org4cd7033">12.1. Styling</a></li>
+<li><a href="#org5ab00ea">12.2. Placement</a></li>
+<li><a href="#orgaa2e3df">12.3. forest</a></li>
 </ul>
 </li>
-<li><a href="#orgcf2e598">13. Matrix</a>
+<li><a href="#org26fafbb">13. Matrix</a>
 <ul>
-<li><a href="#orgbeae4f1">13.1. Styling</a></li>
-<li><a href="#orgd05eb3b">13.2. Anchoring</a></li>
+<li><a href="#orgfffc0c7">13.1. Styling</a></li>
+<li><a href="#org3137497">13.2. Anchoring</a></li>
 </ul>
 </li>
-<li><a href="#org72af134">14. Data Visualization</a>
+<li><a href="#orgfe48096">14. Data Visualization</a>
 <ul>
-<li><a href="#org7ddbe2c">14.1. Axis system</a></li>
-<li><a href="#orga125dd0">14.2. Provide data</a></li>
-<li><a href="#org59622e3">14.3. Visualizers</a></li>
-<li><a href="#orge76f249">14.4. Style sheets &amp; Legends</a></li>
+<li><a href="#org98f78ff">14.1. Axis system</a></li>
+<li><a href="#org24736fe">14.2. Provide data</a></li>
+<li><a href="#org150352d">14.3. Visualizers</a></li>
+<li><a href="#org78dd067">14.4. Style sheets &amp; Legends</a></li>
 </ul>
 </li>
-<li><a href="#org74eb2b2">15. <span class="todo TODO">TODO</span> Packages</a>
+<li><a href="#org0bb65bb">15. <span class="todo TODO">TODO</span> Packages</a>
 <ul>
-<li><a href="#org2c4947e">15.1. shapes.multipart</a></li>
+<li><a href="#orgb9d69d0">15.1. shapes.multipart</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org88ed4a4" class="outline-2">
-<h2 id="org88ed4a4"><span class="section-number-2">1</span> Hacks</h2>
+<div id="outline-container-org2efcf39" class="outline-2">
+<h2 id="org2efcf39"><span class="section-number-2">1</span> Hacks</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 When fitting figure, if you put text direclty into the fitted node, it
@@ -342,8 +340,8 @@ will not be vertically centered. Instead, create a new node at the
 </div>
 </div>
 
-<div id="outline-container-orgac56761" class="outline-2">
-<h2 id="orgac56761"><span class="section-number-2">2</span> FAQ</h2>
+<div id="outline-container-orge4ed658" class="outline-2">
+<h2 id="orge4ed658"><span class="section-number-2">2</span> FAQ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Use <code>scale=0.5, transform shape</code> to scale
@@ -351,14 +349,14 @@ Use <code>scale=0.5, transform shape</code> to scale
 </div>
 </div>
 
-<div id="outline-container-orgbe91c22" class="outline-2">
-<h2 id="orgbe91c22"><span class="section-number-2">3</span> Code Structure</h2>
+<div id="outline-container-orgd743433" class="outline-2">
+<h2 id="orgd743433"><span class="section-number-2">3</span> Code Structure</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 First, use the package
 </p>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
+<pre class="src src-latex">  <span style="color: #a020f0;">\usepackage</span>{<span style="color: #483d8b;">tikz</span>}
 </pre>
 </div>
 
@@ -366,7 +364,7 @@ First, use the package
 Then load libraries
 </p>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\usetikzlibrary</span>{shapes.multipart}
+<pre class="src src-latex">  <span style="color: #a020f0;">\usetikzlibrary</span>{shapes.multipart}
 </pre>
 </div>
 
@@ -375,8 +373,8 @@ Optionally some settings (TODO). Except <code>\tikzset</code> command, all other
 command should be put inside tikzpicture.
 </p>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\tikzset</span>{&gt;=latex}
-<span style="color: #696969;">\tikzset</span>{grid/.style={gray,very thin,opacity=1}}
+<pre class="src src-latex">  <span style="color: #a020f0;">\tikzset</span>{&gt;=latex}
+  <span style="color: #a020f0;">\tikzset</span>{grid/.style={gray,very thin,opacity=1}}
 </pre>
 </div>
 
@@ -391,13 +389,13 @@ at the end of drawing, thus have access to the node names defined. It
 can also access the outmost <code>current bounding box</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">figure*</span>}[ht]
-  <span style="color: #a020f0;">\centering</span>
-  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}[options]
-  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
-  <span style="color: #a020f0;">\caption</span>{}
-  <span style="color: #a020f0;">\label</span>{}
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">figure*</span>}
+<pre class="src src-latex">  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">figure*</span>}[ht]
+    <span style="color: #a020f0;">\centering</span>
+    <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}[options]
+    <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+    <span style="color: #a020f0;">\caption</span>{}
+    <span style="color: #a020f0;">\label</span>{}
+  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">figure*</span>}
 </pre>
 </div>
 
@@ -414,8 +412,8 @@ else, you need the <code>background</code> package.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfc277df" class="outline-2">
-<h2 id="orgfc277df"><span class="section-number-2">4</span> Parameters (options)</h2>
+<div id="outline-container-org5335a87" class="outline-2">
+<h2 id="org5335a87"><span class="section-number-2">4</span> Parameters (options)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The options are the same as using <code>\tikzset{options}</code>. Sometimes there
@@ -466,8 +464,8 @@ Path can be decorated, given <code>decorate</code> and
 </div>
 
 
-<div id="outline-container-org2b0ccf3" class="outline-3">
-<h3 id="org2b0ccf3"><span class="section-number-3">4.1</span> Scope</h3>
+<div id="outline-container-orga163ebb" class="outline-3">
+<h3 id="orga163ebb"><span class="section-number-3">4.1</span> Scope</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Parameters can have scope. It is introduced by <code>{scope}</code> invironment,
@@ -491,8 +489,8 @@ scoping. One line scope command is also available as
 </div>
 </div>
 
-<div id="outline-container-orgd41d2f5" class="outline-3">
-<h3 id="orgd41d2f5"><span class="section-number-3">4.2</span> Styles</h3>
+<div id="outline-container-org3375af8" class="outline-3">
+<h3 id="org3375af8"><span class="section-number-3">4.2</span> Styles</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Another way to group code together is to define a style. Like <code>help
@@ -536,8 +534,8 @@ Use it as <code>outline=blue</code>
 </div>
 </div>
 
-<div id="outline-container-org80e34ec" class="outline-2">
-<h2 id="org80e34ec"><span class="section-number-2">5</span> Coordinates</h2>
+<div id="outline-container-org78c3535" class="outline-2">
+<h2 id="org78c3535"><span class="section-number-2">5</span> Coordinates</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The general syntax is
@@ -576,8 +574,8 @@ Node is also often used for specify a coordinate. The implicit way is
 <li><code>(a.10)</code>: 10 degree angle</li>
 </ul>
 </div>
-<div id="outline-container-orgefaf726" class="outline-3">
-<h3 id="orgefaf726"><span class="section-number-3">5.1</span> Intersection</h3>
+<div id="outline-container-org3ad0b9a" class="outline-3">
+<h3 id="org3ad0b9a"><span class="section-number-3">5.1</span> Intersection</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Yet another way is to use <i>perpendicular</i> coordinate system. This
@@ -595,8 +593,8 @@ A more general way to find intersection of two pathes is to use
 </div>
 </div>
 
-<div id="outline-container-orgc2a9600" class="outline-3">
-<h3 id="orgc2a9600"><span class="section-number-3">5.2</span> Relative position</h3>
+<div id="outline-container-orgfa74c21" class="outline-3">
+<h3 id="orgfa74c21"><span class="section-number-3">5.2</span> Relative position</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li><code>++(x,y)</code>: You can also use relative position.  means shift to the
@@ -612,8 +610,8 @@ option.
 </div>
 </div>
 
-<div id="outline-container-org4e93257" class="outline-3">
-<h3 id="org4e93257"><span class="section-number-3">5.3</span> calc</h3>
+<div id="outline-container-org95c65c8" class="outline-3">
+<h3 id="org95c65c8"><span class="section-number-3">5.3</span> calc</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 The package <code>calc</code> provide calculation for coordinates. The general
@@ -648,8 +646,8 @@ and project b onto c, get the intersection point.</li>
 </div>
 </div>
 
-<div id="outline-container-org66b7f83" class="outline-2">
-<h2 id="org66b7f83"><span class="section-number-2">6</span> Path</h2>
+<div id="outline-container-org0739fbe" class="outline-2">
+<h2 id="org0739fbe"><span class="section-number-2">6</span> Path</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Path is a list of path operations. The coordinates can be <code>cycle</code>, literally.
@@ -717,12 +715,12 @@ weired.</li>
 </div>
 </div>
 
-<div id="outline-container-orgc9e0d48" class="outline-2">
-<h2 id="orgc9e0d48"><span class="section-number-2">7</span> Actions (on path)</h2>
+<div id="outline-container-orgf6937c4" class="outline-2">
+<h2 id="orgf6937c4"><span class="section-number-2">7</span> Actions (on path)</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgc122a22" class="outline-3">
-<h3 id="orgc122a22"><span class="section-number-3">7.1</span> Draw</h3>
+<div id="outline-container-orgb5b1b9b" class="outline-3">
+<h3 id="orgb5b1b9b"><span class="section-number-3">7.1</span> Draw</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li><code>\draw</code>: <code>\draw</code> is an abbreviation for <code>\path[draw]</code>. It will draw
@@ -743,8 +741,8 @@ is abbrev for <code>\path[fill,draw]</code>.
 </ul>
 </div>
 </div>
-<div id="outline-container-org894ab5b" class="outline-3">
-<h3 id="org894ab5b"><span class="section-number-3">7.2</span> Clip</h3>
+<div id="outline-container-org28b2e7b" class="outline-3">
+<h3 id="org28b2e7b"><span class="section-number-3">7.2</span> Clip</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li><code>\clip</code>: does NOT have <code>\clipdraw</code> because it seems not making
@@ -761,8 +759,8 @@ scope.
 </div>
 </div>
 
-<div id="outline-container-org9fc71e1" class="outline-3">
-<h3 id="org9fc71e1"><span class="section-number-3">7.3</span> Bounding box</h3>
+<div id="outline-container-org641a9e9" class="outline-3">
+<h3 id="org641a9e9"><span class="section-number-3">7.3</span> Bounding box</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 A path can be used as a bounding box. It can be used in two ways, make
@@ -773,10 +771,10 @@ it smaller or bigger.
 Smaller
 </p>
 <pre class="example">
-Letf\begin{tikzpicture}
-\draw[use as bounding box] (2,0) rectangle (3,1);
-\draw (1,0) -- (4.75);
-\end{tikzpicture}Right
+  Letf\begin{tikzpicture}
+  \draw[use as bounding box] (2,0) rectangle (3,1);
+  \draw (1,0) -- (4.75);
+  \end{tikzpicture}Right
 </pre>
 
 <p>
@@ -812,8 +810,8 @@ not the figure.
 </div>
 </div>
 
-<div id="outline-container-orgbdbdf89" class="outline-2">
-<h2 id="orgbdbdf89"><span class="section-number-2">8</span> Arrow</h2>
+<div id="outline-container-org564e689" class="outline-2">
+<h2 id="org564e689"><span class="section-number-2">8</span> Arrow</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Use the library <code>arrows.meta</code>.
@@ -844,16 +842,16 @@ line width, round, sharp</li>
 </ul>
 </div>
 
-<div id="outline-container-org3e7babe" class="outline-3">
-<h3 id="org3e7babe"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> Bending and flexing</h3>
+<div id="outline-container-org6f1bc06" class="outline-3">
+<h3 id="org6f1bc06"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> Bending and flexing</h3>
 </div>
-<div id="outline-container-org66832fe" class="outline-3">
-<h3 id="org66832fe"><span class="section-number-3">8.2</span> <span class="todo TODO">TODO</span> arrow tips</h3>
+<div id="outline-container-org4b8c800" class="outline-3">
+<h3 id="org4b8c800"><span class="section-number-3">8.2</span> <span class="todo TODO">TODO</span> arrow tips</h3>
 </div>
 </div>
 
-<div id="outline-container-orgfb9fcb6" class="outline-2">
-<h2 id="orgfb9fcb6"><span class="section-number-2">9</span> Node</h2>
+<div id="outline-container-orgff7048b" class="outline-2">
+<h2 id="orgff7048b"><span class="section-number-2">9</span> Node</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Nodes are intended for putting text. They cannot be easily nested.  A
@@ -878,8 +876,8 @@ is given by <code>name=&lt;name&gt;</code> option, or by <code>node(name){text}<
 </div>
 
 
-<div id="outline-container-org5e5d53b" class="outline-3">
-<h3 id="org5e5d53b"><span class="section-number-3">9.1</span> Options</h3>
+<div id="outline-container-orgb7a315b" class="outline-3">
+<h3 id="orgb7a315b"><span class="section-number-3">9.1</span> Options</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 Options are only applied to the node itself, possible options are:
@@ -908,8 +906,8 @@ Options are only applied to the node itself, possible options are:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4a9ae58" class="outline-3">
-<h3 id="org4a9ae58"><span class="section-number-3">9.2</span> Foreach</h3>
+<div id="outline-container-org368c9cf" class="outline-3">
+<h3 id="org368c9cf"><span class="section-number-3">9.2</span> Foreach</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 Foreach works like this: the following creates three nodes.  You can
@@ -922,8 +920,8 @@ also nest the loops.
 </div>
 </div>
 
-<div id="outline-container-org99a826f" class="outline-3">
-<h3 id="org99a826f"><span class="section-number-3">9.3</span> Style</h3>
+<div id="outline-container-org48a4b91" class="outline-3">
+<h3 id="org48a4b91"><span class="section-number-3">9.3</span> Style</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 The style hooks are <code>every node</code> and <code>every circle node</code>, <code>every
@@ -938,11 +936,11 @@ every node names inside the scope will be renamed under the hood.
 </div>
 </div>
 
-<div id="outline-container-org6aeac7f" class="outline-3">
-<h3 id="org6aeac7f"><span class="section-number-3">9.4</span> <span class="todo TODO">TODO</span> Multi-part node</h3>
+<div id="outline-container-orgf0cafa6" class="outline-3">
+<h3 id="orgf0cafa6"><span class="section-number-3">9.4</span> <span class="todo TODO">TODO</span> Multi-part node</h3>
 </div>
-<div id="outline-container-org05702c5" class="outline-3">
-<h3 id="org05702c5"><span class="section-number-3">9.5</span> Node Text</h3>
+<div id="outline-container-org1865617" class="outline-3">
+<h3 id="org1865617"><span class="section-number-3">9.5</span> Node Text</h3>
 <div class="outline-text-3" id="text-9-5">
 <p>
 Options
@@ -969,8 +967,8 @@ Options
 </div>
 </div>
 
-<div id="outline-container-orged94304" class="outline-3">
-<h3 id="orged94304"><span class="section-number-3">9.6</span> Node Positioning</h3>
+<div id="outline-container-org64f4512" class="outline-3">
+<h3 id="org64f4512"><span class="section-number-3">9.6</span> Node Positioning</h3>
 <div class="outline-text-3" id="text-9-6">
 <p>
 It uses anchor. The default is the center of the node. Possible anchors
@@ -990,8 +988,8 @@ thus he came up with some suger:
 </ul>
 </div>
 
-<div id="outline-container-orgc38bbc6" class="outline-4">
-<h4 id="orgc38bbc6"><span class="section-number-4">9.6.1</span> <span class="todo TODO">TODO</span> positioning</h4>
+<div id="outline-container-org93cad3d" class="outline-4">
+<h4 id="org93cad3d"><span class="section-number-4">9.6.1</span> <span class="todo TODO">TODO</span> positioning</h4>
 <div class="outline-text-4" id="text-9-6-1">
 <p>
 For more advanced placement, there's a library called
@@ -1003,8 +1001,8 @@ detail seems to be interesting.
 </div>
 </div>
 
-<div id="outline-container-orge2b09d4" class="outline-3">
-<h3 id="orge2b09d4"><span class="section-number-3">9.7</span> Fitting</h3>
+<div id="outline-container-orge3cf0d7" class="outline-3">
+<h3 id="orge3cf0d7"><span class="section-number-3">9.7</span> Fitting</h3>
 <div class="outline-text-3" id="text-9-7">
 <p>
 This fits the scenario that you want a box that is just big enough to
@@ -1020,12 +1018,12 @@ nodes.
 </pre>
 </div>
 
-<div id="outline-container-orga5fce92" class="outline-4">
-<h4 id="orga5fce92"><span class="section-number-4">9.7.1</span> <span class="todo TODO">TODO</span> how to get several boxes to hold several things, but those boxes are of same size and aligned?</h4>
+<div id="outline-container-org260f27e" class="outline-4">
+<h4 id="org260f27e"><span class="section-number-4">9.7.1</span> <span class="todo TODO">TODO</span> how to get several boxes to hold several things, but those boxes are of same size and aligned?</h4>
 </div>
 </div>
-<div id="outline-container-org69b12c2" class="outline-3">
-<h3 id="org69b12c2"><span class="section-number-3">9.8</span> Place on a line</h3>
+<div id="outline-container-org7aacd2e" class="outline-3">
+<h3 id="org7aacd2e"><span class="section-number-3">9.8</span> Place on a line</h3>
 <div class="outline-text-3" id="text-9-8">
 <p>
 These continue the node options
@@ -1049,8 +1047,8 @@ to the curve</li>
 </div>
 </div>
 
-<div id="outline-container-org6b71914" class="outline-3">
-<h3 id="org6b71914"><span class="section-number-3">9.9</span> Label &amp; Pin</h3>
+<div id="outline-container-orgef3369b" class="outline-3">
+<h3 id="orgef3369b"><span class="section-number-3">9.9</span> Label &amp; Pin</h3>
 <div class="outline-text-3" id="text-9-9">
 <p>
 This is used to add a node of text <i>next to another node</i>.
@@ -1108,12 +1106,12 @@ parser.
 </div>
 </div>
 
-<div id="outline-container-org41a8fe2" class="outline-3">
-<h3 id="org41a8fe2"><span class="section-number-3">9.10</span> <span class="todo TODO">TODO</span> 17.12 Edge and from here</h3>
+<div id="outline-container-org0ae9af7" class="outline-3">
+<h3 id="org0ae9af7"><span class="section-number-3">9.10</span> <span class="todo TODO">TODO</span> 17.12 Edge and from here</h3>
 </div>
 </div>
-<div id="outline-container-org154cc7f" class="outline-2">
-<h2 id="org154cc7f"><span class="section-number-2">10</span> Pic</h2>
+<div id="outline-container-org2c1c618" class="outline-2">
+<h2 id="org2c1c618"><span class="section-number-2">10</span> Pic</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 You can define some shape, and then reuse it at any place a node can
@@ -1170,8 +1168,8 @@ syntax inside the option of pic, too.
 </div>
 </div>
 
-<div id="outline-container-org2ece580" class="outline-2">
-<h2 id="org2ece580"><span class="section-number-2">11</span> Graph</h2>
+<div id="outline-container-org237311d" class="outline-2">
+<h2 id="org237311d"><span class="section-number-2">11</span> Graph</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 The graph system is syntax suger for nodes, for the sake of creating a
@@ -1205,12 +1203,12 @@ nothing special, just a <code>node [options] {text}</code>.</li>
 </ul>
 </div>
 
-<div id="outline-container-org3de1de5" class="outline-3">
-<h3 id="org3de1de5"><span class="section-number-3">11.1</span> Specs</h3>
+<div id="outline-container-org398818a" class="outline-3">
+<h3 id="org398818a"><span class="section-number-3">11.1</span> Specs</h3>
 <div class="outline-text-3" id="text-11-1">
 </div>
-<div id="outline-container-orgca56ded" class="outline-4">
-<h4 id="orgca56ded"><span class="section-number-4">11.1.1</span> Group Spec</h4>
+<div id="outline-container-orgebbe47c" class="outline-4">
+<h4 id="orgebbe47c"><span class="section-number-4">11.1.1</span> Group Spec</h4>
 <div class="outline-text-4" id="text-11-1-1">
 <pre class="example">
 &lt;group spec&gt; ::= {[options] &lt;chain spec&gt; [,;] &lt;chain spec&gt; ...}
@@ -1254,8 +1252,8 @@ the source.</li>
 </div>
 </div>
 
-<div id="outline-container-org2e6845e" class="outline-4">
-<h4 id="org2e6845e"><span class="section-number-4">11.1.2</span> Node Spec</h4>
+<div id="outline-container-orgcc9d9fa" class="outline-4">
+<h4 id="orgcc9d9fa"><span class="section-number-4">11.1.2</span> Node Spec</h4>
 <div class="outline-text-4" id="text-11-1-2">
 <pre class="example">
 &lt;node spec&gt; ::= &lt;direct&gt; | &lt;reference&gt; | &lt;group spec&gt;
@@ -1323,8 +1321,8 @@ appear at whatever places a node spec can be.
 </div>
 
 
-<div id="outline-container-orgf3b447f" class="outline-3">
-<h3 id="orgf3b447f"><span class="section-number-3">11.2</span> Edge</h3>
+<div id="outline-container-orgb893caf" class="outline-3">
+<h3 id="orgb893caf"><span class="section-number-3">11.2</span> Edge</h3>
 <div class="outline-text-3" id="text-11-2">
 <p>
 The edge option can accept quotes.
@@ -1356,8 +1354,8 @@ a single edge by add options to the node.
 </div>
 </div>
 
-<div id="outline-container-orgb11aa37" class="outline-3">
-<h3 id="orgb11aa37"><span class="section-number-3">11.3</span> Coloring</h3>
+<div id="outline-container-org264a2fc" class="outline-3">
+<h3 id="org264a2fc"><span class="section-number-3">11.3</span> Coloring</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 The color is logical color. Some predefined color including <code>source</code>
@@ -1393,8 +1391,8 @@ Set the nodes to color class, and connect them.
 </div>
 </div>
 
-<div id="outline-container-org7518331" class="outline-3">
-<h3 id="org7518331"><span class="section-number-3">11.4</span> Node placement</h3>
+<div id="outline-container-orgd320931" class="outline-3">
+<h3 id="orgd320931"><span class="section-number-3">11.4</span> Node placement</h3>
 <div class="outline-text-3" id="text-11-4">
 <p>
 The idea of graph is to make the positioning automatic. Thus we have
@@ -1435,8 +1433,8 @@ level 1/.style={...}
 </div>
 
 
-<div id="outline-container-org49e5a6a" class="outline-2">
-<h2 id="org49e5a6a"><span class="section-number-2">12</span> Tree</h2>
+<div id="outline-container-orgee77a54" class="outline-2">
+<h2 id="orgee77a54"><span class="section-number-2">12</span> Tree</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 The node syntax can also be used to draw a tree. A node can be
@@ -1480,8 +1478,8 @@ also counts.
 </p>
 </div>
 
-<div id="outline-container-orgfed98ed" class="outline-3">
-<h3 id="orgfed98ed"><span class="section-number-3">12.1</span> Styling</h3>
+<div id="outline-container-org4cd7033" class="outline-3">
+<h3 id="org4cd7033"><span class="section-number-3">12.1</span> Styling</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 Rules
@@ -1505,8 +1503,8 @@ Some hooks
 </div>
 </div>
 
-<div id="outline-container-org2d48c07" class="outline-3">
-<h3 id="org2d48c07"><span class="section-number-3">12.2</span> Placement</h3>
+<div id="outline-container-org5ab00ea" class="outline-3">
+<h3 id="org5ab00ea"><span class="section-number-3">12.2</span> Placement</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 The following options can be specified multiple times for each portion
@@ -1529,14 +1527,14 @@ coming edge.
 </div>
 
 
-<div id="outline-container-org8425f0b" class="outline-3">
-<h3 id="org8425f0b"><span class="section-number-3">12.3</span> forest</h3>
+<div id="outline-container-orgaa2e3df" class="outline-3">
+<h3 id="orgaa2e3df"><span class="section-number-3">12.3</span> forest</h3>
 </div>
 </div>
 
 
-<div id="outline-container-orgcf2e598" class="outline-2">
-<h2 id="orgcf2e598"><span class="section-number-2">13</span> Matrix</h2>
+<div id="outline-container-org26fafbb" class="outline-2">
+<h2 id="org26fafbb"><span class="section-number-2">13</span> Matrix</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Matrix is actually a node with <code>matrix</code> as option. The <code>\matrix</code> is
@@ -1566,8 +1564,8 @@ specify the spacing for the next separation.
 </p>
 </div>
 
-<div id="outline-container-orgbeae4f1" class="outline-3">
-<h3 id="orgbeae4f1"><span class="section-number-3">13.1</span> Styling</h3>
+<div id="outline-container-orgfffc0c7" class="outline-3">
+<h3 id="orgfffc0c7"><span class="section-number-3">13.1</span> Styling</h3>
 <div class="outline-text-3" id="text-13-1">
 <ul class="org-ul">
 <li><code>every cell={&lt;row&gt;}{&lt;column&gt;}</code>: this is a style hook. The row and
@@ -1591,8 +1589,8 @@ column are optional.
 </div>
 </div>
 
-<div id="outline-container-orgd05eb3b" class="outline-3">
-<h3 id="orgd05eb3b"><span class="section-number-3">13.2</span> Anchoring</h3>
+<div id="outline-container-org3137497" class="outline-3">
+<h3 id="org3137497"><span class="section-number-3">13.2</span> Anchoring</h3>
 <div class="outline-text-3" id="text-13-2">
 <ul class="org-ul">
 <li><code>matrix anchor=&lt;anchor&gt;</code>: this anchor will only apply to the matrix</li>
@@ -1602,8 +1600,8 @@ column are optional.
 </div>
 </div>
 
-<div id="outline-container-org72af134" class="outline-2">
-<h2 id="org72af134"><span class="section-number-2">14</span> Data Visualization</h2>
+<div id="outline-container-orgfe48096" class="outline-2">
+<h2 id="orgfe48096"><span class="section-number-2">14</span> Data Visualization</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 Use the library <code>datavisualization</code>.
@@ -1644,8 +1642,8 @@ Other commands include:
 </ul>
 </div>
 
-<div id="outline-container-org7ddbe2c" class="outline-3">
-<h3 id="org7ddbe2c"><span class="section-number-3">14.1</span> Axis system</h3>
+<div id="outline-container-org98f78ff" class="outline-3">
+<h3 id="org98f78ff"><span class="section-number-3">14.1</span> Axis system</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 You can specify axis system manually, but typically just choose from
@@ -1686,8 +1684,8 @@ strategies. There are also styling options for ticks and grid.
 </div>
 </div>
 
-<div id="outline-container-orga125dd0" class="outline-3">
-<h3 id="orga125dd0"><span class="section-number-3">14.2</span> Provide data</h3>
+<div id="outline-container-org24736fe" class="outline-3">
+<h3 id="org24736fe"><span class="section-number-3">14.2</span> Provide data</h3>
 <div class="outline-text-3" id="text-14-2">
 <p>
 Use <code>data</code> command.
@@ -1743,8 +1741,8 @@ This is for reuse some data points.
 </div>
 </div>
 
-<div id="outline-container-org59622e3" class="outline-3">
-<h3 id="org59622e3"><span class="section-number-3">14.3</span> Visualizers</h3>
+<div id="outline-container-org150352d" class="outline-3">
+<h3 id="org150352d"><span class="section-number-3">14.3</span> Visualizers</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 Specified in options.
@@ -1845,8 +1843,8 @@ style sheet=strong colors
 </div>
 </div>
 
-<div id="outline-container-orge76f249" class="outline-3">
-<h3 id="orge76f249"><span class="section-number-3">14.4</span> Style sheets &amp; Legends</h3>
+<div id="outline-container-org78dd067" class="outline-3">
+<h3 id="org78dd067"><span class="section-number-3">14.4</span> Style sheets &amp; Legends</h3>
 <div class="outline-text-3" id="text-14-4">
 <p>
 style sheet values:
@@ -1943,15 +1941,15 @@ The text of legend can be styled as well.
 
 
 
-<div id="outline-container-org74eb2b2" class="outline-2">
-<h2 id="org74eb2b2"><span class="section-number-2">15</span> <span class="todo TODO">TODO</span> Packages</h2>
+<div id="outline-container-org0bb65bb" class="outline-2">
+<h2 id="org0bb65bb"><span class="section-number-2">15</span> <span class="todo TODO">TODO</span> Packages</h2>
 <div class="outline-text-2" id="text-15">
 </div>
-<div id="outline-container-org2c4947e" class="outline-3">
-<h3 id="org2c4947e"><span class="section-number-3">15.1</span> shapes.multipart</h3>
+<div id="outline-container-orgb9d69d0" class="outline-3">
+<h3 id="orgb9d69d0"><span class="section-number-3">15.1</span> shapes.multipart</h3>
 <div class="outline-text-3" id="text-15-1">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\usetikzlibrary</span>{shapes.multipart}
+<pre class="src src-latex"><span style="color: #a020f0;">\usetikzlibrary</span>{shapes.multipart}
 </pre>
 </div>
 
@@ -1966,9 +1964,7 @@ mynode/.style={split, rectangle split parts=2}
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

@@ -3,7 +3,6 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-12-07 Thu 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>COMS342 Recitation 3</title>
@@ -180,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" />
+<link rel="stylesheet" type="text/css" href="assets/hebi.css" /><link rel="stylesheet" type="text/css" href="assets/test.css" /><link rel="stylesheet" type="text/css" href="../assets/hebi.css" /><link rel="stylesheet" type="text/css" href="../assets/test.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -233,12 +232,12 @@ for the JavaScript code in this tag.
 <h1 class="title">COMS342 Recitation 3</h1>
 
 
-<div id="outline-container-org461c3ab" class="outline-2">
-<h2 id="org461c3ab"><span class="section-number-2">1</span> Visitor</h2>
+<div id="outline-container-orgd766ceb" class="outline-2">
+<h2 id="orgd766ceb"><span class="section-number-2">1</span> Visitor</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3e7bc62" class="outline-3">
-<h3 id="org3e7bc62"><span class="section-number-3">1.1</span> Visitor pattern</h3>
+<div id="outline-container-orgcdfb821" class="outline-3">
+<h3 id="orgcdfb821"><span class="section-number-3">1.1</span> Visitor pattern</h3>
 <div class="outline-text-3" id="text-1-1">
 <blockquote>
 <p>
@@ -249,8 +248,8 @@ Visitor lets you define a new operation without changing theclasses of the eleme
 </div>
 </div>
 
-<div id="outline-container-org96163bd" class="outline-3">
-<h3 id="org96163bd"><span class="section-number-3">1.2</span> The problem and the naive solution</h3>
+<div id="outline-container-org87cecc3" class="outline-3">
+<h3 id="org87cecc3"><span class="section-number-3">1.2</span> The problem and the naive solution</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>We have a list of classes in a class hierarchy, e.g. AST nodes.</li>
@@ -269,8 +268,8 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-org2b88df4" class="outline-3">
-<h3 id="org2b88df4"><span class="section-number-3">1.3</span> The pattern</h3>
+<div id="outline-container-orgd2fdddf" class="outline-3">
+<h3 id="orgd2fdddf"><span class="section-number-3">1.3</span> The pattern</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>We define a hierarchy of visitors</li>
@@ -285,57 +284,57 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 </div>
 
-<div id="outline-container-org2816d65" class="outline-3">
-<h3 id="org2816d65"><span class="section-number-3">1.4</span> Example</h3>
+<div id="outline-container-org8197119" class="outline-3">
+<h3 id="org8197119"><span class="section-number-3">1.4</span> Example</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">interface</span> <span style="color: #228b22;">AST</span> {
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">ASTNode</span> {
-        <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>);
-    }
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Exp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">ASTNode</span> {
+<pre class="src src-java">  <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">interface</span> <span style="color: #228b22;">AST</span> {
+      <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">ASTNode</span> {
+          <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>);
+      }
+      <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Exp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">ASTNode</span> {
 
-    }
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">NumExp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">Exp</span> {
-        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_val</span>;
-        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>) {
-            <span style="color: #a020f0;">return</span> visitor.visit(<span style="color: #a020f0;">this</span>);
-        }
-    }
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">AddExp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">CompoundArithExp</span> {
-        <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">AddExp</span>(<span style="color: #228b22;">List</span>&lt;<span style="color: #228b22;">Exp</span>&gt; <span style="color: #a0522d;">args</span>) {
-            <span style="color: #a020f0;">super</span>(args);
-        }
-        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>) {
-            <span style="color: #a020f0;">return</span> visitor.visit(<span style="color: #a020f0;">this</span>);
-        }
-    }
-}
+      }
+      <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">NumExp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">Exp</span> {
+          <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_val</span>;
+          <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>) {
+              <span style="color: #a020f0;">return</span> visitor.visit(<span style="color: #a020f0;">this</span>);
+          }
+      }
+      <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">AddExp</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">CompoundArithExp</span> {
+          <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">AddExp</span>(<span style="color: #228b22;">List</span>&lt;<span style="color: #228b22;">Exp</span>&gt; <span style="color: #a0522d;">args</span>) {
+              <span style="color: #a020f0;">super</span>(args);
+          }
+          <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Object</span> <span style="color: #0000ff;">accept</span>(<span style="color: #228b22;">Visitor</span> <span style="color: #a0522d;">visitor</span>) {
+              <span style="color: #a020f0;">return</span> visitor.visit(<span style="color: #a020f0;">this</span>);
+          }
+      }
+  }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org549aef6" class="outline-3">
-<h3 id="org549aef6"><span class="section-number-3">1.5</span> Example - follow</h3>
+<div id="outline-container-orgb64fa2a" class="outline-3">
+<h3 id="orgb64fa2a"><span class="section-number-3">1.5</span> Example - follow</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Evaluator</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Visitor</span>&lt;<span style="color: #228b22;">Value</span>&gt; {
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span>(<span style="color: #228b22;">NumExp</span> <span style="color: #a0522d;">e</span>) {
-        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span>(e.v());
-    }
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span>(<span style="color: #228b22;">AddExp</span> <span style="color: #a0522d;">e</span>) {
-        <span style="color: #228b22;">List</span>&lt;<span style="color: #228b22;">Exp</span>&gt; <span style="color: #a0522d;">operands</span> = e.all();
-        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">result</span> = 0;
-        <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">Exp</span> <span style="color: #a0522d;">exp</span> : operands) {
-            <span style="color: #228b22;">NumVal</span> <span style="color: #a0522d;">intermediate</span> = (<span style="color: #228b22;">NumVal</span>) exp.accept(<span style="color: #a020f0;">this</span>); <span style="color: #b22222;">// </span><span style="color: #b22222;">Dynamic</span>
-            <span style="color: #b22222;">// </span><span style="color: #b22222;">type-checking</span>
-            result += intermediate.v(); <span style="color: #b22222;">// </span><span style="color: #b22222;">Semantics of AddExp in terms of the</span>
-            <span style="color: #b22222;">// </span><span style="color: #b22222;">target language.</span>
-        }
-        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span>(result);
-    }
-}
+<pre class="src src-java">  <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Evaluator</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Visitor</span>&lt;<span style="color: #228b22;">Value</span>&gt; {
+      <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span>(<span style="color: #228b22;">NumExp</span> <span style="color: #a0522d;">e</span>) {
+          <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span>(e.v());
+      }
+      <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Value</span> <span style="color: #0000ff;">visit</span>(<span style="color: #228b22;">AddExp</span> <span style="color: #a0522d;">e</span>) {
+          <span style="color: #228b22;">List</span>&lt;<span style="color: #228b22;">Exp</span>&gt; <span style="color: #a0522d;">operands</span> = e.all();
+          <span style="color: #228b22;">double</span> <span style="color: #a0522d;">result</span> = 0;
+          <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">Exp</span> <span style="color: #a0522d;">exp</span> : operands) {
+              <span style="color: #228b22;">NumVal</span> <span style="color: #a0522d;">intermediate</span> = (<span style="color: #228b22;">NumVal</span>) exp.accept(<span style="color: #a020f0;">this</span>); <span style="color: #b22222;">// </span><span style="color: #b22222;">Dynamic</span>
+              <span style="color: #b22222;">// </span><span style="color: #b22222;">type-checking</span>
+              result += intermediate.v(); <span style="color: #b22222;">// </span><span style="color: #b22222;">Semantics of AddExp in terms of the</span>
+              <span style="color: #b22222;">// </span><span style="color: #b22222;">target language.</span>
+          }
+          <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NumVal</span>(result);
+      }
+  }
 </pre>
 </div>
 </div>
@@ -344,8 +343,7 @@ This is not good. Application code is mixed with the AST node implementation.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Hebi Li</p>
-<p class="date">Created: 2017-12-07 Thu 15:13</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>
